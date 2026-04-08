@@ -1,0 +1,8 @@
+# Screenshots - too large for git (404MB), store separately
+.claude/worktrees/nostalgic-hopper/screenshots/
+
+# Node modules
+.claude/worktrees/nostalgic-hopper/node_modules/
+
+# Git worktree internal file
+.claude/worktrees/nostalgic-hopper/.git
