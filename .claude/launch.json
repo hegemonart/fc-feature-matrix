@@ -3,8 +3,8 @@
   "configurations": [
     {
       "name": "feature-matrix",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["http-server", "D:/AI/fc feature matrix", "-p", "8090", "-c-1"],
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["-e", "require('http').createServer((req,res)=>{const fs=require('fs'),path=require('path'),base='D:/AI/fc feature matrix',fp=path.join(base,req.url==='/'?'FEATURE_MATRIX_INTERACTIVE.html':req.url);fs.readFile(fp,(e,d)=>{if(e){res.writeHead(404);res.end();}else{const ext=path.extname(fp);const ct={'html':'text/html','css':'text/css','js':'text/javascript','json':'application/json'}[ext.slice(1)]||'text/plain';res.writeHead(200,{'Content-Type':ct,'Cache-Control':'no-cache'});res.end(d);}});}).listen(8090,()=>console.log('Serving on 8090'))"],
       "port": 8090
     }
   ]

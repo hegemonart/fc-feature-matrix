@@ -32,6 +32,12 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
 
+  /* ── A11Y ── */
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
   header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
   .logo { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
   .logo span { color: var(--accent); }
@@ -42,13 +48,14 @@
 
   .toolbar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
   .search-wrap { position: relative; flex: 0 0 220px; }
-  .search-wrap input { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px 6px 30px; color: var(--text); font-size: 12px; outline: none; }
-  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap input { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px 6px 30px; color: var(--text); font-size: 12px; outline: none; transition: border-color .2s, box-shadow .2s; }
+  .search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(79,110,247,.25); }
   .search-wrap svg { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: var(--muted); }
   .filter-group { display: flex; align-items: center; gap: 6px; }
   .filter-label { font-size: 11px; color: var(--muted); white-space: nowrap; }
-  .filter-btn { background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; padding: 4px 9px; font-size: 11px; color: var(--muted); cursor: pointer; transition: all .15s; white-space: nowrap; }
-  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn { background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; padding: 4px 9px; font-size: 11px; color: var(--muted); cursor: pointer; transition: all .2s ease-out; white-space: nowrap; }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); background: rgba(79,110,247,.08); }
+  .filter-btn:active { transform: scale(0.97); }
   .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
   .divider { width: 1px; height: 20px; background: var(--border); }
   .toolbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
@@ -135,8 +142,8 @@
   .freq-bar.innovation { background: var(--red); }
   .freq-label { font-size: 10px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
 
-  .detail-panel { width: 320px; flex-shrink: 0; background: var(--bg2); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: width .2s; }
-  .detail-panel.collapsed { width: 0; border: none; }
+  .detail-panel { width: 320px; flex-shrink: 0; background: var(--bg2); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: transform .25s ease-out, opacity .25s ease-out; box-shadow: -4px 0 16px rgba(0,0,0,.3); }
+  .detail-panel.collapsed { width: 0; border: none; transform: translateX(100%); opacity: 0; pointer-events: none; }
   .detail-inner { padding: 16px; overflow-y: auto; flex: 1; min-width: 320px; }
   .detail-close { position: absolute; top: 12px; right: 14px; cursor: pointer; color: var(--muted); font-size: 16px; line-height: 1; transition: color .12s; background: none; border: none; padding: 0; }
   .detail-close:hover { color: var(--text); }
@@ -203,6 +210,142 @@
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
   .no-results { padding: 40px; text-align: center; color: var(--muted); font-size: 13px; }
+
+  /* ── FLOW NAV ── */
+  .flow-nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 20px; display: flex; align-items: stretch; gap: 0; flex-shrink: 0; overflow-x: auto; }
+  .flow-tab { display: flex; align-items: center; gap: 7px; padding: 10px 14px; font-size: 12px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s ease-out; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; }
+  .flow-tab:hover { color: var(--text); background: rgba(255,255,255,.02); }
+  .flow-tab.active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+  .flow-tab.locked { opacity: .5; cursor: pointer; }
+  .flow-tab.locked:hover { opacity: .7; }
+  .flow-tab .lock-icon svg { width: 11px; height: 11px; color: var(--muted); display: block; }
+  .flow-tab .tab-badge { font-size: 9px; font-weight: 700; background: var(--green); color: #fff; padding: 1px 5px; border-radius: 3px; letter-spacing: .03em; }
+
+  /* ── LOCKED MODAL ── */
+  .locked-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+  .locked-overlay.visible { display: flex; }
+  .locked-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 32px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,.5); animation: modalIn .25s ease-out; }
+  @keyframes modalIn { from { transform: scale(.94) translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
+  .locked-card .lock-big { margin: 0 auto 16px; width: 48px; height: 48px; border-radius: 50%; background: rgba(79,110,247,.12); display: flex; align-items: center; justify-content: center; }
+  .locked-card .lock-big svg { width: 22px; height: 22px; color: var(--accent); }
+  .locked-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .locked-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+  .locked-card .locked-flow-name { color: var(--accent); font-weight: 600; }
+  .locked-card .locked-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s ease-out; }
+  .locked-card .locked-btn:hover { filter: brightness(1.1); }
+  .locked-card .locked-btn:active { transform: scale(0.97); }
+  .locked-card .locked-dismiss { margin-top: 12px; font-size: 12px; color: var(--muted); cursor: pointer; background: none; border: none; transition: color .15s; display: block; margin-left: auto; margin-right: auto; }
+  .locked-card .locked-dismiss:hover { color: var(--text); }
+
+  /* ── CELL TOOLTIP ── */
+  .cell-tooltip { position: fixed; background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; padding: 8px 12px; font-size: 11px; color: var(--text); pointer-events: none; z-index: 1500; max-width: 220px; line-height: 1.5; box-shadow: 0 4px 16px rgba(0,0,0,.5); opacity: 0; transition: opacity .15s ease-out; white-space: nowrap; }
+  .cell-tooltip.visible { opacity: 1; }
+  .cell-tooltip .tt-feature { font-weight: 600; color: var(--text); }
+  .cell-tooltip .tt-product { color: var(--muted); font-size: 10px; margin-top: 1px; }
+  .cell-tooltip .tt-status { margin-top: 4px; font-size: 10px; font-weight: 600; }
+  .cell-tooltip .tt-status.full { color: var(--accent); }
+  .cell-tooltip .tt-status.partial { color: var(--accent); opacity: .6; }
+  .cell-tooltip .tt-status.absent { color: var(--muted); }
+
+  /* ── FULL CLUB BREAKDOWN BTN ── */
+  .breakdown-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: rgba(79,110,247,.12); border: 1px solid rgba(79,110,247,.3); border-radius: 8px; color: var(--accent); font-size: 12px; font-weight: 600; cursor: pointer; transition: all .2s ease-out; margin-top: 12px; }
+  .breakdown-btn:hover { background: rgba(79,110,247,.2); border-color: var(--accent); }
+  .breakdown-btn:active { transform: scale(0.98); }
+  .breakdown-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+  /* ── CLUB BREAKDOWN OVERLAY ── */
+  .breakdown-overlay { display: none; position: fixed; inset: 0; z-index: 1800; background: rgba(0,0,0,.55); backdrop-filter: blur(3px); }
+  .breakdown-overlay.visible { display: block; }
+  .breakdown-panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(720px, 100vw); background: var(--bg); border-left: 1px solid var(--border); overflow-y: auto; box-shadow: -8px 0 32px rgba(0,0,0,.5); transform: translateX(100%); transition: transform .3s ease-out; }
+  .breakdown-overlay.visible .breakdown-panel { transform: translateX(0); }
+  .bd-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 10; }
+  .bd-back { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; cursor: pointer; background: none; border: none; transition: color .2s; flex-shrink: 0; }
+  .bd-back:hover { color: var(--text); }
+  .bd-crest { width: 36px; height: 36px; border-radius: 8px; background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--accent); flex-shrink: 0; }
+  .bd-club-name { font-size: 17px; font-weight: 700; color: var(--text); }
+  .bd-club-meta { font-size: 11px; color: var(--muted); }
+  .bd-close { margin-left: auto; width: 28px; height: 28px; border-radius: 6px; background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; cursor: pointer; transition: all .15s; flex-shrink: 0; }
+  .bd-close:hover { border-color: var(--muted); }
+  .bd-close svg { width: 14px; height: 14px; color: var(--muted); }
+  .bd-body { padding: 24px; }
+  .bd-alert { background: var(--red-bg); border: 1px solid rgba(239,68,68,.25); border-radius: 10px; padding: 14px 16px; margin-bottom: 20px; display: flex; align-items: flex-start; gap: 10px; }
+  .bd-alert svg { width: 16px; height: 16px; color: var(--red); flex-shrink: 0; margin-top: 1px; }
+  .bd-alert-title { font-size: 13px; font-weight: 700; color: var(--red); margin-bottom: 2px; }
+  .bd-alert-desc { font-size: 12px; color: rgba(239,68,68,.8); line-height: 1.5; }
+  .bd-score-row { display: grid; grid-template-columns: 260px 1fr; gap: 16px; margin-bottom: 20px; }
+  .bd-score-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .bd-score-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .bd-ring-wrap { position: relative; width: 140px; height: 140px; margin-bottom: 12px; }
+  .bd-ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .bd-ring-bg { fill: none; stroke: var(--bg3); stroke-width: 9; }
+  .bd-ring-fg { fill: none; stroke-width: 9; stroke-linecap: round; }
+  .bd-ring-fg.low { stroke: var(--red); }
+  .bd-ring-fg.mid { stroke: var(--yellow); }
+  .bd-ring-fg.high { stroke: var(--green); }
+  .bd-ring-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .bd-score-num { font-size: 36px; font-weight: 800; color: var(--text); line-height: 1; font-variant-numeric: tabular-nums; }
+  .bd-score-num span { font-size: 18px; font-weight: 600; color: var(--muted); }
+  .bd-score-sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .bd-divider { width: 100%; height: 1px; background: var(--border); margin: 16px 0; }
+  .bd-scores-row { display: flex; gap: 20px; }
+  .bd-mini-score { text-align: center; }
+  .bd-mini-label { font-size: 10px; color: var(--muted); margin-bottom: 3px; }
+  .bd-mini-val { font-size: 22px; font-weight: 700; font-variant-numeric: tabular-nums; }
+  .bd-rank-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 14px; padding: 18px; overflow-y: auto; max-height: 248px; }
+  .bd-rank-card h3 { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
+  .bd-rank-item { display: flex; align-items: center; gap: 8px; padding: 5px 6px; border-radius: 5px; transition: background .15s; }
+  .bd-rank-item:hover { background: var(--bg3); }
+  .bd-rank-item.current { background: rgba(234,179,8,.1); border: 1px solid rgba(234,179,8,.2); }
+  .bd-rank-pos { width: 22px; font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; font-variant-numeric: tabular-nums; }
+  .bd-rank-item.current .bd-rank-pos { color: var(--yellow); }
+  .bd-rank-name { flex: 1; font-size: 12px; color: var(--text2,#b0b0c8); }
+  .bd-rank-item.current .bd-rank-name { font-weight: 700; color: var(--text); }
+  .bd-rank-bar-wrap { width: 60px; height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; }
+  .bd-rank-bar { height: 100%; border-radius: 2px; }
+  .bd-rank-pct { font-size: 11px; color: var(--muted); width: 32px; text-align: right; font-variant-numeric: tabular-nums; }
+  .bd-rank-item.current .bd-rank-pct { color: var(--text); }
+  .bd-cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px,1fr)); gap: 10px; margin-bottom: 20px; }
+  .bd-cat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .bd-cat-header { display: flex; align-items: center; gap: 7px; margin-bottom: 8px; }
+  .bd-cat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .bd-cat-title { font-size: 12px; font-weight: 700; color: var(--text); }
+  .bd-cat-score-row { display: flex; align-items: baseline; gap: 5px; margin-bottom: 6px; }
+  .bd-cat-big { font-size: 24px; font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; }
+  .bd-cat-of { font-size: 12px; color: var(--muted); }
+  .bd-cat-bar-wrap { height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; margin-bottom: 5px; }
+  .bd-cat-bar { height: 100%; border-radius: 3px; transition: width .5s ease-out; }
+  .bd-cat-verdict { font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; padding: 2px 7px; border-radius: 4px; }
+  .bd-cat-verdict.danger { background: var(--red-bg); color: var(--red); }
+  .bd-cat-verdict.warning { background: var(--yellow-bg); color: var(--yellow); }
+  .bd-cat-verdict.ok { background: var(--green-bg); color: var(--green); }
+  .bd-section { margin-bottom: 28px; }
+  .bd-section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .bd-section-icon { width: 32px; height: 32px; border-radius: 7px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bd-section-icon svg { width: 15px; height: 15px; }
+  .bd-section-title { font-size: 15px; font-weight: 700; color: var(--text); }
+  .bd-section-count { font-size: 11px; font-weight: 600; color: var(--muted); background: var(--bg3); border-radius: 8px; padding: 1px 8px; }
+  .bd-section-desc { font-size: 12px; color: var(--muted); margin-bottom: 12px; line-height: 1.6; }
+  .bd-feature-list { display: flex; flex-direction: column; gap: 5px; }
+  .bd-feature-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 11px 14px; display: flex; align-items: center; gap: 12px; transition: background .2s; }
+  .bd-feature-item:hover { background: var(--bg3); }
+  .bd-feature-status { width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bd-feature-status.missing { background: var(--red-bg); }
+  .bd-feature-status.missing svg { color: var(--red); }
+  .bd-feature-status.has { background: var(--green-bg); }
+  .bd-feature-status.has svg { color: var(--green); }
+  .bd-feature-status.partial { background: rgba(79,110,247,.1); }
+  .bd-feature-status.partial svg { color: var(--accent); }
+  .bd-feature-info { flex: 1; min-width: 0; }
+  .bd-feature-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .bd-feature-desc { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .bd-feature-tags { display: flex; align-items: center; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .bd-feature-tag { font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 4px; white-space: nowrap; }
+  .bd-feature-tag.ts { background: var(--green-bg); color: var(--green); }
+  .bd-feature-tag.exp { background: var(--yellow-bg); color: var(--yellow); }
+  .bd-feature-tag.comp { background: var(--orange-bg); color: var(--orange); }
+  .bd-feature-tag.innov { background: var(--red-bg); color: var(--red); }
+  .bd-feature-tag.w { background: rgba(79,110,247,.12); color: var(--accent); }
+  .bd-adoption { font-size: 11px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
 </style>
 </head>
 <body>
@@ -212,6 +355,45 @@
   <div class="header-title">Feature Matrix</div>
   <div class="header-stats" id="headerStats"></div>
 </header>
+
+<!-- ── FLOW NAV ── -->
+<nav class="flow-nav" role="tablist" aria-label="Analysis views">
+  <button class="flow-tab active" role="tab" aria-selected="true" data-tab="homepage">
+    Homepage <span class="tab-badge">LIVE</span>
+  </button>
+  <button class="flow-tab locked" role="tab" aria-selected="false" data-tab="ticketing" data-tab-name="Ticket Purchase">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    Ticket Purchase
+  </button>
+  <button class="flow-tab locked" role="tab" aria-selected="false" data-tab="merch" data-tab-name="Merch Store">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    Merch Store
+  </button>
+  <button class="flow-tab locked" role="tab" aria-selected="false" data-tab="subscriptions" data-tab-name="Subscriptions">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    Subscriptions
+  </button>
+  <button class="flow-tab locked" role="tab" aria-selected="false" data-tab="matchday" data-tab-name="Matchday Experience">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    Matchday Experience
+  </button>
+  <button class="flow-tab locked" role="tab" aria-selected="false" data-tab="hospitality" data-tab-name="Hospitality Packages">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    Hospitality Packages
+  </button>
+  <button class="flow-tab locked" role="tab" aria-selected="false" data-tab="sponsorship" data-tab-name="Sponsorship Visibility">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    Sponsorship Visibility
+  </button>
+  <button class="flow-tab locked" role="tab" aria-selected="false" data-tab="between-season" data-tab-name="Between Season">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    Between Season
+  </button>
+  <button class="flow-tab locked" role="tab" aria-selected="false" data-tab="past-seasons" data-tab-name="Past Seasons">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    Past Seasons
+  </button>
+</nav>
 
 <div class="toolbar">
   <div class="search-wrap">
@@ -264,6 +446,50 @@
   <div class="legend-item"><span style="color:var(--accent);font-size:14px;opacity:.35">&#10003;</span> Partial</div>
   <div class="legend-item"><span style="color:var(--border);font-size:11px">&middot;</span> Absent</div>
   <div class="legend-right" id="legendCount"></div>
+</div>
+
+<!-- ── LOCKED MODAL ── -->
+<div class="locked-overlay" id="lockedOverlay" role="dialog" aria-modal="true" aria-labelledby="lockedTitle">
+  <div class="locked-card">
+    <div class="lock-big">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <h3 id="lockedTitle">Analysis Restricted</h3>
+    <p>The <span class="locked-flow-name" id="lockedFlowName">Ticket Purchase</span> view is locked. This deep-dive flow requires admin access to unlock comparative analysis across products.</p>
+    <button class="locked-btn" id="lockedRequestBtn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+      Request access from admin
+    </button>
+    <button class="locked-dismiss" id="lockedDismiss">Maybe later</button>
+  </div>
+</div>
+
+<!-- ── CELL TOOLTIP ── -->
+<div class="cell-tooltip" id="cellTooltip" role="tooltip" aria-hidden="true">
+  <div class="tt-feature" id="ttFeature"></div>
+  <div class="tt-product" id="ttProduct"></div>
+  <div class="tt-status" id="ttStatus"></div>
+</div>
+
+<!-- ── CLUB BREAKDOWN OVERLAY ── -->
+<div class="breakdown-overlay" id="breakdownOverlay">
+  <div class="breakdown-panel" id="breakdownPanel">
+    <div class="bd-header">
+      <button class="bd-back" id="bdBack" aria-label="Close club breakdown">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+        Back to matrix
+      </button>
+      <div class="bd-crest" id="bdCrest">?</div>
+      <div>
+        <div class="bd-club-name" id="bdClubName">Club Name</div>
+        <div class="bd-club-meta" id="bdClubMeta"></div>
+      </div>
+      <button class="bd-close" id="bdClose" aria-label="Close">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div class="bd-body" id="bdBody"></div>
+  </div>
 </div>
 
 <script>
@@ -605,6 +831,13 @@ function showProductDetail(pid) {
     if(!nextF || nextF.cat !== f.cat) html += '</div>';
   });
 
+  // "Full Club Breakdown" button
+  html += `<div class="detail-divider"></div>
+    <button class="breakdown-btn" data-breakdown="${pid}">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Full Club Breakdown
+    </button>`;
+
   document.getElementById('detailInner').innerHTML = html;
   document.getElementById('detailPanel').classList.remove('collapsed');
   renderTable(visibleFeatures(), visibleProducts());
@@ -672,6 +905,335 @@ document.getElementById('searchInput').addEventListener('input', e => {
   searchText = e.target.value.toLowerCase().trim();
   render();
 });
+
+/* ── FLOW NAV ── */
+document.addEventListener('click', e => {
+  const tab = e.target.closest('.flow-tab');
+  if(!tab) return;
+  if(tab.classList.contains('locked')) {
+    const name = tab.dataset.tabName || tab.dataset.tab;
+    document.getElementById('lockedFlowName').textContent = name;
+    document.getElementById('lockedOverlay').classList.add('visible');
+  }
+  // Active tab already handled — only one active (Homepage)
+}, true); // capture so it fires before the main listener
+
+document.getElementById('lockedDismiss').addEventListener('click', () => {
+  document.getElementById('lockedOverlay').classList.remove('visible');
+});
+document.getElementById('lockedRequestBtn').addEventListener('click', () => {
+  document.getElementById('lockedOverlay').classList.remove('visible');
+});
+document.getElementById('lockedOverlay').addEventListener('click', e => {
+  if(e.target === document.getElementById('lockedOverlay')) {
+    document.getElementById('lockedOverlay').classList.remove('visible');
+  }
+});
+
+/* ── CELL TOOLTIP ── */
+const tooltip = document.getElementById('cellTooltip');
+let tooltipTimeout;
+document.getElementById('tableContainer').addEventListener('mouseover', e => {
+  const cell = e.target.closest('td.cell');
+  if(!cell) return;
+  const fid = cell.dataset.feature, pid = cell.dataset.product;
+  const f = FEATURES.find(x=>x.id===fid);
+  const p = PRODUCTS.find(x=>x.id===pid);
+  if(!f || !p) return;
+  const state = f.presence[pid];
+  document.getElementById('ttFeature').textContent = f.name;
+  document.getElementById('ttProduct').textContent = p.name;
+  const ttStatus = document.getElementById('ttStatus');
+  if(state === 'full') { ttStatus.textContent = '✓ Present'; ttStatus.className = 'tt-status full'; }
+  else if(state === 'partial') { ttStatus.textContent = '✓ Partial'; ttStatus.className = 'tt-status partial'; }
+  else { ttStatus.textContent = '· Absent'; ttStatus.className = 'tt-status absent'; }
+  clearTimeout(tooltipTimeout);
+  tooltip.classList.add('visible');
+  tooltip.setAttribute('aria-hidden', 'false');
+});
+document.getElementById('tableContainer').addEventListener('mousemove', e => {
+  const margin = 14;
+  let left = e.clientX + margin;
+  let top = e.clientY + margin;
+  const tw = tooltip.offsetWidth || 180;
+  const th = tooltip.offsetHeight || 70;
+  if(left + tw > window.innerWidth - 8) left = e.clientX - tw - margin;
+  if(top + th > window.innerHeight - 8) top = e.clientY - th - margin;
+  tooltip.style.left = left + 'px';
+  tooltip.style.top = top + 'px';
+});
+document.getElementById('tableContainer').addEventListener('mouseleave', () => {
+  tooltip.classList.remove('visible');
+  tooltip.setAttribute('aria-hidden', 'true');
+});
+document.addEventListener('mouseover', e => {
+  if(!e.target.closest('td.cell') && !e.target.closest('#tableContainer')) {
+    tooltip.classList.remove('visible');
+    tooltip.setAttribute('aria-hidden', 'true');
+  }
+});
+
+/* ── BREAKDOWN BUTTON in detail panel ── */
+document.addEventListener('click', e => {
+  const bb = e.target.closest('.breakdown-btn');
+  if(bb && bb.dataset.breakdown) { showClubBreakdown(bb.dataset.breakdown); return; }
+
+  // Breakdown close
+  if(e.target.id === 'bdClose' || e.target.closest('#bdClose') || e.target.id === 'bdBack' || e.target.closest('#bdBack')) {
+    closeBreakdown(); return;
+  }
+  if(e.target.id === 'breakdownOverlay' && !e.target.closest('.breakdown-panel')) {
+    closeBreakdown(); return;
+  }
+});
+
+function closeBreakdown() {
+  document.getElementById('breakdownOverlay').classList.remove('visible');
+}
+
+/* ── SHOW CLUB BREAKDOWN ── */
+function showClubBreakdown(pid) {
+  const p = PRODUCTS.find(x=>x.id===pid);
+  if(!p) return;
+
+  // Scores
+  const fullCount = FEATURES.filter(f=>f.presence[pid]==='full').length;
+  const partialCount = FEATURES.filter(f=>f.presence[pid]==='partial').length;
+  const absentCount = FEATURES.filter(f=>f.presence[pid]==='absent').length;
+  const rawScore = (fullCount + partialCount) - absentCount;
+  let weightedScore = 0, maxWeighted = 0;
+  FEATURES.forEach(f => {
+    maxWeighted += f.weight;
+    if(f.presence[pid]==='full') weightedScore += f.weight;
+    else if(f.presence[pid]==='partial') weightedScore += Math.round(f.weight * 0.5);
+    else weightedScore -= f.weight;
+  });
+  const coveragePct = Math.round((fullCount + partialCount) / FEATURES.length * 100);
+
+  // Rank all products by coverage%
+  const ranked = PRODUCTS.map(pr => {
+    const fc = FEATURES.filter(f=>f.presence[pr.id]==='full').length;
+    const pc = FEATURES.filter(f=>f.presence[pr.id]==='partial').length;
+    return { id: pr.id, name: pr.name, pct: Math.round((fc+pc)/FEATURES.length*100) };
+  }).sort((a,b)=>b.pct-a.pct);
+  const myRank = ranked.findIndex(r=>r.id===pid)+1;
+
+  // Category breakdown
+  const catScores = CATEGORIES.map(cat => {
+    const catFeats = FEATURES.filter(f=>f.cat===cat.id);
+    const got = catFeats.filter(f=>f.presence[pid]!=='absent').length;
+    const pctCat = Math.round(got/catFeats.length*100);
+    const verdict = pctCat>=80?'ok':pctCat>=50?'warning':'danger';
+    return { ...cat, got, total: catFeats.length, pctCat, verdict };
+  });
+
+  // Missing must-haves: table_stakes + expected that are absent or partial
+  const mustHaveMissing = FEATURES.filter(f => (f.band==='table_stakes'||f.band==='expected') && f.presence[pid]==='absent');
+  // Differentiators: innovation features they HAVE
+  const differentiators = FEATURES.filter(f => f.band==='innovation' && f.presence[pid]!=='absent');
+  // Already have (full + partial, excluding differentiators section)
+  const alreadyHave = FEATURES.filter(f => f.presence[pid]!=='absent' && f.band!=='innovation');
+
+  // Alert if behind
+  const avgPct = Math.round(ranked.reduce((s,r)=>s+r.pct,0)/ranked.length);
+  const showAlert = coveragePct < avgPct - 5;
+
+  // Populate header
+  document.getElementById('bdCrest').textContent = p.name.substring(0,2).toUpperCase();
+  document.getElementById('bdClubName').textContent = p.name;
+  document.getElementById('bdClubMeta').textContent = `${p.type} · ${p.sport} · Rank #${myRank} of ${PRODUCTS.length}`;
+
+  // Ring color
+  const ringClass = coveragePct >= 70 ? 'high' : coveragePct >= 45 ? 'mid' : 'low';
+  const ringCirc = 2 * Math.PI * 54; // r=54
+  const ringOffset = ringCirc * (1 - coveragePct/100);
+
+  let html = '';
+
+  // Alert banner
+  if(showAlert) {
+    html += `<div class="bd-alert">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div><div class="bd-alert-title">Behind average</div>
+      <div class="bd-alert-desc">${p.name} covers ${coveragePct}% of features — ${avgPct-coveragePct}pp below the benchmark average of ${avgPct}%. Prioritise table stakes gaps immediately.</div></div>
+    </div>`;
+  }
+
+  // Score + Rank row
+  html += `<div class="bd-score-row">
+    <div class="bd-score-card">
+      <div class="bd-score-label">Feature Coverage</div>
+      <div class="bd-ring-wrap">
+        <svg class="bd-ring-svg" viewBox="0 0 120 120">
+          <circle class="bd-ring-bg" cx="60" cy="60" r="54"/>
+          <circle class="bd-ring-fg ${ringClass}" cx="60" cy="60" r="54"
+            stroke-dasharray="${ringCirc.toFixed(1)}" stroke-dashoffset="${ringOffset.toFixed(1)}"
+            style="transition:stroke-dashoffset .8s ease-out"/>
+        </svg>
+        <div class="bd-ring-text">
+          <span class="bd-score-num">${coveragePct}<span>%</span></span>
+          <span class="bd-score-sub">coverage</span>
+        </div>
+      </div>
+      <div class="bd-divider"></div>
+      <div class="bd-scores-row">
+        <div class="bd-mini-score">
+          <div class="bd-mini-label">Raw Score</div>
+          <div class="bd-mini-val" style="color:${rawScore>=0?'var(--green)':'var(--red)'}">${rawScore>=0?'+':''}${rawScore}</div>
+        </div>
+        <div class="bd-mini-score">
+          <div class="bd-mini-label">Weighted</div>
+          <div class="bd-mini-val" style="color:${weightedScore>=0?'var(--green)':'var(--red)'}">${weightedScore>=0?'+':''}${weightedScore}</div>
+        </div>
+        <div class="bd-mini-score">
+          <div class="bd-mini-label">Rank</div>
+          <div class="bd-mini-val" style="color:var(--yellow)">#${myRank}</div>
+        </div>
+      </div>
+    </div>
+    <div class="bd-rank-card">
+      <h3>All Products — Ranked</h3>
+      ${ranked.map((r,i) => {
+        const isCurrent = r.id===pid;
+        const barColor = r.pct>=70?'var(--green)':r.pct>=45?'var(--yellow)':'var(--red)';
+        return `<div class="bd-rank-item${isCurrent?' current':''}">
+          <span class="bd-rank-pos">${i+1}</span>
+          <span class="bd-rank-name">${r.name}</span>
+          <div class="bd-rank-bar-wrap"><div class="bd-rank-bar" style="width:${r.pct}%;background:${barColor}"></div></div>
+          <span class="bd-rank-pct">${r.pct}%</span>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+
+  // Category breakdown
+  html += `<div class="bd-cat-grid">`;
+  catScores.forEach(c => {
+    const barColor = c.pctCat>=80?'var(--green)':c.pctCat>=50?'var(--yellow)':'var(--red)';
+    const verdictLabel = c.verdict==='ok'?'✓ Good':c.verdict==='warning'?'⚠ Needs work':'✕ Critical gap';
+    html += `<div class="bd-cat-card">
+      <div class="bd-cat-header">
+        <div class="bd-cat-dot" style="background:${c.color}"></div>
+        <span class="bd-cat-title">${c.name}</span>
+      </div>
+      <div class="bd-cat-score-row">
+        <span class="bd-cat-big">${c.got}</span>
+        <span class="bd-cat-of">/ ${c.total} features</span>
+      </div>
+      <div class="bd-cat-bar-wrap"><div class="bd-cat-bar" style="width:${c.pctCat}%;background:${barColor}"></div></div>
+      <span class="bd-cat-verdict ${c.verdict}">${verdictLabel}</span>
+    </div>`;
+  });
+  html += '</div>';
+
+  // Must-Haves missing section
+  if(mustHaveMissing.length) {
+    html += `<div class="bd-section">
+      <div class="bd-section-header">
+        <div class="bd-section-icon" style="background:var(--red-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div>
+          <div class="bd-section-title">Must Haves — You're Missing the Basics</div>
+        </div>
+        <span class="bd-section-count">${mustHaveMissing.length} missing</span>
+      </div>
+      <div class="bd-section-desc">These are table stakes or expected features that competitors already have. Each gap is costing you fan engagement and revenue.</div>
+      <div class="bd-feature-list">`;
+    mustHaveMissing.forEach(f => {
+      const bandTag = f.band==='table_stakes'?'ts':'exp';
+      const bandLabel = f.band==='table_stakes'?'Table Stakes':'Expected';
+      html += `<div class="bd-feature-item">
+        <div class="bd-feature-status missing">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </div>
+        <div class="bd-feature-info">
+          <div class="bd-feature-name">${f.name}</div>
+          <div class="bd-feature-desc">${f.desc}</div>
+        </div>
+        <div class="bd-feature-tags">
+          <span class="bd-feature-tag ${bandTag}">${bandLabel}</span>
+          <span class="bd-feature-tag w">W${f.weight}</span>
+          <span class="bd-adoption">${f.adoptionPct}% adopt</span>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  // Differentiators section
+  if(differentiators.length) {
+    html += `<div class="bd-section">
+      <div class="bd-section-header">
+        <div class="bd-section-icon" style="background:rgba(234,179,8,.12)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div>
+          <div class="bd-section-title">Differentiators — You're Ahead</div>
+        </div>
+        <span class="bd-section-count">${differentiators.length} features</span>
+      </div>
+      <div class="bd-section-desc">Innovation features adopted by fewer than 40% of products. These set ${p.name} apart from the competition.</div>
+      <div class="bd-feature-list">`;
+    differentiators.forEach(f => {
+      const stateClass = f.presence[pid]==='full'?'has':'partial';
+      const stateIcon = f.presence[pid]==='full'
+        ? '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>'
+        : '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+      html += `<div class="bd-feature-item">
+        <div class="bd-feature-status ${stateClass}">${stateIcon}</div>
+        <div class="bd-feature-info">
+          <div class="bd-feature-name">${f.name}</div>
+          <div class="bd-feature-desc">${f.desc}</div>
+        </div>
+        <div class="bd-feature-tags">
+          <span class="bd-feature-tag innov">Innovation</span>
+          <span class="bd-feature-tag w">W${f.weight}</span>
+          <span class="bd-adoption">${f.adoptionPct}% adopt</span>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  // Already Have section
+  if(alreadyHave.length) {
+    html += `<div class="bd-section">
+      <div class="bd-section-header">
+        <div class="bd-section-icon" style="background:var(--green-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div>
+          <div class="bd-section-title">Already Working</div>
+        </div>
+        <span class="bd-section-count">${alreadyHave.length} features</span>
+      </div>
+      <div class="bd-section-desc">Core + expected features ${p.name} already delivers. Maintain and optimise these.</div>
+      <div class="bd-feature-list">`;
+    alreadyHave.forEach(f => {
+      const stateClass = f.presence[pid]==='full'?'has':'partial';
+      const stateIcon = '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+      const bandTag = f.band==='table_stakes'?'ts':f.band==='expected'?'exp':f.band==='competitive'?'comp':'innov';
+      const bandLabel = f.band==='table_stakes'?'Table Stakes':f.band==='expected'?'Expected':f.band==='competitive'?'Competitive':'Innovation';
+      html += `<div class="bd-feature-item">
+        <div class="bd-feature-status ${stateClass}">${stateIcon}</div>
+        <div class="bd-feature-info">
+          <div class="bd-feature-name">${f.name}</div>
+        </div>
+        <div class="bd-feature-tags">
+          <span class="bd-feature-tag ${bandTag}">${bandLabel}</span>
+          <span class="bd-feature-tag w">W${f.weight}</span>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  document.getElementById('bdBody').innerHTML = html;
+  document.getElementById('breakdownOverlay').classList.add('visible');
+  // Scroll to top
+  document.getElementById('breakdownPanel').scrollTop = 0;
+}
 
 /* ── INIT ── */
 render();
