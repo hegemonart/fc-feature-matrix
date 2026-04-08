@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FC Benchmark — Feature Matrix</title>
+<style>
+  :root {
+    --bg:       #0d0d14;
+    --bg2:      #13131e;
+    --bg3:      #1a1a28;
+    --border:   #252535;
+    --text:     #e8e8f0;
+    --muted:    #6b6b8a;
+    --accent:   #4f6ef7;
+    --green:    #22c55e;
+    --yellow:   #eab308;
+    --orange:   #f97316;
+    --red:      #ef4444;
+    --green-bg: rgba(34,197,94,.12);
+    --yellow-bg:rgba(234,179,8,.12);
+    --orange-bg:rgba(249,115,22,.12);
+    --red-bg:   rgba(239,68,68,.12);
+    --check:    #4f6ef7;
+    --cross:    #252535;
+    --cat-red:  #ef4444;
+    --cat-blue: #3b82f6;
+    --cat-purple:#8b5cf6;
+    --cat-cyan: #06b6d4;
+    --cat-amber:#f59e0b;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
+
+  header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+  .logo { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+  .logo span { color: var(--accent); }
+  .header-title { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; }
+  .header-stats { display: flex; gap: 16px; margin-left: auto; }
+  .stat-chip { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .stat-chip strong { color: var(--text); }
+
+  .toolbar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+  .search-wrap { position: relative; flex: 0 0 220px; }
+  .search-wrap input { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px 6px 30px; color: var(--text); font-size: 12px; outline: none; }
+  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap svg { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+  .filter-group { display: flex; align-items: center; gap: 6px; }
+  .filter-label { font-size: 11px; color: var(--muted); white-space: nowrap; }
+  .filter-btn { background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; padding: 4px 9px; font-size: 11px; color: var(--muted); cursor: pointer; transition: all .15s; white-space: nowrap; }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  .divider { width: 1px; height: 20px; background: var(--border); }
+  .toolbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
+  .clear-btn { padding: 5px 10px; font-size: 11px; color: var(--muted); cursor: pointer; border: 1px solid var(--border); border-radius: 5px; background: var(--bg3); transition: all .15s; }
+  .clear-btn:hover { color: var(--text); border-color: var(--muted); }
+
+  .main { display: flex; flex: 1; overflow: hidden; }
+
+  .sidebar { width: 200px; flex-shrink: 0; background: var(--bg2); border-right: 1px solid var(--border); overflow-y: auto; padding: 14px 12px; }
+  .sidebar h3 { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding: 0 2px; }
+  .cat-item { display: flex; align-items: center; gap: 7px; padding: 5px 6px; border-radius: 5px; cursor: pointer; margin-bottom: 2px; transition: background .12s; }
+  .cat-item:hover { background: var(--bg3); }
+  .cat-item.active { background: var(--bg3); }
+  .cat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .cat-name { font-size: 12px; color: var(--text); flex: 1; }
+  .cat-count { font-size: 10px; color: var(--muted); }
+  .sidebar-section { margin-top: 16px; }
+  .band-item { display: flex; align-items: center; gap: 7px; padding: 4px 6px; border-radius: 4px; cursor: pointer; margin-bottom: 2px; transition: background .12s; }
+  .band-item:hover { background: var(--bg3); }
+  .band-item.active { background: var(--bg3); }
+  .band-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
+  .band-name { font-size: 12px; color: var(--text); flex: 1; }
+  .band-count { font-size: 10px; color: var(--muted); }
+  .band-swatch.table_stakes { background: var(--green); }
+  .band-swatch.expected { background: var(--yellow); }
+  .band-swatch.competitive { background: var(--orange); }
+  .band-swatch.innovation { background: var(--red); }
+
+  .table-container { flex: 1; overflow: auto; position: relative; }
+  table { border-collapse: collapse; }
+  th, td { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+
+  thead th { background: var(--bg2); position: sticky; top: 0; z-index: 10; padding: 0; min-width: 38px; max-width: 38px; width: 38px; }
+  thead th.feature-col { min-width: 250px; max-width: 250px; width: 250px; left: 0; z-index: 20; padding: 10px 12px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  thead th.freq-col { min-width: 100px; max-width: 100px; width: 100px; padding: 0 8px; font-size: 10px; color: var(--muted); font-weight: 600; position: sticky; right: 0; z-index: 15; background: var(--bg2); }
+  .col-header { display: flex; flex-direction: column; align-items: center; padding: 6px 2px 8px; cursor: pointer; transition: background .12s; height: 90px; justify-content: flex-end; }
+  .col-header:hover { background: var(--bg3); }
+  .col-header.highlighted { background: rgba(79,110,247,.15); }
+  .col-label { font-size: 9px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; writing-mode: vertical-rl; transform: rotate(180deg); line-height: 1.2; margin-bottom: 4px; text-align: left; max-height: 70px; overflow: hidden; transition: color .12s; white-space: nowrap; }
+  .col-header:hover .col-label, .col-header.highlighted .col-label { color: var(--text); }
+
+  tbody tr { transition: background .1s; }
+  tbody tr:hover { background: rgba(255,255,255,.03); }
+  tbody tr.highlighted { background: rgba(79,110,247,.08); }
+  td.feature-name { position: sticky; left: 0; background: var(--bg2); z-index: 5; min-width: 250px; max-width: 250px; width: 250px; padding: 0 12px; height: 32px; cursor: pointer; transition: background .12s; }
+  tbody tr:hover td.feature-name, tbody tr.highlighted td.feature-name { background: var(--bg3); }
+  .feature-inner { display: flex; align-items: center; gap: 7px; height: 100%; }
+  .feature-band { width: 3px; height: 16px; border-radius: 2px; flex-shrink: 0; }
+  .feature-band.table_stakes { background: var(--green); }
+  .feature-band.expected { background: var(--yellow); }
+  .feature-band.competitive { background: var(--orange); }
+  .feature-band.innovation { background: var(--red); }
+  .feature-text { font-size: 12px; color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .feature-weight { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 16px; border-radius: 3px; font-size: 9px; font-weight: 700; flex-shrink: 0; letter-spacing: 0; }
+  .feature-weight.w5 { background: rgba(239,68,68,.18); color: #f87171; }
+  .feature-weight.w4 { background: rgba(251,146,60,.15); color: #fb923c; }
+  .feature-weight.w3 { background: rgba(234,179,8,.12); color: #facc15; }
+  .feature-weight.w2 { background: rgba(6,182,212,.12); color: #22d3ee; }
+  .feature-weight.w1 { background: rgba(107,107,138,.12); color: #6b6b8a; }
+  td.category-sep { background: var(--bg); height: 28px; position: sticky; left: 0; z-index: 5; padding: 0 12px; border-right: none; }
+  .cat-sep-inner { display: flex; align-items: center; gap: 7px; height: 100%; }
+  .cat-sep-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+  .cat-sep-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  tr.category-sep-row td { background: var(--bg); border-bottom: 1px solid var(--border); }
+  tr.category-sep-row td.cat-spacer { border-right: 1px solid var(--border); }
+
+  td.cell { padding: 0; text-align: center; vertical-align: middle; width: 38px; min-width: 38px; max-width: 38px; height: 32px; transition: background .1s; cursor: pointer; }
+  td.cell:hover { background: rgba(79,110,247,.15) !important; }
+  td.cell.has-full { background: rgba(79,110,247,.1); }
+  td.cell.has-partial { background: rgba(79,110,247,.05); }
+  td.cell.highlighted { background: rgba(79,110,247,.18) !important; }
+  .check { color: var(--accent); font-size: 14px; line-height: 1; }
+  .partial-check { color: var(--accent); font-size: 14px; line-height: 1; opacity: .35; }
+  .no-check { color: var(--border); font-size: 11px; }
+
+  td.freq-col { position: sticky; right: 0; background: var(--bg2); z-index: 5; min-width: 100px; max-width: 100px; width: 100px; padding: 0 10px; }
+  tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(--bg3); }
+  .freq-inner { display: flex; align-items: center; gap: 7px; height: 32px; }
+  .freq-bar-wrap { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
+  .freq-bar { height: 100%; border-radius: 2px; }
+  .freq-bar.table_stakes { background: var(--green); }
+  .freq-bar.expected { background: var(--yellow); }
+  .freq-bar.competitive { background: var(--orange); }
+  .freq-bar.innovation { background: var(--red); }
+  .freq-label { font-size: 10px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+
+  .detail-panel { width: 320px; flex-shrink: 0; background: var(--bg2); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: width .2s; }
+  .detail-panel.collapsed { width: 0; border: none; }
+  .detail-inner { padding: 16px; overflow-y: auto; flex: 1; min-width: 320px; }
+  .detail-close { position: absolute; top: 12px; right: 14px; cursor: pointer; color: var(--muted); font-size: 16px; line-height: 1; transition: color .12s; background: none; border: none; padding: 0; }
+  .detail-close:hover { color: var(--text); }
+  .detail-header { position: relative; margin-bottom: 14px; padding-right: 24px; }
+  .detail-category { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
+  .detail-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
+  .detail-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+  .detail-band { display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: 600; margin-bottom: 14px; }
+  .detail-band.table_stakes { background: var(--green-bg); color: var(--green); }
+  .detail-band.expected { background: var(--yellow-bg); color: var(--yellow); }
+  .detail-band.competitive { background: var(--orange-bg); color: var(--orange); }
+  .detail-band.innovation { background: var(--red-bg); color: var(--red); }
+  .detail-freq { margin-bottom: 14px; }
+  .detail-freq-label { font-size: 11px; color: var(--muted); margin-bottom: 5px; }
+  .detail-freq-row { display: flex; align-items: center; gap: 8px; }
+  .detail-freq-big { font-size: 22px; font-weight: 700; color: var(--text); }
+  .detail-freq-sub { font-size: 11px; color: var(--muted); line-height: 1.4; }
+  .detail-freq-bar { height: 5px; border-radius: 3px; margin-top: 6px; }
+  .detail-products-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; }
+  .detail-products { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 4px; }
+  .product-chip { display: inline-flex; align-items: center; gap: 4px; background: var(--bg3); border: 1px solid var(--border); border-radius: 4px; padding: 3px 7px; font-size: 11px; color: var(--text); cursor: pointer; transition: all .12s; }
+  .product-chip:hover { border-color: var(--accent); color: var(--accent); }
+  .product-chip.dim { opacity: .4; }
+  .product-chip .chip-state { font-size: 9px; opacity: .7; }
+  .detail-missing-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin: 12px 0 8px; }
+  .detail-divider { height: 1px; background: var(--border); margin: 14px 0; }
+
+  .product-detail-header { display: flex; align-items: center; gap: 8px; margin-bottom: 12px; padding-right: 24px; }
+  .product-detail-badge { display: inline-flex; align-items: center; gap: 4px; font-size: 10px; padding: 2px 7px; border-radius: 3px; font-weight: 600; background: rgba(79,110,247,.15); color: var(--accent); }
+  .product-feature-list { display: flex; flex-direction: column; gap: 3px; }
+  .product-feature-item { display: flex; align-items: center; gap: 7px; padding: 5px 6px; border-radius: 4px; cursor: pointer; transition: background .12s; }
+  .product-feature-item:hover { background: var(--bg3); }
+  .product-feature-check { font-size: 12px; width: 14px; text-align: center; }
+  .product-feature-check.full { color: var(--accent); }
+  .product-feature-check.partial { color: var(--accent); opacity: .35; }
+  .product-feature-check.absent { color: var(--border); }
+  .product-feature-name { font-size: 12px; color: var(--text); flex: 1; }
+  .product-feature-weight { font-size: 9px; font-weight: 700; width: 16px; text-align: center; flex-shrink: 0; }
+  .detail-weight-row { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .detail-weight-badge { display: inline-flex; align-items: center; justify-content: center; gap: 4px; border-radius: 4px; padding: 3px 10px; font-size: 12px; font-weight: 700; }
+  .detail-weight-badge.w5 { background: rgba(239,68,68,.15); color: #f87171; }
+  .detail-weight-badge.w4 { background: rgba(251,146,60,.12); color: #fb923c; }
+  .detail-weight-badge.w3 { background: rgba(234,179,8,.10); color: #facc15; }
+  .detail-weight-badge.w2 { background: rgba(6,182,212,.10); color: #22d3ee; }
+  .detail-weight-badge.w1 { background: rgba(107,107,138,.10); color: #6b6b8a; }
+  .detail-weight-label { font-size: 11px; color: var(--muted); }
+  .weighted-score { display: flex; align-items: baseline; gap: 4px; margin-top: 4px; }
+  .weighted-score-big { font-size: 18px; font-weight: 700; color: var(--text); }
+  .weighted-score-sub { font-size: 11px; color: var(--muted); }
+  .product-feature-cat { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  .legend { display: flex; align-items: center; gap: 14px; padding: 8px 20px; background: var(--bg2); border-top: 1px solid var(--border); flex-shrink: 0; flex-wrap: wrap; }
+  .legend-item { display: flex; align-items: center; gap: 5px; font-size: 11px; color: var(--muted); }
+  .legend-swatch { width: 10px; height: 10px; border-radius: 2px; }
+  .legend-swatch.table_stakes { background: var(--green); }
+  .legend-swatch.expected { background: var(--yellow); }
+  .legend-swatch.competitive { background: var(--orange); }
+  .legend-swatch.innovation { background: var(--red); }
+  .legend-sep { width: 1px; height: 14px; background: var(--border); }
+  .legend-right { margin-left: auto; font-size: 11px; color: var(--muted); }
+
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+  .no-results { padding: 40px; text-align: center; color: var(--muted); font-size: 13px; }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">FC Benchmark <span>//</span> 2026</div>
+  <div class="header-title">Feature Matrix</div>
+  <div class="header-stats" id="headerStats"></div>
+</header>
+
+<div class="toolbar">
+  <div class="search-wrap">
+    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Search features..." />
+  </div>
+  <div class="divider"></div>
+  <div class="filter-group">
+    <span class="filter-label">Type:</span>
+    <button class="filter-btn active" data-filter-type="type" data-filter-val="all">All</button>
+    <button class="filter-btn" data-filter-type="type" data-filter-val="club">Club</button>
+    <button class="filter-btn" data-filter-type="type" data-filter-val="league">League / Org</button>
+  </div>
+  <div class="divider"></div>
+  <div class="filter-group">
+    <span class="filter-label">Sport:</span>
+    <button class="filter-btn active" data-filter-type="sport" data-filter-val="all">All</button>
+    <button class="filter-btn" data-filter-type="sport" data-filter-val="football">Football</button>
+    <button class="filter-btn" data-filter-type="sport" data-filter-val="other">Other Sports</button>
+  </div>
+  <div class="toolbar-right">
+    <button class="clear-btn" id="clearFiltersBtn">Clear filters</button>
+  </div>
+</div>
+
+<div class="main">
+  <div class="sidebar">
+    <h3>Category</h3>
+    <div id="catList"></div>
+    <div class="sidebar-section">
+      <h3>Band</h3>
+      <div id="bandList"></div>
+    </div>
+  </div>
+  <div class="table-container" id="tableContainer">
+    <table id="matrixTable"></table>
+  </div>
+  <div class="detail-panel collapsed" id="detailPanel">
+    <div class="detail-inner" id="detailInner"></div>
+  </div>
+</div>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-swatch table_stakes"></div>Table Stakes &ge;90%</div>
+  <div class="legend-item"><div class="legend-swatch expected"></div>Expected 70&ndash;89%</div>
+  <div class="legend-item"><div class="legend-swatch competitive"></div>Competitive 40&ndash;69%</div>
+  <div class="legend-item"><div class="legend-swatch innovation"></div>Innovation &lt;40%</div>
+  <div class="legend-sep"></div>
+  <div class="legend-item"><span style="color:var(--accent);font-size:14px">&#10003;</span> Present</div>
+  <div class="legend-item"><span style="color:var(--accent);font-size:14px;opacity:.35">&#10003;</span> Partial</div>
+  <div class="legend-item"><span style="color:var(--border);font-size:11px">&middot;</span> Absent</div>
+  <div class="legend-right" id="legendCount"></div>
+</div>
+
+<script>
+/* ── DATA ── */
+const CATEGORIES = [
+  { id:'revenue',  name:'Revenue & Commerce',    color:'#ef4444' },
+  { id:'content',  name:'Content & Engagement',  color:'#3b82f6' },
+  { id:'brand',    name:'Brand & Identity',       color:'#8b5cf6' },
+  { id:'ux',       name:'UX & Utility',           color:'#06b6d4' },
+  { id:'diff',     name:'Differentiators',        color:'#f59e0b' },
+];
+
+const PRODUCTS = [
+  { id:'real_madrid',     name:'Real Madrid',     type:'club', sport:'football' },
+  { id:'fc_barcelona',    name:'FC Barcelona',    type:'club', sport:'football' },
+  { id:'bayern_munich',   name:'Bayern Munich',   type:'club', sport:'football' },
+  { id:'psg',             name:'PSG',             type:'club', sport:'football' },
+  { id:'liverpool',       name:'Liverpool',       type:'club', sport:'football' },
+  { id:'man_city',        name:'Man City',        type:'club', sport:'football' },
+  { id:'arsenal',         name:'Arsenal',         type:'club', sport:'football' },
+  { id:'man_united',      name:'Man United',      type:'club', sport:'football' },
+  { id:'tottenham',       name:'Tottenham',       type:'club', sport:'football' },
+  { id:'chelsea',         name:'Chelsea',         type:'club', sport:'football' },
+  { id:'inter_milan',     name:'Inter Milan',     type:'club', sport:'football' },
+  { id:'bvb_dortmund',    name:'BVB Dortmund',    type:'club', sport:'football' },
+  { id:'atletico_madrid', name:'Atletico Madrid', type:'club', sport:'football' },
+  { id:'aston_villa',     name:'Aston Villa',     type:'club', sport:'football' },
+  { id:'ac_milan',        name:'AC Milan',        type:'club', sport:'football' },
+  { id:'juventus',        name:'Juventus',        type:'club', sport:'football' },
+  { id:'newcastle',       name:'Newcastle',       type:'club', sport:'football' },
+  { id:'vfb_stuttgart',   name:'VfB Stuttgart',   type:'club', sport:'football' },
+  { id:'sl_benfica',      name:'SL Benfica',      type:'club', sport:'football' },
+  { id:'west_ham',        name:'West Ham',        type:'club', sport:'football' },
+  { id:'uefa',            name:'UEFA',            type:'governing', sport:'football' },
+  { id:'f1',              name:'Formula 1',       type:'league', sport:'motorsport' },
+  { id:'motogp',          name:'MotoGP',          type:'league', sport:'motorsport' },
+  { id:'nba',             name:'NBA',             type:'league', sport:'basketball' },
+  { id:'mls',             name:'MLS',             type:'league', sport:'football' },
+  { id:'mlb',             name:'MLB',             type:'league', sport:'baseball' },
+];
+
+const ALL_IDS = PRODUCTS.map(p=>p.id);
+
+function makePresence(full, partial) {
+  const m = {}; ALL_IDS.forEach(id => m[id] = 'absent');
+  full.forEach(id => m[id] = 'full');
+  partial.forEach(id => m[id] = 'partial');
+  return m;
+}
+
+const FEATURES = [
+  { id:'F01', name:'E-Commerce / Shop', desc:'Online store link, merchandise showcase, kit display, product cards on homepage', cat:'revenue', weight:5,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','f1','motogp','nba'],['arsenal']) },
+  { id:'F02', name:'Ticketing', desc:'Ticket purchase links, match-day info, hospitality', cat:'revenue', weight:5,
+    presence: makePresence(['real_madrid','fc_barcelona','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','vfb_stuttgart','west_ham','f1','nba'],['bayern_munich','psg','arsenal','juventus','newcastle','sl_benfica','motogp','mls','mlb']) },
+  { id:'F03', name:'Membership Program', desc:'Named fan membership, loyalty programs, subscription tiers — direct recurring revenue and fan data capture', cat:'revenue', weight:5,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','man_united','tottenham','inter_milan','atletico_madrid','juventus','sl_benfica','west_ham','motogp','nba','mls','mlb'],['chelsea','bvb_dortmund','aston_villa','vfb_stuttgart']) },
+  { id:'F04', name:'Streaming / OTT Platform', desc:'Club-branded TV/streaming service — premium content monetization and global fan reach', cat:'revenue', weight:5,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','tottenham','chelsea','inter_milan','ac_milan','sl_benfica','f1','motogp','nba','mls'],['bvb_dortmund','uefa']) },
+
+  { id:'F05', name:'News Feed', desc:'Editorial news articles, grid/cards with thumbnails — primary traffic driver and SEO engine', cat:'content', weight:4,
+    presence: makePresence(ALL_IDS,[]) },
+  { id:'F06', name:'Fixtures & Results', desc:'Upcoming match schedule, past match scores/results widget visible on homepage — core matchday engagement', cat:'content', weight:4,
+    presence: makePresence(['real_madrid','fc_barcelona','psg','liverpool','arsenal','tottenham','inter_milan','atletico_madrid','ac_milan','vfb_stuttgart','uefa','f1','motogp','nba','mls','mlb'],['bayern_munich','man_city','man_united','chelsea','bvb_dortmund','aston_villa','juventus','newcastle','sl_benfica','west_ham']) },
+  { id:'F06b', name:'Standings / League Table', desc:'Current league table, standings widget, ranking display on homepage — competitive context for fans', cat:'content', weight:4,
+    presence: makePresence(['inter_milan','atletico_madrid','vfb_stuttgart','uefa','f1','motogp','nba','mlb'],['liverpool']) },
+  { id:'F07', name:'Video Player / Section', desc:'Dedicated video area, embedded video player, video content cards with play buttons on homepage', cat:'content', weight:4,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','ac_milan','juventus','newcastle','sl_benfica','uefa','f1','motogp','nba','mls','mlb'],['atletico_madrid','aston_villa','vfb_stuttgart']) },
+  { id:'F07b', name:'Match Highlights', desc:'Specific match highlight clips, replay content, goal clips — highest-demand video format', cat:'content', weight:4,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','arsenal','tottenham','chelsea','ac_milan','sl_benfica','uefa','f1','motogp'],['psg','man_united','inter_milan','bvb_dortmund','atletico_madrid','mls']) },
+  { id:'F07c', name:'Photo Gallery', desc:'Photo gallery section, image grid, behind-the-scenes photo collections on homepage', cat:'content', weight:3,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','arsenal','bvb_dortmund','ac_milan','juventus','newcastle','vfb_stuttgart','uefa','motogp'],['liverpool','chelsea']) },
+  { id:'F08', name:'Hero / Banner', desc:'Hero carousel, featured story banner — first impression and editorial control point', cat:'content', weight:4,
+    presence: makePresence(ALL_IDS,[]) },
+  { id:'F09', name:'Navigation Depth', desc:'Rich top nav with 6+ items — information architecture and content discoverability', cat:'content', weight:4,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],[]) },
+
+  { id:'F10', name:"Women's Team Visibility", desc:"Dedicated women's team content on homepage — brand inclusivity and growing market segment", cat:'brand', weight:3,
+    presence: makePresence(['fc_barcelona','liverpool','man_city','man_united','arsenal','chelsea','atletico_madrid','ac_milan','west_ham','uefa'],['psg','tottenham','inter_milan','bvb_dortmund','aston_villa','juventus','newcastle']) },
+  { id:'F11', name:'Academy / Youth', desc:'Youth development, academy section on homepage — brand storytelling and talent pipeline visibility', cat:'brand', weight:3,
+    presence: makePresence(['fc_barcelona','man_city','man_united','arsenal','bvb_dortmund','ac_milan','juventus','vfb_stuttgart','west_ham','uefa'],['real_madrid','bayern_munich','liverpool','tottenham','chelsea','inter_milan','atletico_madrid','aston_villa']) },
+  { id:'F12', name:'Social Media Links', desc:'Social platform icons/links in header or footer — cross-platform engagement and audience routing', cat:'brand', weight:3,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','mls','nba','f1','motogp','mlb'],['west_ham','uefa']) },
+  { id:'F13', name:'Sponsor Showcase', desc:'Dedicated partner/sponsor section, logo grid — commercial partner value demonstration', cat:'brand', weight:3,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','sl_benfica','west_ham','f1','motogp','nba','mlb'],['vfb_stuttgart','uefa']) },
+  { id:'F14', name:'App Download Promotion', desc:'Mobile app download badges/CTAs — mobile-first fan relationship and push notification channel', cat:'brand', weight:3,
+    presence: makePresence(['real_madrid','fc_barcelona','liverpool','man_united','tottenham','chelsea','bvb_dortmund','aston_villa','juventus','sl_benfica','f1','motogp','nba','mlb'],['inter_milan','ac_milan','mls']) },
+
+  { id:'F15', name:'Search', desc:'Search icon/bar on homepage — content discoverability and user intent capture', cat:'ux', weight:2,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','bvb_dortmund','atletico_madrid','ac_milan','newcastle','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],['inter_milan','aston_villa','juventus','vfb_stuttgart']) },
+  { id:'F16', name:'Multi-Language', desc:'Language selector visible — global accessibility for international fanbase', cat:'ux', weight:2,
+    presence: makePresence(['real_madrid','fc_barcelona'],['atletico_madrid','uefa']) },
+  { id:'F17', name:'Login / Registration', desc:'User account, sign-in button — first-party data capture and personalization gateway', cat:'ux', weight:2,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','man_united','tottenham','chelsea','atletico_madrid','ac_milan','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],['arsenal','inter_milan','bvb_dortmund','juventus','newcastle']) },
+  { id:'F18', name:'Newsletter Signup', desc:'Email subscription form/CTA — owned audience channel for re-engagement', cat:'ux', weight:2,
+    presence: makePresence(['liverpool','west_ham','motogp','nba'],['chelsea','bvb_dortmund','aston_villa','vfb_stuttgart']) },
+  { id:'F19', name:'Footer Navigation', desc:'Multi-column footer with organized links — secondary navigation and legal compliance', cat:'ux', weight:2,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],[]) },
+
+  { id:'F20', name:'Stadium / Museum / Tours', desc:'Stadium experience, museum, tour promotion — heritage monetization and matchday revenue', cat:'diff', weight:1,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','liverpool','tottenham','aston_villa'],['psg','chelsea','man_united','bvb_dortmund','juventus','sl_benfica']) },
+  { id:'F21', name:'Foundation / Charity', desc:'Club foundation, CSR, community section — brand purpose and community goodwill', cat:'diff', weight:1,
+    presence: makePresence(['real_madrid','fc_barcelona','liverpool','chelsea','newcastle','uefa'],['psg','arsenal','ac_milan']) },
+  { id:'F22', name:'Esports / Gaming', desc:'Gaming section, esports, fantasy — youth audience acquisition and digital-native engagement', cat:'diff', weight:1,
+    presence: makePresence(['aston_villa','f1','motogp','nba'],['mlb']) },
+  { id:'F23', name:'Heritage / History', desc:'Club history, "since XXXX", heritage messaging, trophy displays — emotional brand equity', cat:'diff', weight:1,
+    presence: makePresence(['bayern_munich','inter_milan','juventus','sl_benfica'],['liverpool','man_united','bvb_dortmund','uefa']) },
+  { id:'F24', name:'Other Sports', desc:'Non-football sports coverage — cross-sport brand extension', cat:'diff', weight:1,
+    presence: makePresence(['real_madrid','bayern_munich','motogp'],[]) },
+  { id:'F25', name:'Transfer Tracker', desc:'Transfer hub, tracker widget — high-traffic seasonal engagement driver', cat:'diff', weight:1,
+    presence: makePresence(['uefa','mls'],[]) },
+  { id:'F26', name:'Fan Feedback / Surveys', desc:'User feedback, "help shape" sections — community co-creation and product insight', cat:'diff', weight:1,
+    presence: makePresence(['f1'],[]) },
+];
+
+/* ── COMPUTE BANDS ── */
+const totalProducts = PRODUCTS.length;
+FEATURES.forEach(f => {
+  let score = 0;
+  ALL_IDS.forEach(id => { if(f.presence[id]==='full') score+=1; else if(f.presence[id]==='partial') score+=0.5; });
+  f.adoption = score / totalProducts;
+  f.adoptionPct = Math.round(f.adoption * 100);
+  if(f.adoption >= 0.9) f.band = 'table_stakes';
+  else if(f.adoption >= 0.7) f.band = 'expected';
+  else if(f.adoption >= 0.4) f.band = 'competitive';
+  else f.band = 'innovation';
+});
+
+const BAND_META = [
+  { id:'table_stakes', name:'Table Stakes', cls:'table_stakes' },
+  { id:'expected',     name:'Expected',     cls:'expected' },
+  { id:'competitive',  name:'Competitive',  cls:'competitive' },
+  { id:'innovation',   name:'Innovation',   cls:'innovation' },
+];
+
+/* ── STATE ── */
+let filterType = 'all', filterSport = 'all', searchText = '', activeCat = null, activeBand = null;
+let selectedFeature = null, selectedProduct = null;
+
+function visibleProducts() {
+  return PRODUCTS.filter(p => {
+    if(filterType === 'club' && p.type !== 'club') return false;
+    if(filterType === 'league' && p.type === 'club') return false;
+    if(filterSport === 'football' && p.sport !== 'football') return false;
+    if(filterSport === 'other' && p.sport === 'football') return false;
+    return true;
+  });
+}
+
+function visibleFeatures() {
+  return FEATURES.filter(f => {
+    if(searchText && !f.name.toLowerCase().includes(searchText) && !f.desc.toLowerCase().includes(searchText)) return false;
+    if(activeCat && f.cat !== activeCat) return false;
+    if(activeBand && f.band !== activeBand) return false;
+    return true;
+  });
+}
+
+/* ── RENDER ── */
+function render() {
+  const prods = visibleProducts();
+  const feats = visibleFeatures();
+  renderHeader(feats, prods);
+  renderSidebar();
+  renderTable(feats, prods);
+  renderLegend(feats, prods);
+}
+
+function renderHeader(feats, prods) {
+  const bandCounts = {};
+  BAND_META.forEach(b => bandCounts[b.id] = 0);
+  FEATURES.forEach(f => bandCounts[f.band]++);
+  document.getElementById('headerStats').innerHTML =
+    `<div class="stat-chip"><strong>${FEATURES.length}</strong> features</div>` +
+    `<div class="stat-chip"><strong>${PRODUCTS.length}</strong> products</div>` +
+    BAND_META.map(b => `<div class="stat-chip"><strong>${bandCounts[b.id]}</strong> ${b.name}</div>`).join('');
+}
+
+function renderSidebar() {
+  const catCounts = {};
+  CATEGORIES.forEach(c => catCounts[c.id] = FEATURES.filter(f=>f.cat===c.id).length);
+  document.getElementById('catList').innerHTML = CATEGORIES.map(c =>
+    `<div class="cat-item${activeCat===c.id?' active':''}" data-cat="${c.id}">
+      <div class="cat-dot" style="background:${c.color}"></div>
+      <span class="cat-name">${c.name}</span>
+      <span class="cat-count">${catCounts[c.id]}</span>
+    </div>`).join('');
+  const bandCounts = {};
+  BAND_META.forEach(b => bandCounts[b.id] = FEATURES.filter(f=>f.band===b.id).length);
+  document.getElementById('bandList').innerHTML = BAND_META.map(b =>
+    `<div class="band-item${activeBand===b.id?' active':''}" data-band="${b.id}">
+      <div class="band-swatch ${b.cls}"></div>
+      <span class="band-name">${b.name}</span>
+      <span class="band-count">${bandCounts[b.id]}</span>
+    </div>`).join('');
+}
+
+function renderTable(feats, prods) {
+  let html = '<thead><tr><th class="feature-col">Feature</th>';
+  prods.forEach(p => {
+    const hl = selectedProduct === p.id ? ' highlighted' : '';
+    html += `<th><div class="col-header${hl}" data-product="${p.id}"><span class="col-label">${p.name}</span></div></th>`;
+  });
+  html += '<th class="freq-col">Adoption</th></tr></thead><tbody>';
+
+  let lastCat = null;
+  feats.forEach(f => {
+    if(f.cat !== lastCat) {
+      lastCat = f.cat;
+      const cat = CATEGORIES.find(c=>c.id===f.cat);
+      html += `<tr class="category-sep-row"><td class="category-sep" colspan="1"><div class="cat-sep-inner"><div class="cat-sep-dot" style="background:${cat.color}"></div><span class="cat-sep-label">${cat.name}</span></div></td>`;
+      prods.forEach(() => html += '<td class="cat-spacer"></td>');
+      html += '<td class="cat-spacer"></td></tr>';
+    }
+    const hl = selectedFeature === f.id ? ' highlighted' : '';
+    html += `<tr class="${hl}" data-feature="${f.id}"><td class="feature-name" data-feature="${f.id}"><div class="feature-inner"><div class="feature-band ${f.band}"></div><span class="feature-weight w${f.weight}">W${f.weight}</span><span class="feature-text" title="${f.name}">${f.name}</span></div></td>`;
+    prods.forEach(p => {
+      const state = f.presence[p.id];
+      let cls = 'cell', inner;
+      if(state === 'full') { cls += ' has-full'; inner = '<span class="check">&#10003;</span>'; }
+      else if(state === 'partial') { cls += ' has-partial'; inner = '<span class="partial-check">&#10003;</span>'; }
+      else { inner = '<span class="no-check">&middot;</span>'; }
+      if(selectedProduct === p.id) cls += ' highlighted';
+      html += `<td class="${cls}" data-feature="${f.id}" data-product="${p.id}">${inner}</td>`;
+    });
+    html += `<td class="freq-col"><div class="freq-inner"><div class="freq-bar-wrap"><div class="freq-bar ${f.band}" style="width:${f.adoptionPct}%"></div></div><span class="freq-label">${f.adoptionPct}%</span></div></td></tr>`;
+  });
+
+  if(!feats.length) html += '<tr><td colspan="'+(prods.length+2)+'" class="no-results">No features match your filters.</td></tr>';
+  html += '</tbody>';
+  document.getElementById('matrixTable').innerHTML = html;
+}
+
+function renderLegend(feats, prods) {
+  document.getElementById('legendCount').textContent = `Showing ${feats.length} of ${FEATURES.length} features across ${prods.length} products`;
+}
+
+/* ── DETAIL PANELS ── */
+function showFeatureDetail(fid) {
+  selectedFeature = fid; selectedProduct = null;
+  const f = FEATURES.find(x=>x.id===fid);
+  if(!f) return;
+  const cat = CATEGORIES.find(c=>c.id===f.cat);
+  const bandLabel = BAND_META.find(b=>b.id===f.band).name;
+  const fullList = ALL_IDS.filter(id=>f.presence[id]==='full');
+  const partialList = ALL_IDS.filter(id=>f.presence[id]==='partial');
+  const absentList = ALL_IDS.filter(id=>f.presence[id]==='absent');
+  const pName = id => PRODUCTS.find(p=>p.id===id).name;
+
+  let html = `<div class="detail-header"><button class="detail-close" id="detailClose">&times;</button>
+    <div class="detail-category" style="color:${cat.color}">${cat.name}</div>
+    <div class="detail-title">${f.name}</div></div>
+    <div class="detail-desc">${f.desc}</div>
+    <div style="display:flex;gap:8px;align-items:center;margin-bottom:14px;">
+      <div class="detail-band ${f.band}" style="margin:0">${bandLabel}</div>
+      <div class="detail-weight-badge w${f.weight}">W${f.weight}</div>
+      <span class="detail-weight-label">${['','Differentiator','UX & Utility','Brand & Identity','Engagement Core','Revenue Critical'][f.weight]}</span>
+    </div>
+    <div class="detail-freq"><div class="detail-freq-label">Adoption rate</div>
+      <div class="detail-freq-row"><span class="detail-freq-big">${f.adoptionPct}%</span>
+      <span class="detail-freq-sub">${fullList.length} full + ${partialList.length} partial<br>of ${totalProducts} products</span></div>
+      <div class="detail-freq-bar ${f.band}" style="width:${f.adoptionPct}%;background:var(--${f.band==='table_stakes'?'green':f.band==='expected'?'yellow':f.band==='competitive'?'orange':'red'})"></div>
+    </div><div class="detail-divider"></div>`;
+
+  if(fullList.length) {
+    html += `<div class="detail-products-label">Present (full)</div><div class="detail-products">`;
+    html += fullList.map(id => `<span class="product-chip" data-product="${id}">${pName(id)}</span>`).join('');
+    html += '</div>';
+  }
+  if(partialList.length) {
+    html += `<div class="detail-products-label" style="margin-top:10px">Partial / Nav-only</div><div class="detail-products">`;
+    html += partialList.map(id => `<span class="product-chip" data-product="${id}"><span class="chip-state" style="opacity:.5">&#10003;</span> ${pName(id)}</span>`).join('');
+    html += '</div>';
+  }
+  if(absentList.length) {
+    html += `<div class="detail-missing-label">Not present</div><div class="detail-products">`;
+    html += absentList.map(id => `<span class="product-chip dim" data-product="${id}">${pName(id)}</span>`).join('');
+    html += '</div>';
+  }
+
+  document.getElementById('detailInner').innerHTML = html;
+  document.getElementById('detailPanel').classList.remove('collapsed');
+  renderTable(visibleFeatures(), visibleProducts());
+}
+
+function showProductDetail(pid) {
+  selectedProduct = pid; selectedFeature = null;
+  const p = PRODUCTS.find(x=>x.id===pid);
+  if(!p) return;
+  const fullCount = FEATURES.filter(f=>f.presence[pid]==='full').length;
+  const partialCount = FEATURES.filter(f=>f.presence[pid]==='partial').length;
+  const absentCount = FEATURES.filter(f=>f.presence[pid]==='absent').length;
+  // +1 for present (full or partial), -1 for absent
+  const rawScore = (fullCount + partialCount) - absentCount;
+  // Weighted: +weight for full, +weight*0.5 for partial, -weight for absent
+  let weightedScore = 0, maxWeighted = 0;
+  FEATURES.forEach(f => {
+    maxWeighted += f.weight;
+    if(f.presence[pid]==='full') weightedScore += f.weight;
+    else if(f.presence[pid]==='partial') weightedScore += Math.round(f.weight * 0.5);
+    else weightedScore -= f.weight;
+  });
+  const pct = Math.round((fullCount + partialCount) / FEATURES.length * 100);
+
+  let html = `<div class="detail-header"><button class="detail-close" id="detailClose">&times;</button>
+    <div class="detail-title">${p.name}</div></div>
+    <div style="display:flex;gap:6px;margin-bottom:14px;">
+      <span class="product-detail-badge">${p.type}</span>
+      <span class="product-detail-badge">${p.sport}</span>
+    </div>
+    <div class="detail-freq"><div class="detail-freq-label">Feature coverage</div>
+      <div class="detail-freq-row"><span class="detail-freq-big">${pct}%</span>
+      <span class="detail-freq-sub">${fullCount} full + ${partialCount} partial<br>of ${FEATURES.length} features</span></div>
+      <div class="detail-freq-bar" style="width:${pct}%;background:var(--accent)"></div>
+    </div>
+    <div style="display:flex;gap:16px;margin:10px 0 6px;">
+      <div><div class="detail-freq-label">Raw Score (+1/−1)</div>
+        <div class="weighted-score"><span class="weighted-score-big" style="color:${rawScore>=0?'var(--green)':'var(--red)'}">${rawScore>=0?'+':''}${rawScore}</span><span class="weighted-score-sub">/ ${FEATURES.length}</span></div></div>
+      <div><div class="detail-freq-label">Weighted Score</div>
+        <div class="weighted-score"><span class="weighted-score-big" style="color:${weightedScore>=0?'var(--green)':'var(--red)'}">${weightedScore>=0?'+':''}${weightedScore}</span><span class="weighted-score-sub">/ ${maxWeighted}</span></div></div>
+    </div>
+    <div class="detail-divider"></div>`;
+
+  let lastCat = null;
+  FEATURES.forEach(f => {
+    if(f.cat !== lastCat) {
+      lastCat = f.cat;
+      const cat = CATEGORIES.find(c=>c.id===f.cat);
+      html += `<div class="detail-products-label" style="margin-top:${lastCat===FEATURES[0].cat?0:10}px;color:${cat.color}">${cat.name}</div>`;
+      html += '<div class="product-feature-list">';
+    }
+    const state = f.presence[pid];
+    let icon, cls;
+    if(state==='full') { icon='&#10003;'; cls='full'; }
+    else if(state==='partial') { icon='&#10003;'; cls='partial'; }
+    else { icon='&middot;'; cls='absent'; }
+    html += `<div class="product-feature-item" data-feature="${f.id}"><span class="product-feature-check ${cls}">${icon}</span><span class="product-feature-name">${f.name}</span><span class="product-feature-weight w${f.weight}" style="color:${['','#6b6b8a','#22d3ee','#facc15','#fb923c','#f87171'][f.weight]}">W${f.weight}</span><div class="product-feature-cat" style="background:${CATEGORIES.find(c=>c.id===f.cat).color}"></div></div>`;
+    const nextF = FEATURES[FEATURES.indexOf(f)+1];
+    if(!nextF || nextF.cat !== f.cat) html += '</div>';
+  });
+
+  document.getElementById('detailInner').innerHTML = html;
+  document.getElementById('detailPanel').classList.remove('collapsed');
+  renderTable(visibleFeatures(), visibleProducts());
+}
+
+function closeDetail() {
+  selectedFeature = null; selectedProduct = null;
+  document.getElementById('detailPanel').classList.add('collapsed');
+  renderTable(visibleFeatures(), visibleProducts());
+}
+
+/* ── EVENTS ── */
+document.addEventListener('click', e => {
+  // Close detail
+  if(e.target.id === 'detailClose' || e.target.closest('#detailClose')) { closeDetail(); return; }
+
+  // Filter buttons
+  const fb = e.target.closest('.filter-btn');
+  if(fb) {
+    const ft = fb.dataset.filterType, fv = fb.dataset.filterVal;
+    if(ft === 'type') filterType = fv;
+    if(ft === 'sport') filterSport = fv;
+    document.querySelectorAll(`.filter-btn[data-filter-type="${ft}"]`).forEach(b => b.classList.toggle('active', b.dataset.filterVal === fv));
+    render(); return;
+  }
+
+  // Clear filters
+  if(e.target.id === 'clearFiltersBtn') {
+    filterType = 'all'; filterSport = 'all'; searchText = ''; activeCat = null; activeBand = null;
+    document.getElementById('searchInput').value = '';
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.toggle('active', b.dataset.filterVal === 'all'));
+    closeDetail(); return;
+  }
+
+  // Sidebar category
+  const ci = e.target.closest('.cat-item');
+  if(ci) { const c = ci.dataset.cat; activeCat = activeCat === c ? null : c; render(); return; }
+
+  // Sidebar band
+  const bi = e.target.closest('.band-item');
+  if(bi) { const b = bi.dataset.band; activeBand = activeBand === b ? null : b; render(); return; }
+
+  // Column header
+  const ch = e.target.closest('.col-header');
+  if(ch) { showProductDetail(ch.dataset.product); return; }
+
+  // Feature name click
+  const fn = e.target.closest('td.feature-name');
+  if(fn) { showFeatureDetail(fn.dataset.feature); return; }
+
+  // Cell click
+  const cell = e.target.closest('td.cell');
+  if(cell) { showFeatureDetail(cell.dataset.feature); return; }
+
+  // Product chip in detail
+  const pc = e.target.closest('.product-chip');
+  if(pc && pc.dataset.product) { showProductDetail(pc.dataset.product); return; }
+
+  // Feature item in product detail
+  const pfi = e.target.closest('.product-feature-item');
+  if(pfi && pfi.dataset.feature) { showFeatureDetail(pfi.dataset.feature); return; }
+});
+
+document.getElementById('searchInput').addEventListener('input', e => {
+  searchText = e.target.value.toLowerCase().trim();
+  render();
+});
+
+/* ── INIT ── */
+render();
+</script>
+</body>
+</html>
