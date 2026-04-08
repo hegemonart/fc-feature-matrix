@@ -207,6 +207,32 @@
   .cell-tooltip .tt-status.has { color: var(--green); }
   .cell-tooltip .tt-status.missing { color: var(--muted); }
 
+  /* ── FLOW NAV ── */
+  .flow-nav { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 24px; display: flex; align-items: stretch; gap: 0; flex-shrink: 0; overflow-x: auto; }
+  .flow-tab { display: flex; align-items: center; gap: 8px; padding: 12px 16px; font-size: 13px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s ease-out; white-space: nowrap; position: relative; }
+  .flow-tab:hover { color: var(--text); background: rgba(255,255,255,.02); }
+  .flow-tab.active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+  .flow-tab.locked { opacity: .5; cursor: not-allowed; }
+  .flow-tab.locked:hover { opacity: .65; color: var(--muted); background: rgba(255,255,255,.02); }
+  .flow-tab .lock-icon { display: flex; align-items: center; }
+  .flow-tab .lock-icon svg { width: 12px; height: 12px; color: var(--muted); }
+  .flow-tab .tab-badge { font-size: 9px; font-weight: 700; background: var(--accent); color: #fff; padding: 1px 5px; border-radius: 3px; letter-spacing: .03em; }
+
+  /* ── LOCKED OVERLAY ── */
+  .locked-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
+  .locked-overlay.visible { display: flex; }
+  .locked-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 32px; max-width: 420px; width: 90%; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,.5); }
+  .locked-card .lock-big { margin: 0 auto 16px; width: 48px; height: 48px; border-radius: 50%; background: rgba(79,110,247,.12); display: flex; align-items: center; justify-content: center; }
+  .locked-card .lock-big svg { width: 24px; height: 24px; color: var(--accent); }
+  .locked-card h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
+  .locked-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
+  .locked-card .locked-flow-name { color: var(--accent); font-weight: 600; }
+  .locked-card .locked-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s ease-out; }
+  .locked-card .locked-btn:hover { filter: brightness(1.1); }
+  .locked-card .locked-btn:active { transform: scale(0.97); }
+  .locked-card .locked-dismiss { margin-top: 12px; font-size: 12px; color: var(--muted); cursor: pointer; background: none; border: none; transition: color .15s; }
+  .locked-card .locked-dismiss:hover { color: var(--text); }
+
   /* ── NO RESULTS ── */
   .no-results { padding: 40px; text-align: center; color: var(--muted); font-size: 13px; }
 
@@ -230,6 +256,45 @@
   <h1 class="header-title">Feature Matrix</h1>
   <div class="header-stats" id="headerStats" aria-live="polite"></div>
 </header>
+
+<div class="flow-nav" id="flowNav">
+  <div class="flow-tab active" data-flow="homepage">
+    <span>Homepage</span>
+    <span class="tab-badge">LIVE</span>
+  </div>
+  <div class="flow-tab locked" data-flow="tickets">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    <span>Ticket Purchase</span>
+  </div>
+  <div class="flow-tab locked" data-flow="merch">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    <span>Merch Store</span>
+  </div>
+  <div class="flow-tab locked" data-flow="subscription">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    <span>Subscriptions</span>
+  </div>
+  <div class="flow-tab locked" data-flow="matchday">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    <span>Matchday Experience</span>
+  </div>
+  <div class="flow-tab locked" data-flow="hospitality">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    <span>Hospitality Packages</span>
+  </div>
+  <div class="flow-tab locked" data-flow="sponsorship">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    <span>Sponsorship Visibility</span>
+  </div>
+  <div class="flow-tab locked" data-flow="between-season">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    <span>Between Season</span>
+  </div>
+  <div class="flow-tab locked" data-flow="past-seasons">
+    <span class="lock-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
+    <span>Past Seasons</span>
+  </div>
+</div>
 
 <div class="toolbar">
   <div class="search-wrap">
@@ -294,6 +359,21 @@
 
   <div class="detail-panel collapsed" id="detailPanel">
     <div class="detail-inner" id="detailInner"></div>
+  </div>
+</div>
+
+<div class="locked-overlay" id="lockedOverlay">
+  <div class="locked-card">
+    <div class="lock-big">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+    </div>
+    <h3><span id="lockedFlowName"></span> data is locked</h3>
+    <p>Your current subscription only includes access to <strong>Homepage</strong> analysis. The <span class="locked-flow-name" id="lockedFlowLabel"></span> dataset requires an upgraded plan.</p>
+    <button class="locked-btn" id="lockedRequestBtn">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      Request access from admin
+    </button>
+    <div><button class="locked-dismiss" id="lockedDismiss">Dismiss</button></div>
   </div>
 </div>
 
@@ -695,6 +775,43 @@ document.getElementById('clearFiltersBtn').addEventListener('click', () => {
   });
   renderSidebar();
   renderTable();
+});
+
+// ── FLOW NAV (locked tabs) ──
+const flowLabels = {
+  'tickets': 'Ticket Purchase',
+  'merch': 'Merch Store',
+  'subscription': 'Subscriptions',
+  'matchday': 'Matchday Experience',
+  'hospitality': 'Hospitality Packages',
+  'sponsorship': 'Sponsorship Visibility',
+  'between-season': 'Between Season',
+  'past-seasons': 'Past Seasons'
+};
+
+document.getElementById('flowNav').addEventListener('click', e => {
+  const tab = e.target.closest('.flow-tab');
+  if (!tab) return;
+  if (tab.classList.contains('locked')) {
+    const flow = tab.dataset.flow;
+    document.getElementById('lockedFlowName').textContent = flowLabels[flow] || flow;
+    document.getElementById('lockedFlowLabel').textContent = flowLabels[flow] || flow;
+    document.getElementById('lockedOverlay').classList.add('visible');
+  }
+});
+
+document.getElementById('lockedDismiss').addEventListener('click', () => {
+  document.getElementById('lockedOverlay').classList.remove('visible');
+});
+
+document.getElementById('lockedRequestBtn').addEventListener('click', () => {
+  document.getElementById('lockedOverlay').classList.remove('visible');
+});
+
+document.getElementById('lockedOverlay').addEventListener('click', e => {
+  if (e.target === e.currentTarget) {
+    document.getElementById('lockedOverlay').classList.remove('visible');
+  }
 });
 
 // ── TOOLTIP ──
