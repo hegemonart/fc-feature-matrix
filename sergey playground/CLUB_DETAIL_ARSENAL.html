@@ -154,6 +154,15 @@
   .comp-dot.has { background: var(--green); }
   .comp-dot.no { background: var(--border); }
 
+  /* ── COMPARE SWITCHER ── */
+  .compare-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .compare-tabs { display: flex; gap: 0; margin-bottom: 20px; border-bottom: 1px solid var(--border); }
+  .compare-tab { padding: 8px 16px; font-size: 13px; font-weight: 600; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s ease-out; background: none; border-top: none; border-left: none; border-right: none; }
+  .compare-tab:hover { color: var(--text); }
+  .compare-tab.active { color: var(--text); border-bottom-color: var(--accent); }
+  .compare-panel { display: none; }
+  .compare-panel.active { display: block; }
+
   /* ── PEER COMPARISON ── */
   .peer-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; margin-bottom: 24px; }
   .peer-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; transition: border-color .2s; }
@@ -269,26 +278,22 @@
       </div>
     </div>
 
-    <!-- COMPETITOR RANKING -->
-    <div class="rank-card">
-      <h2>Your position among competitors</h2>
-      <div class="rank-list" id="rankList"></div>
-    </div>
-  </div>
-
-  <!-- PEER CLUB COMPARISON -->
-  <div class="section">
-    <div class="section-header">
-      <div class="section-icon" style="background: var(--blue-bg);">
-        <svg viewBox="0 0 24 24" fill="none" stroke="var(--blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    <!-- COMPETITOR COMPARISON (MERGED) -->
+    <div class="compare-card">
+      <div class="compare-tabs">
+        <button class="compare-tab active" data-panel="all">All products</button>
+        <button class="compare-tab" data-panel="peers">Rival clubs</button>
       </div>
-      <h2 class="section-title">How you compare to rival clubs</h2>
-    </div>
-    <div class="section-desc">Arsenal vs direct competitors — other top football clubs, not aggregators or editorial products.</div>
-    <div class="peer-grid" id="peerGrid"></div>
-    <div class="section-desc" style="margin-top:8px;margin-bottom:8px;font-size:12px;font-weight:600;color:var(--text2)">Category-by-category comparison</div>
-    <div style="overflow-x:auto">
-      <table class="peer-cat-table" id="peerCatTable"></table>
+      <div class="compare-panel active" id="panelAll">
+        <div class="rank-list" id="rankList"></div>
+      </div>
+      <div class="compare-panel" id="panelPeers">
+        <div class="peer-grid" id="peerGrid"></div>
+        <div style="font-size:12px;font-weight:600;color:var(--text2);margin:16px 0 8px">Category-by-category comparison</div>
+        <div style="overflow-x:auto">
+          <table class="peer-cat-table" id="peerCatTable"></table>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -492,6 +497,16 @@ function renderAlreadyHave() {
   const sorted = [...arsenalHas].sort((a, b) => b.percentage - a.percentage);
   el.innerHTML = sorted.map(f => renderFeatureItem(f, 'has')).join('');
 }
+
+// ── COMPARE TABS ──
+document.querySelectorAll('.compare-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.compare-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.compare-panel').forEach(p => p.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('panel' + tab.dataset.panel.charAt(0).toUpperCase() + tab.dataset.panel.slice(1)).classList.add('active');
+  });
+});
 
 // ── PEER CLUB COMPARISON ──
 const PEERS = [
