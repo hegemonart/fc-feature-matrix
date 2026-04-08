@@ -1,25 +1,3 @@
 {
-  "rewrites": [
-    { "source": "/", "destination": "/FEATURE_MATRIX_INTERACTIVE.html" }
-  ],
-  "headers": [
-    {
-      "source": "/(.*)",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/FEATURE_MATRIX_INTERACTIVE.html",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    },
-    {
-      "source": "/club-detail.html",
-      "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
-      ]
-    }
-  ]
+  "framework": "nextjs"
 }

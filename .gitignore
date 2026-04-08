@@ -1,8 +1,20 @@
-# Screenshots - too large for git (404MB), store separately
-.claude/worktrees/nostalgic-hopper/screenshots/
+# Next.js
+.next/
+out/
+node_modules/
 
-# Node modules
-.claude/worktrees/nostalgic-hopper/node_modules/
+# Env
+.env*.local
 
-# Git worktree internal file
-.claude/worktrees/nostalgic-hopper/.git
+# Claude Code internals
+.claude/worktrees/
+
+# Separate projects / reference assets
+concept/
+references/
+
+# Screenshots
+screenshots/
+
+# Debug
+npm-debug.log*
