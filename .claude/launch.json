@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "feature-matrix",
+      "runtimeExecutable": "npx",
+      "runtimeArgs": ["http-server", "D:/AI/fc feature matrix", "-p", "8090", "-c-1"],
+      "port": 8090
+    }
+  ]
+}
