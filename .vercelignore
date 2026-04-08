@@ -1,0 +1,21 @@
+# Claude Code internals
+.claude/
+
+# Git data
+.git/
+
+# Capture / build scripts
+capture.mjs
+recapture.mjs
+recapture2.mjs
+recapture-f1.mjs
+package.json
+package-lock.json
+
+# Analysis & planning docs (not needed in production)
+analysis/
+references/
+brainstorm.md
+feature-matrix.md
+DESIGN.md
+PROJECT_CONTEXT.md
