@@ -11,7 +11,7 @@
     --bg3:      #1a1a28;
     --border:   #252535;
     --text:     #e8e8f0;
-    --muted:    #6b6b8a;
+    --muted:    #8b8baa;
     --accent:   #4f6ef7;
     --green:    #22c55e;
     --yellow:   #eab308;
@@ -27,48 +27,57 @@
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
 
+  /* ── FOCUS & A11Y ── */
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
   /* ── HEADER ── */
-  header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
+  header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 16px 24px; display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
   .logo { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
   .logo span { color: var(--accent); }
-  .header-title { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; }
+  h1.header-title { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; margin: 0; }
   .header-stats { display: flex; gap: 16px; margin-left: auto; }
   .stat-chip { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 11px; color: var(--muted); white-space: nowrap; }
   .stat-chip strong { color: var(--text); }
 
   /* ── TOOLBAR ── */
-  .toolbar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 10px 20px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
+  .toolbar { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 12px 24px; display: flex; align-items: center; gap: 12px; flex-shrink: 0; flex-wrap: wrap; }
   .search-wrap { position: relative; flex: 0 0 220px; }
-  .search-wrap input { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px 6px 30px; color: var(--text); font-size: 12px; outline: none; }
-  .search-wrap input:focus { border-color: var(--accent); }
+  .search-wrap input { width: 100%; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 8px 12px 8px 32px; color: var(--text); font-size: 13px; outline: none; }
+  .search-wrap input:focus { border-color: var(--accent); box-shadow: 0 0 0 2px rgba(79,110,247,.25); }
   .search-wrap svg { position: absolute; left: 8px; top: 50%; transform: translateY(-50%); color: var(--muted); }
-  .filter-group { display: flex; align-items: center; gap: 6px; }
+  .filter-group { display: flex; align-items: center; gap: 8px; }
   .filter-label { font-size: 11px; color: var(--muted); white-space: nowrap; }
-  .filter-btn { background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; padding: 4px 9px; font-size: 11px; color: var(--muted); cursor: pointer; transition: all .15s; white-space: nowrap; }
-  .filter-btn:hover { border-color: var(--accent); color: var(--text); }
+  .filter-btn { background: var(--bg3); border: 1px solid var(--border); border-radius: 5px; padding: 6px 12px; font-size: 11px; color: var(--muted); cursor: pointer; transition: all .2s ease-out; white-space: nowrap; }
+  .filter-btn:hover { border-color: var(--accent); color: var(--text); background: rgba(79,110,247,.08); }
+  .filter-btn:active { transform: scale(0.97); }
   .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
   .divider { width: 1px; height: 20px; background: var(--border); }
   .toolbar-right { margin-left: auto; display: flex; align-items: center; gap: 8px; }
   .view-toggle { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; display: flex; overflow: hidden; }
   .view-btn { padding: 5px 10px; font-size: 11px; color: var(--muted); cursor: pointer; border: none; background: none; transition: all .15s; }
   .view-btn.active { background: var(--accent); color: #fff; }
-  .clear-btn { padding: 5px 10px; font-size: 11px; color: var(--muted); cursor: pointer; border: 1px solid var(--border); border-radius: 5px; background: var(--bg3); transition: all .15s; }
+  .clear-btn { padding: 6px 12px; font-size: 11px; color: var(--muted); cursor: pointer; border: 1px solid var(--border); border-radius: 5px; background: var(--bg3); transition: all .2s ease-out; }
   .clear-btn:hover { color: var(--text); border-color: var(--muted); }
+  .clear-btn:active { transform: scale(0.97); }
 
   /* ── MAIN ── */
   .main { display: flex; flex: 1; overflow: hidden; }
 
   /* ── SIDEBAR ── */
   .sidebar { width: 200px; flex-shrink: 0; background: var(--bg2); border-right: 1px solid var(--border); overflow-y: auto; padding: 14px 12px; }
-  .sidebar h3 { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding: 0 2px; }
-  .cat-item { display: flex; align-items: center; gap: 7px; padding: 5px 6px; border-radius: 5px; cursor: pointer; margin-bottom: 2px; transition: background .12s; }
+  .sidebar h2 { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding: 0 2px; }
+  .sidebar h3 { font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 8px; padding: 0 2px; }
+  .cat-item { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 5px; cursor: pointer; margin-bottom: 2px; transition: background .2s ease-out; }
   .cat-item:hover { background: var(--bg3); }
   .cat-item.active { background: var(--bg3); }
   .cat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
   .cat-name { font-size: 12px; color: var(--text); flex: 1; }
   .cat-count { font-size: 10px; color: var(--muted); }
   .sidebar-section { margin-top: 16px; }
-  .band-item { display: flex; align-items: center; gap: 7px; padding: 4px 6px; border-radius: 4px; cursor: pointer; margin-bottom: 2px; transition: background .12s; }
+  .band-item { display: flex; align-items: center; gap: 8px; padding: 7px 8px; border-radius: 4px; cursor: pointer; margin-bottom: 2px; transition: background .2s ease-out; }
   .band-item:hover { background: var(--bg3); }
   .band-item.active { background: var(--bg3); }
   .band-swatch { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
@@ -88,10 +97,10 @@
   thead th { background: var(--bg2); position: sticky; top: 0; z-index: 10; padding: 0; min-width: 38px; max-width: 38px; width: 38px; }
   thead th.feature-col { min-width: 220px; max-width: 220px; width: 220px; left: 0; z-index: 20; padding: 10px 12px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
   thead th.freq-col { min-width: 100px; max-width: 100px; width: 100px; padding: 0 8px; font-size: 10px; color: var(--muted); font-weight: 600; position: sticky; right: 0; z-index: 15; background: var(--bg2); }
-  .col-header { display: flex; flex-direction: column; align-items: center; padding: 6px 2px 8px; cursor: pointer; transition: background .12s; height: 90px; justify-content: flex-end; }
+  .col-header { display: flex; flex-direction: column; align-items: center; padding: 6px 2px 8px; cursor: pointer; transition: background .2s ease-out; height: 90px; justify-content: flex-end; gap: 4px; }
   .col-header:hover { background: var(--bg3); }
   .col-header.highlighted { background: rgba(79,110,247,.15); }
-  .col-label { font-size: 9px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; writing-mode: vertical-rl; transform: rotate(180deg); line-height: 1.2; margin-bottom: 4px; text-align: left; max-height: 70px; overflow: hidden; transition: color .12s; white-space: nowrap; }
+  .col-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: none; letter-spacing: 0; writing-mode: vertical-rl; transform: rotate(180deg); line-height: 1.2; margin-bottom: 0; text-align: left; max-height: 70px; overflow: hidden; transition: color .2s ease-out; white-space: nowrap; }
   .col-header:hover .col-label, .col-header.highlighted .col-label { color: var(--text); }
   .surface-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
   .surface-dot.app { background: var(--accent); }
@@ -113,7 +122,7 @@
   td.category-sep { background: var(--bg); height: 28px; position: sticky; left: 0; z-index: 5; padding: 0 12px; border-right: none; }
   .cat-sep-inner { display: flex; align-items: center; gap: 7px; height: 100%; }
   .cat-sep-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
-  .cat-sep-label { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .cat-sep-label { font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
   tr.category-sep-row td { background: var(--bg); border-bottom: 1px solid var(--border); }
   tr.category-sep-row td.cat-spacer { border-right: 1px solid var(--border); }
 
@@ -122,7 +131,8 @@
   td.cell:hover { background: rgba(79,110,247,.15) !important; }
   td.cell.has { background: rgba(79,110,247,.1); }
   td.cell.highlighted { background: rgba(79,110,247,.18) !important; }
-  .check { color: var(--accent); font-size: 14px; line-height: 1; }
+  .check { color: var(--accent); display: flex; align-items: center; justify-content: center; }
+  .check svg { width: 14px; height: 14px; }
   .no-check { color: var(--border); font-size: 11px; }
 
   /* ── FREQUENCY COLUMN ── */
@@ -135,18 +145,18 @@
   .freq-bar.common { background: var(--yellow); }
   .freq-bar.differentiator { background: var(--orange); }
   .freq-bar.rare { background: var(--red); }
-  .freq-label { font-size: 10px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+  .freq-label { font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0; font-variant-numeric: tabular-nums; }
 
   /* ── DETAIL PANEL ── */
-  .detail-panel { width: 320px; flex-shrink: 0; background: var(--bg2); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: width .2s; }
-  .detail-panel.collapsed { width: 0; border: none; }
+  .detail-panel { width: 320px; flex-shrink: 0; background: var(--bg2); border-left: 1px solid var(--border); display: flex; flex-direction: column; overflow: hidden; transition: transform .25s ease-out, opacity .25s ease-out; box-shadow: -4px 0 16px rgba(0,0,0,.3); transform: translateX(0); opacity: 1; }
+  .detail-panel.collapsed { transform: translateX(100%); opacity: 0; width: 0; border: none; pointer-events: none; }
   .detail-inner { padding: 16px; overflow-y: auto; flex: 1; min-width: 320px; }
   .detail-close { position: absolute; top: 12px; right: 14px; cursor: pointer; color: var(--muted); font-size: 16px; line-height: 1; transition: color .12s; background: none; border: none; padding: 0; }
   .detail-close:hover { color: var(--text); }
   .detail-header { position: relative; margin-bottom: 14px; padding-right: 24px; }
   .detail-category { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); margin-bottom: 5px; }
   .detail-title { font-size: 15px; font-weight: 600; color: var(--text); line-height: 1.3; }
-  .detail-desc { font-size: 12px; color: var(--muted); line-height: 1.5; margin-bottom: 14px; }
+  .detail-desc { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 14px; }
   .detail-band { display: inline-flex; align-items: center; gap: 5px; border-radius: 4px; padding: 3px 8px; font-size: 11px; font-weight: 600; margin-bottom: 14px; }
   .detail-band.table_stakes { background: var(--green-bg); color: var(--green); }
   .detail-band.common { background: var(--yellow-bg); color: var(--yellow); }
@@ -188,6 +198,15 @@
   ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
+  /* ── TOOLTIP ── */
+  .cell-tooltip { position: fixed; background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 11px; color: var(--text); pointer-events: none; z-index: 1000; max-width: 260px; line-height: 1.4; box-shadow: 0 4px 12px rgba(0,0,0,.4); opacity: 0; transition: opacity .15s ease-out; white-space: nowrap; }
+  .cell-tooltip.visible { opacity: 1; }
+  .cell-tooltip .tt-feature { color: var(--text); font-weight: 600; }
+  .cell-tooltip .tt-product { color: var(--muted); }
+  .cell-tooltip .tt-status { margin-top: 2px; }
+  .cell-tooltip .tt-status.has { color: var(--green); }
+  .cell-tooltip .tt-status.missing { color: var(--muted); }
+
   /* ── NO RESULTS ── */
   .no-results { padding: 40px; text-align: center; color: var(--muted); font-size: 13px; }
 
@@ -206,16 +225,16 @@
 </head>
 <body>
 
-<header>
+<header role="banner">
   <div class="logo">PSG UX Benchmark <span>//</span> 2026</div>
-  <div class="header-title">Feature Matrix</div>
-  <div class="header-stats" id="headerStats"></div>
+  <h1 class="header-title">Feature Matrix</h1>
+  <div class="header-stats" id="headerStats" aria-live="polite"></div>
 </header>
 
 <div class="toolbar">
   <div class="search-wrap">
     <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-    <input type="text" id="searchInput" placeholder="Search features…" />
+    <input type="text" id="searchInput" placeholder="Search features…" aria-label="Search features" />
   </div>
 
   <div class="divider"></div>
@@ -253,21 +272,21 @@
 </div>
 
 <div class="main">
-  <div class="sidebar">
-    <h3>Category</h3>
-    <div id="catList"></div>
+  <nav class="sidebar" role="complementary" aria-label="Filters">
+    <h2>Category</h2>
+    <div id="catList" role="list"></div>
     <div class="sidebar-section">
-      <h3>Band</h3>
-      <div id="bandList"></div>
+      <h2>Band</h2>
+      <div id="bandList" role="list"></div>
     </div>
     <div class="sidebar-section">
-      <h3>Surface legend</h3>
+      <h2>Surface legend</h2>
       <div style="display:flex;flex-direction:column;gap:5px;padding:0 2px;">
         <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted)"><div class="surface-dot app"></div>App</div>
         <div style="display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted)"><div class="surface-dot web"></div>Web</div>
       </div>
     </div>
-  </div>
+  </nav>
 
   <div class="table-container" id="tableContainer">
     <table id="matrixTable"></table>
@@ -351,7 +370,7 @@ function renderSidebar() {
   catList.innerHTML = DATA.categories.map(c => {
     const count = DATA.features.filter(f => f.category === c.id).length;
     const active = state.activeCats.has(c.id);
-    return `<div class="cat-item ${active ? 'active' : ''}" data-cat="${c.id}">
+    return `<div class="cat-item ${active ? 'active' : ''}" data-cat="${c.id}" role="listitem" tabindex="0" aria-pressed="${active}">
       <div class="cat-dot" style="background:${c.color}"></div>
       <span class="cat-name">${c.label}</span>
       <span class="cat-count">${count}</span>
@@ -363,7 +382,7 @@ function renderSidebar() {
   bandList.innerHTML = bands.map(b => {
     const count = DATA.features.filter(f => f.band === b).length;
     const active = state.activeBands.has(b);
-    return `<div class="band-item ${active ? 'active' : ''}" data-band="${b}">
+    return `<div class="band-item ${active ? 'active' : ''}" data-band="${b}" role="listitem" tabindex="0" aria-pressed="${active}">
       <div class="band-swatch ${b}"></div>
       <span class="band-name">${bandLabels[b]}</span>
       <span class="band-count">${count}</span>
@@ -431,7 +450,7 @@ function renderTable() {
         const has = productSet.has(p.id);
         const highlighted = state.highlightedCol === p.id ? 'highlighted' : '';
         html += `<td class="cell ${has ? 'has' : ''} ${highlighted}" data-feature="${f.id}" data-product="${p.id}">
-          ${has ? '<span class="check">✓</span>' : '<span class="no-check">·</span>'}
+          ${has ? '<span class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>' : '<span class="no-check">·</span>'}
         </td>`;
       });
 
@@ -488,7 +507,7 @@ function showFeatureDetail(featureId) {
     <div class="detail-header">
       <div class="detail-category" style="color:${cat.color}">${cat.label}</div>
       <div class="detail-title">${f.label}</div>
-      <button class="detail-close" id="closeDetail">✕</button>
+      <button class="detail-close" id="closeDetail" aria-label="Close detail panel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="detail-desc">${f.description}</div>
     <div class="detail-band ${band}">${bandLabels[band]}</div>
@@ -544,7 +563,7 @@ function showProductDetail(productId) {
     featureListHtml += `<div style="margin-bottom:10px">
       <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${cat.color};margin-bottom:4px;padding:0 6px">${cat.label}</div>
       ${fts.map(f => `<div class="product-feature-item" data-feature="${f.id}">
-        <div class="product-feature-check">✓</div>
+        <div class="product-feature-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
         <span class="product-feature-name">${f.label}</span>
         <div class="product-feature-cat" style="background:${catMap[f.category]?.color||'#888'}"></div>
       </div>`).join('')}
@@ -558,7 +577,7 @@ function showProductDetail(productId) {
         <span style="font-size:11px;color:var(--muted)">${p.sport} · ${p.type}</span>
       </div>
       <div class="detail-title">${p.label}</div>
-      <button class="detail-close" id="closeDetail">✕</button>
+      <button class="detail-close" id="closeDetail" aria-label="Close detail panel"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     </div>
     <div class="detail-freq" style="margin-bottom:14px">
       <div class="detail-freq-row">
@@ -676,6 +695,34 @@ document.getElementById('clearFiltersBtn').addEventListener('click', () => {
   });
   renderSidebar();
   renderTable();
+});
+
+// ── TOOLTIP ──
+const tooltip = document.createElement('div');
+tooltip.className = 'cell-tooltip';
+document.body.appendChild(tooltip);
+
+document.getElementById('matrixTable').addEventListener('mouseover', e => {
+  const cell = e.target.closest('td.cell');
+  if (!cell) { tooltip.classList.remove('visible'); return; }
+  const featureId = cell.dataset.feature;
+  const productId = cell.dataset.product;
+  const feature = DATA.features.find(f => f.id === featureId);
+  const product = productMap[productId];
+  if (!feature || !product) return;
+  const has = feature.products.includes(productId);
+  tooltip.innerHTML = `<div class="tt-feature">${feature.label}</div><div class="tt-product">${product.label} · ${product.surface}</div><div class="tt-status ${has ? 'has' : 'missing'}">${has ? '● Present' : '○ Absent'}</div>`;
+  tooltip.classList.add('visible');
+});
+
+document.getElementById('matrixTable').addEventListener('mousemove', e => {
+  if (!tooltip.classList.contains('visible')) return;
+  tooltip.style.left = (e.clientX + 12) + 'px';
+  tooltip.style.top = (e.clientY - 10) + 'px';
+});
+
+document.getElementById('matrixTable').addEventListener('mouseleave', () => {
+  tooltip.classList.remove('visible');
 });
 
 // ── INIT ──
