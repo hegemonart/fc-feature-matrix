@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club Breakdown — FC Benchmark</title>
+<style>
+  :root {
+    --bg:       #0d0d14;
+    --bg2:      #13131e;
+    --bg3:      #1a1a28;
+    --border:   #252535;
+    --text:     #e8e8f0;
+    --muted:    #6b6b8a;
+    --accent:   #4f6ef7;
+    --green:    #22c55e;
+    --yellow:   #eab308;
+    --orange:   #f97316;
+    --red:      #ef4444;
+    --green-bg: rgba(34,197,94,.12);
+    --yellow-bg:rgba(234,179,8,.12);
+    --orange-bg:rgba(249,115,22,.12);
+    --red-bg:   rgba(239,68,68,.12);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; min-height: 100vh; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 3px; }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  }
+  ::-webkit-scrollbar { width: 6px; } ::-webkit-scrollbar-track { background: transparent; } ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; } ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
+
+  /* ── PAGE HEADER ── */
+  .page-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: stretch; gap: 0; position: sticky; top: 0; z-index: 100; }
+  .header-back { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; text-decoration: none; padding: 14px 16px 14px 0; border-right: 1px solid var(--border); margin-right: 20px; transition: color .15s; white-space: nowrap; }
+  .header-back:hover { color: var(--text); }
+  .header-back svg { width: 14px; height: 14px; flex-shrink: 0; }
+  .header-logo { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; display: flex; align-items: center; }
+  .header-logo span { color: var(--accent); }
+  .header-crest { width: 38px; height: 38px; border-radius: 9px; background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--accent); flex-shrink: 0; margin: 10px 12px 10px 20px; }
+  .header-club { display: flex; flex-direction: column; justify-content: center; }
+  .header-club-name { font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.2; }
+  .header-club-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .header-right { margin-left: auto; display: flex; align-items: center; gap: 10px; }
+  .header-rank-chip { background: rgba(234,179,8,.12); border: 1px solid rgba(234,179,8,.25); border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: 700; color: var(--yellow); white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .header-pct-chip { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 11px; font-weight: 600; color: var(--text); white-space: nowrap; }
+
+  /* ── LAYOUT ── */
+  .page-body { max-width: 1100px; margin: 0 auto; padding: 32px 32px 64px; }
+
+  /* ── ALERT ── */
+  .bd-alert { background: var(--red-bg); border: 1px solid rgba(239,68,68,.25); border-radius: 12px; padding: 16px 20px; margin-bottom: 24px; display: flex; align-items: flex-start; gap: 12px; }
+  .bd-alert svg { width: 18px; height: 18px; color: var(--red); flex-shrink: 0; margin-top: 1px; }
+  .bd-alert-title { font-size: 14px; font-weight: 700; color: var(--red); margin-bottom: 3px; }
+  .bd-alert-desc { font-size: 12px; color: rgba(239,68,68,.85); line-height: 1.6; }
+
+  /* ── SCORE ROW ── */
+  .bd-score-row { display: grid; grid-template-columns: 280px 1fr; gap: 16px; margin-bottom: 24px; }
+  @media (max-width: 700px) { .bd-score-row { grid-template-columns: 1fr; } }
+  .bd-score-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; }
+  .bd-score-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .bd-ring-wrap { position: relative; width: 150px; height: 150px; margin-bottom: 16px; }
+  .bd-ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+  .bd-ring-bg { fill: none; stroke: var(--bg3); stroke-width: 10; }
+  .bd-ring-fg { fill: none; stroke-width: 10; stroke-linecap: round; transition: stroke-dashoffset .9s cubic-bezier(.4,0,.2,1); }
+  .bd-ring-fg.low { stroke: var(--red); }
+  .bd-ring-fg.mid { stroke: var(--yellow); }
+  .bd-ring-fg.high { stroke: var(--green); }
+  .bd-ring-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+  .bd-score-num { font-size: 40px; font-weight: 800; color: var(--text); line-height: 1; font-variant-numeric: tabular-nums; }
+  .bd-score-num span { font-size: 20px; font-weight: 600; color: var(--muted); }
+  .bd-score-sub { font-size: 12px; color: var(--muted); margin-top: 5px; }
+  .bd-divider { width: 100%; height: 1px; background: var(--border); margin: 18px 0; }
+  .bd-scores-row { display: flex; gap: 24px; }
+  .bd-mini-score { text-align: center; }
+  .bd-mini-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+  .bd-mini-val { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
+
+  /* ── RANK CARD ── */
+  .bd-rank-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 20px; overflow-y: auto; max-height: 280px; }
+  .bd-rank-card h3 { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 14px; }
+  .bd-rank-item { display: flex; align-items: center; gap: 9px; padding: 6px 8px; border-radius: 6px; transition: background .15s; }
+  .bd-rank-item:hover { background: var(--bg3); }
+  .bd-rank-item.current { background: rgba(234,179,8,.1); border: 1px solid rgba(234,179,8,.2); border-radius: 6px; }
+  .bd-rank-pos { width: 24px; font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .bd-rank-item.current .bd-rank-pos { color: var(--yellow); }
+  .bd-rank-name { flex: 1; font-size: 12px; color: #b0b0c8; }
+  .bd-rank-item.current .bd-rank-name { font-weight: 700; color: var(--text); }
+  .bd-rank-bar-wrap { width: 70px; height: 4px; background: var(--bg3); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
+  .bd-rank-bar { height: 100%; border-radius: 2px; }
+  .bd-rank-pct { font-size: 11px; color: var(--muted); width: 34px; text-align: right; font-variant-numeric: tabular-nums; flex-shrink: 0; }
+  .bd-rank-item.current .bd-rank-pct { color: var(--text); font-weight: 700; }
+
+  /* ── CATEGORY CARDS ── */
+  .bd-cat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px,1fr)); gap: 12px; margin-bottom: 28px; }
+  .bd-cat-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 16px 18px; }
+  .bd-cat-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+  .bd-cat-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .bd-cat-title { font-size: 12px; font-weight: 700; color: var(--text); }
+  .bd-cat-score-row { display: flex; align-items: baseline; gap: 5px; margin-bottom: 8px; }
+  .bd-cat-big { font-size: 26px; font-weight: 800; color: var(--text); font-variant-numeric: tabular-nums; line-height: 1; }
+  .bd-cat-of { font-size: 12px; color: var(--muted); }
+  .bd-cat-bar-wrap { height: 5px; background: var(--bg3); border-radius: 3px; overflow: hidden; margin-bottom: 7px; }
+  .bd-cat-bar { height: 100%; border-radius: 3px; transition: width .6s cubic-bezier(.4,0,.2,1); }
+  .bd-cat-verdict { font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; gap: 4px; padding: 2px 8px; border-radius: 5px; }
+  .bd-cat-verdict.danger { background: var(--red-bg); color: var(--red); }
+  .bd-cat-verdict.warning { background: var(--yellow-bg); color: var(--yellow); }
+  .bd-cat-verdict.ok { background: var(--green-bg); color: var(--green); }
+
+  /* ── SECTIONS ── */
+  .bd-section { margin-bottom: 32px; }
+  .bd-section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+  .bd-section-icon { width: 34px; height: 34px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bd-section-icon svg { width: 16px; height: 16px; }
+  .bd-section-title { font-size: 16px; font-weight: 700; color: var(--text); }
+  .bd-section-count { font-size: 11px; font-weight: 600; color: var(--muted); background: var(--bg3); border: 1px solid var(--border); border-radius: 10px; padding: 1px 9px; }
+  .bd-section-desc { font-size: 12px; color: var(--muted); margin: 6px 0 14px; line-height: 1.65; }
+  .bd-feature-list { display: flex; flex-direction: column; gap: 6px; }
+  .bd-feature-item { background: var(--bg2); border: 1px solid var(--border); border-radius: 10px; padding: 13px 16px; display: flex; align-items: center; gap: 14px; transition: background .2s, border-color .2s; }
+  .bd-feature-item:hover { background: var(--bg3); border-color: rgba(79,110,247,.2); }
+  .bd-feature-status { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .bd-feature-status.missing { background: var(--red-bg); }
+  .bd-feature-status.missing svg { color: var(--red); }
+  .bd-feature-status.has { background: var(--green-bg); }
+  .bd-feature-status.has svg { color: var(--green); }
+  .bd-feature-status.partial { background: rgba(79,110,247,.1); }
+  .bd-feature-status.partial svg { color: var(--accent); }
+  .bd-feature-info { flex: 1; min-width: 0; }
+  .bd-feature-name { font-size: 13px; font-weight: 600; color: var(--text); }
+  .bd-feature-desc { font-size: 11px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+  .bd-feature-tags { display: flex; align-items: center; gap: 5px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
+  .bd-feature-tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 5px; white-space: nowrap; }
+  .bd-feature-tag.ts { background: var(--green-bg); color: var(--green); }
+  .bd-feature-tag.exp { background: var(--yellow-bg); color: var(--yellow); }
+  .bd-feature-tag.comp { background: var(--orange-bg); color: var(--orange); }
+  .bd-feature-tag.innov { background: var(--red-bg); color: var(--red); }
+  .bd-feature-tag.w { background: rgba(79,110,247,.12); color: var(--accent); }
+  .bd-adoption { font-size: 11px; color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  /* ── SECTION DIVIDER ── */
+  .section-sep { height: 1px; background: var(--border); margin: 0 0 28px; }
+
+  /* ── NOT FOUND ── */
+  .not-found { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 12px; color: var(--muted); text-align: center; }
+  .not-found h2 { font-size: 18px; color: var(--text); }
+</style>
+</head>
+<body>
+
+<header class="page-header">
+  <a class="header-back" href="javascript:history.back()">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5m7-7-7 7 7 7"/></svg>
+    Back to matrix
+  </a>
+  <div class="header-logo">FC Benchmark <span>&nbsp;//&nbsp;</span> 2026</div>
+  <div class="header-crest" id="hCrest">?</div>
+  <div class="header-club">
+    <div class="header-club-name" id="hName">Loading…</div>
+    <div class="header-club-meta" id="hMeta"></div>
+  </div>
+  <div class="header-right">
+    <div class="header-rank-chip" id="hRank"></div>
+    <div class="header-pct-chip" id="hPct"></div>
+  </div>
+</header>
+
+<div class="page-body" id="pageBody">
+  <div class="not-found"><h2>Loading…</h2></div>
+</div>
+
+<script>
+/* ── DATA ── */
+const CATEGORIES = [
+  { id:'revenue',  name:'Revenue & Commerce',    color:'#ef4444' },
+  { id:'content',  name:'Content & Engagement',  color:'#3b82f6' },
+  { id:'brand',    name:'Brand & Identity',       color:'#8b5cf6' },
+  { id:'ux',       name:'UX & Utility',           color:'#06b6d4' },
+  { id:'diff',     name:'Differentiators',        color:'#f59e0b' },
+];
+
+const PRODUCTS = [
+  { id:'real_madrid',     name:'Real Madrid',     type:'club', sport:'football' },
+  { id:'fc_barcelona',    name:'FC Barcelona',    type:'club', sport:'football' },
+  { id:'bayern_munich',   name:'Bayern Munich',   type:'club', sport:'football' },
+  { id:'psg',             name:'PSG',             type:'club', sport:'football' },
+  { id:'liverpool',       name:'Liverpool',       type:'club', sport:'football' },
+  { id:'man_city',        name:'Man City',        type:'club', sport:'football' },
+  { id:'arsenal',         name:'Arsenal',         type:'club', sport:'football' },
+  { id:'man_united',      name:'Man United',      type:'club', sport:'football' },
+  { id:'tottenham',       name:'Tottenham',       type:'club', sport:'football' },
+  { id:'chelsea',         name:'Chelsea',         type:'club', sport:'football' },
+  { id:'inter_milan',     name:'Inter Milan',     type:'club', sport:'football' },
+  { id:'bvb_dortmund',    name:'BVB Dortmund',    type:'club', sport:'football' },
+  { id:'atletico_madrid', name:'Atletico Madrid', type:'club', sport:'football' },
+  { id:'aston_villa',     name:'Aston Villa',     type:'club', sport:'football' },
+  { id:'ac_milan',        name:'AC Milan',        type:'club', sport:'football' },
+  { id:'juventus',        name:'Juventus',        type:'club', sport:'football' },
+  { id:'newcastle',       name:'Newcastle',       type:'club', sport:'football' },
+  { id:'vfb_stuttgart',   name:'VfB Stuttgart',   type:'club', sport:'football' },
+  { id:'sl_benfica',      name:'SL Benfica',      type:'club', sport:'football' },
+  { id:'west_ham',        name:'West Ham',        type:'club', sport:'football' },
+  { id:'uefa',            name:'UEFA',            type:'governing', sport:'football' },
+  { id:'f1',              name:'Formula 1',       type:'league', sport:'motorsport' },
+  { id:'motogp',          name:'MotoGP',          type:'league', sport:'motorsport' },
+  { id:'nba',             name:'NBA',             type:'league', sport:'basketball' },
+  { id:'mls',             name:'MLS',             type:'league', sport:'football' },
+  { id:'mlb',             name:'MLB',             type:'league', sport:'baseball' },
+];
+
+const ALL_IDS = PRODUCTS.map(p=>p.id);
+
+function makePresence(full, partial) {
+  const m = {}; ALL_IDS.forEach(id => m[id] = 'absent');
+  full.forEach(id => m[id] = 'full');
+  partial.forEach(id => m[id] = 'partial');
+  return m;
+}
+
+const FEATURES = [
+  { id:'F01', name:'E-Commerce / Shop', desc:'Online store link, merchandise showcase, kit display, product cards on homepage', cat:'revenue', weight:5,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','f1','motogp','nba'],['arsenal']) },
+  { id:'F02', name:'Ticketing', desc:'Ticket purchase links, match-day info, hospitality', cat:'revenue', weight:5,
+    presence: makePresence(['real_madrid','fc_barcelona','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','vfb_stuttgart','west_ham','f1','nba'],['bayern_munich','psg','arsenal','juventus','newcastle','sl_benfica','motogp','mls','mlb']) },
+  { id:'F03', name:'Membership Program', desc:'Named fan membership, loyalty programs, subscription tiers — direct recurring revenue and fan data capture', cat:'revenue', weight:5,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','man_united','tottenham','inter_milan','atletico_madrid','juventus','sl_benfica','west_ham','motogp','nba','mls','mlb'],['chelsea','bvb_dortmund','aston_villa','vfb_stuttgart']) },
+  { id:'F04', name:'Streaming / OTT Platform', desc:'Club-branded TV/streaming service — premium content monetization and global fan reach', cat:'revenue', weight:5,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','tottenham','chelsea','inter_milan','ac_milan','sl_benfica','f1','motogp','nba','mls'],['bvb_dortmund','uefa']) },
+  { id:'F05', name:'News Feed', desc:'Editorial news articles, grid/cards with thumbnails — primary traffic driver and SEO engine', cat:'content', weight:4,
+    presence: makePresence(ALL_IDS,[]) },
+  { id:'F06', name:'Fixtures & Results', desc:'Upcoming match schedule, past match scores/results widget visible on homepage — core matchday engagement', cat:'content', weight:4,
+    presence: makePresence(['real_madrid','fc_barcelona','psg','liverpool','arsenal','tottenham','inter_milan','atletico_madrid','ac_milan','vfb_stuttgart','uefa','f1','motogp','nba','mls','mlb'],['bayern_munich','man_city','man_united','chelsea','bvb_dortmund','aston_villa','juventus','newcastle','sl_benfica','west_ham']) },
+  { id:'F06b', name:'Standings / League Table', desc:'Current league table, standings widget, ranking display on homepage — competitive context for fans', cat:'content', weight:4,
+    presence: makePresence(['inter_milan','atletico_madrid','vfb_stuttgart','uefa','f1','motogp','nba','mlb'],['liverpool']) },
+  { id:'F07', name:'Video Player / Section', desc:'Dedicated video area, embedded video player, video content cards with play buttons on homepage', cat:'content', weight:4,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','ac_milan','juventus','newcastle','sl_benfica','uefa','f1','motogp','nba','mls','mlb'],['atletico_madrid','aston_villa','vfb_stuttgart']) },
+  { id:'F07b', name:'Match Highlights', desc:'Specific match highlight clips, replay content, goal clips — highest-demand video format', cat:'content', weight:4,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','arsenal','tottenham','chelsea','ac_milan','sl_benfica','uefa','f1','motogp'],['psg','man_united','inter_milan','bvb_dortmund','atletico_madrid','mls']) },
+  { id:'F07c', name:'Photo Gallery', desc:'Photo gallery section, image grid, behind-the-scenes photo collections on homepage', cat:'content', weight:3,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','arsenal','bvb_dortmund','ac_milan','juventus','newcastle','vfb_stuttgart','uefa','motogp'],['liverpool','chelsea']) },
+  { id:'F08', name:'Hero / Banner', desc:'Hero carousel, featured story banner — first impression and editorial control point', cat:'content', weight:4,
+    presence: makePresence(ALL_IDS,[]) },
+  { id:'F09', name:'Navigation Depth', desc:'Rich top nav with 6+ items — information architecture and content discoverability', cat:'content', weight:4,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],[]) },
+  { id:'F10', name:"Women's Team Visibility", desc:"Dedicated women's team content on homepage — brand inclusivity and growing market segment", cat:'brand', weight:3,
+    presence: makePresence(['fc_barcelona','liverpool','man_city','man_united','arsenal','chelsea','atletico_madrid','ac_milan','west_ham','uefa'],['psg','tottenham','inter_milan','bvb_dortmund','aston_villa','juventus','newcastle']) },
+  { id:'F11', name:'Academy / Youth', desc:'Youth development, academy section on homepage — brand storytelling and talent pipeline visibility', cat:'brand', weight:3,
+    presence: makePresence(['fc_barcelona','man_city','man_united','arsenal','bvb_dortmund','ac_milan','juventus','vfb_stuttgart','west_ham','uefa'],['real_madrid','bayern_munich','liverpool','tottenham','chelsea','inter_milan','atletico_madrid','aston_villa']) },
+  { id:'F12', name:'Social Media Links', desc:'Social platform icons/links in header or footer — cross-platform engagement and audience routing', cat:'brand', weight:3,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','mls','nba','f1','motogp','mlb'],['west_ham','uefa']) },
+  { id:'F13', name:'Sponsor Showcase', desc:'Dedicated partner/sponsor section, logo grid — commercial partner value demonstration', cat:'brand', weight:3,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','sl_benfica','west_ham','f1','motogp','nba','mlb'],['vfb_stuttgart','uefa']) },
+  { id:'F14', name:'App Download Promotion', desc:'Mobile app download badges/CTAs — mobile-first fan relationship and push notification channel', cat:'brand', weight:3,
+    presence: makePresence(['real_madrid','fc_barcelona','liverpool','man_united','tottenham','chelsea','bvb_dortmund','aston_villa','juventus','sl_benfica','f1','motogp','nba','mlb'],['inter_milan','ac_milan','mls']) },
+  { id:'F15', name:'Search', desc:'Search icon/bar on homepage — content discoverability and user intent capture', cat:'ux', weight:2,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','bvb_dortmund','atletico_madrid','ac_milan','newcastle','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],['inter_milan','aston_villa','juventus','vfb_stuttgart']) },
+  { id:'F16', name:'Multi-Language', desc:'Language selector visible — global accessibility for international fanbase', cat:'ux', weight:2,
+    presence: makePresence(['real_madrid','fc_barcelona'],['atletico_madrid','uefa']) },
+  { id:'F17', name:'Login / Registration', desc:'User account, sign-in button — first-party data capture and personalization gateway', cat:'ux', weight:2,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','man_united','tottenham','chelsea','atletico_madrid','ac_milan','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],['arsenal','inter_milan','bvb_dortmund','juventus','newcastle']) },
+  { id:'F18', name:'Newsletter Signup', desc:'Email subscription form/CTA — owned audience channel for re-engagement', cat:'ux', weight:2,
+    presence: makePresence(['liverpool','west_ham','motogp','nba'],['chelsea','bvb_dortmund','aston_villa','vfb_stuttgart']) },
+  { id:'F19', name:'Footer Navigation', desc:'Multi-column footer with organized links — secondary navigation and legal compliance', cat:'ux', weight:2,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],[]) },
+  { id:'F20', name:'Stadium / Museum / Tours', desc:'Stadium experience, museum, tour promotion — heritage monetization and matchday revenue', cat:'diff', weight:1,
+    presence: makePresence(['real_madrid','fc_barcelona','bayern_munich','liverpool','tottenham','aston_villa'],['psg','chelsea','man_united','bvb_dortmund','juventus','sl_benfica']) },
+  { id:'F21', name:'Foundation / Charity', desc:'Club foundation, CSR, community section — brand purpose and community goodwill', cat:'diff', weight:1,
+    presence: makePresence(['real_madrid','fc_barcelona','liverpool','chelsea','newcastle','uefa'],['psg','arsenal','ac_milan']) },
+  { id:'F22', name:'Esports / Gaming', desc:'Gaming section, esports, fantasy — youth audience acquisition and digital-native engagement', cat:'diff', weight:1,
+    presence: makePresence(['aston_villa','f1','motogp','nba'],['mlb']) },
+  { id:'F23', name:'Heritage / History', desc:'Club history, "since XXXX", heritage messaging, trophy displays — emotional brand equity', cat:'diff', weight:1,
+    presence: makePresence(['bayern_munich','inter_milan','juventus','sl_benfica'],['liverpool','man_united','bvb_dortmund','uefa']) },
+  { id:'F24', name:'Other Sports', desc:'Non-football sports coverage — cross-sport brand extension', cat:'diff', weight:1,
+    presence: makePresence(['real_madrid','bayern_munich','motogp'],[]) },
+  { id:'F25', name:'Transfer Tracker', desc:'Transfer hub, tracker widget — high-traffic seasonal engagement driver', cat:'diff', weight:1,
+    presence: makePresence(['uefa','mls'],[]) },
+  { id:'F26', name:'Fan Feedback / Surveys', desc:'User feedback, "help shape" sections — community co-creation and product insight', cat:'diff', weight:1,
+    presence: makePresence(['f1'],[]) },
+];
+
+/* ── COMPUTE BANDS ── */
+const totalProducts = PRODUCTS.length;
+FEATURES.forEach(f => {
+  let score = 0;
+  ALL_IDS.forEach(id => { if(f.presence[id]==='full') score+=1; else if(f.presence[id]==='partial') score+=0.5; });
+  f.adoption = score / totalProducts;
+  f.adoptionPct = Math.round(f.adoption * 100);
+  if(f.adoption >= 0.9) f.band = 'table_stakes';
+  else if(f.adoption >= 0.7) f.band = 'expected';
+  else if(f.adoption >= 0.4) f.band = 'competitive';
+  else f.band = 'innovation';
+});
+
+const BAND_META = [
+  { id:'table_stakes', name:'Table Stakes', cls:'table_stakes' },
+  { id:'expected',     name:'Expected',     cls:'expected' },
+  { id:'competitive',  name:'Competitive',  cls:'competitive' },
+  { id:'innovation',   name:'Innovation',   cls:'innovation' },
+];
+
+/* ── RENDER ── */
+function render() {
+  const params = new URLSearchParams(window.location.search);
+  const pid = params.get('id');
+  const p = PRODUCTS.find(x => x.id === pid);
+
+  if (!p) {
+    document.getElementById('pageBody').innerHTML = `
+      <div class="not-found">
+        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:#252535"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <h2>Club not found</h2>
+        <p>No club with id "<strong>${pid || ''}</strong>" exists in the benchmark.</p>
+        <a href="/" style="color:var(--accent);margin-top:8px;font-size:12px;">← Back to matrix</a>
+      </div>`;
+    document.title = 'Not Found — FC Benchmark';
+    return;
+  }
+
+  document.title = `${p.name} — FC Benchmark`;
+
+  // Scores
+  const fullCount = FEATURES.filter(f => f.presence[pid] === 'full').length;
+  const partialCount = FEATURES.filter(f => f.presence[pid] === 'partial').length;
+  const rawScore = (fullCount + partialCount) - FEATURES.filter(f => f.presence[pid] === 'absent').length;
+  let weightedScore = 0, maxWeighted = 0;
+  FEATURES.forEach(f => {
+    maxWeighted += f.weight;
+    if (f.presence[pid] === 'full') weightedScore += f.weight;
+    else if (f.presence[pid] === 'partial') weightedScore += Math.round(f.weight * 0.5);
+    else weightedScore -= f.weight;
+  });
+  const coveragePct = Math.round((fullCount + partialCount) / FEATURES.length * 100);
+
+  // Rank
+  const ranked = PRODUCTS.map(pr => {
+    const fc = FEATURES.filter(f => f.presence[pr.id] === 'full').length;
+    const pc = FEATURES.filter(f => f.presence[pr.id] === 'partial').length;
+    return { id: pr.id, name: pr.name, pct: Math.round((fc + pc) / FEATURES.length * 100) };
+  }).sort((a, b) => b.pct - a.pct);
+  const myRank = ranked.findIndex(r => r.id === pid) + 1;
+  const avgPct = Math.round(ranked.reduce((s, r) => s + r.pct, 0) / ranked.length);
+
+  // Header
+  document.getElementById('hCrest').textContent = p.name.substring(0, 2).toUpperCase();
+  document.getElementById('hName').textContent = p.name;
+  document.getElementById('hMeta').textContent = `${p.type} · ${p.sport}`;
+  document.getElementById('hRank').textContent = `#${myRank} of ${PRODUCTS.length}`;
+  document.getElementById('hPct').textContent = `${coveragePct}% coverage`;
+
+  // Ring
+  const ringClass = coveragePct >= 70 ? 'high' : coveragePct >= 45 ? 'mid' : 'low';
+  const r = 58, circ = 2 * Math.PI * r;
+  const offset = circ * (1 - coveragePct / 100);
+  const showAlert = coveragePct < avgPct - 5;
+
+  // Category breakdown
+  const catScores = CATEGORIES.map(cat => {
+    const cf = FEATURES.filter(f => f.cat === cat.id);
+    const got = cf.filter(f => f.presence[pid] !== 'absent').length;
+    const pctCat = Math.round(got / cf.length * 100);
+    return { ...cat, got, total: cf.length, pctCat, verdict: pctCat >= 80 ? 'ok' : pctCat >= 50 ? 'warning' : 'danger' };
+  });
+
+  // Feature groups
+  const mustHaveMissing = FEATURES.filter(f => (f.band === 'table_stakes' || f.band === 'expected') && f.presence[pid] === 'absent');
+  const differentiators = FEATURES.filter(f => f.band === 'innovation' && f.presence[pid] !== 'absent');
+  const alreadyHave = FEATURES.filter(f => f.presence[pid] !== 'absent' && f.band !== 'innovation');
+
+  let html = '';
+
+  // Alert
+  if (showAlert) {
+    html += `<div class="bd-alert">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <div>
+        <div class="bd-alert-title">Behind benchmark average</div>
+        <div class="bd-alert-desc">${p.name} covers ${coveragePct}% of homepage features — ${avgPct - coveragePct} points below the benchmark average of ${avgPct}%. Prioritise table stakes gaps immediately to avoid fan experience regression.</div>
+      </div>
+    </div>`;
+  }
+
+  // Score + Rank
+  html += `<div class="bd-score-row">
+    <div class="bd-score-card">
+      <div class="bd-score-label">Feature Coverage Score</div>
+      <div class="bd-ring-wrap">
+        <svg class="bd-ring-svg" viewBox="0 0 128 128">
+          <circle class="bd-ring-bg" cx="64" cy="64" r="${r}"/>
+          <circle class="bd-ring-fg ${ringClass}" cx="64" cy="64" r="${r}"
+            stroke-dasharray="${circ.toFixed(1)}"
+            stroke-dashoffset="${offset.toFixed(1)}"
+            id="ringFg"/>
+        </svg>
+        <div class="bd-ring-text">
+          <span class="bd-score-num">${coveragePct}<span>%</span></span>
+          <span class="bd-score-sub">of features</span>
+        </div>
+      </div>
+      <div class="bd-divider"></div>
+      <div class="bd-scores-row">
+        <div class="bd-mini-score">
+          <div class="bd-mini-label">Raw Score</div>
+          <div class="bd-mini-val" style="color:${rawScore >= 0 ? 'var(--green)' : 'var(--red)'}">${rawScore >= 0 ? '+' : ''}${rawScore}</div>
+        </div>
+        <div class="bd-mini-score">
+          <div class="bd-mini-label">Weighted</div>
+          <div class="bd-mini-val" style="color:${weightedScore >= 0 ? 'var(--green)' : 'var(--red)'}">${weightedScore >= 0 ? '+' : ''}${weightedScore}</div>
+        </div>
+        <div class="bd-mini-score">
+          <div class="bd-mini-label">Global Rank</div>
+          <div class="bd-mini-val" style="color:var(--yellow)">#${myRank}</div>
+        </div>
+      </div>
+    </div>
+    <div class="bd-rank-card">
+      <h3>All Products — Ranked by Coverage</h3>
+      ${ranked.map((r2, i) => {
+        const isCurrent = r2.id === pid;
+        const barColor = r2.pct >= 70 ? 'var(--green)' : r2.pct >= 45 ? 'var(--yellow)' : 'var(--red)';
+        return `<div class="bd-rank-item${isCurrent ? ' current' : ''}">
+          <span class="bd-rank-pos">${i + 1}</span>
+          <span class="bd-rank-name">${r2.name}</span>
+          <div class="bd-rank-bar-wrap"><div class="bd-rank-bar" style="width:${r2.pct}%;background:${barColor}"></div></div>
+          <span class="bd-rank-pct">${r2.pct}%</span>
+        </div>`;
+      }).join('')}
+    </div>
+  </div>`;
+
+  // Category breakdown
+  html += `<div class="bd-cat-grid">`;
+  catScores.forEach(c => {
+    const barColor = c.pctCat >= 80 ? 'var(--green)' : c.pctCat >= 50 ? 'var(--yellow)' : 'var(--red)';
+    const verdictLabel = c.verdict === 'ok' ? '✓ Good shape' : c.verdict === 'warning' ? '⚠ Needs work' : '✕ Critical gap';
+    html += `<div class="bd-cat-card">
+      <div class="bd-cat-header">
+        <div class="bd-cat-dot" style="background:${c.color}"></div>
+        <span class="bd-cat-title">${c.name}</span>
+      </div>
+      <div class="bd-cat-score-row">
+        <span class="bd-cat-big">${c.got}</span>
+        <span class="bd-cat-of">/ ${c.total}</span>
+      </div>
+      <div class="bd-cat-bar-wrap"><div class="bd-cat-bar" style="width:${c.pctCat}%;background:${barColor}"></div></div>
+      <span class="bd-cat-verdict ${c.verdict}">${verdictLabel}</span>
+    </div>`;
+  });
+  html += '</div>';
+
+  const iconX = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6 6 18M6 6l12 12"/></svg>';
+  const iconCheck = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>';
+
+  // Must Haves
+  if (mustHaveMissing.length) {
+    html += `<div class="section-sep"></div>
+    <div class="bd-section">
+      <div class="bd-section-header">
+        <div class="bd-section-icon" style="background:var(--red-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--red)" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <div class="bd-section-title">Must Haves — You're Missing the Basics</div>
+        <span class="bd-section-count">${mustHaveMissing.length} missing</span>
+      </div>
+      <p class="bd-section-desc">These table stakes and expected features are already present on most competitor sites. Every gap here costs ${p.name} fan engagement and commercial performance.</p>
+      <div class="bd-feature-list">`;
+    mustHaveMissing.forEach(f => {
+      const bandTag = f.band === 'table_stakes' ? 'ts' : 'exp';
+      const bandLabel = f.band === 'table_stakes' ? 'Table Stakes' : 'Expected';
+      html += `<div class="bd-feature-item">
+        <div class="bd-feature-status missing">${iconX}</div>
+        <div class="bd-feature-info">
+          <div class="bd-feature-name">${f.name}</div>
+          <div class="bd-feature-desc">${f.desc}</div>
+        </div>
+        <div class="bd-feature-tags">
+          <span class="bd-feature-tag ${bandTag}">${bandLabel}</span>
+          <span class="bd-feature-tag w">W${f.weight}</span>
+          <span class="bd-adoption">${f.adoptionPct}% adopt</span>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  // Differentiators
+  if (differentiators.length) {
+    html += `<div class="section-sep"></div>
+    <div class="bd-section">
+      <div class="bd-section-header">
+        <div class="bd-section-icon" style="background:rgba(234,179,8,.12)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--yellow)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <div class="bd-section-title">Differentiators — You're Ahead</div>
+        <span class="bd-section-count">${differentiators.length} features</span>
+      </div>
+      <p class="bd-section-desc">Innovation features adopted by fewer than 40% of products. These give ${p.name} a competitive edge — highlight and invest in them.</p>
+      <div class="bd-feature-list">`;
+    differentiators.forEach(f => {
+      const isPartial = f.presence[pid] === 'partial';
+      html += `<div class="bd-feature-item">
+        <div class="bd-feature-status ${isPartial ? 'partial' : 'has'}">${iconCheck}</div>
+        <div class="bd-feature-info">
+          <div class="bd-feature-name">${f.name}${isPartial ? ' <span style="font-weight:400;color:var(--muted);font-size:11px">(partial)</span>' : ''}</div>
+          <div class="bd-feature-desc">${f.desc}</div>
+        </div>
+        <div class="bd-feature-tags">
+          <span class="bd-feature-tag innov">Innovation</span>
+          <span class="bd-feature-tag w">W${f.weight}</span>
+          <span class="bd-adoption">${f.adoptionPct}% adopt</span>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  // Already Working
+  if (alreadyHave.length) {
+    html += `<div class="section-sep"></div>
+    <div class="bd-section">
+      <div class="bd-section-header">
+        <div class="bd-section-icon" style="background:var(--green-bg)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="bd-section-title">Already Working</div>
+        <span class="bd-section-count">${alreadyHave.length} features</span>
+      </div>
+      <p class="bd-section-desc">Core, expected, and competitive features ${p.name} already delivers. Maintain these and watch for regression.</p>
+      <div class="bd-feature-list">`;
+    alreadyHave.forEach(f => {
+      const isPartial = f.presence[pid] === 'partial';
+      const bandTag = f.band === 'table_stakes' ? 'ts' : f.band === 'expected' ? 'exp' : f.band === 'competitive' ? 'comp' : 'innov';
+      const bandLabel = f.band === 'table_stakes' ? 'Table Stakes' : f.band === 'expected' ? 'Expected' : f.band === 'competitive' ? 'Competitive' : 'Innovation';
+      html += `<div class="bd-feature-item">
+        <div class="bd-feature-status ${isPartial ? 'partial' : 'has'}">${iconCheck}</div>
+        <div class="bd-feature-info">
+          <div class="bd-feature-name">${f.name}${isPartial ? ' <span style="font-weight:400;color:var(--muted);font-size:11px">(partial)</span>' : ''}</div>
+        </div>
+        <div class="bd-feature-tags">
+          <span class="bd-feature-tag ${bandTag}">${bandLabel}</span>
+          <span class="bd-feature-tag w">W${f.weight}</span>
+        </div>
+      </div>`;
+    });
+    html += '</div></div>';
+  }
+
+  document.getElementById('pageBody').innerHTML = html;
+
+  // Animate ring in after paint
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const fg = document.getElementById('ringFg');
+      if (fg) {
+        fg.style.strokeDashoffset = offset.toFixed(1);
+      }
+    });
+  });
+}
+
+render();
+</script>
+</body>
+</html>

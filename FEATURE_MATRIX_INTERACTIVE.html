@@ -248,8 +248,8 @@
   .cell-tooltip .tt-status.absent { color: var(--muted); }
 
   /* ── FULL CLUB BREAKDOWN BTN ── */
-  .breakdown-btn { display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; padding: 10px; background: rgba(79,110,247,.12); border: 1px solid rgba(79,110,247,.3); border-radius: 8px; color: var(--accent); font-size: 12px; font-weight: 600; cursor: pointer; transition: all .2s ease-out; margin-top: 12px; }
-  .breakdown-btn:hover { background: rgba(79,110,247,.2); border-color: var(--accent); }
+  .breakdown-btn { display: flex; align-items: center; gap: 8px; width: 100%; padding: 10px 12px; background: rgba(79,110,247,.12); border: 1px solid rgba(79,110,247,.3); border-radius: 8px; color: var(--accent); font-size: 12px; font-weight: 600; cursor: pointer; transition: all .2s ease-out; text-decoration: none; box-sizing: border-box; }
+  .breakdown-btn:hover { background: rgba(79,110,247,.2); border-color: var(--accent); color: var(--accent); }
   .breakdown-btn:active { transform: scale(0.98); }
   .breakdown-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
 
@@ -796,10 +796,16 @@ function showProductDetail(pid) {
 
   let html = `<div class="detail-header"><button class="detail-close" id="detailClose">&times;</button>
     <div class="detail-title">${p.name}</div></div>
-    <div style="display:flex;gap:6px;margin-bottom:14px;">
+    <div style="display:flex;gap:6px;margin-bottom:12px;">
       <span class="product-detail-badge">${p.type}</span>
       <span class="product-detail-badge">${p.sport}</span>
     </div>
+    <a class="breakdown-btn" href="club-detail.html?id=${pid}" target="_blank">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+      Full Club Breakdown
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto;width:11px;height:11px;opacity:.6"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+    </a>
+    <div class="detail-divider" style="margin:12px 0"></div>
     <div class="detail-freq"><div class="detail-freq-label">Feature coverage</div>
       <div class="detail-freq-row"><span class="detail-freq-big">${pct}%</span>
       <span class="detail-freq-sub">${fullCount} full + ${partialCount} partial<br>of ${FEATURES.length} features</span></div>
@@ -831,12 +837,7 @@ function showProductDetail(pid) {
     if(!nextF || nextF.cat !== f.cat) html += '</div>';
   });
 
-  // "Full Club Breakdown" button
-  html += `<div class="detail-divider"></div>
-    <button class="breakdown-btn" data-breakdown="${pid}">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      Full Club Breakdown
-    </button>`;
+  // (breakdown button is now at top of panel, as a link to club-detail.html)
 
   document.getElementById('detailInner').innerHTML = html;
   document.getElementById('detailPanel').classList.remove('collapsed');
