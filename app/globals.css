@@ -97,8 +97,9 @@ table { border-collapse: collapse; }
 th, td { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
 thead th { background: var(--bg2); position: sticky; top: 0; z-index: 10; padding: 0; min-width: 38px; max-width: 38px; width: 38px; }
-thead th.feature-col { min-width: 250px; max-width: 250px; width: 250px; left: 0; z-index: 20; padding: 10px 12px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
-thead th.freq-col { min-width: 100px; max-width: 100px; width: 100px; padding: 0 8px; font-size: 10px; color: var(--muted); font-weight: 600; position: sticky; right: 0; z-index: 15; background: var(--bg2); }
+thead th.feature-col { min-width: 250px; max-width: 250px; width: 250px; left: 0; z-index: 20; padding: 10px 12px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); cursor: pointer; user-select: none; }
+thead th.sortable:hover { color: var(--accent); }
+thead th.freq-col { min-width: 100px; max-width: 100px; width: 100px; padding: 0 8px; font-size: 10px; color: var(--muted); font-weight: 600; position: sticky; right: 0; z-index: 15; background: var(--bg2); cursor: pointer; user-select: none; }
 .col-header { display: flex; flex-direction: column; align-items: center; padding: 6px 2px 8px; cursor: pointer; transition: background .12s; height: 90px; justify-content: flex-end; }
 .col-header:hover { background: var(--bg3); }
 .col-header.highlighted { background: rgba(79,110,247,.15); }
@@ -224,8 +225,8 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .flow-tab { display: flex; align-items: center; gap: 7px; padding: 10px 14px; font-size: 12px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s ease-out; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; }
 .flow-tab:hover { color: var(--text); background: rgba(255,255,255,.02); }
 .flow-tab.active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
-.flow-tab.locked { opacity: .5; cursor: pointer; }
-.flow-tab.locked:hover { opacity: .7; }
+.flow-tab.locked { opacity: .7; cursor: pointer; }
+.flow-tab.locked:hover { opacity: .9; background: rgba(255,255,255,.04); }
 .flow-tab .lock-icon svg { width: 11px; height: 11px; color: var(--muted); display: block; }
 .flow-tab .tab-badge { font-size: 9px; font-weight: 700; background: var(--green); color: #fff; padding: 1px 5px; border-radius: 3px; letter-spacing: .03em; }
 

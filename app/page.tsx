@@ -13,7 +13,6 @@ import {
   type Feature,
   type Product,
   type Category,
-  type BandMeta,
 } from '@/lib/data';
 
 /* ── Padlock SVG (reused in flow nav) ── */
@@ -36,15 +35,6 @@ const LOCKED_TABS = [
   { id: 'past-seasons', name: 'Past Seasons' },
 ];
 
-/* ── Weight labels ── */
-const WEIGHT_LABELS: Record<number, string> = {
-  1: 'Differentiator',
-  2: 'UX & Utility',
-  3: 'Brand & Identity',
-  4: 'Engagement Core',
-  5: 'Revenue Critical',
-};
-
 /* ── Band to CSS var color ── */
 function bandColorVar(band: BandId): string {
   switch (band) {
@@ -59,13 +49,12 @@ const totalProducts = PRODUCTS.length;
 
 export default function FeatureMatrixPage() {
   /* ── State ── */
-  const [filterType, setFilterType] = useState<string>('all');
   const [filterSport, setFilterSport] = useState<string>('all');
-  const [searchText, setSearchText] = useState('');
   const [activeCat, setActiveCat] = useState<CategoryId | null>(null);
-  const [activeBand, setActiveBand] = useState<BandId | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
+  const [adoptionSort, setAdoptionSort] = useState<'asc' | 'desc' | null>(null);
+  const [featureAlphaSort, setFeatureAlphaSort] = useState(false);
 
   /* ── Locked modal ── */
   const [lockedModalVisible, setLockedModalVisible] = useState(false);
@@ -80,36 +69,40 @@ export default function FeatureMatrixPage() {
     status: PresenceStatus;
   } | null>(null);
 
-  const searchInputRef = useRef<HTMLInputElement>(null);
 
   /* ── Derived data ── */
   const visibleProds = useMemo(() => {
     return PRODUCTS.filter(p => {
-      if (filterType === 'club' && p.type !== 'club') return false;
-      if (filterType === 'league' && p.type === 'club') return false;
-      if (filterSport === 'football' && p.sport !== 'football') return false;
-      if (filterSport === 'other' && p.sport === 'football') return false;
+      if (filterSport === 'fc' && p.type !== 'club') return false;
+      if (filterSport === 'federation' && p.type !== 'governing') return false;
+      if (filterSport === 'league' && p.type !== 'league') return false;
       return true;
     });
-  }, [filterType, filterSport]);
+  }, [filterSport]);
 
   const visibleFeats = useMemo(() => {
-    const s = searchText.toLowerCase().trim();
     return FEATURES.filter(f => {
-      if (s && !f.name.toLowerCase().includes(s) && !f.desc.toLowerCase().includes(s)) return false;
       if (activeCat && f.cat !== activeCat) return false;
-      if (activeBand && f.band !== activeBand) return false;
       return true;
     });
-  }, [searchText, activeCat, activeBand]);
+  }, [activeCat]);
 
-  /* ── Header stats (always based on full dataset) ── */
-  const bandCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    BAND_META.forEach(b => (counts[b.id] = 0));
-    FEATURES.forEach(f => { if (f.band) counts[f.band]++; });
-    return counts;
-  }, []);
+  const sortedFeats = useMemo(() => {
+    const feats = [...visibleFeats];
+    if (adoptionSort) {
+      feats.sort((a, b) => adoptionSort === 'asc'
+        ? (a.adoptionPct ?? 0) - (b.adoptionPct ?? 0)
+        : (b.adoptionPct ?? 0) - (a.adoptionPct ?? 0));
+    } else if (featureAlphaSort) {
+      feats.sort((a, b) => {
+        const catA = CATEGORIES.find(c => c.id === a.cat)!.name;
+        const catB = CATEGORIES.find(c => c.id === b.cat)!.name;
+        if (catA !== catB) return catA.localeCompare(catB);
+        return a.name.localeCompare(b.name);
+      });
+    }
+    return feats;
+  }, [visibleFeats, adoptionSort, featureAlphaSort]);
 
   /* ── Sidebar counts (always based on full dataset) ── */
   const catCounts = useMemo(() => {
@@ -118,11 +111,6 @@ export default function FeatureMatrixPage() {
     return counts;
   }, []);
 
-  const bandSidebarCounts = useMemo(() => {
-    const counts: Record<string, number> = {};
-    BAND_META.forEach(b => (counts[b.id] = FEATURES.filter(f => f.band === b.id).length));
-    return counts;
-  }, []);
 
   /* ── Handlers ── */
   const handleShowFeatureDetail = useCallback((fid: string) => {
@@ -141,14 +129,12 @@ export default function FeatureMatrixPage() {
   }, []);
 
   const handleClearFilters = useCallback(() => {
-    setFilterType('all');
     setFilterSport('all');
-    setSearchText('');
     setActiveCat(null);
-    setActiveBand(null);
     setSelectedFeature(null);
     setSelectedProduct(null);
-    if (searchInputRef.current) searchInputRef.current.value = '';
+    setAdoptionSort(null);
+    setFeatureAlphaSort(false);
   }, []);
 
   const handleLockedTabClick = useCallback((name: string) => {
@@ -194,15 +180,8 @@ export default function FeatureMatrixPage() {
     <div className="matrix-shell">
       {/* ── HEADER ── */}
       <header>
-        <div className="logo">FC Benchmark <span>//</span> 2026</div>
+        <div className="logo">FC Benchmark <span>//</span> April 2026</div>
         <div className="header-title">Feature Matrix</div>
-        <div className="header-stats">
-          <div className="stat-chip"><strong>{FEATURES.length}</strong> features</div>
-          <div className="stat-chip"><strong>{PRODUCTS.length}</strong> products</div>
-          {BAND_META.map(b => (
-            <div className="stat-chip" key={b.id}><strong>{bandCounts[b.id]}</strong> {b.name}</div>
-          ))}
-        </div>
       </header>
 
       {/* ── FLOW NAV ── */}
@@ -226,40 +205,13 @@ export default function FeatureMatrixPage() {
 
       {/* ── TOOLBAR ── */}
       <div className="toolbar">
-        <div className="search-wrap">
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <circle cx="11" cy="11" r="8" />
-            <path d="m21 21-4.35-4.35" />
-          </svg>
-          <input
-            type="text"
-            ref={searchInputRef}
-            placeholder="Search features..."
-            onChange={e => setSearchText(e.target.value)}
-          />
-        </div>
-        <div className="divider"></div>
         <div className="filter-group">
           <span className="filter-label">Type:</span>
           {[
             { val: 'all', label: 'All' },
-            { val: 'club', label: 'Club' },
-            { val: 'league', label: 'League / Org' },
-          ].map(f => (
-            <button
-              key={f.val}
-              className={`filter-btn${filterType === f.val ? ' active' : ''}`}
-              onClick={() => setFilterType(f.val)}
-            >{f.label}</button>
-          ))}
-        </div>
-        <div className="divider"></div>
-        <div className="filter-group">
-          <span className="filter-label">Sport:</span>
-          {[
-            { val: 'all', label: 'All' },
-            { val: 'football', label: 'Football' },
-            { val: 'other', label: 'Other Sports' },
+            { val: 'fc', label: 'FC' },
+            { val: 'federation', label: 'Federation' },
+            { val: 'league', label: 'League' },
           ].map(f => (
             <button
               key={f.val}
@@ -279,7 +231,7 @@ export default function FeatureMatrixPage() {
         <div className="sidebar">
           <h3>Category</h3>
           <div>
-            {CATEGORIES.map(c => (
+            {[...CATEGORIES].sort((a, b) => a.name.localeCompare(b.name)).map(c => (
               <div
                 key={c.id}
                 className={`cat-item${activeCat === c.id ? ' active' : ''}`}
@@ -291,22 +243,6 @@ export default function FeatureMatrixPage() {
               </div>
             ))}
           </div>
-          <div className="sidebar-section">
-            <h3>Band</h3>
-            <div>
-              {BAND_META.map(b => (
-                <div
-                  key={b.id}
-                  className={`band-item${activeBand === b.id ? ' active' : ''}`}
-                  onClick={() => setActiveBand(activeBand === b.id ? null : b.id)}
-                >
-                  <div className={`band-swatch ${b.cls}`}></div>
-                  <span className="band-name">{b.name}</span>
-                  <span className="band-count">{bandSidebarCounts[b.id]}</span>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* ── TABLE ── */}
@@ -317,7 +253,12 @@ export default function FeatureMatrixPage() {
           <table>
             <thead>
               <tr>
-                <th className="feature-col">Feature</th>
+                <th
+                  className="feature-col sortable"
+                  onClick={() => { setAdoptionSort(null); setFeatureAlphaSort(prev => !prev); }}
+                >
+                  Feature {featureAlphaSort ? '\u25B2' : ''}
+                </th>
                 {visibleProds.map(p => (
                   <th key={p.id}>
                     <div
@@ -328,7 +269,15 @@ export default function FeatureMatrixPage() {
                     </div>
                   </th>
                 ))}
-                <th className="freq-col">Adoption</th>
+                <th
+                  className="freq-col sortable"
+                  onClick={() => {
+                    setFeatureAlphaSort(false);
+                    setAdoptionSort(prev => prev === 'asc' ? 'desc' : prev === 'desc' ? null : 'asc');
+                  }}
+                >
+                  Adoption {adoptionSort === 'asc' ? '\u25B2' : adoptionSort === 'desc' ? '\u25BC' : ''}
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -340,8 +289,9 @@ export default function FeatureMatrixPage() {
                 </tr>
               ) : (
                 <TableRows
-                  feats={visibleFeats}
+                  feats={sortedFeats}
                   prods={visibleProds}
+                  showCategorySeps={!adoptionSort}
                   selectedFeature={selectedFeature}
                   selectedProduct={selectedProduct}
                   onFeatureClick={handleShowFeatureDetail}
@@ -375,20 +325,6 @@ export default function FeatureMatrixPage() {
         </div>
       </div>
 
-      {/* ── LEGEND ── */}
-      <div className="legend">
-        <div className="legend-item"><div className="legend-swatch table_stakes"></div>Table Stakes {'\u2265'}90%</div>
-        <div className="legend-item"><div className="legend-swatch expected"></div>Expected 70{'\u2013'}89%</div>
-        <div className="legend-item"><div className="legend-swatch competitive"></div>Competitive 40{'\u2013'}69%</div>
-        <div className="legend-item"><div className="legend-swatch innovation"></div>Innovation {'<'}40%</div>
-        <div className="legend-sep"></div>
-        <div className="legend-item"><span style={{ color: 'var(--accent)', fontSize: '14px' }}>{'\u2713'}</span> Present</div>
-        <div className="legend-item"><span style={{ color: 'var(--accent)', fontSize: '14px', opacity: 0.35 }}>{'\u2713'}</span> Partial</div>
-        <div className="legend-item"><span style={{ color: 'var(--border)', fontSize: '11px' }}>{'\u00B7'}</span> Absent</div>
-        <div className="legend-right">
-          Showing {visibleFeats.length} of {FEATURES.length} features across {visibleProds.length} products
-        </div>
-      </div>
 
       {/* ── LOCKED MODAL ── */}
       <div
@@ -446,6 +382,7 @@ export default function FeatureMatrixPage() {
 function TableRows({
   feats,
   prods,
+  showCategorySeps,
   selectedFeature,
   selectedProduct,
   onFeatureClick,
@@ -455,6 +392,7 @@ function TableRows({
 }: {
   feats: Feature[];
   prods: Product[];
+  showCategorySeps: boolean;
   selectedFeature: string | null;
   selectedProduct: string | null;
   onFeatureClick: (fid: string) => void;
@@ -466,11 +404,11 @@ function TableRows({
   let lastCat: string | null = null;
 
   feats.forEach((f, idx) => {
-    if (f.cat !== lastCat) {
+    if (showCategorySeps && f.cat !== lastCat) {
       lastCat = f.cat;
       const cat = CATEGORIES.find(c => c.id === f.cat)!;
       rows.push(
-        <tr className="category-sep-row" key={`sep-${f.cat}`}>
+        <tr className="category-sep-row" key={`sep-${f.cat}-${idx}`}>
           <td className="category-sep" colSpan={1}>
             <div className="cat-sep-inner">
               <div className="cat-sep-dot" style={{ background: cat.color }}></div>
@@ -491,7 +429,6 @@ function TableRows({
         <td className="feature-name" onClick={() => onFeatureClick(f.id)}>
           <div className="feature-inner">
             <div className={`feature-band ${f.band}`}></div>
-            <span className={`feature-weight w${f.weight}`}>W{f.weight}</span>
             <span className="feature-text" title={f.name}>{f.name}</span>
           </div>
         </td>
@@ -563,8 +500,6 @@ function FeatureDetail({
       <div className="detail-desc">{f.desc}</div>
       <div style={{ display: 'flex', gap: '8px', alignItems: 'center', marginBottom: '14px' }}>
         <div className={`detail-band ${f.band}`} style={{ margin: 0 }}>{bandLabel}</div>
-        <div className={`detail-weight-badge w${f.weight}`}>W{f.weight}</div>
-        <span className="detail-weight-label">{WEIGHT_LABELS[f.weight] || ''}</span>
       </div>
       <div className="detail-freq">
         <div className="detail-freq-label">Adoption rate</div>
@@ -642,8 +577,6 @@ function ProductDetail({
 
   const fullCount = FEATURES.filter(f => f.presence[pid] === 'full').length;
   const partialCount = FEATURES.filter(f => f.presence[pid] === 'partial').length;
-  const absentCount = FEATURES.filter(f => f.presence[pid] === 'absent').length;
-  const rawScore = (fullCount + partialCount) - absentCount;
 
   let weightedScore = 0;
   let maxWeighted = 0;
@@ -655,26 +588,10 @@ function ProductDetail({
   });
   const pct = Math.round((fullCount + partialCount) / FEATURES.length * 100);
 
-  /* ── Weight colors ── */
-  const weightColors: Record<number, string> = {
-    1: '#6b6b8a',
-    2: '#22d3ee',
-    3: '#facc15',
-    4: '#fb923c',
-    5: '#f87171',
-  };
-
-  /* ── Group features by category ── */
-  const featuresByCat: { cat: Category; features: Feature[] }[] = [];
-  let currentCat: string | null = null;
-  FEATURES.forEach(f => {
-    if (f.cat !== currentCat) {
-      currentCat = f.cat;
-      const cat = CATEGORIES.find(c => c.id === f.cat)!;
-      featuresByCat.push({ cat, features: [] });
-    }
-    featuresByCat[featuresByCat.length - 1].features.push(f);
-  });
+  /* ── Group features into 3 sections ── */
+  const missingDiff = FEATURES.filter(f => f.cat === 'diff' && f.presence[pid] === 'absent');
+  const missingMustHave = FEATURES.filter(f => f.cat !== 'diff' && f.presence[pid] === 'absent');
+  const featuresPresent = FEATURES.filter(f => f.presence[pid] === 'full' || f.presence[pid] === 'partial');
 
   return (
     <>
@@ -716,15 +633,6 @@ function ProductDetail({
 
       <div style={{ display: 'flex', gap: '16px', margin: '10px 0 6px' }}>
         <div>
-          <div className="detail-freq-label">Raw Score (+1/{'\u2212'}1)</div>
-          <div className="weighted-score">
-            <span className="weighted-score-big" style={{ color: rawScore >= 0 ? 'var(--green)' : 'var(--red)' }}>
-              {rawScore >= 0 ? '+' : ''}{rawScore}
-            </span>
-            <span className="weighted-score-sub">/ {FEATURES.length}</span>
-          </div>
-        </div>
-        <div>
           <div className="detail-freq-label">Weighted Score</div>
           <div className="weighted-score">
             <span className="weighted-score-big" style={{ color: weightedScore >= 0 ? 'var(--green)' : 'var(--red)' }}>
@@ -737,40 +645,68 @@ function ProductDetail({
 
       <div className="detail-divider"></div>
 
-      {featuresByCat.map(({ cat, features }, catIdx) => (
-        <div key={cat.id}>
-          <div
-            className="detail-products-label"
-            style={{ marginTop: catIdx === 0 ? 0 : '10px', color: cat.color }}
-          >
-            {cat.name}
+      {missingDiff.length > 0 && (
+        <div>
+          <div className="detail-products-label" style={{ color: 'var(--red)' }}>
+            Missing Differentiators
           </div>
           <div className="product-feature-list">
-            {features.map(f => {
-              const state = f.presence[pid];
+            {missingDiff.map(f => {
+              const cat = CATEGORIES.find(c => c.id === f.cat)!;
               return (
-                <div
-                  key={f.id}
-                  className="product-feature-item"
-                  onClick={() => onFeatureClick(f.id)}
-                >
-                  <span className={`product-feature-check ${state}`}>
-                    {state === 'full' || state === 'partial' ? '\u2713' : '\u00B7'}
-                  </span>
+                <div key={f.id} className="product-feature-item" onClick={() => onFeatureClick(f.id)}>
+                  <span className="product-feature-check absent">{'\u00B7'}</span>
                   <span className="product-feature-name">{f.name}</span>
-                  <span
-                    className={`product-feature-weight w${f.weight}`}
-                    style={{ color: weightColors[f.weight] || '#6b6b8a' }}
-                  >
-                    W{f.weight}
-                  </span>
                   <div className="product-feature-cat" style={{ background: cat.color }}></div>
                 </div>
               );
             })}
           </div>
         </div>
-      ))}
+      )}
+
+      {missingMustHave.length > 0 && (
+        <div>
+          <div className="detail-products-label" style={{ marginTop: '10px', color: 'var(--orange)' }}>
+            Missing Must-Haves
+          </div>
+          <div className="product-feature-list">
+            {missingMustHave.map(f => {
+              const cat = CATEGORIES.find(c => c.id === f.cat)!;
+              return (
+                <div key={f.id} className="product-feature-item" onClick={() => onFeatureClick(f.id)}>
+                  <span className="product-feature-check absent">{'\u00B7'}</span>
+                  <span className="product-feature-name">{f.name}</span>
+                  <div className="product-feature-cat" style={{ background: cat.color }}></div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
+
+      {featuresPresent.length > 0 && (
+        <div>
+          <div className="detail-products-label" style={{ marginTop: '10px', color: 'var(--green)' }}>
+            Features Present
+          </div>
+          <div className="product-feature-list">
+            {featuresPresent.map(f => {
+              const cat = CATEGORIES.find(c => c.id === f.cat)!;
+              const state = f.presence[pid];
+              return (
+                <div key={f.id} className="product-feature-item" onClick={() => onFeatureClick(f.id)}>
+                  <span className={`product-feature-check ${state}`}>
+                    {'\u2713'}
+                  </span>
+                  <span className="product-feature-name">{f.name}</span>
+                  <div className="product-feature-cat" style={{ background: cat.color }}></div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      )}
     </>
   );
 }
