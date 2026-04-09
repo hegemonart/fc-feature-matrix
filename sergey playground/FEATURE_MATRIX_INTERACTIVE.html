@@ -101,7 +101,13 @@
   .col-header:hover { background: var(--bg3); }
   .col-header.highlighted { background: rgba(79,110,247,.15); }
   .col-label { font-size: 11px; font-weight: 600; color: var(--muted); text-transform: none; letter-spacing: 0; writing-mode: vertical-rl; transform: rotate(180deg); line-height: 1.2; margin-bottom: 0; text-align: left; max-height: 70px; overflow: hidden; transition: color .2s ease-out; white-space: nowrap; }
-  .col-header:hover .col-label, .col-header.highlighted .col-label { color: var(--text); }
+  .col-header:hover .col-label, .col-header.highlighted .col-label { color: var(--text); text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ── DETAIL VIEW LINK ── */
+  .detail-view-link { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px; padding: 10px 16px; background: var(--accent); color: #fff; border: none; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s ease-out; text-decoration: none; }
+  .detail-view-link:hover { filter: brightness(1.15); }
+  .detail-view-link:active { transform: scale(0.97); }
+  .detail-view-link svg { flex-shrink: 0; }
   .surface-dot { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
   .surface-dot.app { background: var(--accent); }
   .surface-dot.web { background: var(--green); }
@@ -244,9 +250,23 @@
   .product-feature-list { display: flex; flex-direction: column; gap: 3px; }
   .product-feature-item { display: flex; align-items: center; gap: 7px; padding: 5px 6px; border-radius: 4px; cursor: pointer; transition: background .12s; }
   .product-feature-item:hover { background: var(--bg3); }
-  .product-feature-check { font-size: 12px; color: var(--accent); width: 14px; text-align: center; }
+  .product-feature-check { font-size: 12px; color: var(--accent); width: 14px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .product-feature-check.missing { color: var(--red); }
   .product-feature-name { font-size: 12px; color: var(--text); flex: 1; }
   .product-feature-cat { width: 6px; height: 6px; border-radius: 50%; flex-shrink: 0; }
+
+  /* ── DETAIL SECTION BLOCKS ── */
+  .detail-section-label { display: flex; align-items: center; gap: 6px; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; margin: 14px 0 6px; padding: 0 2px; }
+  .detail-section-label .ds-icon { width: 16px; height: 16px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .detail-section-label .ds-icon svg { width: 10px; height: 10px; }
+  .detail-section-label .ds-count { font-weight: 600; font-size: 10px; color: var(--muted); margin-left: auto; }
+  .detail-section-label.must-have { color: var(--red); }
+  .detail-section-label.must-have .ds-icon { background: rgba(239,68,68,.15); }
+  .detail-section-label.differentiator { color: var(--orange); }
+  .detail-section-label.differentiator .ds-icon { background: rgba(249,115,22,.15); }
+  .detail-section-label.already { color: var(--green); }
+  .detail-section-label.already .ds-icon { background: rgba(34,197,94,.15); }
+  .detail-section-hint { font-size: 11px; color: var(--muted); line-height: 1.4; margin-bottom: 8px; padding: 0 2px; }
 </style>
 </head>
 <body>
@@ -491,7 +511,7 @@ function renderTable() {
   html += `<th class="feature-col">Feature</th>`;
   products.forEach(p => {
     const highlighted = state.highlightedCol === p.id ? 'highlighted' : '';
-    html += `<th><div class="col-header ${highlighted}" data-product="${p.id}">
+    html += `<th><div class="col-header ${highlighted}" data-product="${p.id}" title="Click to view ${p.label} details">
       <div class="surface-dot ${p.surface}"></div>
       <span class="col-label">${p.label}</span>
     </div></th>`;
@@ -625,30 +645,30 @@ function showProductDetail(productId) {
 
   const products = getFilteredProducts();
   const productFeatures = DATA.features.filter(f => f.products.includes(productId));
-  const missing = DATA.features.filter(f => !f.products.includes(productId));
+  const missingFeatures = DATA.features.filter(f => !f.products.includes(productId));
   const total = DATA.features.length;
   const pct = Math.round((productFeatures.length / total) * 100);
 
   const panel = document.getElementById('detailPanel');
   panel.classList.remove('collapsed');
 
-  const byCategory = {};
-  DATA.categories.forEach(c => byCategory[c.id] = []);
-  productFeatures.forEach(f => { if (byCategory[f.category]) byCategory[f.category].push(f); });
+  // Classify missing features
+  const mustHaves = missingFeatures.filter(f => f.band === 'table_stakes' || f.band === 'common');
+  const diffOpportunities = missingFeatures.filter(f => f.band === 'differentiator' || f.band === 'rare');
 
-  let featureListHtml = '';
-  DATA.categories.forEach(cat => {
-    const fts = byCategory[cat.id];
-    if (!fts || fts.length === 0) return;
-    featureListHtml += `<div style="margin-bottom:10px">
-      <div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:${cat.color};margin-bottom:4px;padding:0 6px">${cat.label}</div>
-      ${fts.map(f => `<div class="product-feature-item" data-feature="${f.id}">
-        <div class="product-feature-check"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
-        <span class="product-feature-name">${f.label}</span>
-        <div class="product-feature-cat" style="background:${catMap[f.category]?.color||'#888'}"></div>
-      </div>`).join('')}
-    </div>`;
-  });
+  const checkSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>';
+  const crossSvg = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+  const warnSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+  const starSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>';
+  const okSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>';
+
+  function renderGroup(features, type) {
+    return features.map(f => `<div class="product-feature-item" data-feature="${f.id}">
+      <div class="product-feature-check ${type === 'missing' ? 'missing' : ''}">${type === 'missing' ? crossSvg : checkSvg}</div>
+      <span class="product-feature-name">${f.label}</span>
+      <div class="product-feature-cat" style="background:${catMap[f.category]?.color||'#888'}"></div>
+    </div>`).join('');
+  }
 
   document.getElementById('detailInner').innerHTML = `
     <div class="detail-header">
@@ -666,9 +686,33 @@ function showProductDetail(productId) {
       </div>
       <div class="freq-bar-wrap" style="height:5px;margin-top:6px"><div class="freq-bar table_stakes" style="width:${pct}%"></div></div>
     </div>
-    <div class="detail-divider"></div>
-    <div class="detail-products-label">Features present</div>
-    <div class="product-feature-list">${featureListHtml}</div>`;
+    <a class="detail-view-link" href="CLUB_DETAIL_${p.id.replace(/_app|_web/,'').toUpperCase()}.html">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+      View full report →
+    </a>
+    ${mustHaves.length > 0 ? `
+    <div class="detail-section-label must-have">
+      <div class="ds-icon">${warnSvg}</div>
+      Must Haves — missing
+      <span class="ds-count">${mustHaves.length}</span>
+    </div>
+    <div class="detail-section-hint">Features 40–100% of competitors have that you don't.</div>
+    <div class="product-feature-list">${renderGroup(mustHaves, 'missing')}</div>` : ''}
+    ${diffOpportunities.length > 0 ? `
+    <div class="detail-section-label differentiator">
+      <div class="ds-icon">${starSvg}</div>
+      Differentiators
+      <span class="ds-count">${diffOpportunities.length}</span>
+    </div>
+    <div class="detail-section-hint">Few have these — adding them puts you ahead.</div>
+    <div class="product-feature-list">${renderGroup(diffOpportunities, 'missing')}</div>` : ''}
+    <div class="detail-section-label already">
+      <div class="ds-icon">${okSvg}</div>
+      Already have
+      <span class="ds-count">${productFeatures.length}</span>
+    </div>
+    <div class="detail-section-hint">Your foundation — keep these excellent.</div>
+    <div class="product-feature-list">${renderGroup(productFeatures, 'has')}</div>`;
 
   document.getElementById('closeDetail').onclick = closeDetail;
   renderTable();
