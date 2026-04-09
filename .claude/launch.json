@@ -2,10 +2,11 @@
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "feature-matrix",
-      "runtimeExecutable": "npx",
-      "runtimeArgs": ["http-server", "D:/AI/fc feature matrix", "-p", "8090", "-c-1"],
-      "port": 8090
+      "name": "dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": ["run", "dev"],
+      "port": 3001,
+      "autoPort": true
     }
   ]
 }
