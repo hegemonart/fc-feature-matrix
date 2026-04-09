@@ -155,16 +155,6 @@ export default async function ClubDetailPage({
             <div className="bd-divider" />
             <div className="bd-scores-row">
               <div className="bd-mini-score">
-                <div className="bd-mini-label">Raw Score</div>
-                <div
-                  className="bd-mini-val"
-                  style={{ color: rawScore >= 0 ? 'var(--green)' : 'var(--red)' }}
-                >
-                  {rawScore >= 0 ? '+' : ''}
-                  {rawScore}
-                </div>
-              </div>
-              <div className="bd-mini-score">
                 <div className="bd-mini-label">Weighted</div>
                 <div
                   className="bd-mini-val"
@@ -197,8 +187,9 @@ export default async function ClubDetailPage({
                     ? 'var(--yellow)'
                     : 'var(--red)';
               return (
-                <div
+                <Link
                   key={r2.id}
+                  href={`/club/${r2.id}`}
                   className={`bd-rank-item${isCurrent ? ' current' : ''}`}
                 >
                   <span className="bd-rank-pos">{i + 1}</span>
@@ -210,7 +201,7 @@ export default async function ClubDetailPage({
                     />
                   </div>
                   <span className="bd-rank-pct">{r2.pct}%</span>
-                </div>
+                </Link>
               );
             })}
           </div>
