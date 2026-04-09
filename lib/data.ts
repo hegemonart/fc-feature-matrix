@@ -136,7 +136,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F04', name: 'Streaming / OTT Platform',
     desc: 'Club-branded TV/streaming service — premium content monetization and global fan reach',
-    cat: 'revenue', weight: 5,
+    cat: 'revenue', weight: 4,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','tottenham','chelsea','inter_milan','ac_milan','sl_benfica','f1','motogp','nba','mls'],
       ['bvb_dortmund','uefa'],
@@ -153,7 +153,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F06', name: 'Fixtures & Results',
     desc: 'Upcoming match schedule, past match scores/results widget visible on homepage — core matchday engagement',
-    cat: 'content', weight: 4,
+    cat: 'content', weight: 3,
     presence: makePresence(
       ['real_madrid','fc_barcelona','psg','liverpool','arsenal','tottenham','inter_milan','atletico_madrid','ac_milan','vfb_stuttgart','uefa','f1','motogp','nba','mls','mlb'],
       ['bayern_munich','man_city','man_united','chelsea','bvb_dortmund','aston_villa','juventus','newcastle','sl_benfica','west_ham'],
@@ -162,7 +162,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F06b', name: 'Standings / League Table',
     desc: 'Current league table, standings widget, ranking display on homepage — competitive context for fans',
-    cat: 'content', weight: 4,
+    cat: 'content', weight: 2,
     presence: makePresence(
       ['inter_milan','atletico_madrid','vfb_stuttgart','uefa','f1','motogp','nba','mlb'],
       ['liverpool'],
@@ -189,7 +189,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F07c', name: 'Photo Gallery',
     desc: 'Photo gallery section, image grid, behind-the-scenes photo collections on homepage',
-    cat: 'content', weight: 3,
+    cat: 'content', weight: 2,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','psg','arsenal','bvb_dortmund','ac_milan','juventus','newcastle','vfb_stuttgart','uefa','motogp'],
       ['liverpool','chelsea'],
@@ -198,13 +198,13 @@ export const FEATURES: Feature[] = [
   {
     id: 'F08', name: 'Hero / Banner',
     desc: 'Hero carousel, featured story banner — first impression and editorial control point',
-    cat: 'content', weight: 4,
+    cat: 'content', weight: 3,
     presence: makePresence(ALL_IDS, []),
   },
   {
     id: 'F09', name: 'Navigation Depth',
     desc: 'Rich top nav with 6+ items — information architecture and content discoverability',
-    cat: 'content', weight: 4,
+    cat: 'content', weight: 3,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],
       [],
@@ -224,7 +224,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F11', name: 'Academy / Youth',
     desc: 'Youth development, academy section on homepage — brand storytelling and talent pipeline visibility',
-    cat: 'brand', weight: 3,
+    cat: 'brand', weight: 2,
     presence: makePresence(
       ['fc_barcelona','man_city','man_united','arsenal','bvb_dortmund','ac_milan','juventus','vfb_stuttgart','west_ham','uefa'],
       ['real_madrid','bayern_munich','liverpool','tottenham','chelsea','inter_milan','atletico_madrid','aston_villa'],
@@ -233,7 +233,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F12', name: 'Social Media Links',
     desc: 'Social platform icons/links in header or footer — cross-platform engagement and audience routing',
-    cat: 'brand', weight: 3,
+    cat: 'brand', weight: 2,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','mls','nba','f1','motogp','mlb'],
       ['west_ham','uefa'],
@@ -242,7 +242,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F13', name: 'Sponsor Showcase',
     desc: 'Dedicated partner/sponsor section, logo grid — commercial partner value demonstration',
-    cat: 'brand', weight: 3,
+    cat: 'brand', weight: 4,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','sl_benfica','west_ham','f1','motogp','nba','mlb'],
       ['vfb_stuttgart','uefa'],
@@ -271,7 +271,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F16', name: 'Multi-Language',
     desc: 'Language selector visible — global accessibility for international fanbase',
-    cat: 'ux', weight: 2,
+    cat: 'ux', weight: 3,
     presence: makePresence(
       ['real_madrid','fc_barcelona'],
       ['atletico_madrid','uefa'],
@@ -280,7 +280,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F17', name: 'Login / Registration',
     desc: 'User account, sign-in button — first-party data capture and personalization gateway',
-    cat: 'ux', weight: 2,
+    cat: 'ux', weight: 4,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','man_united','tottenham','chelsea','atletico_madrid','ac_milan','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],
       ['arsenal','inter_milan','bvb_dortmund','juventus','newcastle'],
@@ -289,7 +289,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F18', name: 'Newsletter Signup',
     desc: 'Email subscription form/CTA — owned audience channel for re-engagement',
-    cat: 'ux', weight: 2,
+    cat: 'ux', weight: 3,
     presence: makePresence(
       ['liverpool','west_ham','motogp','nba'],
       ['chelsea','bvb_dortmund','aston_villa','vfb_stuttgart'],
@@ -298,7 +298,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F19', name: 'Footer Navigation',
     desc: 'Multi-column footer with organized links — secondary navigation and legal compliance',
-    cat: 'ux', weight: 2,
+    cat: 'ux', weight: 1,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],
       [],
@@ -309,7 +309,7 @@ export const FEATURES: Feature[] = [
   {
     id: 'F20', name: 'Stadium / Museum / Tours',
     desc: 'Stadium experience, museum, tour promotion — heritage monetization and matchday revenue',
-    cat: 'diff', weight: 1,
+    cat: 'diff', weight: 2,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','liverpool','tottenham','aston_villa'],
       ['psg','chelsea','man_united','bvb_dortmund','juventus','sl_benfica'],
