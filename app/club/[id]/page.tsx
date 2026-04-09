@@ -184,13 +184,11 @@ export default async function ClubDetailPage({
             {ranked.map((r2, i) => {
               const isCurrent = r2.id === pid;
               const barColor =
-                r2.pct >= 70
+                r2.pct >= avgPct
                   ? 'var(--green)'
-                  : r2.pct >= 60
-                    ? 'var(--yellow)'
-                    : 'var(--orange)';
+                  : 'var(--yellow)';
               const showCutoff =
-                r2.pct < 60 && i > 0 && ranked[i - 1].pct >= 60;
+                r2.pct < avgPct && i > 0 && ranked[i - 1].pct >= avgPct;
               return (
                 <span key={r2.id}>
                   {showCutoff && (
