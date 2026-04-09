@@ -183,25 +183,33 @@ export default async function ClubDetailPage({
               const barColor =
                 r2.pct >= 70
                   ? 'var(--green)'
-                  : r2.pct >= 45
+                  : r2.pct >= 60
                     ? 'var(--yellow)'
-                    : 'var(--red)';
+                    : 'var(--orange)';
+              const showCutoff =
+                r2.pct < 60 && i > 0 && ranked[i - 1].pct >= 60;
               return (
-                <Link
-                  key={r2.id}
-                  href={`/club/${r2.id}`}
-                  className={`bd-rank-item${isCurrent ? ' current' : ''}`}
-                >
-                  <span className="bd-rank-pos">{i + 1}</span>
-                  <span className="bd-rank-name">{r2.name}</span>
-                  <div className="bd-rank-bar-wrap">
-                    <div
-                      className="bd-rank-bar"
-                      style={{ width: `${r2.pct}%`, background: barColor }}
-                    />
-                  </div>
-                  <span className="bd-rank-pct">{r2.pct}%</span>
-                </Link>
+                <span key={r2.id}>
+                  {showCutoff && (
+                    <div className="bd-rank-cutoff">
+                      <span>Below average</span>
+                    </div>
+                  )}
+                  <Link
+                    href={`/club/${r2.id}`}
+                    className={`bd-rank-item${isCurrent ? ' current' : ''}`}
+                  >
+                    <span className="bd-rank-pos">{i + 1}</span>
+                    <span className="bd-rank-name">{r2.name}</span>
+                    <div className="bd-rank-bar-wrap">
+                      <div
+                        className="bd-rank-bar"
+                        style={{ width: `${r2.pct}%`, background: barColor }}
+                      />
+                    </div>
+                    <span className="bd-rank-pct">{r2.pct}%</span>
+                  </Link>
+                </span>
               );
             })}
           </div>
