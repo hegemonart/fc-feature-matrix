@@ -139,8 +139,8 @@ export const FEATURES: Feature[] = [
     desc: 'Club-branded TV/streaming service — premium content monetization and global fan reach',
     cat: 'revenue', weight: 4,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','tottenham','chelsea','inter_milan','ac_milan','sl_benfica','f1','motogp','nba','mls'],
-      ['bvb_dortmund','uefa'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_united','tottenham','chelsea','inter_milan','ac_milan','sl_benfica','f1','motogp','nba','mls'],
+      ['bvb_dortmund','newcastle','uefa'],
     ),
   },
 
@@ -218,8 +218,8 @@ export const FEATURES: Feature[] = [
     desc: "Dedicated women's team content on homepage — brand inclusivity and growing market segment",
     cat: 'brand', weight: 3,
     presence: makePresence(
-      ['fc_barcelona','liverpool','man_city','man_united','arsenal','chelsea','atletico_madrid','ac_milan','west_ham','brentford','uefa'],
-      ['psg','tottenham','inter_milan','bvb_dortmund','aston_villa','juventus','newcastle'],
+      ['fc_barcelona','bayern_munich','liverpool','man_city','man_united','arsenal','chelsea','atletico_madrid','ac_milan','west_ham','brentford','uefa'],
+      ['psg','tottenham','inter_milan','bvb_dortmund','aston_villa','juventus','newcastle','vfb_stuttgart'],
     ),
   },
   {
@@ -254,8 +254,8 @@ export const FEATURES: Feature[] = [
     desc: 'Mobile app download badges/CTAs — mobile-first fan relationship and push notification channel',
     cat: 'brand', weight: 3,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','liverpool','man_united','tottenham','chelsea','bvb_dortmund','aston_villa','juventus','sl_benfica','brentford','f1','motogp','nba','mlb'],
-      ['inter_milan','ac_milan','mls'],
+      ['real_madrid','fc_barcelona','liverpool','man_united','tottenham','chelsea','bvb_dortmund','aston_villa','juventus','sl_benfica','west_ham','brentford','f1','motogp','nba','mlb'],
+      ['bayern_munich','inter_milan','ac_milan','mls'],
     ),
   },
 
@@ -274,7 +274,7 @@ export const FEATURES: Feature[] = [
     desc: 'Language selector visible — global accessibility for international fanbase',
     cat: 'ux', weight: 3,
     presence: makePresence(
-      ['real_madrid','fc_barcelona'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg'],
       ['atletico_madrid','uefa'],
     ),
   },
@@ -292,8 +292,8 @@ export const FEATURES: Feature[] = [
     desc: 'Email subscription form/CTA — owned audience channel for re-engagement',
     cat: 'ux', weight: 3,
     presence: makePresence(
-      ['liverpool','west_ham','motogp','nba'],
-      ['chelsea','bvb_dortmund','aston_villa','vfb_stuttgart'],
+      ['bayern_munich','liverpool','west_ham','motogp','nba'],
+      ['real_madrid','chelsea','bvb_dortmund','aston_villa','vfb_stuttgart'],
     ),
   },
   {
@@ -322,7 +322,7 @@ export const FEATURES: Feature[] = [
     cat: 'diff', weight: 1,
     presence: makePresence(
       ['real_madrid','fc_barcelona','liverpool','chelsea','newcastle','uefa'],
-      ['psg','arsenal','ac_milan','brentford'],
+      ['bayern_munich','psg','man_city','man_united','arsenal','tottenham','ac_milan','brentford'],
     ),
   },
   {
@@ -331,7 +331,7 @@ export const FEATURES: Feature[] = [
     cat: 'diff', weight: 1,
     presence: makePresence(
       ['aston_villa','f1','motogp','nba'],
-      ['mlb'],
+      ['atletico_madrid','mlb'],
     ),
   },
   {
@@ -339,7 +339,7 @@ export const FEATURES: Feature[] = [
     desc: 'Club history, "since XXXX", heritage messaging, trophy displays — emotional brand equity',
     cat: 'diff', weight: 1,
     presence: makePresence(
-      ['bayern_munich','inter_milan','juventus','sl_benfica'],
+      ['bayern_munich','inter_milan','juventus','sl_benfica','motogp'],
       ['liverpool','man_united','bvb_dortmund','brentford','uefa'],
     ),
   },
@@ -349,7 +349,7 @@ export const FEATURES: Feature[] = [
     cat: 'diff', weight: 1,
     presence: makePresence(
       ['real_madrid','bayern_munich','motogp'],
-      [],
+      ['fc_barcelona'],
     ),
   },
   {
