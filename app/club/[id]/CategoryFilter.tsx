@@ -32,14 +32,19 @@ export default function CategoryFilter({
   allFeatures: FeatureData[];
   clubName: string;
 }) {
-  const [activeCat, setActiveCat] = useState<CategoryId | null>(null);
+  const [activeCats, setActiveCats] = useState<Set<CategoryId>>(new Set());
 
   const toggle = (id: CategoryId) => {
-    setActiveCat(prev => (prev === id ? null : id));
+    setActiveCats(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   };
 
-  const filtered = activeCat
-    ? allFeatures.filter(f => f.cat === activeCat)
+  const filtered = activeCats.size > 0
+    ? allFeatures.filter(f => activeCats.has(f.cat))
     : allFeatures;
 
   const missing = filtered.filter(f => f.status === 'absent');
@@ -86,7 +91,7 @@ export default function CategoryFilter({
               : c.verdict === 'warning'
                 ? '\u26A0 Needs work'
                 : '\u2715 Critical gap';
-          const isActive = activeCat === c.id;
+          const isActive = activeCats.has(c.id);
           return (
             <div
               key={c.id}
