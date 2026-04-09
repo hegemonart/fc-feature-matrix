@@ -103,7 +103,7 @@ export function makePresence(
   return m;
 }
 
-// ── Features (29 total: F01-F26 including F06b, F07b, F07c) ──
+// ── Features (35 total: F01-F32 including F06b, F07b, F07c) ──
 
 export const FEATURES: Feature[] = [
   // ── Revenue & Commerce ──
@@ -368,6 +368,60 @@ export const FEATURES: Feature[] = [
     presence: makePresence(
       ['f1'],
       [],
+    ),
+  },
+  {
+    id: 'F27', name: 'Live Scores Ticker',
+    desc: 'Persistent scores/results bar at top of page showing live or recent scores across the league — real-time engagement hook',
+    cat: 'content', weight: 2,
+    presence: makePresence(
+      ['uefa','nba','mlb'],
+      ['liverpool','arsenal','tottenham','west_ham','vfb_stuttgart','f1'],
+    ),
+  },
+  {
+    id: 'F28', name: 'Social Media Feed Embed',
+    desc: 'Embedded social feed (Instagram grid, Twitter feed) on homepage — cross-platform content amplification beyond icon links',
+    cat: 'content', weight: 1,
+    presence: makePresence(
+      ['uefa'],
+      ['fc_barcelona','psg','vfb_stuttgart','brentford'],
+    ),
+  },
+  {
+    id: 'F29', name: 'Corporate / Hospitality',
+    desc: 'Dedicated hospitality packages, VIP experiences, corporate event sections — premium revenue stream beyond standard ticketing',
+    cat: 'revenue', weight: 3,
+    presence: makePresence(
+      [],
+      ['fc_barcelona','bayern_munich','liverpool','chelsea','newcastle','motogp'],
+    ),
+  },
+  {
+    id: 'F30', name: 'Player Profiles / Squad',
+    desc: 'Player cards, squad roster, player spotlight sections on homepage — fan connection and content personalisation driver',
+    cat: 'content', weight: 2,
+    presence: makePresence(
+      ['real_madrid','fc_barcelona','liverpool','chelsea','atletico_madrid','ac_milan','f1','motogp'],
+      ['arsenal','man_united','inter_milan','juventus','sl_benfica','west_ham','brentford','uefa','nba'],
+    ),
+  },
+  {
+    id: 'F31', name: 'Trophy / Honours Showcase',
+    desc: 'Visual trophy cabinet, honours list, trophy icons — emotional brand equity and competitive prestige display',
+    cat: 'brand', weight: 2,
+    presence: makePresence(
+      ['bayern_munich','liverpool','inter_milan'],
+      ['man_city','juventus'],
+    ),
+  },
+  {
+    id: 'F32', name: 'Podcast / Audio',
+    desc: 'Podcast sections, audio content, "listen" CTAs — growing content format for commute-time fan engagement',
+    cat: 'content', weight: 1,
+    presence: makePresence(
+      [],
+      ['fc_barcelona','bayern_munich','man_united','bvb_dortmund','aston_villa','ac_milan','newcastle','motogp','nba','mlb'],
     ),
   },
 ];
