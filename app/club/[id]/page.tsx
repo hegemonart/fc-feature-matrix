@@ -50,7 +50,7 @@ export default async function ClubDetailPage({
   const R = 58;
   const circ = 2 * Math.PI * R;
   const offset = circ * (1 - coveragePct / 100);
-  const showAlert = coveragePct < avgPct - 5;
+  const showAlert = coveragePct < avgPct;
 
   // Category breakdown
   const catScores = CATEGORIES.map(cat => {
@@ -64,15 +64,18 @@ export default async function ClubDetailPage({
 
   // Feature groups
   const mustHaveMissing = FEATURES.filter(
-    f =>
-      (f.band === 'table_stakes' || f.band === 'expected') &&
-      f.presence[pid] === 'absent',
+    f => f.presence[pid] === 'absent',
   );
   const differentiators = FEATURES.filter(
-    f => f.band === 'innovation' && f.presence[pid] !== 'absent',
+    f =>
+      (f.band === 'innovation' || f.band === 'competitive') &&
+      f.presence[pid] !== 'absent',
   );
   const alreadyHave = FEATURES.filter(
-    f => f.presence[pid] !== 'absent' && f.band !== 'innovation',
+    f =>
+      f.presence[pid] !== 'absent' &&
+      f.band !== 'innovation' &&
+      f.band !== 'competitive',
   );
 
   // Crest initials
@@ -271,23 +274,34 @@ export default async function ClubDetailPage({
                   </svg>
                 </div>
                 <div className="bd-section-title">
-                  Must Haves &mdash; You&apos;re Missing the Basics
+                  Missing Features
                 </div>
                 <span className="bd-section-count">
                   {mustHaveMissing.length} missing
                 </span>
               </div>
               <p className="bd-section-desc">
-                These table stakes and expected features are already present on
-                most competitor sites. Every gap here costs {p.name} fan
-                engagement and commercial performance.
+                Features not found on {p.name}&apos;s homepage. Table stakes
+                and expected gaps should be prioritised first.
               </p>
               <div className="bd-feature-list">
                 {mustHaveMissing.map(f => {
                   const bandTag =
-                    f.band === 'table_stakes' ? 'ts' : 'exp';
+                    f.band === 'table_stakes'
+                      ? 'ts'
+                      : f.band === 'expected'
+                        ? 'exp'
+                        : f.band === 'competitive'
+                          ? 'comp'
+                          : 'innov';
                   const bandLabel =
-                    f.band === 'table_stakes' ? 'Table Stakes' : 'Expected';
+                    f.band === 'table_stakes'
+                      ? 'Table Stakes'
+                      : f.band === 'expected'
+                        ? 'Expected'
+                        : f.band === 'competitive'
+                          ? 'Competitive'
+                          : 'Innovation';
                   return (
                     <div key={f.id} className="bd-feature-item">
                       <div className="bd-feature-status missing">
@@ -310,7 +324,7 @@ export default async function ClubDetailPage({
                         <span className={`bd-feature-tag ${bandTag}`}>
                           {bandLabel}
                         </span>
-                        <span className="bd-feature-tag w">W{f.weight}</span>
+
                         <span className="bd-adoption">
                           {f.adoptionPct}% adopt
                         </span>
@@ -350,9 +364,8 @@ export default async function ClubDetailPage({
                 </span>
               </div>
               <p className="bd-section-desc">
-                Innovation features adopted by fewer than 40% of products. These
-                give {p.name} a competitive edge &mdash; highlight and invest in
-                them.
+                Competitive and innovation features that give {p.name} an edge
+                &mdash; highlight and invest in them.
               </p>
               <div className="bd-feature-list">
                 {differentiators.map(f => {
@@ -392,8 +405,10 @@ export default async function ClubDetailPage({
                         <div className="bd-feature-desc">{f.desc}</div>
                       </div>
                       <div className="bd-feature-tags">
-                        <span className="bd-feature-tag innov">Innovation</span>
-                        <span className="bd-feature-tag w">W{f.weight}</span>
+                        <span className={`bd-feature-tag ${f.band === 'competitive' ? 'comp' : 'innov'}`}>
+                          {f.band === 'competitive' ? 'Competitive' : 'Innovation'}
+                        </span>
+
                         <span className="bd-adoption">
                           {f.adoptionPct}% adopt
                         </span>
@@ -490,7 +505,7 @@ export default async function ClubDetailPage({
                         <span className={`bd-feature-tag ${bandTag}`}>
                           {bandLabel}
                         </span>
-                        <span className="bd-feature-tag w">W{f.weight}</span>
+
                       </div>
                     </div>
                   );
