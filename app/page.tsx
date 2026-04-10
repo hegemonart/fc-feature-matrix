@@ -381,6 +381,7 @@ export default function FeatureMatrixPage() {
                     onFeatureClick={authed ? handleShowFeatureDetail : () => {}}
                     onCellMouseOver={authed ? handleCellMouseOver : () => {}}
                     onCellMouseMove={authed ? handleCellMouseMove : () => {}}
+                    previewMode={!authed}
                   />
                 )}
               </tbody>
@@ -554,6 +555,7 @@ function TableRows({
   onFeatureClick,
   onCellMouseOver,
   onCellMouseMove,
+  previewMode,
 }: {
   feats: Feature[];
   prods: Product[];
@@ -563,16 +565,21 @@ function TableRows({
   onFeatureClick: (fid: string) => void;
   onCellMouseOver: (fid: string, pid: string) => void;
   onCellMouseMove: (e: React.MouseEvent) => void;
+  previewMode?: boolean;
 }) {
   const rows: React.ReactNode[] = [];
   let lastCat: string | null = null;
+  let featureRowIndex = 0;
 
   feats.forEach((f, idx) => {
     if (showCategorySeps && f.cat !== lastCat) {
       lastCat = f.cat;
       const cat = CATEGORIES.find(c => c.id === f.cat)!;
+      const sepBlur = previewMode && featureRowIndex >= 2
+        ? { filter: `blur(${Math.min((featureRowIndex - 2) * 1.5, 10)}px)` }
+        : undefined;
       rows.push(
-        <tr className="category-sep-row" key={`sep-${f.cat}-${idx}`}>
+        <tr className="category-sep-row" key={`sep-${f.cat}-${idx}`} style={sepBlur}>
           <td className="category-sep" colSpan={1}>
             <div className="cat-sep-inner">
               <div className="cat-sep-dot" style={{ background: cat.color }}></div>
@@ -587,9 +594,18 @@ function TableRows({
       );
     }
 
+    const blurAmount = previewMode && featureRowIndex >= 2
+      ? Math.min((featureRowIndex - 2) * 1.8, 12)
+      : 0;
+    const rowStyle = blurAmount > 0
+      ? { filter: `blur(${blurAmount}px)`, pointerEvents: 'none' as const }
+      : undefined;
+
+    featureRowIndex++;
+
     const hl = selectedFeature === f.id ? ' highlighted' : '';
     rows.push(
-      <tr className={hl} key={f.id}>
+      <tr className={hl} key={f.id} style={rowStyle}>
         <td className="feature-name" onClick={() => onFeatureClick(f.id)}>
           <div className="feature-inner">
             <div className={`feature-band ${f.band}`}></div>
