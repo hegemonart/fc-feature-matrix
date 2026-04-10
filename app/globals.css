@@ -97,6 +97,7 @@ header { background: var(--bg2); border-bottom: 1px solid var(--border); padding
 /* ── TABLE ── */
 .table-container { flex: 1; overflow: auto; position: relative; }
 table { border-collapse: collapse; }
+.preview-mode table { border-collapse: separate; border-spacing: 0; }
 th, td { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
 thead th { background: var(--bg2); position: sticky; top: 0; z-index: 10; padding: 0; min-width: 38px; max-width: 38px; width: 38px; }
