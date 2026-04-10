@@ -182,22 +182,28 @@ export default function FeatureMatrixPage() {
       <header>
         <div className="logo">FC Benchmark <span>//</span> April 2026</div>
         <div className="header-title">Feature Matrix</div>
+        <button className="sign-in-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+          Sign in
+        </button>
       </header>
 
       {/* ── FLOW NAV ── */}
       <nav className="flow-nav" role="tablist" aria-label="Analysis views">
         <button className="flow-tab active" role="tab" aria-selected="true">
-          Homepage <span className="tab-badge">LIVE</span>
+          Homepage
         </button>
         {LOCKED_TABS.map(tab => (
           <button
             key={tab.id}
-            className="flow-tab locked"
+            className="flow-tab"
             role="tab"
             aria-selected="false"
             onClick={() => handleLockedTabClick(tab.name)}
           >
-            <span className="lock-icon"><PadlockIcon /></span>
             {tab.name}
           </button>
         ))}
@@ -339,12 +345,13 @@ export default function FeatureMatrixPage() {
           </div>
           <h3 id="lockedTitle">Analysis Restricted</h3>
           <p>The <span className="locked-flow-name">{lockedFlowName}</span> view is locked. This deep-dive flow requires admin access to unlock comparative analysis across products.</p>
-          <button className="locked-btn" onClick={() => setLockedModalVisible(false)}>
+          <a className="locked-btn" href="mailto:atillyard@brentfordfc.com?subject=Access%20Request%20%E2%80%93%20FC%20Benchmark&body=Hi%2C%0A%0AI%E2%80%99d%20like%20to%20request%20access%20to%20the%20locked%20analysis%20views%20on%20FC%20Benchmark.%0A%0AThanks">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
             Request access from admin
-          </button>
+          </a>
           <button className="locked-dismiss" onClick={() => setLockedModalVisible(false)}>Maybe later</button>
         </div>
       </div>

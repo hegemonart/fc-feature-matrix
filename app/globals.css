@@ -47,7 +47,10 @@ body { background: var(--bg); color: var(--text); font-family: -apple-system, Bl
 header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 14px 20px; display: flex; align-items: center; gap: 20px; flex-shrink: 0; }
 .logo { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .logo span { color: var(--accent); }
-.header-title { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; }
+.header-title { font-size: 15px; font-weight: 600; color: var(--text); white-space: nowrap; margin-right: auto; }
+.sign-in-btn { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all .15s ease-out; white-space: nowrap; }
+.sign-in-btn:hover { border-color: var(--accent); color: var(--accent); }
+.sign-in-btn svg { width: 14px; height: 14px; }
 .header-stats { display: flex; gap: 16px; margin-left: auto; }
 .stat-chip { background: var(--bg3); border: 1px solid var(--border); border-radius: 6px; padding: 4px 10px; font-size: 11px; color: var(--muted); white-space: nowrap; }
 .stat-chip strong { color: var(--text); }
@@ -225,10 +228,6 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .flow-tab { display: flex; align-items: center; gap: 7px; padding: 10px 14px; font-size: 12px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s ease-out; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; }
 .flow-tab:hover { color: var(--text); background: rgba(255,255,255,.02); }
 .flow-tab.active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
-.flow-tab.locked { opacity: .7; cursor: pointer; }
-.flow-tab.locked:hover { opacity: .9; background: rgba(255,255,255,.04); }
-.flow-tab .lock-icon svg { width: 11px; height: 11px; color: var(--muted); display: block; }
-.flow-tab .tab-badge { font-size: 9px; font-weight: 700; background: var(--green); color: #fff; padding: 1px 5px; border-radius: 3px; letter-spacing: .03em; }
 
 /* ── LOCKED MODAL ── */
 .locked-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; }
@@ -240,7 +239,7 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .locked-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .locked-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
 .locked-card .locked-flow-name { color: var(--accent); font-weight: 600; }
-.locked-card .locked-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s ease-out; }
+.locked-card .locked-btn { display: inline-flex; align-items: center; gap: 6px; background: var(--accent); color: #fff; border: none; border-radius: 6px; padding: 10px 20px; font-size: 13px; font-weight: 600; cursor: pointer; transition: all .2s ease-out; text-decoration: none; }
 .locked-card .locked-btn:hover { filter: brightness(1.1); }
 .locked-card .locked-btn:active { transform: scale(0.97); }
 .locked-card .locked-dismiss { margin-top: 12px; font-size: 12px; color: var(--muted); cursor: pointer; background: none; border: none; transition: color .15s; display: block; margin-left: auto; margin-right: auto; }
