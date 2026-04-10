@@ -97,6 +97,7 @@ header { background: var(--bg2); border-bottom: 1px solid var(--border); padding
 /* ── TABLE ── */
 .table-container { flex: 1; overflow: auto; position: relative; }
 table { border-collapse: collapse; }
+.preview-mode table { border-collapse: separate; border-spacing: 0; }
 th, td { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
 thead th { background: var(--bg2); position: sticky; top: 0; z-index: 10; padding: 0; min-width: 38px; max-width: 38px; width: 38px; }
@@ -455,3 +456,14 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .analytics-unauth { display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 60vh; gap: 12px; text-align: center; }
 .analytics-unauth h2 { font-size: 18px; }
 .analytics-unauth p { color: var(--muted); font-size: 13px; }
+
+/* ── PREVIEW MODE (not logged in) ── */
+.locked-preview { pointer-events: none; opacity: .5; user-select: none; }
+.table-wrapper { position: relative; flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.preview-blur-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 30; pointer-events: none; }
+.preview-cta { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 32px 44px; background: rgba(13,13,20,.88); border: 1px solid var(--border); border-radius: 16px; backdrop-filter: blur(16px); max-width: 420px; pointer-events: auto; box-shadow: 0 8px 40px rgba(0,0,0,.6); }
+.preview-cta svg { color: var(--muted); }
+.preview-cta-title { font-size: 16px; font-weight: 700; color: var(--text); }
+.preview-cta-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.preview-cta-btn { margin-top: 4px; padding: 10px 32px; background: var(--accent); color: #000; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity .15s; }
+.preview-cta-btn:hover { opacity: .85; }

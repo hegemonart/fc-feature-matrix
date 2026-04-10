@@ -268,7 +268,7 @@ export default function FeatureMatrixPage() {
       </header>
 
       {/* ── FLOW NAV ── */}
-      <nav className="flow-nav" role="tablist" aria-label="Analysis views">
+      <nav className={`flow-nav${!authed ? ' locked-preview' : ''}`} role="tablist" aria-label="Analysis views">
         <button className="flow-tab active" role="tab" aria-selected="true">
           Homepage
         </button>
@@ -286,7 +286,7 @@ export default function FeatureMatrixPage() {
       </nav>
 
       {/* ── TOOLBAR ── */}
-      <div className="toolbar">
+      <div className={`toolbar${!authed ? ' locked-preview' : ''}`}>
         <div className="filter-group">
           <span className="filter-label">Type:</span>
           {[
@@ -310,7 +310,7 @@ export default function FeatureMatrixPage() {
       {/* ── MAIN ── */}
       <div className="main">
         {/* ── SIDEBAR ── */}
-        <div className="sidebar">
+        <div className={`sidebar${!authed ? ' locked-preview' : ''}`}>
           <h3>Category</h3>
           <div>
             {[...CATEGORIES].sort((a, b) => a.name.localeCompare(b.name)).map(c => (
@@ -328,61 +328,80 @@ export default function FeatureMatrixPage() {
         </div>
 
         {/* ── TABLE ── */}
-        <div
-          className="table-container"
-          onMouseLeave={handleTableMouseLeave}
-        >
-          <table>
-            <thead>
-              <tr>
-                <th
-                  className="feature-col sortable"
-                  onClick={() => { setAdoptionSort(null); setFeatureAlphaSort(prev => !prev); }}
-                >
-                  Feature {featureAlphaSort ? '\u25B2' : ''}
-                </th>
-                {visibleProds.map(p => (
-                  <th key={p.id}>
-                    <div
-                      className={`col-header${selectedProduct === p.id ? ' highlighted' : ''}`}
-                      onClick={() => handleShowProductDetail(p.id)}
-                    >
-                      <span className="col-label">{p.name}</span>
-                    </div>
-                  </th>
-                ))}
-                <th
-                  className="freq-col sortable"
-                  onClick={() => {
-                    setFeatureAlphaSort(false);
-                    setAdoptionSort(prev => prev === 'asc' ? 'desc' : prev === 'desc' ? null : 'asc');
-                  }}
-                >
-                  Adoption {adoptionSort === 'asc' ? '\u25B2' : adoptionSort === 'desc' ? '\u25BC' : ''}
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {visibleFeats.length === 0 ? (
+        <div className={`table-wrapper${!authed ? ' preview-mode' : ''}`}>
+          <div
+            className="table-container"
+            onMouseLeave={handleTableMouseLeave}
+          >
+            <table>
+              <thead>
                 <tr>
-                  <td colSpan={visibleProds.length + 2} className="no-results">
-                    No features match your filters.
-                  </td>
+                  <th
+                    className="feature-col sortable"
+                    onClick={() => { if (!authed) return; setAdoptionSort(null); setFeatureAlphaSort(prev => !prev); }}
+                  >
+                    Feature {featureAlphaSort ? '\u25B2' : ''}
+                  </th>
+                  {visibleProds.map(p => (
+                    <th key={p.id}>
+                      <div
+                        className={`col-header${selectedProduct === p.id ? ' highlighted' : ''}`}
+                        onClick={() => { if (!authed) return; handleShowProductDetail(p.id); }}
+                      >
+                        <span className="col-label">{p.name}</span>
+                      </div>
+                    </th>
+                  ))}
+                  <th
+                    className="freq-col sortable"
+                    onClick={() => {
+                      if (!authed) return;
+                      setFeatureAlphaSort(false);
+                      setAdoptionSort(prev => prev === 'asc' ? 'desc' : prev === 'desc' ? null : 'asc');
+                    }}
+                  >
+                    Adoption {adoptionSort === 'asc' ? '\u25B2' : adoptionSort === 'desc' ? '\u25BC' : ''}
+                  </th>
                 </tr>
-              ) : (
-                <TableRows
-                  feats={sortedFeats}
-                  prods={visibleProds}
-                  showCategorySeps={!adoptionSort}
-                  selectedFeature={selectedFeature}
-                  selectedProduct={selectedProduct}
-                  onFeatureClick={handleShowFeatureDetail}
-                  onCellMouseOver={handleCellMouseOver}
-                  onCellMouseMove={handleCellMouseMove}
-                />
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {visibleFeats.length === 0 ? (
+                  <tr>
+                    <td colSpan={visibleProds.length + 2} className="no-results">
+                      No features match your filters.
+                    </td>
+                  </tr>
+                ) : (
+                  <TableRows
+                    feats={sortedFeats}
+                    prods={visibleProds}
+                    showCategorySeps={!adoptionSort}
+                    selectedFeature={selectedFeature}
+                    selectedProduct={selectedProduct}
+                    onFeatureClick={authed ? handleShowFeatureDetail : () => {}}
+                    onCellMouseOver={authed ? handleCellMouseOver : () => {}}
+                    onCellMouseMove={authed ? handleCellMouseMove : () => {}}
+                    previewMode={!authed}
+                  />
+                )}
+              </tbody>
+            </table>
+          </div>
+          {!authed && (
+            <div className="preview-blur-overlay">
+              <div className="preview-cta">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="32" height="32">
+                  <rect x="3" y="11" width="18" height="11" rx="2" />
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                </svg>
+                <div className="preview-cta-title">Sign in to unlock full matrix</div>
+                <div className="preview-cta-desc">Access all {FEATURES.length} features across {PRODUCTS.length} products with filters, sorting, and detailed breakdowns.</div>
+                <button className="preview-cta-btn" onClick={() => setLoginModalVisible(true)}>
+                  Sign in
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* ── DETAIL PANEL ── */}
@@ -536,6 +555,7 @@ function TableRows({
   onFeatureClick,
   onCellMouseOver,
   onCellMouseMove,
+  previewMode,
 }: {
   feats: Feature[];
   prods: Product[];
@@ -545,16 +565,21 @@ function TableRows({
   onFeatureClick: (fid: string) => void;
   onCellMouseOver: (fid: string, pid: string) => void;
   onCellMouseMove: (e: React.MouseEvent) => void;
+  previewMode?: boolean;
 }) {
   const rows: React.ReactNode[] = [];
   let lastCat: string | null = null;
+  let featureRowIndex = 0;
 
   feats.forEach((f, idx) => {
     if (showCategorySeps && f.cat !== lastCat) {
       lastCat = f.cat;
       const cat = CATEGORIES.find(c => c.id === f.cat)!;
+      const sepBlur = previewMode && featureRowIndex >= 2
+        ? { filter: `blur(${Math.min((featureRowIndex - 2) * 1.5, 10)}px)` }
+        : undefined;
       rows.push(
-        <tr className="category-sep-row" key={`sep-${f.cat}-${idx}`}>
+        <tr className="category-sep-row" key={`sep-${f.cat}-${idx}`} style={sepBlur}>
           <td className="category-sep" colSpan={1}>
             <div className="cat-sep-inner">
               <div className="cat-sep-dot" style={{ background: cat.color }}></div>
@@ -569,9 +594,18 @@ function TableRows({
       );
     }
 
+    const blurAmount = previewMode && featureRowIndex >= 2
+      ? Math.min((featureRowIndex - 2) * 1.8, 12)
+      : 0;
+    const rowStyle = blurAmount > 0
+      ? { filter: `blur(${blurAmount}px)`, pointerEvents: 'none' as const }
+      : undefined;
+
+    featureRowIndex++;
+
     const hl = selectedFeature === f.id ? ' highlighted' : '';
     rows.push(
-      <tr className={hl} key={f.id}>
+      <tr className={hl} key={f.id} style={rowStyle}>
         <td className="feature-name" onClick={() => onFeatureClick(f.id)}>
           <div className="feature-inner">
             <div className={`feature-band ${f.band}`}></div>
