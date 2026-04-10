@@ -14,6 +14,7 @@ import {
   type Product,
   type Category,
 } from '@/lib/data';
+import { trackEvent } from '@/lib/track';
 
 /* ── Padlock SVG (reused in flow nav) ── */
 const PadlockIcon = () => (
@@ -128,6 +129,7 @@ export default function FeatureMatrixPage() {
     fetch('/api/auth/me').then(r => r.json()).then(d => {
       if (d.authenticated) { setAuthed(true); setAuthEmail(d.email); }
     }).catch(() => {});
+    trackEvent('page_view', { path: '/' });
   }, []);
 
   const handleLogin = useCallback(async (e: React.FormEvent) => {
@@ -165,9 +167,11 @@ export default function FeatureMatrixPage() {
 
   const handleTabClick = useCallback((name: string) => {
     if (authed) {
+      trackEvent('tab_click', { tab: name, outcome: 'coming_soon' });
       setComingSoonFlowName(name);
       setComingSoonVisible(true);
     } else {
+      trackEvent('tab_click', { tab: name, outcome: 'locked' });
       setLockedFlowName(name);
       setLockedModalVisible(true);
     }
@@ -175,11 +179,15 @@ export default function FeatureMatrixPage() {
 
   /* ── Handlers ── */
   const handleShowFeatureDetail = useCallback((fid: string) => {
+    const f = FEATURES.find(x => x.id === fid);
+    trackEvent('feature_click', { featureId: fid, featureName: f?.name });
     setSelectedFeature(fid);
     setSelectedProduct(null);
   }, []);
 
   const handleShowProductDetail = useCallback((pid: string) => {
+    const p = PRODUCTS.find(x => x.id === pid);
+    trackEvent('product_click', { productId: pid, productName: p?.name });
     setSelectedProduct(pid);
     setSelectedFeature(null);
   }, []);

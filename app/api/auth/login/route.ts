@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { loadUsers, verifyPassword, createSessionToken, sessionCookieHeader } from '@/lib/auth';
+import { logEvent } from '@/lib/analytics';
 
 export async function POST(req: NextRequest) {
   try {
@@ -20,6 +21,9 @@ export async function POST(req: NextRequest) {
     }
 
     const token = createSessionToken(user.email);
+    const ua = req.headers.get('user-agent') || '';
+    logEvent('login', user.email, { userAgent: ua }).catch(() => {});
+
     const res = NextResponse.json({ ok: true, email: user.email });
     res.headers.set('Set-Cookie', sessionCookieHeader(token));
     return res;

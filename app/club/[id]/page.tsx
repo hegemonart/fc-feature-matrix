@@ -6,6 +6,7 @@ import { generateClubSummary } from '@/lib/summary';
 import type { Metadata } from 'next';
 import CategoryFilter from './CategoryFilter';
 import ScrollRestore from './ScrollRestore';
+import PageTracker from './PageTracker';
 
 /* ── Static params for all products ── */
 
@@ -113,6 +114,7 @@ export default async function ClubDetailPage({
       </header>
 
       <ScrollRestore />
+      <PageTracker clubId={pid} />
       <div className="page-body">
         {/* ── ALERT BANNER ── */}
         {showAlert && (
