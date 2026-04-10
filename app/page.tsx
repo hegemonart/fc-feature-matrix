@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useRef, useCallback } from 'react';
+import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import {
   CATEGORIES,
   PRODUCTS,
@@ -14,6 +14,7 @@ import {
   type Product,
   type Category,
 } from '@/lib/data';
+import { trackEvent } from '@/lib/track';
 
 /* ── Padlock SVG (reused in flow nav) ── */
 const PadlockIcon = () => (
@@ -56,9 +57,20 @@ export default function FeatureMatrixPage() {
   const [adoptionSort, setAdoptionSort] = useState<'asc' | 'desc' | null>(null);
   const [featureAlphaSort, setFeatureAlphaSort] = useState(false);
 
-  /* ── Locked modal ── */
+  /* ── Auth ── */
+  const [authed, setAuthed] = useState(false);
+  const [authEmail, setAuthEmail] = useState('');
+  const [loginModalVisible, setLoginModalVisible] = useState(false);
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+
+  /* ── Locked / Coming Soon modal ── */
   const [lockedModalVisible, setLockedModalVisible] = useState(false);
   const [lockedFlowName, setLockedFlowName] = useState('');
+  const [comingSoonVisible, setComingSoonVisible] = useState(false);
+  const [comingSoonFlowName, setComingSoonFlowName] = useState('');
 
   /* ── Tooltip ── */
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -77,7 +89,7 @@ export default function FeatureMatrixPage() {
       if (filterSport === 'federation' && p.type !== 'governing') return false;
       if (filterSport === 'league' && p.type !== 'league') return false;
       return true;
-    });
+    }).sort((a, b) => a.name.localeCompare(b.name));
   }, [filterSport]);
 
   const visibleFeats = useMemo(() => {
@@ -112,13 +124,70 @@ export default function FeatureMatrixPage() {
   }, []);
 
 
+  /* ── Auth: check session on mount ── */
+  useEffect(() => {
+    fetch('/api/auth/me').then(r => r.json()).then(d => {
+      if (d.authenticated) { setAuthed(true); setAuthEmail(d.email); }
+    }).catch(() => {});
+    trackEvent('page_view', { path: '/' });
+  }, []);
+
+  const handleLogin = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
+    setLoginLoading(true);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        setAuthed(true);
+        setAuthEmail(data.email);
+        setLoginModalVisible(false);
+        setLoginEmail('');
+        setLoginPassword('');
+      } else {
+        setLoginError(data.error || 'Login failed');
+      }
+    } catch {
+      setLoginError('Network error');
+    } finally {
+      setLoginLoading(false);
+    }
+  }, [loginEmail, loginPassword]);
+
+  const handleLogout = useCallback(async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    setAuthed(false);
+    setAuthEmail('');
+  }, []);
+
+  const handleTabClick = useCallback((name: string) => {
+    if (authed) {
+      trackEvent('tab_click', { tab: name, outcome: 'coming_soon' });
+      setComingSoonFlowName(name);
+      setComingSoonVisible(true);
+    } else {
+      trackEvent('tab_click', { tab: name, outcome: 'locked' });
+      setLockedFlowName(name);
+      setLockedModalVisible(true);
+    }
+  }, [authed]);
+
   /* ── Handlers ── */
   const handleShowFeatureDetail = useCallback((fid: string) => {
+    const f = FEATURES.find(x => x.id === fid);
+    trackEvent('feature_click', { featureId: fid, featureName: f?.name });
     setSelectedFeature(fid);
     setSelectedProduct(null);
   }, []);
 
   const handleShowProductDetail = useCallback((pid: string) => {
+    const p = PRODUCTS.find(x => x.id === pid);
+    trackEvent('product_click', { productId: pid, productName: p?.name });
     setSelectedProduct(pid);
     setSelectedFeature(null);
   }, []);
@@ -137,10 +206,6 @@ export default function FeatureMatrixPage() {
     setFeatureAlphaSort(false);
   }, []);
 
-  const handleLockedTabClick = useCallback((name: string) => {
-    setLockedFlowName(name);
-    setLockedModalVisible(true);
-  }, []);
 
   /* ── Tooltip handlers ── */
   const handleCellMouseOver = useCallback((fid: string, pid: string) => {
@@ -182,22 +247,39 @@ export default function FeatureMatrixPage() {
       <header>
         <div className="logo">FC Benchmark <span>//</span> April 2026</div>
         <div className="header-title">Feature Matrix</div>
+        {authed ? (
+          <button className="sign-in-btn" onClick={handleLogout}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            Sign out
+          </button>
+        ) : (
+          <button className="sign-in-btn" onClick={() => setLoginModalVisible(true)}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Sign in
+          </button>
+        )}
       </header>
 
       {/* ── FLOW NAV ── */}
       <nav className="flow-nav" role="tablist" aria-label="Analysis views">
         <button className="flow-tab active" role="tab" aria-selected="true">
-          Homepage <span className="tab-badge">LIVE</span>
+          Homepage
         </button>
         {LOCKED_TABS.map(tab => (
           <button
             key={tab.id}
-            className="flow-tab locked"
+            className="flow-tab"
             role="tab"
             aria-selected="false"
-            onClick={() => handleLockedTabClick(tab.name)}
+            onClick={() => handleTabClick(tab.name)}
           >
-            <span className="lock-icon"><PadlockIcon /></span>
             {tab.name}
           </button>
         ))}
@@ -297,7 +379,6 @@ export default function FeatureMatrixPage() {
                   onFeatureClick={handleShowFeatureDetail}
                   onCellMouseOver={handleCellMouseOver}
                   onCellMouseMove={handleCellMouseMove}
-                  onProductClick={handleShowProductDetail}
                 />
               )}
             </tbody>
@@ -340,13 +421,80 @@ export default function FeatureMatrixPage() {
           </div>
           <h3 id="lockedTitle">Analysis Restricted</h3>
           <p>The <span className="locked-flow-name">{lockedFlowName}</span> view is locked. This deep-dive flow requires admin access to unlock comparative analysis across products.</p>
-          <button className="locked-btn" onClick={() => setLockedModalVisible(false)}>
+          <a className="locked-btn" href="mailto:atillyard@brentfordfc.com?subject=Access%20Request%20%E2%80%93%20FC%20Benchmark&body=Hi%2C%0A%0AI%E2%80%99d%20like%20to%20request%20access%20to%20the%20locked%20analysis%20views%20on%20FC%20Benchmark.%0A%0AThanks">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.19h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              <rect x="2" y="4" width="20" height="16" rx="2" />
+              <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
             Request access from admin
-          </button>
+          </a>
           <button className="locked-dismiss" onClick={() => setLockedModalVisible(false)}>Maybe later</button>
+        </div>
+      </div>
+
+      {/* ── LOGIN MODAL ── */}
+      <div
+        className={`locked-overlay${loginModalVisible ? ' visible' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="loginTitle"
+        onClick={e => { if (e.target === e.currentTarget) { setLoginModalVisible(false); setLoginError(''); } }}
+      >
+        <div className="locked-card login-card">
+          <h3 id="loginTitle">Sign in</h3>
+          <p className="login-subtitle">Enter your credentials to access all analysis views.</p>
+          <form onSubmit={handleLogin} className="login-form">
+            <label className="login-label">
+              Email
+              <input
+                type="email"
+                className="login-input"
+                value={loginEmail}
+                onChange={e => setLoginEmail(e.target.value)}
+                placeholder="you@example.com"
+                autoComplete="email"
+                required
+              />
+            </label>
+            <label className="login-label">
+              Password
+              <input
+                type="password"
+                className="login-input"
+                value={loginPassword}
+                onChange={e => setLoginPassword(e.target.value)}
+                placeholder={'\u2022'.repeat(8)}
+                autoComplete="current-password"
+                required
+              />
+            </label>
+            {loginError && <div className="login-error">{loginError}</div>}
+            <button type="submit" className="locked-btn login-submit" disabled={loginLoading}>
+              {loginLoading ? 'Signing in\u2026' : 'Sign in'}
+            </button>
+          </form>
+          <button className="locked-dismiss" onClick={() => { setLoginModalVisible(false); setLoginError(''); }}>Cancel</button>
+        </div>
+      </div>
+
+      {/* ── COMING SOON MODAL ── */}
+      <div
+        className={`locked-overlay${comingSoonVisible ? ' visible' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="comingSoonTitle"
+        onClick={e => { if (e.target === e.currentTarget) setComingSoonVisible(false); }}
+      >
+        <div className="locked-card coming-soon-card">
+          <div className="coming-soon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <h3 id="comingSoonTitle">Coming Soon</h3>
+          <p>The <span className="locked-flow-name">{comingSoonFlowName}</span> analysis is currently being built. This view will be available in a future update.</p>
+          <button className="locked-btn" onClick={() => setComingSoonVisible(false)}>Got it</button>
         </div>
       </div>
 
@@ -388,7 +536,6 @@ function TableRows({
   onFeatureClick,
   onCellMouseOver,
   onCellMouseMove,
-  onProductClick,
 }: {
   feats: Feature[];
   prods: Product[];
@@ -398,7 +545,6 @@ function TableRows({
   onFeatureClick: (fid: string) => void;
   onCellMouseOver: (fid: string, pid: string) => void;
   onCellMouseMove: (e: React.MouseEvent) => void;
-  onProductClick: (pid: string) => void;
 }) {
   const rows: React.ReactNode[] = [];
   let lastCat: string | null = null;
@@ -584,7 +730,7 @@ function ProductDetail({
     maxWeighted += f.weight;
     if (f.presence[pid] === 'full') weightedScore += f.weight;
     else if (f.presence[pid] === 'partial') weightedScore += Math.round(f.weight * 0.5);
-    else weightedScore -= f.weight;
+    // absent = no penalty (consistent with lib/scoring.ts)
   });
   const pct = Math.round((fullCount + partialCount) / FEATURES.length * 100);
 

@@ -12,7 +12,7 @@ export type BandId = 'table_stakes' | 'expected' | 'competitive' | 'innovation';
 
 export type ProductType = 'club' | 'league' | 'governing';
 
-export type SportType = 'football' | 'motorsport' | 'basketball' | 'baseball';
+export type SportType = 'football' | 'motorsport' | 'basketball' | 'baseball' | 'tennis';
 
 export interface Category {
   id: CategoryId;
@@ -25,6 +25,8 @@ export interface Product {
   name: string;
   type: ProductType;
   sport: SportType;
+  logo: string;
+  darkLogo?: boolean;
 }
 
 export interface Feature {
@@ -58,34 +60,42 @@ export const CATEGORIES: Category[] = [
   { id: 'diff',    name: 'Differentiators',       color: '#f59e0b' },
 ];
 
+const W = 'https://upload.wikimedia.org/wikipedia';
+
 export const PRODUCTS: Product[] = [
-  { id: 'real_madrid',     name: 'Real Madrid',     type: 'club',      sport: 'football' },
-  { id: 'fc_barcelona',    name: 'FC Barcelona',    type: 'club',      sport: 'football' },
-  { id: 'bayern_munich',   name: 'Bayern Munich',   type: 'club',      sport: 'football' },
-  { id: 'psg',             name: 'PSG',             type: 'club',      sport: 'football' },
-  { id: 'liverpool',       name: 'Liverpool',       type: 'club',      sport: 'football' },
-  { id: 'man_city',        name: 'Man City',        type: 'club',      sport: 'football' },
-  { id: 'arsenal',         name: 'Arsenal',         type: 'club',      sport: 'football' },
-  { id: 'man_united',      name: 'Man United',      type: 'club',      sport: 'football' },
-  { id: 'tottenham',       name: 'Tottenham',       type: 'club',      sport: 'football' },
-  { id: 'chelsea',         name: 'Chelsea',         type: 'club',      sport: 'football' },
-  { id: 'inter_milan',     name: 'Inter Milan',     type: 'club',      sport: 'football' },
-  { id: 'bvb_dortmund',    name: 'BVB Dortmund',    type: 'club',      sport: 'football' },
-  { id: 'atletico_madrid', name: 'Atletico Madrid', type: 'club',      sport: 'football' },
-  { id: 'aston_villa',     name: 'Aston Villa',     type: 'club',      sport: 'football' },
-  { id: 'ac_milan',        name: 'AC Milan',        type: 'club',      sport: 'football' },
-  { id: 'juventus',        name: 'Juventus',        type: 'club',      sport: 'football' },
-  { id: 'newcastle',       name: 'Newcastle',       type: 'club',      sport: 'football' },
-  { id: 'vfb_stuttgart',   name: 'VfB Stuttgart',   type: 'club',      sport: 'football' },
-  { id: 'sl_benfica',      name: 'SL Benfica',      type: 'club',      sport: 'football' },
-  { id: 'west_ham',        name: 'West Ham',        type: 'club',      sport: 'football' },
-  { id: 'brentford',       name: 'Brentford',       type: 'club',      sport: 'football' },
-  { id: 'uefa',            name: 'UEFA',            type: 'governing', sport: 'football' },
-  { id: 'f1',              name: 'Formula 1',       type: 'league',    sport: 'motorsport' },
-  { id: 'motogp',          name: 'MotoGP',          type: 'league',    sport: 'motorsport' },
-  { id: 'nba',             name: 'NBA',             type: 'league',    sport: 'basketball' },
-  { id: 'mls',             name: 'MLS',             type: 'league',    sport: 'football' },
-  { id: 'mlb',             name: 'MLB',             type: 'league',    sport: 'baseball' },
+  { id: 'real_madrid',     name: 'Real Madrid',     type: 'club',      sport: 'football',    logo: `${W}/en/thumb/5/56/Real_Madrid_CF.svg/200px-Real_Madrid_CF.svg.png` },
+  { id: 'fc_barcelona',    name: 'FC Barcelona',    type: 'club',      sport: 'football',    logo: `${W}/en/thumb/4/47/FC_Barcelona_%28crest%29.svg/200px-FC_Barcelona_%28crest%29.svg.png` },
+  { id: 'bayern_munich',   name: 'Bayern Munich',   type: 'club',      sport: 'football',    logo: `${W}/commons/thumb/8/8d/FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg/200px-FC_Bayern_M%C3%BCnchen_logo_%282024%29.svg.png` },
+  { id: 'psg',             name: 'PSG',             type: 'club',      sport: 'football',    logo: `${W}/en/thumb/a/a7/Paris_Saint-Germain_F.C..svg/200px-Paris_Saint-Germain_F.C..svg.png` },
+  { id: 'liverpool',       name: 'Liverpool',       type: 'club',      sport: 'football',    logo: `${W}/en/thumb/0/0c/Liverpool_FC.svg/200px-Liverpool_FC.svg.png` },
+  { id: 'man_city',        name: 'Man City',        type: 'club',      sport: 'football',    logo: `${W}/en/thumb/e/eb/Manchester_City_FC_badge.svg/200px-Manchester_City_FC_badge.svg.png` },
+  { id: 'arsenal',         name: 'Arsenal',         type: 'club',      sport: 'football',    logo: `${W}/en/thumb/5/53/Arsenal_FC.svg/200px-Arsenal_FC.svg.png` },
+  { id: 'man_united',      name: 'Man United',      type: 'club',      sport: 'football',    logo: `${W}/en/thumb/7/7a/Manchester_United_FC_crest.svg/200px-Manchester_United_FC_crest.svg.png` },
+  { id: 'tottenham',       name: 'Tottenham',       type: 'club',      sport: 'football',    logo: `${W}/en/thumb/0/05/Spurs_2017_badge.svg/200px-Spurs_2017_badge.svg.png` },
+  { id: 'chelsea',         name: 'Chelsea',         type: 'club',      sport: 'football',    logo: `${W}/en/thumb/c/cc/Chelsea_FC.svg/200px-Chelsea_FC.svg.png` },
+  { id: 'inter_milan',     name: 'Inter Milan',     type: 'club',      sport: 'football',    logo: `${W}/commons/thumb/0/05/FC_Internazionale_Milano_2021.svg/200px-FC_Internazionale_Milano_2021.svg.png` },
+  { id: 'bvb_dortmund',    name: 'BVB Dortmund',    type: 'club',      sport: 'football',    logo: `${W}/commons/thumb/6/67/Borussia_Dortmund_logo.svg/200px-Borussia_Dortmund_logo.svg.png` },
+  { id: 'atletico_madrid', name: 'Atletico Madrid', type: 'club',      sport: 'football',    logo: `${W}/en/thumb/f/f9/Atletico_Madrid_Logo_2024.svg/200px-Atletico_Madrid_Logo_2024.svg.png` },
+  { id: 'aston_villa',     name: 'Aston Villa',     type: 'club',      sport: 'football',    logo: `${W}/en/thumb/9/9a/Aston_Villa_FC_new_crest.svg/200px-Aston_Villa_FC_new_crest.svg.png` },
+  { id: 'ac_milan',        name: 'AC Milan',        type: 'club',      sport: 'football',    logo: `${W}/commons/thumb/d/d0/Logo_of_AC_Milan.svg/200px-Logo_of_AC_Milan.svg.png` },
+  { id: 'juventus',        name: 'Juventus',        type: 'club',      sport: 'football',    logo: `${W}/commons/thumb/e/ed/Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg/200px-Juventus_FC_-_logo_black_%28Italy%2C_2020%29.svg.png`, darkLogo: true },
+  { id: 'newcastle',       name: 'Newcastle',       type: 'club',      sport: 'football',    logo: `${W}/en/thumb/5/56/Newcastle_United_Logo.svg/200px-Newcastle_United_Logo.svg.png` },
+  { id: 'vfb_stuttgart',   name: 'VfB Stuttgart',   type: 'club',      sport: 'football',    logo: `${W}/commons/thumb/e/eb/VfB_Stuttgart_1893_Logo.svg/200px-VfB_Stuttgart_1893_Logo.svg.png` },
+  { id: 'sl_benfica',      name: 'SL Benfica',      type: 'club',      sport: 'football',    logo: `${W}/en/thumb/a/a2/SL_Benfica_logo.svg/200px-SL_Benfica_logo.svg.png` },
+  { id: 'west_ham',        name: 'West Ham',        type: 'club',      sport: 'football',    logo: `${W}/en/thumb/c/c2/West_Ham_United_FC_logo.svg/200px-West_Ham_United_FC_logo.svg.png` },
+  { id: 'brentford',       name: 'Brentford',       type: 'club',      sport: 'football',    logo: `${W}/en/thumb/2/2a/Brentford_FC_crest.svg/200px-Brentford_FC_crest.svg.png` },
+  { id: 'uefa',            name: 'UEFA',            type: 'governing', sport: 'football',    logo: `${W}/en/thumb/9/9d/UEFA_full_logo.svg/200px-UEFA_full_logo.svg.png` },
+  { id: 'f1',              name: 'Formula 1',       type: 'league',    sport: 'motorsport',  logo: `${W}/commons/thumb/2/2d/Formula_One_logo.svg/200px-Formula_One_logo.svg.png` },
+  { id: 'motogp',          name: 'MotoGP',          type: 'league',    sport: 'motorsport',  logo: `${W}/commons/thumb/f/f9/MotoGP_logo_%282024%29.svg/200px-MotoGP_logo_%282024%29.svg.png`, darkLogo: true },
+  { id: 'nba',             name: 'NBA',             type: 'league',    sport: 'basketball',  logo: `${W}/en/thumb/0/03/National_Basketball_Association_logo.svg/200px-National_Basketball_Association_logo.svg.png` },
+  { id: 'mls',             name: 'MLS',             type: 'league',    sport: 'football',    logo: `${W}/commons/thumb/c/c7/Major_League_Soccer_logo.svg/200px-Major_League_Soccer_logo.svg.png` },
+  { id: 'mlb',             name: 'MLB',             type: 'league',    sport: 'baseball',    logo: `${W}/commons/thumb/a/a6/Major_League_Baseball_logo.svg/200px-Major_League_Baseball_logo.svg.png` },
+  { id: 'atp_tour',        name: 'ATP Tour',        type: 'league',    sport: 'tennis',      logo: `${W}/en/thumb/3/3f/ATP_Tour_logo.svg/200px-ATP_Tour_logo.svg.png` },
+  { id: 'club_brugge',     name: 'Club Brugge',     type: 'club',      sport: 'football',    logo: `${W}/en/thumb/d/d0/Club_Brugge_KV_logo.svg/200px-Club_Brugge_KV_logo.svg.png` },
+  { id: 'eintracht',       name: 'Eintracht Frankfurt', type: 'club',  sport: 'football',    logo: `${W}/en/thumb/7/7e/Eintracht_Frankfurt_crest.svg/200px-Eintracht_Frankfurt_crest.svg.png` },
+  { id: 'itf_tennis',      name: 'ITF Tennis',      type: 'governing', sport: 'tennis',      logo: `${W}/commons/thumb/1/16/International_Tennis_Federation_Logo.svg/200px-International_Tennis_Federation_Logo.svg.png` },
+  { id: 'rb_leipzig',      name: 'RB Leipzig',      type: 'club',      sport: 'football',    logo: `${W}/en/thumb/0/04/RB_Leipzig_2014_logo.svg/200px-RB_Leipzig_2014_logo.svg.png` },
+  { id: 'valencia_cf',     name: 'Valencia CF',     type: 'club',      sport: 'football',    logo: `${W}/en/thumb/c/ce/Valenciacf.svg/200px-Valenciacf.svg.png` },
 ];
 
 export const ALL_IDS: string[] = PRODUCTS.map(p => p.id);
@@ -112,8 +122,8 @@ export const FEATURES: Feature[] = [
     desc: 'Online store link, merchandise showcase, kit display, product cards on homepage',
     cat: 'revenue', weight: 5,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','f1','motogp','nba','mlb'],
-      ['arsenal','mls'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','eintracht','rb_leipzig','f1','motogp','nba','mlb'],
+      ['arsenal','valencia_cf','mls'],
     ),
   },
   {
@@ -121,8 +131,8 @@ export const FEATURES: Feature[] = [
     desc: 'Ticket purchase links, match-day info, hospitality',
     cat: 'revenue', weight: 5,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','psg','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','newcastle','vfb_stuttgart','west_ham','brentford','f1','nba','mls','mlb'],
-      ['bayern_munich','arsenal','juventus','sl_benfica','motogp'],
+      ['real_madrid','fc_barcelona','psg','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','newcastle','vfb_stuttgart','west_ham','brentford','valencia_cf','f1','nba','mls','mlb'],
+      ['bayern_munich','arsenal','juventus','sl_benfica','club_brugge','eintracht','itf_tennis','rb_leipzig','motogp','atp_tour'],
     ),
   },
   {
@@ -131,7 +141,7 @@ export const FEATURES: Feature[] = [
     cat: 'revenue', weight: 5,
     presence: makePresence(
       ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','man_united','tottenham','inter_milan','atletico_madrid','juventus','sl_benfica','west_ham','motogp','nba','mls','mlb'],
-      ['psg','arsenal','chelsea','bvb_dortmund','aston_villa','ac_milan','vfb_stuttgart','f1'],
+      ['psg','arsenal','chelsea','bvb_dortmund','aston_villa','ac_milan','vfb_stuttgart','eintracht','rb_leipzig','valencia_cf','f1'],
     ),
   },
   {
@@ -139,8 +149,17 @@ export const FEATURES: Feature[] = [
     desc: 'Club-branded TV/streaming service — premium content monetization and global fan reach',
     cat: 'revenue', weight: 4,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_united','tottenham','chelsea','inter_milan','ac_milan','sl_benfica','f1','motogp','nba','mls','mlb'],
-      ['man_city','bvb_dortmund','newcastle','west_ham','brentford','uefa'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_united','tottenham','chelsea','inter_milan','ac_milan','sl_benfica','valencia_cf','f1','motogp','nba','mls','mlb'],
+      ['man_city','bvb_dortmund','newcastle','west_ham','brentford','club_brugge','eintracht','atp_tour','uefa'],
+    ),
+  },
+  {
+    id: 'F29', name: 'Corporate / Hospitality',
+    desc: 'Dedicated hospitality packages, VIP experiences, corporate event sections — premium revenue stream beyond standard ticketing',
+    cat: 'revenue', weight: 3,
+    presence: makePresence(
+      [],
+      ['fc_barcelona','bayern_munich','liverpool','chelsea','newcastle','valencia_cf','motogp'],
     ),
   },
 
@@ -156,7 +175,7 @@ export const FEATURES: Feature[] = [
     desc: 'Upcoming match schedule, past match scores/results widget visible on homepage — core matchday engagement',
     cat: 'content', weight: 3,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','atletico_madrid','aston_villa','ac_milan','newcastle','vfb_stuttgart','west_ham','brentford','uefa','f1','motogp','nba','mls','mlb'],
+      ['real_madrid','fc_barcelona','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','atletico_madrid','aston_villa','ac_milan','newcastle','vfb_stuttgart','west_ham','brentford','club_brugge','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
       ['bayern_munich','bvb_dortmund','juventus','sl_benfica'],
     ),
   },
@@ -165,8 +184,8 @@ export const FEATURES: Feature[] = [
     desc: 'Current league table, standings widget, ranking display on homepage — competitive context for fans',
     cat: 'content', weight: 2,
     presence: makePresence(
-      ['inter_milan','atletico_madrid','vfb_stuttgart','uefa','f1','nba','mls'],
-      ['liverpool','chelsea','motogp','mlb'],
+      ['inter_milan','atletico_madrid','vfb_stuttgart','eintracht','atp_tour','uefa','f1','nba','mls'],
+      ['liverpool','chelsea','club_brugge','itf_tennis','motogp','mlb'],
     ),
   },
   {
@@ -174,8 +193,8 @@ export const FEATURES: Feature[] = [
     desc: 'Dedicated video area, embedded video player, video content cards with play buttons on homepage',
     cat: 'content', weight: 4,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','uefa','f1','motogp','nba','mls','mlb'],
-      ['aston_villa','brentford'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','club_brugge','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
+      ['aston_villa','brentford','eintracht','rb_leipzig'],
     ),
   },
   {
@@ -183,8 +202,8 @@ export const FEATURES: Feature[] = [
     desc: 'Specific match highlight clips, replay content, goal clips — highest-demand video format',
     cat: 'content', weight: 4,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','arsenal','tottenham','chelsea','ac_milan','sl_benfica','uefa','f1','motogp','mls','mlb'],
-      ['psg','man_united','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','juventus','newcastle','vfb_stuttgart'],
+      ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','arsenal','tottenham','chelsea','ac_milan','sl_benfica','atp_tour','uefa','f1','motogp','mls','mlb'],
+      ['psg','man_united','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','juventus','newcastle','vfb_stuttgart','club_brugge','itf_tennis','valencia_cf'],
     ),
   },
   {
@@ -192,23 +211,59 @@ export const FEATURES: Feature[] = [
     desc: 'Photo gallery section, image grid, behind-the-scenes photo collections on homepage',
     cat: 'content', weight: 2,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','arsenal','chelsea','ac_milan','newcastle','vfb_stuttgart','sl_benfica','brentford','uefa','motogp'],
-      ['liverpool','man_city','man_united','tottenham','inter_milan','bvb_dortmund','juventus','west_ham','f1','nba','mlb'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','arsenal','chelsea','ac_milan','newcastle','vfb_stuttgart','sl_benfica','brentford','club_brugge','valencia_cf','uefa','motogp'],
+      ['liverpool','man_city','man_united','tottenham','inter_milan','bvb_dortmund','juventus','west_ham','atp_tour','itf_tennis','f1','nba','mlb'],
     ),
   },
   {
     id: 'F08', name: 'Hero / Banner',
     desc: 'Hero carousel, featured story banner — first impression and editorial control point',
     cat: 'content', weight: 3,
-    presence: makePresence(ALL_IDS, []),
+    presence: makePresence(ALL_IDS.filter(id => id !== 'eintracht'), []),
   },
   {
     id: 'F09', name: 'Navigation Depth',
     desc: 'Rich top nav with 6+ items — information architecture and content discoverability',
     cat: 'content', weight: 3,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','uefa','f1','motogp','nba','mls','mlb'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','itf_tennis','rb_leipzig','valencia_cf','atp_tour','uefa','f1','motogp','nba','mls','mlb'],
       [],
+    ),
+  },
+  {
+    id: 'F27', name: 'Live Scores Ticker',
+    desc: 'Persistent scores/results bar at top of page showing live or recent scores across the league — real-time engagement hook',
+    cat: 'content', weight: 2,
+    presence: makePresence(
+      ['atp_tour','uefa','nba','mlb'],
+      ['liverpool','arsenal','tottenham','west_ham','vfb_stuttgart','f1'],
+    ),
+  },
+  {
+    id: 'F28', name: 'Social Media Feed Embed',
+    desc: 'Embedded social feed (Instagram grid, Twitter feed) on homepage — cross-platform content amplification beyond icon links',
+    cat: 'content', weight: 1,
+    presence: makePresence(
+      ['uefa'],
+      ['fc_barcelona','psg','vfb_stuttgart','brentford'],
+    ),
+  },
+  {
+    id: 'F30', name: 'Player Profiles / Squad',
+    desc: 'Player cards, squad roster, player spotlight sections on homepage — fan connection and content personalisation driver',
+    cat: 'content', weight: 2,
+    presence: makePresence(
+      ['real_madrid','fc_barcelona','liverpool','chelsea','atletico_madrid','ac_milan','eintracht','itf_tennis','f1','motogp'],
+      ['arsenal','man_united','inter_milan','juventus','sl_benfica','west_ham','brentford','valencia_cf','atp_tour','uefa','nba'],
+    ),
+  },
+  {
+    id: 'F32', name: 'Podcast / Audio',
+    desc: 'Podcast sections, audio content, "listen" CTAs — growing content format for commute-time fan engagement',
+    cat: 'content', weight: 1,
+    presence: makePresence(
+      ['itf_tennis'],
+      ['fc_barcelona','bayern_munich','man_united','bvb_dortmund','aston_villa','ac_milan','newcastle','motogp','nba','mlb'],
     ),
   },
 
@@ -218,8 +273,8 @@ export const FEATURES: Feature[] = [
     desc: "Dedicated women's team content on homepage — brand inclusivity and growing market segment",
     cat: 'brand', weight: 3,
     presence: makePresence(
-      ['fc_barcelona','bayern_munich','liverpool','man_city','man_united','arsenal','chelsea','ac_milan','west_ham','brentford','uefa'],
-      ['real_madrid','psg','tottenham','aston_villa','juventus','newcastle','vfb_stuttgart'],
+      ['fc_barcelona','bayern_munich','liverpool','man_city','man_united','arsenal','chelsea','ac_milan','west_ham','brentford','itf_tennis','uefa'],
+      ['real_madrid','psg','tottenham','aston_villa','juventus','newcastle','vfb_stuttgart','valencia_cf'],
     ),
   },
   {
@@ -227,8 +282,8 @@ export const FEATURES: Feature[] = [
     desc: 'Youth development, academy section on homepage — brand storytelling and talent pipeline visibility',
     cat: 'brand', weight: 2,
     presence: makePresence(
-      ['fc_barcelona','bayern_munich','man_city','man_united','arsenal','chelsea','ac_milan','vfb_stuttgart','west_ham','uefa'],
-      ['real_madrid','liverpool','tottenham','inter_milan','newcastle','f1'],
+      ['fc_barcelona','bayern_munich','man_city','man_united','arsenal','chelsea','ac_milan','vfb_stuttgart','west_ham','valencia_cf','uefa'],
+      ['real_madrid','liverpool','tottenham','inter_milan','newcastle','itf_tennis','f1'],
     ),
   },
   {
@@ -236,8 +291,8 @@ export const FEATURES: Feature[] = [
     desc: 'Social platform icons/links in header or footer — cross-platform engagement and audience routing',
     cat: 'brand', weight: 2,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','uefa','mls','nba','f1','motogp','mlb'],
-      [],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','mls','nba','f1','motogp','mlb'],
+      ['eintracht'],
     ),
   },
   {
@@ -245,7 +300,7 @@ export const FEATURES: Feature[] = [
     desc: 'Dedicated partner/sponsor section, logo grid — commercial partner value demonstration',
     cat: 'brand', weight: 4,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','sl_benfica','west_ham','brentford','f1','motogp','nba','mlb'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','sl_benfica','west_ham','brentford','club_brugge','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','f1','motogp','nba','mlb'],
       ['vfb_stuttgart','uefa'],
     ),
   },
@@ -254,8 +309,17 @@ export const FEATURES: Feature[] = [
     desc: 'Mobile app download badges/CTAs — mobile-first fan relationship and push notification channel',
     cat: 'brand', weight: 3,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','liverpool','man_united','tottenham','chelsea','ac_milan','sl_benfica','west_ham','brentford','f1','motogp','nba'],
-      ['bayern_munich','inter_milan','mlb'],
+      ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','sl_benfica','west_ham','brentford','atp_tour','f1','motogp','nba','mls','mlb'],
+      ['vfb_stuttgart'],
+    ),
+  },
+  {
+    id: 'F31', name: 'Trophy / Honours Showcase',
+    desc: 'Visual trophy cabinet, honours list, trophy icons — emotional brand equity and competitive prestige display',
+    cat: 'brand', weight: 2,
+    presence: makePresence(
+      ['bayern_munich','liverpool','inter_milan','valencia_cf'],
+      ['man_city','juventus'],
     ),
   },
 
@@ -265,8 +329,8 @@ export const FEATURES: Feature[] = [
     desc: 'Search icon/bar on homepage — content discoverability and user intent capture',
     cat: 'ux', weight: 2,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','uefa','f1','motogp','nba','mls','mlb'],
-      ['inter_milan'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
+      ['inter_milan','club_brugge'],
     ),
   },
   {
@@ -274,7 +338,7 @@ export const FEATURES: Feature[] = [
     desc: 'Language selector visible — global accessibility for international fanbase',
     cat: 'ux', weight: 3,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','vfb_stuttgart','eintracht','club_brugge','rb_leipzig','valencia_cf','atp_tour','itf_tennis','motogp','mls'],
       ['uefa'],
     ),
   },
@@ -283,8 +347,8 @@ export const FEATURES: Feature[] = [
     desc: 'User account, sign-in button — first-party data capture and personalization gateway',
     cat: 'ux', weight: 4,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','sl_benfica','west_ham','brentford','uefa','f1','motogp','nba','mls','mlb'],
-      ['inter_milan','vfb_stuttgart'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','sl_benfica','west_ham','brentford','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
+      ['inter_milan','vfb_stuttgart','club_brugge'],
     ),
   },
   {
@@ -292,7 +356,7 @@ export const FEATURES: Feature[] = [
     desc: 'Email subscription form/CTA — owned audience channel for re-engagement',
     cat: 'ux', weight: 3,
     presence: makePresence(
-      ['bayern_munich','liverpool','west_ham'],
+      ['bayern_munich','liverpool','west_ham','atp_tour'],
       ['real_madrid','chelsea'],
     ),
   },
@@ -301,7 +365,7 @@ export const FEATURES: Feature[] = [
     desc: 'Multi-column footer with organized links — secondary navigation and legal compliance',
     cat: 'ux', weight: 1,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','uefa','f1','motogp','nba','mls','mlb'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','itf_tennis','rb_leipzig','valencia_cf','atp_tour','uefa','f1','motogp','nba','mls','mlb'],
       [],
     ),
   },
@@ -312,8 +376,8 @@ export const FEATURES: Feature[] = [
     desc: 'Stadium experience, museum, tour promotion — heritage monetization and matchday revenue',
     cat: 'diff', weight: 2,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','liverpool','tottenham','aston_villa','sl_benfica','brentford'],
-      ['psg','chelsea','man_united','inter_milan','bvb_dortmund','juventus','newcastle'],
+      ['real_madrid','fc_barcelona','bayern_munich','liverpool','tottenham','aston_villa','sl_benfica','brentford','valencia_cf'],
+      ['psg','chelsea','man_united','inter_milan','bvb_dortmund','juventus','newcastle','club_brugge','eintracht'],
     ),
   },
   {
@@ -321,8 +385,8 @@ export const FEATURES: Feature[] = [
     desc: 'Club foundation, CSR, community section — brand purpose and community goodwill',
     cat: 'diff', weight: 1,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','liverpool','chelsea','newcastle','brentford','uefa'],
-      ['bayern_munich','psg','man_city','man_united','arsenal','tottenham','atletico_madrid','ac_milan'],
+      ['real_madrid','fc_barcelona','liverpool','chelsea','newcastle','brentford','valencia_cf','uefa'],
+      ['bayern_munich','psg','man_city','man_united','arsenal','tottenham','atletico_madrid','ac_milan','eintracht'],
     ),
   },
   {
@@ -340,7 +404,7 @@ export const FEATURES: Feature[] = [
     cat: 'diff', weight: 1,
     presence: makePresence(
       ['bayern_munich','juventus','sl_benfica','motogp'],
-      ['fc_barcelona','liverpool'],
+      ['fc_barcelona','liverpool','valencia_cf'],
     ),
   },
   {
@@ -358,7 +422,7 @@ export const FEATURES: Feature[] = [
     cat: 'diff', weight: 1,
     presence: makePresence(
       ['uefa','mls'],
-      [],
+      ['eintracht'],
     ),
   },
   {
@@ -368,60 +432,6 @@ export const FEATURES: Feature[] = [
     presence: makePresence(
       ['f1'],
       [],
-    ),
-  },
-  {
-    id: 'F27', name: 'Live Scores Ticker',
-    desc: 'Persistent scores/results bar at top of page showing live or recent scores across the league — real-time engagement hook',
-    cat: 'content', weight: 2,
-    presence: makePresence(
-      ['uefa','nba','mlb'],
-      ['liverpool','arsenal','tottenham','west_ham','vfb_stuttgart','f1'],
-    ),
-  },
-  {
-    id: 'F28', name: 'Social Media Feed Embed',
-    desc: 'Embedded social feed (Instagram grid, Twitter feed) on homepage — cross-platform content amplification beyond icon links',
-    cat: 'content', weight: 1,
-    presence: makePresence(
-      ['uefa'],
-      ['fc_barcelona','psg','vfb_stuttgart','brentford'],
-    ),
-  },
-  {
-    id: 'F29', name: 'Corporate / Hospitality',
-    desc: 'Dedicated hospitality packages, VIP experiences, corporate event sections — premium revenue stream beyond standard ticketing',
-    cat: 'revenue', weight: 3,
-    presence: makePresence(
-      [],
-      ['fc_barcelona','bayern_munich','liverpool','chelsea','newcastle','motogp'],
-    ),
-  },
-  {
-    id: 'F30', name: 'Player Profiles / Squad',
-    desc: 'Player cards, squad roster, player spotlight sections on homepage — fan connection and content personalisation driver',
-    cat: 'content', weight: 2,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','liverpool','chelsea','atletico_madrid','ac_milan','f1','motogp'],
-      ['arsenal','man_united','inter_milan','juventus','sl_benfica','west_ham','brentford','uefa','nba'],
-    ),
-  },
-  {
-    id: 'F31', name: 'Trophy / Honours Showcase',
-    desc: 'Visual trophy cabinet, honours list, trophy icons — emotional brand equity and competitive prestige display',
-    cat: 'brand', weight: 2,
-    presence: makePresence(
-      ['bayern_munich','liverpool','inter_milan'],
-      ['man_city','juventus'],
-    ),
-  },
-  {
-    id: 'F32', name: 'Podcast / Audio',
-    desc: 'Podcast sections, audio content, "listen" CTAs — growing content format for commute-time fan engagement',
-    cat: 'content', weight: 1,
-    presence: makePresence(
-      [],
-      ['fc_barcelona','bayern_munich','man_united','bvb_dortmund','aston_villa','ac_milan','newcastle','motogp','nba','mlb'],
     ),
   },
 ];
