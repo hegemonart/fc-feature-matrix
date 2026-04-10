@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useMemo, useRef, useCallback } from 'react';
+import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
 import {
   CATEGORIES,
   PRODUCTS,
@@ -56,9 +56,20 @@ export default function FeatureMatrixPage() {
   const [adoptionSort, setAdoptionSort] = useState<'asc' | 'desc' | null>(null);
   const [featureAlphaSort, setFeatureAlphaSort] = useState(false);
 
-  /* ── Locked modal ── */
+  /* ── Auth ── */
+  const [authed, setAuthed] = useState(false);
+  const [authEmail, setAuthEmail] = useState('');
+  const [loginModalVisible, setLoginModalVisible] = useState(false);
+  const [loginEmail, setLoginEmail] = useState('');
+  const [loginPassword, setLoginPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const [loginLoading, setLoginLoading] = useState(false);
+
+  /* ── Locked / Coming Soon modal ── */
   const [lockedModalVisible, setLockedModalVisible] = useState(false);
   const [lockedFlowName, setLockedFlowName] = useState('');
+  const [comingSoonVisible, setComingSoonVisible] = useState(false);
+  const [comingSoonFlowName, setComingSoonFlowName] = useState('');
 
   /* ── Tooltip ── */
   const tooltipRef = useRef<HTMLDivElement>(null);
@@ -112,6 +123,56 @@ export default function FeatureMatrixPage() {
   }, []);
 
 
+  /* ── Auth: check session on mount ── */
+  useEffect(() => {
+    fetch('/api/auth/me').then(r => r.json()).then(d => {
+      if (d.authenticated) { setAuthed(true); setAuthEmail(d.email); }
+    }).catch(() => {});
+  }, []);
+
+  const handleLogin = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    setLoginError('');
+    setLoginLoading(true);
+    try {
+      const res = await fetch('/api/auth/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+      });
+      const data = await res.json();
+      if (res.ok && data.ok) {
+        setAuthed(true);
+        setAuthEmail(data.email);
+        setLoginModalVisible(false);
+        setLoginEmail('');
+        setLoginPassword('');
+      } else {
+        setLoginError(data.error || 'Login failed');
+      }
+    } catch {
+      setLoginError('Network error');
+    } finally {
+      setLoginLoading(false);
+    }
+  }, [loginEmail, loginPassword]);
+
+  const handleLogout = useCallback(async () => {
+    await fetch('/api/auth/logout', { method: 'POST' });
+    setAuthed(false);
+    setAuthEmail('');
+  }, []);
+
+  const handleTabClick = useCallback((name: string) => {
+    if (authed) {
+      setComingSoonFlowName(name);
+      setComingSoonVisible(true);
+    } else {
+      setLockedFlowName(name);
+      setLockedModalVisible(true);
+    }
+  }, [authed]);
+
   /* ── Handlers ── */
   const handleShowFeatureDetail = useCallback((fid: string) => {
     setSelectedFeature(fid);
@@ -137,10 +198,6 @@ export default function FeatureMatrixPage() {
     setFeatureAlphaSort(false);
   }, []);
 
-  const handleLockedTabClick = useCallback((name: string) => {
-    setLockedFlowName(name);
-    setLockedModalVisible(true);
-  }, []);
 
   /* ── Tooltip handlers ── */
   const handleCellMouseOver = useCallback((fid: string, pid: string) => {
@@ -182,13 +239,24 @@ export default function FeatureMatrixPage() {
       <header>
         <div className="logo">FC Benchmark <span>//</span> April 2026</div>
         <div className="header-title">Feature Matrix</div>
-        <button className="sign-in-btn">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-          Sign in
-        </button>
+        {authed ? (
+          <button className="sign-in-btn" onClick={handleLogout}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+              <polyline points="16 17 21 12 16 7" />
+              <line x1="21" y1="12" x2="9" y2="12" />
+            </svg>
+            Sign out
+          </button>
+        ) : (
+          <button className="sign-in-btn" onClick={() => setLoginModalVisible(true)}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+              <circle cx="12" cy="7" r="4" />
+            </svg>
+            Sign in
+          </button>
+        )}
       </header>
 
       {/* ── FLOW NAV ── */}
@@ -202,7 +270,7 @@ export default function FeatureMatrixPage() {
             className="flow-tab"
             role="tab"
             aria-selected="false"
-            onClick={() => handleLockedTabClick(tab.name)}
+            onClick={() => handleTabClick(tab.name)}
           >
             {tab.name}
           </button>
@@ -353,6 +421,72 @@ export default function FeatureMatrixPage() {
             Request access from admin
           </a>
           <button className="locked-dismiss" onClick={() => setLockedModalVisible(false)}>Maybe later</button>
+        </div>
+      </div>
+
+      {/* ── LOGIN MODAL ── */}
+      <div
+        className={`locked-overlay${loginModalVisible ? ' visible' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="loginTitle"
+        onClick={e => { if (e.target === e.currentTarget) { setLoginModalVisible(false); setLoginError(''); } }}
+      >
+        <div className="locked-card login-card">
+          <h3 id="loginTitle">Sign in</h3>
+          <p className="login-subtitle">Enter your credentials to access all analysis views.</p>
+          <form onSubmit={handleLogin} className="login-form">
+            <label className="login-label">
+              Email
+              <input
+                type="email"
+                className="login-input"
+                value={loginEmail}
+                onChange={e => setLoginEmail(e.target.value)}
+                placeholder="you@example.com"
+                autoComplete="email"
+                required
+              />
+            </label>
+            <label className="login-label">
+              Password
+              <input
+                type="password"
+                className="login-input"
+                value={loginPassword}
+                onChange={e => setLoginPassword(e.target.value)}
+                placeholder={'\u2022'.repeat(8)}
+                autoComplete="current-password"
+                required
+              />
+            </label>
+            {loginError && <div className="login-error">{loginError}</div>}
+            <button type="submit" className="locked-btn login-submit" disabled={loginLoading}>
+              {loginLoading ? 'Signing in\u2026' : 'Sign in'}
+            </button>
+          </form>
+          <button className="locked-dismiss" onClick={() => { setLoginModalVisible(false); setLoginError(''); }}>Cancel</button>
+        </div>
+      </div>
+
+      {/* ── COMING SOON MODAL ── */}
+      <div
+        className={`locked-overlay${comingSoonVisible ? ' visible' : ''}`}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="comingSoonTitle"
+        onClick={e => { if (e.target === e.currentTarget) setComingSoonVisible(false); }}
+      >
+        <div className="locked-card coming-soon-card">
+          <div className="coming-soon-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+          </div>
+          <h3 id="comingSoonTitle">Coming Soon</h3>
+          <p>The <span className="locked-flow-name">{comingSoonFlowName}</span> analysis is currently being built. This view will be available in a future update.</p>
+          <button className="locked-btn" onClick={() => setComingSoonVisible(false)}>Got it</button>
         </div>
       </div>
 
