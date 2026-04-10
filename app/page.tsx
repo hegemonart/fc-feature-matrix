@@ -77,7 +77,7 @@ export default function FeatureMatrixPage() {
       if (filterSport === 'federation' && p.type !== 'governing') return false;
       if (filterSport === 'league' && p.type !== 'league') return false;
       return true;
-    });
+    }).sort((a, b) => a.name.localeCompare(b.name));
   }, [filterSport]);
 
   const visibleFeats = useMemo(() => {
@@ -297,7 +297,6 @@ export default function FeatureMatrixPage() {
                   onFeatureClick={handleShowFeatureDetail}
                   onCellMouseOver={handleCellMouseOver}
                   onCellMouseMove={handleCellMouseMove}
-                  onProductClick={handleShowProductDetail}
                 />
               )}
             </tbody>
@@ -388,7 +387,6 @@ function TableRows({
   onFeatureClick,
   onCellMouseOver,
   onCellMouseMove,
-  onProductClick,
 }: {
   feats: Feature[];
   prods: Product[];
@@ -398,7 +396,6 @@ function TableRows({
   onFeatureClick: (fid: string) => void;
   onCellMouseOver: (fid: string, pid: string) => void;
   onCellMouseMove: (e: React.MouseEvent) => void;
-  onProductClick: (pid: string) => void;
 }) {
   const rows: React.ReactNode[] = [];
   let lastCat: string | null = null;
@@ -584,7 +581,7 @@ function ProductDetail({
     maxWeighted += f.weight;
     if (f.presence[pid] === 'full') weightedScore += f.weight;
     else if (f.presence[pid] === 'partial') weightedScore += Math.round(f.weight * 0.5);
-    else weightedScore -= f.weight;
+    // absent = no penalty (consistent with lib/scoring.ts)
   });
   const pct = Math.round((fullCount + partialCount) / FEATURES.length * 100);
 

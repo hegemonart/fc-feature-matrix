@@ -284,6 +284,18 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .bd-alert-title { font-size: 14px; font-weight: 700; color: var(--red); margin-bottom: 3px; }
 .bd-alert-desc { font-size: 12px; color: rgba(239,68,68,.85); line-height: 1.6; }
 
+/* ── BD SUMMARY BLOCK ── */
+.bd-summary { background: var(--bg2); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; }
+.bd-summary-text { font-size: 14px; color: var(--text); line-height: 1.75; margin: 0; }
+.bd-summary-gaps { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+.bd-summary-gaps-label { width: 100%; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: -2px; }
+@media (max-width: 600px) { .bd-summary-gaps { flex-direction: column; } }
+.bd-gap-card { flex: 1; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg3); }
+.bd-gap-card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
+.bd-gap-card-name { font-size: 13px; font-weight: 600; color: var(--text); }
+.bd-gap-card-pct { font-size: 12px; color: var(--muted); }
+.bd-gap-card-meta { font-size: 11px; color: var(--muted); line-height: 1.4; }
+
 /* ── BD SCORE ROW (full-page version) ── */
 .bd-score-row { display: grid; grid-template-columns: 280px 1fr; gap: 16px; margin-bottom: 24px; align-items: start; }
 @media (max-width: 700px) { .bd-score-row { grid-template-columns: 1fr; } }
@@ -382,7 +394,9 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .header-back svg { width: 14px; height: 14px; flex-shrink: 0; }
 .header-logo { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; display: flex; align-items: center; }
 .header-logo span { color: var(--accent); }
-.header-crest { width: 38px; height: 38px; border-radius: 9px; background: var(--bg3); border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 800; color: var(--accent); flex-shrink: 0; margin: 10px 12px 10px 20px; }
+.header-crest { width: 38px; height: 38px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin: 10px 12px 10px 20px; }
+.header-crest img { width: 100%; height: 100%; object-fit: contain; }
+.header-crest img.invert { filter: invert(1) brightness(2); }
 .header-club { display: flex; flex-direction: column; justify-content: center; }
 .header-club-name { font-size: 16px; font-weight: 700; color: var(--text); line-height: 1.2; }
 .header-club-meta { font-size: 11px; color: var(--muted); margin-top: 2px; }

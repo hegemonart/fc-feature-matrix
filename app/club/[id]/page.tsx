@@ -2,10 +2,12 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { CATEGORIES, PRODUCTS, FEATURES, BAND_META } from '@/lib/data';
 import { getProductScores, getRankedProducts } from '@/lib/scoring';
+import { generateClubSummary } from '@/lib/summary';
 import type { Metadata } from 'next';
 import CategoryFilter from './CategoryFilter';
+import ScrollRestore from './ScrollRestore';
 
-/* ── Static params for all 26 products ── */
+/* ── Static params for all products ── */
 
 export function generateStaticParams() {
   return PRODUCTS.map(p => ({ id: p.id }));
@@ -74,8 +76,10 @@ export default async function ClubDetailPage({
     status: f.presence[pid],
   }));
 
-  // Crest initials
-  const crestInitials = p.name.substring(0, 2).toUpperCase();
+  // Summary
+  const summary = generateClubSummary(pid);
+
+  // Logo
 
   return (
     <div className="club-detail-shell">
@@ -90,7 +94,10 @@ export default async function ClubDetailPage({
         <div className="header-logo">
           FC Benchmark <span>&nbsp;//&nbsp;</span> 2026
         </div>
-        <div className="header-crest">{crestInitials}</div>
+        <div className="header-crest">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src={p.logo} alt={p.name} width={28} height={28} className={p.darkLogo ? 'invert' : ''} />
+        </div>
         <div className="header-club">
           <div className="header-club-name">{p.name}</div>
           <div className="header-club-meta">
@@ -105,6 +112,7 @@ export default async function ClubDetailPage({
         </div>
       </header>
 
+      <ScrollRestore />
       <div className="page-body">
         {/* ── ALERT BANNER ── */}
         {showAlert && (
@@ -125,6 +133,26 @@ export default async function ClubDetailPage({
             </div>
           </div>
         )}
+
+        {/* ── SUMMARY BLOCK ── */}
+        <div className="bd-summary">
+          <p className="bd-summary-text">{summary.conclusion}</p>
+
+          {summary.priorities.length > 0 && (
+            <div className="bd-summary-gaps">
+              <span className="bd-summary-gaps-label">Priority Gaps</span>
+              {summary.priorities.map((p, i) => (
+                <div key={i} className="bd-gap-card">
+                  <div className="bd-gap-card-top">
+                    <span className="bd-gap-card-name">{p.name}</span>
+                    <span className="bd-gap-card-pct">{p.adoptionPct}%</span>
+                  </div>
+                  <span className="bd-gap-card-meta">{p.band} feature in {p.category}</span>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
 
         {/* ── SCORE ROW ── */}
         <div className="bd-score-row">
@@ -154,18 +182,6 @@ export default async function ClubDetailPage({
             <div className="bd-divider" />
             <div className="bd-scores-row">
               <div className="bd-mini-score">
-                <div className="bd-mini-label">Weighted</div>
-                <div
-                  className="bd-mini-val"
-                  style={{
-                    color: weightedScore >= 0 ? 'var(--green)' : 'var(--red)',
-                  }}
-                >
-                  {weightedScore >= 0 ? '+' : ''}
-                  {weightedScore}
-                </div>
-              </div>
-              <div className="bd-mini-score">
                 <div className="bd-mini-label">Global Rank</div>
                 <div className="bd-mini-val" style={{ color: 'var(--yellow)' }}>
                   #{myRank}
@@ -194,6 +210,7 @@ export default async function ClubDetailPage({
                   )}
                   <Link
                     href={`/club/${r2.id}`}
+                    scroll={false}
                     className={`bd-rank-item${isCurrent ? ' current' : ''}`}
                   >
                     <span className="bd-rank-pos">{i + 1}</span>
