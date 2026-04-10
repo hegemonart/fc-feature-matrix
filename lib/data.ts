@@ -309,8 +309,8 @@ export const FEATURES: Feature[] = [
     desc: 'Mobile app download badges/CTAs — mobile-first fan relationship and push notification channel',
     cat: 'brand', weight: 3,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','liverpool','man_united','tottenham','chelsea','ac_milan','sl_benfica','west_ham','brentford','f1','motogp','nba'],
-      ['bayern_munich','inter_milan','rb_leipzig','mlb'],
+      ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','sl_benfica','west_ham','brentford','atp_tour','f1','motogp','nba','mls','mlb'],
+      ['vfb_stuttgart'],
     ),
   },
   {
@@ -338,8 +338,8 @@ export const FEATURES: Feature[] = [
     desc: 'Language selector visible — global accessibility for international fanbase',
     cat: 'ux', weight: 3,
     presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','eintracht'],
-      ['club_brugge','rb_leipzig','valencia_cf','uefa'],
+      ['real_madrid','fc_barcelona','bayern_munich','psg','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','vfb_stuttgart','eintracht','club_brugge','rb_leipzig','valencia_cf','atp_tour','itf_tennis','motogp','mls'],
+      ['uefa'],
     ),
   },
   {
