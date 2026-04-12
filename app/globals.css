@@ -104,9 +104,13 @@ thead th { background: var(--bg2); position: sticky; top: 0; z-index: 10; paddin
 thead th.feature-col { min-width: 250px; max-width: 250px; width: 250px; left: 0; z-index: 20; padding: 10px 12px; text-align: left; font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); cursor: pointer; user-select: none; }
 thead th.sortable:hover { color: var(--accent); }
 thead th.freq-col { min-width: 100px; max-width: 100px; width: 100px; padding: 0 8px; font-size: 10px; color: var(--muted); font-weight: 600; position: sticky; right: 0; z-index: 15; background: var(--bg2); cursor: pointer; user-select: none; }
-.col-header { display: flex; flex-direction: column; align-items: center; padding: 6px 2px 8px; cursor: pointer; transition: background .12s; height: 90px; justify-content: flex-end; }
+.col-header { display: flex; flex-direction: column; align-items: center; padding: 6px 2px 8px; cursor: pointer; transition: background .12s; height: 130px; justify-content: flex-end; }
 .col-header:hover { background: var(--bg3); }
 .col-header.highlighted { background: rgba(79,110,247,.15); }
+.col-logo { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; margin-top: 6px; transition: transform .15s, box-shadow .15s; }
+.col-logo img { width: 20px; height: 20px; object-fit: contain; }
+.col-logo.dark-logo { background: rgba(255,255,255,.85); }
+.col-header:hover .col-logo { transform: scale(1.15); box-shadow: 0 0 8px rgba(79,110,247,.3); }
 .col-label { font-size: 9px; font-weight: 600; color: var(--muted); text-transform: uppercase; letter-spacing: .05em; writing-mode: vertical-rl; transform: rotate(180deg); line-height: 1.2; margin-bottom: 4px; text-align: left; max-height: 70px; overflow: hidden; transition: color .12s; white-space: nowrap; }
 .col-header:hover .col-label, .col-header.highlighted .col-label { color: var(--text); }
 
@@ -229,6 +233,43 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .flow-tab { display: flex; align-items: center; gap: 7px; padding: 10px 14px; font-size: 12px; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: all .2s ease-out; white-space: nowrap; background: none; border-top: none; border-left: none; border-right: none; }
 .flow-tab:hover { color: var(--text); background: rgba(255,255,255,.02); }
 .flow-tab.active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+
+/* ── V10 Locked zone ── */
+.locked-zone { display: flex; align-items: stretch; position: relative; margin-left: 8px; border-radius: 8px; overflow: hidden; }
+.locked-zone::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(79,110,247,.08), rgba(168,85,247,.08), rgba(236,72,153,.08), rgba(79,110,247,.08)); background-size: 400% 400%; animation: holoShift 6s ease infinite; z-index: 0; }
+@keyframes holoShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.locked-zone::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,.02) 60px, rgba(255,255,255,.02) 61px); pointer-events: none; z-index: 1; }
+
+/* Particles */
+.locked-particles { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.lp { position: absolute; width: 2px; height: 2px; border-radius: 50%; opacity: 0; animation: lpFloat 4s ease-in-out infinite; }
+.lp:nth-child(1) { left:10%; top:20%; animation-delay:0s; background:var(--accent); }
+.lp:nth-child(2) { left:25%; top:70%; animation-delay:.8s; background:#a855f7; }
+.lp:nth-child(3) { left:45%; top:30%; animation-delay:1.6s; background:#ec4899; }
+.lp:nth-child(4) { left:65%; top:60%; animation-delay:2.4s; background:var(--accent); }
+.lp:nth-child(5) { left:80%; top:40%; animation-delay:3.2s; background:#a855f7; }
+.lp:nth-child(6) { left:15%; top:50%; animation-delay:.4s; background:#ec4899; }
+.lp:nth-child(7) { left:55%; top:15%; animation-delay:1.2s; background:var(--accent); }
+.lp:nth-child(8) { left:90%; top:75%; animation-delay:2s; background:#a855f7; }
+@keyframes lpFloat { 0%{opacity:0;transform:translateY(0) scale(1)} 20%{opacity:.6} 80%{opacity:.6} 100%{opacity:0;transform:translateY(-30px) scale(0)} }
+
+/* Locked tabs */
+.flow-tab-locked { position: relative; z-index: 2; color: rgba(232,232,240,.35); gap: 5px; }
+.flow-tab-locked .locked-tab-label { background: linear-gradient(90deg, rgba(139,139,170,.6), rgba(168,85,247,.5), rgba(79,110,247,.6)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerText 3s linear infinite; }
+@keyframes shimmerText { to { background-position: 200% center; } }
+.flow-tab-locked:hover { background: rgba(255,255,255,.03); }
+.flow-tab-locked:hover .locked-tab-label { animation-duration: 1s; }
+.locked-tab-icon { display: flex; align-items: center; width: 13px; height: 13px; flex-shrink: 0; opacity: .45; }
+.locked-tab-icon svg { width: 13px; height: 13px; }
+
+/* Unlock CTA */
+.unlock-cta { display: flex; align-items: center; gap: 8px; padding: 0 20px; position: relative; z-index: 2; font-size: 11px; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--accent), #8b5cf6, #ec4899); background-size: 200% 200%; animation: ctaPulse 3s ease infinite; cursor: pointer; border: none; font-family: inherit; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 0 20px rgba(79,110,247,.3), 0 0 40px rgba(168,85,247,.15); transition: box-shadow .3s; }
+@keyframes ctaPulse { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.unlock-cta:hover { box-shadow: 0 0 30px rgba(79,110,247,.5), 0 0 60px rgba(168,85,247,.25); }
+.unlock-cta svg { width: 16px; height: 16px; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) { .locked-zone::before, .lp, .flow-tab-locked .locked-tab-label, .unlock-cta { animation: none !important; } }
 
 /* ── LOCKED MODAL ── */
 .locked-overlay { display: none; position: fixed; inset: 0; z-index: 2000; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); align-items: center; justify-content: center; }

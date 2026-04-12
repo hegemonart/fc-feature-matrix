@@ -26,14 +26,14 @@ const PadlockIcon = () => (
 
 /* ── Locked tabs data ── */
 const LOCKED_TABS = [
-  { id: 'ticketing', name: 'Ticket Purchase' },
-  { id: 'merch', name: 'Merch Store' },
-  { id: 'subscriptions', name: 'Subscriptions' },
-  { id: 'matchday', name: 'Matchday Experience' },
-  { id: 'hospitality', name: 'Hospitality Packages' },
-  { id: 'sponsorship', name: 'Sponsorship Visibility' },
-  { id: 'between-season', name: 'Between Season' },
-  { id: 'past-seasons', name: 'Past Seasons' },
+  { id: 'ticketing', name: 'Ticket Purchase', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg> },
+  { id: 'merch', name: 'Merch Store', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M20.38 3.46L16 2 12 3.46 8 2 3.62 3.46A2 2 0 002 5.38V21l4-2 4 2 4-2 4 2 4-2V5.38a2 2 0 00-1.62-1.92z"/></svg> },
+  { id: 'subscriptions', name: 'Subscriptions', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg> },
+  { id: 'matchday', name: 'Matchday Experience', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg> },
+  { id: 'hospitality', name: 'Hospitality Packages', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg> },
+  { id: 'sponsorship', name: 'Sponsorship Visibility', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg> },
+  { id: 'between-season', name: 'Between Season', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg> },
+  { id: 'past-seasons', name: 'Past Seasons', icon: <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> },
 ];
 
 /* ── Band to CSS var color ── */
@@ -272,17 +272,29 @@ export default function FeatureMatrixPage() {
         <button className="flow-tab active" role="tab" aria-selected="true">
           Homepage
         </button>
-        {LOCKED_TABS.map(tab => (
-          <button
-            key={tab.id}
-            className="flow-tab"
-            role="tab"
-            aria-selected="false"
-            onClick={() => handleTabClick(tab.name)}
-          >
-            {tab.name}
+        <div className="locked-zone">
+          <div className="locked-particles">
+            <div className="lp"></div><div className="lp"></div><div className="lp"></div>
+            <div className="lp"></div><div className="lp"></div><div className="lp"></div>
+            <div className="lp"></div><div className="lp"></div>
+          </div>
+          {LOCKED_TABS.map(tab => (
+            <button
+              key={tab.id}
+              className={`flow-tab flow-tab-locked${authed ? ' flow-tab-coming-soon' : ''}`}
+              role="tab"
+              aria-selected="false"
+              onClick={() => handleTabClick(tab.name)}
+            >
+              <span className="locked-tab-icon">{tab.icon}</span>
+              <span className="locked-tab-label">{tab.name}</span>
+            </button>
+          ))}
+          <button className="unlock-cta" onClick={() => handleTabClick('Premium')}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+            Unlock
           </button>
-        ))}
+        </div>
       </nav>
 
       {/* ── TOOLBAR ── */}
@@ -349,6 +361,9 @@ export default function FeatureMatrixPage() {
                         onClick={() => { if (!authed) return; handleShowProductDetail(p.id); }}
                       >
                         <span className="col-label">{p.name}</span>
+                        <div className={`col-logo${p.darkLogo ? ' dark-logo' : ''}`}>
+                          <img src={p.logo} alt={p.name} />
+                        </div>
                       </div>
                     </th>
                   ))}

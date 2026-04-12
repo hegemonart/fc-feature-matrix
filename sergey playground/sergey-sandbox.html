@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sergey Sandbox — Locked Tabs: 41 Variations</title>
+<style>
+  :root {
+    --bg: #0d0d14;
+    --bg2: #13131e;
+    --bg3: #1a1a28;
+    --border: #252535;
+    --text: #e8e8f0;
+    --muted: #8b8baa;
+    --accent: #4f6ef7;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --orange: #f97316;
+    --red: #ef4444;
+    --purple: #a855f7;
+    --pink: #ec4899;
+    --gold: #d4a853;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 40px 120px; }
+  h1 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .subtitle { font-size: 13px; color: var(--muted); margin-bottom: 40px; }
+
+  .experiment { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin-bottom: 32px; overflow: hidden; }
+  .experiment-title { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .experiment-title::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .experiment-title.gold::before { background: var(--gold); }
+  .experiment-title.pink::before { background: var(--pink); }
+  .experiment-title.green::before { background: var(--green); }
+  .experiment-title.red::before { background: var(--red); }
+  .experiment-desc { font-size: 12px; color: rgba(139,139,170,.6); margin-bottom: 16px; line-height: 1.5; }
+
+  /* ── Shared base ── */
+  .fn { display: flex; align-items: stretch; gap: 0; background: var(--bg3); border-radius: 8px; border: 1px solid var(--border); overflow-x: auto; overflow-y: visible; }
+  .ft { display: flex; align-items: center; gap: 6px; padding: 10px 14px; font-size: 12px; color: var(--muted); cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent; white-space: nowrap; transition: all .2s; font-family: inherit; }
+  .ft:hover { color: var(--text); background: rgba(255,255,255,.02); }
+  .ft.active { color: var(--text); border-bottom-color: var(--accent); font-weight: 600; }
+  .lock-svg { width: 12px; height: 12px; flex-shrink: 0; }
+  .tab-icon { width: 13px; height: 13px; flex-shrink: 0; opacity: .45; }
+
+  /* tabs macro */
+  .tabs-8 { display: contents; }
+
+  /* ══════════════════════════════════════════════════════════════
+     V10 — GUNZ BLAZING (KEEPER)
+     ══════════════════════════════════════════════════════════════ */
+  .v10 .locked-zone { display: flex; align-items: stretch; position: relative; margin-left: 8px; border-radius: 8px; overflow: hidden; }
+  .v10 .locked-zone::before { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(79,110,247,.08), rgba(168,85,247,.08), rgba(236,72,153,.08), rgba(79,110,247,.08)); background-size: 400% 400%; animation: holo10 6s ease infinite; z-index: 0; }
+  @keyframes holo10 { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  .v10 .locked-zone::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(255,255,255,.02) 60px, rgba(255,255,255,.02) 61px); pointer-events: none; z-index: 1; }
+  .v10 .ft.locked { position: relative; z-index: 2; color: rgba(232,232,240,.35); }
+  .v10 .ft.locked .tt { background: linear-gradient(90deg, rgba(139,139,170,.6), rgba(168,85,247,.5), rgba(79,110,247,.6)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: textShimmer10 3s linear infinite; }
+  @keyframes textShimmer10 { to { background-position: 200% center; } }
+  .v10 .ft.locked:hover { background: rgba(255,255,255,.03); }
+  .v10 .ft.locked:hover .tt { animation-duration: 1s; }
+  .v10 .mega-cta { display: flex; align-items: center; gap: 8px; padding: 0 20px; position: relative; z-index: 2; font-size: 11px; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--accent), #8b5cf6, #ec4899); background-size: 200% 200%; animation: ctaGlow10 3s ease infinite; cursor: pointer; border: none; font-family: inherit; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; box-shadow: 0 0 20px rgba(79,110,247,.3), 0 0 40px rgba(168,85,247,.15); transition: box-shadow .3s; }
+  @keyframes ctaGlow10 { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+  .v10 .mega-cta:hover { box-shadow: 0 0 30px rgba(79,110,247,.5), 0 0 60px rgba(168,85,247,.25); }
+  .v10 .mega-cta svg { width: 16px; height: 16px; }
+  .v10 .pf { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+  .v10 .p { position: absolute; width: 2px; height: 2px; border-radius: 50%; opacity: 0; animation: float10 4s ease-in-out infinite; }
+  .v10 .p:nth-child(1) { left:10%; top:20%; animation-delay:0s; background:var(--accent); }
+  .v10 .p:nth-child(2) { left:25%; top:70%; animation-delay:.8s; background:var(--purple); }
+  .v10 .p:nth-child(3) { left:45%; top:30%; animation-delay:1.6s; background:#ec4899; }
+  .v10 .p:nth-child(4) { left:65%; top:60%; animation-delay:2.4s; background:var(--accent); }
+  .v10 .p:nth-child(5) { left:80%; top:40%; animation-delay:3.2s; background:var(--purple); }
+  .v10 .p:nth-child(6) { left:15%; top:50%; animation-delay:.4s; background:#ec4899; }
+  .v10 .p:nth-child(7) { left:55%; top:15%; animation-delay:1.2s; background:var(--accent); }
+  .v10 .p:nth-child(8) { left:90%; top:75%; animation-delay:2s; background:var(--purple); }
+  @keyframes float10 { 0%{opacity:0;transform:translateY(0) scale(1)} 20%{opacity:.6} 80%{opacity:.6} 100%{opacity:0;transform:translateY(-30px) scale(0)} }
+
+  /* ══════════════════════════════════════════════════════════════
+     V50 — MEGA: Split layout + animated border + particles + CTA + blur peek
+     ══════════════════════════════════════════════════════════════ */
+  .v50-layout { display: flex; border-radius: 10px; overflow: hidden; position: relative; background: var(--bg3); border: 1px solid var(--border); }
+  .v50-left { display: flex; }
+  .v50-right { display: flex; flex: 1; position: relative; overflow: hidden; align-items: stretch; border-radius: 8px; margin: 3px; border: 2px solid transparent; background-origin: border-box; background-clip: padding-box, border-box; background-image: linear-gradient(var(--bg2), var(--bg2)), linear-gradient(135deg, var(--accent), var(--purple), var(--pink), var(--accent)); background-size: 100% 100%, 300% 300%; animation: borderSpin50 4s ease infinite; }
+  @keyframes borderSpin50 { 0%{background-position: 0 0, 0% 50%} 50%{background-position: 0 0, 100% 50%} 100%{background-position: 0 0, 0% 50%} }
+  .v50-right .particles50 { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+  .v50-right .p50 { position: absolute; width: 2px; height: 2px; border-radius: 50%; animation: float50 5s ease-in-out infinite; opacity: 0; }
+  .v50-right .p50:nth-child(1) { left:8%; top:20%; animation-delay:0s; background:var(--accent); }
+  .v50-right .p50:nth-child(2) { left:22%; top:60%; animation-delay:.6s; background:var(--purple); }
+  .v50-right .p50:nth-child(3) { left:40%; top:30%; animation-delay:1.2s; background:var(--pink); }
+  .v50-right .p50:nth-child(4) { left:60%; top:70%; animation-delay:1.8s; background:var(--accent); }
+  .v50-right .p50:nth-child(5) { left:75%; top:25%; animation-delay:2.4s; background:var(--purple); }
+  .v50-right .p50:nth-child(6) { left:90%; top:50%; animation-delay:3s; background:var(--pink); }
+  @keyframes float50 { 0%{opacity:0;transform:translateY(0) scale(1)} 20%{opacity:.5} 80%{opacity:.5} 100%{opacity:0;transform:translateY(-25px) scale(0)} }
+  .v50-right .ft.locked { position: relative; z-index: 1; color: rgba(232,232,240,.3); }
+  .v50-right .ft.locked .tt { background: linear-gradient(90deg, rgba(139,139,170,.5), rgba(168,85,247,.4), rgba(79,110,247,.5)); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; animation: textShimmer10 3s linear infinite; }
+  .v50-right .ft.locked:hover { background: rgba(255,255,255,.03); }
+  .v50-right .ft.locked:hover .tt { animation-duration: 1s; }
+  .v50-cta { display: flex; align-items: center; gap: 8px; padding: 0 22px; font-size: 11px; font-weight: 700; color: #fff; background: linear-gradient(135deg, var(--accent), var(--purple)); cursor: pointer; border: none; font-family: inherit; letter-spacing: .06em; text-transform: uppercase; white-space: nowrap; position: relative; z-index: 2; box-shadow: 0 0 20px rgba(79,110,247,.2); transition: all .3s; }
+  .v50-cta:hover { box-shadow: 0 0 30px rgba(79,110,247,.4); filter: brightness(1.1); }
+  .v50-cta svg { width: 14px; height: 14px; }
+
+  /* ══════════════════════════════════════════════════════════════
+     REFERO SECTION STYLES
+     ══════════════════════════════════════════════════════════════ */
+
+  .refero-divider { margin: 80px 0 40px; text-align: center; }
+  .refero-divider h2 { font-size: 32px; font-weight: 800; letter-spacing: -.02em; background: linear-gradient(135deg, var(--accent), var(--purple), var(--pink)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 8px; }
+  .refero-divider p { font-size: 13px; color: var(--muted); }
+  .refero-source { font-size: 10px; color: rgba(79,110,247,.5); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; margin-bottom: 4px; }
+
+  /* ── R3: Stage.so shimmer + yellow CTA ── */
+  .r3 .locked-zone { display: flex; align-items: stretch; position: relative; margin-left: 6px; background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .r3 .locked-zone::before { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(79,110,247,.06), rgba(168,85,247,.08), rgba(236,72,153,.06), transparent); background-size: 200% 100%; animation: r3shimmer 3s ease infinite; z-index: 0; }
+  @keyframes r3shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+  .r3 .ft.locked { color: rgba(139,139,170,.4); position: relative; z-index: 1; }
+  .r3 .ft.locked:hover { color: var(--text); background: rgba(255,255,255,.02); }
+  .r3 .trial-cta { display: flex; align-items: center; gap: 6px; padding: 0 16px; background: #FFDD00; color: #000; font-size: 12px; font-weight: 600; border: none; cursor: pointer; font-family: inherit; white-space: nowrap; transition: filter .2s; }
+  .r3 .trial-cta:hover { filter: brightness(1.1); }
+
+  /* ── R8: Tella purple gradient cards + "Try for free" ── */
+  .r8 .locked-zone { display: flex; align-items: stretch; position: relative; margin-left: 4px; background: linear-gradient(135deg, rgba(106,55,247,.06), rgba(29,36,49,.9)); border-radius: 0 8px 8px 0; overflow: hidden; border: 1px solid rgba(106,55,247,.15); }
+  .r8 .ft.locked { color: rgba(232,232,240,.35); }
+  .r8 .ft.locked:hover { color: var(--text); background: rgba(106,55,247,.06); }
+  .r8 .try-cta { display: flex; align-items: center; gap: 6px; padding: 0 18px; background: linear-gradient(135deg, #6a37f7, #9d5cff); color: #fff; font-size: 11px; font-weight: 700; border: none; cursor: pointer; font-family: inherit; letter-spacing: .04em; white-space: nowrap; transition: filter .2s; }
+  .r8 .try-cta:hover { filter: brightness(1.15); }
+
+  /* ── R10: Designmodo cards with emoji + gold star + checks ── */
+  .r10 { flex-wrap: wrap !important; gap: 6px !important; padding: 10px !important; }
+  .r10 .ft.active { background: var(--bg); color: var(--text); border-radius: 8px; border: 1px solid var(--accent); border-bottom-color: var(--accent); padding: 8px 14px; }
+  .r10 .ft.locked { background: var(--bg); border-radius: 8px; border: 1px solid var(--border); color: rgba(139,139,170,.5); padding: 8px 12px; font-size: 11px; }
+  .r10 .ft.locked:hover { color: var(--text); border-color: rgba(139,139,170,.3); background: var(--bg3); }
+  .r10 .ft.locked .tab-icon { width: 14px; height: 14px; flex-shrink: 0; color: var(--muted); opacity: .5; }
+  .r10 .ft.locked .check-list { display: none; position: absolute; bottom: 100%; left: 50%; transform: translateX(-50%); background: var(--bg2); border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; z-index: 100; min-width: 180px; box-shadow: 0 8px 24px rgba(0,0,0,.4); }
+  .r10 .ft.locked { position: relative; }
+  .r10 .ft.locked:hover .check-list { display: block; }
+  .r10 .check-list .cl-item { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text); padding: 3px 0; white-space: nowrap; }
+  .r10 .check-list .cl-check { color: var(--green); font-size: 12px; }
+  .r10 .gold-toggle { display: flex; align-items: center; gap: 4px; padding: 8px 12px; font-size: 10px; font-weight: 600; color: var(--gold); border: 1px solid rgba(212,168,83,.2); border-radius: 8px; background: rgba(212,168,83,.04); cursor: pointer; font-family: inherit; white-space: nowrap; }
+
+  /* ── Reduced motion ── */
+  @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition-duration: 0s !important; } }
+</style>
+</head>
+<body>
+
+<h1>Locked Tabs — Design Lab</h1>
+<p class="subtitle">V10 (keeper) + V50 (mega) + 10 Refero-inspired variations</p>
+
+<!-- ═══ V10 — KEEPER ═══ -->
+<div class="experiment" style="border-color: rgba(79,110,247,.3);">
+  <div class="experiment-title">V10 — Gunz Blazing (Keeper)</div>
+  <div class="experiment-desc">Holographic bg, floating particles, shimmer text, glowing CTA. The original winner.</div>
+  <nav class="fn v10">
+    <button class="ft active">Homepage</button>
+    <div class="locked-zone">
+      <div class="pf"><div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div><div class="p"></div></div>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg><span class="tt">Ticket Purchase</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 3.46 8 2 3.62 3.46A2 2 0 002 5.38V21l4-2 4 2 4-2 4 2 4-2V5.38a2 2 0 00-1.62-1.92z"/></svg><span class="tt">Merch Store</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg><span class="tt">Subscriptions</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span class="tt">Matchday Experience</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="tt">Hospitality Packages</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="tt">Sponsorship Visibility</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><span class="tt">Between Season</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span class="tt">Past Seasons</span></button>
+      <button class="mega-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Unlock</button>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══ V50 ═══ -->
+<div class="experiment" style="border-color: rgba(168,85,247,.3);">
+  <div class="experiment-title pink">V50 — MEGA: Animated Border + Particles + Shimmer + CTA</div>
+  <div class="experiment-desc">V10's successor. Rotating gradient border, particles, shimmer text, plus split panel layout. Maximum everything.</div>
+  <div class="v50-layout">
+    <div class="v50-left"><button class="ft active" style="border-bottom:none;">Homepage</button></div>
+    <div class="v50-right">
+      <div class="particles50"><div class="p50"></div><div class="p50"></div><div class="p50"></div><div class="p50"></div><div class="p50"></div><div class="p50"></div></div>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg><span class="tt">Ticket Purchase</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 3.46 8 2 3.62 3.46A2 2 0 002 5.38V21l4-2 4 2 4-2 4 2 4-2V5.38a2 2 0 00-1.62-1.92z"/></svg><span class="tt">Merch Store</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg><span class="tt">Subscriptions</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span class="tt">Matchday Experience</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="tt">Hospitality Packages</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="tt">Sponsorship Visibility</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><span class="tt">Between Season</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span class="tt">Past Seasons</span></button>
+      <button class="v50-cta"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>Unlock</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════════════ -->
+<div class="refero-divider">
+  <h2>REFERO VERSIONS</h2>
+  <p>Inspired by real-world premium upsell patterns from top products</p>
+</div>
+
+<!-- ═══ R3 — Stage.so: "Most Popular" + yellow CTA ═══ -->
+<div class="experiment">
+  <div class="refero-source">Inspired by Stage.so</div>
+  <div class="experiment-title gold">R3 — Most Popular Tag + Yellow CTA</div>
+  <div class="experiment-desc">"Most Popular" badge floating above locked zone. Bold yellow CTA with trial messaging.</div>
+  <nav class="fn r3">
+    <button class="ft active">Homepage</button>
+    <div class="locked-zone">
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg><span class="tt">Ticket Purchase</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 3.46 8 2 3.62 3.46A2 2 0 002 5.38V21l4-2 4 2 4-2 4 2 4-2V5.38a2 2 0 00-1.62-1.92z"/></svg><span class="tt">Merch Store</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg><span class="tt">Subscriptions</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span class="tt">Matchday Experience</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="tt">Hospitality Packages</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="tt">Sponsorship Visibility</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><span class="tt">Between Season</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span class="tt">Past Seasons</span></button>
+      <button class="trial-cta">Unlock</button>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══ R8 — Tella: Purple gradient + "Try for free" ═══ -->
+<div class="experiment">
+  <div class="refero-source">Inspired by Tella</div>
+  <div class="experiment-title">R8 — Purple Gradient Zone + Try Free CTA</div>
+  <div class="experiment-desc">Locked section has a subtle purple gradient bg with border. Purple gradient CTA at the end.</div>
+  <nav class="fn r8">
+    <button class="ft active">Homepage</button>
+    <div class="locked-zone">
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg><span class="tt">Ticket Purchase</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 3.46 8 2 3.62 3.46A2 2 0 002 5.38V21l4-2 4 2 4-2 4 2 4-2V5.38a2 2 0 00-1.62-1.92z"/></svg><span class="tt">Merch Store</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg><span class="tt">Subscriptions</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span class="tt">Matchday Experience</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="tt">Hospitality Packages</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="tt">Sponsorship Visibility</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><span class="tt">Between Season</span></button>
+      <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span class="tt">Past Seasons</span></button>
+      <button class="try-cta">Unlock</button>
+    </div>
+  </nav>
+</div>
+
+<!-- ═══ R10 — Designmodo: Emoji cards + gold star + hover checklist ═══ -->
+<div class="experiment">
+  <div class="refero-source">Inspired by Designmodo</div>
+  <div class="experiment-title gold">R10 — Emoji Cards + Hover Checklist</div>
+  <div class="experiment-desc">Card-style tabs with emoji icons. Hover reveals a checklist tooltip showing what's inside. Gold star toggle.</div>
+  <nav class="fn r10">
+    <button class="ft active">Homepage</button>
+    <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M2 10h20"/></svg><span class="tt">Tickets</span><div class="check-list"><div class="cl-item"><span class="cl-check">✓</span>Purchase flow analysis</div><div class="cl-item"><span class="cl-check">✓</span>Price comparison</div><div class="cl-item"><span class="cl-check">✓</span>UX scoring</div></div></button>
+    <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.38 3.46L16 2 12 3.46 8 2 3.62 3.46A2 2 0 002 5.38V21l4-2 4 2 4-2 4 2 4-2V5.38a2 2 0 00-1.62-1.92z"/></svg><span class="tt">Merch</span><div class="check-list"><div class="cl-item"><span class="cl-check">✓</span>Store UX review</div><div class="cl-item"><span class="cl-check">✓</span>Product range</div></div></button>
+    <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M23 4v6h-6M1 20v-6h6"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg><span class="tt">Subs</span><div class="check-list"><div class="cl-item"><span class="cl-check">✓</span>Plan comparison</div><div class="cl-item"><span class="cl-check">✓</span>Retention features</div></div></button>
+    <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg><span class="tt">Matchday</span><div class="check-list"><div class="cl-item"><span class="cl-check">✓</span>Fan experience audit</div><div class="cl-item"><span class="cl-check">✓</span>Digital touchpoints</div></div></button>
+    <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span class="tt">Hospitality</span><div class="check-list"><div class="cl-item"><span class="cl-check">✓</span>VIP packages</div><div class="cl-item"><span class="cl-check">✓</span>Booking flow</div></div></button>
+    <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span class="tt">Sponsors</span><div class="check-list"><div class="cl-item"><span class="cl-check">✓</span>Visibility audit</div><div class="cl-item"><span class="cl-check">✓</span>Digital placement</div></div></button>
+    <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg><span class="tt">Off-season</span><div class="check-list"><div class="cl-item"><span class="cl-check">✓</span>Engagement analysis</div></div></button>
+    <button class="ft locked"><svg class="tab-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg><span class="tt">History</span><div class="check-list"><div class="cl-item"><span class="cl-check">✓</span>Season-over-season</div></div></button>
+    <button class="gold-toggle">Unlock</button>
+  </nav>
+</div>
+
+</body>
+</html>
