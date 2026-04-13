@@ -16,6 +16,16 @@ import {
 } from '@/lib/data';
 import { trackEvent } from '@/lib/track';
 
+/** Map a 0–100 normalized score to a color gradient (red → amber → green) */
+function scoreColor(s: number): string {
+  // Use the actual score range across products for relative coloring
+  if (s >= 38) return '#22c55e'; // green — top tier
+  if (s >= 32) return '#86efac'; // light green — above average
+  if (s >= 28) return '#fbbf24'; // amber — average
+  if (s >= 22) return '#fb923c'; // orange — below average
+  return '#f87171';              // red — bottom tier
+}
+
 /* ── Padlock SVG (reused in flow nav) ── */
 const PadlockIcon = () => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
@@ -89,16 +99,21 @@ export default function FeatureMatrixPage() {
 
   /* ── Derived data ── */
 
-  /** Total score per product, filtered by active category */
+  /** Total score per product, normalized 0–100, filtered by active category */
   const productScores = useMemo(() => {
     const feats = activeCat ? FEATURES.filter(f => f.cat === activeCat) : FEATURES;
+    // Theoretical min (all absent) and max (all present)
+    let theoMin = 0, theoMax = 0;
+    feats.forEach(f => { theoMin += f.weightNo; theoMax += f.weightYes; });
+    const range = theoMax - theoMin || 1;
+
     const scores: Record<string, number> = {};
     PRODUCTS.forEach(p => {
-      let total = 0;
+      let raw = 0;
       feats.forEach(f => {
-        total += f.presence[p.id] === 'full' ? f.weightYes : f.weightNo;
+        raw += f.presence[p.id] === 'full' ? f.weightYes : f.weightNo;
       });
-      scores[p.id] = total;
+      scores[p.id] = Math.round(((raw - theoMin) / range) * 100);
     });
     return scores;
   }, [activeCat]);
@@ -358,7 +373,7 @@ export default function FeatureMatrixPage() {
         <div className={`sidebar${!authed ? ' locked-preview' : ''}`}>
           <h3>Category</h3>
           <div>
-            {[...CATEGORIES].sort((a, b) => a.name.localeCompare(b.name)).map(c => (
+            {CATEGORIES.map(c => (
               <div
                 key={c.id}
                 className={`cat-item${activeCat === c.id ? ' active' : ''}`}
@@ -448,8 +463,8 @@ export default function FeatureMatrixPage() {
                     const s = productScores[p.id];
                     return (
                       <td key={p.id} className={`score-cell${selectedProduct === p.id ? ' highlighted' : ''}`}>
-                        <span className={`score-value ${s >= 0 ? 'positive' : 'negative'}`}>
-                          {s >= 0 ? '+' : ''}{s}
+                        <span className="score-value" style={{ color: scoreColor(s) }}>
+                          {s}
                         </span>
                       </td>
                     );
@@ -812,16 +827,16 @@ function ProductDetail({
 
   const fullCount = FEATURES.filter(f => f.presence[pid] === 'full').length;
 
-  let weightedScore = 0;
-  let maxWeighted = 0;
+  let rawScore = 0;
+  let theoMax = 0;
+  let theoMin = 0;
   FEATURES.forEach(f => {
-    maxWeighted += f.weightYes;
-    if (f.presence[pid] === 'full') {
-      weightedScore += f.weightYes;
-    } else {
-      weightedScore += f.weightNo;
-    }
+    theoMax += f.weightYes;
+    theoMin += f.weightNo;
+    rawScore += f.presence[pid] === 'full' ? f.weightYes : f.weightNo;
   });
+  const range = theoMax - theoMin || 1;
+  const normalizedScore = Math.round(((rawScore - theoMin) / range) * 100);
   const pct = Math.round(fullCount / FEATURES.length * 100);
 
   /* ── Group features into 3 sections ── */
@@ -871,10 +886,10 @@ function ProductDetail({
         <div>
           <div className="detail-freq-label">Weighted Score</div>
           <div className="weighted-score">
-            <span className="weighted-score-big" style={{ color: weightedScore >= 0 ? 'var(--green)' : 'var(--red)' }}>
-              {weightedScore >= 0 ? '+' : ''}{weightedScore}
+            <span className="weighted-score-big" style={{ color: scoreColor(normalizedScore) }}>
+              {normalizedScore}
             </span>
-            <span className="weighted-score-sub">/ {maxWeighted}</span>
+            <span className="weighted-score-sub">/ 100</span>
           </div>
         </div>
       </div>

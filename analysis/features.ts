@@ -35,6 +35,14 @@ import f1 from './results/f1.json';
 import motogp from './results/motogp.json';
 import mls from './results/mls.json';
 import mlb from './results/mlb.json';
+import nba from './results/nba.json';
+import brentford from './results/brentford.json';
+import atp_tour from './results/atp_tour.json';
+import club_brugge from './results/club_brugge.json';
+import eintracht from './results/eintracht.json';
+import itf_tennis from './results/itf_tennis.json';
+import rb_leipzig from './results/rb_leipzig.json';
+import valencia_cf from './results/valencia_cf.json';
 
 // ── All results indexed by product_id ──
 const RESULTS: Record<string, Record<string, boolean>> = {
@@ -63,6 +71,14 @@ const RESULTS: Record<string, Record<string, boolean>> = {
   motogp: motogp.features,
   mls: mls.features,
   mlb: mlb.features,
+  nba: nba.features,
+  brentford: brentford.features,
+  atp_tour: atp_tour.features,
+  club_brugge: club_brugge.features,
+  eintracht: eintracht.features,
+  itf_tennis: itf_tennis.features,
+  rb_leipzig: rb_leipzig.features,
+  valencia_cf: valencia_cf.features,
 };
 
 /** Build a presence map for a given feature key from JSON results */
@@ -100,7 +116,7 @@ function feat(
 }
 
 // ================================================================
-//  67 FEATURES — organized by HOME-PAGE.md sections
+//  69 FEATURES — organized by HOME-PAGE.md sections
 // ================================================================
 
 export const FEATURES: Feature[] = [
