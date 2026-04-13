@@ -56,7 +56,7 @@ export default function FeatureMatrixPage() {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [adoptionSort, setAdoptionSort] = useState<'asc' | 'desc' | null>(null);
   const [featureAlphaSort, setFeatureAlphaSort] = useState(false);
-  const [scoreSort, setScoreSort] = useState<'asc' | 'desc' | null>(null);
+  const [scoreSort, setScoreSort] = useState<'asc' | 'desc' | null>('desc');
 
   /* ── Auth ── */
   const [authed, setAuthed] = useState(false);
