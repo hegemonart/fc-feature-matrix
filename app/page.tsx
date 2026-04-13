@@ -77,8 +77,12 @@ export default function FeatureMatrixPage() {
   const [tooltipVisible, setTooltipVisible] = useState(false);
   const [tooltipData, setTooltipData] = useState<{
     feature: string;
+    desc: string;
     product: string;
     status: PresenceStatus;
+    tier: string;
+    weightYes: number;
+    weightNo: number;
   } | null>(null);
 
 
@@ -214,8 +218,12 @@ export default function FeatureMatrixPage() {
     if (!f || !p) return;
     setTooltipData({
       feature: f.name,
+      desc: f.desc,
       product: p.name,
       status: f.presence[pid],
+      tier: f.tier,
+      weightYes: f.weightYes,
+      weightNo: f.weightNo,
     });
     setTooltipVisible(true);
   }, []);
@@ -225,8 +233,8 @@ export default function FeatureMatrixPage() {
     const margin = 14;
     let left = e.clientX + margin;
     let top = e.clientY + margin;
-    const tw = tooltipRef.current.offsetWidth || 180;
-    const th = tooltipRef.current.offsetHeight || 70;
+    const tw = tooltipRef.current.offsetWidth || 300;
+    const th = tooltipRef.current.offsetHeight || 120;
     if (left + tw > window.innerWidth - 8) left = e.clientX - tw - margin;
     if (top + th > window.innerHeight - 8) top = e.clientY - th - margin;
     tooltipRef.current.style.left = left + 'px';
@@ -540,8 +548,14 @@ export default function FeatureMatrixPage() {
       >
         {tooltipData && (
           <>
-            <div className="tt-feature">{tooltipData.feature}</div>
-            <div className="tt-product">{tooltipData.product}</div>
+            <div className="tt-feature">{tooltipData.product}</div>
+            <div className="tt-product">{tooltipData.feature}</div>
+            <div className="tt-desc">{tooltipData.desc}</div>
+            <div className="tt-weights">
+              <span className="tt-tier">Tier {tooltipData.tier}</span>
+              <span className="tt-weight yes">Yes {tooltipData.weightYes >= 0 ? '+' : ''}{tooltipData.weightYes}</span>
+              <span className="tt-weight no">No {tooltipData.weightNo}</span>
+            </div>
           </>
         )}
       </div>
