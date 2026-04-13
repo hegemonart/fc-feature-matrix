@@ -607,7 +607,7 @@ export default function FeatureMatrixPage() {
             <div className="tt-product">{tooltipData.feature}</div>
             <div className="tt-desc">{tooltipData.desc}</div>
             <div className="tt-weights">
-              <span className="tt-tier">Tier {tooltipData.tier}</span>
+              <span className="tt-tier">Tier: {{ A: 'Must-have', B: 'Commercial table stakes', C: 'ROI driver', D: 'Differentiator', E: 'Content depth', F: 'Experimental' }[tooltipData.tier] || tooltipData.tier}</span>
               <span className="tt-weight yes">Yes {tooltipData.weightYes >= 0 ? '+' : ''}{tooltipData.weightYes}</span>
               <span className="tt-weight no">No {tooltipData.weightNo}</span>
             </div>
