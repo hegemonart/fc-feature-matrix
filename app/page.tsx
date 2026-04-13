@@ -50,7 +50,7 @@ const totalProducts = PRODUCTS.length;
 
 export default function FeatureMatrixPage() {
   /* ── State ── */
-  const [filterSport, setFilterSport] = useState<string>('all');
+  const [filterTypes, setFilterTypes] = useState<Set<string>>(new Set(['club', 'governing', 'league']));
   const [activeCat, setActiveCat] = useState<CategoryId | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
@@ -104,12 +104,7 @@ export default function FeatureMatrixPage() {
   }, [activeCat]);
 
   const visibleProds = useMemo(() => {
-    const filtered = PRODUCTS.filter(p => {
-      if (filterSport === 'fc' && p.type !== 'club') return false;
-      if (filterSport === 'federation' && p.type !== 'governing') return false;
-      if (filterSport === 'league' && p.type !== 'league') return false;
-      return true;
-    });
+    const filtered = PRODUCTS.filter(p => filterTypes.has(p.type));
     if (scoreSort) {
       filtered.sort((a, b) => scoreSort === 'desc'
         ? productScores[b.id] - productScores[a.id]
@@ -118,7 +113,7 @@ export default function FeatureMatrixPage() {
       filtered.sort((a, b) => a.name.localeCompare(b.name));
     }
     return filtered;
-  }, [filterSport, scoreSort, productScores]);
+  }, [filterTypes, scoreSort, productScores]);
 
   const visibleFeats = useMemo(() => {
     return FEATURES.filter(f => {
@@ -226,7 +221,7 @@ export default function FeatureMatrixPage() {
   }, []);
 
   const handleClearFilters = useCallback(() => {
-    setFilterSport('all');
+    setFilterTypes(new Set(['club', 'governing', 'league']));
     setActiveCat(null);
     setSelectedFeature(null);
     setSelectedProduct(null);
@@ -332,21 +327,6 @@ export default function FeatureMatrixPage() {
 
       {/* ── TOOLBAR ── */}
       <div className={`toolbar${!authed ? ' locked-preview' : ''}`}>
-        <div className="filter-group">
-          <span className="filter-label">Type:</span>
-          {[
-            { val: 'all', label: 'All' },
-            { val: 'fc', label: 'FC' },
-            { val: 'federation', label: 'Federation' },
-            { val: 'league', label: 'League' },
-          ].map(f => (
-            <button
-              key={f.val}
-              className={`filter-btn${filterSport === f.val ? ' active' : ''}`}
-              onClick={() => setFilterSport(f.val)}
-            >{f.label}</button>
-          ))}
-        </div>
         <div className="toolbar-right">
           <button className="clear-btn" onClick={handleClearFilters}>Clear filters</button>
         </div>
@@ -367,6 +347,31 @@ export default function FeatureMatrixPage() {
                 <span className="cat-name">{c.name}</span>
                 <span className="cat-count">{catCounts[c.id]}</span>
               </div>
+            ))}
+          </div>
+
+          <div className="sidebar-type-filter">
+            <h3>Type</h3>
+            {[
+              { val: 'club', label: 'FC' },
+              { val: 'governing', label: 'Federation' },
+              { val: 'league', label: 'League' },
+            ].map(t => (
+              <label key={t.val} className="type-checkbox">
+                <input
+                  type="checkbox"
+                  checked={filterTypes.has(t.val)}
+                  onChange={() => {
+                    setFilterTypes(prev => {
+                      const next = new Set(prev);
+                      if (next.has(t.val)) next.delete(t.val);
+                      else next.add(t.val);
+                      return next;
+                    });
+                  }}
+                />
+                <span className="type-checkbox-label">{t.label}</span>
+              </label>
             ))}
           </div>
         </div>
