@@ -1,5 +1,5 @@
 /* ================================================================
-   analysis/features.ts  --  67 homepage features with presence
+   analysis/features.ts  --  62 homepage features with presence
    built from individual club analysis JSON results.
 
    Feature metadata comes from HOME-PAGE.md rubric.
@@ -153,12 +153,8 @@ export const FEATURES: Feature[] = [
     'Shows recent match scores for quick catch-up', 'match_fixtures', 'E', 3, -1),
   feat('M04', 'standings_block', 'Standings Block',
     'League table access directly from the homepage', 'match_fixtures', 'E', 3, -1),
-  feat('M05', 'birthday_squad_calendar', 'Birthday / Squad Calendar',
-    'Highlights player birthdays or squad-related dates', 'match_fixtures', 'D', 8, -1),
   feat('M06', 'live_match_indicator', 'Live Match Indicator',
     'Visible signal when a match is happening right now', 'match_fixtures', 'C', 5, -2),
-  feat('M07', 'push_notification_opt_in', 'Push Notification Opt-in',
-    'Prompt inviting users to subscribe to browser or app alerts', 'match_fixtures', 'F', 8, 0),
   feat('M08', 'matchday_experience_info', 'Matchday Experience Info',
     'Practical info about attending a match: transport, food, gates, fan zone', 'match_fixtures', 'C', 5, -2),
 
@@ -195,8 +191,6 @@ export const FEATURES: Feature[] = [
     'Promotes premium hospitality packages with some descriptive content', 'tickets_hospitality', 'C', 5, -2),
   feat('T03', 'stadium_tours_block', 'Stadium Tours Block',
     'Promotes tours of the stadium with content, not just a nav link', 'tickets_hospitality', 'C', 5, -2),
-  feat('T04', 'multi_sport_tickets', 'Multi-Sport Tickets',
-    'Promotes tickets for basketball, women\'s football, futsal, or other sports', 'tickets_hospitality', 'D', 8, -1),
 
   // ── 6. Commerce & Store ──
   feat('S01', 'store_block', 'Store Block',
@@ -227,10 +221,6 @@ export const FEATURES: Feature[] = [
     'A block with the stadium as its main subject, not just a background photo', 'heritage', 'E', 3, -1),
   feat('I04', 'museum_block', 'Museum Block',
     'A dedicated block promoting the club\'s museum', 'heritage', 'C', 5, -2),
-  feat('I05', 'anniversary_milestone', 'Anniversary / Milestone Block',
-    'Celebrates an anniversary, title win, or milestone moment', 'heritage', 'D', 8, -1),
-  feat('I06', 'tribute_memorial', 'Tribute / Memorial Block',
-    'Honours a person, event, or loss associated with the club', 'heritage', 'D', 8, -1),
 
   // ── 9. Players & Teams ──
   feat('P01', 'player_roster_preview', 'Player Roster Preview',

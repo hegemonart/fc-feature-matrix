@@ -77,9 +77,7 @@ The following do **not** qualify as a block:
 | Next-match block is feature-rich | The next-match block contains 3+ of the following: live countdown, 2+ upcoming fixtures, opponent crest, competition logo, ticket CTA, broadcaster info, add-to-calendar button | Next-match block adds extras like countdown, tickets, or broadcaster info | C | +5 | −2 |
 | Results block | A block showing at least one recent match result with score | Shows recent match scores for quick catch-up | E | +3 | −1 |
 | Standings block or prominent link | A block showing the league table, or a prominent homepage link to it (footer-only does not qualify) | League table access directly from the homepage | E | +3 | −1 |
-| Birthday / squad calendar block | A block listing player birthdays or squad calendar events | Highlights player birthdays or squad-related dates | D | +8 | −1 |
 | Live match indicator | A badge, card, or banner indicating a currently-live match | Visible signal when a match is happening right now | C | +5 | −2 |
-| Push notification opt-in | A browser push-notification prompt or a block inviting notification opt-in | Prompt inviting users to subscribe to browser or app alerts | F | +8 | 0 |
 | Matchday experience info block | A block with matchday logistics (transport, food, fan zone, or gates) | Practical info about attending a match: transport, food, gates, fan zone | C | +5 | −2 |
 
 ---
@@ -110,7 +108,6 @@ The following do **not** qualify as a block:
 | Tickets block on homepage | A block promoting ticket sales (not just a header nav link) | A real block selling or promoting tickets, not just a nav link | C | +5 | −2 |
 | Hospitality block | A block with at least a brief description of hospitality packages (a link alone does not qualify) | Promotes premium hospitality packages with some descriptive content | C | +5 | −2 |
 | Stadium tours block | A block promoting stadium tours (a nav entry alone does not qualify) | Promotes tours of the stadium with content, not just a nav link | C | +5 | −2 |
-| Multi-sport tickets block | A block promoting tickets for sports other than men's football | Promotes tickets for basketball, women's football, futsal, or other sports | D | +8 | −1 |
 
 ---
 
@@ -144,8 +141,6 @@ The following do **not** qualify as a block:
 | Heritage / past content block | A block mentioning any of: past seasons, past players, club history, legends, or hall of fame (a nav or footer link alone does not qualify) | Content about club history, past seasons, legends, or hall of fame | E | +3 | −1 |
 | Stadium content block | A block that explicitly features the stadium as its primary subject (a passing stadium photo inside a generic block does not qualify) | A block with the stadium as its main subject, not just a background photo | E | +3 | −1 |
 | Museum block | A block about the museum (a nav or footer link alone does not qualify) | A dedicated block promoting the club's museum | C | +5 | −2 |
-| Anniversary / milestone block | A block or campaign commemorating an anniversary or milestone | Celebrates an anniversary, title win, or milestone moment | D | +8 | −1 |
-| Tribute / memorial block | A block of memorial or tribute content (transient content still counts) | Honours a person, event, or loss associated with the club | D | +8 | −1 |
 
 ---
 
