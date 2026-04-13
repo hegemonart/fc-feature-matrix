@@ -331,7 +331,6 @@ export default function FeatureMatrixPage() {
                 className={`cat-item${activeCat === c.id ? ' active' : ''}`}
                 onClick={() => setActiveCat(activeCat === c.id ? null : c.id)}
               >
-                <div className="cat-dot" style={{ background: c.color }}></div>
                 <span className="cat-name">{c.name}</span>
                 <span className="cat-count">{catCounts[c.id]}</span>
               </div>
@@ -543,13 +542,6 @@ export default function FeatureMatrixPage() {
           <>
             <div className="tt-feature">{tooltipData.feature}</div>
             <div className="tt-product">{tooltipData.product}</div>
-            <div className={`tt-status ${tooltipData.status}`}>
-              {tooltipData.status === 'full'
-                ? '\u2713 Present'
-                : tooltipData.status === 'partial'
-                ? '\u2713 Partial'
-                : '\u00B7 Absent'}
-            </div>
           </>
         )}
       </div>
@@ -597,7 +589,6 @@ function TableRows({
         <tr className="category-sep-row" key={`sep-${f.cat}-${idx}`} style={sepBlur}>
           <td className="category-sep" colSpan={1}>
             <div className="cat-sep-inner">
-              <div className="cat-sep-dot" style={{ background: cat.color }}></div>
               <span className="cat-sep-label">{cat.name}</span>
             </div>
           </td>
@@ -631,7 +622,6 @@ function TableRows({
           const state = f.presence[p.id];
           let cls = 'cell';
           if (state === 'full') cls += ' has-full';
-          else if (state === 'partial') cls += ' has-partial';
           if (selectedProduct === p.id) cls += ' highlighted';
 
           return (
@@ -643,7 +633,6 @@ function TableRows({
               onMouseMove={onCellMouseMove}
             >
               {state === 'full' && <span className="check">{'\u2713'}</span>}
-              {state === 'partial' && <span className="partial-check">{'\u2713'}</span>}
               {state === 'absent' && <span className="no-check">{'\u00B7'}</span>}
             </td>
           );
@@ -681,7 +670,6 @@ function FeatureDetail({
   const cat = CATEGORIES.find(c => c.id === f.cat)!;
   const bandLabel = BAND_META.find(b => b.id === f.band)!.name;
   const fullList = ALL_IDS.filter(id => f.presence[id] === 'full');
-  const partialList = ALL_IDS.filter(id => f.presence[id] === 'partial');
   const absentList = ALL_IDS.filter(id => f.presence[id] === 'absent');
   const pName = (id: string) => PRODUCTS.find(p => p.id === id)!.name;
 
@@ -701,7 +689,7 @@ function FeatureDetail({
         <div className="detail-freq-row">
           <span className="detail-freq-big">{f.adoptionPct}%</span>
           <span className="detail-freq-sub">
-            {fullList.length} full + {partialList.length} partial<br />of {totalProducts} products
+            {fullList.length} of {totalProducts} products
           </span>
         </div>
         <div
@@ -716,23 +704,11 @@ function FeatureDetail({
 
       {fullList.length > 0 && (
         <>
-          <div className="detail-products-label">Present (full)</div>
+          <div className="detail-products-label">Present</div>
           <div className="detail-products">
             {fullList.map(id => (
               <span key={id} className="product-chip" onClick={() => onProductClick(id)}>
                 {pName(id)}
-              </span>
-            ))}
-          </div>
-        </>
-      )}
-      {partialList.length > 0 && (
-        <>
-          <div className="detail-products-label" style={{ marginTop: '10px' }}>Partial / Nav-only</div>
-          <div className="detail-products">
-            {partialList.map(id => (
-              <span key={id} className="product-chip" onClick={() => onProductClick(id)}>
-                <span className="chip-state" style={{ opacity: 0.5 }}>{'\u2713'}</span> {pName(id)}
               </span>
             ))}
           </div>
@@ -771,22 +747,19 @@ function ProductDetail({
   if (!p) return null;
 
   const fullCount = FEATURES.filter(f => f.presence[pid] === 'full').length;
-  const partialCount = FEATURES.filter(f => f.presence[pid] === 'partial').length;
 
   let weightedScore = 0;
   let maxWeighted = 0;
   FEATURES.forEach(f => {
     maxWeighted += f.weight;
     if (f.presence[pid] === 'full') weightedScore += f.weight;
-    else if (f.presence[pid] === 'partial') weightedScore += Math.round(f.weight * 0.5);
-    // absent = no penalty (consistent with lib/scoring.ts)
   });
-  const pct = Math.round((fullCount + partialCount) / FEATURES.length * 100);
+  const pct = Math.round(fullCount / FEATURES.length * 100);
 
   /* ── Group features into 3 sections ── */
   const missingDiff = FEATURES.filter(f => f.cat === 'diff' && f.presence[pid] === 'absent');
   const missingMustHave = FEATURES.filter(f => f.cat !== 'diff' && f.presence[pid] === 'absent');
-  const featuresPresent = FEATURES.filter(f => f.presence[pid] === 'full' || f.presence[pid] === 'partial');
+  const featuresPresent = FEATURES.filter(f => f.presence[pid] === 'full');
 
   return (
     <>
@@ -820,7 +793,7 @@ function ProductDetail({
         <div className="detail-freq-row">
           <span className="detail-freq-big">{pct}%</span>
           <span className="detail-freq-sub">
-            {fullCount} full + {partialCount} partial<br />of {FEATURES.length} features
+            {fullCount} of {FEATURES.length} features
           </span>
         </div>
         <div className="detail-freq-bar" style={{ width: `${pct}%`, background: 'var(--accent)' }}></div>

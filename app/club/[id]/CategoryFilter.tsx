@@ -188,10 +188,9 @@ export default function CategoryFilter({
             </p>
             <div className="bd-feature-list">
               {differentiators.map(f => {
-                const isPartial = f.status === 'partial';
                 return (
                   <div key={f.id} className="bd-feature-item">
-                    <div className={`bd-feature-status ${isPartial ? 'partial' : 'has'}`}>
+                    <div className="bd-feature-status has">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
@@ -199,9 +198,6 @@ export default function CategoryFilter({
                     <div className="bd-feature-info">
                       <div className="bd-feature-name">
                         {f.name}
-                        {isPartial && (
-                          <span style={{ fontWeight: 400, color: 'var(--muted)', fontSize: '11px' }}> (partial)</span>
-                        )}
                       </div>
                       <div className="bd-feature-desc">{f.desc}</div>
                     </div>
@@ -239,10 +235,9 @@ export default function CategoryFilter({
             </p>
             <div className="bd-feature-list">
               {alreadyHave.map(f => {
-                const isPartial = f.status === 'partial';
                 return (
                   <div key={f.id} className="bd-feature-item">
-                    <div className={`bd-feature-status ${isPartial ? 'partial' : 'has'}`}>
+                    <div className="bd-feature-status has">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <polyline points="20 6 9 17 4 12" />
                       </svg>
@@ -250,9 +245,6 @@ export default function CategoryFilter({
                     <div className="bd-feature-info">
                       <div className="bd-feature-name">
                         {f.name}
-                        {isPartial && (
-                          <span style={{ fontWeight: 400, color: 'var(--muted)', fontSize: '11px' }}> (partial)</span>
-                        )}
                       </div>
                     </div>
                     <div className="bd-feature-tags">
