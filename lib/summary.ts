@@ -9,13 +9,10 @@ export interface ClubSummary {
   conclusion: string;
 }
 
-const CAT_NAMES: Record<CategoryId, string> = {
-  revenue: 'Revenue & Commerce',
-  content: 'Content & Engagement',
-  brand: 'Brand & Identity',
-  ux: 'UX & Utility',
-  diff: 'Differentiators',
-};
+// Build category name map dynamically from CATEGORIES data
+const CAT_NAMES: Record<CategoryId, string> = Object.fromEntries(
+  CATEGORIES.map(c => [c.id, c.name])
+) as Record<CategoryId, string>;
 
 export function generateClubSummary(pid: string): ClubSummary {
   const product = PRODUCTS.find(p => p.id === pid)!;
@@ -104,7 +101,7 @@ export function generateClubSummary(pid: string): ClubSummary {
   let conclusion: string;
 
   if (missing.length === 0) {
-    conclusion = `${name}'s homepage ticks every box in the benchmark. Full marks across all five categories.`;
+    conclusion = `${name}'s homepage ticks every box in the benchmark. Full marks across all ${CATEGORIES.length} categories.`;
   } else if (zeroCats.length > 0) {
     // Dramatic contrast: some categories at 0%
     const zeros = zeroCats.map(c => c.name);

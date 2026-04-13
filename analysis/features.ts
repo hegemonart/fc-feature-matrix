@@ -1,335 +1,268 @@
 /* ================================================================
-   analysis/features.ts  --  35 features with weights & presence
+   analysis/features.ts  --  67 homepage features with presence
+   built from individual club analysis JSON results.
 
-   Features are organized by category:
-   - Revenue & Commerce (5)
-   - Content & Engagement (11)
-   - Brand & Identity (6)
-   - UX & Utility (5)
-   - Differentiators (7)
+   Feature metadata comes from HOME-PAGE.md rubric.
+   Presence data comes from analysis/results/*.json files.
    ================================================================ */
 
-import type { Feature } from './types';
+import type { Feature, CategoryId, TierId, PresenceStatus } from './types';
 import { ALL_IDS } from './products';
-import { makePresence } from './presence';
+
+// ── Import all analysis results ──
+import real_madrid from './results/real_madrid.json';
+import fc_barcelona from './results/fc_barcelona.json';
+import bayern_munich from './results/bayern_munich.json';
+import psg from './results/psg.json';
+import liverpool from './results/liverpool.json';
+import man_city from './results/man_city.json';
+import arsenal from './results/arsenal.json';
+import man_united from './results/man_united.json';
+import tottenham from './results/tottenham.json';
+import chelsea from './results/chelsea.json';
+import inter_milan from './results/inter_milan.json';
+import bvb_dortmund from './results/bvb_dortmund.json';
+import atletico_madrid from './results/atletico_madrid.json';
+import aston_villa from './results/aston_villa.json';
+import ac_milan from './results/ac_milan.json';
+import juventus from './results/juventus.json';
+import newcastle from './results/newcastle.json';
+import vfb_stuttgart from './results/vfb_stuttgart.json';
+import sl_benfica from './results/sl_benfica.json';
+import west_ham from './results/west_ham.json';
+import uefa from './results/uefa.json';
+import f1 from './results/f1.json';
+import motogp from './results/motogp.json';
+import mls from './results/mls.json';
+import mlb from './results/mlb.json';
+
+// ── All results indexed by product_id ──
+const RESULTS: Record<string, Record<string, boolean>> = {
+  real_madrid: real_madrid.features,
+  fc_barcelona: fc_barcelona.features,
+  bayern_munich: bayern_munich.features,
+  psg: psg.features,
+  liverpool: liverpool.features,
+  man_city: man_city.features,
+  arsenal: arsenal.features,
+  man_united: man_united.features,
+  tottenham: tottenham.features,
+  chelsea: chelsea.features,
+  inter_milan: inter_milan.features,
+  bvb_dortmund: bvb_dortmund.features,
+  atletico_madrid: atletico_madrid.features,
+  aston_villa: aston_villa.features,
+  ac_milan: ac_milan.features,
+  juventus: juventus.features,
+  newcastle: newcastle.features,
+  vfb_stuttgart: vfb_stuttgart.features,
+  sl_benfica: sl_benfica.features,
+  west_ham: west_ham.features,
+  uefa: uefa.features,
+  f1: f1.features,
+  motogp: motogp.features,
+  mls: mls.features,
+  mlb: mlb.features,
+};
+
+/** Build a presence map for a given feature key from JSON results */
+function buildPresence(featureKey: string): Record<string, PresenceStatus> {
+  const m: Record<string, PresenceStatus> = {};
+  ALL_IDS.forEach(id => {
+    const result = RESULTS[id];
+    m[id] = result && result[featureKey] ? 'full' : 'absent';
+  });
+  return m;
+}
+
+/** Helper to define a feature concisely */
+function feat(
+  id: string,
+  key: string,
+  name: string,
+  desc: string,
+  cat: CategoryId,
+  tier: TierId,
+  weightYes: number,
+  weightNo: number,
+): Feature {
+  return {
+    id,
+    name,
+    desc,
+    cat,
+    tier,
+    weightYes,
+    weightNo,
+    weight: weightYes,   // backward compat
+    presence: buildPresence(key),
+  };
+}
+
+// ================================================================
+//  67 FEATURES — organized by HOME-PAGE.md sections
+// ================================================================
 
 export const FEATURES: Feature[] = [
-  // ── Revenue & Commerce ──
-  {
-    id: 'F01', name: 'E-Commerce / Shop',
-    desc: 'Online store link, merchandise showcase, kit display, product cards on homepage',
-    cat: 'revenue', weight: 5,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','eintracht','rb_leipzig','valencia_cf','atp_tour','f1','motogp','nba','mlb'],
-      ['club_brugge','mls'],
-    ),
-  },
-  {
-    id: 'F02', name: 'Ticketing',
-    desc: 'Ticket purchase links, match-day info, hospitality',
-    cat: 'revenue', weight: 5,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','rb_leipzig','valencia_cf','atp_tour','uefa','f1','nba','mls','mlb'],
-      ['juventus','eintracht','itf_tennis','motogp'],
-    ),
-  },
-  {
-    id: 'F03', name: 'Membership Program',
-    desc: 'Named fan membership, loyalty programs, subscription tiers — direct recurring revenue and fan data capture',
-    cat: 'revenue', weight: 5,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','man_united','tottenham','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','vfb_stuttgart','sl_benfica','west_ham','brentford','motogp','nba','mls','mlb'],
-      ['psg','arsenal','chelsea','aston_villa','eintracht','club_brugge','rb_leipzig','valencia_cf','f1'],
-    ),
-  },
-  {
-    id: 'F04', name: 'Streaming / OTT Platform',
-    desc: 'Club-branded TV/streaming service — premium content monetization and global fan reach',
-    cat: 'revenue', weight: 4,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_united','tottenham','chelsea','inter_milan','ac_milan','sl_benfica','valencia_cf','atp_tour','f1','motogp','nba','mls','mlb'],
-      ['arsenal','man_city','bvb_dortmund','newcastle','west_ham','brentford','club_brugge','eintracht','rb_leipzig','uefa'],
-    ),
-  },
-  {
-    id: 'F29', name: 'Corporate / Hospitality',
-    desc: 'Dedicated hospitality packages, VIP experiences, corporate event sections — premium revenue stream beyond standard ticketing',
-    cat: 'revenue', weight: 3,
-    presence: makePresence(
-      [],
-      ['fc_barcelona','bayern_munich','liverpool','atletico_madrid','chelsea','newcastle','west_ham','brentford','valencia_cf','motogp'],
-    ),
-  },
+  // ── 1. Header & Navigation ──
+  feat('H01', 'language_switcher_in_header', 'Language Switcher in Header',
+    'Lets users switch site language from the header', 'header_nav', 'A', 1, -8),
+  feat('H02', 'login_account', 'Login / Account',
+    'Entry point for user account, sign-in, or profile', 'header_nav', 'A', 1, -8),
+  feat('H03', 'search_input_in_header', 'Search Input in Header',
+    'Search bar or icon visible in the top nav', 'header_nav', 'E', 3, -1),
+  feat('H04', 'shop_shortcut_in_header', 'Shop Shortcut in Header',
+    'Top-nav link sending users straight to the club store', 'header_nav', 'B', 2, -5),
+  feat('H05', 'tickets_shortcut_in_header', 'Tickets Shortcut in Header',
+    'Top-nav link sending users straight to tickets', 'header_nav', 'B', 2, -5),
+  feat('H06', 'sponsor_lockup_in_header', 'Sponsor Lockup in Header',
+    'Sponsor logo integrated alongside the club crest in the header', 'header_nav', 'D', 8, -1),
+  feat('H07', 'persistent_bar_above_header', 'Persistent Bar Above Header',
+    'Thin bar above the main header with offers, sponsor credits, or utility links', 'header_nav', 'E', 3, -1),
 
-  // ── Content & Engagement ──
-  {
-    id: 'F05', name: 'News Feed',
-    desc: 'Editorial news articles, grid/cards with thumbnails — primary traffic driver and SEO engine',
-    cat: 'content', weight: 4,
-    presence: makePresence(ALL_IDS, []),
-  },
-  {
-    id: 'F06', name: 'Fixtures & Results',
-    desc: 'Upcoming match schedule, past match scores/results widget visible on homepage — core matchday engagement',
-    cat: 'content', weight: 3,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
-      ['juventus'],
-    ),
-  },
-  {
-    id: 'F06b', name: 'Standings / League Table',
-    desc: 'Current league table, standings widget, ranking display on homepage — competitive context for fans',
-    cat: 'content', weight: 2,
-    presence: makePresence(
-      ['inter_milan','atletico_madrid','vfb_stuttgart','eintracht','club_brugge','itf_tennis','atp_tour','uefa','f1','motogp','nba','mls','mlb'],
-      ['fc_barcelona','liverpool','chelsea','rb_leipzig'],
-    ),
-  },
-  {
-    id: 'F07', name: 'Video Player / Section',
-    desc: 'Dedicated video area, embedded video player, video content cards with play buttons on homepage',
-    cat: 'content', weight: 4,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','club_brugge','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
-      ['aston_villa','brentford','eintracht','rb_leipzig'],
-    ),
-  },
-  {
-    id: 'F07b', name: 'Match Highlights',
-    desc: 'Specific match highlight clips, replay content, goal clips — highest-demand video format',
-    cat: 'content', weight: 4,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','arsenal','tottenham','chelsea','ac_milan','sl_benfica','atp_tour','uefa','f1','motogp','mls','mlb'],
-      ['psg','man_united','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','juventus','newcastle','vfb_stuttgart','club_brugge','itf_tennis','valencia_cf'],
-    ),
-  },
-  {
-    id: 'F07c', name: 'Photo Gallery',
-    desc: 'Photo gallery section, image grid, behind-the-scenes photo collections on homepage',
-    cat: 'content', weight: 2,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','arsenal','chelsea','ac_milan','newcastle','vfb_stuttgart','sl_benfica','brentford','club_brugge','valencia_cf','uefa','motogp'],
-      ['liverpool','man_city','man_united','tottenham','inter_milan','bvb_dortmund','juventus','west_ham','atp_tour','itf_tennis','f1','nba','mlb'],
-    ),
-  },
-  {
-    id: 'F08', name: 'Hero / Banner',
-    desc: 'Hero carousel, featured story banner — first impression and editorial control point',
-    cat: 'content', weight: 3,
-    presence: makePresence(ALL_IDS, []),
-  },
-  {
-    id: 'F09', name: 'Navigation Depth',
-    desc: 'Rich top nav with 6+ items — information architecture and content discoverability',
-    cat: 'content', weight: 3,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','itf_tennis','rb_leipzig','valencia_cf','atp_tour','uefa','f1','motogp','nba','mls','mlb'],
-      [],
-    ),
-  },
-  {
-    id: 'F27', name: 'Live Scores Ticker',
-    desc: 'Persistent scores/results bar at top of page showing live or recent scores across the league — real-time engagement hook',
-    cat: 'content', weight: 2,
-    presence: makePresence(
-      ['atp_tour','uefa','nba','mls','mlb'],
-      ['liverpool','arsenal','tottenham','west_ham','vfb_stuttgart','f1'],
-    ),
-  },
-  {
-    id: 'F28', name: 'Social Media Feed Embed',
-    desc: 'Embedded social feed (Instagram grid, Twitter feed) on homepage — cross-platform content amplification beyond icon links',
-    cat: 'content', weight: 1,
-    presence: makePresence(
-      ['brentford','uefa'],
-      ['fc_barcelona','psg','vfb_stuttgart','valencia_cf'],
-    ),
-  },
-  {
-    id: 'F30', name: 'Player Profiles / Squad',
-    desc: 'Player cards, squad roster, player spotlight sections on homepage — fan connection and content personalisation driver',
-    cat: 'content', weight: 2,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','arsenal','liverpool','man_united','chelsea','inter_milan','atletico_madrid','ac_milan','eintracht','itf_tennis','atp_tour','uefa','f1','motogp'],
-      ['bayern_munich','psg','man_city','tottenham','juventus','aston_villa','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','rb_leipzig','valencia_cf','nba','mlb'],
-    ),
-  },
-  {
-    id: 'F32', name: 'Podcast / Audio',
-    desc: 'Podcast sections, audio content, "listen" CTAs — growing content format for commute-time fan engagement',
-    cat: 'content', weight: 1,
-    presence: makePresence(
-      ['itf_tennis'],
-      ['fc_barcelona','bayern_munich','man_united','bvb_dortmund','aston_villa','ac_milan','newcastle','motogp','nba','mlb'],
-    ),
-  },
+  // ── 2. Hero ──
+  feat('R01', 'hero_carousel', 'Hero Carousel',
+    'Hero rotates through multiple slides to show more content at the top', 'hero', 'E', 3, -1),
+  feat('R02', 'secondary_editorial_strip_below_hero', 'Secondary Editorial Strip Below Hero',
+    'Row of editorial cards just under the hero for quick content access', 'hero', 'A', 1, -8),
+  feat('R03', 'brand_sponsor_highlighted_in_hero', 'Brand Sponsor in Hero',
+    'Large sponsor visual taking significant space in the first view', 'hero', 'D', 8, -1),
 
-  // ── Brand & Identity ──
-  {
-    id: 'F10', name: "Women's Team Visibility",
-    desc: "Dedicated women's team content on homepage — brand inclusivity and growing market segment",
-    cat: 'brand', weight: 3,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','man_united','arsenal','chelsea','atletico_madrid','ac_milan','west_ham','brentford','itf_tennis','uefa'],
-      ['psg','tottenham','bvb_dortmund','aston_villa','juventus','newcastle','vfb_stuttgart','valencia_cf'],
-    ),
-  },
-  {
-    id: 'F11', name: 'Academy / Youth',
-    desc: 'Youth development, academy section on homepage — brand storytelling and talent pipeline visibility',
-    cat: 'brand', weight: 2,
-    presence: makePresence(
-      ['fc_barcelona','bayern_munich','man_city','man_united','arsenal','chelsea','ac_milan','vfb_stuttgart','west_ham','valencia_cf','uefa'],
-      ['real_madrid','liverpool','tottenham','inter_milan','newcastle','itf_tennis','f1'],
-    ),
-  },
-  {
-    id: 'F12', name: 'Social Media Links',
-    desc: 'Social platform icons/links in header or footer — cross-platform engagement and audience routing',
-    cat: 'brand', weight: 2,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','mls','nba','f1','motogp','mlb'],
-      [],
-    ),
-  },
-  {
-    id: 'F13', name: 'Sponsor Showcase',
-    desc: 'Dedicated partner/sponsor section, logo grid — commercial partner value demonstration',
-    cat: 'brand', weight: 4,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
-      [],
-    ),
-  },
-  {
-    id: 'F14', name: 'App Download Promotion',
-    desc: 'Mobile app download badges/CTAs — mobile-first fan relationship and push notification channel',
-    cat: 'brand', weight: 3,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','liverpool','man_city','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','sl_benfica','west_ham','brentford','atp_tour','f1','motogp','nba','mls','mlb'],
-      ['vfb_stuttgart'],
-    ),
-  },
-  {
-    id: 'F31', name: 'Trophy / Honours Showcase',
-    desc: 'Visual trophy cabinet, honours list, trophy icons — emotional brand equity and competitive prestige display',
-    cat: 'brand', weight: 2,
-    presence: makePresence(
-      ['bayern_munich','liverpool','inter_milan','valencia_cf'],
-      ['real_madrid','fc_barcelona','man_city','juventus'],
-    ),
-  },
+  // ── 3. Match & Fixtures ──
+  feat('M01', 'next_match_block', 'Next-Match Block',
+    'Shows the upcoming match so fans know when the team plays next', 'match_fixtures', 'A', 1, -8),
+  feat('M02', 'next_match_feature_rich', 'Next-Match Feature-Rich',
+    'Next-match block adds extras like countdown, tickets, or broadcaster info', 'match_fixtures', 'C', 5, -3),
+  feat('M03', 'results_block', 'Results Block',
+    'Shows recent match scores for quick catch-up', 'match_fixtures', 'E', 3, -1),
+  feat('M04', 'standings_block', 'Standings Block',
+    'League table access directly from the homepage', 'match_fixtures', 'E', 3, -1),
+  feat('M05', 'birthday_squad_calendar', 'Birthday / Squad Calendar',
+    'Highlights player birthdays or squad-related dates', 'match_fixtures', 'D', 8, -1),
+  feat('M06', 'live_match_indicator', 'Live Match Indicator',
+    'Visible signal when a match is happening right now', 'match_fixtures', 'C', 5, -3),
+  feat('M07', 'push_notification_opt_in', 'Push Notification Opt-in',
+    'Prompt inviting users to subscribe to browser or app alerts', 'match_fixtures', 'F', 8, 0),
+  feat('M08', 'matchday_experience_info', 'Matchday Experience Info',
+    'Practical info about attending a match: transport, food, gates, fan zone', 'match_fixtures', 'C', 5, -3),
 
-  // ── UX & Utility ──
-  {
-    id: 'F15', name: 'Search',
-    desc: 'Search icon/bar on homepage — content discoverability and user intent capture',
-    cat: 'ux', weight: 2,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
-      [],
-    ),
-  },
-  {
-    id: 'F16', name: 'Multi-Language',
-    desc: 'Language selector visible — global accessibility for international fanbase',
-    cat: 'ux', weight: 3,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','inter_milan','bvb_dortmund','atletico_madrid','ac_milan','juventus','vfb_stuttgart','sl_benfica','eintracht','club_brugge','rb_leipzig','valencia_cf','atp_tour','itf_tennis','motogp','mls'],
-      ['uefa'],
-    ),
-  },
-  {
-    id: 'F17', name: 'Login / Registration',
-    desc: 'User account, sign-in button — first-party data capture and personalization gateway',
-    cat: 'ux', weight: 4,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','rb_leipzig','valencia_cf','atp_tour','itf_tennis','uefa','f1','motogp','nba','mls','mlb'],
-      [],
-    ),
-  },
-  {
-    id: 'F18', name: 'Newsletter Signup',
-    desc: 'Email subscription form/CTA — owned audience channel for re-engagement',
-    cat: 'ux', weight: 3,
-    presence: makePresence(
-      ['bayern_munich','liverpool','west_ham','atp_tour'],
-      ['real_madrid','fc_barcelona','chelsea','bvb_dortmund','aston_villa','sl_benfica','itf_tennis','motogp'],
-    ),
-  },
-  {
-    id: 'F19', name: 'Footer Navigation',
-    desc: 'Multi-column footer with organized links — secondary navigation and legal compliance',
-    cat: 'ux', weight: 1,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','psg','liverpool','man_city','arsenal','man_united','tottenham','chelsea','inter_milan','bvb_dortmund','atletico_madrid','aston_villa','ac_milan','juventus','newcastle','vfb_stuttgart','sl_benfica','west_ham','brentford','club_brugge','eintracht','itf_tennis','rb_leipzig','valencia_cf','atp_tour','uefa','f1','motogp','nba','mls','mlb'],
-      [],
-    ),
-  },
+  // ── 4. Content (News, Video, Editorial) ──
+  feat('C01', 'dedicated_news_section', 'Dedicated News Section',
+    'A section of the homepage clearly devoted to news stories', 'content', 'A', 1, -8),
+  feat('C02', 'news_rich_structure', 'News Rich Structure',
+    'News section uses multiple UX features like tabs, mixed media, or hero card', 'content', 'E', 3, -1),
+  feat('C03', 'homepage_video_block', 'Homepage Video Block',
+    'A dedicated area for video content, separate from news', 'content', 'B', 2, -5),
+  feat('C04', 'episodic_docu_series', 'Episodic / Docu-Series Block',
+    'Promotes a series of episodes or a campaign with multiple chapters', 'content', 'D', 8, -1),
+  feat('C05', 'video_thumbnails_inline', 'Video Thumbnails Inline with News',
+    'Video items shown mixed into the news grid', 'content', 'E', 3, -1),
+  feat('C06', 'documentary_promo', 'Documentary Promo Block',
+    'Specific promo for a documentary film, often with a paywall CTA', 'content', 'C', 5, -3),
+  feat('C07', 'social_native_content', 'Social-Native Content Block',
+    'Stories-style tiles or a block that mimics Instagram/TikTok UI', 'content', 'D', 8, -1),
+  feat('C08', 'podcast_audio', 'Podcast / Audio Content',
+    'Area dedicated to the club\'s podcasts or audio shows', 'content', 'D', 8, -1),
+  feat('C09', 'photo_gallery_block', 'Photo Gallery Block',
+    'A standalone photo gallery block, not just a filter in news', 'content', 'E', 3, -1),
+  feat('C10', 'press_conference_block', 'Press Conference / Interview Block',
+    'Card or block featuring a manager talking to press or being interviewed', 'content', 'E', 3, -1),
+  feat('C11', 'transfer_news', 'Transfer News Block',
+    'A dedicated area for transfer market news', 'content', 'D', 8, -1),
+  feat('C12', 'interactive_fan_poll', 'Interactive Fan Voting / Poll',
+    'A poll or vote that fans can actually interact with on the page', 'content', 'D', 8, -1),
 
-  // ── Differentiators ──
-  {
-    id: 'F20', name: 'Stadium / Museum / Tours',
-    desc: 'Stadium experience, museum, tour promotion — heritage monetization and matchday revenue',
-    cat: 'diff', weight: 2,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich','liverpool','tottenham','aston_villa','sl_benfica','brentford','valencia_cf'],
-      ['psg','chelsea','man_united','inter_milan','bvb_dortmund','juventus','newcastle','club_brugge','eintracht','mlb'],
-    ),
-  },
-  {
-    id: 'F21', name: 'Foundation / Charity',
-    desc: 'Club foundation, CSR, community section — brand purpose and community goodwill',
-    cat: 'diff', weight: 1,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','psg','liverpool','chelsea','newcastle','brentford','valencia_cf','uefa'],
-      ['bayern_munich','man_city','man_united','arsenal','tottenham','atletico_madrid','ac_milan','eintracht'],
-    ),
-  },
-  {
-    id: 'F22', name: 'Esports / Gaming',
-    desc: 'Gaming section, esports, fantasy — youth audience acquisition and digital-native engagement',
-    cat: 'diff', weight: 1,
-    presence: makePresence(
-      ['f1','motogp','nba','mlb','uefa'],
-      ['fc_barcelona','bvb_dortmund','atletico_madrid','mls'],
-    ),
-  },
-  {
-    id: 'F23', name: 'Heritage / History',
-    desc: 'Club history, "since XXXX", heritage messaging, trophy displays — emotional brand equity',
-    cat: 'diff', weight: 1,
-    presence: makePresence(
-      ['bayern_munich','liverpool','juventus','sl_benfica','motogp'],
-      ['real_madrid','fc_barcelona','bvb_dortmund','valencia_cf'],
-    ),
-  },
-  {
-    id: 'F24', name: 'Other Sports',
-    desc: 'Non-football sports coverage — cross-sport brand extension',
-    cat: 'diff', weight: 1,
-    presence: makePresence(
-      ['real_madrid','fc_barcelona','bayern_munich'],
-      ['sl_benfica','nba'],
-    ),
-  },
-  {
-    id: 'F25', name: 'Transfer Tracker',
-    desc: 'Transfer hub, tracker widget — high-traffic seasonal engagement driver',
-    cat: 'diff', weight: 1,
-    presence: makePresence(
-      ['uefa','mls'],
-      ['eintracht'],
-    ),
-  },
-  {
-    id: 'F26', name: 'Fan Feedback / Surveys',
-    desc: 'User feedback, "help shape" sections — community co-creation and product insight',
-    cat: 'diff', weight: 1,
-    presence: makePresence(
-      ['f1'],
-      [],
-    ),
-  },
+  // ── 5. Tickets & Hospitality ──
+  feat('T01', 'tickets_block', 'Tickets Block',
+    'A real block selling or promoting tickets, not just a nav link', 'tickets_hospitality', 'C', 5, -3),
+  feat('T02', 'hospitality_block', 'Hospitality Block',
+    'Promotes premium hospitality packages with some descriptive content', 'tickets_hospitality', 'C', 5, -3),
+  feat('T03', 'stadium_tours_block', 'Stadium Tours Block',
+    'Promotes tours of the stadium with content, not just a nav link', 'tickets_hospitality', 'C', 5, -3),
+  feat('T04', 'multi_sport_tickets', 'Multi-Sport Tickets',
+    'Promotes tickets for basketball, women\'s football, futsal, or other sports', 'tickets_hospitality', 'D', 8, -1),
+
+  // ── 6. Commerce & Store ──
+  feat('S01', 'store_block', 'Store Block',
+    'Any block dedicated to the official club store', 'commerce', 'B', 2, -5),
+  feat('S02', 'store_individual_products', 'Store Shows Individual Products',
+    'Store block features specific product cards, each with its own buy button', 'commerce', 'C', 5, -3),
+  feat('S03', 'member_only_commerce', 'Member-Only Commerce',
+    'Products or discounts available only to signed-up members', 'commerce', 'C', 5, -3),
+
+  // ── 7. Community & Membership ──
+  feat('N01', 'newsletter_signup', 'Newsletter Signup Block',
+    'An email capture block for joining the club\'s newsletter', 'community', 'B', 2, -5),
+  feat('N02', 'fan_club_signup', 'Fan-Club / Free Membership',
+    'Promotes joining the club\'s free official fan community or membership', 'community', 'C', 5, -3),
+  feat('N03', 'paid_membership', 'Paid Membership / Subscriptions',
+    'Promotes paid tiers like premium access, streaming, or subscription plans', 'community', 'C', 5, -3),
+  feat('N04', 'draws_contests', 'Draws / Contests Block',
+    'Promotes giveaways or competitions available to members or fans', 'community', 'D', 8, -1),
+  feat('N05', 'fan_clubs_directory', 'Fan Clubs Directory',
+    'Lists or links to the club\'s official supporter clubs around the world', 'community', 'E', 3, -1),
+
+  // ── 8. Heritage & Identity ──
+  feat('I01', 'trophies_honours', 'Trophies / Honours Block',
+    'Showcases the club\'s trophies, titles, or honours', 'heritage', 'E', 3, -1),
+  feat('I02', 'heritage_past_content', 'Heritage / Past Content',
+    'Content about club history, past seasons, legends, or hall of fame', 'heritage', 'E', 3, -1),
+  feat('I03', 'stadium_content_block', 'Stadium Content Block',
+    'A block with the stadium as its main subject, not just a background photo', 'heritage', 'E', 3, -1),
+  feat('I04', 'museum_block', 'Museum Block',
+    'A dedicated block promoting the club\'s museum', 'heritage', 'C', 5, -3),
+  feat('I05', 'anniversary_milestone', 'Anniversary / Milestone Block',
+    'Celebrates an anniversary, title win, or milestone moment', 'heritage', 'D', 8, -1),
+  feat('I06', 'tribute_memorial', 'Tribute / Memorial Block',
+    'Honours a person, event, or loss associated with the club', 'heritage', 'D', 8, -1),
+
+  // ── 9. Players & Teams ──
+  feat('P01', 'player_roster_preview', 'Player Roster Preview',
+    'A block showcasing the squad or selected players', 'players_teams', 'D', 8, -1),
+  feat('P02', 'individual_player_cards', 'Individual Player Cards',
+    'Named players shown as individual cards on the homepage', 'players_teams', 'D', 8, -1),
+  feat('P03', 'player_social_links', 'Player Social Links',
+    'Direct links to players\' social media from the homepage', 'players_teams', 'D', 8, -1),
+  feat('P04', 'womens_team_featured', "Women's Team Featured",
+    'Any women\'s team content visible on the homepage', 'players_teams', 'B', 2, -5),
+  feat('P05', 'womens_team_tickets', "Women's Team Tickets",
+    'A ticketing entry specifically for women\'s matches', 'players_teams', 'D', 8, -1),
+  feat('P06', 'academy_youth_block', 'Academy / Youth Team',
+    'Content about the youth academy or reserve teams', 'players_teams', 'D', 8, -1),
+  feat('P07', 'esports_gaming_block', 'eSports / Gaming Block',
+    'Content about the club\'s eSports or gaming division', 'players_teams', 'D', 8, -1),
+  feat('P08', 'charity_csr_block', 'Charity / CSR Block',
+    'Content about the club\'s charity, foundation, or social impact work', 'players_teams', 'D', 8, -1),
+
+  // ── 10. Partners, Sponsors & App Ecosystem ──
+  feat('A01', 'footer_sponsor_wall', 'Footer Sponsor Wall',
+    'Block of sponsor logos in the footer area', 'partners_sponsors', 'E', 3, -1),
+  feat('A02', 'in_content_sponsor', 'In-Content Sponsor Placement',
+    'Sponsor shown inside homepage content, not just header or footer', 'partners_sponsors', 'C', 5, -3),
+  feat('A03', 'app_store_badges', 'App Store Badges',
+    'App Store, Google Play, or AppGallery download badges on the homepage', 'partners_sponsors', 'B', 2, -5),
+  feat('A04', 'club_tv_app_promo', 'Club TV App Promotion',
+    'Promotes the club\'s streaming app with a subscribe or download CTA', 'partners_sponsors', 'C', 5, -3),
+  feat('A05', 'b2b_partnerships', 'B2B Partnerships / Become a Sponsor',
+    'Block inviting businesses to partner with or sponsor the club', 'partners_sponsors', 'D', 8, -1),
+
+  // ── 11. Personalization, Tech & Engagement ──
+  feat('E01', 'ai_chat_assistant', 'AI Chat / Fan Assistant',
+    'An AI-powered chatbot or helper widget on the homepage', 'personalization', 'F', 8, 0),
+  feat('E02', 'w3c_a11y_features', 'W3C / Accessibility Features',
+    'On-page accessibility tools like a widget or contrast controls', 'personalization', 'F', 8, 0),
+  feat('E03', 'loyalty_rewards', 'Loyalty Points / Rewards',
+    'A points or rewards system promoted on the homepage', 'personalization', 'C', 5, -3),
+  feat('E04', 'predictor_fantasy', 'Predictor / Fantasy League',
+    'Promotes a prediction game or fantasy football league', 'personalization', 'D', 8, -1),
+  feat('E05', 'quiz_trivia', 'Quiz / Trivia Block',
+    'A quiz or trivia game featured on the homepage', 'personalization', 'D', 8, -1),
+  feat('E06', 'wallpapers_downloads', 'Wallpapers / Digital Downloads',
+    'Offers downloadable wallpapers or digital goods to fans', 'personalization', 'D', 8, -1),
+
+  // ── 12. Footer ──
+  feat('F01', 'social_links_in_footer', 'Social Links in Footer',
+    'Social media icons or links in the footer area', 'footer_nav', 'A', 1, -8),
+  feat('F02', 'language_selector_in_footer', 'Language / Region Selector in Footer',
+    'Language or region switcher placed in the footer', 'footer_nav', 'A', 1, -8),
 ];

@@ -4,9 +4,23 @@
 
 export type PresenceStatus = 'full' | 'absent';
 
-export type CategoryId = 'revenue' | 'content' | 'brand' | 'ux' | 'diff';
+export type CategoryId =
+  | 'header_nav'
+  | 'hero'
+  | 'match_fixtures'
+  | 'content'
+  | 'tickets_hospitality'
+  | 'commerce'
+  | 'community'
+  | 'heritage'
+  | 'players_teams'
+  | 'partners_sponsors'
+  | 'personalization'
+  | 'footer_nav';
 
 export type BandId = 'table_stakes' | 'expected' | 'competitive' | 'innovation';
+
+export type TierId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
 
 export type ProductType = 'club' | 'league' | 'governing';
 
@@ -32,6 +46,9 @@ export interface Feature {
   name: string;
   desc: string;
   cat: CategoryId;
+  tier: TierId;
+  weightYes: number;
+  weightNo: number;
   weight: number;
   presence: Record<string, PresenceStatus>;
   /** Computed by computeBands() */

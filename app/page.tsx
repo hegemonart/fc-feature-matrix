@@ -751,14 +751,18 @@ function ProductDetail({
   let weightedScore = 0;
   let maxWeighted = 0;
   FEATURES.forEach(f => {
-    maxWeighted += f.weight;
-    if (f.presence[pid] === 'full') weightedScore += f.weight;
+    maxWeighted += f.weightYes;
+    if (f.presence[pid] === 'full') {
+      weightedScore += f.weightYes;
+    } else {
+      weightedScore += f.weightNo;
+    }
   });
   const pct = Math.round(fullCount / FEATURES.length * 100);
 
   /* ── Group features into 3 sections ── */
-  const missingDiff = FEATURES.filter(f => f.cat === 'diff' && f.presence[pid] === 'absent');
-  const missingMustHave = FEATURES.filter(f => f.cat !== 'diff' && f.presence[pid] === 'absent');
+  const missingHighImpact = FEATURES.filter(f => (f.tier === 'A' || f.tier === 'B' || f.tier === 'C') && f.presence[pid] === 'absent');
+  const missingLowImpact = FEATURES.filter(f => (f.tier === 'D' || f.tier === 'E' || f.tier === 'F') && f.presence[pid] === 'absent');
   const featuresPresent = FEATURES.filter(f => f.presence[pid] === 'full');
 
   return (
@@ -813,13 +817,13 @@ function ProductDetail({
 
       <div className="detail-divider"></div>
 
-      {missingDiff.length > 0 && (
+      {missingHighImpact.length > 0 && (
         <div>
           <div className="detail-products-label" style={{ color: 'var(--red)' }}>
-            Missing Differentiators
+            Missing High-Impact (Tier A/B/C)
           </div>
           <div className="product-feature-list">
-            {missingDiff.map(f => {
+            {missingHighImpact.map(f => {
               const cat = CATEGORIES.find(c => c.id === f.cat)!;
               return (
                 <div key={f.id} className="product-feature-item" onClick={() => onFeatureClick(f.id)}>
@@ -833,13 +837,13 @@ function ProductDetail({
         </div>
       )}
 
-      {missingMustHave.length > 0 && (
+      {missingLowImpact.length > 0 && (
         <div>
           <div className="detail-products-label" style={{ marginTop: '10px', color: 'var(--orange)' }}>
-            Missing Must-Haves
+            Missing (Tier D/E/F)
           </div>
           <div className="product-feature-list">
-            {missingMustHave.map(f => {
+            {missingLowImpact.map(f => {
               const cat = CATEGORIES.find(c => c.id === f.cat)!;
               return (
                 <div key={f.id} className="product-feature-item" onClick={() => onFeatureClick(f.id)}>

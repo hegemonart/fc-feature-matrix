@@ -20,7 +20,7 @@ interface FeatureData {
   cat: CategoryId;
   band: string;
   adoptionPct: number;
-  status: 'full' | 'partial' | 'absent';
+  status: 'full' | 'absent';
 }
 
 export default function CategoryFilter({

@@ -4,13 +4,28 @@ export function getProductScores(pid: string) {
   const fullCount = FEATURES.filter(f => f.presence[pid] === 'full').length;
   const absentCount = FEATURES.filter(f => f.presence[pid] === 'absent').length;
   const rawScore = fullCount;
-  let weightedScore = 0, maxWeighted = 0;
+
+  // Asymmetric scoring: Yes adds weightYes, No adds weightNo (often negative)
+  let totalScore = 0;
+  let maxPossible = 0;
   FEATURES.forEach(f => {
-    maxWeighted += f.weight;
-    if (f.presence[pid] === 'full') weightedScore += f.weight;
+    maxPossible += f.weightYes;
+    if (f.presence[pid] === 'full') {
+      totalScore += f.weightYes;
+    } else {
+      totalScore += f.weightNo;
+    }
   });
+
   const coveragePct = Math.round(fullCount / FEATURES.length * 100);
-  return { fullCount, absentCount, rawScore, weightedScore, maxWeighted, coveragePct };
+  return {
+    fullCount,
+    absentCount,
+    rawScore,
+    weightedScore: totalScore,
+    maxWeighted: maxPossible,
+    coveragePct,
+  };
 }
 
 export function getRankedProducts() {

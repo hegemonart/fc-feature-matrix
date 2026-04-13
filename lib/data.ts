@@ -10,6 +10,7 @@ export {
   type PresenceStatus,
   type CategoryId,
   type BandId,
+  type TierId,
   type ProductType,
   type SportType,
   type Category,
