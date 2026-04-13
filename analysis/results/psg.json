@@ -2,7 +2,7 @@
   "product_id": "psg",
   "screenshot": "04-psg.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -63,
+  "total_score": -30,
   "features": {
     "language_switcher_in_header": true,
     "login_account": true,

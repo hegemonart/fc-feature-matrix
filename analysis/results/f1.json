@@ -2,7 +2,7 @@
   "product_id": "f1",
   "screenshot": "22-f1.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -29,
+  "total_score": 3,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,

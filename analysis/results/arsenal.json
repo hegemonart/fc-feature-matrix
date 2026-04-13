@@ -2,7 +2,7 @@
   "product_id": "arsenal",
   "screenshot": "07-arsenal.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -21,
+  "total_score": 4,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,

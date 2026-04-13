@@ -2,7 +2,7 @@
   "product_id": "mlb",
   "screenshot": "26-mlb.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -40,
+  "total_score": -10,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,

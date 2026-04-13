@@ -2,7 +2,7 @@
   "product_id": "liverpool",
   "screenshot": "05-liverpool.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 6,
+  "total_score": 32,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,

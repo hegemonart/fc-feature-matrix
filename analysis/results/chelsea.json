@@ -2,7 +2,7 @@
   "product_id": "chelsea",
   "screenshot": "10-chelsea.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -12,
+  "total_score": 13,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,

@@ -2,7 +2,7 @@
   "product_id": "bayern_munich",
   "screenshot": "03-bayern-munich.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 3,
+  "total_score": 20,
   "features": {
     "language_switcher_in_header": true,
     "login_account": true,

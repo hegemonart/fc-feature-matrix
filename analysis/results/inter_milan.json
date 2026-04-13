@@ -2,7 +2,7 @@
   "product_id": "inter_milan",
   "screenshot": "11-inter-milan.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -35,
+  "total_score": -1,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,

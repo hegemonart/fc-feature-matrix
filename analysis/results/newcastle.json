@@ -2,7 +2,7 @@
   "product_id": "newcastle",
   "screenshot": "17-newcastle.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -52,
+  "total_score": -22,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,
