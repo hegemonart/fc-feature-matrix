@@ -89,18 +89,19 @@ export default function FeatureMatrixPage() {
 
   /* ── Derived data ── */
 
-  /** Total score per product (asymmetric: Yes adds weightYes, No adds weightNo) */
+  /** Total score per product, filtered by active category */
   const productScores = useMemo(() => {
+    const feats = activeCat ? FEATURES.filter(f => f.cat === activeCat) : FEATURES;
     const scores: Record<string, number> = {};
     PRODUCTS.forEach(p => {
       let total = 0;
-      FEATURES.forEach(f => {
+      feats.forEach(f => {
         total += f.presence[p.id] === 'full' ? f.weightYes : f.weightNo;
       });
       scores[p.id] = total;
     });
     return scores;
-  }, []);
+  }, [activeCat]);
 
   const visibleProds = useMemo(() => {
     const filtered = PRODUCTS.filter(p => {
