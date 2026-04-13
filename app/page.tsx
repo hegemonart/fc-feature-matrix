@@ -56,6 +56,7 @@ export default function FeatureMatrixPage() {
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
   const [adoptionSort, setAdoptionSort] = useState<'asc' | 'desc' | null>(null);
   const [featureAlphaSort, setFeatureAlphaSort] = useState(false);
+  const [scoreSort, setScoreSort] = useState<'asc' | 'desc' | null>(null);
 
   /* ── Auth ── */
   const [authed, setAuthed] = useState(false);
@@ -87,14 +88,36 @@ export default function FeatureMatrixPage() {
 
 
   /* ── Derived data ── */
+
+  /** Total score per product (asymmetric: Yes adds weightYes, No adds weightNo) */
+  const productScores = useMemo(() => {
+    const scores: Record<string, number> = {};
+    PRODUCTS.forEach(p => {
+      let total = 0;
+      FEATURES.forEach(f => {
+        total += f.presence[p.id] === 'full' ? f.weightYes : f.weightNo;
+      });
+      scores[p.id] = total;
+    });
+    return scores;
+  }, []);
+
   const visibleProds = useMemo(() => {
-    return PRODUCTS.filter(p => {
+    const filtered = PRODUCTS.filter(p => {
       if (filterSport === 'fc' && p.type !== 'club') return false;
       if (filterSport === 'federation' && p.type !== 'governing') return false;
       if (filterSport === 'league' && p.type !== 'league') return false;
       return true;
-    }).sort((a, b) => a.name.localeCompare(b.name));
-  }, [filterSport]);
+    });
+    if (scoreSort) {
+      filtered.sort((a, b) => scoreSort === 'desc'
+        ? productScores[b.id] - productScores[a.id]
+        : productScores[a.id] - productScores[b.id]);
+    } else {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    }
+    return filtered;
+  }, [filterSport, scoreSort, productScores]);
 
   const visibleFeats = useMemo(() => {
     return FEATURES.filter(f => {
@@ -208,6 +231,7 @@ export default function FeatureMatrixPage() {
     setSelectedProduct(null);
     setAdoptionSort(null);
     setFeatureAlphaSort(false);
+    setScoreSort(null);
   }, []);
 
 
@@ -357,7 +381,7 @@ export default function FeatureMatrixPage() {
                 <tr>
                   <th
                     className="feature-col sortable"
-                    onClick={() => { if (!authed) return; setAdoptionSort(null); setFeatureAlphaSort(prev => !prev); }}
+                    onClick={() => { if (!authed) return; setAdoptionSort(null); setScoreSort(null); setFeatureAlphaSort(prev => !prev); }}
                   >
                     Feature {featureAlphaSort ? '\u25B2' : ''}
                   </th>
@@ -379,6 +403,7 @@ export default function FeatureMatrixPage() {
                     onClick={() => {
                       if (!authed) return;
                       setFeatureAlphaSort(false);
+                      setScoreSort(null);
                       setAdoptionSort(prev => prev === 'asc' ? 'desc' : prev === 'desc' ? null : 'asc');
                     }}
                   >
@@ -407,6 +432,30 @@ export default function FeatureMatrixPage() {
                   />
                 )}
               </tbody>
+              <tfoot>
+                <tr className="score-row">
+                  <td
+                    className="feature-col score-label sortable"
+                    onClick={() => {
+                      if (!authed) return;
+                      setScoreSort(prev => prev === 'desc' ? 'asc' : prev === 'asc' ? null : 'desc');
+                    }}
+                  >
+                    Total Score {scoreSort === 'desc' ? '\u25BC' : scoreSort === 'asc' ? '\u25B2' : ''}
+                  </td>
+                  {visibleProds.map(p => {
+                    const s = productScores[p.id];
+                    return (
+                      <td key={p.id} className={`score-cell${selectedProduct === p.id ? ' highlighted' : ''}`}>
+                        <span className={`score-value ${s >= 0 ? 'positive' : 'negative'}`}>
+                          {s >= 0 ? '+' : ''}{s}
+                        </span>
+                      </td>
+                    );
+                  })}
+                  <td className="freq-col"></td>
+                </tr>
+              </tfoot>
             </table>
           </div>
           {!authed && (
