@@ -5,7 +5,6 @@
 export * from './types';
 export { CATEGORIES, BAND_META } from './categories';
 export { PRODUCTS, ALL_IDS } from './products';
-export { makePresence } from './presence';
 export { FEATURES } from './features';
 
 import { FEATURES } from './features';

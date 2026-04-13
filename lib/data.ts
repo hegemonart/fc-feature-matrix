@@ -26,6 +26,5 @@ export {
   FEATURES,
 
   // Helpers
-  makePresence,
   computeBands,
 } from '@/analysis';
