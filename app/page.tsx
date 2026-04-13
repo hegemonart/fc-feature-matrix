@@ -273,8 +273,8 @@ export default function FeatureMatrixPage() {
     <div className="matrix-shell">
       {/* ── HEADER ── */}
       <header>
-        <div className="logo">FC Benchmark <span>//</span> April 2026</div>
-        <div className="header-title">Feature Matrix</div>
+        <img src="/img/logo.svg" alt="Humbleteam" className="header-logo" />
+        <div className="header-center">FC Benchmark <span>//</span> April 2026</div>
         {authed ? (
           <button className="sign-in-btn" onClick={handleLogout}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -325,13 +325,6 @@ export default function FeatureMatrixPage() {
         </div>
       </nav>
 
-      {/* ── TOOLBAR ── */}
-      <div className={`toolbar${!authed ? ' locked-preview' : ''}`}>
-        <div className="toolbar-right">
-          <button className="clear-btn" onClick={handleClearFilters}>Clear filters</button>
-        </div>
-      </div>
-
       {/* ── MAIN ── */}
       <div className="main">
         {/* ── SIDEBAR ── */}
@@ -374,6 +367,8 @@ export default function FeatureMatrixPage() {
               </label>
             ))}
           </div>
+
+          <button className="clear-btn" onClick={handleClearFilters}>Clear filters</button>
         </div>
 
         {/* ── TABLE ── */}
