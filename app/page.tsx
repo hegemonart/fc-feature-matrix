@@ -358,7 +358,7 @@ export default function FeatureMatrixPage() {
         <div className={`sidebar${!authed ? ' locked-preview' : ''}`}>
           <h3>Category</h3>
           <div>
-            {[...CATEGORIES].sort((a, b) => a.name.localeCompare(b.name)).map(c => (
+            {CATEGORIES.map(c => (
               <div
                 key={c.id}
                 className={`cat-item${activeCat === c.id ? ' active' : ''}`}
