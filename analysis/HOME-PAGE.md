@@ -129,7 +129,6 @@ The following do **not** qualify as a block:
 | Fan-club / free membership sign-up block | A block promoting sign-up to the club's official fan community or membership programme (a standalone CTA button does not qualify) | Promotes joining the club's free official fan community or membership | C | +5 | −2 |
 | Paid membership / subscription plans block | A block with a CTA leading to paid sign-up or a plans list (e.g. "View plans", "See plans", "Become Premium", "Subscribe") | Promotes paid tiers like premium access, streaming, or subscription plans | C | +5 | −2 |
 | Draws / contests block | A block promoting member draws, contests, or giveaways | Promotes giveaways or competitions available to members or fans | D | +8 | −1 |
-| Fan clubs directory block | A block listing or linking to official supporter/fan clubs | Lists or links to the club's official supporter clubs around the world | E | +3 | −1 |
 
 ---
 

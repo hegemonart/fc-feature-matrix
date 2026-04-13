@@ -1,5 +1,5 @@
 /* ================================================================
-   analysis/features.ts  --  62 homepage features with presence
+   analysis/features.ts  --  61 homepage features with presence
    built from individual club analysis JSON results.
 
    Feature metadata comes from HOME-PAGE.md rubric.
@@ -209,8 +209,6 @@ export const FEATURES: Feature[] = [
     'Promotes paid tiers like premium access, streaming, or subscription plans', 'community', 'C', 5, -2),
   feat('N04', 'draws_contests', 'Draws / Contests Block',
     'Promotes giveaways or competitions available to members or fans', 'community', 'D', 8, -1),
-  feat('N05', 'fan_clubs_directory', 'Fan Clubs Directory',
-    'Lists or links to the club\'s official supporter clubs around the world', 'community', 'E', 3, -1),
 
   // ── 8. Heritage & Identity ──
   feat('I01', 'trophies_honours', 'Trophies / Honours Block',
