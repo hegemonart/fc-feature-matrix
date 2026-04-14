@@ -1,0 +1,317 @@
+# Cross-Check Agent
+
+Verify feature values across all websites using Chrome browser automation.
+
+## How to use
+
+In Claude Code terminal, prompt with the features and rubric source:
+
+```
+Cross-check "sponsor_lockup_in_header" across all websites
+using rubric: fc-feature-matrix/analysis/homepage/HOME-PAGE.md
+```
+
+```
+Cross-check all features in "Hero" category
+using rubric: fc-feature-matrix/analysis/homepage/HOME-PAGE.md
+```
+
+```
+Cross-check "social_native_content" and "homepage_video_block"
+using rubric: fc-feature-matrix/analysis/homepage/HOME-PAGE.md
+```
+
+## What happens
+
+1. Claude reads **this file** for the execution procedure
+2. Claude reads the **rubric file** (e.g. `HOME-PAGE.md`) to get feature names, "Qualifies as Yes if" criteria, and descriptions
+3. Claude visits every site in Chrome, one at a time, verifying all requested features per site
+4. Claude presents a discrepancies table for user approval
+5. After approval, Claude applies fixes and recalculates scores
+
+---
+
+## Feature resolution
+
+Features and their YES/NO criteria come from the **rubric file**, not from this README.
+
+For homepage features, the rubric is `analysis/HOME-PAGE.md`. It contains:
+- Category headings (e.g. "## 3. Match & Fixtures")
+- Feature tables with columns: **Feature**, **Qualifies as Yes if**, **Description**, **Tier**, **Weight if Yes**, **Weight if No**
+
+When the user specifies a **category name** (e.g. "Hero"), read all features under that heading in the rubric. When they specify **feature keys directly**, match them to the rubric rows.
+
+The rubric file is the single source of truth for what counts as YES.
+
+---
+
+## Websites (33)
+
+| # | ID | URL |
+|---|-----|-----|
+| 1 | real_madrid | realmadrid.com |
+| 2 | fc_barcelona | fcbarcelona.com |
+| 3 | bayern_munich | fcbayern.com |
+| 4 | psg | psg.fr/en |
+| 5 | liverpool | liverpoolfc.com |
+| 6 | man_city | mancity.com |
+| 7 | arsenal | arsenal.com |
+| 8 | man_united | manutd.com |
+| 9 | tottenham | tottenhamhotspur.com |
+| 10 | chelsea | chelseafc.com |
+| 11 | inter_milan | inter.it/en |
+| 12 | bvb_dortmund | bvb.de/eng |
+| 13 | atletico_madrid | atleticodemadrid.com |
+| 14 | aston_villa | avfc.co.uk |
+| 15 | ac_milan | acmilan.com/en |
+| 16 | juventus | juventus.com/en |
+| 17 | newcastle | newcastleunited.com |
+| 18 | vfb_stuttgart | vfb.de/en |
+| 19 | sl_benfica | slbenfica.pt |
+| 20 | west_ham | whufc.com |
+| 21 | uefa | uefa.com |
+| 22 | f1 | formula1.com |
+| 23 | motogp | motogp.com |
+| 24 | mls | mlssoccer.com |
+| 25 | mlb | mlb.com |
+| 26 | nba | nba.com |
+| 27 | brentford | brentfordfc.com |
+| 28 | atp_tour | atptour.com |
+| 29 | club_brugge | clubbrugge.be |
+| 30 | eintracht | eintracht.de |
+| 31 | itf_tennis | itftennis.com |
+| 32 | rb_leipzig | rbleipzig.com |
+| 33 | valencia_cf | valenciacf.com |
+
+---
+
+## Execution procedure
+
+### Step 1: Read current values and rubric
+
+1. Read the **rubric file** to get the "Qualifies as Yes if" criteria for each feature being checked
+2. Read current values from `analysis/homepage/results/*.json` for the features being checked
+3. Build a reference table: club → feature → current value
+
+### Step 2: Visit each site (one at a time)
+
+Process **one website at a time**, checking **all features** for that site before moving to the next. This avoids revisiting sites and provides natural checkpoints — if context runs out, you know exactly which sites are done.
+
+**Recommended batch size**: 8–10 sites per context window. After each batch, present findings so far and save progress.
+
+For each website, follow this sequence:
+
+#### 2a. Navigate and take initial screenshot
+
+1. **Navigate** to the URL
+2. **Wait 4s** for JS to render
+3. **Screenshot** the page immediately — this is your primary verification tool
+
+#### 2b. Dismiss popups and overlays
+
+Some sites show promotional popups or campaign overlays on page load (e.g. Valencia CF shows a summer camp promo, Aston Villa shows ticket promos). These block the page and must be closed before any analysis.
+
+1. **Look at the screenshot** — is there a popup/modal/overlay covering the page?
+2. If yes, find the **close button** — look for an "X" button, "Close" text, or a dismiss icon, typically in the top-right corner of the overlay
+3. **Click the close button** using coordinates from the screenshot, or use `read_page` with `filter=interactive` to find the close button by ref
+4. If clicking coordinates doesn't work, try JS:
+   ```js
+   // Find and click close buttons
+   var btn = document.querySelector('[class*="close"], [aria-label="Close"], [aria-label="close"], .modal-close');
+   if (btn) btn.click();
+   // Or remove the overlay entirely
+   document.querySelectorAll('[class*="modal"], [class*="popup"], [class*="overlay"]').forEach(e => e.remove());
+   ```
+5. **Screenshot again** to confirm the popup is gone
+
+Only proceed to cookie dismissal and page analysis after all popups are cleared.
+
+#### 2c. Dismiss cookie banners
+
+Cookie banners must also be dismissed. Try each strategy in order until one works:
+
+**Strategy 1: Visual click** — Look at the screenshot for the cookie banner and click the most appropriate button ("Accept all", "Reject all", "Confirm", etc.)
+
+**Strategy 2: JS button click** — Find and click the button programmatically:
+```js
+const btns = document.querySelectorAll('button, a, [role="button"]');
+for (const b of btns) {
+  const txt = (b.textContent || '').toLowerCase().trim();
+  if (txt.includes('accept all') || txt.includes('reject all') || txt.includes('agree')
+      || txt.includes('confirm') || txt.includes('necessary only')
+      || txt.includes('decline') || txt.includes('deny all')) {
+    b.click(); break;
+  }
+}
+```
+
+**Strategy 3: Consent API** — For consentmanager-based banners (common on Bundesliga sites like BVB Dortmund, VfB Stuttgart):
+```js
+window.__cmp('setConsent', 0)
+```
+
+**Strategy 4: Interactive tree** — Use `read_page` with `filter=interactive` to find cookie-related buttons by ref and click via ref.
+
+#### 2d. Scroll and trigger lazy-load
+
+1. **Scroll to bottom** via JS: `window.scrollTo(0, document.body.scrollHeight)`
+2. **Wait 2s** for lazy content to load
+3. **Scroll back to top**: `window.scrollTo(0, 0)`
+4. **Wait 1s**, then **screenshot** again
+
+**Important: Lazy-loading workaround** — Many JS-heavy sites (React, Next.js) render blank white pages when scrolled to areas that haven't loaded. If the screenshot is blank after scrolling, do NOT rely on visual inspection of that area. Instead:
+- Use the **JS data extraction snippet** (Step 2e) which reads the full DOM regardless of viewport
+- Use `read_page` to get the accessibility tree, which includes off-screen content
+
+#### 2e. Run JS data extraction
+
+Run this reusable snippet on every site. It extracts signals for all common features in a single call:
+
+```js
+var r = {};
+// Headings — reveals section structure
+r.headings = Array.from(document.querySelectorAll('h1,h2,h3,h4'))
+  .map(e => e.innerText.substring(0, 80).trim())
+  .filter(t => t.length > 0).slice(0, 25);
+
+// Score patterns — confirms results_block
+r.scores = (document.body.innerText.match(/\b\d\s*[-–:]\s*\d\b/g) || []).slice(0, 10);
+
+// Standings — search in main content only (exclude nav to avoid false positives)
+var mainEl = document.querySelector('main, [role="main"], .content, #content') || document.body;
+var mainText = mainEl.innerText || '';
+r.hasStandings = /standings|classifica|league table|tabelle|tabela|clasificación|klassement|rangschikking/i.test(mainText);
+
+// Carousel/slider elements
+r.sliders = document.querySelectorAll('[class*="swiper"],[class*="carousel"],[class*="slider"],[data-swiper]').length;
+
+// Match-related elements
+var matchEls = document.querySelectorAll('[class*="fixture"],[class*="match"],[class*="next-match"],[class*="score"],[class*="result"]');
+r.matchEls = Array.from(matchEls).slice(0, 5).map(e => ({
+  cls: e.className.substring(0, 80),
+  txt: e.innerText.substring(0, 200).replace(/\n/g, '|')
+}));
+
+// Next-match richness signals
+var allText = document.body.innerText;
+r.hasDate = /\b(MON|TUE|WED|THU|FRI|SAT|SUN)\b/i.test(allText);
+r.hasTime = /\d{1,2}:\d{2}/.test(allText);
+r.hasVenue = /stadium|arena|park|ground|mestalla|bernab|camp nou|anfield|etihad|emirates/i.test(allText);
+r.hasBroadcast = /DAZN|Sky|ESPN|TV|broadcast|live/i.test(allText);
+r.hasTicketLink = /ticket|entrada|billet/i.test(allText);
+
+JSON.stringify(r);
+```
+
+Adapt or extend this snippet based on the features being checked. For example, add sponsor detection queries when checking `brand_sponsor_highlighted_in_hero`, or video/podcast queries when checking Content features.
+
+#### 2f. Compare, record, and update confidence
+
+For each feature on this site:
+
+1. **Compare** screenshot + JS findings against the current JSON value
+2. The **screenshot is the primary source of truth** — JS data is supplementary confirmation
+3. **Record** any discrepancies with clear evidence
+4. **Update the confidence field** in the JSON:
+   - `"browser-verified"` — feature confirmed or corrected via Chrome cross-check
+   - `"screenshot"` — verified by screenshot only (no JS confirmation needed)
+   - `"needs-live-check"` — couldn't verify (site down, content behind interaction, time-sensitive like live match)
+   - `"exists-off-homepage"` — feature exists on the site but not on the homepage
+
+After finishing all features for this site, move to the next. Log progress as you go so context loss doesn't waste work.
+
+### Step 3: Present results
+
+**Discrepancies Found** table:
+
+```
+| # | Club | Feature | Current | Should be | Evidence |
+|---|------|---------|---------|-----------|----------|
+| 1 | Club Name | feature_key | FALSE | TRUE | What you observed |
+```
+
+Also include:
+- **Inaccessible Sites** — any sites that couldn't be loaded
+- **Uncertain / Manual Review** — ambiguous cases where the user should verify
+
+### Step 4: Apply fixes (after user approval)
+
+```bash
+cd analysis/results && python3 -c "
+import json
+changes = [
+    ('club_id', 'feature_key', True),  # or False
+    # ... all approved changes
+]
+for club, feature, value in changes:
+    path = f'{club}.json'
+    with open(path) as f:
+        d = json.load(f)
+    old = d['features'][feature]
+    d['features'][feature] = value
+    # Update confidence to browser-verified
+    if 'confidence' in d:
+        d['confidence'][feature] = 'browser-verified'
+    with open(path, 'w') as f:
+        json.dump(d, f, indent=2)
+        f.write('\n')
+    print(f'{club}: {feature} {old} -> {value}')
+"
+```
+
+### Step 5: Recalculate scores and regenerate aggregates
+
+Run the recalculation script — it parses weights directly from `features.ts`, recalculates all `total_score` values, and regenerates `_scores.json` and `_aggregate.json`:
+
+```bash
+node analysis/crosscheck/recalculate-scores.js
+```
+
+This script:
+- Reads all `feat()` calls from `analysis/homepage/features.ts` to extract `weightYes` and `weightNo` per feature
+- Only features defined in `features.ts` count toward the score
+- Features that exist in the JSON but not in `features.ts` are excluded from scoring
+- Regenerates `_scores.json` (rankings) and `_aggregate.json` (adoption stats)
+
+### Step 6: Verify build
+
+```bash
+npx next build
+```
+
+---
+
+## Cookie and popup strategies by site
+
+| Site(s) | Banner type | Best strategy |
+|---------|-------------|---------------|
+| BVB Dortmund, VfB Stuttgart | consentmanager | `__cmp('setConsent', 0)` |
+| Atletico Madrid | OneTrust | `read_page` interactive → find "Allow All" button by ref |
+| Valencia CF | Promotional popup | Find X/close button visually or via `read_page` interactive |
+| Aston Villa | Ticket promo popup | `read_page` interactive → find "close" button by ref |
+| F1, Bundesliga clubs | Persistent banners | Try JS click first, then visual click, then API |
+| Most Premier League clubs | Simple consent banner | Visual click on "Accept" or JS button click |
+
+---
+
+## Site-specific notes
+
+- **Atletico Madrid**: Always use base URL `atleticodemadrid.com` — the `/en` path intermittently shows a maintenance page
+- **Valencia CF**: Frequently shows promotional popup overlays on load — must find and click X/close button before analysis
+- **Aston Villa**: Frequently shows ticket promo overlays — close before analysis
+- **Bundesliga sites** (BVB, Stuttgart, Eintracht, RB Leipzig): Use consentmanager for cookies — the `__cmp` API is the most reliable dismissal method
+- **Juventus**: Small cookie banner in bottom-right corner — easy to miss, may need precise click coordinates
+- **404 fallback**: If the `/en` path returns a 404, try the base URL — the header/footer are usually still visible and analyzable
+
+---
+
+## Tips
+
+- **Hamburger menus**: Items inside a collapsed hamburger that are part of the header navigation count as YES. Check `el.offsetParent !== null` to distinguish visible vs hidden-in-menu.
+- **Sponsor lockup**: Look for sponsor logos IN the header bar itself, not just on jerseys in hero images. Partner bars above or integrated into the header count.
+- **JS-heavy sites**: WebFetch misses JS-rendered content (e.g., Storyteller widgets). Always use real browser.
+- **Social native content**: Look for Storyteller/stories widgets (circular thumbnails at top), Instagram/TikTok embeds, or native social feed blocks.
+- **Video blocks**: Distinguish between a dedicated video section and video thumbnails inline within news cards.
+- **Store block vs shop shortcut**: `store_block` = a merchandise section on the homepage body. `shop_shortcut_in_header` = a link in the header nav.
+- **False positives from nav text**: When checking `standings_block` or similar, always exclude nav/menu/footer elements from your DOM search. A "Standings" link in the nav is NOT a standings block.
+- **Screenshot-first approach**: Always take the screenshot BEFORE running JS. The screenshot is the primary source of truth. JS data is supplementary confirmation, not the other way around.

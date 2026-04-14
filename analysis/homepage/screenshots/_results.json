@@ -1,0 +1,132 @@
+[
+  {
+    "site": "real-madrid",
+    "file": "screenshots\\01-real-madrid.png",
+    "status": "ok"
+  },
+  {
+    "site": "fc-barcelona",
+    "file": "screenshots\\02-fc-barcelona.png",
+    "status": "ok"
+  },
+  {
+    "site": "bayern-munich",
+    "file": "screenshots\\03-bayern-munich.png",
+    "status": "ok"
+  },
+  {
+    "site": "psg",
+    "file": "screenshots\\04-psg.png",
+    "status": "ok"
+  },
+  {
+    "site": "liverpool",
+    "file": "screenshots\\05-liverpool.png",
+    "status": "ok"
+  },
+  {
+    "site": "man-city",
+    "file": "screenshots\\06-man-city.png",
+    "status": "ok"
+  },
+  {
+    "site": "arsenal",
+    "file": "screenshots\\07-arsenal.png",
+    "status": "ok"
+  },
+  {
+    "site": "man-united",
+    "file": "screenshots\\08-man-united.png",
+    "status": "ok"
+  },
+  {
+    "site": "tottenham",
+    "file": "screenshots\\09-tottenham.png",
+    "status": "ok"
+  },
+  {
+    "site": "chelsea",
+    "file": "screenshots\\10-chelsea.png",
+    "status": "ok"
+  },
+  {
+    "site": "inter-milan",
+    "file": "screenshots\\11-inter-milan.png",
+    "status": "ok"
+  },
+  {
+    "site": "bvb-dortmund",
+    "file": "screenshots\\12-bvb-dortmund.png",
+    "status": "ok"
+  },
+  {
+    "site": "atletico-madrid",
+    "file": "screenshots\\13-atletico-madrid.png",
+    "status": "ok"
+  },
+  {
+    "site": "aston-villa",
+    "file": "screenshots\\14-aston-villa.png",
+    "status": "ok"
+  },
+  {
+    "site": "ac-milan",
+    "file": "screenshots\\15-ac-milan.png",
+    "status": "ok"
+  },
+  {
+    "site": "juventus",
+    "file": "screenshots\\16-juventus.png",
+    "status": "ok"
+  },
+  {
+    "site": "newcastle",
+    "file": "screenshots\\17-newcastle.png",
+    "status": "ok"
+  },
+  {
+    "site": "vfb-stuttgart",
+    "file": "screenshots\\18-vfb-stuttgart.png",
+    "status": "ok"
+  },
+  {
+    "site": "sl-benfica",
+    "file": "screenshots\\19-sl-benfica.png",
+    "status": "ok"
+  },
+  {
+    "site": "west-ham",
+    "file": "screenshots\\20-west-ham.png",
+    "status": "ok"
+  },
+  {
+    "site": "uefa",
+    "file": "screenshots\\21-uefa.png",
+    "status": "ok"
+  },
+  {
+    "site": "f1",
+    "file": "screenshots\\22-f1.png",
+    "status": "ok"
+  },
+  {
+    "site": "motogp",
+    "file": "screenshots\\23-motogp.png",
+    "status": "ok"
+  },
+  {
+    "site": "nba",
+    "file": "screenshots\\24-nba.png",
+    "status": "viewport-only"
+  },
+  {
+    "site": "mls",
+    "file": "screenshots\\25-mls.png",
+    "status": "ok"
+  },
+  {
+    "site": "mlb",
+    "file": "screenshots\\26-mlb.png",
+    "status": "ok"
+  }
+]

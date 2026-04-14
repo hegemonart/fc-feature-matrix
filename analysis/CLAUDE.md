@@ -2,27 +2,36 @@
 
 This folder is the **data layer** for the FC Benchmark app. The app itself lives in `app/` and `lib/` — everything here feeds into it.
 
+Each page type (homepage, player page, etc.) gets its own subfolder with a rubric, features, results, and crosscheck tooling. Shared infrastructure (products, types) lives at the root.
+
 ## Architecture
 
 ```
 analysis/
-├── HOME-PAGE.md          ← 67-feature rubric (source of truth for scoring)
-├── PLAYBOOK-...md        ← Methodology documentation
-├── categories.ts         ← 12 feature categories with display colors
-├── features.ts           ← 67 features — imports presence from results/*.json
-├── products.ts           ← 25 products (clubs/leagues/governing bodies)
-├── types.ts              ← Shared TypeScript types
-├── index.ts              ← Barrel export + band computation
-├── results/              ← One JSON per club + aggregate files
-│   ├── real_madrid.json
-│   ├── fc_barcelona.json
-│   ├── ...               (25 club files)
-│   ├── _scores.json      ← Ranked scores
-│   └── _aggregate.json   ← Full feature×club matrix
-└── screenshots/          ← Homepage PNGs used for visual audit
-    ├── 01-real-madrid.png
-    └── ...
+├── products.ts              ← 33 products (clubs/leagues/governing bodies) — shared
+├── types.ts                 ← Shared TypeScript types
+├── index.ts                 ← Barrel export + band computation
+├── CLAUDE.md                ← This file
+│
+└── homepage/                ← Homepage analysis (one folder per page type)
+    ├── HOME-PAGE.md         ← Feature rubric (source of truth for scoring)
+    ├── PLAYBOOK-...md       ← Methodology documentation
+    ├── features.ts          ← 60 features — imports presence from results/*.json
+    ├── categories.ts        ← 12 feature categories with display colors
+    ├── results/             ← One JSON per club + aggregate files
+    │   ├── real_madrid.json
+    │   ├── ...              (33 club files)
+    │   ├── _scores.json     ← Ranked scores
+    │   └── _aggregate.json  ← Full feature×club matrix
+    ├── screenshots/         ← Homepage PNGs used for visual audit
+    │   ├── 01-real-madrid.png
+    │   └── ...
+    └── crosscheck/          ← Browser verification tooling
+        ├── README.md        ← Cross-check agent instructions
+        └── recalculate-scores.js  ← Score recalculation script
 ```
+
+To add a new page type (e.g. player page), copy the `homepage/` folder and adapt the rubric, features, and crosscheck instructions.
 
 ## How it connects to the app
 
@@ -32,7 +41,11 @@ analysis/
 export { CATEGORIES, PRODUCTS, FEATURES, ... } from '@/analysis';
 ```
 
-`features.ts` imports all `results/*.json` files and builds presence maps automatically. When you add a new JSON result, the app picks it up after you add the import in `features.ts`.
+`analysis/index.ts` is the barrel that wires homepage data to the app:
+- `CATEGORIES` and `FEATURES` come from `homepage/categories.ts` and `homepage/features.ts`
+- `PRODUCTS` comes from the shared `products.ts`
+
+`homepage/features.ts` imports all `homepage/results/*.json` files and builds presence maps automatically. When you add a new JSON result, the app picks it up after you add the import in `homepage/features.ts`.
 
 ## Scoring system
 
@@ -40,14 +53,14 @@ Each feature has a **tier** (A–F) with asymmetric weights:
 
 | Tier | Name | Yes weight | No weight |
 |------|------|-----------|-----------|
-| A | Must-have | +1 | −8 |
-| B | Commercial table stakes | +2 | −5 |
-| C | ROI driver | +5 | −3 |
+| A | Must-have | +1 | −3 |
+| B | Commercial table stakes | +2 | −2 |
+| C | ROI driver | +5 | −2 |
 | D | Differentiator | +8 | −1 |
 | E | Content depth | +3 | −1 |
 | F | Experimental | +8 | 0 |
 
-A club's total score = sum of all 67 feature weights (Yes or No). Scores can be negative.
+A club's total score = sum of all feature weights (Yes or No). Scores can be negative.
 
 ---
 
@@ -56,13 +69,13 @@ A club's total score = sum of all 67 feature weights (Yes or No). Scores can be 
 ### Re-run analysis for an existing club
 
 1. Take a fresh full-page screenshot of their homepage
-2. Replace the old PNG in `screenshots/` (keep the same filename)
-3. Ask Claude: "Re-analyze `screenshots/XX-club-name.png` against the HOME-PAGE.md rubric and update `results/club_name.json`"
-4. Regenerate aggregates (see below)
+2. Replace the old PNG in `homepage/screenshots/` (keep the same filename)
+3. Ask Claude: "Re-analyze `homepage/screenshots/XX-club-name.png` against the `homepage/HOME-PAGE.md` rubric and update `homepage/results/club_name.json`"
+4. Recalculate scores: `node homepage/crosscheck/recalculate-scores.js`
 
 ### Add a new club
 
-1. **Take a screenshot** — full-page PNG of the homepage, save to `screenshots/` as `NN-club-name.png`
+1. **Take a screenshot** — full-page PNG of the homepage, save to `homepage/screenshots/` as `NN-club-name.png`
 
 2. **Add the product** to `products.ts`:
    ```ts
@@ -71,24 +84,9 @@ A club's total score = sum of all 67 feature weights (Yes or No). Scores can be 
    ```
 
 3. **Run the analysis** — ask Claude:
-   > "Analyze the screenshot at `analysis/screenshots/NN-club-name.png` against all 67 features in `analysis/HOME-PAGE.md`. Write the result to `analysis/results/club_name.json` using the same JSON format as the other result files."
+   > "Analyze the screenshot at `homepage/screenshots/NN-club-name.png` against all features in `homepage/HOME-PAGE.md`. Write the result to `homepage/results/club_name.json` using the same JSON format as the other result files."
 
-   The JSON format is:
-   ```json
-   {
-     "product_id": "club_name",
-     "screenshot": "NN-club-name.png",
-     "analyzed_at": "2026-04-13",
-     "total_score": 0,
-     "features": {
-       "language_switcher_in_header": true,
-       "login_account": false,
-       ... (all 67 feature keys)
-     }
-   }
-   ```
-
-4. **Add the import** in `features.ts`:
+4. **Add the import** in `homepage/features.ts`:
    ```ts
    import club_name from './results/club_name.json';
    ```
@@ -97,76 +95,44 @@ A club's total score = sum of all 67 feature weights (Yes or No). Scores can be 
    club_name: club_name.features,
    ```
 
-5. **Regenerate aggregates** — run this in `analysis/results/`:
+5. **Recalculate scores and regenerate aggregates**:
    ```bash
-   node -e "
-   const fs = require('fs');
-   const files = fs.readdirSync('.').filter(f => f.endsWith('.json') && !f.startsWith('_'));
-   const clubs = files.map(f => JSON.parse(fs.readFileSync(f, 'utf8')));
-   clubs.sort((a, b) => b.total_score - a.total_score);
-
-   const scores = {
-     generated_at: new Date().toISOString().split('T')[0],
-     total_clubs: clubs.length,
-     rankings: clubs.map((c, i) => ({
-       rank: i + 1,
-       product_id: c.product_id,
-       screenshot: c.screenshot,
-       total_score: c.total_score,
-       yes_count: Object.values(c.features).filter(v => v === true).length,
-       no_count: Object.values(c.features).filter(v => v === false).length,
-       feature_count: Object.keys(c.features).length
-     }))
-   };
-   fs.writeFileSync('_scores.json', JSON.stringify(scores, null, 2));
-
-   const allFeatureKeys = Object.keys(clubs[0].features).sort();
-   const aggregate = {
-     generated_at: scores.generated_at,
-     total_clubs: clubs.length,
-     total_features: allFeatureKeys.length,
-     features: {}
-   };
-   allFeatureKeys.forEach(key => {
-     const adoption = clubs.filter(c => c.features[key] === true).length;
-     aggregate.features[key] = {
-       adoption_count: adoption,
-       adoption_pct: Math.round(adoption / clubs.length * 100),
-       clubs_yes: clubs.filter(c => c.features[key] === true).map(c => c.product_id),
-       clubs_no: clubs.filter(c => c.features[key] !== true).map(c => c.product_id)
-     };
-   });
-   fs.writeFileSync('_aggregate.json', JSON.stringify(aggregate, null, 2));
-   console.log('Done:', clubs.length, 'clubs');
-   "
+   node homepage/crosscheck/recalculate-scores.js
    ```
 
 6. **Verify** — run `npx next build` to confirm no errors.
 
 ### Remove a club
 
-1. Delete its JSON from `results/`
-2. Delete its screenshot from `screenshots/`
+1. Delete its JSON from `homepage/results/`
+2. Delete its screenshot from `homepage/screenshots/`
 3. Remove its entry from `products.ts`
-4. Remove its import and `RESULTS` entry from `features.ts`
-5. Regenerate aggregates (step 5 above)
+4. Remove its import and `RESULTS` entry from `homepage/features.ts`
+5. Recalculate: `node homepage/crosscheck/recalculate-scores.js`
+
+### Cross-check features in browser
+
+See `homepage/crosscheck/README.md` for the full procedure. Quick start:
+
+```
+Cross-check all features in "Hero" category
+using rubric: analysis/homepage/HOME-PAGE.md
+```
 
 ### Batch analysis (multiple clubs in parallel)
 
 For analyzing many clubs at once, split them across 4–5 parallel agents balanced by screenshot file size (large PNGs take more context). Each agent gets:
-- The full HOME-PAGE.md rubric
+- The full `homepage/HOME-PAGE.md` rubric
 - A batch of screenshot paths
-- Instructions to read one PNG at a time, evaluate all 67 features, and write the JSON
-
-Example batching for 25 clubs used 5 agents with ~5 screenshots each. Large files (30MB+) should be in a batch with fewer screenshots.
+- Instructions to read one PNG at a time, evaluate all features, and write the JSON
 
 ### Change the rubric
 
-If you modify `HOME-PAGE.md` (add/remove/change features):
-1. Update the feature definitions in `features.ts` (add/remove `feat()` calls)
+If you modify `homepage/HOME-PAGE.md` (add/remove/change features):
+1. Update the feature definitions in `homepage/features.ts` (add/remove `feat()` calls)
 2. Re-run analysis for all clubs — the old JSONs won't have the new feature keys
-3. Regenerate aggregates
+3. Recalculate: `node homepage/crosscheck/recalculate-scores.js`
 
 ### Change scoring weights
 
-Edit the tier weights in `features.ts` — each feature's `weightYes` and `weightNo` are set in the `feat()` call. The rubric in `HOME-PAGE.md` is the reference.
+Edit the per-feature weights in `homepage/features.ts` — each feature's `weightYes` and `weightNo` are set in the `feat()` call. The rubric in `homepage/HOME-PAGE.md` is the reference.

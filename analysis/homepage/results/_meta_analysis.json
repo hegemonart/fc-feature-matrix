@@ -1,0 +1,67 @@
+{
+  "description": "Meta-analysis of features confirmed to exist on club websites (via Reddit, forums, vendor blogs, official pages) but NOT on the homepage. These are 'site-wide' features that live in subpages, apps, or subdomains.",
+  "analyzed_at": "2026-04-13",
+  "sources": ["WonderPush blog", "Socios.com", "Official club websites (subpages)", "Apple Podcasts", "Spotify", "Reddit", "Web search"],
+  "features": {
+    "podcast_audio": {
+      "confirmed_products": ["arsenal", "liverpool", "man_city", "man_united", "chelsea", "tottenham", "inter_milan", "bvb_dortmund", "aston_villa", "west_ham", "psg", "eintracht", "f1", "motogp", "nba", "mls", "mlb", "atp_tour"],
+      "count": 18,
+      "note": "Widely adopted but hosted on dedicated podcast pages or platforms, never on homepage"
+    },
+    "interactive_fan_poll": {
+      "confirmed_products": ["chelsea", "man_city", "arsenal", "liverpool", "man_united", "tottenham", "aston_villa", "west_ham", "brentford", "fc_barcelona", "bayern_munich", "uefa", "f1", "motogp", "nba", "mlb", "mls", "atp_tour"],
+      "count": 18,
+      "note": "Goal of the Month, Player of the Week, Driver of the Day votes — all on subpages or subdomains, not homepage"
+    },
+    "loyalty_rewards": {
+      "confirmed_products": ["chelsea", "fc_barcelona", "psg", "juventus", "ac_milan", "inter_milan", "atletico_madrid", "arsenal", "man_city", "nba", "mlb", "motogp"],
+      "count": 12,
+      "note": "Socios fan tokens (9 clubs), ticket loyalty points (Chelsea), NBA ID, MLB Ballpark Rewards, MotoGP Fan Club XP"
+    },
+    "quiz_trivia": {
+      "confirmed_products": ["man_city", "arsenal", "chelsea", "liverpool", "man_united", "tottenham", "fc_barcelona", "bayern_munich", "psg", "inter_milan", "f1"],
+      "count": 11,
+      "note": "Dedicated quiz sections on club websites, never surfaced on homepage"
+    },
+    "push_notification_opt_in": {
+      "confirmed_products": ["psg", "man_city", "real_madrid", "liverpool", "aston_villa", "west_ham"],
+      "count": 6,
+      "note": "WonderPush confirmed as vendor for these 6 clubs. Browser push prompt appears on first visit but is easily dismissed/blocked"
+    },
+    "womens_team_tickets": {
+      "confirmed_products": ["chelsea", "arsenal", "fc_barcelona", "man_city", "liverpool", "tottenham", "psg", "juventus", "west_ham"],
+      "count": 9,
+      "note": "Dedicated women's ticketing pages exist as subpages under /tickets/, not on homepage"
+    },
+    "wallpapers_downloads": {
+      "confirmed_products": ["real_madrid", "fc_barcelona", "man_city", "man_united", "bayern_munich"],
+      "count": 5,
+      "note": "Dedicated wallpaper/download pages in fans sections"
+    },
+    "draws_contests": {
+      "confirmed_products": ["arsenal", "bayern_munich", "f1", "mls"],
+      "count": 4,
+      "note": "Membership prize draws, fan zone sweepstakes, quiz prizes — all in subpages"
+    },
+    "multi_sport_tickets": {
+      "confirmed_products": ["real_madrid", "fc_barcelona"],
+      "count": 2,
+      "note": "Real Madrid basketball tickets, Barcelona basketball + handball tickets on dedicated subpages"
+    },
+    "predictor_fantasy": {
+      "confirmed_products": ["uefa", "f1", "motogp", "nba", "mls"],
+      "count": 5,
+      "note": "Only leagues/governing bodies run official predictor/fantasy games, not individual clubs"
+    },
+    "hospitality_block": {
+      "confirmed_products": ["real_madrid", "bayern_munich", "psg", "liverpool", "arsenal", "chelsea", "man_united", "inter_milan", "ac_milan", "newcastle", "aston_villa", "west_ham", "brentford", "uefa", "f1", "motogp", "nba"],
+      "count": 17,
+      "note": "Nearly universal but on separate subdomains (hospitality.arsenal.com, etc.), never a homepage block"
+    },
+    "ai_chat_assistant": {
+      "confirmed_products": [],
+      "count": 0,
+      "note": "Arsenal (Messenger bot), Barcelona (Discord bot), Premier League (Copilot) exist but none on website homepage. True 0% for homepage."
+    }
+  }
+}

@@ -3,11 +3,11 @@
    ================================================================ */
 
 export * from './types';
-export { CATEGORIES, BAND_META } from './categories';
+export { CATEGORIES, BAND_META } from './homepage/categories';
 export { PRODUCTS, ALL_IDS } from './products';
-export { FEATURES } from './features';
+export { FEATURES } from './homepage/features';
 
-import { FEATURES } from './features';
+import { FEATURES } from './homepage/features';
 import { PRODUCTS } from './products';
 
 // ── Band computation (runs once on import) ──
