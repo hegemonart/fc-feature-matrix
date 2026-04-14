@@ -246,10 +246,11 @@
       ]
     },
     "brand_sponsor_highlighted_in_hero": {
-      "adoption_count": 19,
-      "adoption_pct": 58,
+      "adoption_count": 20,
+      "adoption_pct": 61,
       "clubs_yes": [
         "motogp",
+        "fc_barcelona",
         "bayern_munich",
         "liverpool",
         "valencia_cf",
@@ -270,7 +271,6 @@
         "nba"
       ],
       "clubs_no": [
-        "fc_barcelona",
         "west_ham",
         "inter_milan",
         "psg",
@@ -2082,11 +2082,10 @@
       ]
     },
     "sponsor_lockup_in_header": {
-      "adoption_count": 17,
-      "adoption_pct": 52,
+      "adoption_count": 16,
+      "adoption_pct": 48,
       "clubs_yes": [
         "motogp",
-        "fc_barcelona",
         "bayern_munich",
         "liverpool",
         "valencia_cf",
@@ -2104,6 +2103,7 @@
         "aston_villa"
       ],
       "clubs_no": [
+        "fc_barcelona",
         "sl_benfica",
         "west_ham",
         "inter_milan",
