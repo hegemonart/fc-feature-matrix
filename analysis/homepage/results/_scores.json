@@ -31,8 +31,8 @@
     },
     {
       "rank": 4,
-      "product_id": "liverpool",
-      "screenshot": "05-liverpool.png",
+      "product_id": "valencia_cf",
+      "screenshot": "33-valenciacf.png",
       "total_score": 63,
       "yes_count": 29,
       "no_count": 38,
@@ -40,9 +40,9 @@
     },
     {
       "rank": 5,
-      "product_id": "valencia_cf",
-      "screenshot": "33-valenciacf.png",
-      "total_score": 63,
+      "product_id": "liverpool",
+      "screenshot": "05-liverpool.png",
+      "total_score": 61,
       "yes_count": 29,
       "no_count": 38,
       "feature_count": 67
