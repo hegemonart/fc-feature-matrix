@@ -39,9 +39,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "ai_chat_assistant": {
@@ -80,9 +80,9 @@
         "nba",
         "brentford",
         "bvb_dortmund",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "anniversary_milestone": {
@@ -121,9 +121,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "app_store_badges": {
@@ -163,8 +163,8 @@
         "nba",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ]
     },
     "b2b_partnerships": {
@@ -202,9 +202,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "birthday_squad_calendar": {
@@ -242,9 +242,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "brand_sponsor_highlighted_in_hero": {
@@ -283,9 +283,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "charity_csr_block": {
@@ -324,14 +324,14 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "club_tv_app_promo": {
-      "adoption_count": 19,
-      "adoption_pct": 58,
+      "adoption_count": 18,
+      "adoption_pct": 55,
       "clubs_yes": [
         "motogp",
         "valencia_cf",
@@ -350,7 +350,6 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb"
       ],
       "clubs_no": [
@@ -367,7 +366,8 @@
         "psg",
         "itf_tennis",
         "uefa",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "dedicated_news_section": {
@@ -404,9 +404,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ],
       "clubs_no": []
     },
@@ -446,9 +446,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "draws_contests": {
@@ -487,9 +487,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "episodic_docu_series": {
@@ -528,9 +528,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "esports_gaming_block": {
@@ -569,9 +569,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "fan_club_signup": {
@@ -610,9 +610,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "fan_clubs_directory": {
@@ -650,9 +650,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "footer_sponsor_wall": {
@@ -692,8 +692,8 @@
         "man_city",
         "psg",
         "nba",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ]
     },
     "heritage_past_content": {
@@ -732,9 +732,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "hero_carousel": {
@@ -774,13 +774,13 @@
         "mls",
         "club_brugge",
         "nba",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ]
     },
     "homepage_video_block": {
-      "adoption_count": 25,
-      "adoption_pct": 76,
+      "adoption_count": 24,
+      "adoption_pct": 73,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
@@ -805,7 +805,6 @@
         "nba",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb"
       ],
       "clubs_no": [
@@ -816,7 +815,8 @@
         "aston_villa",
         "itf_tennis",
         "brentford",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "hospitality_block": {
@@ -854,14 +854,14 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "in_content_sponsor": {
-      "adoption_count": 17,
-      "adoption_pct": 52,
+      "adoption_count": 16,
+      "adoption_pct": 48,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
@@ -878,7 +878,6 @@
         "itf_tennis",
         "uefa",
         "nba",
-        "vfb_stuttgart",
         "mlb"
       ],
       "clubs_no": [
@@ -897,7 +896,8 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "individual_player_cards": {
@@ -936,9 +936,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "interactive_fan_poll": {
@@ -977,9 +977,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "language_switcher_in_header": {
@@ -1056,8 +1056,8 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "atp_tour",
@@ -1100,9 +1100,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "matchday_experience_info": {
@@ -1140,9 +1140,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "member_only_commerce": {
@@ -1180,9 +1180,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "multi_sport_tickets": {
@@ -1221,9 +1221,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "museum_block": {
@@ -1262,9 +1262,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "news_rich_structure": {
@@ -1301,9 +1301,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ],
       "clubs_no": []
     },
@@ -1343,9 +1343,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "next_match_block": {
@@ -1379,9 +1379,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "atp_tour",
@@ -1418,8 +1418,8 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "atp_tour",
@@ -1466,14 +1466,14 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "persistent_bar_above_header": {
-      "adoption_count": 14,
-      "adoption_pct": 42,
+      "adoption_count": 15,
+      "adoption_pct": 45,
       "clubs_yes": [
         "motogp",
         "bayern_munich",
@@ -1488,7 +1488,8 @@
         "mls",
         "aston_villa",
         "tottenham",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "fc_barcelona",
@@ -1508,7 +1509,6 @@
         "nba",
         "brentford",
         "bvb_dortmund",
-        "vfb_stuttgart",
         "rb_leipzig"
       ]
     },
@@ -1589,9 +1589,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "player_social_links": {
@@ -1629,9 +1629,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "podcast_audio": {
@@ -1670,9 +1670,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "predictor_fantasy": {
@@ -1711,22 +1711,21 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "press_conference_block": {
-      "adoption_count": 7,
-      "adoption_pct": 21,
+      "adoption_count": 6,
+      "adoption_pct": 18,
       "clubs_yes": [
         "bayern_munich",
         "arsenal",
         "juventus",
         "eintracht",
         "newcastle",
-        "psg",
-        "vfb_stuttgart"
+        "psg"
       ],
       "clubs_no": [
         "motogp",
@@ -1754,7 +1753,8 @@
         "bvb_dortmund",
         "tottenham",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "push_notification_opt_in": {
@@ -1792,9 +1792,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "quiz_trivia": {
@@ -1834,8 +1834,8 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "results_block": {
@@ -1870,9 +1870,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "mls",
@@ -1908,8 +1908,8 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "west_ham",
@@ -1949,8 +1949,8 @@
         "uefa",
         "nba",
         "brentford",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "eintracht",
@@ -1994,8 +1994,8 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "uefa",
@@ -2035,9 +2035,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "psg"
@@ -2079,9 +2079,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "sponsor_lockup_in_header": {
@@ -2120,9 +2120,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "stadium_content_block": {
@@ -2161,9 +2161,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "stadium_tours_block": {
@@ -2202,9 +2202,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "standings_block": {
@@ -2244,8 +2244,8 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "store_block": {
@@ -2285,8 +2285,8 @@
         "nba",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ]
     },
     "store_individual_products": {
@@ -2326,8 +2326,8 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ]
     },
     "tickets_block": {
@@ -2367,8 +2367,8 @@
         "uefa",
         "nba",
         "tottenham",
-        "vfb_stuttgart",
-        "mlb"
+        "mlb",
+        "vfb_stuttgart"
       ]
     },
     "tickets_shortcut_in_header": {
@@ -2404,9 +2404,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "itf_tennis"
@@ -2448,9 +2448,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "tribute_memorial": {
@@ -2488,9 +2488,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "trophies_honours": {
@@ -2529,9 +2529,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "video_thumbnails_inline": {
@@ -2610,9 +2610,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "womens_team_featured": {
@@ -2651,9 +2651,9 @@
         "mls",
         "f1",
         "nba",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     },
     "womens_team_tickets": {
@@ -2692,9 +2692,9 @@
         "brentford",
         "bvb_dortmund",
         "tottenham",
-        "vfb_stuttgart",
         "mlb",
-        "rb_leipzig"
+        "rb_leipzig",
+        "vfb_stuttgart"
       ]
     }
   }
