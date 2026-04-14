@@ -265,6 +265,15 @@
     },
     {
       "rank": 30,
+      "product_id": "tottenham",
+      "screenshot": "09-tottenham.png",
+      "total_score": -7,
+      "yes_count": 18,
+      "no_count": 49,
+      "feature_count": 67
+    },
+    {
+      "rank": 31,
       "product_id": "brentford",
       "screenshot": "27-brentford.png",
       "total_score": -8,
@@ -273,19 +282,10 @@
       "feature_count": 67
     },
     {
-      "rank": 31,
+      "rank": 32,
       "product_id": "mlb",
       "screenshot": "26-mlb.png",
       "total_score": -14,
-      "yes_count": 17,
-      "no_count": 50,
-      "feature_count": 67
-    },
-    {
-      "rank": 32,
-      "product_id": "tottenham",
-      "screenshot": "09-tottenham.png",
-      "total_score": -19,
       "yes_count": 17,
       "no_count": 50,
       "feature_count": 67
