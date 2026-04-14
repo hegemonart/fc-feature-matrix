@@ -247,8 +247,6 @@ export const FEATURES: Feature[] = [
   // ── 11. Personalization, Tech & Engagement ──
   feat('E01', 'ai_chat_assistant', 'AI Chat / Fan Assistant',
     'An AI-powered chatbot or helper widget on the homepage', 'personalization', 'F', 8, 0),
-  feat('E02', 'w3c_a11y_features', 'W3C / Accessibility Features',
-    'On-page accessibility tools like a widget or contrast controls', 'personalization', 'F', 8, 0),
   feat('E03', 'loyalty_rewards', 'Loyalty Points / Rewards',
     'A points or rewards system promoted on the homepage', 'personalization', 'C', 5, -2),
   feat('E04', 'predictor_fantasy', 'Predictor / Fantasy League',
