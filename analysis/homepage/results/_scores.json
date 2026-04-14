@@ -220,15 +220,6 @@
     },
     {
       "rank": 25,
-      "product_id": "nba",
-      "screenshot": "24-nba.png",
-      "total_score": -3,
-      "yes_count": 18,
-      "no_count": 48,
-      "feature_count": 66
-    },
-    {
-      "rank": 26,
       "product_id": "uefa",
       "screenshot": "21-uefa.png",
       "total_score": -3,
@@ -237,7 +228,7 @@
       "feature_count": 66
     },
     {
-      "rank": 27,
+      "rank": 26,
       "product_id": "brentford",
       "screenshot": "27-brentford.png",
       "total_score": -8,
@@ -246,7 +237,7 @@
       "feature_count": 66
     },
     {
-      "rank": 28,
+      "rank": 27,
       "product_id": "bvb_dortmund",
       "screenshot": "12-bvb-dortmund.png",
       "total_score": -8,
@@ -255,7 +246,7 @@
       "feature_count": 66
     },
     {
-      "rank": 29,
+      "rank": 28,
       "product_id": "mls",
       "screenshot": "25-mls.png",
       "total_score": -11,
@@ -264,7 +255,7 @@
       "feature_count": 66
     },
     {
-      "rank": 30,
+      "rank": 29,
       "product_id": "tottenham",
       "screenshot": "09-tottenham.png",
       "total_score": -11,
@@ -273,12 +264,21 @@
       "feature_count": 66
     },
     {
-      "rank": 31,
+      "rank": 30,
       "product_id": "mlb",
       "screenshot": "26-mlb.png",
       "total_score": -19,
       "yes_count": 17,
       "no_count": 49,
+      "feature_count": 66
+    },
+    {
+      "rank": 31,
+      "product_id": "nba",
+      "screenshot": "24-nba.png",
+      "total_score": -19,
+      "yes_count": 15,
+      "no_count": 51,
       "feature_count": 66
     },
     {

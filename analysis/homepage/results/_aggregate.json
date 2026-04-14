@@ -34,12 +34,12 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -75,12 +75,12 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -115,13 +115,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -159,11 +159,11 @@
         "inter_milan",
         "atletico_madrid",
         "man_city",
-        "nba",
         "uefa",
         "bvb_dortmund",
         "tottenham",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ]
     },
@@ -196,13 +196,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -236,13 +236,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -319,12 +319,12 @@
         "aston_villa",
         "f1",
         "itf_tennis",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -342,11 +342,11 @@
         "atp_tour",
         "man_united",
         "man_city",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "mls",
-        "tottenham"
+        "tottenham",
+        "nba"
       ],
       "clubs_no": [
         "fc_barcelona",
@@ -398,13 +398,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ],
@@ -439,13 +439,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -480,13 +480,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -521,13 +521,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -561,13 +561,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -602,13 +602,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -642,13 +642,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -688,9 +688,9 @@
         "man_united",
         "man_city",
         "psg",
-        "nba",
         "uefa",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ]
     },
@@ -724,13 +724,13 @@
         "aston_villa",
         "f1",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -770,15 +770,15 @@
         "inter_milan",
         "atp_tour",
         "club_brugge",
-        "nba",
         "mls",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ]
     },
     "homepage_video_block": {
-      "adoption_count": 23,
-      "adoption_pct": 70,
+      "adoption_count": 22,
+      "adoption_pct": 67,
       "clubs_yes": [
         "fc_barcelona",
         "bayern_munich",
@@ -798,7 +798,6 @@
         "club_brugge",
         "f1",
         "psg",
-        "nba",
         "uefa",
         "bvb_dortmund",
         "tottenham",
@@ -813,6 +812,7 @@
         "itf_tennis",
         "brentford",
         "mls",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -846,13 +846,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -872,10 +872,10 @@
         "atp_tour",
         "newcastle",
         "itf_tennis",
-        "nba",
         "uefa",
         "mls",
-        "mlb"
+        "mlb",
+        "nba"
       ],
       "clubs_no": [
         "liverpool",
@@ -928,13 +928,13 @@
         "aston_villa",
         "f1",
         "psg",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -969,13 +969,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1015,9 +1015,9 @@
         "newcastle",
         "f1",
         "itf_tennis",
-        "nba",
         "brentford",
         "tottenham",
+        "nba",
         "rb_leipzig"
       ]
     },
@@ -1048,13 +1048,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ],
       "clubs_no": [
@@ -1092,13 +1092,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1132,13 +1132,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1172,13 +1172,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1213,13 +1213,13 @@
         "aston_villa",
         "f1",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1254,13 +1254,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1293,27 +1293,26 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ],
       "clubs_no": []
     },
     "newsletter_signup": {
-      "adoption_count": 5,
-      "adoption_pct": 15,
+      "adoption_count": 4,
+      "adoption_pct": 12,
       "clubs_yes": [
         "bayern_munich",
         "west_ham",
         "atp_tour",
-        "itf_tennis",
-        "nba"
+        "itf_tennis"
       ],
       "clubs_no": [
         "fc_barcelona",
@@ -1342,6 +1341,7 @@
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1372,12 +1372,12 @@
         "aston_villa",
         "f1",
         "psg",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ],
@@ -1412,12 +1412,12 @@
         "aston_villa",
         "f1",
         "psg",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ],
@@ -1458,20 +1458,20 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
     },
     "persistent_bar_above_header": {
-      "adoption_count": 18,
-      "adoption_pct": 55,
+      "adoption_count": 19,
+      "adoption_pct": 58,
       "clubs_yes": [
         "bayern_munich",
         "liverpool",
@@ -1490,6 +1490,7 @@
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ],
       "clubs_no": [
@@ -1504,7 +1505,6 @@
         "club_brugge",
         "psg",
         "itf_tennis",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "rb_leipzig"
@@ -1541,13 +1541,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig"
       ]
     },
@@ -1581,13 +1581,13 @@
         "aston_villa",
         "f1",
         "psg",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1621,13 +1621,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1662,13 +1662,13 @@
         "aston_villa",
         "f1",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1703,13 +1703,13 @@
         "aston_villa",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1744,13 +1744,13 @@
         "aston_villa",
         "f1",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1784,13 +1784,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1825,13 +1825,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -1863,12 +1863,12 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ],
@@ -1900,12 +1900,12 @@
         "newcastle",
         "aston_villa",
         "itf_tennis",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ],
       "clubs_no": [
@@ -1943,11 +1943,11 @@
         "aston_villa",
         "f1",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "mls",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ],
       "clubs_no": [
@@ -1987,13 +1987,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ],
       "clubs_no": [
@@ -2027,13 +2027,13 @@
         "aston_villa",
         "f1",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ],
@@ -2072,12 +2072,12 @@
         "aston_villa",
         "f1",
         "psg",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -2112,13 +2112,13 @@
         "club_brugge",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -2153,13 +2153,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -2194,20 +2194,20 @@
         "aston_villa",
         "f1",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
     },
     "standings_block": {
-      "adoption_count": 10,
-      "adoption_pct": 30,
+      "adoption_count": 9,
+      "adoption_pct": 27,
       "clubs_yes": [
         "ac_milan",
         "motogp",
@@ -2216,7 +2216,6 @@
         "chelsea",
         "club_brugge",
         "f1",
-        "nba",
         "uefa",
         "mlb"
       ],
@@ -2242,6 +2241,7 @@
         "bvb_dortmund",
         "mls",
         "tottenham",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -2278,12 +2278,12 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ]
     },
@@ -2318,13 +2318,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ]
     },
@@ -2361,11 +2361,11 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "vfb_stuttgart"
       ]
     },
@@ -2396,12 +2396,12 @@
         "aston_villa",
         "f1",
         "psg",
-        "nba",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ],
@@ -2441,12 +2441,12 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -2480,13 +2480,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -2521,20 +2521,20 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
     },
     "video_thumbnails_inline": {
-      "adoption_count": 28,
-      "adoption_pct": 85,
+      "adoption_count": 27,
+      "adoption_pct": 82,
       "clubs_yes": [
         "fc_barcelona",
         "valencia_cf",
@@ -2558,7 +2558,6 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "bvb_dortmund",
         "tottenham",
@@ -2570,6 +2569,7 @@
         "aston_villa",
         "brentford",
         "mls",
+        "nba",
         "vfb_stuttgart"
       ]
     },
@@ -2602,13 +2602,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -2647,9 +2647,9 @@
         "eintracht",
         "atp_tour",
         "f1",
-        "nba",
         "mls",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -2684,13 +2684,13 @@
         "f1",
         "psg",
         "itf_tennis",
-        "nba",
         "uefa",
         "brentford",
         "bvb_dortmund",
         "mls",
         "tottenham",
         "mlb",
+        "nba",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
