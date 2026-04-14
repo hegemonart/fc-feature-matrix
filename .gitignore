@@ -1,20 +1,18 @@
-# Next.js
-.next/
-out/
-node_modules/
-
-# Env
-.env*.local
 
 # Claude Code internals
-.claude/worktrees/
-
-# Separate projects / reference assets
-concept/
-references/
-
-# Screenshots
-screenshots/
-
 # Debug
+# Env
+# Next.js
+# Screenshots
+# Separate projects / reference assets
+.DS_Store
+.claude/worktrees/
+.env*.local
+.next/
+analysis/homepage/crosscheck/img/.DS_Store
+concept/
+node_modules/
 npm-debug.log*
+out/
+references/
+screenshots/
