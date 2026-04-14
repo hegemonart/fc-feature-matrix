@@ -981,8 +981,8 @@
       ]
     },
     "language_switcher_in_header": {
-      "adoption_count": 19,
-      "adoption_pct": 58,
+      "adoption_count": 20,
+      "adoption_pct": 61,
       "clubs_yes": [
         "fc_barcelona",
         "bayern_munich",
@@ -992,6 +992,7 @@
         "motogp",
         "real_madrid",
         "eintracht",
+        "atp_tour",
         "man_united",
         "atletico_madrid",
         "man_city",
@@ -1010,7 +1011,6 @@
         "juventus",
         "west_ham",
         "inter_milan",
-        "atp_tour",
         "chelsea",
         "newcastle",
         "f1",
@@ -2247,8 +2247,8 @@
       ]
     },
     "store_block": {
-      "adoption_count": 21,
-      "adoption_pct": 64,
+      "adoption_count": 20,
+      "adoption_pct": 61,
       "clubs_yes": [
         "fc_barcelona",
         "valencia_cf",
@@ -2262,7 +2262,6 @@
         "west_ham",
         "eintracht",
         "inter_milan",
-        "atp_tour",
         "chelsea",
         "man_united",
         "atletico_madrid",
@@ -2274,6 +2273,7 @@
       ],
       "clubs_no": [
         "motogp",
+        "atp_tour",
         "man_city",
         "f1",
         "psg",
