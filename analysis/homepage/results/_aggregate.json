@@ -330,8 +330,8 @@
       ]
     },
     "club_tv_app_promo": {
-      "adoption_count": 17,
-      "adoption_pct": 52,
+      "adoption_count": 16,
+      "adoption_pct": 48,
       "clubs_yes": [
         "motogp",
         "valencia_cf",
@@ -344,7 +344,6 @@
         "man_united",
         "man_city",
         "mls",
-        "f1",
         "nba",
         "brentford",
         "bvb_dortmund",
@@ -363,6 +362,7 @@
         "newcastle",
         "club_brugge",
         "aston_villa",
+        "f1",
         "psg",
         "itf_tennis",
         "uefa",
@@ -860,8 +860,8 @@
       ]
     },
     "in_content_sponsor": {
-      "adoption_count": 16,
-      "adoption_pct": 48,
+      "adoption_count": 15,
+      "adoption_pct": 45,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
@@ -874,7 +874,6 @@
         "atp_tour",
         "newcastle",
         "mls",
-        "f1",
         "itf_tennis",
         "nba",
         "uefa",
@@ -892,6 +891,7 @@
         "man_city",
         "club_brugge",
         "aston_villa",
+        "f1",
         "psg",
         "brentford",
         "bvb_dortmund",
@@ -1390,8 +1390,8 @@
       ]
     },
     "next_match_feature_rich": {
-      "adoption_count": 27,
-      "adoption_pct": 82,
+      "adoption_count": 28,
+      "adoption_pct": 85,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
@@ -1413,6 +1413,7 @@
         "mls",
         "club_brugge",
         "aston_villa",
+        "f1",
         "psg",
         "nba",
         "brentford",
@@ -1424,7 +1425,6 @@
       "clubs_no": [
         "atp_tour",
         "newcastle",
-        "f1",
         "itf_tennis",
         "uefa",
         "mlb"
@@ -1472,8 +1472,8 @@
       ]
     },
     "persistent_bar_above_header": {
-      "adoption_count": 17,
-      "adoption_pct": 52,
+      "adoption_count": 18,
+      "adoption_pct": 55,
       "clubs_yes": [
         "motogp",
         "bayern_munich",
@@ -1488,6 +1488,7 @@
         "man_united",
         "mls",
         "aston_villa",
+        "f1",
         "uefa",
         "tottenham",
         "mlb",
@@ -1503,7 +1504,6 @@
         "man_city",
         "newcastle",
         "club_brugge",
-        "f1",
         "psg",
         "itf_tennis",
         "nba",
