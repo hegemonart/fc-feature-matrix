@@ -330,8 +330,8 @@
       ]
     },
     "club_tv_app_promo": {
-      "adoption_count": 15,
-      "adoption_pct": 45,
+      "adoption_count": 14,
+      "adoption_pct": 42,
       "clubs_yes": [
         "valencia_cf",
         "bayern_munich",
@@ -346,8 +346,7 @@
         "brentford",
         "bvb_dortmund",
         "mls",
-        "tottenham",
-        "mlb"
+        "tottenham"
       ],
       "clubs_no": [
         "fc_barcelona",
@@ -366,6 +365,7 @@
         "psg",
         "itf_tennis",
         "uefa",
+        "mlb",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
@@ -981,8 +981,8 @@
       ]
     },
     "language_switcher_in_header": {
-      "adoption_count": 18,
-      "adoption_pct": 55,
+      "adoption_count": 19,
+      "adoption_pct": 58,
       "clubs_yes": [
         "fc_barcelona",
         "bayern_munich",
@@ -1001,6 +1001,7 @@
         "uefa",
         "bvb_dortmund",
         "mls",
+        "mlb",
         "vfb_stuttgart"
       ],
       "clubs_no": [
@@ -1017,7 +1018,6 @@
         "nba",
         "brentford",
         "tottenham",
-        "mlb",
         "rb_leipzig"
       ]
     },
@@ -1388,8 +1388,8 @@
       ]
     },
     "next_match_feature_rich": {
-      "adoption_count": 28,
-      "adoption_pct": 85,
+      "adoption_count": 29,
+      "adoption_pct": 88,
       "clubs_yes": [
         "fc_barcelona",
         "valencia_cf",
@@ -1417,6 +1417,7 @@
         "bvb_dortmund",
         "mls",
         "tottenham",
+        "mlb",
         "rb_leipzig",
         "vfb_stuttgart"
       ],
@@ -1424,8 +1425,7 @@
         "atp_tour",
         "newcastle",
         "itf_tennis",
-        "uefa",
-        "mlb"
+        "uefa"
       ]
     },
     "paid_membership": {
@@ -1796,12 +1796,11 @@
       ]
     },
     "quiz_trivia": {
-      "adoption_count": 3,
-      "adoption_pct": 9,
+      "adoption_count": 2,
+      "adoption_pct": 6,
       "clubs_yes": [
         "bayern_munich",
-        "arsenal",
-        "mlb"
+        "arsenal"
       ],
       "clubs_no": [
         "fc_barcelona",
@@ -1832,6 +1831,7 @@
         "bvb_dortmund",
         "mls",
         "tottenham",
+        "mlb",
         "rb_leipzig",
         "vfb_stuttgart"
       ]
