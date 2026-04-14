@@ -153,8 +153,6 @@ export const FEATURES: Feature[] = [
     'League table access directly from the homepage', 'match_fixtures', 'E', 3, -1),
   feat('M06', 'live_match_indicator', 'Live Match Indicator',
     'Visible signal when a match is happening right now', 'match_fixtures', 'C', 5, -2),
-  feat('M08', 'matchday_experience_info', 'Matchday Experience Info',
-    'Practical info about attending a match: transport, food, gates, fan zone', 'match_fixtures', 'C', 5, -2),
 
   // ── 4. Content (News, Video, Editorial) ──
   feat('C01', 'dedicated_news_section', 'Dedicated News Section',
@@ -174,7 +172,7 @@ export const FEATURES: Feature[] = [
   feat('C08', 'podcast_audio', 'Podcast / Audio Content',
     'Area dedicated to the club\'s podcasts or audio shows', 'content', 'D', 8, -1),
   feat('C09', 'photo_gallery_block', 'Photo Gallery Block',
-    'A standalone photo gallery block, not just a filter in news', 'content', 'E', 3, -1),
+    'A standalone photo gallery block', 'content', 'E', 3, -1),
   feat('C10', 'press_conference_block', 'Press Conference / Interview Block',
     'Card or block featuring a manager talking to press or being interviewed', 'content', 'E', 3, -1),
   feat('C11', 'transfer_news', 'Transfer News Block',

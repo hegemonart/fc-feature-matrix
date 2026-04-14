@@ -77,7 +77,6 @@ The following do **not** qualify as a block:
 | Results block | A block showing at least one recent match result with score | Shows recent match scores for quick catch-up | E | +3 | −1 |
 | Standings block or prominent link | A block showing the league table, or a prominent homepage link to it (footer-only does not qualify) | League table access directly from the homepage | E | +3 | −1 |
 | Live match indicator | A badge, card, or banner indicating a currently-live match | Visible signal when a match is happening right now | C | +5 | −2 |
-| Matchday experience info block | A block with matchday logistics (transport, food, fan zone, or gates) | Practical info about attending a match: transport, food, gates, fan zone | C | +5 | −2 |
 
 ---
 
@@ -93,7 +92,7 @@ The following do **not** qualify as a block:
 | Documentary promo block | A block, modal, or upsell specifically promoting a documentary | Specific promo for a documentary film, often with a paywall CTA | C | +5 | −2 |
 | Social-native content block | A block in Stories row format (3+ tappable tiles) or platform-native UI showcasing social content (IG/TikTok/X style) | Stories-style tiles or a block that mimics Instagram/TikTok UI | D | +8 | −1 |
 | Podcast / audio content block | A block dedicated to podcast or audio content | Area dedicated to the club's podcasts or audio shows | D | +8 | −1 |
-| Photo gallery as dedicated block | A block dedicated to photo galleries (a filter tab inside news does not qualify) | A standalone photo gallery block, not just a filter in news | E | +3 | −1 |
+| Photo gallery as dedicated block | A block dedicated to photo galleries (a filter tab inside news does not qualify) | A standalone photo gallery block | E | +3 | −1 |
 | Press conference / manager interview block | A block or card featuring a press conference or manager interview | Card or block featuring a manager talking to press or being interviewed | E | +3 | −1 |
 | Transfer news / rumors block | A block dedicated to transfer news | A dedicated area for transfer market news | D | +8 | −1 |
 | Interactive fan voting / poll block | An interactive voting or poll block rendered on the homepage | A poll or vote that fans can actually interact with on the page | D | +8 | −1 |

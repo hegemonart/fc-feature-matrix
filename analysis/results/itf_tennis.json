@@ -27,7 +27,7 @@
     "episodic_docu_series": false,
     "video_thumbnails_inline": true,
     "documentary_promo": false,
-    "social_native_content": false,
+    "social_native_content": true,
     "podcast_audio": false,
     "photo_gallery_block": false,
     "press_conference_block": false,
