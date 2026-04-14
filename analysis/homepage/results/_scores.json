@@ -175,20 +175,20 @@
     },
     {
       "rank": 20,
-      "product_id": "club_brugge",
-      "screenshot": "29-clubbrugge.png",
-      "total_score": 14,
-      "yes_count": 22,
-      "no_count": 44,
-      "feature_count": 66
-    },
-    {
-      "rank": 21,
       "product_id": "aston_villa",
       "screenshot": "14-aston-villa.png",
       "total_score": 12,
       "yes_count": 21,
       "no_count": 45,
+      "feature_count": 66
+    },
+    {
+      "rank": 21,
+      "product_id": "club_brugge",
+      "screenshot": "29-clubbrugge.png",
+      "total_score": 10,
+      "yes_count": 22,
+      "no_count": 44,
       "feature_count": 66
     },
     {
