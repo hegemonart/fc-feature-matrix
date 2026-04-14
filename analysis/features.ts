@@ -133,8 +133,6 @@ export const FEATURES: Feature[] = [
     'Top-nav link sending users straight to tickets', 'header_nav', 'B', 2, -2),
   feat('H06', 'sponsor_lockup_in_header', 'Sponsor Lockup in Header',
     'Sponsor logo integrated alongside the club crest in the header', 'header_nav', 'D', 8, -1),
-  feat('H07', 'persistent_bar_above_header', 'Persistent Bar Above Header',
-    'Thin bar above the main header with offers, sponsor credits, or utility links', 'header_nav', 'E', 3, -1),
 
   // ── 2. Hero ──
   feat('R01', 'hero_carousel', 'Hero Carousel',

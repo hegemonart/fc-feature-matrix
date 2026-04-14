@@ -55,7 +55,6 @@ The following do **not** qualify as a block:
 | Shop shortcut in header | A top-level nav item linking to the club store | Top-nav link sending users straight to the club store | B | +2 | −2 |
 | Tickets shortcut in header | A top-level nav item linking to tickets | Top-nav link sending users straight to tickets | B | +2 | −2 |
 | Sponsor lockup in header | A sponsor logo locked directly into the header bar alongside or in place of standard header elements | Sponsor logo integrated alongside the club crest in the header | D | +8 | −1 |
-| Persistent bar above header | A horizontal bar rendered above the main header, containing any content (offer, sponsor attribution, or utility links) | Thin bar above the main header with offers, sponsor credits, or utility links | E | +3 | −1 |
 
 ---
 
