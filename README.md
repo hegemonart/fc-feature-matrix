@@ -29,7 +29,6 @@ analysis/
   index.ts                  Barrel export + band computation
   homepage/
     HOME-PAGE.md            58-feature scoring rubric (source of truth)
-    PLAYBOOK-*.md           Methodology documentation
     features.ts             Feature definitions with tier weights
     categories.ts           12 feature categories with display colors
     results/                One JSON per organization + aggregates
@@ -108,9 +107,6 @@ For proof-of-concept validation, element-level screenshots are captured for each
 | `capture_elements.py` | Main capture with JS feature locators, cookie dismissal, lazy-load scrolling |
 | `redo_bad_weak.py` | Re-capture for Chelsea + Arsenal screenshots that failed quality audit |
 | `redo_barcelona.py` | Barcelona-specific re-capture (handles Didomi consent wall) |
-| `fix_screenshots.py` | First-round fixes with manual y-coordinates |
-| `fix_screenshots_v2.py` | Second-round fixes with JS element detection |
-| `fix_screenshots_v3.py` | Third-round fixes using page section dump approach |
 
 **Quality rules** (documented in `crosscheck/CLAUDE.md`):
 

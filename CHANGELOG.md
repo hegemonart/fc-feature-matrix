@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.1 — 2026-04-14
+Cleanup: remove 4 one-off fix scripts (fix_screenshots v1/v2/v3, fix_press_conf), archive v1 screenshots folder, and outdated PLAYBOOK-HOW-TO-CREATE-NEW-FEATURES-MATRIX.md. Update README to match.
+
 ## v2.0 — 2026-04-14
 Element-level screenshot cross-check system for Chelsea, FC Barcelona, Arsenal. Playwright capture scripts with popup/cookie dismissal, lazy-load scrolling, JS element detection. 80 screenshots across 3 clubs. Quality audit with BAD/WEAK re-capture. CLAUDE.md updated with 14 feature-specific screenshot rules.
 
