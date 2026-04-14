@@ -59,8 +59,8 @@ The rubric file is the single source of truth for what counts as YES.
 | 8 | man_united | manutd.com |
 | 9 | tottenham | tottenhamhotspur.com |
 | 10 | chelsea | chelseafc.com |
-| 11 | inter_milan | inter.it/en |
-| 12 | bvb_dortmund | bvb.de/eng |
+| 11 | inter_milan | inter.it |
+| 12 | bvb_dortmund | bvb.de |
 | 13 | atletico_madrid | atleticodemadrid.com |
 | 14 | aston_villa | avfc.co.uk |
 | 15 | ac_milan | acmilan.com/en |
@@ -101,13 +101,19 @@ Process **one website at a time**, checking **all features** for that site befor
 
 For each website, follow this sequence:
 
-#### 2a. Navigate and take initial screenshot
+#### 2a. Ensure desktop viewport width
+
+**CRITICAL**: Before visiting any site, ensure the browser window is **at least 1200px wide** (recommended: 1400×900). Many club sites use responsive layouts that collapse the header, hide sponsor logos, and remove navigation elements at narrower widths. Use `resize_window` to set the size before starting the batch — do NOT rely on the browser's default size.
+
+If you skip this step, you will get false negatives for features like `sponsor_lockup_in_header`, `brand_sponsor_highlighted_in_hero`, `shop_shortcut_in_header`, and other header/hero elements that are hidden on mobile/tablet breakpoints.
+
+#### 2b. Navigate and take initial screenshot
 
 1. **Navigate** to the URL
 2. **Wait 4s** for JS to render
 3. **Screenshot** the page immediately — this is your primary verification tool
 
-#### 2b. Dismiss popups and overlays
+#### 2c. Dismiss popups and overlays
 
 Some sites show promotional popups or campaign overlays on page load (e.g. Valencia CF shows a summer camp promo, Aston Villa shows ticket promos). These block the page and must be closed before any analysis.
 
@@ -126,7 +132,7 @@ Some sites show promotional popups or campaign overlays on page load (e.g. Valen
 
 Only proceed to cookie dismissal and page analysis after all popups are cleared.
 
-#### 2c. Dismiss cookie banners
+#### 2d. Dismiss cookie banners
 
 Cookie banners must also be dismissed. Try each strategy in order until one works:
 
@@ -152,7 +158,7 @@ window.__cmp('setConsent', 0)
 
 **Strategy 4: Interactive tree** — Use `read_page` with `filter=interactive` to find cookie-related buttons by ref and click via ref.
 
-#### 2d. Scroll and trigger lazy-load
+#### 2e. Scroll and trigger lazy-load
 
 1. **Scroll to bottom** via JS: `window.scrollTo(0, document.body.scrollHeight)`
 2. **Wait 2s** for lazy content to load
@@ -163,7 +169,7 @@ window.__cmp('setConsent', 0)
 - Use the **JS data extraction snippet** (Step 2e) which reads the full DOM regardless of viewport
 - Use `read_page` to get the accessibility tree, which includes off-screen content
 
-#### 2e. Run JS data extraction
+#### 2f. Run JS data extraction
 
 Run this reusable snippet on every site. It extracts signals for all common features in a single call:
 
@@ -205,7 +211,7 @@ JSON.stringify(r);
 
 Adapt or extend this snippet based on the features being checked. For example, add sponsor detection queries when checking `brand_sponsor_highlighted_in_hero`, or video/podcast queries when checking Content features.
 
-#### 2f. Compare, record, and update confidence
+#### 2g. Compare, record, and update confidence
 
 For each feature on this site:
 
@@ -220,14 +226,30 @@ For each feature on this site:
 
 After finishing all features for this site, move to the next. Log progress as you go so context loss doesn't waste work.
 
-### Step 3: Present results
+#### Live console reporting format
 
-**Discrepancies Found** table:
+As you check each site, **print a one-line verdict to the console** so the user can follow along in real time. Use this exact format:
 
 ```
-| # | Club | Feature | Current | Should be | Evidence |
-|---|------|---------|---------|-----------|----------|
-| 1 | Club Name | feature_key | FALSE | TRUE | What you observed |
+**Site N: Club Name** (url) — What you observed. **Verdict: TRUE/FALSE (correct)** or **Verdict: TRUE (currently FALSE → needs flip)**
+```
+
+Examples:
+```
+**Site 1: Real Madrid** (realmadrid.com) — Emirates + Adidas logos in header. **Verdict: TRUE (currently FALSE → needs flip)**
+**Site 9: Tottenham** (tottenhamhotspur.com) — No sponsor logos in header or hero. Just "SPURS" text logo. **Verdict: FALSE (correct)**
+```
+
+Always include the URL so the user can easily double-check in their browser.
+
+### Step 3: Present results
+
+After checking all sites, present a summary **Discrepancies Found** table:
+
+```
+| # | Club | URL | Feature | Current | Should be | Evidence |
+|---|------|-----|---------|---------|-----------|----------|
+| 1 | Club Name | club-url.com | feature_key | FALSE | TRUE | What you observed |
 ```
 
 Also include:
@@ -315,3 +337,4 @@ npx next build
 - **Store block vs shop shortcut**: `store_block` = a merchandise section on the homepage body. `shop_shortcut_in_header` = a link in the header nav.
 - **False positives from nav text**: When checking `standings_block` or similar, always exclude nav/menu/footer elements from your DOM search. A "Standings" link in the nav is NOT a standings block.
 - **Screenshot-first approach**: Always take the screenshot BEFORE running JS. The screenshot is the primary source of truth. JS data is supplementary confirmation, not the other way around.
+- **Browser width matters**: At viewport widths below ~1200px, most club sites switch to mobile/tablet layouts — headers collapse into hamburger menus, sponsor logos disappear, hero sections resize. Always verify the browser is at least 1200px wide (1400px recommended) before starting any cross-check. This was discovered when Real Madrid's Emirates + Adidas hero sponsors were invisible at 948px width.

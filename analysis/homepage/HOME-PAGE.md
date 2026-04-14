@@ -64,7 +64,7 @@ The following do **not** qualify as a block:
 |---|---|---|---|---|---|
 | Hero carousel | A hero that rotates between 2+ slides, indicated by any of: auto-advance, left/right arrows, pagination dots, or a strip of thumbnail tabs below/beside the hero that switch the hero content. Check the area immediately around and below the main hero, not only the hero image itself - thumbnail strips are a common carousel indicator that can be missed when looking at the hero in isolation. | Hero rotates through multiple slides to show more content at the top | E | +3 | −1 |
 | Secondary editorial strip below hero | A row of 2+ editorial cards rendered within 200px below the hero area | Row of editorial cards just under the hero for quick content access | A | +1 | −3 |
-| Brand sponsor highlighted in hero block | A sponsor image or illustration rendered in the top 900px fold occupying at least 25% of the viewport area (not the header lockup, not a small logo) | Large sponsor visual taking significant space in the first view | D | +8 | −1 |
+| Brand sponsor highlighted in hero block | A sponsor logo, image, or illustration visibly rendered in the top 900px fold — including header sponsor lockups, hero overlays, and branded banner strips. Any clearly visible sponsor branding in the first viewport counts. | Sponsor branding visible in the first view (header lockup, hero overlay, or banner) | D | +8 | −1 |
 
 ---
 

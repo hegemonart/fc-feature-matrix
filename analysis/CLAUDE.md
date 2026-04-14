@@ -27,7 +27,7 @@ analysis/
     │   ├── 01-real-madrid.png
     │   └── ...
     └── crosscheck/          ← Browser verification tooling
-        ├── README.md        ← Cross-check agent instructions
+        ├── CLAUDE.md        ← Cross-check agent instructions
         └── recalculate-scores.js  ← Score recalculation script
 ```
 
@@ -112,7 +112,7 @@ A club's total score = sum of all feature weights (Yes or No). Scores can be neg
 
 ### Cross-check features in browser
 
-See `homepage/crosscheck/README.md` for the full procedure. Quick start:
+See `homepage/crosscheck/CLAUDE.md` for the full procedure. Quick start:
 
 ```
 Cross-check all features in "Hero" category
