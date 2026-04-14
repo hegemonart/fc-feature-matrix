@@ -127,13 +127,14 @@
       ]
     },
     "app_store_badges": {
-      "adoption_count": 19,
-      "adoption_pct": 58,
+      "adoption_count": 20,
+      "adoption_pct": 61,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
         "valencia_cf",
         "liverpool",
+        "sl_benfica",
         "juventus",
         "real_madrid",
         "west_ham",
@@ -152,7 +153,6 @@
       ],
       "clubs_no": [
         "bayern_munich",
-        "sl_benfica",
         "ac_milan",
         "arsenal",
         "eintracht",
@@ -330,13 +330,12 @@
       ]
     },
     "club_tv_app_promo": {
-      "adoption_count": 18,
-      "adoption_pct": 55,
+      "adoption_count": 17,
+      "adoption_pct": 52,
       "clubs_yes": [
         "motogp",
         "valencia_cf",
         "bayern_munich",
-        "sl_benfica",
         "ac_milan",
         "real_madrid",
         "west_ham",
@@ -355,6 +354,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "sl_benfica",
         "arsenal",
         "juventus",
         "eintracht",
@@ -983,13 +983,14 @@
       ]
     },
     "language_switcher_in_header": {
-      "adoption_count": 16,
-      "adoption_pct": 48,
+      "adoption_count": 17,
+      "adoption_pct": 52,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
         "bayern_munich",
         "liverpool",
+        "sl_benfica",
         "ac_milan",
         "real_madrid",
         "eintracht",
@@ -1005,7 +1006,6 @@
       ],
       "clubs_no": [
         "valencia_cf",
-        "sl_benfica",
         "arsenal",
         "juventus",
         "west_ham",
