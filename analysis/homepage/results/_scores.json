@@ -13,15 +13,6 @@
     },
     {
       "rank": 2,
-      "product_id": "valencia_cf",
-      "screenshot": "33-valenciacf.png",
-      "total_score": 63,
-      "yes_count": 29,
-      "no_count": 37,
-      "feature_count": 66
-    },
-    {
-      "rank": 3,
       "product_id": "bayern_munich",
       "screenshot": "03-bayern-munich.png",
       "total_score": 62,
@@ -30,12 +21,21 @@
       "feature_count": 66
     },
     {
-      "rank": 4,
+      "rank": 3,
       "product_id": "liverpool",
       "screenshot": "05-liverpool.png",
       "total_score": 62,
       "yes_count": 29,
       "no_count": 37,
+      "feature_count": 66
+    },
+    {
+      "rank": 4,
+      "product_id": "valencia_cf",
+      "screenshot": "33-valenciacf.png",
+      "total_score": 61,
+      "yes_count": 28,
+      "no_count": 38,
       "feature_count": 66
     },
     {
