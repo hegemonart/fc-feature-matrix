@@ -1,98 +1,72 @@
-# Cross-Check Agent Instructions
+# Cross-Check Agent
 
-Reusable procedure for verifying feature categories against live websites using Chrome browser automation.
+Verify any feature(s) across all 33 websites using Chrome browser automation.
 
-## Prerequisites
+## How to use
 
-- Chrome browser open with the Claude-in-Chrome MCP extension connected
-- Access to `analysis/results/*.json` files
-- A tab available in the MCP tab group
+In Claude Code terminal, prompt with the features you want to check:
 
-## Procedure per website
-
-1. **Navigate** to the site URL in Chrome (`mcp__Claude_in_Chrome__navigate`)
-2. **Wait 4s** for JS to render (`mcp__Claude_in_Chrome__computer` action: wait)
-3. **Dismiss cookie banner** via JS:
-   ```js
-   const btns = document.querySelectorAll('button, a, [role="button"]');
-   for (const b of btns) {
-     const txt = (b.textContent || '').toLowerCase().trim();
-     if (txt.includes('reject') || txt.includes('decline') || txt.includes('necessary only') || txt.includes('refuse') || txt.includes('deny all')) {
-       b.click(); break;
-     }
-   }
-   ```
-4. **Scroll to bottom** to trigger lazy-load: `window.scrollTo(0, document.body.scrollHeight)`
-5. **Wait 2s**, then **scroll back to top**: `window.scrollTo(0, 0)`
-6. **Screenshot** the relevant page area
-7. **DOM inspection** via JS — run queries specific to the feature category (see templates below)
-8. **Compare** against current JSON values
-9. **Record** any discrepancies
-
-## Feature category templates
-
-### Header & Navigation
-
-Check these 6 features:
-
-| Key | What to look for |
-|-----|-----------------|
-| `language_switcher_in_header` | Visible language dropdown, globe icon, or EN/ES/DE toggle in header |
-| `login_account` | Login button, account icon, "Sign In" link in header |
-| `search_input_in_header` | Search icon, magnifying glass, or search input in header |
-| `shop_shortcut_in_header` | "Shop", "Store", cart icon, or merchandise link in header nav |
-| `tickets_shortcut_in_header` | "Tickets" link or button in header nav |
-| `sponsor_lockup_in_header` | Sponsor logo(s) integrated into the header bar (not just the club crest) |
-
-DOM query template:
-```js
-const allEls = document.querySelectorAll('a, button, input');
-const found = { search: [], lang: [], login: [], shop: [], tickets: [], sponsor: [] };
-for (const el of allEls) {
-  const txt = (el.textContent || '').toLowerCase().trim();
-  const href = (el.getAttribute('href') || '').toLowerCase();
-  const aria = (el.getAttribute('aria-label') || '').toLowerCase();
-  const cls = (el.className || '').toString().toLowerCase();
-  const rect = el.getBoundingClientRect();
-  const inHeader = rect.top < 200;
-  if (!inHeader) continue;
-  if (txt.includes('search') || aria.includes('search') || cls.includes('search') || el.type === 'search')
-    found.search.push(txt.substring(0, 30));
-  if (txt.includes('language') || cls.includes('lang') || txt.match(/^(en|de|es|fr|it|pt)$/))
-    found.lang.push(txt);
-  if (txt.includes('login') || txt.includes('sign in') || txt.includes('account') || aria.includes('login'))
-    found.login.push(txt.substring(0, 30));
-  if (txt.includes('shop') || txt.includes('store') || href.includes('shop'))
-    found.shop.push(txt.substring(0, 30));
-  if (txt.includes('ticket') || href.includes('ticket'))
-    found.tickets.push(txt.substring(0, 30));
-}
-// Check sponsor images
-const imgs = document.querySelectorAll('header img, nav img, [class*="header"] img');
-for (const img of imgs) {
-  const alt = (img.alt || '').toLowerCase();
-  const src = (img.src || '').toLowerCase();
-  if (src.includes('sponsor') || src.includes('partner') || alt.includes('sponsor'))
-    found.sponsor.push(alt);
-}
-JSON.stringify(found, null, 2);
+```
+Cross-check "sponsor_lockup_in_header" across all websites
 ```
 
-### Content & Media
+```
+Cross-check all features in "Header & Navigation" category
+```
 
-Check these features:
-- `dedicated_news_section` — Look for a news section heading or news article cards
-- `homepage_video_block` — Look for video embeds, video thumbnails, or a video section
-- `social_native_content` — Look for Storyteller widgets, story circles, or social media embeds
-- `photo_gallery_block` — Look for a standalone photo gallery section
+```
+Cross-check "social_native_content" and "homepage_video_block"
+```
 
-### Commerce
+Claude will read this file, resolve which feature keys to check, visit every site in Chrome, and present a discrepancies table.
 
-- `store_block` — Prominent store/merchandise section on homepage
-- `store_individual_products` — Individual product cards with prices shown on homepage
-- `tickets_block` — Dedicated tickets section on homepage (not just header link)
+---
 
-## Websites list (33 products)
+## Feature resolution
+
+When the user specifies a **category name**, map it to feature keys using the table below. When they specify **feature keys directly**, use those as-is.
+
+### Categories → Feature keys
+
+**Header & Navigation** (`header_nav`)
+`language_switcher_in_header`, `login_account`, `search_input_in_header`, `shop_shortcut_in_header`, `tickets_shortcut_in_header`, `sponsor_lockup_in_header`
+
+**Hero** (`hero`)
+`hero_carousel`, `secondary_editorial_strip_below_hero`, `brand_sponsor_highlighted_in_hero`
+
+**Match & Fixtures** (`match_fixtures`)
+`next_match_block`, `next_match_feature_rich`, `results_block`, `standings_block`, `birthday_squad_calendar`, `live_match_indicator`, `push_notification_opt_in`
+
+**Content & Editorial** (`content`)
+`dedicated_news_section`, `news_rich_structure`, `homepage_video_block`, `episodic_docu_series`, `video_thumbnails_inline`, `documentary_promo`, `social_native_content`, `podcast_audio`, `photo_gallery_block`, `press_conference_block`, `transfer_news`, `interactive_fan_poll`
+
+**Tickets & Hospitality** (`tickets_hospitality`)
+`tickets_block`, `hospitality_block`, `stadium_tours_block`, `multi_sport_tickets`
+
+**Commerce & Store** (`commerce`)
+`store_block`, `store_individual_products`, `member_only_commerce`
+
+**Community & Membership** (`community`)
+`newsletter_signup`, `fan_club_signup`, `paid_membership`, `draws_contests`, `fan_clubs_directory`
+
+**Heritage & Identity** (`heritage`)
+`trophies_honours`, `heritage_past_content`, `stadium_content_block`, `museum_block`, `anniversary_milestone`, `tribute_memorial`
+
+**Players & Teams** (`players_teams`)
+`player_roster_preview`, `individual_player_cards`, `player_social_links`, `womens_team_featured`, `womens_team_tickets`, `academy_youth_block`, `esports_gaming_block`, `charity_csr_block`
+
+**Partners, Sponsors & App** (`partners_sponsors`)
+`footer_sponsor_wall`, `in_content_sponsor`, `app_store_badges`, `club_tv_app_promo`, `b2b_partnerships`
+
+**Personalization & Engagement** (`personalization`)
+`ai_chat_assistant`, `w3c_a11y_features`, `loyalty_rewards`, `predictor_fantasy`, `quiz_trivia`, `wallpapers_downloads`
+
+**Footer** (`footer_nav`)
+`social_links_in_footer`, `language_selector_in_footer`
+
+---
+
+## Websites (33)
 
 | # | ID | URL |
 |---|-----|-----|
@@ -130,9 +104,57 @@ Check these features:
 | 32 | rb_leipzig | rbleipzig.com/en |
 | 33 | valencia_cf | valenciacf.com/en |
 
-## Output format
+---
 
-Present results as a **Discrepancies Found** table:
+## Execution procedure
+
+### Step 1: Read current values
+
+```bash
+cd analysis/results
+for f in *.json; do
+  [[ "$f" == _* ]] && continue
+  python3 -c "
+import json, sys
+d = json.load(open('$f'))
+vals = {k: v for k, v in d['features'].items() if k in FEATURE_KEYS}
+if vals:
+    print(f\"=== {d['product_id']} ===\")
+    for k, v in vals.items():
+        print(f'  {k}: {v}')
+"
+done
+```
+
+(Replace `FEATURE_KEYS` with the actual list of keys being checked.)
+
+### Step 2: Visit each site in Chrome
+
+For each website:
+
+1. **Navigate** to the URL
+2. **Wait 4s** for JS to render
+3. **Dismiss cookie banner** via JS:
+   ```js
+   const btns = document.querySelectorAll('button, a, [role="button"]');
+   for (const b of btns) {
+     const txt = (b.textContent || '').toLowerCase().trim();
+     if (txt.includes('reject') || txt.includes('decline') || txt.includes('necessary only')
+         || txt.includes('refuse') || txt.includes('deny all')) {
+       b.click(); break;
+     }
+   }
+   ```
+4. **Scroll to bottom** to trigger lazy-load: `window.scrollTo(0, document.body.scrollHeight)`
+5. **Wait 2s**, then **scroll back to top**: `window.scrollTo(0, 0)`
+6. **Screenshot** the relevant page area
+7. **DOM inspection** — run JS queries relevant to the features being checked
+8. **Compare** screenshot + DOM findings against current JSON values
+9. **Record** any discrepancies
+
+### Step 3: Present results
+
+**Discrepancies Found** table:
 
 ```
 | # | Club | Feature | Current | Should be | Evidence |
@@ -141,39 +163,82 @@ Present results as a **Discrepancies Found** table:
 ```
 
 Also include:
-- **Inaccessible Sites** table for any sites that couldn't be loaded
-- **Uncertain / Manual Review** table for ambiguous cases
+- **Inaccessible Sites** — any sites that couldn't be loaded
+- **Uncertain / Manual Review** — ambiguous cases where the user should verify
 
-## Updating JSONs after approval
+### Step 4: Apply fixes (after user approval)
 
-After the user approves changes, update each JSON file:
 ```bash
-# Example: flip a boolean
-python3 -c "
+cd analysis/results && python3 -c "
 import json
-with open('analysis/results/club_name.json', 'r') as f:
-    d = json.load(f)
-d['features']['feature_key'] = True  # or False
-with open('analysis/results/club_name.json', 'w') as f:
-    json.dump(d, f, indent=2)
+changes = [
+    ('club_id', 'feature_key', True),  # or False
+    # ... all approved changes
+]
+for club, feature, value in changes:
+    path = f'{club}.json'
+    with open(path) as f:
+        d = json.load(f)
+    d['features'][feature] = value
+    with open(path, 'w') as f:
+        json.dump(d, f, indent=2)
+        f.write('\n')
+    print(f'{club}: {feature} -> {value}')
 "
 ```
 
-Then regenerate aggregates:
+### Step 5: Regenerate aggregates
+
 ```bash
 cd analysis/results && node -e "
 const fs = require('fs');
 const files = fs.readdirSync('.').filter(f => f.endsWith('.json') && !f.startsWith('_'));
 const clubs = files.map(f => JSON.parse(fs.readFileSync(f, 'utf8')));
 clubs.sort((a, b) => b.total_score - a.total_score);
-// ... (see analysis/CLAUDE.md for full script)
+
+const scores = {
+  generated_at: new Date().toISOString().split('T')[0],
+  total_clubs: clubs.length,
+  rankings: clubs.map((c, i) => ({
+    rank: i + 1, product_id: c.product_id, screenshot: c.screenshot,
+    total_score: c.total_score,
+    yes_count: Object.values(c.features).filter(v => v === true).length,
+    no_count: Object.values(c.features).filter(v => v === false).length,
+    feature_count: Object.keys(c.features).length
+  }))
+};
+fs.writeFileSync('_scores.json', JSON.stringify(scores, null, 2));
+
+const allFeatureKeys = Object.keys(clubs[0].features).sort();
+const aggregate = {
+  generated_at: scores.generated_at,
+  total_clubs: clubs.length,
+  total_features: allFeatureKeys.length,
+  features: {}
+};
+allFeatureKeys.forEach(key => {
+  const adoption = clubs.filter(c => c.features[key] === true).length;
+  aggregate.features[key] = {
+    adoption_count: adoption,
+    adoption_pct: Math.round(adoption / clubs.length * 100),
+    clubs_yes: clubs.filter(c => c.features[key] === true).map(c => c.product_id),
+    clubs_no: clubs.filter(c => c.features[key] !== true).map(c => c.product_id)
+  };
+});
+fs.writeFileSync('_aggregate.json', JSON.stringify(aggregate, null, 2));
+console.log('Done:', clubs.length, 'clubs');
 "
 ```
 
+---
+
 ## Tips
 
-- **Hamburger menus**: Items inside a collapsed hamburger that are part of the header navigation system count as YES. Check `el.offsetParent !== null` to distinguish visible vs hidden-in-menu.
+- **Hamburger menus**: Items inside a collapsed hamburger that are part of the header navigation count as YES. Check `el.offsetParent !== null` to distinguish visible vs hidden-in-menu.
 - **Sponsor lockup**: Look for sponsor logos IN the header bar itself, not just on jerseys in hero images. Partner bars above or integrated into the header count.
-- **Cookie banners**: Some sites (especially F1, Bundesliga clubs) have persistent cookie banners that block interaction. Try both JS click and manual click approaches.
-- **404 pages**: If the /en path 404s, try the base URL — the header is usually still visible and functional.
-- **JS-heavy sites**: WebFetch misses content rendered by JavaScript (e.g., Storyteller widgets). Always use real browser for verification.
+- **Cookie banners**: Some sites (F1, Bundesliga clubs) have persistent banners. Try both JS click and manual click.
+- **404 pages**: If the /en path 404s, try the base URL — the header is usually still visible.
+- **JS-heavy sites**: WebFetch misses JS-rendered content (e.g., Storyteller widgets). Always use real browser.
+- **Social native content**: Look for Storyteller/stories widgets (circular thumbnails at top), Instagram/TikTok embeds, or native social feed blocks.
+- **Video blocks**: Distinguish between a dedicated video section and video thumbnails inline within news cards.
+- **Store block vs shop shortcut**: `store_block` = a merchandise section on the homepage body. `shop_shortcut_in_header` = a link in the header nav.
