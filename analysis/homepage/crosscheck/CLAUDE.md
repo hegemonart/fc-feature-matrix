@@ -43,6 +43,8 @@ When the user specifies a **category name** (e.g. "Hero"), read all features und
 
 The rubric file is the single source of truth for what counts as YES.
 
+**IMPORTANT**: Never use the original analysis screenshots from `analysis/homepage/screenshots/` during a cross-check. Always visit the actual live website in the browser. The whole point of the cross-check is to independently verify against the real site, not to re-read the same screenshots that produced the original (potentially wrong) values.
+
 ---
 
 ## Websites (33)
@@ -224,6 +226,26 @@ For each feature on this site:
    - `"needs-live-check"` — couldn't verify (site down, content behind interaction, time-sensitive like live match)
    - `"exists-off-homepage"` — feature exists on the site but not on the homepage
 
+**CRITICAL — Burden of proof for TRUE values:**
+
+A feature value of TRUE means "this feature is visibly present on the homepage." During cross-check, **every TRUE must be positively confirmed** — you must be able to point to specific visual or DOM evidence that the feature exists. If you cannot find evidence, the value must flip to FALSE.
+
+Do NOT preserve a TRUE just because you "couldn't disprove it." The absence of evidence IS evidence of absence for homepage features. Specifically:
+
+- If the page loads shorter/differently than the original screenshot and you **cannot see or detect the feature** → flip to FALSE
+- If JS detection finds zero signals and the screenshot shows no evidence → flip to FALSE
+- If the only match is in navigation menus, cookie banners, or hidden hamburger menus → flip to FALSE (nav links ≠ homepage blocks)
+- If the only match is a news headline mentioning the topic (e.g. "loyalty points update") rather than a dedicated feature block → flip to FALSE
+
+When in doubt, add the site to the **Uncertain / Manual Review** table — but never silently keep a TRUE you couldn't verify.
+
+**Page load validation:**
+
+Before concluding a site, verify the page actually loaded fully:
+1. Check `document.documentElement.scrollHeight` — if it's under 2000px for a club homepage, the page likely didn't render properly
+2. Try dismissing cookie banners, scrolling to trigger lazy-load, and reloading if needed — some sites (especially German Bundesliga clubs using consentmanager) won't render content until cookies are handled
+3. If a site fails to load or renders a stub page after multiple attempts, mark all features as `"needs-live-check"` rather than assuming the existing values are correct
+
 After finishing all features for this site, move to the next. Log progress as you go so context loss doesn't waste work.
 
 #### Live console reporting format
@@ -336,5 +358,7 @@ npx next build
 - **Video blocks**: Distinguish between a dedicated video section and video thumbnails inline within news cards.
 - **Store block vs shop shortcut**: `store_block` = a merchandise section on the homepage body. `shop_shortcut_in_header` = a link in the header nav.
 - **False positives from nav text**: When checking `standings_block` or similar, always exclude nav/menu/footer elements from your DOM search. A "Standings" link in the nav is NOT a standings block.
-- **Screenshot-first approach**: Always take the screenshot BEFORE running JS. The screenshot is the primary source of truth. JS data is supplementary confirmation, not the other way around.
+- **Screenshot-first approach**: Always take a fresh browser screenshot BEFORE running JS. This live screenshot is the primary source of truth. JS data is supplementary confirmation, not the other way around. Never refer to the original analysis screenshots in `analysis/homepage/screenshots/` — those are what you're checking against, not a source of truth.
 - **Browser width matters**: At viewport widths below ~1200px, most club sites switch to mobile/tablet layouts — headers collapse into hamburger menus, sponsor logos disappear, hero sections resize. Always verify the browser is at least 1200px wide (1400px recommended) before starting any cross-check. This was discovered when Real Madrid's Emirates + Adidas hero sponsors were invisible at 948px width.
+- **Never trust unverified TRUEs**: The cross-check exists to catch errors in the original analysis. A TRUE that can't be confirmed in the browser is a FALSE — don't carry forward original values on faith. If you can't see it and JS can't find it, flip it. This applies especially when pages render differently (shorter, different language, different content) than the original screenshot.
+- **Short pages = red flag**: If a homepage loads under ~2000px tall, something is wrong (cookie wall blocking content, geo-redirect, JS failure). Compare against the original screenshot. If the live page is dramatically shorter, flag every TRUE that relies on content you can't see.
