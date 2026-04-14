@@ -4,12 +4,13 @@
   "total_features": 67,
   "features": {
     "academy_youth_block": {
-      "adoption_count": 8,
-      "adoption_pct": 24,
+      "adoption_count": 9,
+      "adoption_pct": 27,
       "clubs_yes": [
         "valencia_cf",
         "liverpool",
         "sl_benfica",
+        "arsenal",
         "chelsea",
         "west_ham",
         "inter_milan",
@@ -20,7 +21,6 @@
         "motogp",
         "fc_barcelona",
         "bayern_munich",
-        "arsenal",
         "real_madrid",
         "ac_milan",
         "juventus",
@@ -126,14 +126,13 @@
       ]
     },
     "app_store_badges": {
-      "adoption_count": 19,
-      "adoption_pct": 58,
+      "adoption_count": 18,
+      "adoption_pct": 55,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
         "valencia_cf",
         "liverpool",
-        "arsenal",
         "chelsea",
         "real_madrid",
         "juventus",
@@ -152,6 +151,7 @@
       "clubs_no": [
         "bayern_munich",
         "sl_benfica",
+        "arsenal",
         "ac_milan",
         "eintracht",
         "inter_milan",
@@ -247,14 +247,13 @@
       ]
     },
     "brand_sponsor_highlighted_in_hero": {
-      "adoption_count": 17,
-      "adoption_pct": 52,
+      "adoption_count": 16,
+      "adoption_pct": 48,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
         "valencia_cf",
         "sl_benfica",
-        "arsenal",
         "chelsea",
         "real_madrid",
         "ac_milan",
@@ -271,6 +270,7 @@
       "clubs_no": [
         "bayern_munich",
         "liverpool",
+        "arsenal",
         "west_ham",
         "inter_milan",
         "man_city",
@@ -288,10 +288,11 @@
       ]
     },
     "charity_csr_block": {
-      "adoption_count": 5,
-      "adoption_pct": 15,
+      "adoption_count": 6,
+      "adoption_pct": 18,
       "clubs_yes": [
         "liverpool",
+        "arsenal",
         "chelsea",
         "west_ham",
         "psg",
@@ -303,7 +304,6 @@
         "bayern_munich",
         "valencia_cf",
         "sl_benfica",
-        "arsenal",
         "real_madrid",
         "ac_milan",
         "juventus",
@@ -655,15 +655,14 @@
       ]
     },
     "footer_sponsor_wall": {
-      "adoption_count": 26,
-      "adoption_pct": 79,
+      "adoption_count": 25,
+      "adoption_pct": 76,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
         "bayern_munich",
         "valencia_cf",
         "sl_benfica",
-        "arsenal",
         "chelsea",
         "real_madrid",
         "ac_milan",
@@ -687,6 +686,7 @@
       ],
       "clubs_no": [
         "liverpool",
+        "arsenal",
         "man_city",
         "psg",
         "man_united",
@@ -696,13 +696,14 @@
       ]
     },
     "heritage_past_content": {
-      "adoption_count": 8,
-      "adoption_pct": 24,
+      "adoption_count": 9,
+      "adoption_pct": 27,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
         "bayern_munich",
         "liverpool",
+        "arsenal",
         "real_madrid",
         "eintracht",
         "inter_milan",
@@ -711,7 +712,6 @@
       "clubs_no": [
         "valencia_cf",
         "sl_benfica",
-        "arsenal",
         "chelsea",
         "ac_milan",
         "juventus",
@@ -859,15 +859,14 @@
       ]
     },
     "in_content_sponsor": {
-      "adoption_count": 19,
-      "adoption_pct": 58,
+      "adoption_count": 18,
+      "adoption_pct": 55,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
         "bayern_munich",
         "valencia_cf",
         "sl_benfica",
-        "arsenal",
         "ac_milan",
         "juventus",
         "atp_tour",
@@ -884,6 +883,7 @@
       ],
       "clubs_no": [
         "liverpool",
+        "arsenal",
         "chelsea",
         "real_madrid",
         "eintracht",
@@ -2413,11 +2413,10 @@
       ]
     },
     "transfer_news": {
-      "adoption_count": 5,
-      "adoption_pct": 15,
+      "adoption_count": 4,
+      "adoption_pct": 12,
       "clubs_yes": [
         "liverpool",
-        "arsenal",
         "west_ham",
         "mls",
         "newcastle"
@@ -2428,6 +2427,7 @@
         "bayern_munich",
         "valencia_cf",
         "sl_benfica",
+        "arsenal",
         "chelsea",
         "real_madrid",
         "ac_milan",
@@ -2576,11 +2576,12 @@
       ]
     },
     "w3c_a11y_features": {
-      "adoption_count": 5,
-      "adoption_pct": 15,
+      "adoption_count": 6,
+      "adoption_pct": 18,
       "clubs_yes": [
         "bayern_munich",
         "liverpool",
+        "arsenal",
         "man_city",
         "aston_villa",
         "vfb_stuttgart"
@@ -2590,7 +2591,6 @@
         "fc_barcelona",
         "valencia_cf",
         "sl_benfica",
-        "arsenal",
         "chelsea",
         "real_madrid",
         "ac_milan",
