@@ -24,13 +24,22 @@
       "rank": 3,
       "product_id": "bayern_munich",
       "screenshot": "03-bayern-munich.png",
-      "total_score": 70,
-      "yes_count": 32,
-      "no_count": 35,
+      "total_score": 79,
+      "yes_count": 33,
+      "no_count": 34,
       "feature_count": 67
     },
     {
       "rank": 4,
+      "product_id": "liverpool",
+      "screenshot": "05-liverpool.png",
+      "total_score": 70,
+      "yes_count": 30,
+      "no_count": 37,
+      "feature_count": 67
+    },
+    {
+      "rank": 5,
       "product_id": "valencia_cf",
       "screenshot": "33-valenciacf.png",
       "total_score": 63,
@@ -39,30 +48,21 @@
       "feature_count": 67
     },
     {
-      "rank": 5,
-      "product_id": "liverpool",
-      "screenshot": "05-liverpool.png",
-      "total_score": 61,
-      "yes_count": 29,
-      "no_count": 38,
+      "rank": 6,
+      "product_id": "arsenal",
+      "screenshot": "07-arsenal.png",
+      "total_score": 59,
+      "yes_count": 28,
+      "no_count": 39,
       "feature_count": 67
     },
     {
-      "rank": 6,
+      "rank": 7,
       "product_id": "sl_benfica",
       "screenshot": "19-sl-benfica.png",
       "total_score": 52,
       "yes_count": 27,
       "no_count": 40,
-      "feature_count": 67
-    },
-    {
-      "rank": 7,
-      "product_id": "arsenal",
-      "screenshot": "07-arsenal.png",
-      "total_score": 46,
-      "yes_count": 26,
-      "no_count": 41,
       "feature_count": 67
     },
     {
@@ -94,6 +94,15 @@
     },
     {
       "rank": 11,
+      "product_id": "man_united",
+      "screenshot": "08-man-united.png",
+      "total_score": 35,
+      "yes_count": 25,
+      "no_count": 42,
+      "feature_count": 67
+    },
+    {
+      "rank": 12,
       "product_id": "juventus",
       "screenshot": "16-juventus.png",
       "total_score": 33,
@@ -102,7 +111,7 @@
       "feature_count": 67
     },
     {
-      "rank": 12,
+      "rank": 13,
       "product_id": "eintracht",
       "screenshot": "30-eintracht.png",
       "total_score": 32,
@@ -111,7 +120,7 @@
       "feature_count": 67
     },
     {
-      "rank": 13,
+      "rank": 14,
       "product_id": "atp_tour",
       "screenshot": "28-atptou.png",
       "total_score": 30,
@@ -120,7 +129,7 @@
       "feature_count": 67
     },
     {
-      "rank": 14,
+      "rank": 15,
       "product_id": "west_ham",
       "screenshot": "20-west-ham.png",
       "total_score": 30,
@@ -129,30 +138,21 @@
       "feature_count": 67
     },
     {
-      "rank": 15,
+      "rank": 16,
+      "product_id": "man_city",
+      "screenshot": "06-man-city.png",
+      "total_score": 29,
+      "yes_count": 22,
+      "no_count": 45,
+      "feature_count": 67
+    },
+    {
+      "rank": 17,
       "product_id": "inter_milan",
       "screenshot": "11-inter-milan.png",
       "total_score": 26,
       "yes_count": 23,
       "no_count": 44,
-      "feature_count": 67
-    },
-    {
-      "rank": 16,
-      "product_id": "man_united",
-      "screenshot": "08-man-united.png",
-      "total_score": 26,
-      "yes_count": 24,
-      "no_count": 43,
-      "feature_count": 67
-    },
-    {
-      "rank": 17,
-      "product_id": "man_city",
-      "screenshot": "06-man-city.png",
-      "total_score": 20,
-      "yes_count": 21,
-      "no_count": 46,
       "feature_count": 67
     },
     {
