@@ -85,13 +85,14 @@
       ]
     },
     "anniversary_milestone": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
+      "adoption_count": 1,
+      "adoption_pct": 3,
+      "clubs_yes": [
+        "bayern_munich"
+      ],
       "clubs_no": [
         "motogp",
         "fc_barcelona",
-        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "sl_benfica",
@@ -125,12 +126,11 @@
       ]
     },
     "app_store_badges": {
-      "adoption_count": 18,
-      "adoption_pct": 55,
+      "adoption_count": 17,
+      "adoption_pct": 52,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
-        "bayern_munich",
         "valencia_cf",
         "arsenal",
         "chelsea",
@@ -148,6 +148,7 @@
         "rb_leipzig"
       ],
       "clubs_no": [
+        "bayern_munich",
         "liverpool",
         "sl_benfica",
         "ac_milan",
@@ -246,12 +247,11 @@
       ]
     },
     "brand_sponsor_highlighted_in_hero": {
-      "adoption_count": 20,
-      "adoption_pct": 61,
+      "adoption_count": 19,
+      "adoption_pct": 58,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
-        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "sl_benfica",
@@ -271,6 +271,7 @@
         "nba"
       ],
       "clubs_no": [
+        "bayern_munich",
         "west_ham",
         "inter_milan",
         "psg",
@@ -573,10 +574,11 @@
       ]
     },
     "fan_club_signup": {
-      "adoption_count": 6,
-      "adoption_pct": 18,
+      "adoption_count": 7,
+      "adoption_pct": 21,
       "clubs_yes": [
         "fc_barcelona",
+        "bayern_munich",
         "sl_benfica",
         "real_madrid",
         "inter_milan",
@@ -585,7 +587,6 @@
       ],
       "clubs_no": [
         "motogp",
-        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "arsenal",
@@ -695,17 +696,17 @@
       ]
     },
     "heritage_past_content": {
-      "adoption_count": 5,
-      "adoption_pct": 15,
+      "adoption_count": 6,
+      "adoption_pct": 18,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
+        "bayern_munich",
         "real_madrid",
         "eintracht",
         "inter_milan"
       ],
       "clubs_no": [
-        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "sl_benfica",
@@ -940,13 +941,14 @@
       ]
     },
     "interactive_fan_poll": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
+      "adoption_count": 1,
+      "adoption_pct": 3,
+      "clubs_yes": [
+        "bayern_munich"
+      ],
       "clubs_no": [
         "motogp",
         "fc_barcelona",
-        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "sl_benfica",
@@ -1103,14 +1105,13 @@
       ]
     },
     "matchday_experience_info": {
-      "adoption_count": 1,
-      "adoption_pct": 3,
-      "clubs_yes": [
-        "bayern_munich"
-      ],
+      "adoption_count": 0,
+      "adoption_pct": 0,
+      "clubs_yes": [],
       "clubs_no": [
         "motogp",
         "fc_barcelona",
+        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "sl_benfica",
@@ -1429,10 +1430,11 @@
       ]
     },
     "paid_membership": {
-      "adoption_count": 5,
-      "adoption_pct": 15,
+      "adoption_count": 6,
+      "adoption_pct": 18,
       "clubs_yes": [
         "fc_barcelona",
+        "bayern_munich",
         "liverpool",
         "sl_benfica",
         "real_madrid",
@@ -1440,7 +1442,6 @@
       ],
       "clubs_no": [
         "motogp",
-        "bayern_munich",
         "valencia_cf",
         "arsenal",
         "chelsea",
@@ -2123,17 +2124,17 @@
       ]
     },
     "stadium_content_block": {
-      "adoption_count": 5,
-      "adoption_pct": 15,
+      "adoption_count": 4,
+      "adoption_pct": 12,
       "clubs_yes": [
         "fc_barcelona",
-        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "real_madrid"
       ],
       "clubs_no": [
         "motogp",
+        "bayern_munich",
         "sl_benfica",
         "arsenal",
         "chelsea",
@@ -2287,12 +2288,11 @@
       ]
     },
     "store_individual_products": {
-      "adoption_count": 20,
-      "adoption_pct": 61,
+      "adoption_count": 19,
+      "adoption_pct": 58,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
-        "bayern_munich",
         "valencia_cf",
         "sl_benfica",
         "arsenal",
@@ -2312,6 +2312,7 @@
         "rb_leipzig"
       ],
       "clubs_no": [
+        "bayern_munich",
         "liverpool",
         "atp_tour",
         "mls",
@@ -2328,12 +2329,11 @@
       ]
     },
     "tickets_block": {
-      "adoption_count": 15,
-      "adoption_pct": 45,
+      "adoption_count": 14,
+      "adoption_pct": 42,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
-        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "sl_benfica",
@@ -2348,6 +2348,7 @@
         "rb_leipzig"
       ],
       "clubs_no": [
+        "bayern_munich",
         "arsenal",
         "real_madrid",
         "juventus",
@@ -2573,16 +2574,16 @@
       ]
     },
     "w3c_a11y_features": {
-      "adoption_count": 2,
-      "adoption_pct": 6,
+      "adoption_count": 3,
+      "adoption_pct": 9,
       "clubs_yes": [
+        "bayern_munich",
         "aston_villa",
         "vfb_stuttgart"
       ],
       "clubs_no": [
         "motogp",
         "fc_barcelona",
-        "bayern_munich",
         "liverpool",
         "valencia_cf",
         "sl_benfica",
