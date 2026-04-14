@@ -148,6 +148,15 @@
     },
     {
       "rank": 17,
+      "product_id": "atletico_madrid",
+      "screenshot": "13-atletico-madrid.png",
+      "total_score": 26,
+      "yes_count": 22,
+      "no_count": 44,
+      "feature_count": 66
+    },
+    {
+      "rank": 18,
       "product_id": "man_city",
       "screenshot": "06-man-city.png",
       "total_score": 21,
@@ -156,7 +165,7 @@
       "feature_count": 66
     },
     {
-      "rank": 18,
+      "rank": 19,
       "product_id": "mls",
       "screenshot": "25-mls.png",
       "total_score": 15,
@@ -165,7 +174,7 @@
       "feature_count": 66
     },
     {
-      "rank": 19,
+      "rank": 20,
       "product_id": "club_brugge",
       "screenshot": "29-clubbrugge.png",
       "total_score": 14,
@@ -174,7 +183,7 @@
       "feature_count": 66
     },
     {
-      "rank": 20,
+      "rank": 21,
       "product_id": "f1",
       "screenshot": "22-f1.png",
       "total_score": 12,
@@ -183,21 +192,12 @@
       "feature_count": 66
     },
     {
-      "rank": 21,
+      "rank": 22,
       "product_id": "psg",
       "screenshot": "04-psg.png",
       "total_score": 12,
       "yes_count": 21,
       "no_count": 45,
-      "feature_count": 66
-    },
-    {
-      "rank": 22,
-      "product_id": "atletico_madrid",
-      "screenshot": "13-atletico-madrid.png",
-      "total_score": 10,
-      "yes_count": 20,
-      "no_count": 46,
       "feature_count": 66
     },
     {
