@@ -148,15 +148,6 @@
     },
     {
       "rank": 17,
-      "product_id": "psg",
-      "screenshot": "04-psg.png",
-      "total_score": 15,
-      "yes_count": 20,
-      "no_count": 47,
-      "feature_count": 67
-    },
-    {
-      "rank": 18,
       "product_id": "club_brugge",
       "screenshot": "29-clubbrugge.png",
       "total_score": 14,
@@ -165,12 +156,21 @@
       "feature_count": 67
     },
     {
-      "rank": 19,
+      "rank": 18,
       "product_id": "f1",
       "screenshot": "22-f1.png",
       "total_score": 12,
       "yes_count": 20,
       "no_count": 47,
+      "feature_count": 67
+    },
+    {
+      "rank": 19,
+      "product_id": "psg",
+      "screenshot": "04-psg.png",
+      "total_score": 12,
+      "yes_count": 21,
+      "no_count": 46,
       "feature_count": 67
     },
     {
