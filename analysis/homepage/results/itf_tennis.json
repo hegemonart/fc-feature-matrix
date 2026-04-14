@@ -60,7 +60,7 @@
     "charity_csr_block": false,
     "footer_sponsor_wall": true,
     "in_content_sponsor": true,
-    "app_store_badges": false,
+    "app_store_badges": true,
     "club_tv_app_promo": false,
     "b2b_partnerships": false,
     "ai_chat_assistant": false,
@@ -72,7 +72,7 @@
     "social_links_in_footer": true,
     "language_selector_in_footer": false
   },
-  "total_score": -6,
+  "total_score": -2,
   "confidence": {
     "language_switcher_in_header": "screenshot",
     "login_account": "screenshot",
@@ -131,7 +131,7 @@
     "charity_csr_block": "screenshot",
     "footer_sponsor_wall": "screenshot",
     "in_content_sponsor": "screenshot",
-    "app_store_badges": "screenshot",
+    "app_store_badges": "browser-verified",
     "club_tv_app_promo": "screenshot",
     "b2b_partnerships": "screenshot",
     "ai_chat_assistant": "needs-live-check",

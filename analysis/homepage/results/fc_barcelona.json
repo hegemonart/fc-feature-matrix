@@ -2,7 +2,7 @@
   "product_id": "fc_barcelona",
   "screenshot": "02-fc-barcelona.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 86,
+  "total_score": 82,
   "features": {
     "language_switcher_in_header": true,
     "login_account": true,
@@ -71,7 +71,7 @@
     "quiz_trivia": false,
     "wallpapers_downloads": false,
     "social_links_in_footer": true,
-    "language_selector_in_footer": true
+    "language_selector_in_footer": false
   },
   "confidence": {
     "language_switcher_in_header": "screenshot",
@@ -141,6 +141,6 @@
     "quiz_trivia": "exists-off-homepage",
     "wallpapers_downloads": "exists-off-homepage",
     "social_links_in_footer": "screenshot",
-    "language_selector_in_footer": "screenshot"
+    "language_selector_in_footer": "browser-verified"
   }
 }

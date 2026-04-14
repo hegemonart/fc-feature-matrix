@@ -2,7 +2,7 @@
   "product_id": "arsenal",
   "screenshot": "07-arsenal.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 37,
+  "total_score": 46,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,
@@ -68,7 +68,7 @@
     "w3c_a11y_features": false,
     "loyalty_rewards": false,
     "predictor_fantasy": false,
-    "quiz_trivia": false,
+    "quiz_trivia": true,
     "wallpapers_downloads": false,
     "social_links_in_footer": true,
     "language_selector_in_footer": false
@@ -138,7 +138,7 @@
     "w3c_a11y_features": "needs-live-check",
     "loyalty_rewards": "exists-off-homepage",
     "predictor_fantasy": "screenshot",
-    "quiz_trivia": "exists-off-homepage",
+    "quiz_trivia": "browser-verified",
     "wallpapers_downloads": "screenshot",
     "social_links_in_footer": "screenshot",
     "language_selector_in_footer": "screenshot"
