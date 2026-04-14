@@ -151,8 +151,6 @@ export const FEATURES: Feature[] = [
     'Shows recent match scores for quick catch-up', 'match_fixtures', 'E', 3, -1),
   feat('M04', 'standings_block', 'Standings Block',
     'League table access directly from the homepage', 'match_fixtures', 'E', 3, -1),
-  feat('M06', 'live_match_indicator', 'Live Match Indicator',
-    'Visible signal when a match is happening right now', 'match_fixtures', 'C', 5, -2),
 
   // ── 4. Content (News, Video, Editorial) ──
   feat('C01', 'dedicated_news_section', 'Dedicated News Section',

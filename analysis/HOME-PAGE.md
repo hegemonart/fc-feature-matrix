@@ -76,7 +76,6 @@ The following do **not** qualify as a block:
 | Next-match block is feature-rich | The next-match block contains 3+ of the following: live countdown, 2+ upcoming fixtures, opponent crest, competition logo, ticket CTA, broadcaster info, add-to-calendar button | Next-match block adds extras like countdown, tickets, or broadcaster info | C | +5 | −2 |
 | Results block | A block showing at least one recent match result with score | Shows recent match scores for quick catch-up | E | +3 | −1 |
 | Standings block or prominent link | A block showing the league table, or a prominent homepage link to it (footer-only does not qualify) | League table access directly from the homepage | E | +3 | −1 |
-| Live match indicator | A badge, card, or banner indicating a currently-live match | Visible signal when a match is happening right now | C | +5 | −2 |
 
 ---
 

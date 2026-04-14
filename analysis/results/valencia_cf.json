@@ -18,7 +18,6 @@
     "results_block": true,
     "standings_block": false,
     "birthday_squad_calendar": false,
-    "live_match_indicator": false,
     "push_notification_opt_in": false,
     "matchday_experience_info": false,
     "dedicated_news_section": true,
@@ -73,7 +72,7 @@
     "social_links_in_footer": true,
     "language_selector_in_footer": false
   },
-  "total_score": 24,
+  "total_score": 43,
   "confidence": {
     "language_switcher_in_header": "screenshot",
     "login_account": "screenshot",
@@ -90,7 +89,6 @@
     "results_block": "screenshot",
     "standings_block": "screenshot",
     "birthday_squad_calendar": "needs-live-check",
-    "live_match_indicator": "needs-live-check",
     "push_notification_opt_in": "needs-live-check",
     "matchday_experience_info": "screenshot",
     "dedicated_news_section": "screenshot",

@@ -35,7 +35,7 @@ When the user specifies a **category name**, map it to feature keys using the ta
 `hero_carousel`, `secondary_editorial_strip_below_hero`, `brand_sponsor_highlighted_in_hero`
 
 **Match & Fixtures** (`match_fixtures`)
-`next_match_block`, `next_match_feature_rich`, `results_block`, `standings_block`, `birthday_squad_calendar`, `live_match_indicator`, `push_notification_opt_in`
+`next_match_block`, `next_match_feature_rich`, `results_block`, `standings_block`, `birthday_squad_calendar`, `push_notification_opt_in`
 
 **Content & Editorial** (`content`)
 `dedicated_news_section`, `news_rich_structure`, `homepage_video_block`, `episodic_docu_series`, `video_thumbnails_inline`, `documentary_promo`, `social_native_content`, `podcast_audio`, `photo_gallery_block`, `press_conference_block`, `transfer_news`, `interactive_fan_poll`
@@ -70,9 +70,9 @@ When the user specifies a **category name**, map it to feature keys using the ta
 
 | # | ID | URL |
 |---|-----|-----|
-| 1 | real_madrid | realmadrid.com/en |
-| 2 | fc_barcelona | fcbarcelona.com/en |
-| 3 | bayern_munich | fcbayern.com/en |
+| 1 | real_madrid | realmadrid.com |
+| 2 | fc_barcelona | fcbarcelona.com |
+| 3 | bayern_munich | fcbayern.com |
 | 4 | psg | psg.fr/en |
 | 5 | liverpool | liverpoolfc.com |
 | 6 | man_city | mancity.com |
@@ -82,13 +82,13 @@ When the user specifies a **category name**, map it to feature keys using the ta
 | 10 | chelsea | chelseafc.com |
 | 11 | inter_milan | inter.it/en |
 | 12 | bvb_dortmund | bvb.de/eng |
-| 13 | atletico_madrid | atleticodemadrid.com/en |
+| 13 | atletico_madrid | atleticodemadrid.com |
 | 14 | aston_villa | avfc.co.uk |
 | 15 | ac_milan | acmilan.com/en |
 | 16 | juventus | juventus.com/en |
 | 17 | newcastle | newcastleunited.com |
 | 18 | vfb_stuttgart | vfb.de/en |
-| 19 | sl_benfica | slbenfica.pt/en-us |
+| 19 | sl_benfica | slbenfica.pt |
 | 20 | west_ham | whufc.com |
 | 21 | uefa | uefa.com |
 | 22 | f1 | formula1.com |
@@ -98,11 +98,11 @@ When the user specifies a **category name**, map it to feature keys using the ta
 | 26 | nba | nba.com |
 | 27 | brentford | brentfordfc.com |
 | 28 | atp_tour | atptour.com |
-| 29 | club_brugge | clubbrugge.be/en |
+| 29 | club_brugge | clubbrugge.be |
 | 30 | eintracht | eintracht.de |
 | 31 | itf_tennis | itftennis.com |
-| 32 | rb_leipzig | rbleipzig.com/en |
-| 33 | valencia_cf | valenciacf.com/en |
+| 32 | rb_leipzig | rbleipzig.com |
+| 33 | valencia_cf | valenciacf.com |
 
 ---
 
