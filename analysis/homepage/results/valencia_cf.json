@@ -24,7 +24,7 @@
     "news_rich_structure": true,
     "homepage_video_block": false,
     "episodic_docu_series": false,
-    "video_thumbnails_inline": false,
+    "video_thumbnails_inline": true,
     "documentary_promo": false,
     "social_native_content": false,
     "podcast_audio": false,
@@ -72,7 +72,7 @@
     "social_links_in_footer": true,
     "language_selector_in_footer": false
   },
-  "total_score": 52,
+  "total_score": 56,
   "confidence": {
     "language_switcher_in_header": "screenshot",
     "login_account": "screenshot",
@@ -95,7 +95,7 @@
     "news_rich_structure": "screenshot",
     "homepage_video_block": "screenshot",
     "episodic_docu_series": "screenshot",
-    "video_thumbnails_inline": "screenshot",
+    "video_thumbnails_inline": "browser-verified",
     "documentary_promo": "screenshot",
     "social_native_content": "screenshot",
     "podcast_audio": "screenshot",
