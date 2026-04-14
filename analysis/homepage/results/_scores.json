@@ -184,6 +184,15 @@
     },
     {
       "rank": 21,
+      "product_id": "rb_leipzig",
+      "screenshot": "32-rbleipzig.png",
+      "total_score": 12,
+      "yes_count": 21,
+      "no_count": 45,
+      "feature_count": 66
+    },
+    {
+      "rank": 22,
       "product_id": "club_brugge",
       "screenshot": "29-clubbrugge.png",
       "total_score": 10,
@@ -192,7 +201,7 @@
       "feature_count": 66
     },
     {
-      "rank": 22,
+      "rank": 23,
       "product_id": "f1",
       "screenshot": "22-f1.png",
       "total_score": 5,
@@ -201,7 +210,7 @@
       "feature_count": 66
     },
     {
-      "rank": 23,
+      "rank": 24,
       "product_id": "itf_tennis",
       "screenshot": "31-itftennis.png",
       "total_score": 5,
@@ -210,7 +219,7 @@
       "feature_count": 66
     },
     {
-      "rank": 24,
+      "rank": 25,
       "product_id": "psg",
       "screenshot": "04-psg.png",
       "total_score": 3,
@@ -219,7 +228,7 @@
       "feature_count": 66
     },
     {
-      "rank": 25,
+      "rank": 26,
       "product_id": "uefa",
       "screenshot": "21-uefa.png",
       "total_score": -3,
@@ -228,7 +237,7 @@
       "feature_count": 66
     },
     {
-      "rank": 26,
+      "rank": 27,
       "product_id": "bvb_dortmund",
       "screenshot": "12-bvb-dortmund.png",
       "total_score": -8,
@@ -237,7 +246,7 @@
       "feature_count": 66
     },
     {
-      "rank": 27,
+      "rank": 28,
       "product_id": "mls",
       "screenshot": "25-mls.png",
       "total_score": -11,
@@ -246,7 +255,7 @@
       "feature_count": 66
     },
     {
-      "rank": 28,
+      "rank": 29,
       "product_id": "tottenham",
       "screenshot": "09-tottenham.png",
       "total_score": -11,
@@ -255,7 +264,7 @@
       "feature_count": 66
     },
     {
-      "rank": 29,
+      "rank": 30,
       "product_id": "brentford",
       "screenshot": "27-brentford.png",
       "total_score": -12,
@@ -264,7 +273,7 @@
       "feature_count": 66
     },
     {
-      "rank": 30,
+      "rank": 31,
       "product_id": "mlb",
       "screenshot": "26-mlb.png",
       "total_score": -19,
@@ -273,21 +282,12 @@
       "feature_count": 66
     },
     {
-      "rank": 31,
+      "rank": 32,
       "product_id": "nba",
       "screenshot": "24-nba.png",
       "total_score": -19,
       "yes_count": 15,
       "no_count": 51,
-      "feature_count": 66
-    },
-    {
-      "rank": 32,
-      "product_id": "rb_leipzig",
-      "screenshot": "32-rbleipzig.png",
-      "total_score": -24,
-      "yes_count": 14,
-      "no_count": 52,
       "feature_count": 66
     },
     {
