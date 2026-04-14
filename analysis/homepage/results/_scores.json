@@ -22,20 +22,20 @@
     },
     {
       "rank": 3,
-      "product_id": "bayern_munich",
-      "screenshot": "03-bayern-munich.png",
-      "total_score": 71,
-      "yes_count": 32,
-      "no_count": 34,
-      "feature_count": 66
-    },
-    {
-      "rank": 4,
       "product_id": "valencia_cf",
       "screenshot": "33-valenciacf.png",
       "total_score": 63,
       "yes_count": 29,
       "no_count": 37,
+      "feature_count": 66
+    },
+    {
+      "rank": 4,
+      "product_id": "bayern_munich",
+      "screenshot": "03-bayern-munich.png",
+      "total_score": 62,
+      "yes_count": 31,
+      "no_count": 35,
       "feature_count": 66
     },
     {
@@ -76,6 +76,15 @@
     },
     {
       "rank": 9,
+      "product_id": "juventus",
+      "screenshot": "16-juventus.png",
+      "total_score": 42,
+      "yes_count": 27,
+      "no_count": 39,
+      "feature_count": 66
+    },
+    {
+      "rank": 10,
       "product_id": "real_madrid",
       "screenshot": "01-real-madrid.png",
       "total_score": 40,
@@ -84,21 +93,12 @@
       "feature_count": 66
     },
     {
-      "rank": 10,
+      "rank": 11,
       "product_id": "west_ham",
       "screenshot": "20-west-ham.png",
       "total_score": 34,
       "yes_count": 24,
       "no_count": 42,
-      "feature_count": 66
-    },
-    {
-      "rank": 11,
-      "product_id": "juventus",
-      "screenshot": "16-juventus.png",
-      "total_score": 33,
-      "yes_count": 26,
-      "no_count": 40,
       "feature_count": 66
     },
     {
@@ -202,20 +202,20 @@
     },
     {
       "rank": 23,
-      "product_id": "psg",
-      "screenshot": "04-psg.png",
-      "total_score": 12,
-      "yes_count": 21,
-      "no_count": 45,
-      "feature_count": 66
-    },
-    {
-      "rank": 24,
       "product_id": "newcastle",
       "screenshot": "17-newcastle.png",
       "total_score": 10,
       "yes_count": 22,
       "no_count": 44,
+      "feature_count": 66
+    },
+    {
+      "rank": 24,
+      "product_id": "psg",
+      "screenshot": "04-psg.png",
+      "total_score": 3,
+      "yes_count": 20,
+      "no_count": 46,
       "feature_count": 66
     },
     {

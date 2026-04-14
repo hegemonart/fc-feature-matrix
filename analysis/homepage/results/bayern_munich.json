@@ -2,7 +2,7 @@
   "product_id": "bayern_munich",
   "screenshot": "03-bayern-munich.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 71,
+  "total_score": 62,
   "features": {
     "language_switcher_in_header": true,
     "login_account": true,
@@ -24,7 +24,7 @@
     "dedicated_news_section": true,
     "news_rich_structure": true,
     "homepage_video_block": true,
-    "episodic_docu_series": true,
+    "episodic_docu_series": false,
     "video_thumbnails_inline": true,
     "documentary_promo": false,
     "social_native_content": false,
