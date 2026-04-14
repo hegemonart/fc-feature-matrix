@@ -40,7 +40,7 @@
     "store_individual_products": true,
     "member_only_commerce": false,
     "newsletter_signup": false,
-    "fan_club_signup": false,
+    "fan_club_signup": true,
     "paid_membership": false,
     "draws_contests": false,
     "fan_clubs_directory": false,
@@ -72,7 +72,7 @@
     "social_links_in_footer": true,
     "language_selector_in_footer": false
   },
-  "total_score": -3,
+  "total_score": 4,
   "confidence": {
     "language_switcher_in_header": "screenshot",
     "login_account": "screenshot",
@@ -111,7 +111,7 @@
     "store_individual_products": "screenshot",
     "member_only_commerce": "screenshot",
     "newsletter_signup": "screenshot",
-    "fan_club_signup": "screenshot",
+    "fan_club_signup": "browser-verified",
     "paid_membership": "screenshot",
     "draws_contests": "needs-live-check",
     "fan_clubs_directory": "screenshot",
