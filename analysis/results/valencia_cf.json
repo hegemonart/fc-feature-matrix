@@ -8,7 +8,7 @@
     "search_input_in_header": true,
     "shop_shortcut_in_header": true,
     "tickets_shortcut_in_header": true,
-    "sponsor_lockup_in_header": false,
+    "sponsor_lockup_in_header": true,
     "persistent_bar_above_header": false,
     "hero_carousel": true,
     "secondary_editorial_strip_below_hero": true,

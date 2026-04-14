@@ -5,7 +5,7 @@
   "features": {
     "language_switcher_in_header": false,
     "login_account": false,
-    "search_input_in_header": true,
+    "search_input_in_header": false,
     "shop_shortcut_in_header": false,
     "tickets_shortcut_in_header": true,
     "sponsor_lockup_in_header": false,
