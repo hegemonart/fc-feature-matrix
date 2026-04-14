@@ -1,16 +1,51 @@
-# Humbleteam Sport Analysis
+# FC Benchmark // April 2026
 
-UX benchmarking tool for top sports club websites. Analyzes features, scores, and compares digital experiences across the world's biggest football clubs and sports organizations.
+UX benchmarking tool for top sports club and league websites. Analyzes 59 homepage features across 33 organizations, scores them with asymmetric Fibonacci weighting, and presents an interactive comparison matrix.
 
-## Approach
+## Stack
 
-1. **v1.0** — Screenshot and score homepages of top 25 clubs
-2. **v1.1** — Add federations (UEFA, F1, MotoGP, NBA, MLS, MLB)
-3. **v2** — Analyze ticket purchase flows (5–15 pages per club)
-4. **v3** — Analyze mobile app home screens (first 3000px scroll)
+- **Next.js** with Turbopack
+- **TypeScript**
+- Deployed on **Vercel**
 
-## Representation
+## Getting started
 
-- Feature comparison table (features × clubs)
-- Per-club detail pages with scores, must-haves, differentiators
-- Filtered views by journey (tickets, merch, subscriptions, matchday, etc.)
+```bash
+npm install
+npx next dev --turbopack
+```
+
+Open [localhost:3000](http://localhost:3000)
+
+## Project structure
+
+```
+app/            — Next.js pages and styles
+lib/            — Data layer re-exports
+analysis/
+  HOME-PAGE.md  — 59-feature scoring rubric (source of truth)
+  features.ts   — Feature definitions and tier weights
+  products.ts   — 33 products (clubs, leagues, governing bodies)
+  categories.ts — 12 feature categories
+  results/      — One JSON per organization + aggregates
+  crosscheck/   — Reusable browser cross-check instructions
+  screenshots/  — Full-page homepage PNGs
+public/         — Static assets
+```
+
+## Scoring
+
+Each feature has a tier (A-F) with asymmetric weights:
+
+| Tier | Yes | No |
+|------|-----|-----|
+| A Must-have | +1 | -8 |
+| B Commercial | +2 | -5 |
+| C ROI driver | +5 | -3 |
+| D Differentiator | +8 | -1 |
+| E Content depth | +3 | -1 |
+| F Experimental | +8 | 0 |
+
+## Coverage
+
+33 organizations: 20 football clubs, 5 US leagues, 4 governing bodies, 4 other sports. See `analysis/products.ts` for the full list.
