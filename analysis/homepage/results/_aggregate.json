@@ -1306,11 +1306,10 @@
       ]
     },
     "newsletter_signup": {
-      "adoption_count": 6,
-      "adoption_pct": 18,
+      "adoption_count": 5,
+      "adoption_pct": 15,
       "clubs_yes": [
         "bayern_munich",
-        "real_madrid",
         "atp_tour",
         "west_ham",
         "itf_tennis",
@@ -1324,6 +1323,7 @@
         "sl_benfica",
         "arsenal",
         "chelsea",
+        "real_madrid",
         "ac_milan",
         "juventus",
         "eintracht",
@@ -1837,8 +1837,8 @@
       ]
     },
     "results_block": {
-      "adoption_count": 29,
-      "adoption_pct": 88,
+      "adoption_count": 30,
+      "adoption_pct": 91,
       "clubs_yes": [
         "motogp",
         "fc_barcelona",
@@ -1848,6 +1848,7 @@
         "sl_benfica",
         "arsenal",
         "chelsea",
+        "real_madrid",
         "ac_milan",
         "juventus",
         "eintracht",
@@ -1871,7 +1872,6 @@
         "rb_leipzig"
       ],
       "clubs_no": [
-        "real_madrid",
         "mls",
         "psg",
         "aston_villa"
@@ -2654,8 +2654,8 @@
       ]
     },
     "womens_team_featured": {
-      "adoption_count": 23,
-      "adoption_pct": 70,
+      "adoption_count": 22,
+      "adoption_pct": 67,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
@@ -2663,7 +2663,6 @@
         "sl_benfica",
         "arsenal",
         "chelsea",
-        "real_madrid",
         "ac_milan",
         "juventus",
         "west_ham",
@@ -2684,6 +2683,7 @@
       "clubs_no": [
         "motogp",
         "bayern_munich",
+        "real_madrid",
         "eintracht",
         "atp_tour",
         "mls",
