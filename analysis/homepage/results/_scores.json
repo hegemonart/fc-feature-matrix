@@ -229,17 +229,17 @@
     },
     {
       "rank": 26,
-      "product_id": "uefa",
-      "screenshot": "21-uefa.png",
-      "total_score": 1,
+      "product_id": "nba",
+      "screenshot": "24-nba.png",
+      "total_score": -3,
       "yes_count": 18,
       "no_count": 48,
       "feature_count": 66
     },
     {
       "rank": 27,
-      "product_id": "nba",
-      "screenshot": "24-nba.png",
+      "product_id": "uefa",
+      "screenshot": "21-uefa.png",
       "total_score": -3,
       "yes_count": 18,
       "no_count": 48,
