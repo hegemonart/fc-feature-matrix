@@ -202,20 +202,20 @@
     },
     {
       "rank": 23,
-      "product_id": "psg",
-      "screenshot": "04-psg.png",
-      "total_score": 3,
+      "product_id": "itf_tennis",
+      "screenshot": "31-itftennis.png",
+      "total_score": 5,
       "yes_count": 20,
       "no_count": 46,
       "feature_count": 66
     },
     {
       "rank": 24,
-      "product_id": "itf_tennis",
-      "screenshot": "31-itftennis.png",
-      "total_score": 1,
-      "yes_count": 18,
-      "no_count": 48,
+      "product_id": "psg",
+      "screenshot": "04-psg.png",
+      "total_score": 3,
+      "yes_count": 20,
+      "no_count": 46,
       "feature_count": 66
     },
     {
