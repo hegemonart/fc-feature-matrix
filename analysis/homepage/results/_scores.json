@@ -175,15 +175,6 @@
     },
     {
       "rank": 20,
-      "product_id": "mls",
-      "screenshot": "25-mls.png",
-      "total_score": 15,
-      "yes_count": 21,
-      "no_count": 45,
-      "feature_count": 66
-    },
-    {
-      "rank": 21,
       "product_id": "club_brugge",
       "screenshot": "29-clubbrugge.png",
       "total_score": 14,
@@ -192,7 +183,7 @@
       "feature_count": 66
     },
     {
-      "rank": 22,
+      "rank": 21,
       "product_id": "aston_villa",
       "screenshot": "14-aston-villa.png",
       "total_score": 12,
@@ -201,7 +192,7 @@
       "feature_count": 66
     },
     {
-      "rank": 23,
+      "rank": 22,
       "product_id": "f1",
       "screenshot": "22-f1.png",
       "total_score": 5,
@@ -210,7 +201,7 @@
       "feature_count": 66
     },
     {
-      "rank": 24,
+      "rank": 23,
       "product_id": "psg",
       "screenshot": "04-psg.png",
       "total_score": 3,
@@ -219,7 +210,7 @@
       "feature_count": 66
     },
     {
-      "rank": 25,
+      "rank": 24,
       "product_id": "itf_tennis",
       "screenshot": "31-itftennis.png",
       "total_score": 1,
@@ -228,7 +219,7 @@
       "feature_count": 66
     },
     {
-      "rank": 26,
+      "rank": 25,
       "product_id": "nba",
       "screenshot": "24-nba.png",
       "total_score": -3,
@@ -237,7 +228,7 @@
       "feature_count": 66
     },
     {
-      "rank": 27,
+      "rank": 26,
       "product_id": "uefa",
       "screenshot": "21-uefa.png",
       "total_score": -3,
@@ -246,7 +237,7 @@
       "feature_count": 66
     },
     {
-      "rank": 28,
+      "rank": 27,
       "product_id": "brentford",
       "screenshot": "27-brentford.png",
       "total_score": -8,
@@ -255,12 +246,21 @@
       "feature_count": 66
     },
     {
-      "rank": 29,
+      "rank": 28,
       "product_id": "bvb_dortmund",
       "screenshot": "12-bvb-dortmund.png",
       "total_score": -8,
       "yes_count": 18,
       "no_count": 48,
+      "feature_count": 66
+    },
+    {
+      "rank": 29,
+      "product_id": "mls",
+      "screenshot": "25-mls.png",
+      "total_score": -11,
+      "yes_count": 17,
+      "no_count": 49,
       "feature_count": 66
     },
     {
