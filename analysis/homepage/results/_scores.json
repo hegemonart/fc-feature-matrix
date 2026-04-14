@@ -139,6 +139,15 @@
     },
     {
       "rank": 16,
+      "product_id": "man_united",
+      "screenshot": "08-man-united.png",
+      "total_score": 26,
+      "yes_count": 24,
+      "no_count": 43,
+      "feature_count": 67
+    },
+    {
+      "rank": 17,
       "product_id": "man_city",
       "screenshot": "06-man-city.png",
       "total_score": 20,
@@ -147,7 +156,7 @@
       "feature_count": 67
     },
     {
-      "rank": 17,
+      "rank": 18,
       "product_id": "mls",
       "screenshot": "25-mls.png",
       "total_score": 15,
@@ -156,7 +165,7 @@
       "feature_count": 67
     },
     {
-      "rank": 18,
+      "rank": 19,
       "product_id": "club_brugge",
       "screenshot": "29-clubbrugge.png",
       "total_score": 14,
@@ -165,7 +174,7 @@
       "feature_count": 67
     },
     {
-      "rank": 19,
+      "rank": 20,
       "product_id": "f1",
       "screenshot": "22-f1.png",
       "total_score": 12,
@@ -174,21 +183,12 @@
       "feature_count": 67
     },
     {
-      "rank": 20,
+      "rank": 21,
       "product_id": "psg",
       "screenshot": "04-psg.png",
       "total_score": 12,
       "yes_count": 21,
       "no_count": 46,
-      "feature_count": 67
-    },
-    {
-      "rank": 21,
-      "product_id": "man_united",
-      "screenshot": "08-man-united.png",
-      "total_score": 11,
-      "yes_count": 22,
-      "no_count": 45,
       "feature_count": 67
     },
     {
