@@ -261,6 +261,4 @@ export const FEATURES: Feature[] = [
   // ── 12. Footer ──
   feat('F01', 'social_links_in_footer', 'Social Links in Footer',
     'Social media icons or links in the footer area', 'footer_nav', 'A', 1, -3),
-  feat('F02', 'language_selector_in_footer', 'Language / Region Selector in Footer',
-    'Language or region switcher placed in the footer', 'footer_nav', 'A', 1, -3),
 ];

@@ -185,4 +185,3 @@ The following do **not** qualify as a block:
 | Feature | Qualifies as Yes if | Description | Tier | Weight if Yes | Weight if No |
 |---|---|---|---|---|---|
 | Social links in footer | Social media icons or links rendered in the footer | Social media icons or links in the footer area | A | +1 | −3 |
-| Language / region selector in footer | A language or region switcher rendered in the footer | Language or region switcher placed in the footer | A | +1 | −3 |

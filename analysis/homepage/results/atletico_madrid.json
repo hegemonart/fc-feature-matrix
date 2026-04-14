@@ -2,7 +2,7 @@
   "product_id": "atletico_madrid",
   "screenshot": "13-atletico-madrid.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 7,
+  "total_score": 10,
   "features": {
     "language_switcher_in_header": true,
     "login_account": true,
@@ -70,8 +70,7 @@
     "predictor_fantasy": false,
     "quiz_trivia": false,
     "wallpapers_downloads": false,
-    "social_links_in_footer": true,
-    "language_selector_in_footer": false
+    "social_links_in_footer": true
   },
   "confidence": {
     "language_switcher_in_header": "screenshot",
@@ -140,7 +139,6 @@
     "predictor_fantasy": "screenshot",
     "quiz_trivia": "screenshot",
     "wallpapers_downloads": "screenshot",
-    "social_links_in_footer": "screenshot",
-    "language_selector_in_footer": "screenshot"
+    "social_links_in_footer": "screenshot"
   }
 }

@@ -2,7 +2,7 @@
   "product_id": "liverpool",
   "screenshot": "05-liverpool.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 60,
+  "total_score": 63,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,
@@ -70,8 +70,7 @@
     "predictor_fantasy": false,
     "quiz_trivia": false,
     "wallpapers_downloads": false,
-    "social_links_in_footer": true,
-    "language_selector_in_footer": false
+    "social_links_in_footer": true
   },
   "confidence": {
     "language_switcher_in_header": "screenshot",
@@ -140,7 +139,6 @@
     "predictor_fantasy": "screenshot",
     "quiz_trivia": "exists-off-homepage",
     "wallpapers_downloads": "screenshot",
-    "social_links_in_footer": "screenshot",
-    "language_selector_in_footer": "screenshot"
+    "social_links_in_footer": "screenshot"
   }
 }

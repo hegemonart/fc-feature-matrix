@@ -69,10 +69,9 @@
     "predictor_fantasy": false,
     "quiz_trivia": false,
     "wallpapers_downloads": false,
-    "social_links_in_footer": true,
-    "language_selector_in_footer": false
+    "social_links_in_footer": true
   },
-  "total_score": 60,
+  "total_score": 63,
   "confidence": {
     "language_switcher_in_header": "screenshot",
     "login_account": "screenshot",
@@ -140,7 +139,6 @@
     "predictor_fantasy": "screenshot",
     "quiz_trivia": "screenshot",
     "wallpapers_downloads": "screenshot",
-    "social_links_in_footer": "screenshot",
-    "language_selector_in_footer": "screenshot"
+    "social_links_in_footer": "screenshot"
   }
 }
