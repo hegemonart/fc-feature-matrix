@@ -62,6 +62,7 @@ export default function FeatureMatrixPage() {
   const [authed, setAuthed] = useState(false);
   const [authEmail, setAuthEmail] = useState('');
   const [loginModalVisible, setLoginModalVisible] = useState(false);
+  const [ctaView, setCtaView] = useState<'cta' | 'login'>('cta');
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
@@ -170,6 +171,7 @@ export default function FeatureMatrixPage() {
         setAuthed(true);
         setAuthEmail(data.email);
         setLoginModalVisible(false);
+        setCtaView('cta');
         setLoginEmail('');
         setLoginPassword('');
       } else {
@@ -275,7 +277,7 @@ export default function FeatureMatrixPage() {
       <header>
         <img src="/img/logo.svg" alt="Humbleteam" className="header-logo" />
         <div className="header-center">FC Benchmark <span>//</span> April 2026</div>
-        {authed ? (
+        {authed && (
           <button className="sign-in-btn" onClick={handleLogout}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -283,14 +285,6 @@ export default function FeatureMatrixPage() {
               <line x1="21" y1="12" x2="9" y2="12" />
             </svg>
             Sign out
-          </button>
-        ) : (
-          <button className="sign-in-btn" onClick={() => setLoginModalVisible(true)}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-              <circle cx="12" cy="7" r="4" />
-            </svg>
-            Sign in
           </button>
         )}
       </header>
@@ -462,15 +456,62 @@ export default function FeatureMatrixPage() {
           {!authed && (
             <div className="preview-blur-overlay">
               <div className="preview-cta">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="32" height="32">
-                  <rect x="3" y="11" width="18" height="11" rx="2" />
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-                </svg>
-                <div className="preview-cta-title">Sign in to unlock full matrix</div>
-                <div className="preview-cta-desc">Access all {FEATURES.length} features across {PRODUCTS.length} products with filters, sorting, and detailed breakdowns.</div>
-                <button className="preview-cta-btn" onClick={() => setLoginModalVisible(true)}>
-                  Sign in
-                </button>
+                {ctaView === 'cta' ? (
+                  <>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="32" height="32">
+                      <rect x="3" y="11" width="18" height="11" rx="2" />
+                      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                    </svg>
+                    <div className="preview-cta-title">Sign in to unlock full matrix</div>
+                    <div className="preview-cta-desc">Access all {FEATURES.length} features across {PRODUCTS.length} products with filters, sorting, and detailed breakdowns.</div>
+                    <button className="preview-cta-btn" onClick={() => { setLoginError(''); setCtaView('login'); }}>
+                      Sign in
+                    </button>
+                    <a className="preview-cta-btn preview-cta-request" href="mailto:sergey@humbleteam.com?subject=Access%20Request%20%E2%80%93%20FC%20Benchmark&body=Hi%2C%0A%0AI%E2%80%99d%20like%20to%20request%20access%20to%20the%20FC%20Benchmark%20matrix.%0A%0AThanks">
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                      </svg>
+                      Request access
+                    </a>
+                  </>
+                ) : (
+                  <>
+                    <div className="preview-cta-title">Sign in</div>
+                    <div className="preview-cta-desc">Enter your credentials to access all analysis views.</div>
+                    <form onSubmit={handleLogin} className="login-form">
+                      <label className="login-label">
+                        Email
+                        <input
+                          type="text"
+                          className="login-input"
+                          value={loginEmail}
+                          onChange={e => setLoginEmail(e.target.value)}
+                          placeholder="you@example.com"
+                          autoComplete="email"
+                          required
+                        />
+                      </label>
+                      <label className="login-label">
+                        Password
+                        <input
+                          type="password"
+                          className="login-input"
+                          value={loginPassword}
+                          onChange={e => setLoginPassword(e.target.value)}
+                          placeholder={'\u2022'.repeat(8)}
+                          autoComplete="current-password"
+                          required
+                        />
+                      </label>
+                      {loginError && <div className="login-error">{loginError}</div>}
+                      <button type="submit" className="preview-cta-btn login-submit" disabled={loginLoading}>
+                        {loginLoading ? 'Signing in\u2026' : 'Sign in'}
+                      </button>
+                    </form>
+                    <button className="locked-dismiss" onClick={() => { setCtaView('cta'); setLoginError(''); setLoginEmail(''); setLoginPassword(''); }}>Cancel</button>
+                  </>
+                )}
               </div>
             </div>
           )}

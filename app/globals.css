@@ -110,6 +110,8 @@ header { background: var(--bg2); border-bottom: 1px solid var(--border); padding
 .table-container { flex: 1; overflow: auto; position: relative; }
 table { border-collapse: collapse; }
 .preview-mode table { border-collapse: separate; border-spacing: 0; }
+.preview-mode tfoot { filter: blur(10px); pointer-events: none; user-select: none; }
+.preview-mode .table-container { overflow: hidden; }
 th, td { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
 thead th { background: var(--bg2); position: sticky; top: 0; z-index: 10; padding: 0; min-width: 38px; max-width: 38px; width: 38px; }
@@ -468,7 +470,7 @@ tfoot .score-value.negative { color: var(--red); }
 .section-sep { height: 1px; background: var(--border); margin: 0 0 28px; }
 
 /* ── PAGE HEADER (club detail page) ── */
-.page-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: stretch; gap: 0; position: sticky; top: 0; z-index: 100; }
+.page-header { background: var(--bg2); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: center; gap: 0; }
 .header-back { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; text-decoration: none; padding: 14px 16px 14px 0; border-right: 1px solid var(--border); margin-right: 20px; transition: color .15s; white-space: nowrap; }
 .header-back:hover { color: var(--text); }
 .header-back svg { width: 14px; height: 14px; flex-shrink: 0; }
@@ -529,5 +531,9 @@ tfoot .score-value.negative { color: var(--red); }
 .preview-cta svg { color: var(--muted); }
 .preview-cta-title { font-size: 16px; font-weight: 700; color: var(--text); }
 .preview-cta-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-.preview-cta-btn { margin-top: 4px; padding: 10px 32px; background: var(--accent); color: #000; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity .15s; }
+.preview-cta-btn { margin-top: 4px; padding: 10px 32px; background: var(--accent); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 700; cursor: pointer; transition: opacity .15s; display: inline-flex; align-items: center; gap: 6px; text-decoration: none; justify-content: center; width: 100%; box-sizing: border-box; }
 .preview-cta-btn:hover { opacity: .85; }
+.preview-cta-request { background: transparent; color: #fff; border: 1px solid rgba(255,255,255,.2); font-weight: 600; }
+.preview-cta-request:hover { background: rgba(255,255,255,.06); opacity: 1; }
+.preview-cta .locked-dismiss { margin-top: 8px; padding: 9px 32px; font-size: 13px; font-weight: 500; color: rgba(255,255,255,.4); background: none; border: none; cursor: pointer; width: 100%; transition: color .15s; }
+.preview-cta .locked-dismiss:hover { color: rgba(255,255,255,.7); }
