@@ -104,6 +104,7 @@ function feat(
 ): Feature {
   return {
     id,
+    key,
     name,
     desc,
     cat,

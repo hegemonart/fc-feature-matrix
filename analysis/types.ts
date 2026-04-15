@@ -43,6 +43,7 @@ export interface Product {
 
 export interface Feature {
   id: string;
+  key: string;
   name: string;
   desc: string;
   cat: CategoryId;

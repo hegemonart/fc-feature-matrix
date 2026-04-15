@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.1 — 2026-04-16
+Feature tooltip now shows element-level screenshot evidence on hover for TRUE cells. API route serves PNGs from crosscheck/img/. Added `key` field to Feature type so screenshot filenames resolve correctly.
+
 ## v4.0 — 2026-04-15
 Screenshot-truth enforcement: flip 106 TRUE features to FALSE across 17 clubs where no screenshot evidence exists (Liverpool excluded). 536 screenshots now match 1:1 with TRUE values. Cleanup: delete 21 obsolete capture scripts, unused result files (_live_crawl, _meta_analysis). Update all CLAUDE.md instructions with headless-blocked site notes, capture script inventory, full-page+PIL crop technique.
 

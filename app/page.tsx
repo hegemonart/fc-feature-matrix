@@ -81,6 +81,8 @@ export default function FeatureMatrixPage() {
     feature: string;
     desc: string;
     product: string;
+    productId: string;
+    featureId: string;
     status: PresenceStatus;
     tier: string;
     weightYes: number;
@@ -242,6 +244,8 @@ export default function FeatureMatrixPage() {
       feature: f.name,
       desc: f.desc,
       product: p.name,
+      productId: pid,
+      featureId: f.key,
       status: f.presence[pid],
       tier: f.tier,
       weightYes: f.weightYes,
@@ -647,6 +651,16 @@ export default function FeatureMatrixPage() {
               <span className="tt-weight yes">Yes {tooltipData.weightYes >= 0 ? '+' : ''}{tooltipData.weightYes}</span>
               <span className="tt-weight no">No {tooltipData.weightNo}</span>
             </div>
+            {tooltipData.status === 'full' && (
+              <div className="tt-screenshot">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`/api/crosscheck-img?file=${tooltipData.productId}_${tooltipData.featureId}.png`}
+                  alt=""
+                  loading="eager"
+                />
+              </div>
+            )}
           </>
         )}
       </div>
