@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.0 — 2026-04-15
+Screenshot-truth enforcement: flip 106 TRUE features to FALSE across 17 clubs where no screenshot evidence exists (Liverpool excluded). 536 screenshots now match 1:1 with TRUE values. Cleanup: delete 21 obsolete capture scripts, unused result files (_live_crawl, _meta_analysis). Update all CLAUDE.md instructions with headless-blocked site notes, capture script inventory, full-page+PIL crop technique.
+
 ## v3.0 — 2026-04-15
 Batch 1 element screenshots: Real Madrid, Bayern Munich, PSG, Man City, Man United, Tottenham, Liverpool. 224 total screenshots across 10 clubs. Flipped 8 features to FALSE (Bayern: store_block, fan_club_signup, heritage, in_content_sponsor, club_tv; Man City: episodic_docu; Man United: app_store_badges; Tottenham: next_match_feature_rich; PSG: app_store_badges). Liverpool partial (Hillsborough memorial). New capture scripts with anti-bot stealth.
 

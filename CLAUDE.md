@@ -52,16 +52,22 @@ See `analysis/CLAUDE.md` for the full analysis folder documentation, and `analys
 
 ## Screenshot evidence (crosscheck/img)
 
-Element-level screenshots for TRUE features. Naming: `{club_id}_{feature_key}.png`. Current coverage: Chelsea, FC Barcelona, Arsenal.
+Element-level screenshots for TRUE features. Naming: `{club_id}_{feature_key}.png`. Current coverage: 536 screenshots across all 33 clubs.
 
-Capture scripts are in `analysis/homepage/crosscheck/`:
-- `capture_elements.py` — Main capture
-- `redo_bad_weak.py` — Re-capture failed screenshots
-- `redo_barcelona.py` — Barcelona-specific (Didomi consent)
+**Always use Playwright** for screenshot captures. Playwright has direct filesystem access and can save element-level screenshots straight to `crosscheck/img/`. Use the Chrome MCP extension for live site verification and visual checks only — not for saving screenshots. 5 sites block headless Chromium (Arsenal, Bayern, Liverpool, NBA, West Ham) — use Chrome MCP for those.
+
+Capture scripts in `analysis/homepage/crosscheck/`:
+- `capture_elements.py` — Main capture script
+- `redo_bad_weak.py` — Re-capture failed/weak screenshots
+- `recapture_deleted.py` — Batch re-capture with per-club cookie strategies
+- `recapture_round5.py` — Full-page screenshot + PIL crop approach (most reliable)
+- `recalculate-scores.js` — Score recalculation after JSON changes
 
 Key rules:
 - Always dismiss popups/cookies FIRST
 - Carousel must show navigation controls
 - Video block must be large (>33% width)
 - News rich structure must show different layouts
+- Prefer full-page screenshot + PIL crop over Playwright clip
+- Liverpool: DO NOT TOUCH
 - See `crosscheck/CLAUDE.md` for full rules

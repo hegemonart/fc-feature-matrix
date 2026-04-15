@@ -28,7 +28,12 @@ analysis/
     │   └── ...
     └── crosscheck/          ← Browser verification tooling
         ├── CLAUDE.md        ← Cross-check agent instructions
-        └── recalculate-scores.js  ← Score recalculation script
+        ├── recalculate-scores.js  ← Score recalculation script
+        ├── capture_elements.py    ← Main Playwright capture script
+        ├── redo_bad_weak.py       ← Re-capture failed screenshots
+        ├── recapture_deleted.py   ← Batch re-capture with cookie strategies
+        ├── recapture_round5.py    ← Full-page screenshot + PIL crop approach
+        └── img/             ← 536 element-level screenshot evidence files
 ```
 
 To add a new page type (e.g. player page), copy the `homepage/` folder and adapt the rubric, features, and crosscheck instructions.

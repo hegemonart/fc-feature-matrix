@@ -42,10 +42,11 @@ analysis/
     crosscheck/
       CLAUDE.md             Cross-check agent instructions
       recalculate-scores.js Score recalculation script
-      img/                  Element-level screenshot evidence
-      capture_elements.py   Playwright screenshot capture script
-      redo_bad_weak.py      BAD/WEAK screenshot redo script
-      redo_barcelona.py     Barcelona-specific redo script
+      img/                  536 element-level screenshot evidence files
+      capture_elements.py   Main Playwright capture script
+      redo_bad_weak.py      Re-capture failed screenshots
+      recapture_deleted.py  Batch re-capture with cookie strategies
+      recapture_round5.py   Full-page screenshot + PIL crop approach
 public/                     Static assets
 CHANGELOG.md                Version history
 ```
@@ -98,18 +99,16 @@ All 33 organizations have been browser cross-checked. Discrepancies are logged i
 
 For proof-of-concept validation, element-level screenshots are captured for each TRUE feature on a club's homepage. Each screenshot crops the specific page region showing the feature, saved as `{club_id}_{feature_key}.png` in `analysis/homepage/crosscheck/img/`.
 
-**Current coverage**: 10 clubs with 224 element screenshots. Chelsea 24, FC Barcelona 32, Arsenal 24, Real Madrid 26, Bayern Munich 26, PSG 19, Man City 20, Man United 23, Tottenham 17, Liverpool 13 (partial — Hillsborough memorial on Apr 15).
+**Current coverage**: 536 element screenshots across all 33 clubs. Every TRUE feature (except Liverpool) has a corresponding screenshot in `crosscheck/img/`.
 
-**Capture tooling**: Playwright Python sync API, headless=False (Arsenal blocks headless), 1400x900 viewport, Chrome user-agent. Scripts:
+**Capture tooling**: Playwright Python sync API, 1400x900 viewport. 5 sites block headless Chromium (Arsenal, Bayern, Liverpool, NBA, West Ham) — use Chrome MCP for live verification. Scripts:
 
 | Script | Purpose |
 |--------|---------|
 | `capture_elements.py` | Main capture with JS feature locators, cookie dismissal, lazy-load scrolling |
-| `capture_batch1.py` | Batch 1 capture (Real Madrid, Bayern, Man City, Man United, Tottenham) |
-| `capture_batch1_v3.py` | Improved Batch 1 with better locators and cookie strategies |
-| `capture_fix_psg_lfc.py` | PSG + Liverpool with stealth anti-bot-detection settings |
-| `redo_bad_weak.py` | Re-capture for Chelsea + Arsenal screenshots that failed quality audit |
-| `redo_barcelona.py` | Barcelona-specific re-capture (handles Didomi consent wall) |
+| `redo_bad_weak.py` | Re-capture for screenshots that failed quality audit |
+| `recapture_deleted.py` | Batch re-capture with per-club cookie strategies |
+| `recapture_round5.py` | Full-page screenshot + PIL crop approach (most reliable) |
 
 **Quality rules** (documented in `crosscheck/CLAUDE.md`):
 
@@ -162,22 +161,23 @@ See `analysis/homepage/crosscheck/CLAUDE.md` for the full procedure.
 
 ```bash
 cd analysis/homepage/crosscheck
-python3 capture_elements.py    # All 3 clubs
-python3 redo_bad_weak.py       # Re-capture failed screenshots
-python3 redo_barcelona.py      # Barcelona only
+python3 capture_elements.py       # Main capture
+python3 redo_bad_weak.py          # Re-capture failed screenshots
+python3 recapture_deleted.py      # Batch re-capture with cookie strategies
+python3 recapture_round5.py       # Full-page + PIL crop (most reliable)
 ```
 
 ## Current rankings (top 10)
 
 | Rank | Organization | Score |
 |------|-------------|-------|
-| 1 | FC Barcelona | 85 |
+| 1 | FC Barcelona | 78 |
 | 2 | Liverpool | 62 |
-| 3 | Valencia CF | 61 |
-| 4 | SL Benfica | 53 |
-| 5 | AC Milan | 45 |
-| 6 | MotoGP | 45 |
-| 7 | Juventus | 42 |
-| 8 | Real Madrid | 40 |
-| 9 | West Ham | 34 |
-| 10 | Bayern Munich | 33 |
+| 3 | Valencia CF | 35 |
+| 4 | Juventus | 34 |
+| 5 | Real Madrid | 32 |
+| 6 | Chelsea | 27 |
+| 7 | Arsenal | 20 |
+| 8 | MotoGP | 20 |
+| 9 | F1 | 5 |
+| 10 | PSG | -1 |

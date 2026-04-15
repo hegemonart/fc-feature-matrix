@@ -25,9 +25,12 @@ using rubric: fc-feature-matrix/analysis/homepage/HOME-PAGE.md
 
 1. Claude reads **this file** for the execution procedure
 2. Claude reads the **rubric file** (e.g. `HOME-PAGE.md`) to get feature names, "Qualifies as Yes if" criteria, and descriptions
-3. Claude visits every site in Chrome, one at a time, verifying all requested features per site
-4. Claude presents a discrepancies table for user approval
-5. After approval, Claude applies fixes and recalculates scores
+3. Claude visits every site in Chrome, one at a time, **checking ALL features** (not just the ones currently marked TRUE)
+4. For every feature confirmed as TRUE, Claude **captures an element-level screenshot** and saves it to `crosscheck/img/{club_id}_{feature_key}.png`
+5. Claude presents a discrepancies table for user approval
+6. After approval, Claude applies fixes, recalculates scores, and verifies screenshot coverage
+
+**CRITICAL: A cross-check is a full audit.** Every feature in the rubric must be evaluated against the live site. Features confirmed TRUE get a screenshot as proof. Features that cannot be confirmed get flipped to FALSE. The goal is 100% accuracy — every TRUE must have a corresponding screenshot in `crosscheck/img/`.
 
 ---
 
@@ -35,7 +38,7 @@ using rubric: fc-feature-matrix/analysis/homepage/HOME-PAGE.md
 
 Features and their YES/NO criteria come from the **rubric file**, not from this README.
 
-For homepage features, the rubric is `analysis/HOME-PAGE.md`. It contains:
+For homepage features, the rubric is `analysis/homepage/HOME-PAGE.md`. It contains:
 - Category headings (e.g. "## 3. Match & Fixtures")
 - Feature tables with columns: **Feature**, **Qualifies as Yes if**, **Description**, **Tier**, **Weight if Yes**, **Weight if No**
 
@@ -65,10 +68,10 @@ The rubric file is the single source of truth for what counts as YES.
 | 12 | bvb_dortmund | bvb.de |
 | 13 | atletico_madrid | atleticodemadrid.com |
 | 14 | aston_villa | avfc.co.uk |
-| 15 | ac_milan | acmilan.com/en |
-| 16 | juventus | juventus.com/en |
+| 15 | ac_milan | acmilan.com |
+| 16 | juventus | juventus.com |
 | 17 | newcastle | newcastleunited.com |
-| 18 | vfb_stuttgart | vfb.de/en |
+| 18 | vfb_stuttgart | vfb.de |
 | 19 | sl_benfica | slbenfica.pt |
 | 20 | west_ham | whufc.com |
 | 21 | uefa | uefa.com |
@@ -319,7 +322,7 @@ for club, feature, value in changes:
 Run the recalculation script — it parses weights directly from `features.ts`, recalculates all `total_score` values, and regenerates `_scores.json` and `_aggregate.json`:
 
 ```bash
-node analysis/crosscheck/recalculate-scores.js
+node analysis/homepage/crosscheck/recalculate-scores.js
 ```
 
 This script:
@@ -333,6 +336,21 @@ This script:
 ```bash
 npx next build
 ```
+
+---
+
+## Sites that block headless Chromium
+
+These sites cannot be automated with Playwright. Use Chrome MCP (Claude in Chrome extension) for live verification and visual checks. Screenshots for these sites must be captured manually or via Chrome MCP's save-to-disk feature.
+
+| Site | ID | Blocking method | Workaround |
+|------|----|-----------------|------------|
+| Arsenal | arsenal | "Access Denied" page | Chrome MCP live verification |
+| Bayern Munich | bayern_munich | Usercentrics cookie wall → 86px page | Chrome MCP live verification |
+| Liverpool | liverpool | Blocks headless browsers | **DO NOT TOUCH** — maintained separately |
+| NBA | nba | HTTP/2 protocol error | Chrome MCP live verification |
+| West Ham | west_ham | Redirects to article page, execution context destroyed | Chrome MCP live verification |
+| MotoGP | motogp | Execution context destroyed during scroll | Partial Playwright support with single-scroll + retry (see `recapture_round5.py`) |
 
 ---
 
@@ -360,6 +378,11 @@ npx next build
 - **Juventus**: Small cookie banner in bottom-right corner — easy to miss, may need precise click coordinates
 - **Liverpool FC**: On April 15 (Hillsborough anniversary), the entire homepage is replaced with a memorial page — only 3 memorial articles shown, page height ~2300px. Normal homepage features are NOT available. Must reschedule captures for a different day.
 - **PSG app_store_badges**: The Apple/Google Play badges on PSG are ONLY inside the hamburger menu sidebar — NOT visible on the homepage body. This feature is correctly FALSE.
+- **West Ham (whufc.com)**: Headless Playwright is redirected to an article page instead of the homepage — the execution context gets destroyed during navigation. Must use Chrome MCP for live verification. Features were verified via Chrome MCP in April 2026; screenshots for confirmed-TRUE features need manual capture via Chrome.
+- **Arsenal (arsenal.com)**: Blocks headless Chromium with "Access Denied" page. Must use Chrome MCP for live verification. Note: on live match days, the homepage is replaced by a live match page — features like `academy_youth_block` cannot be verified during matches.
+- **Bayern Munich (fcbayern.com)**: Blocks headless Chromium — Usercentrics cookie wall results in an 86px page. Must use Chrome MCP for live verification. Note: uses Usercentrics (NOT consentmanager); call `UC_UI.acceptAllConsents(); UC_UI.closeCMP();` in the live browser.
+- **NBA (nba.com)**: Blocks headless Chromium with HTTP/2 protocol errors. Must use Chrome MCP for live verification.
+- **Liverpool FC (liverpoolfc.com)**: Blocks headless Chromium. **DO NOT TOUCH** — Liverpool data is maintained separately and should not be modified by cross-check agents.
 - **404 fallback**: If the `/en` path returns a 404, try the base URL — the header/footer are usually still visible and analyzable
 
 ---
@@ -392,12 +415,16 @@ npx next build
 - **Automated capture: mega-menu exclusion is CRITICAL**: When using Playwright or JS-based element locators, ALL TreeWalker and querySelectorAll searches MUST exclude elements inside `<nav>`, `<header>`, `[role="navigation"]`, mega-menu dropdowns, and any element with y-position < 500px (unless it's a header-specific feature). Real Madrid, Man United, and Tottenham all have extensive mega-menus where text like "Comunidad", "RMTV", "Tour", "Academy" appears — these are navigation labels, NOT homepage content blocks. The minimum y-position for body content features should be ~600px (below the hero area).
 - **Automated capture: page height validation**: Before capturing any screenshots, verify `document.body.scrollHeight > 3000px`. If the page is shorter, the cookie/consent wall is likely blocking content. Retry cookie dismissal with multiple strategies (generic buttons → consent API → forceful removal) and reload if needed. A page under 2000px almost certainly has no body content loaded. Sites known to block: Man City (requires specific consent flow), Bayern Munich (consentmanager), Liverpool (can be slow to render).
 - **Automated capture: site-specific cookie strategies**: (1) PSG uses Didomi — click `#didomi-notice-agree-button`. (2) Bayern Munich uses Usercentrics — call `UC_UI.acceptAllConsents(); UC_UI.closeCMP();` then remove `#usercentrics-root` via DOM. The `__cmp` API does NOT work on Bayern. (3) Other Bundesliga clubs (BVB, Stuttgart, Eintracht, RB Leipzig) use consentmanager — call `window.__cmp('setConsent', 0)`. (4) Man City requires waiting 8+ seconds then clicking "Accept All Cookies" button. (5) Liverpool may need multiple dismiss attempts. (6) Always wait 2-3s after dismissal before checking page height.
-- **Automated capture: use existing Chrome tab**: When running Playwright or Chrome MCP captures, do NOT open new browser windows. Instead, reuse the existing Chrome tab by navigating to each URL in sequence. This avoids wasting resources on browser launches and is faster. The Playwright scripts should use `headless=False` with a SINGLE browser context that navigates between URLs, not one context per club.
-- **Automated capture: PSG and Liverpool require manual cookie intervention**: PSG (Didomi consent) and Liverpool sometimes fail to render content even after automated cookie dismissal. If page height stays under 2000px after 3 attempts, use Chrome MCP's `navigate` + `javascript_tool` to manually dismiss the consent wall in the existing browser tab before running the capture script.
+- **Always use Playwright for screenshot captures**: Playwright has direct filesystem access and can save element-level screenshots straight to `crosscheck/img/`. Use the Chrome MCP extension only for live site verification and visual checks — not for saving screenshots. Capture scripts: `capture_elements.py`, `redo_bad_weak.py`, `recapture_deleted.py`, `recapture_round5.py`.
+- **Playwright capture workflow**: (1) Launch headless Chromium via `sync_playwright`, (2) Navigate to URL, (3) Dismiss cookies via JS evaluate, (4) Scroll page incrementally to trigger lazy-load, (5) For each feature: use JS to find element and get bounds, clip screenshot to element region, save to `crosscheck/img/{club}_{feature}.png`. **Preferred approach**: Take a full-page screenshot first, then crop elements with PIL — this is more reliable than Playwright's `clip` parameter, which can fail if the page layout shifts or the element is outside the viewport.
+- **Full-page screenshot + PIL crop technique** (most reliable): `page.screenshot(path='/tmp/fullpage.png', full_page=True)` then use PIL to crop: `Image.open('/tmp/fullpage.png').crop((x, y, x+w, y+h)).save(output_path)`. This avoids "Clipped area is empty" errors and gives consistent results. See `recapture_round5.py` for the reference implementation.
+- **PSG and Liverpool require careful cookie handling**: PSG (Didomi consent) and Liverpool sometimes fail to render content even after cookie dismissal. If page height stays under 2000px after 3 attempts, retry with different dismiss strategies or wait longer for JS to render.
 
 ---
 
 ## Screenshot evidence rules
+
+**Every TRUE feature must have a screenshot.** The cross-check is not complete until every TRUE value in a club's JSON has a corresponding `{club_id}_{feature_key}.png` in `crosscheck/img/`. If you cannot capture a screenshot for a TRUE feature, flip it to FALSE.
 
 When capturing element-level screenshots as proof of a feature, each screenshot **must contain clear, unambiguous visual evidence** of the specific feature it represents. The screenshot must answer the question: "If someone looked at this image with no context, would they see the feature?"
 
@@ -434,3 +461,47 @@ When capturing element-level screenshots as proof of a feature, each screenshot 
 | `app_store_badges` | Visible Apple App Store and/or Google Play Store badges/buttons linking to the club's mobile app. | Capturing an area without any visible app store badges |
 | `video_thumbnails_inline` | Small video thumbnails with play icons mixed into content sections (news grids, article listings). These are NOT the large `homepage_video_block`. | Capturing a dedicated large video player section — that's `homepage_video_block` |
 | `dedicated_news_section` | A clearly labelled news section ("News", "Latest News", "Articles") with multiple article cards. Must have a visible heading identifying it as news. | Capturing content cards without a news heading, or capturing the hero area |
+
+---
+
+## Lessons learned from image review (April 2026)
+
+A full one-by-one visual review of all 569 screenshots found 121 bad images (21% failure rate). Here are the patterns to avoid in future captures:
+
+### Top causes of bad screenshots
+
+1. **Lazy-loading blank areas (most common)**: Playwright captured DOM regions where content hadn't visually rendered. The HTML exists but images/videos show as blank white or black rectangles. **Fix**: Always `scrollIntoView()` the target element AND wait 2-3s before capturing. Verify the screenshot isn't blank by checking pixel standard deviation > 5.
+
+2. **Wrong crop coordinates**: Many screenshots captured completely wrong page areas — scores instead of headers, player names instead of search icons. This happens when JS element locators return incorrect bounding boxes or when the page layout shifts after scroll. **Fix**: After getting element bounds, verify the element text/content matches the feature before capturing.
+
+3. **Cookie/consent banners blocking content**: SL Benfica (11 failures), Bayern Munich (8 failures) — cookie walls prevented any content from loading. Page heights under 200px are a dead giveaway. **Fix**: Always check `document.body.scrollHeight > 3000px` after cookie dismissal. If too short, retry with multiple strategies. Bayern requires Usercentrics API, NOT consentmanager `__cmp`.
+
+4. **Popup overlays not dismissed**: West Ham's EVA AIR promo popup blocked the hero capture. Valencia CF and Arsenal show promotional overlays. **Fix**: Always run popup dismissal BEFORE any screenshots. Check for `[role="dialog"]`, `[class*="modal"]`, `[class*="popup"]` elements and remove them.
+
+5. **Wrong content for feature name**: AC Milan store_block showed an editorial article, Bayern interactive_fan_poll showed FC Bayern TV, Newcastle footer_sponsor_wall showed a match result. **Fix**: After capture, verify the screenshot content actually matches the feature definition. A store_block must show merchandise, not articles.
+
+6. **Tiny/unusable crops**: Juventus had multiple 40x20px crops showing partial text. **Fix**: Enforce minimum dimensions: header features ≥ 80x30px, body features ≥ 200x100px.
+
+7. **Non-English sites missed by JS locators**: Atletico Madrid ("ACTUALIDAD" not "News"), Valencia CF ("TIENDA" not "Shop"), RB Leipzig ("Fanshop" not "Shop"). **Fix**: All JS text matching must include translations: es (tienda, noticias, entradas, actualidad), de (Fanshop, Nachrichten, Tickets), pt (loja, notícias, bilhetes), fr (boutique, actualités, billetterie), it (negozio, notizie, biglietti), nl (winkel, nieuws, tickets), ca (botiga, notícies, entrades).
+
+### Worst-performing clubs by capture quality
+
+| Club | Issue | Status (April 2026) |
+|------|-------|---------------------|
+| West Ham | Headless Playwright redirected to article page | Verified via Chrome MCP; no Playwright screenshots possible |
+| Bayern Munich | Headless blocked by Usercentrics cookie wall (86px page) | Verified via Chrome MCP; no Playwright screenshots possible |
+| Arsenal | Headless blocked with "Access Denied" | Verified via Chrome MCP; no Playwright screenshots possible |
+| NBA | Headless blocked with HTTP/2 error | Verified via Chrome MCP; no Playwright screenshots possible |
+| SL Benfica | Cookie wall in headless, tickets/shop header elements hard to capture | Mostly fixed via full-page+crop approach; 2 header features recaptured |
+| Juventus | Tiny crops, wrong page areas, some features confirmed FALSE | Fixed: dedicated_news_section + news_rich_structure flipped FALSE |
+| MotoGP | Execution context destroyed during scroll | Fixed via single-scroll + retry in recapture_round5.py |
+
+### Validation checklist for future captures
+
+Before accepting any captured screenshot:
+- [ ] Image dimensions ≥ 80x30px (header) or 200x100px (body)
+- [ ] Pixel standard deviation > 5 (not blank)
+- [ ] No cookie banners or popups visible in the image
+- [ ] Content visually matches the feature name (human-readable check)
+- [ ] Page height was > 3000px when captured (content actually loaded)
+- [ ] Element y-position makes sense for the feature type (header < 120px, body > 300px)
