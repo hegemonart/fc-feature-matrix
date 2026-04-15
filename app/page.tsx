@@ -467,7 +467,7 @@ export default function FeatureMatrixPage() {
                     <button className="preview-cta-btn" onClick={() => { setLoginError(''); setCtaView('login'); }}>
                       Sign in
                     </button>
-                    <a className="preview-cta-btn preview-cta-request" href="https://mail.google.com/mail/?view=cm&to=sergey@humbleteam.com&su=Access+Request+%E2%80%93+FC+Benchmark&body=Hi%2C%0A%0AI%E2%80%99d+like+to+request+access+to+the+FC+Benchmark+matrix.%0A%0AThanks" target="_blank" rel="noopener noreferrer">
+                    <a className="preview-cta-btn preview-cta-request" href="mailto:sergey@humbleteam.com?subject=Access%20Request%20%E2%80%93%20FC%20Benchmark&body=Hi%2C%0A%0AI%E2%80%99d%20like%20to%20request%20access%20to%20the%20FC%20Benchmark%20matrix.%0A%0AThanks">
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
