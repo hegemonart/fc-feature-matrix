@@ -2,7 +2,7 @@
   "product_id": "psg",
   "screenshot": "04-psg.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 3,
+  "total_score": -1,
   "features": {
     "language_switcher_in_header": true,
     "login_account": true,
@@ -61,7 +61,7 @@
     "charity_csr_block": true,
     "footer_sponsor_wall": false,
     "in_content_sponsor": false,
-    "app_store_badges": true,
+    "app_store_badges": false,
     "club_tv_app_promo": false,
     "b2b_partnerships": false,
     "ai_chat_assistant": false,

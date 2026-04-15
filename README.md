@@ -98,13 +98,16 @@ All 33 organizations have been browser cross-checked. Discrepancies are logged i
 
 For proof-of-concept validation, element-level screenshots are captured for each TRUE feature on a club's homepage. Each screenshot crops the specific page region showing the feature, saved as `{club_id}_{feature_key}.png` in `analysis/homepage/crosscheck/img/`.
 
-**Current coverage**: 3 clubs (Chelsea 24, FC Barcelona 32, Arsenal 24) with 80 element screenshots.
+**Current coverage**: 10 clubs with 224 element screenshots. Chelsea 24, FC Barcelona 32, Arsenal 24, Real Madrid 26, Bayern Munich 26, PSG 19, Man City 20, Man United 23, Tottenham 17, Liverpool 13 (partial — Hillsborough memorial on Apr 15).
 
 **Capture tooling**: Playwright Python sync API, headless=False (Arsenal blocks headless), 1400x900 viewport, Chrome user-agent. Scripts:
 
 | Script | Purpose |
 |--------|---------|
 | `capture_elements.py` | Main capture with JS feature locators, cookie dismissal, lazy-load scrolling |
+| `capture_batch1.py` | Batch 1 capture (Real Madrid, Bayern, Man City, Man United, Tottenham) |
+| `capture_batch1_v3.py` | Improved Batch 1 with better locators and cookie strategies |
+| `capture_fix_psg_lfc.py` | PSG + Liverpool with stealth anti-bot-detection settings |
 | `redo_bad_weak.py` | Re-capture for Chelsea + Arsenal screenshots that failed quality audit |
 | `redo_barcelona.py` | Barcelona-specific re-capture (handles Didomi consent wall) |
 
@@ -169,12 +172,12 @@ python3 redo_barcelona.py      # Barcelona only
 | Rank | Organization | Score |
 |------|-------------|-------|
 | 1 | FC Barcelona | 85 |
-| 2 | Bayern Munich | 62 |
-| 3 | Liverpool | 62 |
-| 4 | Valencia CF | 61 |
-| 5 | SL Benfica | 53 |
-| 6 | MotoGP | 49 |
-| 7 | AC Milan | 45 |
-| 8 | Juventus | 42 |
-| 9 | West Ham | 35 |
-| 10 | ATP Tour | 30 |
+| 2 | Liverpool | 62 |
+| 3 | Valencia CF | 61 |
+| 4 | SL Benfica | 53 |
+| 5 | AC Milan | 45 |
+| 6 | MotoGP | 45 |
+| 7 | Juventus | 42 |
+| 8 | Real Madrid | 40 |
+| 9 | West Ham | 34 |
+| 10 | Bayern Munich | 33 |

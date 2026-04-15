@@ -1,5 +1,8 @@
 # Changelog
 
+## v3.0 — 2026-04-15
+Batch 1 element screenshots: Real Madrid, Bayern Munich, PSG, Man City, Man United, Tottenham, Liverpool. 224 total screenshots across 10 clubs. Flipped 8 features to FALSE (Bayern: store_block, fan_club_signup, heritage, in_content_sponsor, club_tv; Man City: episodic_docu; Man United: app_store_badges; Tottenham: next_match_feature_rich; PSG: app_store_badges). Liverpool partial (Hillsborough memorial). New capture scripts with anti-bot stealth.
+
 ## v2.1 — 2026-04-14
 Cleanup: remove 4 one-off fix scripts (fix_screenshots v1/v2/v3, fix_press_conf), archive v1 screenshots folder, and outdated PLAYBOOK-HOW-TO-CREATE-NEW-FEATURES-MATRIX.md. Update README to match.
 

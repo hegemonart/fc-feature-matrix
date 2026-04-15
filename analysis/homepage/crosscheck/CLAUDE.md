@@ -340,7 +340,8 @@ npx next build
 
 | Site(s) | Banner type | Best strategy |
 |---------|-------------|---------------|
-| BVB Dortmund, VfB Stuttgart | consentmanager | `__cmp('setConsent', 0)` |
+| Bayern Munich | Usercentrics | `UC_UI.acceptAllConsents(); UC_UI.closeCMP();` then remove `#usercentrics-root` shadow DOM element |
+| BVB Dortmund, VfB Stuttgart, Eintracht, RB Leipzig | consentmanager | `__cmp('setConsent', 0)` |
 | Atletico Madrid | OneTrust | `read_page` interactive → find "Allow All" button by ref |
 | Valencia CF | Promotional popup | Find X/close button visually or via `read_page` interactive |
 | Aston Villa | Ticket promo popup | `read_page` interactive → find "close" button by ref |
@@ -354,8 +355,11 @@ npx next build
 - **Atletico Madrid**: Always use base URL `atleticodemadrid.com` — the `/en` path intermittently shows a maintenance page
 - **Valencia CF**: Frequently shows promotional popup overlays on load — must find and click X/close button before analysis
 - **Aston Villa**: Frequently shows ticket promo overlays — close before analysis
+- **Bayern Munich**: Uses **Usercentrics** (NOT consentmanager). Must call `UC_UI.acceptAllConsents()` + `UC_UI.closeCMP()` + remove `#usercentrics-root` shadow DOM element. `__cmp` does NOT work on Bayern.
 - **Bundesliga sites** (BVB, Stuttgart, Eintracht, RB Leipzig): Use consentmanager for cookies — the `__cmp` API is the most reliable dismissal method
 - **Juventus**: Small cookie banner in bottom-right corner — easy to miss, may need precise click coordinates
+- **Liverpool FC**: On April 15 (Hillsborough anniversary), the entire homepage is replaced with a memorial page — only 3 memorial articles shown, page height ~2300px. Normal homepage features are NOT available. Must reschedule captures for a different day.
+- **PSG app_store_badges**: The Apple/Google Play badges on PSG are ONLY inside the hamburger menu sidebar — NOT visible on the homepage body. This feature is correctly FALSE.
 - **404 fallback**: If the `/en` path returns a 404, try the base URL — the header/footer are usually still visible and analyzable
 
 ---
@@ -385,6 +389,11 @@ npx next build
 - **in_content_sponsor**: Sponsor/partner content must appear in the page BODY (between header and footer). Sponsor logos that appear only in the footer sponsor wall do NOT count as in-content sponsor. Look for sponsor banners, "powered by X" labels, or sponsor blocks woven into the page content sections.
 - **stadium_content_block**: This feature is about the **physical venue** — stadium tours, stadium images, virtual stadium experiences, venue information, matchday guide, stadium history. A tickets section (buy match tickets) is NOT stadium content — that's `tickets_block`. A store section is NOT stadium content — that's `store_block`. The screenshot must clearly show content ABOUT THE STADIUM BUILDING ITSELF.
 - **news_rich_structure (requires DIFFERENT layouts, not uniform grids)**: "Rich" means the news section contains cards with **different layouts and different visual elements** — NOT all the same template repeated. A grid of identical cards (e.g. 6 cards all showing photo + headline + tag in the same format) is a basic news grid and is FALSE. For TRUE, the section must have **2 or more** of: (1) tabs or category filters, (2) **visually distinct card sizes** — e.g. one large hero card 1.5× bigger + smaller cards beside it, (3) mixed content types in the grid (photo cards AND video cards with play buttons), (4) different card layouts within the same section (e.g. a featured card with image left + text right, alongside standard vertical cards). The litmus test: **do the cards look different from each other?** If you could swap any two cards and nothing would look different, it's a uniform grid → FALSE.
+- **Automated capture: mega-menu exclusion is CRITICAL**: When using Playwright or JS-based element locators, ALL TreeWalker and querySelectorAll searches MUST exclude elements inside `<nav>`, `<header>`, `[role="navigation"]`, mega-menu dropdowns, and any element with y-position < 500px (unless it's a header-specific feature). Real Madrid, Man United, and Tottenham all have extensive mega-menus where text like "Comunidad", "RMTV", "Tour", "Academy" appears — these are navigation labels, NOT homepage content blocks. The minimum y-position for body content features should be ~600px (below the hero area).
+- **Automated capture: page height validation**: Before capturing any screenshots, verify `document.body.scrollHeight > 3000px`. If the page is shorter, the cookie/consent wall is likely blocking content. Retry cookie dismissal with multiple strategies (generic buttons → consent API → forceful removal) and reload if needed. A page under 2000px almost certainly has no body content loaded. Sites known to block: Man City (requires specific consent flow), Bayern Munich (consentmanager), Liverpool (can be slow to render).
+- **Automated capture: site-specific cookie strategies**: (1) PSG uses Didomi — click `#didomi-notice-agree-button`. (2) Bayern Munich uses Usercentrics — call `UC_UI.acceptAllConsents(); UC_UI.closeCMP();` then remove `#usercentrics-root` via DOM. The `__cmp` API does NOT work on Bayern. (3) Other Bundesliga clubs (BVB, Stuttgart, Eintracht, RB Leipzig) use consentmanager — call `window.__cmp('setConsent', 0)`. (4) Man City requires waiting 8+ seconds then clicking "Accept All Cookies" button. (5) Liverpool may need multiple dismiss attempts. (6) Always wait 2-3s after dismissal before checking page height.
+- **Automated capture: use existing Chrome tab**: When running Playwright or Chrome MCP captures, do NOT open new browser windows. Instead, reuse the existing Chrome tab by navigating to each URL in sequence. This avoids wasting resources on browser launches and is faster. The Playwright scripts should use `headless=False` with a SINGLE browser context that navigates between URLs, not one context per club.
+- **Automated capture: PSG and Liverpool require manual cookie intervention**: PSG (Didomi consent) and Liverpool sometimes fail to render content even after automated cookie dismissal. If page height stays under 2000px after 3 attempts, use Chrome MCP's `navigate` + `javascript_tool` to manually dismiss the consent wall in the existing browser tab before running the capture script.
 
 ---
 

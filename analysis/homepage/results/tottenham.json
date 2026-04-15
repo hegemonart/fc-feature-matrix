@@ -2,7 +2,7 @@
   "product_id": "tottenham",
   "screenshot": "09-tottenham.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -11,
+  "total_score": -18,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,
@@ -15,7 +15,7 @@
     "secondary_editorial_strip_below_hero": false,
     "brand_sponsor_highlighted_in_hero": false,
     "next_match_block": true,
-    "next_match_feature_rich": true,
+    "next_match_feature_rich": false,
     "results_block": true,
     "standings_block": false,
     "birthday_squad_calendar": false,
