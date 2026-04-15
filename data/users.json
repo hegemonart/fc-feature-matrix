@@ -1,0 +1,22 @@
+[
+  {
+    "email": "sergey@humbleteam.com",
+    "passwordHash": "$2b$10$FZFLkVbJ2gf6Tu0wwHJI7uw7wMZ3Sz08xPqXkSsmo08wiaE1uXsMO",
+    "name": "Sergey"
+  },
+  {
+    "email": "atillyard@brentfordfc.com",
+    "passwordHash": "$2b$10$.9eWiOm/3vXmu.hivL.ZIehJkTWRPrJprdr12OTo2KkVywqK.egzG",
+    "name": "A Tillyard"
+  },
+  {
+    "email": "thais.tsui@chelseafc.com",
+    "passwordHash": "$2b$10$dLv7yezCKSsCrGZ4p3m7r.anU7zxMz3aNfyjq4imhHJdCKYI18EBO",
+    "name": "Thais Tsui"
+  },
+  {
+    "email": "admin@humbleteam.com",
+    "passwordHash": "$2b$10$bnTzhCtiLKwH2vfXIzVjTe7UIwkjuod4nogYdrfo8Vtnf6BSUjVSC",
+    "name": "Admin"
+  }
+]
