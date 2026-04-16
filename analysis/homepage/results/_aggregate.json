@@ -1023,8 +1023,8 @@
       ]
     },
     "login_account": {
-      "adoption_count": 30,
-      "adoption_pct": 91,
+      "adoption_count": 31,
+      "adoption_pct": 94,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
@@ -1055,12 +1055,12 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
+        "eintracht",
         "inter_milan"
       ],
       "clubs_no": [
         "real_madrid",
-        "atp_tour",
-        "eintracht"
+        "atp_tour"
       ]
     },
     "loyalty_rewards": {
