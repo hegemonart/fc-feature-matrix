@@ -195,7 +195,7 @@ export default function FeatureMatrixPage() {
     <div className="matrix-shell">
       {/* ── HEADER ── */}
       <header>
-        <div className="logo">FC Benchmark <span>//</span> 2026</div>
+        <div className="logo">FC Benchmark <span>{'//'}</span> 2026</div>
         <div className="header-title">Feature Matrix</div>
         <div className="header-stats">
           <div className="stat-chip"><strong>{FEATURES.length}</strong> features</div>

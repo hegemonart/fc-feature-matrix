@@ -18,3 +18,6 @@ screenshots/
 
 # Debug
 npm-debug.log*
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
