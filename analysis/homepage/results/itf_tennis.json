@@ -10,7 +10,7 @@
     "tickets_shortcut_in_header": false,
     "sponsor_lockup_in_header": false,
     "persistent_bar_above_header": true,
-    "hero_carousel": true,
+    "hero_carousel": false,
     "secondary_editorial_strip_below_hero": true,
     "brand_sponsor_highlighted_in_hero": false,
     "next_match_block": false,
@@ -60,7 +60,7 @@
     "charity_csr_block": false,
     "footer_sponsor_wall": false,
     "in_content_sponsor": true,
-    "app_store_badges": true,
+    "app_store_badges": false,
     "club_tv_app_promo": false,
     "b2b_partnerships": false,
     "ai_chat_assistant": false,
@@ -68,9 +68,9 @@
     "predictor_fantasy": false,
     "quiz_trivia": false,
     "wallpapers_downloads": false,
-    "social_links_in_footer": true
+    "social_links_in_footer": false
   },
-  "total_score": -21,
+  "total_score": -33,
   "confidence": {
     "language_switcher_in_header": "browser-verified",
     "login_account": "browser-verified",

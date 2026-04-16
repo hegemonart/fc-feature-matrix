@@ -41,7 +41,7 @@
     "member_only_commerce": false,
     "newsletter_signup": false,
     "fan_club_signup": false,
-    "paid_membership": true,
+    "paid_membership": false,
     "draws_contests": false,
     "fan_clubs_directory": false,
     "trophies_honours": false,
@@ -59,7 +59,7 @@
     "esports_gaming_block": true,
     "charity_csr_block": false,
     "footer_sponsor_wall": true,
-    "in_content_sponsor": true,
+    "in_content_sponsor": false,
     "app_store_badges": false,
     "club_tv_app_promo": false,
     "b2b_partnerships": false,
@@ -70,7 +70,7 @@
     "wallpapers_downloads": false,
     "social_links_in_footer": true
   },
-  "total_score": 57,
+  "total_score": 43,
   "confidence": {
     "language_switcher_in_header": "browser-verified",
     "login_account": "browser-verified",

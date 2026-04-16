@@ -2,7 +2,7 @@
   "product_id": "juventus",
   "screenshot": "16-juventus.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 34,
+  "total_score": 30,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,
@@ -25,7 +25,7 @@
     "news_rich_structure": false,
     "homepage_video_block": true,
     "episodic_docu_series": false,
-    "video_thumbnails_inline": true,
+    "video_thumbnails_inline": false,
     "documentary_promo": false,
     "social_native_content": false,
     "podcast_audio": false,

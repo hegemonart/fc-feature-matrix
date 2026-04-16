@@ -24,7 +24,7 @@
     "news_rich_structure": true,
     "homepage_video_block": true,
     "episodic_docu_series": false,
-    "video_thumbnails_inline": true,
+    "video_thumbnails_inline": false,
     "documentary_promo": false,
     "social_native_content": false,
     "podcast_audio": false,
@@ -70,7 +70,7 @@
     "wallpapers_downloads": false,
     "social_links_in_footer": true
   },
-  "total_score": -17,
+  "total_score": -21,
   "confidence": {
     "language_switcher_in_header": "browser-verified",
     "login_account": "browser-verified",

@@ -59,7 +59,7 @@
     "esports_gaming_block": false,
     "charity_csr_block": false,
     "footer_sponsor_wall": false,
-    "in_content_sponsor": true,
+    "in_content_sponsor": false,
     "app_store_badges": true,
     "club_tv_app_promo": false,
     "b2b_partnerships": false,
@@ -70,7 +70,7 @@
     "wallpapers_downloads": false,
     "social_links_in_footer": false
   },
-  "total_score": -20,
+  "total_score": -27,
   "confidence": {
     "language_switcher_in_header": "browser-verified",
     "login_account": "browser-verified",

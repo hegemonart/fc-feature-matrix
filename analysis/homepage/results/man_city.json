@@ -2,7 +2,7 @@
   "product_id": "man_city",
   "screenshot": "06-man-city.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -7,
+  "total_score": -11,
   "features": {
     "language_switcher_in_header": true,
     "login_account": true,
@@ -11,7 +11,7 @@
     "tickets_shortcut_in_header": true,
     "sponsor_lockup_in_header": true,
     "persistent_bar_above_header": false,
-    "hero_carousel": true,
+    "hero_carousel": false,
     "secondary_editorial_strip_below_hero": true,
     "brand_sponsor_highlighted_in_hero": true,
     "next_match_block": true,
