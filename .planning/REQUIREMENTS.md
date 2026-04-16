@@ -132,22 +132,63 @@
 
 ## Traceability
 
-| Requirement Group | Milestone | Status |
-|-------------------|-----------|--------|
-| TKT-01–08 | v2 | Pending |
-| APP-01–06 | v3 | Pending |
-| MERCH-01–04 | v5 | Pending |
-| SUBS-01–04 | v6 | Pending |
-| HOSP-01–03 | v7 | Pending |
-| SPON-01–03 | v8 | Pending |
-| PAST-01–03 | v9 | Pending |
-| MDAY-01–07 | v10 | Pending |
-| BTWN-01–03 | v11 | Pending |
+| Requirement | Phase | Milestone | Status |
+|-------------|-------|-----------|--------|
+| TKT-01 | Phase 1 | v2 | Pending |
+| TKT-02 | Phase 1 | v2 | Pending |
+| TKT-03 | Phase 1 | v2 | Pending |
+| TKT-04 | Phase 1 | v2 | Pending |
+| TKT-05 | Phase 1 | v2 | Pending |
+| TKT-06 | Phase 1 | v2 | Pending |
+| TKT-07 | Phase 1 | v2 | Pending |
+| TKT-08 | Phase 1 | v2 | Pending |
+| APP-01 | Phase 2 | v3 | Pending |
+| APP-02 | Phase 2 | v3 | Pending |
+| APP-03 | Phase 2 | v3 | Pending |
+| APP-04 | Phase 2 | v3 | Pending |
+| APP-05 | Phase 2 | v3 | Pending |
+| APP-06 | Phase 2 | v3 | Pending |
+| MERCH-01 | Phase 3 | v5 | Pending |
+| MERCH-02 | Phase 3 | v5 | Pending |
+| MERCH-03 | Phase 3 | v5 | Pending |
+| MERCH-04 | Phase 3 | v5 | Pending |
+| SUBS-01 | Phase 3 | v6 | Pending |
+| SUBS-02 | Phase 3 | v6 | Pending |
+| SUBS-03 | Phase 3 | v6 | Pending |
+| SUBS-04 | Phase 3 | v6 | Pending |
+| HOSP-01 | Phase 4 | v7 | Pending |
+| HOSP-02 | Phase 4 | v7 | Pending |
+| HOSP-03 | Phase 4 | v7 | Pending |
+| SPON-01 | Phase 4 | v8 | Pending |
+| SPON-02 | Phase 4 | v8 | Pending |
+| SPON-03 | Phase 4 | v8 | Pending |
+| PAST-01 | Phase 5 | v9 | Pending |
+| PAST-02 | Phase 5 | v9 | Pending |
+| PAST-03 | Phase 5 | v9 | Pending |
+| BTWN-01 | Phase 5 | v11 | Pending |
+| BTWN-02 | Phase 5 | v11 | Pending |
+| BTWN-03 | Phase 5 | v11 | Pending |
+| MDAY-01 | Phase 6 | v10 | Pending |
+| MDAY-02 | Phase 6 | v10 | Pending |
+| MDAY-03 | Phase 6 | v10 | Pending |
+| MDAY-04 | Phase 6 | v10 | Pending |
+| MDAY-05 | Phase 6 | v10 | Pending |
+| MDAY-06 | Phase 6 | v10 | Pending |
+| MDAY-07 | Phase 6 | v10 | Pending |
 
-**Coverage:**
-- Active requirements: 38 total
-- Mapped to milestones: 38
-- Unmapped: 0 ✓
+**Coverage: 38/38 requirements mapped across 6 phases**
+
+| Phase | Requirements | Count |
+|-------|--------------|-------|
+| Phase 1 - Flow Automation + Ticket Purchase | TKT-01 to TKT-08 | 8 |
+| Phase 2 - App Home | APP-01 to APP-06 | 6 |
+| Phase 3 - Merch + Subscriptions | MERCH-01 to MERCH-04, SUBS-01 to SUBS-04 | 8 |
+| Phase 4 - Hospitality + Sponsorship | HOSP-01 to HOSP-03, SPON-01 to SPON-03 | 6 |
+| Phase 5 - Past Seasons + Between Season | PAST-01 to PAST-03, BTWN-01 to BTWN-03 | 6 |
+| Phase 6 - Matchday | MDAY-01 to MDAY-07 | 7 |
+| **Total** | | **41** |
+
+Unmapped: 0
 
 ---
-*Requirements defined: 2026-04-16*
+*Requirements defined: 2026-04-16 | Phase traceability added: 2026-04-16*
