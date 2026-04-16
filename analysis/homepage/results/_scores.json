@@ -175,20 +175,20 @@
     },
     {
       "rank": 20,
-      "product_id": "sl_benfica",
-      "screenshot": "19-sl-benfica.png",
-      "total_score": -22,
+      "product_id": "rb_leipzig",
+      "screenshot": "32-rbleipzig.png",
+      "total_score": -23,
       "yes_count": 15,
       "no_count": 51,
       "feature_count": 66
     },
     {
       "rank": 21,
-      "product_id": "rb_leipzig",
-      "screenshot": "32-rbleipzig.png",
-      "total_score": -23,
-      "yes_count": 15,
-      "no_count": 51,
+      "product_id": "sl_benfica",
+      "screenshot": "19-sl-benfica.png",
+      "total_score": -26,
+      "yes_count": 14,
+      "no_count": 52,
       "feature_count": 66
     },
     {
