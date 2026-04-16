@@ -34,12 +34,19 @@ export interface Feature {
   cat: CategoryId;
   weight: number;
   presence: Record<string, PresenceStatus>;
-  /** Computed by computeBands() */
-  adoption?: number;
-  /** Computed by computeBands() */
-  adoptionPct?: number;
-  /** Computed by computeBands() */
-  band?: BandId;
+  adoption: number;
+  adoptionPct: number;
+  band: BandId;
+}
+
+/** Raw feature definition before band computation */
+interface FeatureInput {
+  id: string;
+  name: string;
+  desc: string;
+  cat: CategoryId;
+  weight: number;
+  presence: Record<string, PresenceStatus>;
 }
 
 export interface BandMeta {
@@ -102,9 +109,30 @@ export function makePresence(
   return m;
 }
 
+// ── Band computation (pure — returns new objects, no mutation) ──
+
+function withBands(raw: FeatureInput[]): Feature[] {
+  const totalProducts = PRODUCTS.length;
+  return raw.map(f => {
+    let score = 0;
+    ALL_IDS.forEach(id => {
+      if (f.presence[id] === 'full') score += 1;
+      else if (f.presence[id] === 'partial') score += 0.5;
+    });
+    const adoption = score / totalProducts;
+    const adoptionPct = Math.round(adoption * 100);
+    let band: BandId;
+    if (adoption >= 0.9) band = 'table_stakes';
+    else if (adoption >= 0.7) band = 'expected';
+    else if (adoption >= 0.4) band = 'competitive';
+    else band = 'innovation';
+    return { ...f, adoption, adoptionPct, band };
+  });
+}
+
 // ── Features (29 total: F01-F26 including F06b, F07b, F07c) ──
 
-export const FEATURES: Feature[] = [
+const FEATURE_DATA: FeatureInput[] = [
   // ── Revenue & Commerce ──
   {
     id: 'F01', name: 'E-Commerce / Shop',
@@ -380,24 +408,6 @@ export const BAND_META: BandMeta[] = [
   { id: 'innovation',   name: 'Innovation',   cls: 'innovation' },
 ];
 
-// ── Band computation ──
+// ── Computed features export ──
 
-export function computeBands(): void {
-  const totalProducts = PRODUCTS.length;
-  FEATURES.forEach(f => {
-    let score = 0;
-    ALL_IDS.forEach(id => {
-      if (f.presence[id] === 'full') score += 1;
-      else if (f.presence[id] === 'partial') score += 0.5;
-    });
-    f.adoption = score / totalProducts;
-    f.adoptionPct = Math.round(f.adoption * 100);
-    if (f.adoption >= 0.9) f.band = 'table_stakes';
-    else if (f.adoption >= 0.7) f.band = 'expected';
-    else if (f.adoption >= 0.4) f.band = 'competitive';
-    else f.band = 'innovation';
-  });
-}
-
-// Auto-compute on import
-computeBands();
+export const FEATURES: Feature[] = withBands(FEATURE_DATA);

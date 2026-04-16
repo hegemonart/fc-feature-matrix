@@ -15,6 +15,7 @@ import {
   type Category,
   type BandMeta,
 } from '@/lib/data';
+import { getProductScores } from '@/lib/scoring';
 
 /* ── Padlock SVG (reused in flow nav) ── */
 const PadlockIcon = () => (
@@ -107,7 +108,7 @@ export default function FeatureMatrixPage() {
   const bandCounts = useMemo(() => {
     const counts: Record<string, number> = {};
     BAND_META.forEach(b => (counts[b.id] = 0));
-    FEATURES.forEach(f => { if (f.band) counts[f.band]++; });
+    FEATURES.forEach(f => { counts[f.band]++; });
     return counts;
   }, []);
 
@@ -578,7 +579,7 @@ function FeatureDetail({
           className={`detail-freq-bar ${f.band}`}
           style={{
             width: `${f.adoptionPct}%`,
-            background: bandColorVar(f.band!),
+            background: bandColorVar(f.band),
           }}
         ></div>
       </div>
@@ -640,20 +641,15 @@ function ProductDetail({
   const p = PRODUCTS.find(x => x.id === pid);
   if (!p) return null;
 
-  const fullCount = FEATURES.filter(f => f.presence[pid] === 'full').length;
-  const partialCount = FEATURES.filter(f => f.presence[pid] === 'partial').length;
-  const absentCount = FEATURES.filter(f => f.presence[pid] === 'absent').length;
-  const rawScore = (fullCount + partialCount) - absentCount;
-
-  let weightedScore = 0;
-  let maxWeighted = 0;
-  FEATURES.forEach(f => {
-    maxWeighted += f.weight;
-    if (f.presence[pid] === 'full') weightedScore += f.weight;
-    else if (f.presence[pid] === 'partial') weightedScore += Math.round(f.weight * 0.5);
-    else weightedScore -= f.weight;
-  });
-  const pct = Math.round((fullCount + partialCount) / FEATURES.length * 100);
+  const {
+    fullCount,
+    partialCount,
+    absentCount,
+    rawScore,
+    weightedScore,
+    maxWeighted,
+    coveragePct: pct,
+  } = getProductScores(pid);
 
   /* ── Weight colors ── */
   const weightColors: Record<number, string> = {
