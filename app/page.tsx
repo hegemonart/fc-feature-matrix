@@ -686,6 +686,7 @@ export default function FeatureMatrixPage() {
         {tooltipData && (
           <>
             <div className="tt-feature">{tooltipData.product}</div>
+            <div className="tt-product">{tooltipData.feature}</div>
             <div className="tt-desc">{tooltipData.desc}</div>
             <div className="tt-weights">
               <span className="tt-tier">Tier: {{ A: 'Must-have', B: 'Commercial table stakes', C: 'ROI driver', D: 'Differentiator', E: 'Content depth', F: 'Experimental' }[tooltipData.tier] || tooltipData.tier}</span>
