@@ -14,6 +14,7 @@ async function requireAdmin(req: NextRequest) {
 
 const patchSchema = z.object({
   isAdmin: z.boolean().optional(),
+  isPremium: z.boolean().optional(),
   newPassword: z.string().min(12).optional(),
 });
 
@@ -29,7 +30,7 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   const parsed = patchSchema.safeParse(body);
   if (!parsed.success) return NextResponse.json({ error: parsed.error.issues[0].message }, { status: 400 });
 
-  const { isAdmin, newPassword } = parsed.data;
+  const { isAdmin, isPremium, newPassword } = parsed.data;
 
   // Toggle is_admin with last-admin guardrail (atomic single-statement UPDATE)
   if (isAdmin === false) {
@@ -46,6 +47,11 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
 
   if (isAdmin === true) {
     await db.update(users).set({ isAdmin: true }).where(eq(users.id, id));
+    return NextResponse.json({ ok: true });
+  }
+
+  if (isPremium !== undefined) {
+    await db.update(users).set({ isPremium }).where(eq(users.id, id));
     return NextResponse.json({ ok: true });
   }
 

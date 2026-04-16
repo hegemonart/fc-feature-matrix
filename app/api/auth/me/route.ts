@@ -19,5 +19,6 @@ export async function GET(req: NextRequest) {
     authenticated: true,
     email: user.email,
     isAdmin: user.isAdmin,
+    isPremium: user.isPremium,
   });
 }

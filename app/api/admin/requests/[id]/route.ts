@@ -58,6 +58,8 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
     let userId: string;
     if (existing.length > 0) {
       userId = existing[0].id;
+      // Ensure existing user gets premium access
+      await tx.update(users).set({ isPremium: true }).where(eq(users.id, userId));
     } else {
       const [created] = await tx
         .insert(users)
@@ -65,6 +67,7 @@ export async function POST(req: NextRequest, { params }: { params: Promise<{ id:
           email: reqRow.email.toLowerCase(),
           passwordHash,
           isAdmin: false,
+          isPremium: true,
         })
         .returning({ id: users.id });
       userId = created.id;
