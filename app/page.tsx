@@ -72,6 +72,26 @@ export default function FeatureMatrixPage() {
   const [lockedModalVisible, setLockedModalVisible] = useState(false);
   const [lockedFlowName, setLockedFlowName] = useState('');
   const [comingSoonVisible, setComingSoonVisible] = useState(false);
+  const [requestSending, setRequestSending] = useState(false);
+  const [requestSent, setRequestSent] = useState<string | null>(null);
+
+  const sendAccessRequest = useCallback(async (feature: string, source: string) => {
+    setRequestSending(true);
+    try {
+      const res = await fetch('/api/email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ feature, source }),
+      });
+      if (!res.ok) throw new Error('Failed');
+      setRequestSent(feature);
+      setTimeout(() => setRequestSent(null), 3000);
+    } catch {
+      alert('Failed to send request. Please try again.');
+    } finally {
+      setRequestSending(false);
+    }
+  }, []);
   const [comingSoonFlowName, setComingSoonFlowName] = useState('');
 
   /* ── Tooltip ── */
@@ -493,13 +513,13 @@ export default function FeatureMatrixPage() {
                     <button className="preview-cta-btn" onClick={() => { setLoginError(''); setCtaView('login'); }}>
                       Sign in
                     </button>
-                    <a className="preview-cta-btn preview-cta-request" href="mailto:sergey@humbleteam.com?subject=Access%20Request%20%E2%80%93%20FC%20Benchmark&body=Hi%2C%0A%0AI%E2%80%99d%20like%20to%20request%20access%20to%20the%20FC%20Benchmark%20matrix.%0A%0AThanks">
+                    <button className="preview-cta-btn preview-cta-request" disabled={requestSending} onClick={() => sendAccessRequest('Full Matrix', 'login_cta')}>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                       </svg>
-                      Request access
-                    </a>
+                      {requestSent === 'Full Matrix' ? 'Request sent!' : requestSending ? 'Sending...' : 'Request access'}
+                    </button>
                   </>
                 ) : (
                   <>
@@ -579,13 +599,13 @@ export default function FeatureMatrixPage() {
           </div>
           <h3 id="lockedTitle">Analysis Restricted</h3>
           <p>The <span className="locked-flow-name">{lockedFlowName}</span> view is locked. This deep-dive flow requires admin access to unlock comparative analysis across products.</p>
-          <a className="locked-btn" href="mailto:atillyard@brentfordfc.com?subject=Access%20Request%20%E2%80%93%20FC%20Benchmark&body=Hi%2C%0A%0AI%E2%80%99d%20like%20to%20request%20access%20to%20the%20locked%20analysis%20views%20on%20FC%20Benchmark.%0A%0AThanks">
+          <button className="locked-btn" disabled={requestSending} onClick={() => { sendAccessRequest(lockedFlowName, 'locked_modal'); setLockedModalVisible(false); }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
             </svg>
-            Request access from admin
-          </a>
+            {requestSending ? 'Sending...' : 'Request access from admin'}
+          </button>
           <button className="locked-dismiss" onClick={() => setLockedModalVisible(false)}>Maybe later</button>
         </div>
       </div>
@@ -652,7 +672,7 @@ export default function FeatureMatrixPage() {
           </div>
           <h3 id="comingSoonTitle">Coming Soon</h3>
           <p>The <span className="locked-flow-name">{comingSoonFlowName}</span> analysis is locked. Contact admin to unlock this view.</p>
-          <button className="locked-btn" onClick={() => { window.location.href = 'mailto:sergey@humbleteam.com?subject=Unlock%20' + encodeURIComponent(comingSoonFlowName) + '%20view&body=Hi%2C%20I%27d%20like%20access%20to%20the%20' + encodeURIComponent(comingSoonFlowName) + '%20analysis.'; setComingSoonVisible(false); }}>Send request</button>
+          <button className="locked-btn" disabled={requestSending} onClick={() => { sendAccessRequest(comingSoonFlowName, 'coming_soon_modal'); setComingSoonVisible(false); }}>{requestSending ? 'Sending...' : 'Send request'}</button>
         </div>
       </div>
 

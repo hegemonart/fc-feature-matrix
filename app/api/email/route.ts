@@ -1,0 +1,60 @@
+import { NextRequest, NextResponse } from 'next/server';
+
+function getResend() {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const { Resend } = require('resend') as typeof import('resend');
+  return new Resend(process.env.RESEND_API_KEY);
+}
+
+/* Simple in-memory rate limit: max 5 requests per IP per minute */
+const rateMap = new Map<string, number[]>();
+const RATE_LIMIT = 5;
+const RATE_WINDOW = 60_000;
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const hits = (rateMap.get(ip) || []).filter(t => now - t < RATE_WINDOW);
+  if (hits.length >= RATE_LIMIT) return true;
+  hits.push(now);
+  rateMap.set(ip, hits);
+  return false;
+}
+
+export async function POST(req: NextRequest) {
+  const ip = req.headers.get('x-forwarded-for') || 'unknown';
+  if (isRateLimited(ip)) {
+    return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
+  }
+
+  let body: { feature?: string; source?: string };
+  try {
+    body = await req.json();
+  } catch {
+    return NextResponse.json({ error: 'Invalid JSON' }, { status: 400 });
+  }
+
+  const feature = body.feature || 'Unknown';
+  const source = body.source || 'unknown';
+
+  try {
+    const resend = getResend();
+    await resend.emails.send({
+      from: 'FC Benchmark <noreply@humbleteam.com>',
+      to: ['hi@humbleteam.com'],
+      subject: `FC Benchmark — Access request: ${feature}`,
+      text: [
+        `New access request for FC Benchmark.`,
+        ``,
+        `View requested: ${feature}`,
+        `Source: ${source}`,
+        `Time: ${new Date().toISOString()}`,
+        `IP: ${ip}`,
+      ].join('\n'),
+    });
+
+    return NextResponse.json({ ok: true });
+  } catch (err) {
+    console.error('Email send failed:', err);
+    return NextResponse.json({ error: 'Failed to send email' }, { status: 500 });
+  }
+}
