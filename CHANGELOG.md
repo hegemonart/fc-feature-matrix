@@ -1,5 +1,8 @@
 # Changelog
 
+## v5.0 — 2026-04-16
+CI/CD pipeline: GitHub Actions runs lint, typecheck, test, build on every push/PR to master. Vitest added with smoke tests for scoring. ESLint 9 flat config wraps eslint-config-next (was missing). Vercel deploy unchanged. Pre-existing JSX lint error in header fixed.
+
 ## v4.3 — 2026-04-16
 Eintracht Frankfurt full re-check: 21 features flipped FALSE→TRUE after sequential browser verification. Score -64→57 (3rd overall). 26 screenshot evidence files. New TRUE: search, next match, results, standings, news rich, video, podcast, store, products, membership, heritage, stadium, museum, players, women, academy, esports, sponsors, social.
 
