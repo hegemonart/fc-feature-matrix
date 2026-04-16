@@ -599,7 +599,7 @@ export default function FeatureMatrixPage() {
           </div>
           <h3 id="lockedTitle">Analysis Restricted</h3>
           <p>The <span className="locked-flow-name">{lockedFlowName}</span> view is locked. This deep-dive flow requires admin access to unlock comparative analysis across products.</p>
-          <button className="locked-btn" disabled={requestSending} onClick={() => { sendAccessRequest(lockedFlowName, 'locked_modal'); setLockedModalVisible(false); }}>
+          <button className="locked-btn" disabled={requestSending} onClick={() => { sendAccessRequest(lockedFlowName, 'locked_modal', authEmail); setLockedModalVisible(false); }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <rect x="2" y="4" width="20" height="16" rx="2" />
               <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
@@ -672,7 +672,7 @@ export default function FeatureMatrixPage() {
           </div>
           <h3 id="comingSoonTitle">Coming Soon</h3>
           <p>The <span className="locked-flow-name">{comingSoonFlowName}</span> analysis is locked. Contact admin to unlock this view.</p>
-          <button className="locked-btn" disabled={requestSending} onClick={() => { sendAccessRequest(comingSoonFlowName, 'coming_soon_modal'); setComingSoonVisible(false); }}>{requestSending ? 'Sending...' : 'Send request'}</button>
+          <button className="locked-btn" disabled={requestSending} onClick={() => { sendAccessRequest(comingSoonFlowName, 'coming_soon_modal', authEmail); setComingSoonVisible(false); }}>{requestSending ? 'Sending...' : 'Send request'}</button>
         </div>
       </div>
 
