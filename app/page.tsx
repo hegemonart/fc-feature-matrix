@@ -300,7 +300,7 @@ export default function FeatureMatrixPage() {
       {/* ── HEADER ── */}
       <header>
         <img src="/img/logo.svg" alt="Humbleteam" className="header-logo" />
-        <div className="header-center">FC Benchmark <span>//</span> April 2026</div>
+        <div className="header-center">FC Benchmark <span>{'//'}</span> April 2026</div>
         {authed && (
           <button className="sign-in-btn" onClick={handleLogout}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
