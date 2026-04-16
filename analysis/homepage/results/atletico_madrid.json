@@ -77,7 +77,7 @@
     "search_input_in_header": "browser-verified",
     "shop_shortcut_in_header": "browser-verified",
     "tickets_shortcut_in_header": "browser-verified",
-    "sponsor_lockup_in_header": "browser-verified",
+    "sponsor_lockup_in_header": "needs-live-check",
     "persistent_bar_above_header": "browser-verified",
     "hero_carousel": "browser-verified",
     "secondary_editorial_strip_below_hero": "browser-verified",

@@ -73,7 +73,7 @@
   "total_score": -21,
   "confidence": {
     "language_switcher_in_header": "browser-verified",
-    "login_account": "browser-verified",
+    "login_account": "needs-live-check",
     "search_input_in_header": "browser-verified",
     "shop_shortcut_in_header": "browser-verified",
     "tickets_shortcut_in_header": "browser-verified",
@@ -84,7 +84,7 @@
     "brand_sponsor_highlighted_in_hero": "browser-verified",
     "next_match_block": "browser-verified",
     "next_match_feature_rich": "browser-verified",
-    "results_block": "browser-verified",
+    "results_block": "needs-live-check",
     "standings_block": "browser-verified",
     "birthday_squad_calendar": "browser-verified",
     "push_notification_opt_in": "browser-verified",
