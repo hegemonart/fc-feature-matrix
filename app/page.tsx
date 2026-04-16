@@ -308,18 +308,24 @@ export default function FeatureMatrixPage() {
         <img src="/img/logo.svg" alt="Humbleteam" className="header-logo" />
         <div className="header-center">FC Benchmark <span>{'//'}</span> April 2026</div>
         {authed && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          {isAdmin && (
-            <a href="/admin" className="sign-in-btn" style={{ textDecoration: 'none' }}>Admin</a>
-          )}
-          <button className="sign-in-btn" onClick={handleLogout}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
-              <polyline points="16 17 21 12 16 7" />
-              <line x1="21" y1="12" x2="9" y2="12" />
-            </svg>
-            Sign out
-          </button>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            {isAdmin && (
+              <a href="/admin" className="sign-in-btn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+                Admin
+              </a>
+            )}
+            <button className="sign-in-btn" onClick={handleLogout}>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
+                <polyline points="16 17 21 12 16 7" />
+                <line x1="21" y1="12" x2="9" y2="12" />
+              </svg>
+              Sign out
+            </button>
           </div>
         )}
       </header>

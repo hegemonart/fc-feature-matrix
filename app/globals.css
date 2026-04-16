@@ -50,7 +50,7 @@ header { background: var(--bg2); border-bottom: 1px solid var(--border); padding
 .header-center span { color: var(--accent); }
 .logo { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
 .logo span { color: var(--accent); }
-.sign-in-btn { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all .15s ease-out; white-space: nowrap; margin-left: auto; }
+.sign-in-btn { display: inline-flex; align-items: center; gap: 6px; background: transparent; border: 1px solid var(--border); border-radius: 8px; padding: 7px 14px; font-size: 12px; font-weight: 600; color: var(--muted); cursor: pointer; transition: all .15s ease-out; white-space: nowrap; margin-left: auto; text-decoration: none; }
 .sign-in-btn:hover { border-color: var(--accent); color: var(--accent); }
 .sign-in-btn svg { width: 14px; height: 14px; }
 .header-stats { display: flex; gap: 16px; margin-left: auto; }
