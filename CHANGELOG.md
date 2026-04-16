@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.2 — 2026-04-16
+Local logos: download all 33 SVGs from Wikimedia to public/img/logos/, no more external CDN dependency. Score row moved below logos in thead. "Coming Soon" modal updated: "contact admin to unlock" + "Send request" CTA. Real Madrid search_input_in_header flipped FALSE (score 32→28).
+
 ## v4.1 — 2026-04-16
 Feature tooltip now shows element-level screenshot evidence on hover for TRUE cells. API route serves PNGs from crosscheck/img/. Added `key` field to Feature type so screenshot filenames resolve correctly.
 

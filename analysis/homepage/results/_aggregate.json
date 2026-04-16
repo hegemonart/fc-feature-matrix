@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15",
+  "generated_at": "2026-04-16",
   "total_clubs": 33,
   "total_features": 66,
   "features": {
@@ -1879,14 +1879,13 @@
       ]
     },
     "search_input_in_header": {
-      "adoption_count": 21,
-      "adoption_pct": 64,
+      "adoption_count": 20,
+      "adoption_pct": 61,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
         "valencia_cf",
         "juventus",
-        "real_madrid",
         "chelsea",
         "arsenal",
         "bvb_dortmund",
@@ -1905,6 +1904,7 @@
         "inter_milan"
       ],
       "clubs_no": [
+        "real_madrid",
         "motogp",
         "f1",
         "psg",

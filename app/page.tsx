@@ -409,6 +409,28 @@ export default function FeatureMatrixPage() {
                     Adoption {adoptionSort === 'asc' ? '\u25B2' : adoptionSort === 'desc' ? '\u25BC' : ''}
                   </th>
                 </tr>
+                <tr className="score-row score-row-top">
+                  <td
+                    className="feature-col score-label sortable"
+                    onClick={() => {
+                      if (!authed) return;
+                      setScoreSort(prev => prev === 'desc' ? 'asc' : prev === 'asc' ? null : 'desc');
+                    }}
+                  >
+                    Total Score {scoreSort === 'desc' ? '\u25BC' : scoreSort === 'asc' ? '\u25B2' : ''}
+                  </td>
+                  {visibleProds.map(p => {
+                    const s = productScores[p.id];
+                    return (
+                      <td key={p.id} className={`score-cell${selectedProduct === p.id ? ' highlighted' : ''}`}>
+                        <span className={`score-value ${s >= 0 ? 'positive' : 'negative'}`}>
+                          {s >= 0 ? '+' : ''}{s}
+                        </span>
+                      </td>
+                    );
+                  })}
+                  <td className="freq-col"></td>
+                </tr>
               </thead>
               <tbody>
                 {visibleFeats.length === 0 ? (
@@ -629,8 +651,8 @@ export default function FeatureMatrixPage() {
             </svg>
           </div>
           <h3 id="comingSoonTitle">Coming Soon</h3>
-          <p>The <span className="locked-flow-name">{comingSoonFlowName}</span> analysis is currently being built. This view will be available in a future update.</p>
-          <button className="locked-btn" onClick={() => setComingSoonVisible(false)}>Got it</button>
+          <p>The <span className="locked-flow-name">{comingSoonFlowName}</span> analysis is locked. Contact admin to unlock this view.</p>
+          <button className="locked-btn" onClick={() => { window.location.href = 'mailto:sergey@humbleteam.com?subject=Unlock%20' + encodeURIComponent(comingSoonFlowName) + '%20view&body=Hi%2C%20I%27d%20like%20access%20to%20the%20' + encodeURIComponent(comingSoonFlowName) + '%20analysis.'; setComingSoonVisible(false); }}>Send request</button>
         </div>
       </div>
 

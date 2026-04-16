@@ -2,11 +2,11 @@
   "product_id": "real_madrid",
   "screenshot": "01-real-madrid.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 32,
+  "total_score": 28,
   "features": {
     "language_switcher_in_header": false,
     "login_account": false,
-    "search_input_in_header": true,
+    "search_input_in_header": false,
     "shop_shortcut_in_header": true,
     "tickets_shortcut_in_header": true,
     "sponsor_lockup_in_header": true,

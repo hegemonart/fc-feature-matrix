@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-15",
+  "generated_at": "2026-04-16",
   "total_clubs": 33,
   "rankings": [
     {
@@ -42,9 +42,9 @@
       "rank": 5,
       "product_id": "real_madrid",
       "screenshot": "01-real-madrid.png",
-      "total_score": 32,
-      "yes_count": 24,
-      "no_count": 42,
+      "total_score": 28,
+      "yes_count": 23,
+      "no_count": 43,
       "feature_count": 66
     },
     {
