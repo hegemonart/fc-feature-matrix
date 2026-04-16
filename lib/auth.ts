@@ -83,6 +83,7 @@ export interface AuthUser {
   passwordHash: string;
   name: string | null;
   isAdmin: boolean;
+  isPremium: boolean;
 }
 
 export async function getUserByEmail(email: string): Promise<AuthUser | null> {
@@ -93,6 +94,7 @@ export async function getUserByEmail(email: string): Promise<AuthUser | null> {
       passwordHash: users.passwordHash,
       name: users.name,
       isAdmin: users.isAdmin,
+      isPremium: users.isPremium,
     })
     .from(users)
     .where(eq(users.email, email.toLowerCase()))

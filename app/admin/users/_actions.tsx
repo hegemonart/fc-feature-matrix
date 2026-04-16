@@ -7,6 +7,7 @@ interface UserRow {
   email: string;
   name: string | null;
   isAdmin: boolean;
+  isPremium: boolean;
   createdAt: string;
   lastLoginAt: string | null;
 }
@@ -185,7 +186,30 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
   const [resetTarget, setResetTarget] = useState<UserRow | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<UserRow | null>(null);
   const [togglingId, setTogglingId] = useState<string | null>(null);
+  const [togglingPremiumId, setTogglingPremiumId] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const handleTogglePremium = useCallback(async (user: UserRow) => {
+    setTogglingPremiumId(user.id);
+    setErrors((prev) => ({ ...prev, [user.id]: '' }));
+    try {
+      const res = await fetch(`/api/admin/users/${user.id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ isPremium: !user.isPremium }),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setErrors((prev) => ({ ...prev, [user.id]: data.error || 'Failed' }));
+        return;
+      }
+      setUserList((prev) =>
+        prev.map((u) => (u.id === user.id ? { ...u, isPremium: !u.isPremium } : u))
+      );
+    } finally {
+      setTogglingPremiumId(null);
+    }
+  }, []);
 
   const handleToggleAdmin = useCallback(async (user: UserRow) => {
     setTogglingId(user.id);
@@ -221,6 +245,7 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
             <th>Email</th>
             <th>Name</th>
             <th>Role</th>
+            <th>Premium</th>
             <th>Created</th>
             <th>Last login</th>
             <th>Actions</th>
@@ -236,10 +261,23 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
                   {u.isAdmin ? 'admin' : 'user'}
                 </span>
               </td>
+              <td>
+                <span className="admin-badge" style={{ background: u.isPremium ? '#1a2a3a' : '#111', color: u.isPremium ? '#60a5fa' : '#444' }}>
+                  {u.isPremium ? 'premium' : '—'}
+                </span>
+              </td>
               <td style={{ fontSize: 12, color: '#666' }}>{fmt(u.createdAt)}</td>
               <td style={{ fontSize: 12, color: '#666' }}>{fmt(u.lastLoginAt)}</td>
               <td>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
+                  <button
+                    className="admin-btn"
+                    disabled={togglingPremiumId === u.id}
+                    onClick={() => handleTogglePremium(u)}
+                    style={u.isPremium ? { borderColor: '#1e3a5f', color: '#60a5fa' } : {}}
+                  >
+                    {u.isPremium ? 'Revoke premium' : 'Grant premium'}
+                  </button>
                   <button
                     className="admin-btn"
                     disabled={togglingId === u.id}

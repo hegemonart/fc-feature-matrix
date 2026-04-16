@@ -62,6 +62,7 @@ export default function FeatureMatrixPage() {
   const [authed, setAuthed] = useState(false);
   const [authEmail, setAuthEmail] = useState('');
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isPremium, setIsPremium] = useState(false);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [ctaView, setCtaView] = useState<'cta' | 'login'>('cta');
   const [loginEmail, setLoginEmail] = useState('');
@@ -174,7 +175,7 @@ export default function FeatureMatrixPage() {
   /* ── Auth: check session on mount ── */
   useEffect(() => {
     fetch('/api/auth/me').then(r => r.json()).then(d => {
-      if (d.authenticated) { setAuthed(true); setAuthEmail(d.email); setIsAdmin(d.isAdmin ?? false); }
+      if (d.authenticated) { setAuthed(true); setAuthEmail(d.email); setIsAdmin(d.isAdmin ?? false); setIsPremium(d.isPremium ?? false); }
     }).catch(() => {});
     trackEvent('page_view', { path: '/' });
   }, []);
@@ -197,6 +198,7 @@ export default function FeatureMatrixPage() {
         setAuthed(true);
         setAuthEmail(data.email);
         setIsAdmin(meData.isAdmin ?? false);
+        setIsPremium(meData.isPremium ?? false);
         setLoginModalVisible(false);
         setCtaView('cta');
         setLoginEmail('');
@@ -216,14 +218,22 @@ export default function FeatureMatrixPage() {
     setAuthed(false);
     setAuthEmail('');
     setIsAdmin(false);
+    setIsPremium(false);
   }, []);
 
   const handleTabClick = useCallback((name: string) => {
-    if (authed) {
+    if (isAdmin || isPremium) {
+      // Premium / admin: flow is unlocked — show coming soon (content not built yet)
       trackEvent('tab_click', { tab: name, outcome: 'coming_soon' });
       setComingSoonFlowName(name);
       setComingSoonVisible(true);
+    } else if (authed) {
+      // Regular user: logged in but no premium — prompt to request access
+      trackEvent('tab_click', { tab: name, outcome: 'locked' });
+      setLockedFlowName(name);
+      setLockedModalVisible(true);
     } else {
+      // Not logged in
       trackEvent('tab_click', { tab: name, outcome: 'locked' });
       setLockedFlowName(name);
       setLockedModalVisible(true);

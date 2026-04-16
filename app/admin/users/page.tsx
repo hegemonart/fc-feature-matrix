@@ -12,6 +12,7 @@ export default async function AdminUsersPage() {
       email: users.email,
       name: users.name,
       isAdmin: users.isAdmin,
+      isPremium: users.isPremium,
       createdAt: users.createdAt,
       lastLoginAt: users.lastLoginAt,
     })
