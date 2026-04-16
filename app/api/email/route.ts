@@ -3,7 +3,7 @@ import { db } from '@/lib/db';
 import { accessRequests } from '@/lib/db/schema';
 
 function getResend() {
-  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  // eslint-disable-next-line @typescript-eslint/no-require-imports -- dynamic import avoids module-level init in tests
   const { Resend } = require('resend') as typeof import('resend');
   return new Resend(process.env.RESEND_API_KEY);
 }
