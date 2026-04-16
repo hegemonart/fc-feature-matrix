@@ -61,6 +61,7 @@ export default function FeatureMatrixPage() {
   /* ── Auth ── */
   const [authed, setAuthed] = useState(false);
   const [authEmail, setAuthEmail] = useState('');
+  const [isAdmin, setIsAdmin] = useState(false);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [ctaView, setCtaView] = useState<'cta' | 'login'>('cta');
   const [loginEmail, setLoginEmail] = useState('');
@@ -173,7 +174,7 @@ export default function FeatureMatrixPage() {
   /* ── Auth: check session on mount ── */
   useEffect(() => {
     fetch('/api/auth/me').then(r => r.json()).then(d => {
-      if (d.authenticated) { setAuthed(true); setAuthEmail(d.email); }
+      if (d.authenticated) { setAuthed(true); setAuthEmail(d.email); setIsAdmin(d.isAdmin ?? false); }
     }).catch(() => {});
     trackEvent('page_view', { path: '/' });
   }, []);
@@ -190,8 +191,12 @@ export default function FeatureMatrixPage() {
       });
       const data = await res.json();
       if (res.ok && data.ok) {
+        // Fetch full user info (including isAdmin) after successful login
+        const meRes = await fetch('/api/auth/me');
+        const meData = await meRes.json();
         setAuthed(true);
         setAuthEmail(data.email);
+        setIsAdmin(meData.isAdmin ?? false);
         setLoginModalVisible(false);
         setCtaView('cta');
         setLoginEmail('');
@@ -210,6 +215,7 @@ export default function FeatureMatrixPage() {
     await fetch('/api/auth/logout', { method: 'POST' });
     setAuthed(false);
     setAuthEmail('');
+    setIsAdmin(false);
   }, []);
 
   const handleTabClick = useCallback((name: string) => {
@@ -302,6 +308,10 @@ export default function FeatureMatrixPage() {
         <img src="/img/logo.svg" alt="Humbleteam" className="header-logo" />
         <div className="header-center">FC Benchmark <span>{'//'}</span> April 2026</div>
         {authed && (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          {isAdmin && (
+            <a href="/admin" className="sign-in-btn" style={{ textDecoration: 'none' }}>Admin</a>
+          )}
           <button className="sign-in-btn" onClick={handleLogout}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4" />
@@ -310,6 +320,7 @@ export default function FeatureMatrixPage() {
             </svg>
             Sign out
           </button>
+          </div>
         )}
       </header>
 

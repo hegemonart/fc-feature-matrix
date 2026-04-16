@@ -1,9 +1,13 @@
 import { createHmac } from 'crypto';
 import bcrypt from 'bcryptjs';
+import { env } from './env';
+import { db } from './db';
+import { users } from './db/schema';
+import { eq } from 'drizzle-orm';
 
-const SECRET = process.env.AUTH_SECRET || 'fc-benchmark-dev-secret-change-in-prod';
+const SECRET = env.AUTH_SECRET;
 const COOKIE_NAME = 'fc_session';
-const MAX_AGE = 60 * 60 * 24 * 7; // 7 days
+const MAX_AGE = 60 * 60 * 24 * 7; // 7 days in seconds
 
 // ── Password helpers ──
 
@@ -32,11 +36,21 @@ export function parseSessionToken(token: string): { email: string } | null {
   if (parts.length < 3) return null;
   const sig = parts.pop()!;
   const payload = parts.join(':');
+
+  // Verify HMAC
   if (sign(payload) !== sig) return null;
-  // Extract email (everything before the last : which was timestamp)
+
+  // Extract timestamp (last segment of payload) and enforce token age
   const lastColon = payload.lastIndexOf(':');
   if (lastColon === -1) return null;
   const email = payload.substring(0, lastColon);
+  const tsStr = payload.substring(lastColon + 1);
+  const ts = parseInt(tsStr, 10);
+  if (isNaN(ts)) return null;
+
+  const ageMs = Date.now() - ts;
+  if (ageMs > MAX_AGE * 1000) return null; // expired
+
   return { email };
 }
 
@@ -52,32 +66,36 @@ export function clearSessionCookieHeader(): string {
 
 export function getSessionFromCookie(cookieHeader: string | null): { email: string } | null {
   if (!cookieHeader) return null;
-  const match = cookieHeader.split(';').map(c => c.trim()).find(c => c.startsWith(`${COOKIE_NAME}=`));
+  const match = cookieHeader
+    .split(';')
+    .map((c) => c.trim())
+    .find((c) => c.startsWith(`${COOKIE_NAME}=`));
   if (!match) return null;
   const token = match.substring(COOKIE_NAME.length + 1);
   return parseSessionToken(token);
 }
 
-// ── User store ──
+// ── DB-backed user lookup ──
 
-export interface StoredUser {
+export interface AuthUser {
+  id: string;
   email: string;
   passwordHash: string;
-  name?: string;
+  name: string | null;
+  isAdmin: boolean;
 }
 
-export function getUsersFilePath(): string {
-  const path = require('path');
-  return path.join(process.cwd(), 'data', 'users.json');
-}
-
-export function loadUsers(): StoredUser[] {
-  const fs = require('fs');
-  const filePath = getUsersFilePath();
-  try {
-    const raw = fs.readFileSync(filePath, 'utf-8');
-    return JSON.parse(raw);
-  } catch {
-    return [];
-  }
+export async function getUserByEmail(email: string): Promise<AuthUser | null> {
+  const rows = await db
+    .select({
+      id: users.id,
+      email: users.email,
+      passwordHash: users.passwordHash,
+      name: users.name,
+      isAdmin: users.isAdmin,
+    })
+    .from(users)
+    .where(eq(users.email, email.toLowerCase()))
+    .limit(1);
+  return rows[0] ?? null;
 }

@@ -5,10 +5,12 @@
 # Next.js
 # Screenshots
 # Separate projects / reference assets
+# User data (migrated to Postgres)
 .DS_Store
 .claude/worktrees/
 .env*.local
 .next/
+data/users.json
 analysis/homepage/crosscheck/img/.DS_Store
 concept/
 node_modules/
