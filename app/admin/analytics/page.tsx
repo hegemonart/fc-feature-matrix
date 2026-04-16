@@ -81,7 +81,7 @@ export default function AnalyticsPage() {
         <div className="analytics-unauth">
           <h2>Analytics</h2>
           <p>Analytics is restricted to Humbleteam accounts.</p>
-          <Link href="/" className="analytics-back">Go to matrix</Link>
+          <Link href="/admin" className="analytics-back">Go to matrix</Link>
         </div>
       </div>
     );
@@ -90,7 +90,7 @@ export default function AnalyticsPage() {
   return (
     <div className="analytics-shell">
       <header className="analytics-header">
-        <Link href="/" className="analytics-back">
+        <Link href="/admin" className="analytics-back">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <path d="M19 12H5m7-7-7 7 7 7" />
           </svg>

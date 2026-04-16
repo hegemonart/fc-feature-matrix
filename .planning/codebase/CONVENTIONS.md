@@ -5,155 +5,222 @@
 ## Naming Patterns
 
 **Files:**
-- Route handlers: `route.ts` in folder structure (e.g., `app/api/auth/login/route.ts`)
-- Components (React): PascalCase with `.tsx` extension (e.g., `CategoryFilter.tsx`, `ScrollRestore.tsx`)
-- Utilities/modules: camelCase with `.ts` extension (e.g., `auth.ts`, `analytics.ts`, `scoring.ts`)
-- Configuration: kebab-case (e.g., `next.config.ts`, `tsconfig.json`)
-- JSON data files: snake_case (e.g., `real_madrid.json`, `fc_barcelona.json`)
+- React components: PascalCase (e.g., `CategoryFilter.tsx`, `PageTracker.tsx`)
+- Utilities/libraries: camelCase (e.g., `scoring.ts`, `track.ts`, `auth.ts`)
+- Test files: `[name].test.ts` suffix (e.g., `scoring.test.ts`)
+- API routes: lowercase with hyphens in directory structure (`app/api/auth/login/route.ts`)
 
 **Functions:**
-- camelCase for all function names
-- Async functions explicitly labeled with `async` keyword
-- Helper functions may use descriptive prefixes: `get*`, `load*`, `log*`, `create*`, `parse*`, `verify*`, `build*`, `compute*`, `generate*`
+- Exported functions: camelCase (e.g., `getProductScores()`, `trackEvent()`, `createSessionToken()`)
+- Arrow functions in components: camelCase (e.g., `handleLogin()`, `handleCellMouseOver()`)
+- Helper functions: camelCase (e.g., `bandColorVar()`, `bandLabel()`)
 
 **Variables:**
-- camelCase for local variables and constants
-- SCREAMING_SNAKE_CASE for configuration constants that should not change (e.g., `COOKIE_NAME`, `MAX_AGE`, `EVENTS_KEY`, `MAX_EVENTS`)
-- Implicit constant inference: `const` keyword is used, capitalization follows value type
+- State variables: camelCase (e.g., `filterTypes`, `activeCat`, `selectedFeature`)
+- Constants (module-level): camelCase or SCREAMING_SNAKE_CASE for config (e.g., `LOCKED_TABS`, `totalProducts`, `COOKIE_NAME`, `MAX_AGE`)
+- Boolean state: prefixed with active/visible/is (e.g., `authed`, `loginModalVisible`, `featureAlphaSort`)
 
 **Types:**
-- PascalCase for all interface and type names (e.g., `Feature`, `Product`, `Category`, `StoredUser`, `AnalyticsEvent`)
-- Type suffixes optional but meaningful when used (e.g., `*Id`, `*Status`, `*Meta`)
-- Type discriminant literals commonly used (e.g., `'full' | 'absent'` for `PresenceStatus`)
+- Interfaces: PascalCase with `I` prefix avoided (e.g., `interface CatScore`, `interface FeatureData`, `StoredUser`)
+- Type aliases: PascalCase (e.g., `type PresenceStatus`, `type CategoryId`, `type BandId`)
+- Enums: Avoided in favor of literal unions and type aliases
 
 ## Code Style
 
 **Formatting:**
-- No explicit formatter configured (Prettier not installed)
-- ESLint v9 installed but no `.eslintrc` config file
-- Uses Next.js ESLint config via `eslint-config-next` dependency
-- Manual style adherence to TypeScript strict mode
+- No Prettier configured; code follows Next.js/ESLint defaults
+- Semicolons: Always present
+- Quotes: Single quotes for strings
+- Indentation: 2 spaces
+- Max line length: No strict limit, but lines are typically kept under 100 characters
 
 **Linting:**
-- ESLint v9 with Next.js configuration
-- Command: `npm run lint` (runs `eslint` with default config)
-- TypeScript strict mode enabled in `tsconfig.json`
-
-**Indentation:**
-- 2 spaces (inferred from source files)
+- ESLint v9 with Next.js config (`eslint-config-next`)
+- Config: `eslint.config.mjs` (flat config format)
+- Run with: `npm run lint`
+- Ignores: `concept/`, `references/`, `.claude/`, `sergey playground/`, `analysis/`
 
 ## Import Organization
 
 **Order:**
-1. External libraries and Next.js built-ins (`import { NextRequest, NextResponse } from 'next/server'`)
-2. Type imports (prefixed with `type`, e.g., `import type { Feature, CategoryId } from '@/lib/data'`)
-3. Local modules with `@/` alias (e.g., `import { CATEGORIES, FEATURES } from '@/lib/data'`)
-4. Component imports (e.g., `import CategoryFilter from './CategoryFilter'`)
-5. Comments separating logical groups when multiple imports per group
+1. External libraries (React, Next.js, third-party packages)
+2. Type imports (marked with `type` keyword)
+3. Local absolute imports (using `@/` alias)
+4. Comments (ASCII art dividers like `/* ── ... ── */`)
 
 **Path Aliases:**
-- Single alias configured: `@/*` maps to root directory
-- All imports use absolute `@/` paths (e.g., `@/lib/auth`, `@/analysis`, `@/lib/data`)
-- Never use relative imports like `../../../`
+- `@/` maps to project root (configured in `tsconfig.json`)
+- Used for all local imports (e.g., `@/lib/data`, `@/lib/track`, `@/app/layout.tsx`)
 
-**Type imports:**
-- Use `import type { }` for type-only imports to improve build performance
-- Example: `import type { Metadata } from 'next'`
+**Example:**
+```typescript
+import { useState, useMemo, useRef, useCallback, useEffect } from 'react';
+import {
+  CATEGORIES,
+  PRODUCTS,
+  FEATURES,
+  type PresenceStatus,
+  type CategoryId,
+} from '@/lib/data';
+import { trackEvent } from '@/lib/track';
+```
 
 ## Error Handling
 
-**Patterns:**
-- Try-catch blocks wrap all async operations that may fail
-- Catch blocks swallow errors with empty catch body `catch { }` when error is not critical
-- Fire-and-forget patterns used for non-critical operations: `somePromise().catch(() => {})`
-- Returns `null` for validation failures and not-found states (e.g., `parseSessionToken()` returns `null` on invalid token)
-- Returns empty arrays or empty objects as defaults (e.g., `loadUsers()` returns `[]` on file read failure)
-- HTTP handlers return appropriate status codes (400, 401, 404, 500)
-- Generic error messages returned to client to avoid leaking implementation details (e.g., "Invalid email or password" instead of distinguishing user vs password failure)
-- Console logging used for server-side errors as fallback (e.g., `console.error('[analytics] Failed to log event:', err)`)
+**API Routes:**
+- Wrapped in try-catch blocks catching all errors generically
+- Return NextResponse.json with `{ error: string }` on failure
+- Status codes: 400 (validation), 401 (auth), 500 (server error)
+- Pattern: See `app/api/auth/login/route.ts`
+
+**Client Code:**
+- Fetch calls use `.catch(() => {})` for silent failures in analytics
+- UI errors use `alert()` for user notification or state-based error displays
+- Comments explain intent when silently failing (e.g., `// Silently fail — analytics should never break the app`)
+
+**Example:**
+```typescript
+try {
+  const res = await fetch('/api/auth/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: loginEmail, password: loginPassword }),
+  });
+  const data = await res.json();
+  if (res.ok && data.ok) {
+    setAuthed(true);
+  } else {
+    setLoginError(data.error || 'Login failed');
+  }
+} catch {
+  setLoginError('Network error');
+} finally {
+  setLoginLoading(false);
+}
+```
+
+## CSS Conventions
+
+**Framework:** Plain CSS only, no Tailwind, no CSS-in-JS libraries
+- All CSS in `app/globals.css` (single file)
+- CSS custom properties for theming (e.g., `var(--bg)`, `var(--accent)`, `var(--green)`)
+- BEM-like class naming (e.g., `.bd-feature-item`, `.col-header`)
+
+**Colors:** Defined as CSS variables in `:root`:
+```css
+--bg: #0d0d14;
+--accent: #4f6ef7;
+--green: #22c55e;
+--yellow: #eab308;
+--orange: #f97316;
+--red: #ef4444;
+```
+
+**Inline Styles:** Used sparingly for dynamic values (e.g., `style={{ color: bandColorVar(band) }}`)
 
 ## Logging
 
-**Framework:** console (built-in Node.js `console` object)
+**Framework:** `console.log()` used directly, no logger library
+- No explicit log level configuration observed
+- Fire-and-forget pattern for analytics: `trackEvent()` function in `lib/track.ts`
+- Analytics: POST to `/api/analytics` with event type and data
+- Silent failures: `.catch(() => {})` used to prevent failures from breaking app
 
-**Patterns:**
-- Server-side analytics logged via `logEvent()` helper in `lib/analytics.ts`
-- Client-side tracking via `trackEvent()` helper in `lib/track.ts` (POST to `/api/analytics`)
-- Log entries prefixed with scope in brackets: `console.log('[analytics]', ...)`, `console.error('[analytics] Failed...')`
-- Analytics events are structured objects with `type`, `email`, `timestamp` fields
-- Local dev fallback: if Redis/Upstash not available, events logged to console via `console.log('[analytics]', JSON.stringify(event))`
-- Silent failures preferred for analytics (errors caught but not thrown)
+**Pattern:**
+```typescript
+export function trackEvent(type: string, data: Record<string, unknown> = {}): void {
+  try {
+    fetch('/api/analytics', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ type, data }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch {
+    // Silently fail — analytics should never break the app
+  }
+}
+```
 
 ## Comments
 
 **When to Comment:**
-- File headers document purpose and structure (e.g., `/* ================================================================ analysis/features.ts ... */`)
-- Section dividers use ASCII art: `// ── Section Name ──`
-- Inline comments rare; code should be self-documenting
-- Comments explain "why" not "what" (the code shows what)
-- Complex logic commented with context (e.g., tier floor logic in `computeBands()`)
+- Section dividers using ASCII art: `/* ── Section Name ── */`
+- Explaining non-obvious logic (e.g., asymmetric scoring, cookie parsing)
+- Warning about consequences (e.g., `// Silently fail — analytics should never break the app`)
+- Rarely used for obvious code; let code be self-documenting
 
 **JSDoc/TSDoc:**
-- Not consistently used
-- Some functions have descriptive comments but no @param/@return decorators
-- Example: multi-line comment above `logEvent()` in `analytics.ts` explains behavior without formal JSDoc
-- Component prop types documented via interface definitions rather than JSDoc
+- Used sparingly, mainly for utility functions
+- Simple format: `/** [description] */`
+- Example: `/** Client-side analytics helper. Fire-and-forget POST to /api/analytics. */`
 
-## Function Design
+**ASCII Dividers:**
+Used to separate logical sections in large components and files:
+```typescript
+/* ── Padlock SVG (reused in flow nav) ── */
+/* ── State ── */
+/* ── Auth ── */
+/* ── Derived data ── */
+/* ── Handlers ── */
+/* ── TABLE ROWS — separated to keep main component readable ── */
+```
 
-**Size:**
-- Small, focused functions preferred
-- Utility functions typically 5-20 lines (e.g., `getRedis()`, `sign()`, `createSessionToken()`)
-- Complex business logic like `generateClubSummary()` may be longer (100+ lines) but remains logically cohesive
+## TypeScript
 
-**Parameters:**
-- Named parameters via destructuring when objects passed (e.g., `{ email, password }` in route handlers)
-- Options objects for functions with multiple optional params (e.g., `getEvents(opts: { limit?, type?, email? })`)
-- Type annotations always present for parameters
-- Default values used for optional parameters
+**Strict Mode:** Enabled (`"strict": true` in `tsconfig.json`)
+- All types must be explicit
+- No implicit `any`
+- Null/undefined must be handled explicitly
 
-**Return Values:**
-- Explicit return types annotated on function declarations
-- Promise return type for async functions
-- Nullable types used where `null` is valid return (e.g., `{ email: string } | null`)
-- Void return for side-effect-only functions (e.g., `trackEvent()`)
+**Type Patterns:**
+- Inline interfaces for component props (e.g., `interface CatScore { ... }`)
+- Exported types from data modules (e.g., `type PresenceStatus`, `type CategoryId`)
+- Re-export pattern in `lib/data.ts` for centralized type management
 
-## Module Design
+**Example:**
+```typescript
+export interface CatScore {
+  id: CategoryId;
+  name: string;
+  color: string;
+  got: number;
+  total: number;
+  pctCat: number;
+  verdict: 'ok' | 'warning' | 'danger';
+}
+```
 
-**Exports:**
-- Named exports preferred for utilities and types (e.g., `export async function hashPassword()`, `export interface Feature`)
-- Default exports used only for React components (e.g., `export default function RootLayout()`)
-- Barrel files used to group related exports (e.g., `analysis/index.ts` re-exports from subdirectories)
-
-**Barrel Files:**
-- `lib/data.ts` re-exports from `@/analysis` for backward compatibility
-- `analysis/index.ts` re-exports types, categories, products, features, and helper functions
-- Simplifies consuming code: `import { FEATURES, PRODUCTS } from '@/lib/data'` instead of multiple imports
+## Component Structure
 
 **File Organization:**
-- Shared types in `analysis/types.ts`
-- Per-page-type data in `analysis/{pageType}/` (currently only `homepage/`)
-- Library utilities in `lib/` (auth, analytics, data, scoring, tracking, summary)
-- App routes in `app/` with Next.js App Router structure
-- API routes in `app/api/` following REST conventions
+- Inline components when simple and used once (e.g., `PadlockIcon()` in `app/page.tsx`)
+- Separate `.tsx` files for reusable or moderately complex components (e.g., `CategoryFilter.tsx`, `PageTracker.tsx`)
+- Props interface defined inline above component function
+- Large components split with helper functions (see `app/page.tsx` with `TableRows()`, `FeatureDetail()`, `ProductDetail()`)
 
-## Client/Server Boundaries
+**Naming:**
+- Export default for page components
+- Named exports for helper functions within page components
+- PascalCase function names for all components
 
-**Client Components:**
-- Marked with `'use client'` directive (e.g., `CategoryFilter.tsx`, `PageTracker.tsx`)
-- Used for interactive state and event handlers
+**Pattern in `app/page.tsx`:**
+```typescript
+export default function FeatureMatrixPage() {
+  // ... main component
+}
 
-**Server Components:**
-- Default behavior in Next.js App Router
-- Async components with `await params` pattern (e.g., `params: Promise<{ id: string }>`)
-- Static generation with `generateStaticParams()` for dynamic routes
-- Metadata generation with `generateMetadata()` for SEO
+function TableRows({ ... }) { ... }  // Helper, not exported
+function FeatureDetail({ ... }) { ... }  // Helper, not exported
+function ProductDetail({ ... }) { ... }  // Helper, not exported
+```
 
-## Async/Await Patterns
+## JSX Text Escaping
 
-- All async operations use async/await, not `.then()` chains
-- Promise-based fire-and-forget operations use `.catch(() => {})` for error suppression
-- No promise chaining; each async call awaited explicitly
+**Special Characters:**
+- Unicode escapes used for special characters: `'\u2713'` (check), `'\u00B7'` (middle dot), `'\u00D7'` (times)
+- Comment in code notes the JSX text literal fix: `//'` sequence escaped to prevent issues
+- Example: `<div className="header-center">FC Benchmark <span>{'//'}</span> April 2026</div>`
 
 ---
 

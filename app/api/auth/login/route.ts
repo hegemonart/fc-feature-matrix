@@ -1,6 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { loadUsers, verifyPassword, createSessionToken, sessionCookieHeader } from '@/lib/auth';
+import {
+  getUserByEmail,
+  verifyPassword,
+  createSessionToken,
+  sessionCookieHeader,
+} from '@/lib/auth';
 import { logEvent } from '@/lib/analytics';
+import { db } from '@/lib/db';
+import { users } from '@/lib/db/schema';
+import { eq, sql } from 'drizzle-orm';
 
 export async function POST(req: NextRequest) {
   try {
@@ -9,8 +17,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Email and password required' }, { status: 400 });
     }
 
-    const users = loadUsers();
-    const user = users.find(u => u.email.toLowerCase() === email.toLowerCase());
+    const user = await getUserByEmail(email);
     if (!user) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
@@ -19,6 +26,12 @@ export async function POST(req: NextRequest) {
     if (!valid) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
+
+    // Update last_login_at
+    await db
+      .update(users)
+      .set({ lastLoginAt: sql`now()` })
+      .where(eq(users.id, user.id));
 
     const token = createSessionToken(user.email);
     const ua = req.headers.get('user-agent') || '';

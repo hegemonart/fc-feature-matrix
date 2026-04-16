@@ -1,12 +1,17 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { getSessionFromCookie } from '@/lib/auth';
+import { getSessionFromCookie, getUserByEmail } from '@/lib/auth';
 import { getEvents } from '@/lib/analytics';
 
 export async function GET(req: NextRequest) {
-  // Auth gate
+  // Auth gate — must be an admin
   const cookie = req.headers.get('cookie');
   const session = getSessionFromCookie(cookie);
-  if (!session || !session.email.endsWith('@humbleteam.com')) {
+  if (!session) {
+    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  }
+
+  const user = await getUserByEmail(session.email);
+  if (!user?.isAdmin) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
@@ -15,6 +20,6 @@ export async function GET(req: NextRequest) {
   const type = url.searchParams.get('type') || undefined;
   const email = url.searchParams.get('email') || undefined;
 
-  const events = await getEvents({ limit: Math.min(limit, 1000), type, email });
-  return NextResponse.json(events);
+  const analyticsEvents = await getEvents({ limit: Math.min(limit, 1000), type, email });
+  return NextResponse.json(analyticsEvents);
 }

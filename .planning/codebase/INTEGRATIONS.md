@@ -5,126 +5,125 @@
 ## APIs & External Services
 
 **Email Delivery:**
-- Resend - Email service for access request notifications
-  - SDK/Client: `resend` 6.12.0 npm package
+- Resend - Transactional email service
+  - SDK/Client: `resend` package (v6.12.0)
   - Auth: `RESEND_API_KEY` environment variable
-  - Usage: `app/api/email/route.ts` - sends access request emails to `hi@humbleteam.com`
-  - Endpoint: POST `/api/email` - accepts feature name and source, rate-limited to 5 requests per IP per minute
+  - Implementation: `app/api/email/route.ts` - POST endpoint for sending access request emails
+  - Usage: Sends notification emails to `hi@humbleteam.com` with reply-to set to requester email if provided
 
-**Analytics & Telemetry:**
-- Vercel Analytics - Client-side web analytics
-  - SDK/Client: `@vercel/analytics/next` 2.0.1
-  - Integration: Embedded in `app/layout.tsx` as `<Analytics />` component
-  - Purpose: Tracks page views, user interactions, performance metrics
+**Analytics:**
+- Vercel Analytics - Web analytics and performance monitoring
+  - SDK/Client: `@vercel/analytics/next` package (v2.0.1)
+  - Implementation: `app/layout.tsx` - `<Analytics />` component in root layout
+  - Automatically captures page views, Core Web Vitals, and user interactions
+  - No explicit configuration required (uses Vercel defaults)
 
 ## Data Storage
 
 **Databases:**
-- No database integration - data is file-based
-  - User accounts: `data/users.json` - JSON file with bcrypt password hashes
-  - Analytics events: Upstash Redis (optional, falls back to console logging)
-
-**Redis/In-Memory Store:**
-- Upstash Redis - Managed Redis for analytics events
-  - Connection: REST API via `@upstash/redis` 1.37.0
-  - Auth: `KV_REST_API_URL` and `KV_REST_API_TOKEN` environment variables
-  - Usage: `lib/analytics.ts` - stores analytics events with lazy initialization
-  - Key format: `analytics:events` (Redis list)
-  - Fallback: Logs to console if Redis credentials not provided (local development)
+- None (no traditional database required)
 
 **File Storage:**
-- Local filesystem only - JSON files committed to repository
-  - User data: `data/users.json`
-  - Analysis results: `analysis/homepage/results/*.json` (per-club feature values)
-  - Feature definitions: `analysis/homepage/features.ts` and `analysis/index.ts`
+- Local filesystem (JSON-based user store)
+  - Location: `data/users.json`
+  - Format: JSON array of user objects with `email`, `passwordHash`, and optional `name`
+  - Access: Loaded in-memory via `lib/auth.ts` functions `loadUsers()` and `getUsersFilePath()`
+  - Committed: Yes, checked into version control with sample/seeded data
 
 **Caching:**
-- None - no explicit caching layer configured
+- Upstash Redis (KV store)
+  - Provider: Upstash (serverless Redis)
+  - Connection: `KV_REST_API_URL` and `KV_REST_API_TOKEN` environment variables
+  - Client: `@upstash/redis` package (v1.37.0) - `Redis` class with REST API
+  - Usage: Analytics event storage
+    - Implementation: `lib/analytics.ts`
+    - Stores events in list at key `analytics:events`
+    - Max capacity: 10,000 events (FIFO with `ltrim`)
+    - Fallback: Logs to console if Redis credentials unavailable (dev mode)
 
 ## Authentication & Identity
 
 **Auth Provider:**
-- Custom - no external OAuth/SAML provider
-  - Implementation: Session-based authentication in `lib/auth.ts`
-  - Password hashing: bcryptjs (10 salt rounds)
-  - Session tokens: HMAC-SHA256 signed tokens with email and timestamp
-  - Storage: JSON file at `data/users.json` containing email, passwordHash, and name
-  - Cookie-based: HttpOnly, SameSite=Lax, 7-day max age
-  - API endpoints:
-    - POST `/api/auth/login` - authenticate with email/password, returns session cookie
-    - GET `/api/auth/me` - check current authentication status
-    - POST `/api/auth/logout` - clear session cookie
+- Custom (no external OAuth provider)
 
-**User Credentials:**
-- Four hardcoded users in `data/users.json`:
-  - sergey@humbleteam.com (Sergey)
-  - admin@humbleteam.com (Admin)
-  - atillyard@brentfordfc.com (A Tillyard)
-  - thais.tsui@chelseafc.com (Thais Tsui)
+**Implementation:**
+- Password-based authentication with sessions
+  - Password hashing: `bcryptjs` package (v3.0.3)
+    - Hash function: `hashPassword()` in `lib/auth.ts` (10 salt rounds)
+    - Verification: `verifyPassword()` uses bcrypt comparison
+  - Session tokens: HMAC-SHA256 signed tokens
+    - Token format: `{email}:{timestamp}:{signature}`
+    - Signing key: `AUTH_SECRET` environment variable (falls back to dev default)
+    - Session duration: 7 days (MAX_AGE = 604800 seconds)
+  - Cookie-based sessions:
+    - Cookie name: `fc_session`
+    - Flags: HttpOnly, SameSite=Lax
+    - Helpers: `sessionCookieHeader()`, `clearSessionCookieHeader()`, `getSessionFromCookie()`
+  - User store: `data/users.json` - JSON file with plaintext user records (must be protected in production)
+  - Session validation: `parseSessionToken()` verifies signature before accepting session
 
 ## Monitoring & Observability
 
 **Error Tracking:**
-- None detected - no error tracking service integrated
+- None (no dedicated error tracking service)
 
 **Logs:**
-- Console logging fallback in `lib/analytics.ts` for development
-- Email failures logged to console in `app/api/email/route.ts`
-- Rate limit tracking: In-memory Map in `app/api/email/route.ts` (resets on server restart)
+- Console logging only
+  - Analytics: Falls back to `console.log()` when Redis unavailable
+  - Errors: `console.error()` for analytics and email failures
+  - No persistent logging system
 
 ## CI/CD & Deployment
 
 **Hosting:**
-- Vercel - specified in `vercel.json` as Next.js framework
-- Automatic deployments from git (standard Vercel workflow)
+- Vercel - Serverless platform for Next.js applications
+  - Configuration: `vercel.json` specifies `"framework": "nextjs"`
+  - Automatic deployments on push to `master` branch
 
 **CI Pipeline:**
-- None detected - relying on Vercel's built-in build system
+- GitHub Actions (`.github/workflows/ci.yml`)
+  - Triggers: On push to `master` and pull requests to `master`
+  - Node version: 20
+  - Steps:
+    1. Checkout code (`actions/checkout@v4`)
+    2. Setup Node.js with npm cache (`actions/setup-node@v4`)
+    3. Install dependencies (`npm ci`)
+    4. Lint code (`npm run lint`)
+    5. Type check (`npm run typecheck`)
+    6. Run tests (`npm test`)
+    7. Build application (`npm run build`)
+  - All steps must pass before deployment
+  - Environment: ubuntu-latest
 
 ## Environment Configuration
 
-**Required Environment Variables:**
-- `RESEND_API_KEY` - Resend email service API key (production only)
-- `KV_REST_API_URL` - Upstash Redis REST API endpoint (production analytics)
-- `KV_REST_API_TOKEN` - Upstash Redis authentication token (production analytics)
-- `AUTH_SECRET` - Session token signing secret (optional, defaults to development value if not set)
+**Required env vars (critical):**
+- `KV_REST_API_URL` - Upstash Redis REST endpoint
+- `KV_REST_API_TOKEN` - Upstash Redis authentication token
+- `RESEND_API_KEY` - Resend email API key
+- `AUTH_SECRET` - HMAC secret for session tokens (optional, has dev default)
 
-**Development Fallbacks:**
-- `AUTH_SECRET` defaults to `'fc-benchmark-dev-secret-change-in-prod'` if not set
-- Redis (KV_REST_API_*) is optional; events log to console if credentials missing
-- Resend emails fail gracefully with error response if API key not configured
+**Secrets location:**
+- Vercel project settings (recommended for production)
+- `.env.local` file (for local development, not committed)
+- Environment variables must be manually set in Vercel dashboard or via CLI
 
-**Secrets Location:**
-- Environment variables configured in Vercel dashboard for production
-- Local development: Should be in `.env.local` (not committed)
-- Never commit sensitive values; use Vercel dashboard or `.env.local`
+**Local development fallbacks:**
+- Upstash Redis: Gracefully degrades to console logging if credentials missing
+- Resend: Will fail if `RESEND_API_KEY` not provided (no fallback)
+- Auth: Uses hardcoded dev secret if `AUTH_SECRET` not set
 
 ## Webhooks & Callbacks
 
 **Incoming:**
-- POST `/api/email` - Accepts email requests from frontend (rate-limited)
-  - Parameters: `feature` (requested feature name), `source` (origin/context)
-  - Response: `{ ok: true }` or `{ error: string }`
+- None (API is request-response only)
 
 **Outgoing:**
-- Email callbacks: Resend sends emails to `hi@humbleteam.com` when access is requested
-- No webhook callbacks to external services detected
-
-## Data Flow
-
-**Analytics Event Flow:**
-1. Client action (login, page view, feature click) → `trackEvent()` in `lib/track.ts`
-2. Event logged to `lib/analytics.ts` via `logEvent(type, email, data)`
-3. If Redis configured: Push to `analytics:events` list via Upstash REST API
-4. If Redis not configured: Log to console
-5. Admin retrieves via `GET /api/analytics/view` (paginated, filterable by type/email)
-
-**Email Request Flow:**
-1. User clicks "Request Access" button on locked feature
-2. Client calls `POST /api/email` with feature name
-3. Rate limit check (5 per IP per minute)
-4. Resend API sends email to `hi@humbleteam.com`
-5. Response returned to client
+- Email notifications (triggered by `POST /api/email`)
+  - Sends to: `hi@humbleteam.com`
+  - Triggered by: User access requests
+  - Includes optional reply-to if requester email provided
+  - Rate limiting: 5 requests per IP per minute (in-memory tracking in `app/api/email/route.ts`)
 
 ---
 

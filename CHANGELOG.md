@@ -1,5 +1,8 @@
 # Changelog
 
+## v6.0 — 2026-04-17
+Users migrated from data/users.json → Neon Postgres (Drizzle ORM). /admin panel: Users tab (CRUD, admin toggle, last-admin guardrail), Analytics tab, Requests tab (access-request triage). Analytics events migrated from Upstash Redis → Postgres with 90-day cron retention. Three auth security fixes: no default secret, token-age validation, anon POST blocked.
+
 ## v5.0 — 2026-04-16
 CI/CD pipeline: GitHub Actions runs lint, typecheck, test, build on every push/PR to master. Vitest added with smoke tests for scoring. ESLint 9 flat config wraps eslint-config-next (was missing). Vercel deploy unchanged. Pre-existing JSX lint error in header fixed.
 

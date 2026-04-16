@@ -1,20 +1,6 @@
-import { Redis } from '@upstash/redis';
-
-const EVENTS_KEY = 'analytics:events';
-const MAX_EVENTS = 10_000;
-
-// ── Redis client (lazy init) ──
-
-let redis: Redis | null = null;
-
-function getRedis(): Redis | null {
-  if (redis) return redis;
-  const url = process.env.KV_REST_API_URL;
-  const token = process.env.KV_REST_API_TOKEN;
-  if (!url || !token) return null;
-  redis = new Redis({ url, token });
-  return redis;
-}
+import { db } from './db';
+import { events } from './db/schema';
+import { desc, eq, and, lt, gt } from 'drizzle-orm';
 
 // ── Event types ──
 
@@ -32,23 +18,20 @@ export async function logEvent(
   email: string,
   data: Record<string, unknown> = {},
 ): Promise<void> {
-  const event: AnalyticsEvent = {
-    type,
-    email,
-    timestamp: new Date().toISOString(),
-    ...data,
-  };
-
-  const kv = getRedis();
-  if (!kv) {
-    // Local dev fallback
-    console.log('[analytics]', JSON.stringify(event));
+  if (!process.env.DATABASE_URL) {
+    // Dev fallback when DB is not configured
+    console.log('[analytics]', JSON.stringify({ type, email, timestamp: new Date().toISOString(), ...data }));
     return;
   }
 
   try {
-    await kv.lpush(EVENTS_KEY, JSON.stringify(event));
-    await kv.ltrim(EVENTS_KEY, 0, MAX_EVENTS - 1);
+    await db.insert(events).values({
+      userEmail: email || null,
+      // type cast — DB enum values match the strings callers already use
+      type: type as typeof events.$inferInsert['type'],
+      data: Object.keys(data).length > 0 ? JSON.stringify(data) : null,
+      userAgent: typeof data.userAgent === 'string' ? data.userAgent : null,
+    });
   } catch (err) {
     console.error('[analytics] Failed to log event:', err);
   }
@@ -61,24 +44,34 @@ export async function getEvents(opts: {
   type?: string;
   email?: string;
 } = {}): Promise<AnalyticsEvent[]> {
-  const kv = getRedis();
-  if (!kv) return [];
+  if (!process.env.DATABASE_URL) return [];
 
   const { limit = 100, type, email } = opts;
 
   try {
-    // Fetch more than needed if filtering, to ensure we get enough results
-    const fetchCount = (type || email) ? Math.min(limit * 5, MAX_EVENTS) : limit;
-    const raw: string[] = await kv.lrange(EVENTS_KEY, 0, fetchCount - 1);
+    const conditions = [];
+    if (type) conditions.push(eq(events.type, type as typeof events.$inferInsert['type']));
+    if (email) conditions.push(eq(events.userEmail, email));
 
-    let events: AnalyticsEvent[] = raw.map(r =>
-      typeof r === 'string' ? JSON.parse(r) : r as AnalyticsEvent,
-    );
+    const rows = await db
+      .select()
+      .from(events)
+      .where(conditions.length > 0 ? and(...conditions) : undefined)
+      .orderBy(desc(events.createdAt))
+      .limit(Math.min(limit, 1000));
 
-    if (type) events = events.filter(e => e.type === type);
-    if (email) events = events.filter(e => e.email === email);
-
-    return events.slice(0, limit);
+    return rows.map((row) => {
+      let extra: Record<string, unknown> = {};
+      if (row.data) {
+        try { extra = JSON.parse(row.data) as Record<string, unknown>; } catch { /* ignore */ }
+      }
+      return {
+        type: row.type,
+        email: row.userEmail ?? '',
+        timestamp: row.createdAt.toISOString(),
+        ...extra,
+      };
+    });
   } catch (err) {
     console.error('[analytics] Failed to read events:', err);
     return [];

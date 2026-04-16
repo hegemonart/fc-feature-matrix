@@ -13,6 +13,13 @@ v1 shipped a validated homepage benchmark (61 features × 33 clubs). This roadma
 - [ ] **Phase 5: Past Seasons + Between Season** - Content and archive flows (v9 + v11)
 - [ ] **Phase 6: Matchday** - Match schedule API, cron-triggered capture system, and matchday benchmark (v10)
 
+## Out-of-Band Infrastructure
+
+These phases are **parallel to and independent of** the numbered flow-expansion phases above. They do not gate any numbered phase and can ship in any order. Mirrors the pattern set by `infra-ci-cd` which shipped before any numbered phase.
+
+- [x] **`infra-ci-cd`** — GitHub Actions CI pipeline (lint / typecheck / test / build). Shipped. See `.planning/phases/infra-ci-cd/`.
+- [ ] **`infra-users-admin`** — Users → Postgres, `/admin` panel (users / analytics / access-request triage), analytics → Postgres with 90-day retention, three load-bearing auth security fixes. See `.planning/phases/infra-users-admin/CONTEXT.md`.
+
 ## Phase Details
 
 ### Phase 1: Flow Automation Layer + Ticket Purchase
@@ -90,7 +97,9 @@ v1 shipped a validated homepage benchmark (61 features × 33 clubs). This roadma
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
+Numbered phases execute in order: 1 → 2 → 3 → 4 → 5 → 6. Out-of-band infra phases run independently in any order and do not block the numbered track.
+
+**Numbered (flow expansion v2–v11):**
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -100,3 +109,10 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 4. Hospitality + Sponsorship | 0/TBD | Not started | - |
 | 5. Past Seasons + Between Season | 0/TBD | Not started | - |
 | 6. Matchday | 0/TBD | Not started | - |
+
+**Out-of-band (infrastructure):**
+
+| Phase | Plans Complete | Status | Completed |
+|-------|----------------|--------|-----------|
+| `infra-ci-cd` | 1/1 | Complete | 2026-04-16 |
+| `infra-users-admin` | 0/TBD | Not started | - |
