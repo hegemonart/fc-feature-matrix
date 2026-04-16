@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { db } from '@/lib/db';
+import { accessRequests } from '@/lib/db/schema';
 
 function getResend() {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -36,6 +38,16 @@ export async function POST(req: NextRequest) {
   const feature = body.feature || 'Unknown';
   const source = body.source || 'unknown';
   const requesterEmail = body.email || null;
+
+  // Persist access request for admin triage (before Resend — row survives even if email fails)
+  db.insert(accessRequests)
+    .values({
+      email: requesterEmail ?? feature,
+      source: source || null,
+      ip: ip !== 'unknown' ? ip : null,
+      userAgent: req.headers.get('user-agent') || null,
+    })
+    .catch((err) => console.error('[email] Failed to persist access request:', err));
 
   try {
     const resend = getResend();
