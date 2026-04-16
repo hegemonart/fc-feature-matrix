@@ -130,15 +130,6 @@
     },
     {
       "rank": 15,
-      "product_id": "uefa",
-      "screenshot": "21-uefa.png",
-      "total_score": -11,
-      "yes_count": 16,
-      "no_count": 50,
-      "feature_count": 66
-    },
-    {
-      "rank": 16,
       "product_id": "ac_milan",
       "screenshot": "15-ac-milan.png",
       "total_score": -13,
@@ -147,12 +138,21 @@
       "feature_count": 66
     },
     {
-      "rank": 17,
+      "rank": 16,
       "product_id": "aston_villa",
       "screenshot": "14-aston-villa.png",
       "total_score": -13,
       "yes_count": 16,
       "no_count": 50,
+      "feature_count": 66
+    },
+    {
+      "rank": 17,
+      "product_id": "uefa",
+      "screenshot": "21-uefa.png",
+      "total_score": -15,
+      "yes_count": 15,
+      "no_count": 51,
       "feature_count": 66
     },
     {
