@@ -12,6 +12,7 @@ v1 shipped a validated homepage benchmark (61 features × 33 clubs). This roadma
 - [ ] **Phase 4: Hospitality + Sponsorship** - Premium and brand-visibility flows (v7 + v8)
 - [ ] **Phase 5: Past Seasons + Between Season** - Content and archive flows (v9 + v11)
 - [ ] **Phase 6: Matchday** - Match schedule API, cron-triggered capture system, and matchday benchmark (v10)
+- [ ] **Phase 7: Infra — Users, Admin Panel & Analytics Migration** - Out-of-band infra (parallel to v2–v11, does not gate any flow phase): migrate users to Postgres, migrate analytics from Redis to Postgres, build /admin panel (users / analytics / access-request triage), fix 3 load-bearing auth security bugs
 
 ## Phase Details
 
@@ -87,10 +88,25 @@ v1 shipped a validated homepage benchmark (61 features × 33 clubs). This roadma
   6. The Matchday Experience tab is unlocked with per-club scores averaged across captured matches, with linked time-stamped evidence
 **Plans**: TBD
 
+### Phase 7: Infra — Users, Admin Panel & Analytics Migration
+**Goal**: Users are stored in Neon Postgres (not `data/users.json`), admins can create / edit / delete users and triage access requests from `/admin` without a redeploy, and analytics events live in Postgres with 90-day rolling retention. Three load-bearing auth security bugs fixed opportunistically.
+**Depends on**: Nothing (out-of-band; does not gate Phases 1–6)
+**Parallelism**: Can ship at any time in parallel with the flow-expansion phases
+**Requirements**: — (no REQ-IDs — infra phase, like infra-ci-cd)
+**Context**: `.planning/phases/infra-users-admin/CONTEXT.md` — full decision log and scope
+**Success Criteria** (what must be TRUE):
+  1. `data/users.json` is deleted from the repo; `lib/auth.ts` reads users from Postgres via Drizzle; the 5 existing users (including `is_admin = true` for `@humbleteam.com` addresses) are present in the DB after running the one-shot migration script
+  2. `/admin/users` (server-rendered, admin-only) lists all users, can add a new user via email + password (or generated password), toggle `is_admin`, reset password, and delete with double-confirmation; SQL-level guardrails prevent deleting your own account or demoting/deleting the last admin
+  3. `/admin/requests` shows incoming access requests with Grant (creates user + marks row granted) and Dismiss actions; `/api/email` inserts into `access_requests` before firing the Resend email
+  4. `lib/analytics.ts` is rewritten against Postgres; `logEvent()` and `getEvents()` keep their signatures; `/api/analytics` POST requires an authenticated session; `/analytics` 308-redirects to `/admin/analytics`; the Vercel Cron at `/api/cron/retention` deletes events older than 90 days in batches, authed via `CRON_SECRET`
+  5. Auth security fixes landed: `AUTH_SECRET` is required in production (zod env validator throws without it), `parseSessionToken()` rejects tokens older than `MAX_AGE` based on the timestamp already encoded in the token, `/api/analytics` POST returns 401 when unauthenticated
+  6. `@upstash/redis` is removed from `package.json`; `vitest` test suite still passes; CI (`.github/workflows/ci.yml`) is green on the phase PR
+**Plans**: TBD
+
 ## Progress
 
 **Execution Order:**
-Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
+Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6. Phase 7 is out-of-band infrastructure — it can ship in parallel with any of the numbered phases and has no dependency on them.
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
@@ -100,3 +116,4 @@ Phases execute in numeric order: 1 → 2 → 3 → 4 → 5 → 6
 | 4. Hospitality + Sponsorship | 0/TBD | Not started | - |
 | 5. Past Seasons + Between Season | 0/TBD | Not started | - |
 | 6. Matchday | 0/TBD | Not started | - |
+| 7. Infra — Users, Admin Panel & Analytics Migration | 0/TBD | Not started | - |
