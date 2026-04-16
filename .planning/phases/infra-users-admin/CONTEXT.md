@@ -1,6 +1,6 @@
 # Infra Phase — Users, Admin Panel & Analytics Migration
 
-> **Status:** Out-of-band infrastructure work, parallel to the v2–v11 product roadmap (ROADMAP.md Phases 1–6) and similar in shape to `infra-ci-cd`. Not in ROADMAP.md; does not renumber any existing phase.
+> **Status:** Out-of-band infrastructure work, parallel to the v2–v11 product roadmap (ROADMAP.md Phases 1–6). Listed in ROADMAP.md §"Out-of-Band Infrastructure" alongside the completed `infra-ci-cd` phase. Does not gate any numbered phase.
 
 **Gathered:** 2026-04-17
 **Status:** Ready for planning
