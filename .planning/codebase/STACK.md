@@ -5,99 +5,102 @@
 ## Languages
 
 **Primary:**
-- TypeScript 5.x - Application code, type definitions, API routes
-- JavaScript (ES2017+) - Build scripts, utilities
+- TypeScript 5 - Source code, configuration, and all production/test code
+- JavaScript (JSX/TSX) - React component files
 
 **Secondary:**
-- CSS - Styling (globals.css in `app/`)
-- JSON - Data configuration
+- YAML - CI/CD workflow definitions
 
 ## Runtime
 
 **Environment:**
-- Node.js (version not pinned - uses modern 20.x LTS compatible)
-- Browser: React 19.2.4 client-side components
+- Node.js 20 (specified in CI workflow, no `.nvmrc` in repo)
 
 **Package Manager:**
-- npm 9.x+ (inferred from lockfileVersion 3)
-- Lockfile: `package-lock.json` (present)
+- npm (inferred from `npm ci` in CI and package.json structure)
+- Lockfile: `package-lock.json` (standard for npm)
 
 ## Frameworks
 
 **Core:**
-- Next.js 16.2.2 - Full-stack React framework for SSR, API routes, file-based routing
-- React 19.2.4 - UI component framework
-- React DOM 19.2.4 - DOM rendering
+- Next.js 16.2.2 - Full-stack React framework with App Router, API routes, server components
+- React 19.2.4 - UI component library
+- React DOM 19.2.4 - Browser rendering
+
+**Testing:**
+- Vitest 2.1.8 - Unit and component test runner (configured in `vitest.config.ts`)
 
 **Build/Dev:**
-- TypeScript 5.x - Type checking and compilation
-- ESLint 9.x - Code linting
+- ESLint 9 - Code linting (flat config via `eslint.config.mjs`)
 - eslint-config-next 16.2.2 - Next.js linting rules
+- TypeScript 5 - Type checking and compilation
 
 ## Key Dependencies
 
 **Critical:**
-- @vercel/analytics 2.0.1 - Client-side analytics tracking via Vercel
-- bcryptjs 3.0.3 - Password hashing for authentication (`lib/auth.ts`)
-- @types/bcryptjs 2.4.6 - Type definitions for bcryptjs
+- bcryptjs 3.0.3 - Password hashing and verification
+- @types/bcryptjs 2.4.6 - TypeScript types for bcryptjs
 
-**Infrastructure:**
-- @upstash/redis 1.37.0 - Redis client for event analytics (`lib/analytics.ts`)
-- resend 6.12.0 - Email service client for sending access requests (`app/api/email/route.ts`)
+**Infrastructure & External Services:**
+- @upstash/redis 1.37.0 - Redis client for Upstash KV storage (analytics event persistence)
+- resend 6.12.0 - Email service SDK for transactional emails
+- @vercel/analytics 2.0.1 - Vercel Analytics tracking and reporting
+
+**Development Dependencies:**
+- @types/node 20 - Node.js type definitions
+- @types/react 19 - React type definitions
+- @types/react-dom 19 - React DOM type definitions
 
 ## Configuration
 
 **Environment:**
-- Next.js config: `next.config.ts` (minimal, no custom config)
-- Deployment: Vercel (framework specified in `vercel.json`)
-- TypeScript compiler: `tsconfig.json` with strict mode enabled
+- Environment variables required (loaded from `.env` or hosting platform):
+  - `KV_REST_API_URL` - Upstash Redis endpoint
+  - `KV_REST_API_TOKEN` - Upstash Redis authentication token
+  - `RESEND_API_KEY` - Resend email service API key
+  - `AUTH_SECRET` - HMAC secret for session signing (falls back to dev default in `lib/auth.ts`)
+- `.env*` files not tracked in repository (standard practice)
+
+**TypeScript:**
+- Target: ES2017
+- Strict mode: enabled (`strict: true` in `tsconfig.json`)
+- Module resolution: bundler (Next.js optimized)
+- JSX: react-jsx
+- Path alias: `@/*` maps to project root
+- Incremental compilation: enabled
 
 **Build:**
-- Entry point: `app/layout.tsx` (root layout)
-- Output: `.next/` directory (standard Next.js build output)
-- Public assets: `public/` directory
+- `next.config.ts` - Minimal Next.js configuration (template, no customizations)
+- `vercel.json` - Vercel deployment metadata (specifies Next.js framework)
 
-**Required Environment Variables:**
-- `RESEND_API_KEY` - API key for Resend email service
-- `KV_REST_API_URL` - Upstash Redis REST API endpoint
-- `KV_REST_API_TOKEN` - Upstash Redis authentication token
-- `AUTH_SECRET` - Secret for session token signing (defaults to development value if not set)
+**Linting:**
+- `eslint.config.mjs` - Flat config with Next.js preset, excludes non-core directories
+
+**Testing:**
+- `vitest.config.ts` - Test runner configuration with path alias matching, includes `**/*.{test,spec}.{ts,tsx}`
 
 ## Platform Requirements
 
 **Development:**
-- Node.js 20.x LTS or later
-- npm 9.x or later
-- TypeScript 5.x support
-- Next.js 16.2.2 compatible environment
+- Node.js 20+
+- npm (or compatible package manager)
+- TypeScript knowledge required for development
 
 **Production:**
-- Deployment target: Vercel (specified in `vercel.json`)
-- Requires: Node.js 18.x or later
-- Environment variables must be configured in Vercel dashboard
+- Vercel hosting platform (inferred from `vercel.json` and Analytics integration)
+- Environment variables must be set in Vercel project settings
 
-## Build & Dev Commands
+## Scripts
 
-```bash
-npm run dev      # Start development server (localhost:3000)
-npm run build    # Production build
-npm start        # Start production server
-npm run lint     # Run ESLint
-```
-
-## TypeScript Configuration
-
-**Compiler Options:**
-- Target: ES2017
-- Module: esnext (bundled by Next.js)
-- Strict mode: enabled
-- Module resolution: bundler
-- Path aliases: `@/*` → project root
-
-**Notable Settings:**
-- `skipLibCheck: true` - Skip type checking for node_modules
-- `resolveJsonModule: true` - Import JSON files directly
-- `isolatedModules: true` - Ensure each file compiles independently
+Available npm scripts (from `package.json`):
+- `npm run dev` - Start Next.js development server
+- `npm run build` - Build for production
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
+- `npm run typecheck` - Run TypeScript type checking (`tsc --noEmit`)
+- `npm run test` - Run Vitest in single-run mode
+- `npm run test:watch` - Run Vitest in watch mode
+- `npm run concept` - Run concept subdirectory dev server
 
 ---
 
