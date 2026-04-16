@@ -308,7 +308,7 @@ export default function FeatureMatrixPage() {
         <img src="/img/logo.svg" alt="Humbleteam" className="header-logo" />
         <div className="header-center">FC Benchmark <span>{'//'}</span> April 2026</div>
         {authed && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px', marginLeft: 'auto' }}>
             {isAdmin && (
               <a href="/admin" className="sign-in-btn">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="14" height="14">
