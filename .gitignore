@@ -15,4 +15,4 @@ node_modules/
 npm-debug.log*
 out/
 references/
-screenshots/
+/screenshots/
