@@ -4,10 +4,11 @@
   "total_features": 66,
   "features": {
     "academy_youth_block": {
-      "adoption_count": 8,
-      "adoption_pct": 24,
+      "adoption_count": 9,
+      "adoption_pct": 27,
       "clubs_yes": [
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "chelsea",
@@ -40,7 +41,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -53,6 +53,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -81,7 +82,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -94,6 +94,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -122,7 +123,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -148,6 +148,7 @@
         "brentford"
       ],
       "clubs_no": [
+        "eintracht",
         "arsenal",
         "psg",
         "bvb_dortmund",
@@ -163,7 +164,6 @@
         "man_united",
         "nba",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -176,6 +176,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -204,7 +205,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -215,6 +215,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -244,7 +245,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -268,6 +268,7 @@
         "man_united"
       ],
       "clubs_no": [
+        "eintracht",
         "valencia_cf",
         "motogp",
         "psg",
@@ -285,7 +286,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -300,6 +300,7 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -326,7 +327,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -344,6 +344,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "juventus",
         "chelsea",
         "arsenal",
@@ -367,7 +368,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -377,6 +377,7 @@
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "real_madrid",
         "chelsea",
@@ -400,8 +401,7 @@
         "atletico_madrid",
         "nba",
         "brentford",
-        "vfb_stuttgart",
-        "eintracht"
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "juventus",
@@ -419,6 +419,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -448,7 +449,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -460,6 +460,7 @@
       ],
       "clubs_no": [
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -489,7 +490,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -500,6 +500,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -529,14 +530,15 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "esports_gaming_block": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
+      "adoption_count": 1,
+      "adoption_pct": 3,
+      "clubs_yes": [
+        "eintracht"
+      ],
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
@@ -569,7 +571,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -584,6 +585,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "chelsea",
@@ -610,7 +612,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -621,6 +622,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -650,15 +652,15 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "footer_sponsor_wall": {
-      "adoption_count": 13,
-      "adoption_pct": 39,
+      "adoption_count": 14,
+      "adoption_pct": 42,
       "clubs_yes": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -691,16 +693,16 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "heritage_past_content": {
-      "adoption_count": 5,
-      "adoption_pct": 15,
+      "adoption_count": 6,
+      "adoption_pct": 18,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "real_madrid",
         "motogp",
         "psg"
@@ -732,7 +734,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -765,6 +766,7 @@
         "brentford"
       ],
       "clubs_no": [
+        "eintracht",
         "motogp",
         "west_ham",
         "club_brugge",
@@ -773,16 +775,16 @@
         "mls",
         "nba",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "homepage_video_block": {
-      "adoption_count": 14,
-      "adoption_pct": 42,
+      "adoption_count": 15,
+      "adoption_pct": 45,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "juventus",
         "chelsea",
         "arsenal",
@@ -814,7 +816,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -825,6 +826,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -854,15 +856,15 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "in_content_sponsor": {
-      "adoption_count": 10,
-      "adoption_pct": 30,
+      "adoption_count": 11,
+      "adoption_pct": 33,
       "clubs_yes": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "motogp",
@@ -895,15 +897,15 @@
         "man_united",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "individual_player_cards": {
-      "adoption_count": 2,
-      "adoption_pct": 6,
+      "adoption_count": 3,
+      "adoption_pct": 9,
       "clubs_yes": [
         "fc_barcelona",
+        "eintracht",
         "bvb_dortmund"
       ],
       "clubs_no": [
@@ -936,7 +938,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -948,6 +949,7 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -977,7 +979,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -987,6 +988,7 @@
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "motogp",
         "psg",
@@ -1004,8 +1006,7 @@
         "mls",
         "atletico_madrid",
         "man_united",
-        "vfb_stuttgart",
-        "eintracht"
+        "vfb_stuttgart"
       ],
       "clubs_no": [
         "juventus",
@@ -1028,6 +1029,7 @@
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "chelsea",
@@ -1055,7 +1057,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ],
       "clubs_no": [
@@ -1072,6 +1073,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1100,7 +1102,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1111,6 +1112,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1140,7 +1142,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1151,6 +1152,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1180,7 +1182,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1193,6 +1194,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1221,15 +1223,15 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "museum_block": {
-      "adoption_count": 1,
-      "adoption_pct": 3,
+      "adoption_count": 2,
+      "adoption_pct": 6,
       "clubs_yes": [
-        "fc_barcelona"
+        "fc_barcelona",
+        "eintracht"
       ],
       "clubs_no": [
         "liverpool",
@@ -1262,16 +1264,16 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "news_rich_structure": {
-      "adoption_count": 23,
-      "adoption_pct": 70,
+      "adoption_count": 24,
+      "adoption_pct": 73,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "real_madrid",
         "chelsea",
@@ -1303,7 +1305,6 @@
         "newcastle",
         "atletico_madrid",
         "man_united",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1318,6 +1319,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1344,16 +1346,16 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "next_match_block": {
-      "adoption_count": 21,
-      "adoption_pct": 64,
+      "adoption_count": 22,
+      "adoption_pct": 67,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1385,7 +1387,6 @@
         "atletico_madrid",
         "man_united",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1414,6 +1415,7 @@
         "brentford"
       ],
       "clubs_no": [
+        "eintracht",
         "uefa",
         "rb_leipzig",
         "club_brugge",
@@ -1426,15 +1428,15 @@
         "atletico_madrid",
         "man_united",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "paid_membership": {
-      "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_count": 5,
+      "adoption_pct": 15,
       "clubs_yes": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid"
@@ -1467,7 +1469,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1498,6 +1499,7 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "real_madrid",
         "psg",
@@ -1508,7 +1510,6 @@
         "newcastle",
         "atletico_madrid",
         "nba",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1519,6 +1520,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1548,15 +1550,15 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "player_roster_preview": {
-      "adoption_count": 3,
-      "adoption_pct": 9,
+      "adoption_count": 4,
+      "adoption_pct": 12,
       "clubs_yes": [
         "fc_barcelona",
+        "eintracht",
         "motogp",
         "bvb_dortmund"
       ],
@@ -1589,7 +1591,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1600,6 +1601,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1629,14 +1631,14 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "podcast_audio": {
-      "adoption_count": 1,
-      "adoption_pct": 3,
+      "adoption_count": 2,
+      "adoption_pct": 6,
       "clubs_yes": [
+        "eintracht",
         "psg"
       ],
       "clubs_no": [
@@ -1670,7 +1672,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1685,6 +1686,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1711,7 +1713,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1728,6 +1729,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "real_madrid",
         "chelsea",
@@ -1752,7 +1754,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1763,6 +1764,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1792,7 +1794,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1806,6 +1807,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1833,16 +1835,16 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "results_block": {
-      "adoption_count": 23,
-      "adoption_pct": 70,
+      "adoption_count": 24,
+      "adoption_pct": 73,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1874,16 +1876,16 @@
         "man_united",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "search_input_in_header": {
-      "adoption_count": 20,
-      "adoption_pct": 61,
+      "adoption_count": 21,
+      "adoption_pct": 64,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "chelsea",
@@ -1915,8 +1917,7 @@
         "club_brugge",
         "newcastle",
         "atletico_madrid",
-        "nba",
-        "eintracht"
+        "nba"
       ]
     },
     "secondary_editorial_strip_below_hero": {
@@ -1945,6 +1946,7 @@
         "vfb_stuttgart"
       ],
       "clubs_no": [
+        "eintracht",
         "valencia_cf",
         "psg",
         "bvb_dortmund",
@@ -1956,7 +1958,6 @@
         "mlb",
         "tottenham",
         "brentford",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -1966,6 +1967,7 @@
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -1993,7 +1995,6 @@
         "man_united",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ],
       "clubs_no": [
@@ -2002,11 +2003,12 @@
       ]
     },
     "social_links_in_footer": {
-      "adoption_count": 23,
-      "adoption_pct": 70,
+      "adoption_count": 24,
+      "adoption_pct": 73,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -2038,7 +2040,6 @@
         "atletico_madrid",
         "man_united",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2053,6 +2054,7 @@
       ],
       "clubs_no": [
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -2079,7 +2081,6 @@
         "man_united",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2088,6 +2089,7 @@
       "adoption_pct": 45,
       "clubs_yes": [
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -2100,8 +2102,7 @@
         "aston_villa",
         "atp_tour",
         "atletico_madrid",
-        "man_united",
-        "eintracht"
+        "man_united"
       ],
       "clubs_no": [
         "fc_barcelona",
@@ -2125,10 +2126,11 @@
       ]
     },
     "stadium_content_block": {
-      "adoption_count": 3,
-      "adoption_pct": 9,
+      "adoption_count": 4,
+      "adoption_pct": 12,
       "clubs_yes": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "real_madrid"
       ],
@@ -2161,7 +2163,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2175,6 +2176,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "juventus",
         "real_madrid",
         "chelsea",
@@ -2202,14 +2204,14 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "standings_block": {
-      "adoption_count": 7,
-      "adoption_pct": 21,
+      "adoption_count": 8,
+      "adoption_pct": 24,
       "clubs_yes": [
+        "eintracht",
         "juventus",
         "chelsea",
         "motogp",
@@ -2243,57 +2245,57 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "store_block": {
+      "adoption_count": 12,
+      "adoption_pct": 36,
+      "clubs_yes": [
+        "fc_barcelona",
+        "liverpool",
+        "eintracht",
+        "juventus",
+        "real_madrid",
+        "chelsea",
+        "arsenal",
+        "west_ham",
+        "ac_milan",
+        "aston_villa",
+        "rb_leipzig",
+        "sl_benfica"
+      ],
+      "clubs_no": [
+        "valencia_cf",
+        "motogp",
+        "f1",
+        "psg",
+        "bvb_dortmund",
+        "man_city",
+        "uefa",
+        "bayern_munich",
+        "club_brugge",
+        "atp_tour",
+        "itf_tennis",
+        "mlb",
+        "tottenham",
+        "mls",
+        "newcastle",
+        "atletico_madrid",
+        "man_united",
+        "nba",
+        "brentford",
+        "vfb_stuttgart",
+        "inter_milan"
+      ]
+    },
+    "store_individual_products": {
       "adoption_count": 11,
       "adoption_pct": 33,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
-        "juventus",
-        "real_madrid",
-        "chelsea",
-        "arsenal",
-        "west_ham",
-        "ac_milan",
-        "aston_villa",
-        "rb_leipzig",
-        "sl_benfica"
-      ],
-      "clubs_no": [
-        "valencia_cf",
-        "motogp",
-        "f1",
-        "psg",
-        "bvb_dortmund",
-        "man_city",
-        "uefa",
-        "bayern_munich",
-        "club_brugge",
-        "atp_tour",
-        "itf_tennis",
-        "mlb",
-        "tottenham",
-        "mls",
-        "newcastle",
-        "atletico_madrid",
-        "man_united",
-        "nba",
-        "brentford",
-        "vfb_stuttgart",
         "eintracht",
-        "inter_milan"
-      ]
-    },
-    "store_individual_products": {
-      "adoption_count": 10,
-      "adoption_pct": 30,
-      "clubs_yes": [
-        "fc_barcelona",
-        "liverpool",
         "juventus",
         "real_madrid",
         "chelsea",
@@ -2325,7 +2327,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2344,6 +2345,7 @@
         "sl_benfica"
       ],
       "clubs_no": [
+        "eintracht",
         "juventus",
         "real_madrid",
         "arsenal",
@@ -2366,7 +2368,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2403,12 +2404,12 @@
         "inter_milan"
       ],
       "clubs_no": [
+        "eintracht",
         "uefa",
         "atp_tour",
         "itf_tennis",
         "tottenham",
-        "nba",
-        "eintracht"
+        "nba"
       ]
     },
     "transfer_news": {
@@ -2420,6 +2421,7 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -2448,7 +2450,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2459,6 +2460,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -2488,7 +2490,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2501,6 +2502,7 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "chelsea",
@@ -2529,7 +2531,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2558,6 +2559,7 @@
         "man_united"
       ],
       "clubs_no": [
+        "eintracht",
         "bvb_dortmund",
         "west_ham",
         "man_city",
@@ -2570,7 +2572,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2581,6 +2582,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -2610,16 +2612,16 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
     "womens_team_featured": {
-      "adoption_count": 15,
-      "adoption_pct": 45,
+      "adoption_count": 16,
+      "adoption_pct": 48,
       "clubs_yes": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "chelsea",
@@ -2651,7 +2653,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     },
@@ -2664,6 +2665,7 @@
       "clubs_no": [
         "fc_barcelona",
         "liverpool",
+        "eintracht",
         "valencia_cf",
         "juventus",
         "real_madrid",
@@ -2692,7 +2694,6 @@
         "nba",
         "brentford",
         "vfb_stuttgart",
-        "eintracht",
         "inter_milan"
       ]
     }

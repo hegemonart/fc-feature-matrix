@@ -1,5 +1,8 @@
 # Changelog
 
+## v4.3 — 2026-04-16
+Eintracht Frankfurt full re-check: 21 features flipped FALSE→TRUE after sequential browser verification. Score -64→57 (3rd overall). 26 screenshot evidence files. New TRUE: search, next match, results, standings, news rich, video, podcast, store, products, membership, heritage, stadium, museum, players, women, academy, esports, sponsors, social.
+
 ## v4.2 — 2026-04-16
 Local logos: download all 33 SVGs from Wikimedia to public/img/logos/, no more external CDN dependency. Score row moved below logos in thead. "Coming Soon" modal updated: "contact admin to unlock" + "Send request" CTA. Real Madrid search_input_in_header flipped FALSE (score 32→28).
 

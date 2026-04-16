@@ -173,11 +173,11 @@ python3 recapture_round5.py       # Full-page + PIL crop (most reliable)
 |------|-------------|-------|
 | 1 | FC Barcelona | 78 |
 | 2 | Liverpool | 62 |
-| 3 | Valencia CF | 35 |
-| 4 | Juventus | 34 |
-| 5 | Real Madrid | 32 |
-| 6 | Chelsea | 27 |
-| 7 | Arsenal | 20 |
-| 8 | MotoGP | 20 |
-| 9 | F1 | 5 |
-| 10 | PSG | -1 |
+| 3 | Eintracht Frankfurt | 57 |
+| 4 | Valencia CF | 35 |
+| 5 | Juventus | 34 |
+| 6 | Real Madrid | 28 |
+| 7 | Chelsea | 27 |
+| 8 | Arsenal | 20 |
+| 9 | MotoGP | 20 |
+| 10 | F1 | 1 |
