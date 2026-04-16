@@ -62,7 +62,8 @@ export default function FeatureMatrixPage() {
   const [authed, setAuthed] = useState(false);
   const [authEmail, setAuthEmail] = useState('');
   const [loginModalVisible, setLoginModalVisible] = useState(false);
-  const [ctaView, setCtaView] = useState<'cta' | 'login'>('cta');
+  const [ctaView, setCtaView] = useState<'cta' | 'login' | 'request'>('cta');
+  const [requestEmail, setRequestEmail] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
   const [loginError, setLoginError] = useState('');
@@ -75,16 +76,18 @@ export default function FeatureMatrixPage() {
   const [requestSending, setRequestSending] = useState(false);
   const [requestSent, setRequestSent] = useState<string | null>(null);
 
-  const sendAccessRequest = useCallback(async (feature: string, source: string) => {
+  const sendAccessRequest = useCallback(async (feature: string, source: string, email?: string) => {
     setRequestSending(true);
     try {
       const res = await fetch('/api/email', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ feature, source }),
+        body: JSON.stringify({ feature, source, email }),
       });
       if (!res.ok) throw new Error('Failed');
       setRequestSent(feature);
+      setCtaView('cta');
+      setRequestEmail('');
       setTimeout(() => setRequestSent(null), 3000);
     } catch {
       alert('Failed to send request. Please try again.');
@@ -513,15 +516,15 @@ export default function FeatureMatrixPage() {
                     <button className="preview-cta-btn" onClick={() => { setLoginError(''); setCtaView('login'); }}>
                       Sign in
                     </button>
-                    <button className="preview-cta-btn preview-cta-request" disabled={requestSending} onClick={() => sendAccessRequest('Full Matrix', 'login_cta')}>
+                    <button className="preview-cta-btn preview-cta-request" onClick={() => setCtaView('request')}>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                         <rect x="2" y="4" width="20" height="16" rx="2" />
                         <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                       </svg>
-                      {requestSent === 'Full Matrix' ? 'Request sent!' : requestSending ? 'Sending...' : 'Request access'}
+                      Request access
                     </button>
                   </>
-                ) : (
+                ) : ctaView === 'login' ? (
                   <>
                     <div className="preview-cta-title">Sign in</div>
                     <div className="preview-cta-desc">Enter your credentials to access all analysis views.</div>
@@ -556,6 +559,33 @@ export default function FeatureMatrixPage() {
                       </button>
                     </form>
                     <button className="locked-dismiss" onClick={() => { setCtaView('cta'); setLoginError(''); setLoginEmail(''); setLoginPassword(''); }}>Cancel</button>
+                  </>
+                ) : (
+                  <>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" width="28" height="28">
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+                    </svg>
+                    <div className="preview-cta-title">Request access</div>
+                    <div className="preview-cta-desc">Enter your email and we'll get back to you with access.</div>
+                    <form onSubmit={e => { e.preventDefault(); sendAccessRequest('Full Matrix', 'login_cta', requestEmail); }} className="login-form">
+                      <label className="login-label">
+                        Email
+                        <input
+                          type="email"
+                          className="login-input"
+                          value={requestEmail}
+                          onChange={e => setRequestEmail(e.target.value)}
+                          placeholder="you@example.com"
+                          autoComplete="email"
+                          required
+                        />
+                      </label>
+                      <button type="submit" className="preview-cta-btn login-submit" disabled={requestSending}>
+                        {requestSending ? 'Sending\u2026' : 'Send request'}
+                      </button>
+                    </form>
+                    <button className="locked-dismiss" onClick={() => { setCtaView('cta'); setRequestEmail(''); }}>Cancel</button>
                   </>
                 )}
               </div>

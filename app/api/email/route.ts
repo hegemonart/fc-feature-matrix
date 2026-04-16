@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: 'Too many requests' }, { status: 429 });
   }
 
-  let body: { feature?: string; source?: string };
+  let body: { feature?: string; source?: string; email?: string };
   try {
     body = await req.json();
   } catch {
@@ -35,16 +35,19 @@ export async function POST(req: NextRequest) {
 
   const feature = body.feature || 'Unknown';
   const source = body.source || 'unknown';
+  const requesterEmail = body.email || null;
 
   try {
     const resend = getResend();
     await resend.emails.send({
       from: 'FC Benchmark <noreply@humbleteam.com>',
       to: ['hi@humbleteam.com'],
-      subject: `FC Benchmark — Access request: ${feature}`,
+      ...(requesterEmail ? { replyTo: requesterEmail } : {}),
+      subject: `FC Benchmark — Access request${requesterEmail ? ` from ${requesterEmail}` : ''}: ${feature}`,
       text: [
         `New access request for FC Benchmark.`,
         ``,
+        ...(requesterEmail ? [`From: ${requesterEmail}`, ``] : []),
         `View requested: ${feature}`,
         `Source: ${source}`,
         `Time: ${new Date().toISOString()}`,
