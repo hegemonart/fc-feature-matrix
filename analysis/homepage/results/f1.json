@@ -2,7 +2,7 @@
   "product_id": "f1",
   "screenshot": "22-f1.png",
   "analyzed_at": "2026-04-13",
-  "total_score": 5,
+  "total_score": 1,
   "features": {
     "language_switcher_in_header": false,
     "login_account": true,
@@ -59,7 +59,7 @@
     "academy_youth_block": false,
     "esports_gaming_block": false,
     "charity_csr_block": false,
-    "footer_sponsor_wall": true,
+    "footer_sponsor_wall": false,
     "in_content_sponsor": false,
     "app_store_badges": true,
     "club_tv_app_promo": false,

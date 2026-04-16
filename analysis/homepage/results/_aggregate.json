@@ -655,15 +655,14 @@
       ]
     },
     "footer_sponsor_wall": {
-      "adoption_count": 14,
-      "adoption_pct": 42,
+      "adoption_count": 13,
+      "adoption_pct": 39,
       "clubs_yes": [
         "fc_barcelona",
         "valencia_cf",
         "juventus",
         "real_madrid",
         "arsenal",
-        "f1",
         "bvb_dortmund",
         "west_ham",
         "aston_villa",
@@ -677,6 +676,7 @@
         "liverpool",
         "chelsea",
         "motogp",
+        "f1",
         "psg",
         "man_city",
         "uefa",
