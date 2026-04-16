@@ -80,7 +80,7 @@
     "sponsor_lockup_in_header": "browser-verified",
     "persistent_bar_above_header": "browser-verified",
     "hero_carousel": "browser-verified",
-    "secondary_editorial_strip_below_hero": "needs-live-check",
+    "secondary_editorial_strip_below_hero": "browser-verified",
     "brand_sponsor_highlighted_in_hero": "browser-verified",
     "next_match_block": "browser-verified",
     "next_match_feature_rich": "browser-verified",
