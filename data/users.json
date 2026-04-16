@@ -18,5 +18,10 @@
     "email": "admin@humbleteam.com",
     "passwordHash": "$2b$10$bnTzhCtiLKwH2vfXIzVjTe7UIwkjuod4nogYdrfo8Vtnf6BSUjVSC",
     "name": "Admin"
+  },
+  {
+    "email": "ed.brafman@chelseafc.com",
+    "passwordHash": "$2b$10$TesTYnJeniycTJHDgQxxFOd80HOnoqGL1cjB.xzl7pWYzqnQhsSMe",
+    "name": "Ed Brafman"
   }
 ]
