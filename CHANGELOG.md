@@ -1,5 +1,8 @@
 # Changelog
 
+## v8.0 — 2026-04-17
+Homepage refactor (infra-redesign-v2 plan 04): app/page.tsx split into Server Component shell + Client MatrixIsland wired to atomic components (DataCell / SortHeader / MeterRow / HeaderBar / TopNav / CategoryFilter / TypeFilter / HoverTooltipCard). Keyboard-focusable cells, portaled tooltip, column-tint. Visual baseline captured at 1440x900.
+
 ## v7.2 — 2026-04-17
 Cross-cell interactivity layer (infra-redesign-v2 plan 03): <HoverTooltipCard> portaled to document.body — anchored from cell.getBoundingClientRect() (not cursor) per RESEARCH P8. useHoverTooltip hook with 100ms close grace + cancel-on-reenter. useColumnSelection hook for D-18 toggle-deselect. 15 new specs (90 total).
 

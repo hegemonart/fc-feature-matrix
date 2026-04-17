@@ -20,7 +20,27 @@ Open [localhost:3000](http://localhost:3000)
 ## Project structure
 
 ```
-app/                        Next.js pages and styles
+app/
+  page.tsx                  Server Component shell — loads data, renders <MatrixIsland>
+  MatrixIsland.tsx          Client Component — owns all interactive state (sort/filter/tooltip)
+  MatrixIsland.module.css   Layout shell for the matrix island
+  layout.tsx                Root layout with next/font (Inter Tight + Roboto Mono)
+  globals.css               Design tokens (D-01–D-08) + utility classes
+  components/matrix/        Atomic matrix components (infra-redesign-v2 plans 02–03)
+    DataCell.tsx            8-state cell (selected x intermediate x state)
+    SortHeader.tsx          3-state sort affordance (idle | asc | desc)
+    MeterRow.tsx            Adoption-rate progress bar + caption
+    HeaderBar.tsx           Logo + title + build-date + Get-In-Touch CTA
+    TopNav.tsx              Tab strip + UnlockTab variant + locked-tab opacity
+    CategoryFilter.tsx      Sidebar category list with collapse toggle
+    TypeFilter.tsx          FC / Federation / League checkboxes
+    HoverTooltipCard.tsx    Portaled hover tooltip (anchored to cell rect)
+    useColumnSelection.ts   Click-toggle column-selected state hook
+    useHoverTooltip.ts      Tooltip state hook with 100ms close grace
+    types.ts                Component prop contracts (single source of truth)
+  club/[id]/                Per-club detail page
+  admin/                    Admin dashboards (analytics, requests, users)
+  api/                      API routes (auth, email, analytics, admin)
 lib/data.ts                 Re-exports analysis data to the app
 analysis/
   CLAUDE.md                 Root analysis instructions
