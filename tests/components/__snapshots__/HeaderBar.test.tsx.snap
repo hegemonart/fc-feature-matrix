@@ -43,13 +43,17 @@ exports[`<HeaderBar> (D-12) > snapshot 1`] = `
         17th April, 2026
       </span>
     </span>
-    <a
-      class="_cta_232b7f"
-      data-cta="get-in-touch"
-      href="mailto:hello@humbleteam.com"
+    <span
+      class="_actions_232b7f"
     >
-      Get in touch
-    </a>
+      <a
+        class="_cta_232b7f"
+        data-cta="get-in-touch"
+        href="mailto:hello@humbleteam.com"
+      >
+        Get in touch
+      </a>
+    </span>
   </header>
 </div>
 `;

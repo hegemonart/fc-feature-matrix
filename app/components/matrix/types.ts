@@ -71,6 +71,14 @@ export interface MeterRowProps {
 export interface HeaderBarProps {
   /** ISO date slice (YYYY-MM-DD) sourced from process.env.BUILD_DATE (D-12). */
   buildDate: string;
+  /** When `true`, renders the Sign Out action (and Admin when `isAdmin`). */
+  authed?: boolean;
+  /** When `true` and `authed` is true, renders the Admin link. */
+  isAdmin?: boolean;
+  /** Click handler for the Sign Out button. Required when `authed` is true. */
+  onSignOut?: () => void;
+  /** Destination of the Admin link. Defaults to `/admin`. */
+  adminHref?: string;
 }
 
 // ── TopNav ──────────────────────────────────────────────────────

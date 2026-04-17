@@ -38,7 +38,13 @@ function formatBuildDate(iso: string): string {
   return `${ordinal(day)} ${month}, ${year}`;
 }
 
-export function HeaderBar({ buildDate }: HeaderBarProps) {
+export function HeaderBar({
+  buildDate,
+  authed = false,
+  isAdmin = false,
+  onSignOut,
+  adminHref = '/admin',
+}: HeaderBarProps) {
   const formatted = formatBuildDate(buildDate);
   return (
     <div className={styles.wrap}>
@@ -70,13 +76,34 @@ export function HeaderBar({ buildDate }: HeaderBarProps) {
           </span>
         </span>
 
-        <a
-          className={styles.cta}
-          href="mailto:hello@humbleteam.com"
-          data-cta="get-in-touch"
-        >
-          Get in touch
-        </a>
+        <span className={styles.actions}>
+          <a
+            className={styles.cta}
+            href="mailto:hello@humbleteam.com"
+            data-cta="get-in-touch"
+          >
+            Get in touch
+          </a>
+          {authed && isAdmin && (
+            <a
+              className={styles.cta}
+              href={adminHref}
+              data-cta="admin"
+            >
+              Admin
+            </a>
+          )}
+          {authed && (
+            <button
+              type="button"
+              className={styles.cta}
+              onClick={onSignOut}
+              data-cta="sign-out"
+            >
+              Sign out
+            </button>
+          )}
+        </span>
       </header>
     </div>
   );

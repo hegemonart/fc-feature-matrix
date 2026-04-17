@@ -90,7 +90,17 @@
   color: #6b6b6b;
 }
 
-/* ── RIGHT: GET IN TOUCH CTA ─────────────────────────────────── */
+/* ── RIGHT: actions group (Get in touch + Admin + Sign out) ──── */
+
+/* All three CTAs share the same .cta styling so they read as siblings
+   per Sergey's screenshot. Admin + Sign out are rendered only when
+   `authed`; Admin additionally requires `isAdmin`. */
+.actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
 
 .cta {
   display: inline-flex;
