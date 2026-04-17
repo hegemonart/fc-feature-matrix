@@ -9,6 +9,7 @@ import { logEvent } from '@/lib/analytics';
 import { db } from '@/lib/db';
 import { users } from '@/lib/db/schema';
 import { eq, sql } from 'drizzle-orm';
+import { env } from '@/lib/env';
 
 export async function POST(req: NextRequest) {
   try {
@@ -27,11 +28,13 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: 'Invalid email or password' }, { status: 401 });
     }
 
-    // Update last_login_at
-    await db
-      .update(users)
-      .set({ lastLoginAt: sql`now()` })
-      .where(eq(users.id, user.id));
+    // Update last_login_at — skip when no DB (dev-mode fallback)
+    if (env.DATABASE_URL) {
+      await db
+        .update(users)
+        .set({ lastLoginAt: sql`now()` })
+        .where(eq(users.id, user.id));
+    }
 
     const token = createSessionToken(user.email);
     const ua = req.headers.get('user-agent') || '';

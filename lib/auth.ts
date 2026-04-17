@@ -86,7 +86,32 @@ export interface AuthUser {
   isPremium: boolean;
 }
 
+// Dev-mode fallback: when DATABASE_URL is empty (only possible outside prod
+// per env.ts), serve a single hardcoded admin user so local preview works
+// without Neon. Password: "devpass". Hashed lazily and cached.
+const DEV_USER_EMAIL = 'sergey@humbleteam.com';
+const DEV_USER_PASSWORD = 'devpass';
+let devUserCache: AuthUser | null = null;
+
+async function getDevUser(email: string): Promise<AuthUser | null> {
+  if (email.toLowerCase() !== DEV_USER_EMAIL) return null;
+  if (!devUserCache) {
+    devUserCache = {
+      id: 'dev-user-00000000-0000-0000-0000-000000000000',
+      email: DEV_USER_EMAIL,
+      passwordHash: await hashPassword(DEV_USER_PASSWORD),
+      name: 'Sergey (dev)',
+      isAdmin: true,
+      isPremium: true,
+    };
+  }
+  return devUserCache;
+}
+
 export async function getUserByEmail(email: string): Promise<AuthUser | null> {
+  if (!env.DATABASE_URL) {
+    return getDevUser(email);
+  }
   const rows = await db
     .select({
       id: users.id,

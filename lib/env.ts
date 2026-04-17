@@ -9,8 +9,10 @@ const isProd = process.env.NODE_ENV === 'production';
 const isBuildPhase = process.env.NEXT_PHASE === 'phase-production-build';
 
 const envSchema = z.object({
-  // Always required at runtime; relaxed during build
-  DATABASE_URL: isBuildPhase
+  // Required at runtime in production; optional in dev + build so local
+  // preview works without Neon (auth + analytics fall back to a hardcoded
+  // dev user + console logging — see lib/auth.ts `getDevUser`).
+  DATABASE_URL: isBuildPhase || !isProd
     ? z.string().default('')
     : z.string().min(1, 'DATABASE_URL is required'),
 
