@@ -99,7 +99,7 @@ All 33 organizations have been browser cross-checked. Discrepancies are logged i
 
 For proof-of-concept validation, element-level screenshots are captured for each TRUE feature on a club's homepage. Each screenshot crops the specific page region showing the feature, saved as `{club_id}_{feature_key}.png` in `analysis/homepage/crosscheck/img/`.
 
-**Current coverage**: 536 element screenshots across all 33 clubs. Every TRUE feature (except Liverpool) has a corresponding screenshot in `crosscheck/img/`.
+**Current coverage**: 505 element screenshots across all 33 clubs. Every TRUE feature (except Liverpool) has a corresponding screenshot in `crosscheck/img/`.
 
 **Capture tooling**: Playwright Python sync API, 1400x900 viewport. 5 sites block headless Chromium (Arsenal, Bayern, Liverpool, NBA, West Ham) — use Chrome MCP for live verification. Scripts:
 
@@ -171,13 +171,13 @@ python3 recapture_round5.py       # Full-page + PIL crop (most reliable)
 
 | Rank | Organization | Score |
 |------|-------------|-------|
-| 1 | FC Barcelona | 78 |
-| 2 | Liverpool | 62 |
-| 3 | Eintracht Frankfurt | 57 |
-| 4 | Valencia CF | 35 |
-| 5 | Juventus | 34 |
-| 6 | Real Madrid | 28 |
-| 7 | Chelsea | 27 |
-| 8 | Arsenal | 20 |
-| 9 | MotoGP | 20 |
-| 10 | F1 | 1 |
+| 1 | FC Barcelona | 70 |
+| 2 | Eintracht Frankfurt | 43 |
+| 3 | Juventus | 30 |
+| 4 | Chelsea | 23 |
+| 5 | Arsenal | 20 |
+| 6 | MotoGP | 20 |
+| 7 | Valencia CF | 16 |
+| 8 | Liverpool | 12 |
+| 9 | Real Madrid | 9 |
+| 10 | PSG | -1 |

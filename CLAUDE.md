@@ -52,7 +52,7 @@ See `analysis/CLAUDE.md` for the full analysis folder documentation, and `analys
 
 ## Screenshot evidence (crosscheck/img)
 
-Element-level screenshots for TRUE features. Naming: `{club_id}_{feature_key}.png`. Current coverage: 536 screenshots across all 33 clubs.
+Element-level screenshots for TRUE features. Naming: `{club_id}_{feature_key}.png`. Current coverage: 505 screenshots across all 33 clubs.
 
 **Always use Playwright** for screenshot captures. Playwright has direct filesystem access and can save element-level screenshots straight to `crosscheck/img/`. Use the Chrome MCP extension for live site verification and visual checks only — not for saving screenshots. 5 sites block headless Chromium (Arsenal, Bayern, Liverpool, NBA, West Ham) — use Chrome MCP for those.
 

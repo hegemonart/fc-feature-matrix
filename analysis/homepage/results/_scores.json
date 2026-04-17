@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-16",
+  "generated_at": "2026-04-17",
   "total_clubs": 33,
   "rankings": [
     {
@@ -31,15 +31,6 @@
     },
     {
       "rank": 4,
-      "product_id": "valencia_cf",
-      "screenshot": "33-valenciacf.png",
-      "total_score": 28,
-      "yes_count": 23,
-      "no_count": 43,
-      "feature_count": 66
-    },
-    {
-      "rank": 5,
       "product_id": "chelsea",
       "screenshot": "10-chelsea.png",
       "total_score": 23,
@@ -48,7 +39,7 @@
       "feature_count": 66
     },
     {
-      "rank": 6,
+      "rank": 5,
       "product_id": "arsenal",
       "screenshot": "07-arsenal.png",
       "total_score": 20,
@@ -57,12 +48,21 @@
       "feature_count": 66
     },
     {
-      "rank": 7,
+      "rank": 6,
       "product_id": "motogp",
       "screenshot": "23-motogp.png",
       "total_score": 20,
       "yes_count": 21,
       "no_count": 45,
+      "feature_count": 66
+    },
+    {
+      "rank": 7,
+      "product_id": "valencia_cf",
+      "screenshot": "33-valenciacf.png",
+      "total_score": 16,
+      "yes_count": 20,
+      "no_count": 46,
       "feature_count": 66
     },
     {

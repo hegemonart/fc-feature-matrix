@@ -1,5 +1,8 @@
 # Changelog
 
+## v6.1 — 2026-04-17
+Valencia CF corrections: language_switcher→FALSE, results_block→FALSE, news_rich_structure→FALSE (score 28→16). Removed 4 wrong screenshots, captured 2 new next_match evidence screenshots via Playwright.
+
 ## v6.0 — 2026-04-17
 Users migrated from data/users.json → Neon Postgres (Drizzle ORM). /admin panel: Users tab (CRUD, admin toggle, last-admin guardrail), Analytics tab, Requests tab (access-request triage). Analytics events migrated from Upstash Redis → Postgres with 90-day cron retention. Three auth security fixes: no default secret, token-age validation, anon POST blocked.
 
