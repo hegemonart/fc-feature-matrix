@@ -445,7 +445,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
       { id: 'home', label: 'Homepage' },
     ];
     LOCKED_TABS.forEach(t => tabs.push({ id: t.id, label: t.name }));
-    tabs.push({ id: 'unlock', label: 'UNLOCK' });
+    tabs.push({ id: 'unlock', label: 'Unlock everything' });
     return tabs;
   }, []);
 

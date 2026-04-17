@@ -40,6 +40,17 @@ export function TopNav({
         </button>
       )}
 
+      {unlockTabData && (
+        <button
+          type="button"
+          className={styles.unlockTab}
+          onClick={() => onTabClick(unlockTabData.id)}
+          data-tab-variant="unlock"
+        >
+          {unlockTabData.label}
+        </button>
+      )}
+
       <div className={styles.lockedRail}>
         {railTabs.map(tab => {
           const isLocked = lockedSet.has(tab.id);
@@ -59,17 +70,6 @@ export function TopNav({
             </button>
           );
         })}
-
-        {unlockTabData && (
-          <button
-            type="button"
-            className={styles.unlockTab}
-            onClick={() => onTabClick(unlockTabData.id)}
-            data-tab-variant="unlock"
-          >
-            {unlockTabData.label}
-          </button>
-        )}
       </div>
     </nav>
   );
