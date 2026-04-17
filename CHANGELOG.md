@@ -1,5 +1,8 @@
 # Changelog
 
+## v6.2 — 2026-04-17
+EDITS v2: 41 value corrections across 9 clubs (FC Barcelona, Eintracht, Juventus, Chelsea, Arsenal, MotoGP, Valencia CF, Liverpool, Real Madrid). 59 wrong screenshots removed. 63 features marked needs-live-check for recapture. Major rank shifts: Valencia CF 16→42, MotoGP 20→30, Eintracht 43→4.
+
 ## v6.1 — 2026-04-17
 Valencia CF corrections: language_switcher→FALSE, results_block→FALSE, news_rich_structure→FALSE (score 28→16). Removed 4 wrong screenshots, captured 2 new next_match evidence screenshots via Playwright.
 
