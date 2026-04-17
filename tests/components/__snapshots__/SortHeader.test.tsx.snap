@@ -1,0 +1,136 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<SortHeader> 3 states (D-11) > renders state="asc" snapshot 1`] = `
+<button
+  aria-label="Sort by TOTAL (asc)"
+  class="_header_81cc7d"
+  data-sort-state="asc"
+  type="button"
+>
+  <span
+    class="_label_81cc7d mono-caption"
+  >
+    TOTAL
+  </span>
+  <span
+    class="_icons_81cc7d"
+  >
+    <svg
+      aria-hidden="true"
+      class="_arrow_81cc7d _arrowActive_81cc7d"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 8 5"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 0.5L7.5 4.5H0.5L4 0.5Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      aria-hidden="true"
+      class="_arrow_81cc7d"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 8 5"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 4.5L0.5 0.5H7.5L4 4.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`<SortHeader> 3 states (D-11) > renders state="desc" snapshot 1`] = `
+<button
+  aria-label="Sort by TOTAL (desc)"
+  class="_header_81cc7d"
+  data-sort-state="desc"
+  type="button"
+>
+  <span
+    class="_label_81cc7d mono-caption"
+  >
+    TOTAL
+  </span>
+  <span
+    class="_icons_81cc7d"
+  >
+    <svg
+      aria-hidden="true"
+      class="_arrow_81cc7d"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 8 5"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 0.5L7.5 4.5H0.5L4 0.5Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      aria-hidden="true"
+      class="_arrow_81cc7d _arrowActive_81cc7d"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 8 5"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 4.5L0.5 0.5H7.5L4 4.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
+
+exports[`<SortHeader> 3 states (D-11) > renders state="idle" snapshot 1`] = `
+<button
+  aria-label="Sort by TOTAL (idle)"
+  class="_header_81cc7d"
+  data-sort-state="idle"
+  type="button"
+>
+  <span
+    class="_label_81cc7d mono-caption"
+  >
+    TOTAL
+  </span>
+  <span
+    class="_icons_81cc7d"
+  >
+    <svg
+      aria-hidden="true"
+      class="_arrow_81cc7d"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 8 5"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 0.5L7.5 4.5H0.5L4 0.5Z"
+        fill="currentColor"
+      />
+    </svg>
+    <svg
+      aria-hidden="true"
+      class="_arrow_81cc7d"
+      fill="none"
+      focusable="false"
+      viewBox="0 0 8 5"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M4 4.5L0.5 0.5H7.5L4 4.5Z"
+        fill="currentColor"
+      />
+    </svg>
+  </span>
+</button>
+`;
