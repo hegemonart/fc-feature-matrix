@@ -1,5 +1,8 @@
 # Changelog
 
+## v7.1 — 2026-04-17
+Atomic matrix components (infra-redesign-v2 plan 02): DataCell (8 states), SortHeader (3 states), MeterRow (4 bands), HeaderBar (BUILD_DATE), TopNav + UnlockTab (locked-tab opacity), CategoryFilter, TypeFilter — all under app/components/matrix/ with colocated CSS modules + Vitest specs. CONTEXT.md D-15 corrected to PRODUCTS[].type.
+
 ## v7.0 — 2026-04-17
 Visual redesign foundation (infra-redesign-v2 plan 01): neutral-dark + brand-orange design tokens replace cool-blue palette in app/globals.css. Inter Tight + Roboto Mono wired via next/font. BUILD_DATE env exposed for HeaderBar. Playwright visual-regression scaffold (.skip until plan 04). Font-readiness test harness.
 
