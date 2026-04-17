@@ -1,0 +1,18 @@
+/* ================================================================
+   MatrixIsland.module.css
+
+   Layout shell for the Client Component matrix island. Component-
+   level styling lives in app/components/matrix/*.module.css; this
+   module covers structural composition (header / nav / sidebar /
+   matrix grid / detail panel) only.
+
+   The matrix shell, sidebar, table chrome, modal overlays, score
+   row, detail panel, and feature-name cells continue to use the
+   global classes in app/globals.css for now (token swap covered in
+   plan 04 task 4 + plan 05). This file is reserved for refactor-
+   specific layout overrides as they emerge.
+   ================================================================ */
+
+.island {
+  display: contents;
+}
