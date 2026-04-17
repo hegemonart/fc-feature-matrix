@@ -35,10 +35,11 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         .admin-nav-link:hover { color: var(--text); background: var(--bg-hover); }
         .admin-nav-link.active { color: var(--text); background: var(--bg-hover); }
         .admin-nav-meta { display: flex; align-items: center; gap: 12px; margin-left: auto; }
-        .admin-nav-email { font-size: 12px; color: var(--muted); }
-        /* D-24 — Sign-out is a secondary action (white-outlined / muted), not orange. */
-        .admin-nav-signout { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 12px; padding: 3px 10px; border-radius: 4px; cursor: pointer; }
-        .admin-nav-signout:hover { color: var(--text); border-color: var(--muted); }
+        /* Signed-in email — readable, not buried in muted gray. */
+        .admin-nav-email { font-size: 13px; font-weight: 500; color: var(--text); letter-spacing: -0.2px; }
+        /* Sign out — same CTA family as the Back button (translucent white, Roboto Mono uppercase). D-24: still secondary (white, not orange). */
+        .admin-nav-signout { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); color: #fff; padding: 7px 14px; border: 0; border-radius: 4px; cursor: pointer; font-family: var(--font-mono, 'Roboto Mono'), ui-monospace, monospace; font-weight: 500; font-size: 12px; line-height: 14px; letter-spacing: -0.24px; text-transform: uppercase; white-space: nowrap; transition: background 120ms ease-out; }
+        .admin-nav-signout:hover { background: rgba(255,255,255,0.28); }
         .admin-main { flex: 1; padding: 32px 24px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         /* D-08 / D-22 — section headers in mono-caption */
         .admin-page-title { font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; font-size: 12px; line-height: 15px; letter-spacing: -0.5px; text-transform: uppercase; color: var(--text); margin: 0 0 24px; }
