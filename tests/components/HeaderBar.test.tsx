@@ -11,12 +11,14 @@ import { render } from '@testing-library/react';
 import { HeaderBar } from '../../app/components/matrix/HeaderBar';
 
 describe('<HeaderBar> (D-12)', () => {
-  it('renders the buildDate prop string verbatim', () => {
+  it('renders the buildDate prop formatted as "Nth Month, YYYY"', () => {
     const { getByText } = render(<HeaderBar buildDate="2026-04-17" />);
-    expect(getByText('2026-04-17')).toBeTruthy();
+    // Figma node 43:37 shows "8th April, 2026" — our component formats
+    // the ISO buildDate the same way.
+    expect(getByText('17th April, 2026')).toBeTruthy();
   });
 
-  it('exposes data-build-date attribute matching the prop', () => {
+  it('exposes data-build-date attribute matching the raw ISO prop', () => {
     const { container } = render(<HeaderBar buildDate="2025-12-31" />);
     const dateEl = container.querySelector('[data-build-date]') as HTMLElement;
     expect(dateEl.getAttribute('data-build-date')).toBe('2025-12-31');
@@ -35,11 +37,13 @@ describe('<HeaderBar> (D-12)', () => {
     expect(cta.getAttribute('href')).toMatch(/^mailto:/);
   });
 
-  it('renders the humbleteam wordmark', () => {
+  it('renders the humbleteam wordmark as an image with alt text', () => {
     const { container } = render(<HeaderBar buildDate="2026-04-17" />);
     const brand = container.querySelector('[data-brand="humbleteam"]');
     expect(brand).toBeTruthy();
-    expect(brand?.textContent).toMatch(/humbleteam/i);
+    const wordmark = brand?.querySelector('img[alt="humbleteam"]') as HTMLImageElement | null;
+    expect(wordmark).toBeTruthy();
+    expect(wordmark?.getAttribute('src')).toMatch(/humbleteam\.svg$/);
   });
 
   it('snapshot', () => {

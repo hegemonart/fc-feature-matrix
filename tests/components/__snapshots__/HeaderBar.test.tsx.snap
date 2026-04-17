@@ -1,41 +1,55 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`<HeaderBar> (D-12) > snapshot 1`] = `
-<header
-  class="_bar_232b7f"
-  role="banner"
+<div
+  class="_wrap_232b7f"
 >
-  <span
-    class="_brand_232b7f"
-    data-brand="humbleteam"
-  >
-    humbleteam
-    <span
-      aria-hidden="true"
-      class="_dot_232b7f"
-    />
-  </span>
-  <span
-    class="_center_232b7f"
+  <header
+    class="_bar_232b7f"
+    role="banner"
   >
     <span
-      class="_title_232b7f"
+      class="_brand_232b7f"
+      data-brand="humbleteam"
     >
-      FC Benchmark
+      <img
+        alt="humbleteam"
+        class="_wordmark_232b7f"
+        height="14"
+        src="/humbleteam.svg"
+        width="123"
+      />
+      <img
+        alt=""
+        aria-hidden="true"
+        class="_dot_232b7f"
+        height="11"
+        src="/humbleteam-dot.svg"
+        width="11"
+      />
     </span>
     <span
-      class="_date_232b7f mono-caption"
-      data-build-date="2026-04-17"
+      class="_center_232b7f"
     >
-      2026-04-17
+      <span
+        class="_title_232b7f"
+      >
+        FC Benchmark
+      </span>
+      <span
+        class="_date_232b7f"
+        data-build-date="2026-04-17"
+      >
+        17th April, 2026
+      </span>
     </span>
-  </span>
-  <a
-    class="_cta_232b7f"
-    data-cta="get-in-touch"
-    href="mailto:hello@humbleteam.com"
-  >
-    GET IN TOUCH
-  </a>
-</header>
+    <a
+      class="_cta_232b7f"
+      data-cta="get-in-touch"
+      href="mailto:hello@humbleteam.com"
+    >
+      Get in touch
+    </a>
+  </header>
+</div>
 `;
