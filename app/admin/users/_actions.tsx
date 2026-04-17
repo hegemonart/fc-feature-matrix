@@ -108,12 +108,12 @@ function ResetPasswordModal({ user, onClose }: { user: UserRow; onClose: () => v
         <h3>Reset password</h3>
         {done ? (
           <>
-            <p style={{ color: '#4ade80', fontSize: 13 }}>Password reset successfully.</p>
+            <p style={{ color: 'var(--green)', fontSize: 13 }}>Password reset successfully.</p>
             <div className="admin-form-actions"><button className="admin-btn" onClick={onClose}>Close</button></div>
           </>
         ) : (
           <form onSubmit={handleSubmit}>
-            <p style={{ fontSize: 13, color: '#888', margin: '0 0 12px' }}>{user.email}</p>
+            <p style={{ fontSize: 13, color: 'var(--muted)', margin: '0 0 12px' }}>{user.email}</p>
             <div className="admin-form-row">
               <label>New password (min 12 chars)</label>
               <input type="password" value={password} onChange={e => setPassword(e.target.value)} minLength={12} required autoFocus />
@@ -156,7 +156,7 @@ function DeleteModal({ user, onClose, onDeleted }: { user: UserRow; onClose: () 
     <div className="admin-modal-overlay" onClick={onClose}>
       <div className="admin-modal" onClick={(e) => e.stopPropagation()}>
         <h3>Delete user</h3>
-        <p style={{ fontSize: 13, color: '#aaa', margin: '0 0 12px' }}>
+        <p style={{ fontSize: 13, color: 'var(--muted)', margin: '0 0 12px' }}>
           Type <strong>{user.email}</strong> to confirm deletion. This cannot be undone.
         </p>
         <div className="admin-form-row">
@@ -262,19 +262,19 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
                 </span>
               </td>
               <td>
-                <span className="admin-badge" style={{ background: u.isPremium ? '#1a2a3a' : '#111', color: u.isPremium ? '#60a5fa' : '#444' }}>
+                <span className="admin-badge" style={{ background: u.isPremium ? 'rgba(255,73,12,0.12)' : 'var(--bg-hover)', color: u.isPremium ? 'var(--accent)' : 'var(--muted)' }}>
                   {u.isPremium ? 'premium' : '—'}
                 </span>
               </td>
-              <td style={{ fontSize: 12, color: '#666' }}>{fmt(u.createdAt)}</td>
-              <td style={{ fontSize: 12, color: '#666' }}>{fmt(u.lastLoginAt)}</td>
+              <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(u.createdAt)}</td>
+              <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(u.lastLoginAt)}</td>
               <td>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
                   <button
                     className="admin-btn"
                     disabled={togglingPremiumId === u.id}
                     onClick={() => handleTogglePremium(u)}
-                    style={u.isPremium ? { borderColor: '#1e3a5f', color: '#60a5fa' } : {}}
+                    style={u.isPremium ? { borderColor: 'var(--accent)', color: 'var(--accent)' } : {}}
                   >
                     {u.isPremium ? 'Revoke premium' : 'Grant premium'}
                   </button>

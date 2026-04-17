@@ -24,9 +24,9 @@ function fmt(iso: string | null) {
 
 function StatusBadge({ status }: { status: string }) {
   const styles: Record<string, { bg: string; color: string }> = {
-    pending: { bg: '#2a2010', color: '#fbbf24' },
-    granted: { bg: '#1a3a1a', color: '#4ade80' },
-    dismissed: { bg: '#1a1a1a', color: '#666' },
+    pending: { bg: 'var(--yellow-bg)', color: 'var(--yellow)' },
+    granted: { bg: 'rgba(34,197,94,0.12)', color: 'var(--green)' },
+    dismissed: { bg: 'var(--bg-hover)', color: 'var(--muted)' },
   };
   const s = styles[status] ?? styles.dismissed;
   return (
@@ -67,7 +67,7 @@ function GrantModal({ req, onClose, onGranted }: {
     <div className="admin-modal-overlay" onClick={onClose}>
       <div className="admin-modal" onClick={(e) => e.stopPropagation()}>
         <h3>Grant access</h3>
-        <p style={{ fontSize: 13, color: '#888', margin: '0 0 12px' }}>
+        <p style={{ fontSize: 13, color: 'var(--muted)', margin: '0 0 12px' }}>
           Creates an account for <strong>{req.email}</strong>
         </p>
         <form onSubmit={handleGrant}>
@@ -143,15 +143,15 @@ export function RequestsActions({ initialRequests }: { initialRequests: RequestR
       </thead>
       <tbody>
         {rows.length === 0 && (
-          <tr><td colSpan={showActions ? 6 : 5} style={{ color: '#444', padding: '16px 12px', fontSize: 13 }}>No requests.</td></tr>
+          <tr><td colSpan={showActions ? 6 : 5} style={{ color: 'var(--muted)', padding: '16px 12px', fontSize: 13 }}>No requests.</td></tr>
         )}
         {rows.map((r) => (
           <tr key={r.id}>
             <td style={{ fontFamily: 'monospace', fontSize: 12 }}>{r.email}</td>
-            <td style={{ fontSize: 12, color: '#666' }}>{r.source ?? '—'}</td>
+            <td style={{ fontSize: 12, color: 'var(--muted)' }}>{r.source ?? '—'}</td>
             <td><StatusBadge status={r.status} /></td>
-            <td style={{ fontSize: 12, color: '#666' }}>{fmt(r.createdAt)}</td>
-            <td style={{ fontSize: 12, color: '#666' }}>{fmt(r.resolvedAt)}</td>
+            <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(r.createdAt)}</td>
+            <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(r.resolvedAt)}</td>
             {showActions && (
               <td>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
@@ -175,12 +175,12 @@ export function RequestsActions({ initialRequests }: { initialRequests: RequestR
 
   return (
     <>
-      <h2 style={{ fontSize: 15, fontWeight: 600, margin: '0 0 12px', color: '#fbbf24' }}>
+      <h2 className="mono-caption" style={{ margin: '0 0 12px', color: 'var(--text)', fontSize: 12, lineHeight: '15px', textTransform: 'uppercase' }}>
         Pending ({pending.length})
       </h2>
       <RequestTable rows={pending} showActions />
 
-      <h2 style={{ fontSize: 15, fontWeight: 600, margin: '0 0 12px', color: '#666' }}>
+      <h2 className="mono-caption" style={{ margin: '0 0 12px', color: 'var(--muted)', fontSize: 12, lineHeight: '15px', textTransform: 'uppercase' }}>
         Resolved ({resolved.length})
       </h2>
       <RequestTable rows={resolved} showActions={false} />
