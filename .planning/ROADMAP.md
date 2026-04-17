@@ -117,4 +117,4 @@ Numbered phases execute in order: 1 → 2 → 3 → 4 → 5 → 6. Out-of-band i
 |-------|----------------|--------|-----------|
 | `infra-ci-cd` | 1/1 | Complete | 2026-04-16 |
 | `infra-users-admin` | 0/TBD | Not started | - |
-| `infra-redesign-v2` | 1/5 | In progress — Wave 0 done | - |
+| `infra-redesign-v2` | 2/5 | In progress — Wave 1 atomic components done | - |
