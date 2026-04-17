@@ -2,149 +2,261 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import Link from 'next/link';
+import {
+  AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer,
+} from 'recharts';
 
-interface AnalyticsEvent {
-  type: string;
-  email: string;
-  timestamp: string;
-  [key: string]: unknown;
+// ── Types ──
+
+interface DayPoint { date: string; label: string; visitors: number; pageViews: number; total: number }
+interface TopEvent { type: string; count: number; visitors: number }
+interface TopUser { email: string; count: number }
+interface TopFeature { name: string; count: number }
+
+interface Stats {
+  days: number;
+  totalVisitors: number;
+  totalPageViews: number;
+  totalEvents: number;
+  dailySeries: DayPoint[];
+  topEvents: TopEvent[];
+  topUsers: TopUser[];
+  topFeatures: TopFeature[];
 }
 
-const EVENT_COLORS: Record<string, string> = {
-  login: '#22c55e',
-  logout: '#ef4444',
-  page_view: '#3b82f6',
-  tab_click: '#f59e0b',
-  feature_click: '#8b5cf6',
-  product_click: '#06b6d4',
-};
+// ── Chart tooltip ──
 
-function formatTime(ts: string): string {
-  const d = new Date(ts);
-  return d.toLocaleString('en-GB', {
-    day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit', second: '2-digit',
-  });
-}
-
-function EventDetail({ event }: { event: AnalyticsEvent }) {
-  const extras = Object.entries(event).filter(
-    ([k]) => !['type', 'email', 'timestamp'].includes(k),
-  );
-  if (extras.length === 0) return null;
+function ChartTooltip({ active, payload, label }: { active?: boolean; payload?: Array<{ name: string; value: number; color: string }>; label?: string }) {
+  if (!active || !payload?.length) return null;
   return (
-    <span className="analytics-detail">
-      {extras.map(([k, v]) => (
-        <span key={k} className="analytics-kv">
-          <span className="analytics-key">{k}:</span> {String(v)}
-        </span>
+    <div style={{ background: '#111', border: '1px solid #222', borderRadius: 6, padding: '8px 12px', fontSize: 12 }}>
+      <div style={{ color: '#888', marginBottom: 6 }}>{label}</div>
+      {payload.map((p) => (
+        <div key={p.name} style={{ color: p.color, display: 'flex', gap: 8, justifyContent: 'space-between' }}>
+          <span style={{ color: '#aaa' }}>{p.name}</span>
+          <span style={{ fontWeight: 600 }}>{p.value}</span>
+        </div>
       ))}
-    </span>
+    </div>
   );
 }
+
+// ── Stat card ──
+
+function StatCard({ label, value, sub }: { label: string; value: number | string; sub?: string }) {
+  return (
+    <div style={{
+      background: '#111', border: '1px solid #1e1e1e', borderRadius: 8,
+      padding: '20px 24px', minWidth: 0,
+    }}>
+      <div style={{ fontSize: 12, color: '#666', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>{label}</div>
+      <div style={{ fontSize: 32, fontWeight: 700, color: '#fff', lineHeight: 1 }}>{value}</div>
+      {sub && <div style={{ fontSize: 12, color: '#555', marginTop: 8 }}>{sub}</div>}
+    </div>
+  );
+}
+
+// ── Row table ──
+
+function RankTable({ title, rows, colA, colB }: {
+  title: string;
+  rows: Array<{ label: string; count: number; sub?: string }>;
+  colA: string; colB: string;
+}) {
+  const max = rows[0]?.count ?? 1;
+  return (
+    <div style={{ background: '#111', border: '1px solid #1e1e1e', borderRadius: 8, padding: '0 0 4px', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '14px 20px 10px', borderBottom: '1px solid #1a1a1a' }}>
+        <span style={{ fontWeight: 600, fontSize: 13 }}>{title}</span>
+        <span style={{ fontSize: 11, color: '#555', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{colB}</span>
+      </div>
+      {rows.length === 0 && (
+        <div style={{ padding: '24px 20px', color: '#444', fontSize: 13 }}>No data yet</div>
+      )}
+      {rows.map((r) => (
+        <div key={r.label} style={{ position: 'relative', padding: '9px 20px', borderBottom: '1px solid #161616' }}>
+          {/* bar */}
+          <div style={{
+            position: 'absolute', inset: 0, right: 'auto',
+            width: `${Math.round((r.count / max) * 100)}%`,
+            background: 'rgba(59,130,246,0.07)', borderRadius: 0,
+          }} />
+          <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+            <div>
+              <span style={{ fontSize: 12, color: '#ddd' }}>{r.label}</span>
+              {r.sub && <span style={{ fontSize: 11, color: '#555', marginLeft: 8 }}>{r.sub}</span>}
+            </div>
+            <span style={{ fontSize: 12, fontWeight: 600, color: '#eee' }}>{r.count}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// ── Main ──
 
 export default function AnalyticsPage() {
-  const [events, setEvents] = useState<AnalyticsEvent[]>([]);
+  const [stats, setStats] = useState<Stats | null>(null);
   const [loading, setLoading] = useState(true);
-  const [authed, setAuthed] = useState(false);
-  const [filterType, setFilterType] = useState('');
-  const [filterEmail, setFilterEmail] = useState('');
+  const [authed, setAuthed] = useState(true);
+  const [days, setDays] = useState(14);
+  const [metric, setMetric] = useState<'visitors' | 'pageViews' | 'total'>('visitors');
 
-  const fetchEvents = useCallback(async () => {
+  const fetchStats = useCallback(async () => {
     setLoading(true);
     try {
-      const params = new URLSearchParams();
-      params.set('limit', '200');
-      if (filterType) params.set('type', filterType);
-      if (filterEmail) params.set('email', filterEmail);
-
-      const res = await fetch(`/api/analytics/view?${params}`);
-      if (res.status === 401) { setAuthed(false); setLoading(false); return; }
-      setAuthed(true);
-      const data = await res.json();
-      setEvents(data);
-    } catch {
-      setEvents([]);
+      const res = await fetch(`/api/analytics/stats?days=${days}`);
+      if (res.status === 401) { setAuthed(false); return; }
+      setStats(await res.json());
     } finally {
       setLoading(false);
     }
-  }, [filterType, filterEmail]);
+  }, [days]);
 
-  useEffect(() => { fetchEvents(); }, [fetchEvents]);
+  useEffect(() => { fetchStats(); }, [fetchStats]);
 
-  // Get unique types and emails for filter dropdowns
-  const types = [...new Set(events.map(e => e.type))].sort();
-  const emails = [...new Set(events.map(e => e.email))].sort();
-
-  if (!loading && !authed) {
+  if (!authed) {
     return (
-      <div className="analytics-shell">
-        <div className="analytics-unauth">
-          <h2>Analytics</h2>
-          <p>Analytics is restricted to Humbleteam accounts.</p>
-          <Link href="/admin" className="analytics-back">Go to matrix</Link>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
+        <div style={{ textAlign: 'center' }}>
+          <p style={{ color: '#666', marginBottom: 16 }}>Analytics is restricted to admin accounts.</p>
+          <Link href="/admin" style={{ color: '#3b82f6', textDecoration: 'none', fontSize: 14 }}>← Back</Link>
         </div>
       </div>
     );
   }
 
+  const metricLabel: Record<typeof metric, string> = {
+    visitors: 'Visitors', pageViews: 'Page Views', total: 'Total Events',
+  };
+
   return (
-    <div className="analytics-shell">
-      <header className="analytics-header">
-        <Link href="/admin" className="analytics-back">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+    <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 0 48px' }}>
+      {/* Header */}
+      <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28, paddingTop: 8 }}>
+        <Link href="/admin" style={{
+          display: 'flex', alignItems: 'center', gap: 6, color: '#555', textDecoration: 'none',
+          fontSize: 13, transition: 'color 0.15s',
+        }}>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width={14} height={14}>
             <path d="M19 12H5m7-7-7 7 7 7" />
           </svg>
-          Back
+          Admin
         </Link>
-        <h1>Analytics</h1>
-        <span className="analytics-count">{events.length} events</span>
-        <button className="analytics-refresh" onClick={fetchEvents} disabled={loading}>
-          {loading ? 'Loading\u2026' : 'Refresh'}
-        </button>
-      </header>
-
-      <div className="analytics-filters">
-        <select value={filterType} onChange={e => setFilterType(e.target.value)}>
-          <option value="">All types</option>
-          {types.map(t => <option key={t} value={t}>{t}</option>)}
-        </select>
-        <select value={filterEmail} onChange={e => setFilterEmail(e.target.value)}>
-          <option value="">All users</option>
-          {emails.map(e => <option key={e} value={e}>{e}</option>)}
-        </select>
+        <h1 style={{ fontSize: 22, fontWeight: 700, margin: 0 }}>Analytics</h1>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
+          {([7, 14, 30] as const).map((d) => (
+            <button
+              key={d}
+              onClick={() => setDays(d)}
+              style={{
+                background: days === d ? '#1e1e1e' : 'transparent',
+                border: `1px solid ${days === d ? '#333' : 'transparent'}`,
+                color: days === d ? '#fff' : '#555',
+                borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
+              }}
+            >{d}d</button>
+          ))}
+          <button
+            onClick={fetchStats}
+            disabled={loading}
+            style={{
+              background: 'transparent', border: '1px solid #222', color: '#555',
+              borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer', marginLeft: 4,
+            }}
+          >{loading ? '…' : '↻'}</button>
+        </div>
       </div>
 
-      <div className="analytics-table-wrap">
-        <table className="analytics-table">
-          <thead>
-            <tr>
-              <th>Time</th>
-              <th>Type</th>
-              <th>User</th>
-              <th>Details</th>
-            </tr>
-          </thead>
-          <tbody>
-            {events.length === 0 && !loading && (
-              <tr><td colSpan={4} className="analytics-empty">No events found.</td></tr>
-            )}
-            {events.map((ev, i) => (
-              <tr key={i}>
-                <td className="analytics-time">{formatTime(ev.timestamp)}</td>
-                <td>
-                  <span
-                    className="analytics-type-badge"
-                    style={{ background: EVENT_COLORS[ev.type] || 'var(--muted)' }}
-                  >
-                    {ev.type}
-                  </span>
-                </td>
-                <td className="analytics-email">{ev.email}</td>
-                <td><EventDetail event={ev} /></td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+      {/* Stat cards */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 20 }}>
+        <StatCard label="Visitors" value={stats?.totalVisitors ?? '—'} sub={`last ${days} days`} />
+        <StatCard label="Page Views" value={stats?.totalPageViews ?? '—'} sub={`last ${days} days`} />
+        <StatCard label="Total Events" value={stats?.totalEvents ?? '—'} sub={`last ${days} days`} />
+      </div>
+
+      {/* Chart */}
+      <div style={{
+        background: '#111', border: '1px solid #1e1e1e', borderRadius: 8,
+        padding: '20px 20px 12px', marginBottom: 20,
+      }}>
+        <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
+          {(['visitors', 'pageViews', 'total'] as const).map((m) => (
+            <button
+              key={m}
+              onClick={() => setMetric(m)}
+              style={{
+                background: metric === m ? '#1a2a3a' : 'transparent',
+                border: `1px solid ${metric === m ? '#1e3a5f' : 'transparent'}`,
+                color: metric === m ? '#60a5fa' : '#555',
+                borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
+              }}
+            >{metricLabel[m]}</button>
+          ))}
+        </div>
+
+        <ResponsiveContainer width="100%" height={240}>
+          <AreaChart data={stats?.dailySeries ?? []} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
+            <defs>
+              <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.25} />
+                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+              </linearGradient>
+            </defs>
+            <CartesianGrid vertical={false} stroke="#1a1a1a" />
+            <XAxis
+              dataKey="label"
+              tick={{ fill: '#555', fontSize: 11 }}
+              axisLine={false} tickLine={false}
+              interval="preserveStartEnd"
+            />
+            <YAxis
+              tick={{ fill: '#555', fontSize: 11 }}
+              axisLine={false} tickLine={false}
+              allowDecimals={false}
+            />
+            <Tooltip content={<ChartTooltip />} cursor={{ stroke: '#333', strokeWidth: 1 }} />
+            <Area
+              type="monotone"
+              dataKey={metric}
+              name={metricLabel[metric]}
+              stroke="#3b82f6"
+              strokeWidth={1.5}
+              fill="url(#grad)"
+              dot={false}
+              activeDot={{ r: 4, fill: '#3b82f6', stroke: '#111', strokeWidth: 2 }}
+            />
+          </AreaChart>
+        </ResponsiveContainer>
+      </div>
+
+      {/* Two-column tables */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 12 }}>
+        <RankTable
+          title="Top Events"
+          colA="Type"
+          colB="Count"
+          rows={stats?.topEvents.map(e => ({ label: e.type, count: e.count, sub: `${e.visitors} users` })) ?? []}
+        />
+        <RankTable
+          title="Top Features"
+          colA="Feature"
+          colB="Clicks"
+          rows={stats?.topFeatures.map(f => ({ label: f.name, count: f.count })) ?? []}
+        />
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+        <RankTable
+          title="Top Users"
+          colA="Email"
+          colB="Events"
+          rows={stats?.topUsers.map(u => ({ label: u.email, count: u.count })) ?? []}
+        />
+        {/* placeholder to keep grid balanced */}
+        <div />
       </div>
     </div>
   );
