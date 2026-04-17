@@ -81,11 +81,13 @@ function RankTable({ title, rows, colA, colB }: {
       )}
       {rows.map((r) => (
         <div key={r.label} style={{ position: 'relative', padding: '9px 20px', borderBottom: '1px solid var(--border)' }}>
-          {/* bar — tinted with the brand accent at 7% opacity (D-23) */}
+          {/* bar — neutral gray fill (var(--bg-hover)) so it stays
+              readable over the dark cell bg; single-orange-CTA rule
+              keeps the accent reserved for primary actions (D-25). */}
           <div style={{
             position: 'absolute', inset: 0, right: 'auto',
             width: `${Math.round((r.count / max) * 100)}%`,
-            background: 'rgba(255,73,12,0.07)', borderRadius: 0,
+            background: 'var(--bg-hover)', borderRadius: 0,
           }} />
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
