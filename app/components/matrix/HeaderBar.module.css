@@ -28,7 +28,8 @@
   gap: 12px;
   background: rgba(160, 160, 160, 0.1);
   border-radius: 8px;
-  padding: 4px 12px;
+  padding: 11px 12px;
+  min-height: 56px;
   overflow: hidden;
   position: relative;
 }
