@@ -26,15 +26,17 @@ interface Stats {
 }
 
 // ── Chart tooltip ──
+// D-23 — re-coloured per RESEARCH.md "Recharts Re-Theme — Diff Sketch":
+// background var(--bg-cell), border var(--border), label/secondary var(--muted).
 
 function ChartTooltip({ active, payload, label }: { active?: boolean; payload?: Array<{ name: string; value: number; color: string }>; label?: string }) {
   if (!active || !payload?.length) return null;
   return (
-    <div style={{ background: '#111', border: '1px solid #222', borderRadius: 6, padding: '8px 12px', fontSize: 12 }}>
-      <div style={{ color: '#888', marginBottom: 6 }}>{label}</div>
+    <div style={{ background: 'var(--bg-cell)', border: '1px solid var(--border)', borderRadius: 6, padding: '8px 12px', fontSize: 12 }}>
+      <div style={{ color: 'var(--muted)', marginBottom: 6 }}>{label}</div>
       {payload.map((p) => (
         <div key={p.name} style={{ color: p.color, display: 'flex', gap: 8, justifyContent: 'space-between' }}>
-          <span style={{ color: '#aaa' }}>{p.name}</span>
+          <span style={{ color: 'var(--muted)' }}>{p.name}</span>
           <span style={{ fontWeight: 600 }}>{p.value}</span>
         </div>
       ))}
@@ -43,51 +45,54 @@ function ChartTooltip({ active, payload, label }: { active?: boolean; payload?: 
 }
 
 // ── Stat card ──
+// D-23 — chrome var(--bg-cell)/var(--border); label #ABABAB, value #FFFFFF, sub #ABABAB.
 
 function StatCard({ label, value, sub }: { label: string; value: number | string; sub?: string }) {
   return (
     <div style={{
-      background: '#111', border: '1px solid #1e1e1e', borderRadius: 8,
+      background: 'var(--bg-cell)', border: '1px solid var(--border)', borderRadius: 8,
       padding: '20px 24px', minWidth: 0,
     }}>
-      <div style={{ fontSize: 12, color: '#666', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>{label}</div>
-      <div style={{ fontSize: 32, fontWeight: 700, color: '#fff', lineHeight: 1 }}>{value}</div>
-      {sub && <div style={{ fontSize: 12, color: '#555', marginTop: 8 }}>{sub}</div>}
+      <div style={{ fontSize: 12, color: '#ABABAB', textTransform: 'uppercase', letterSpacing: '0.08em', marginBottom: 8 }}>{label}</div>
+      <div style={{ fontSize: 32, fontWeight: 700, color: '#FFFFFF', lineHeight: 1 }}>{value}</div>
+      {sub && <div style={{ fontSize: 12, color: '#ABABAB', marginTop: 8 }}>{sub}</div>}
     </div>
   );
 }
 
 // ── Row table ──
+// D-23 — chrome var(--bg-cell)/var(--border); bar tint orange (rgba(255,73,12,0.07)).
 
 function RankTable({ title, rows, colA, colB }: {
   title: string;
   rows: Array<{ label: string; count: number; sub?: string }>;
   colA: string; colB: string;
 }) {
+  void colA;
   const max = rows[0]?.count ?? 1;
   return (
-    <div style={{ background: '#111', border: '1px solid #1e1e1e', borderRadius: 8, padding: '0 0 4px', overflow: 'hidden' }}>
-      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '14px 20px 10px', borderBottom: '1px solid #1a1a1a' }}>
+    <div style={{ background: 'var(--bg-cell)', border: '1px solid var(--border)', borderRadius: 8, padding: '0 0 4px', overflow: 'hidden' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', padding: '14px 20px 10px', borderBottom: '1px solid var(--border)' }}>
         <span style={{ fontWeight: 600, fontSize: 13 }}>{title}</span>
-        <span style={{ fontSize: 11, color: '#555', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{colB}</span>
+        <span style={{ fontSize: 11, color: 'var(--muted)', textTransform: 'uppercase', letterSpacing: '0.07em' }}>{colB}</span>
       </div>
       {rows.length === 0 && (
-        <div style={{ padding: '24px 20px', color: '#444', fontSize: 13 }}>No data yet</div>
+        <div style={{ padding: '24px 20px', color: 'var(--muted)', fontSize: 13 }}>No data yet</div>
       )}
       {rows.map((r) => (
-        <div key={r.label} style={{ position: 'relative', padding: '9px 20px', borderBottom: '1px solid #161616' }}>
-          {/* bar */}
+        <div key={r.label} style={{ position: 'relative', padding: '9px 20px', borderBottom: '1px solid var(--border)' }}>
+          {/* bar — tinted with the brand accent at 7% opacity (D-23) */}
           <div style={{
             position: 'absolute', inset: 0, right: 'auto',
             width: `${Math.round((r.count / max) * 100)}%`,
-            background: 'rgba(59,130,246,0.07)', borderRadius: 0,
+            background: 'rgba(255,73,12,0.07)', borderRadius: 0,
           }} />
           <div style={{ position: 'relative', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <div>
-              <span style={{ fontSize: 12, color: '#ddd' }}>{r.label}</span>
-              {r.sub && <span style={{ fontSize: 11, color: '#555', marginLeft: 8 }}>{r.sub}</span>}
+              <span style={{ fontSize: 12, color: 'var(--text)' }}>{r.label}</span>
+              {r.sub && <span style={{ fontSize: 11, color: 'var(--muted)', marginLeft: 8 }}>{r.sub}</span>}
             </div>
-            <span style={{ fontSize: 12, fontWeight: 600, color: '#eee' }}>{r.count}</span>
+            <span style={{ fontSize: 12, fontWeight: 600, color: 'var(--text)' }}>{r.count}</span>
           </div>
         </div>
       ))}
@@ -121,8 +126,8 @@ export default function AnalyticsPage() {
     return (
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: '60vh' }}>
         <div style={{ textAlign: 'center' }}>
-          <p style={{ color: '#666', marginBottom: 16 }}>Analytics is restricted to admin accounts.</p>
-          <Link href="/admin" style={{ color: '#3b82f6', textDecoration: 'none', fontSize: 14 }}>← Back</Link>
+          <p style={{ color: 'var(--muted)', marginBottom: 16 }}>Analytics is restricted to admin accounts.</p>
+          <Link href="/admin" style={{ color: 'var(--accent)', textDecoration: 'none', fontSize: 14 }}>← Back</Link>
         </div>
       </div>
     );
@@ -137,7 +142,7 @@ export default function AnalyticsPage() {
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28, paddingTop: 8 }}>
         <Link href="/admin" style={{
-          display: 'flex', alignItems: 'center', gap: 6, color: '#555', textDecoration: 'none',
+          display: 'flex', alignItems: 'center', gap: 6, color: 'var(--muted)', textDecoration: 'none',
           fontSize: 13, transition: 'color 0.15s',
         }}>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width={14} height={14}>
@@ -152,9 +157,9 @@ export default function AnalyticsPage() {
               key={d}
               onClick={() => setDays(d)}
               style={{
-                background: days === d ? '#1e1e1e' : 'transparent',
-                border: `1px solid ${days === d ? '#333' : 'transparent'}`,
-                color: days === d ? '#fff' : '#555',
+                background: days === d ? 'var(--bg-hover)' : 'transparent',
+                border: `1px solid ${days === d ? 'var(--border)' : 'transparent'}`,
+                color: days === d ? 'var(--text)' : 'var(--muted)',
                 borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
               }}
             >{d}d</button>
@@ -163,7 +168,7 @@ export default function AnalyticsPage() {
             onClick={fetchStats}
             disabled={loading}
             style={{
-              background: 'transparent', border: '1px solid #222', color: '#555',
+              background: 'transparent', border: '1px solid var(--border)', color: 'var(--muted)',
               borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer', marginLeft: 4,
             }}
           >{loading ? '…' : '↻'}</button>
@@ -179,7 +184,7 @@ export default function AnalyticsPage() {
 
       {/* Chart */}
       <div style={{
-        background: '#111', border: '1px solid #1e1e1e', borderRadius: 8,
+        background: 'var(--bg-cell)', border: '1px solid var(--border)', borderRadius: 8,
         padding: '20px 20px 12px', marginBottom: 20,
       }}>
         <div style={{ display: 'flex', gap: 8, marginBottom: 20 }}>
@@ -188,9 +193,9 @@ export default function AnalyticsPage() {
               key={m}
               onClick={() => setMetric(m)}
               style={{
-                background: metric === m ? '#1a2a3a' : 'transparent',
-                border: `1px solid ${metric === m ? '#1e3a5f' : 'transparent'}`,
-                color: metric === m ? '#60a5fa' : '#555',
+                background: metric === m ? 'rgba(255,73,12,0.12)' : 'transparent',
+                border: `1px solid ${metric === m ? 'rgba(255,73,12,0.4)' : 'transparent'}`,
+                color: metric === m ? 'var(--accent)' : 'var(--muted)',
                 borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer',
               }}
             >{metricLabel[m]}</button>
@@ -200,33 +205,35 @@ export default function AnalyticsPage() {
         <ResponsiveContainer width="100%" height={240}>
           <AreaChart data={stats?.dailySeries ?? []} margin={{ top: 4, right: 4, left: -20, bottom: 0 }}>
             <defs>
+              {/* RESEARCH P2 mitigation: hard-code #FF490C in SVG gradient stops
+                  rather than var(--accent) for older Recharts safety. */}
               <linearGradient id="grad" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.25} />
-                <stop offset="95%" stopColor="#3b82f6" stopOpacity={0} />
+                <stop offset="5%" stopColor="#FF490C" stopOpacity={0.25} />
+                <stop offset="95%" stopColor="#FF490C" stopOpacity={0} />
               </linearGradient>
             </defs>
-            <CartesianGrid vertical={false} stroke="#1a1a1a" />
+            <CartesianGrid vertical={false} stroke="var(--border)" />
             <XAxis
               dataKey="label"
-              tick={{ fill: '#555', fontSize: 11 }}
+              tick={{ fill: '#ABABAB', fontSize: 11 }}
               axisLine={false} tickLine={false}
               interval="preserveStartEnd"
             />
             <YAxis
-              tick={{ fill: '#555', fontSize: 11 }}
+              tick={{ fill: '#ABABAB', fontSize: 11 }}
               axisLine={false} tickLine={false}
               allowDecimals={false}
             />
-            <Tooltip content={<ChartTooltip />} cursor={{ stroke: '#333', strokeWidth: 1 }} />
+            <Tooltip content={<ChartTooltip />} cursor={{ stroke: 'var(--border)', strokeWidth: 1 }} />
             <Area
               type="monotone"
               dataKey={metric}
               name={metricLabel[metric]}
-              stroke="#3b82f6"
+              stroke="#FF490C"
               strokeWidth={1.5}
               fill="url(#grad)"
               dot={false}
-              activeDot={{ r: 4, fill: '#3b82f6', stroke: '#111', strokeWidth: 2 }}
+              activeDot={{ r: 4, fill: '#FF490C', stroke: 'var(--bg-page)', strokeWidth: 2 }}
             />
           </AreaChart>
         </ResponsiveContainer>
