@@ -112,3 +112,49 @@ created: 2026-04-17
 - [ ] `nyquist_compliant: true` set in frontmatter once all the above tick
 
 **Approval:** pending
+
+---
+
+## Per-Task Verification Map
+
+> Appended by `/gsd:plan-phase` (planner). One row per `<task>` block across plans 01–05.
+
+| Task ID | Plan | Wave | Decision(s) | Test type | Command | Status |
+|---------|------|------|-------------|-----------|---------|--------|
+| 01-01 | 01 | 0 | D-01, D-02, D-04 | build | `npx next build` | ⬜ |
+| 01-02 | 01 | 0 | D-07, D-08, D-09 | build | `npx next build` | ⬜ |
+| 01-03 | 01 | 0 | D-12 (prereq) | build | `npx next build` | ⬜ |
+| 01-04 | 01 | 0 | D-26 (tooling) | playwright list | `npx playwright test --list tests/visual/homepage.spec.ts` | ⬜ |
+| 01-05 | 01 | 0 | D-07, D-08 | unit | `npm test -- --run tests/fonts.test.ts` | ⬜ |
+| 01-06 | 01 | 0 | D-27 | gate | `npx next build && npm test` | ⬜ |
+| 02-01 | 02 | 1 | D-10–D-15 (contracts) | typecheck | `npx tsc --noEmit` | ⬜ |
+| 02-02 | 02 | 1 | D-05, D-10 | unit | `npm test -- --run tests/components/DataCell.test.tsx` | ⬜ |
+| 02-03 | 02 | 1 | D-11 | unit | `npm test -- --run tests/components/SortHeader.test.tsx` | ⬜ |
+| 02-04 | 02 | 1 | D-06 | unit | `npm test -- --run tests/components/MeterRow.test.tsx` | ⬜ |
+| 02-05 | 02 | 1 | D-12 | unit | `npm test -- --run tests/components/HeaderBar.test.tsx` | ⬜ |
+| 02-06 | 02 | 1 | D-13 | unit | `npm test -- --run tests/components/TopNav.test.tsx` | ⬜ |
+| 02-07 | 02 | 1 | D-14 | unit | `npm test -- --run tests/components/CategoryFilter.test.tsx` | ⬜ |
+| 02-08 | 02 | 1 | D-15 | unit | `npm test -- --run tests/components/TypeFilter.test.tsx` | ⬜ |
+| 02-09 | 02 | 1 | D-27 | gate | `npm test && npx next build` | ⬜ |
+| 03-01 | 03 | 1 | D-16 (contract) | typecheck | `npx tsc --noEmit` | ⬜ |
+| 03-02 | 03 | 1 | D-16 | typecheck | `npx tsc --noEmit` | ⬜ |
+| 03-03 | 03 | 1 | D-16 | typecheck | `npx tsc --noEmit` | ⬜ |
+| 03-04 | 03 | 1 | D-03, D-18 (state) | typecheck | `npx tsc --noEmit` | ⬜ |
+| 03-05 | 03 | 1 | D-16 | unit | `npm test -- --run tests/components/HoverTooltipCard.test.tsx` | ⬜ |
+| 03-06 | 03 | 1 | D-16 | unit | `npm test -- --run tests/components/useHoverTooltip.test.tsx` | ⬜ |
+| 03-07 | 03 | 1 | D-18 | unit | `npm test -- --run tests/components/useColumnSelection.test.tsx` | ⬜ |
+| 03-08 | 03 | 1 | D-27 | gate | `npm test && npx next build` | ⬜ |
+| 04-01 | 04 | 2 | D-17 | typecheck | `npx tsc --noEmit` | ⬜ |
+| 04-02 | 04 | 2 | D-17, D-18, D-21 | build | `npx next build` | ⬜ |
+| 04-03 | 04 | 2 | D-17 | build | `npx next build` | ⬜ |
+| 04-04 | 04 | 2 | D-17 (cleanup) | build | `npx next build` | ⬜ |
+| 04-05 | 04 | 2 | D-26 (baseline armed) | visual | `npx playwright test tests/visual/homepage.spec.ts` | ⬜ |
+| 04-06 | 04 | 2 | D-19, D-20, D-29 (a11y deferred to 05-07) | gate | `npm test && npx playwright test && npx next build` | ⬜ |
+| 05-01 | 05 | 3 | D-22 | build | `npx next build` | ⬜ |
+| 05-02 | 05 | 3 | D-23 | build | `npx next build` | ⬜ |
+| 05-03 | 05 | 3 | D-23 | build | `npx next build` | ⬜ |
+| 05-04 | 05 | 3 | D-24 | unit | `npm test -- --run tests/components/Modal.test.tsx` | ⬜ |
+| 05-05 | 05 | 3 | D-26 (full coverage) | visual | `npx playwright test tests/visual/club-page.spec.ts tests/visual/admin.spec.ts` | ⬜ |
+| 05-06 | 05 | 3 | D-25 | grep | `grep -q "single orange CTA" CLAUDE.md` | ⬜ |
+| 05-07 | 05 | 3 | D-29 | manual + node | Lighthouse JSON score ≥ 0.9 (node check) | ⬜ |
+| 05-08 | 05 | 3 | D-27, D-28 (final gate) | gate | full suite + `git diff --quiet analysis/homepage/results/` | ⬜ |
