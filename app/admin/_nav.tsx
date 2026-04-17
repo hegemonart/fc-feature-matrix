@@ -15,7 +15,6 @@ import { usePathname } from 'next/navigation';
 
 const LINKS = [
   { href: '/admin/users',    label: 'Users' },
-  { href: '/admin/requests', label: 'Requests' },
   { href: '/admin/analytics', label: 'Analytics' },
 ];
 
