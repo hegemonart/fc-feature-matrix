@@ -79,9 +79,9 @@ export function HoverTooltipCard({ data, features, clubs, scoring }: HoverToolti
           TIER: {feature.tier}
         </span>
         <span className={`${styles.scoreBreakdown} mono-caption`}>
-          <span className={styles.scoreYes}>Yes +{score.yes}</span>
+          <span className={styles.scoreYes}>Yes +{Math.abs(score.yes)}</span>
           <span className={styles.scoreSep}>/</span>
-          <span className={styles.scoreNo}>No −{score.no}</span>
+          <span className={styles.scoreNo}>No −{Math.abs(score.no)}</span>
         </span>
       </div>
     </div>
