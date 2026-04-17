@@ -38,39 +38,45 @@ export default async function AdminLayout({ children }: { children: React.ReactN
       </nav>
       <main className="admin-main">{children}</main>
       <style>{`
-        .admin-shell { display: flex; flex-direction: column; min-height: 100vh; font-family: var(--font-sans, system-ui, sans-serif); }
-        .admin-nav { display: flex; align-items: center; gap: 16px; padding: 0 24px; height: 52px; background: #0a0a0a; border-bottom: 1px solid #222; }
-        .admin-nav-brand { color: #fff; text-decoration: none; font-weight: 600; font-size: 14px; margin-right: 8px; }
+        /* D-23 — admin chrome re-themed via design tokens (plan 05). */
+        .admin-shell { display: flex; flex-direction: column; min-height: 100vh; font-family: var(--font-body, system-ui, sans-serif); background: var(--bg-page); color: var(--text); }
+        .admin-nav { display: flex; align-items: center; gap: 16px; padding: 0 24px; height: 52px; background: var(--bg-cell); border-bottom: 1px solid var(--border); }
+        .admin-nav-brand { color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; margin-right: 8px; }
         .admin-nav-links { display: flex; gap: 4px; flex: 1; }
-        .admin-nav-link { color: #aaa; text-decoration: none; font-size: 13px; padding: 4px 10px; border-radius: 4px; transition: color 0.15s, background 0.15s; }
-        .admin-nav-link:hover { color: #fff; background: #1a1a1a; }
+        .admin-nav-link { color: var(--muted); text-decoration: none; font-size: 13px; padding: 4px 10px; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+        .admin-nav-link:hover { color: var(--text); background: var(--bg-hover); }
         .admin-nav-meta { display: flex; align-items: center; gap: 12px; margin-left: auto; }
-        .admin-nav-email { font-size: 12px; color: #666; }
-        .admin-nav-signout { background: none; border: 1px solid #333; color: #888; font-size: 12px; padding: 3px 10px; border-radius: 4px; cursor: pointer; }
-        .admin-nav-signout:hover { color: #fff; border-color: #555; }
+        .admin-nav-email { font-size: 12px; color: var(--muted); }
+        /* D-24 — Sign-out is a secondary action (white-outlined / muted), not orange. */
+        .admin-nav-signout { background: none; border: 1px solid var(--border); color: var(--muted); font-size: 12px; padding: 3px 10px; border-radius: 4px; cursor: pointer; }
+        .admin-nav-signout:hover { color: var(--text); border-color: var(--muted); }
         .admin-main { flex: 1; padding: 32px 24px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
-        .admin-page-title { font-size: 20px; font-weight: 600; margin: 0 0 24px; }
-        .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .admin-table th { text-align: left; padding: 8px 12px; border-bottom: 1px solid #222; color: #666; font-weight: 500; }
-        .admin-table td { padding: 10px 12px; border-bottom: 1px solid #111; vertical-align: middle; }
-        .admin-table tr:hover td { background: #0d0d0d; }
+        /* D-08 / D-22 — section headers in mono-caption */
+        .admin-page-title { font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; font-size: 12px; line-height: 15px; letter-spacing: -0.5px; text-transform: uppercase; color: var(--text); margin: 0 0 24px; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--bg-cell); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+        .admin-table th { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; background: var(--bg-cell); }
+        .admin-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        .admin-table tr:last-child td { border-bottom: none; }
+        .admin-table tr:hover td { background: var(--bg-hover); }
         .admin-badge { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 10px; }
-        .admin-badge-admin { background: #1a3a1a; color: #4ade80; }
-        .admin-badge-user { background: #1a1a1a; color: #666; }
-        .admin-btn { padding: 4px 10px; font-size: 12px; border-radius: 4px; cursor: pointer; border: 1px solid #333; background: none; color: #ccc; }
-        .admin-btn:hover { background: #1a1a1a; color: #fff; }
-        .admin-btn-danger { border-color: #5a1a1a; color: #f87171; }
-        .admin-btn-danger:hover { background: #2a0a0a; }
-        .admin-btn-primary { background: #1a3a1a; border-color: #2d5a2d; color: #4ade80; }
-        .admin-btn-primary:hover { background: #234a23; }
+        .admin-badge-admin { background: rgba(255,73,12,0.12); color: var(--accent); }
+        .admin-badge-user { background: var(--bg-hover); color: var(--muted); }
+        .admin-btn { padding: 4px 10px; font-size: 12px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text); transition: all 0.15s; }
+        .admin-btn:hover { background: var(--bg-hover); color: var(--text); }
+        .admin-btn-danger { border-color: rgba(239,68,68,0.4); color: var(--red); }
+        .admin-btn-danger:hover { background: rgba(239,68,68,0.1); color: var(--red); }
+        /* D-24 — admin-btn-primary is the orange CTA (single per surface). */
+        .admin-btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+        .admin-btn-primary:hover { background: var(--accent); filter: brightness(1.1); color: #fff; }
         .admin-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); display: flex; align-items: center; justify-content: center; z-index: 100; }
-        .admin-modal { background: #111; border: 1px solid #222; border-radius: 8px; padding: 24px; min-width: 360px; max-width: 440px; }
-        .admin-modal h3 { margin: 0 0 16px; font-size: 16px; }
+        .admin-modal { background: var(--bg-cell); border: 1px solid var(--border); border-radius: 8px; padding: 24px; min-width: 360px; max-width: 440px; }
+        .admin-modal h3 { margin: 0 0 16px; font-size: 16px; color: var(--text); }
         .admin-form-row { margin-bottom: 12px; }
-        .admin-form-row label { display: block; font-size: 12px; color: #888; margin-bottom: 4px; }
-        .admin-form-row input { width: 100%; padding: 7px 10px; border-radius: 4px; border: 1px solid #333; background: #0a0a0a; color: #fff; font-size: 13px; box-sizing: border-box; }
+        .admin-form-row label { display: block; font-size: 12px; color: var(--muted); margin-bottom: 4px; }
+        .admin-form-row input { width: 100%; padding: 7px 10px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-page); color: var(--text); font-size: 13px; box-sizing: border-box; }
+        .admin-form-row input:focus { outline: none; border-color: var(--accent); }
         .admin-form-actions { display: flex; gap: 8px; margin-top: 16px; justify-content: flex-end; }
-        .admin-error { color: #f87171; font-size: 12px; margin-top: 8px; }
+        .admin-error { color: var(--red); font-size: 12px; margin-top: 8px; }
       `}</style>
     </div>
   );
