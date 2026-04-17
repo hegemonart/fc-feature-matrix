@@ -1,36 +1,14 @@
 /* ================================================================
-   <TopNav> + <UnlockTab>
+   <TopNav> — Figma node 43:53
 
-   D-13 — single horizontal tab strip across the full page width.
-   - Active tab gets border-bottom: 2px solid var(--accent)
-   - Locked tabs render at opacity 0.6 and call onTabClick(name) —
-     the parent (plan 04) decides whether to open the locked-content
-     modal, preserving existing app/page.tsx handler logic.
-   - <UnlockTab> sub-component renders with solid var(--accent) bg
-   - Component does NOT itself open any modal (separation of concerns).
+   Active tab → solid white pill (left).
+   All other tabs → gray rail with justify-between (right).
+   Unlock → orange block flush to the right end of the rail.
    ================================================================ */
 
 import * as React from 'react';
 import styles from './TopNav.module.css';
 import type { TopNavProps } from './types';
-
-interface UnlockTabProps {
-  label: string;
-  onClick: () => void;
-}
-
-export function UnlockTab({ label, onClick }: UnlockTabProps) {
-  return (
-    <button
-      type="button"
-      className={styles.unlockTab}
-      onClick={onClick}
-      data-tab-variant="unlock"
-    >
-      {label}
-    </button>
-  );
-}
 
 export function TopNav({
   tabs,
@@ -41,46 +19,58 @@ export function TopNav({
 }: TopNavProps) {
   const lockedSet = new Set(lockedTabs);
 
+  const activeTabData = tabs.find(t => t.id === activeTab && t.id !== unlockTab);
+  const railTabs = tabs.filter(t => t.id !== activeTab && t.id !== unlockTab);
+  const unlockTabData = unlockTab ? tabs.find(t => t.id === unlockTab) : null;
+
   return (
     <nav className={styles.nav} role="tablist">
-      {tabs.map(tab => {
-        // Unlock variant — solid orange bg, single-orange-CTA exception.
-        if (unlockTab && tab.id === unlockTab) {
+      {activeTabData && (
+        <button
+          type="button"
+          role="tab"
+          aria-selected={true}
+          className={styles.activeTab}
+          data-tab-id={activeTabData.id}
+          data-tab-active="true"
+          data-tab-locked="false"
+          onClick={() => onTabClick(activeTabData.id)}
+        >
+          {activeTabData.label}
+        </button>
+      )}
+
+      <div className={styles.lockedRail}>
+        {railTabs.map(tab => {
+          const isLocked = lockedSet.has(tab.id);
           return (
-            <UnlockTab
+            <button
               key={tab.id}
-              label={tab.label}
+              type="button"
+              role="tab"
+              aria-selected={false}
+              className={`${styles.tab} ${isLocked ? styles.tabLocked : styles.tabUnlocked}`}
+              data-tab-id={tab.id}
+              data-tab-active="false"
+              data-tab-locked={isLocked ? 'true' : 'false'}
               onClick={() => onTabClick(tab.id)}
-            />
+            >
+              {tab.label}
+            </button>
           );
-        }
+        })}
 
-        const isActive = tab.id === activeTab;
-        const isLocked = lockedSet.has(tab.id);
-        const className = [
-          styles.tab,
-          isActive ? styles.tabActive : '',
-          isLocked ? styles.tabLocked : '',
-        ]
-          .filter(Boolean)
-          .join(' ');
-
-        return (
+        {unlockTabData && (
           <button
-            key={tab.id}
             type="button"
-            role="tab"
-            aria-selected={isActive}
-            className={className}
-            data-tab-id={tab.id}
-            data-tab-active={isActive ? 'true' : 'false'}
-            data-tab-locked={isLocked ? 'true' : 'false'}
-            onClick={() => onTabClick(tab.id)}
+            className={styles.unlockTab}
+            onClick={() => onTabClick(unlockTabData.id)}
+            data-tab-variant="unlock"
           >
-            {tab.label}
+            {unlockTabData.label}
           </button>
-        );
-      })}
+        )}
+      </div>
     </nav>
   );
 }
