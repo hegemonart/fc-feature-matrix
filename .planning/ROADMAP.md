@@ -19,7 +19,7 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
 
 - [x] **`infra-ci-cd`** — GitHub Actions CI pipeline (lint / typecheck / test / build). Shipped. See `.planning/phases/infra-ci-cd/`.
 - [ ] **`infra-users-admin`** — Users → Postgres, `/admin` panel (users / analytics / access-request triage), analytics → Postgres with 90-day retention, three load-bearing auth security fixes. See `.planning/phases/infra-users-admin/CONTEXT.md`.
-- [ ] **`infra-redesign-v2`** — Visual redesign of the matrix homepage and system-wide rollout: new neutral-dark palette + brand-orange accent, Suisse Int'l + Roboto Mono type system, atomic `DataCell` / `SortHeader` / sidebar / hover-tooltip components, then extrapolation to `/club`, `/admin`, and modals. See `.planning/phases/infra-redesign-v2/CONTEXT.md`.
+- [x] **`infra-redesign-v2`** — Visual redesign of the matrix homepage and system-wide rollout: new neutral-dark palette + brand-orange accent, Inter Tight + Roboto Mono type system, atomic `DataCell` / `SortHeader` / sidebar / hover-tooltip components, extrapolation to `/club`, `/admin`, and modals. Shipped 2026-04-17 (5/5 plans, Lighthouse a11y 91, single-orange-CTA invariant codified). See `.planning/phases/infra-redesign-v2/`.
 
 ## Phase Details
 
@@ -117,4 +117,4 @@ Numbered phases execute in order: 1 → 2 → 3 → 4 → 5 → 6. Out-of-band i
 |-------|----------------|--------|-----------|
 | `infra-ci-cd` | 1/1 | Complete | 2026-04-16 |
 | `infra-users-admin` | 0/TBD | Not started | - |
-| `infra-redesign-v2` | 3/5 | In progress — Wave 1 cross-cell interactivity done | - |
+| `infra-redesign-v2` | 5/5 | Complete — system-wide visual rollout shipped | 2026-04-17 |
