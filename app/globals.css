@@ -350,7 +350,8 @@ tfoot .score-row td { background: var(--bg-cell); border-top: 2px solid var(--bo
 .bd-summary { background: var(--bg-cell); border: 1px solid var(--border); border-radius: 16px; padding: 24px 28px; margin-bottom: 24px; }
 .bd-summary-text { font-size: 14px; color: var(--text); line-height: 1.75; margin: 0; }
 .bd-summary-gaps { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-.bd-summary-gaps-label { width: 100%; font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: -2px; }
+/* D-08 / D-22 — mono-caption treatment on stat labels (10/13/-1px Roboto Mono). */
+.bd-summary-gaps-label { width: 100%; font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; font-size: 10px; line-height: 13px; letter-spacing: -1px; text-transform: uppercase; color: var(--muted); margin-bottom: -2px; }
 @media (max-width: 600px) { .bd-summary-gaps { flex-direction: column; } }
 .bd-gap-card { flex: 1; padding: 12px 14px; border-radius: 10px; border: 1px solid var(--border); background: var(--bg-hover); }
 .bd-gap-card-top { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 4px; }
@@ -362,7 +363,7 @@ tfoot .score-row td { background: var(--bg-cell); border-top: 2px solid var(--bo
 .bd-score-row { display: grid; grid-template-columns: 280px 1fr; gap: 16px; margin-bottom: 24px; align-items: start; }
 @media (max-width: 700px) { .bd-score-row { grid-template-columns: 1fr; } }
 .bd-score-card { background: var(--bg-cell); border: 1px solid var(--border); border-radius: 16px; padding: 28px 24px; display: flex; flex-direction: column; align-items: center; text-align: center; }
-.bd-score-label { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+.bd-score-label { font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; font-size: 10px; line-height: 13px; letter-spacing: -1px; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
 .bd-ring-wrap { position: relative; width: 150px; height: 150px; margin-bottom: 16px; }
 .bd-ring-svg { width: 100%; height: 100%; transform: rotate(-90deg); }
 .bd-ring-bg { fill: none; stroke: var(--bg-hover); stroke-width: 10; }
@@ -377,7 +378,7 @@ tfoot .score-row td { background: var(--bg-cell); border-top: 2px solid var(--bo
 .bd-divider { width: 100%; height: 1px; background: var(--border); margin: 18px 0; }
 .bd-scores-row { display: flex; gap: 24px; }
 .bd-mini-score { text-align: center; }
-.bd-mini-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+.bd-mini-label { font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; font-size: 10px; line-height: 13px; letter-spacing: -1px; text-transform: uppercase; color: var(--muted); margin-bottom: 4px; }
 .bd-mini-val { font-size: 24px; font-weight: 700; font-variant-numeric: tabular-nums; line-height: 1; }
 
 /* ── BD RANK CARD (full-page version) ── */
@@ -391,7 +392,7 @@ tfoot .score-row td { background: var(--bg-cell); border-top: 2px solid var(--bo
 .bd-rank-item.current { background: rgba(234,179,8,.1); border: 1px solid rgba(234,179,8,.2); border-radius: 6px; }
 .bd-rank-pos { width: 24px; font-size: 11px; font-weight: 700; color: var(--muted); text-align: center; font-variant-numeric: tabular-nums; flex-shrink: 0; }
 .bd-rank-item.current .bd-rank-pos { color: var(--yellow); }
-.bd-rank-name { flex: 1; font-size: 12px; color: #b0b0c8; }
+.bd-rank-name { flex: 1; font-size: 12px; color: var(--muted); }
 .bd-rank-item.current .bd-rank-name { font-weight: 700; color: var(--text); }
 .bd-rank-bar-wrap { width: 70px; height: 4px; background: var(--bg-hover); border-radius: 2px; overflow: hidden; flex-shrink: 0; }
 .bd-rank-bar { height: 100%; border-radius: 2px; }
@@ -451,8 +452,10 @@ tfoot .score-row td { background: var(--bg-cell); border-top: 2px solid var(--bo
 
 /* ── PAGE HEADER (club detail page) ── */
 .page-header { background: var(--bg-cell); border-bottom: 1px solid var(--border); padding: 0 32px; display: flex; align-items: center; gap: 0; }
-.header-back { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 12px; text-decoration: none; padding: 14px 16px 14px 0; border-right: 1px solid var(--border); margin-right: 20px; transition: color .15s; white-space: nowrap; }
-.header-back:hover { color: var(--text); }
+/* D-22 / D-24 — single orange CTA rule (plan 05): this page has no primary orange CTA,
+   so the "Back to matrix" link is white-outlined per plan 05 must-have. */
+.header-back { display: inline-flex; align-items: center; gap: 8px; color: #FFFFFF; font-size: 12px; text-decoration: none; padding: 7px 14px; margin: 10px 20px 10px 0; border: 1px solid #FFFFFF; background: transparent; border-radius: 8px; transition: background .15s, color .15s; white-space: nowrap; }
+.header-back:hover { background: rgba(255,255,255,.08); color: #FFFFFF; }
 .header-back svg { width: 14px; height: 14px; flex-shrink: 0; }
 .header-logo { font-size: 11px; font-weight: 700; letter-spacing: .15em; text-transform: uppercase; color: var(--muted); white-space: nowrap; display: flex; align-items: center; }
 .header-logo span { color: var(--accent); }
