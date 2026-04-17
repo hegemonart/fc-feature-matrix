@@ -1,0 +1,93 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<MeterRow> per-band snapshots (D-06) > renders band="bottom" 1`] = `
+<div
+  class="_row_bfac36"
+  data-band="bottom"
+  data-value="22"
+>
+  <div
+    class="_track_bfac36"
+  >
+    <div
+      class="_fill_bfac36"
+      style="width: 22%; background: var(--red);"
+    />
+  </div>
+  <span
+    class="_caption_bfac36 mono-caption"
+  >
+    22
+    %
+  </span>
+</div>
+`;
+
+exports[`<MeterRow> per-band snapshots (D-06) > renders band="competitive" 1`] = `
+<div
+  class="_row_bfac36"
+  data-band="competitive"
+  data-value="92"
+>
+  <div
+    class="_track_bfac36"
+  >
+    <div
+      class="_fill_bfac36"
+      style="width: 92%; background: var(--green);"
+    />
+  </div>
+  <span
+    class="_caption_bfac36 mono-caption"
+  >
+    92
+    %
+  </span>
+</div>
+`;
+
+exports[`<MeterRow> per-band snapshots (D-06) > renders band="mid" 1`] = `
+<div
+  class="_row_bfac36"
+  data-band="mid"
+  data-value="71"
+>
+  <div
+    class="_track_bfac36"
+  >
+    <div
+      class="_fill_bfac36"
+      style="width: 71%; background: var(--yellow);"
+    />
+  </div>
+  <span
+    class="_caption_bfac36 mono-caption"
+  >
+    71
+    %
+  </span>
+</div>
+`;
+
+exports[`<MeterRow> per-band snapshots (D-06) > renders band="weak" 1`] = `
+<div
+  class="_row_bfac36"
+  data-band="weak"
+  data-value="48"
+>
+  <div
+    class="_track_bfac36"
+  >
+    <div
+      class="_fill_bfac36"
+      style="width: 48%; background: var(--orange);"
+    />
+  </div>
+  <span
+    class="_caption_bfac36 mono-caption"
+  >
+    48
+    %
+  </span>
+</div>
+`;

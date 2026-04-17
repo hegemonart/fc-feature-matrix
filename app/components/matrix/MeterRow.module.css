@@ -1,0 +1,41 @@
+/* ================================================================
+   MeterRow.module.css
+
+   Mini progress bar + percentage caption (D-06). Width-driven by
+   value (0-100). Color resolves from band → CSS var
+   (--green | --yellow | --orange | --red) — band semantics
+   preserved as-is from lib/scoring.ts tier mapping.
+
+   Caption uses .mono-caption (defined in plan 01-02 globals.css).
+   ================================================================ */
+
+.row {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 80px;
+}
+
+.track {
+  position: relative;
+  flex: 1;
+  height: 4px;
+  background: var(--bg-hover);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.fill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  border-radius: 2px;
+  transition: width 200ms ease-out;
+}
+
+.caption {
+  flex-shrink: 0;
+  color: var(--muted);
+  min-width: 28px;
+  text-align: right;
+}
