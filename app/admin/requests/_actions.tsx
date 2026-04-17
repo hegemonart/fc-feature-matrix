@@ -129,49 +129,54 @@ export function RequestsActions({ initialRequests }: { initialRequests: RequestR
   const pending = requests.filter((r) => r.status === 'pending');
   const resolved = requests.filter((r) => r.status !== 'pending');
 
-  const RequestTable = ({ rows, showActions }: { rows: RequestRow[]; showActions: boolean }) => (
-    <table className="admin-table" style={{ marginBottom: 32 }}>
-      <thead>
-        <tr>
-          <th>Email</th>
-          <th>Source</th>
-          <th className="admin-col-role">Status</th>
-          <th className="admin-col-date">Requested</th>
-          <th className="admin-col-date">Resolved</th>
-          {showActions && <th className="admin-actions-cell">Actions</th>}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.length === 0 && (
-          <tr><td colSpan={showActions ? 6 : 5} style={{ color: 'var(--muted)', padding: '16px 12px', fontSize: 13 }}>No requests.</td></tr>
-        )}
-        {rows.map((r) => (
-          <tr key={r.id}>
-            <td style={{ fontFamily: 'monospace', fontSize: 12 }}>{r.email}</td>
-            <td style={{ fontSize: 12, color: 'var(--muted)' }}>{r.source ?? '—'}</td>
-            <td className="admin-col-role"><StatusBadge status={r.status} /></td>
-            <td className="admin-col-date">{fmt(r.createdAt)}</td>
-            <td className="admin-col-date">{fmt(r.resolvedAt)}</td>
-            {showActions && (
-              <td>
-                <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-                  <button className="admin-btn admin-btn-primary" onClick={() => setGrantTarget(r)}>Grant</button>
-                  <button
-                    className="admin-btn"
-                    disabled={dismissingId === r.id}
-                    onClick={() => handleDismiss(r)}
-                  >
-                    Dismiss
-                  </button>
-                  {errors[r.id] && <span className="admin-error">{errors[r.id]}</span>}
-                </div>
-              </td>
-            )}
+  // Pending rows never have a resolvedAt, so their table skips that
+  // column entirely. Resolved rows drop the Actions column instead.
+  const RequestTable = ({ rows, showActions }: { rows: RequestRow[]; showActions: boolean }) => {
+    const colCount = 3 + (showActions ? 1 : 1); // email + source + status + (actions|resolved)
+    return (
+      <table className="admin-table" style={{ marginBottom: 32 }}>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Source</th>
+            <th className="admin-col-role">Status</th>
+            <th className="admin-col-date">Requested</th>
+            {!showActions && <th className="admin-col-date">Resolved</th>}
+            {showActions && <th className="admin-actions-cell">Actions</th>}
           </tr>
-        ))}
-      </tbody>
-    </table>
-  );
+        </thead>
+        <tbody>
+          {rows.length === 0 && (
+            <tr><td colSpan={colCount + 1} style={{ color: 'var(--muted)', padding: '16px 18px', fontSize: 13 }}>No requests.</td></tr>
+          )}
+          {rows.map((r) => (
+            <tr key={r.id}>
+              <td className="admin-col-email">{r.email}</td>
+              <td className="admin-col-source">{r.source ?? '—'}</td>
+              <td className="admin-col-role"><StatusBadge status={r.status} /></td>
+              <td className="admin-col-date">{fmt(r.createdAt)}</td>
+              {!showActions && <td className="admin-col-date">{fmt(r.resolvedAt)}</td>}
+              {showActions && (
+                <td className="admin-actions-cell">
+                  <div className="admin-actions-row">
+                    <button className="admin-btn admin-btn-primary" onClick={() => setGrantTarget(r)}>Grant</button>
+                    <button
+                      className="admin-btn"
+                      disabled={dismissingId === r.id}
+                      onClick={() => handleDismiss(r)}
+                    >
+                      Dismiss
+                    </button>
+                    {errors[r.id] && <span className="admin-error">{errors[r.id]}</span>}
+                  </div>
+                </td>
+              )}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    );
+  };
 
   return (
     <>

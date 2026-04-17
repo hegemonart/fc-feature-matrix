@@ -63,10 +63,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         .admin-select { width: 110px; padding: 4px 8px; font-size: 12px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-cell); color: var(--text); cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='none' stroke='%23ababab' stroke-width='1.5' d='M3 5l3 3 3-3'/></svg>"); background-repeat: no-repeat; background-position: right 8px center; padding-right: 24px; }
         .admin-select:hover { border-color: var(--muted); }
         .admin-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-        /* Keep Actions column width constant regardless of row content. */
-        .admin-actions-cell { white-space: nowrap; }
+        /* Keep Actions column width constant regardless of row content,
+           AND collapse to content so slack goes to the Email/Source column instead. */
+        .admin-actions-cell { width: 1%; white-space: nowrap; }
         .admin-actions-row { display: flex; gap: 6px; align-items: center; }
         .admin-actions-row .admin-btn { min-width: 72px; }
+        /* Email cell — monospace, smaller, stable width rhythm across tables. */
+        .admin-col-email { font-family: var(--font-mono, ui-monospace, monospace); font-size: 12px; white-space: nowrap; }
+        .admin-col-source { font-size: 12px; color: var(--muted); }
         .admin-btn { padding: 4px 10px; font-size: 12px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text); transition: all 0.15s; }
         .admin-btn:hover { background: var(--bg-hover); color: var(--text); }
         .admin-btn-danger { border-color: rgba(239,68,68,0.4); color: var(--red); }

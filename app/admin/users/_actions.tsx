@@ -254,7 +254,7 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
               : 'user';
             return (
               <tr key={u.id}>
-                <td style={{ fontFamily: 'monospace', fontSize: 12 }}>{u.email}</td>
+                <td className="admin-col-email">{u.email}</td>
                 <td className="admin-col-name">{u.name ?? '—'}</td>
                 <td className="admin-col-role">
                   <span className={`admin-badge ${badgeClass}`}>{badgeLabel}</span>
