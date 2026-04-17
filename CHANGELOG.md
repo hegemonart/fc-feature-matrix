@@ -1,5 +1,8 @@
 # Changelog
 
+## v7.2 — 2026-04-17
+Cross-cell interactivity layer (infra-redesign-v2 plan 03): <HoverTooltipCard> portaled to document.body — anchored from cell.getBoundingClientRect() (not cursor) per RESEARCH P8. useHoverTooltip hook with 100ms close grace + cancel-on-reenter. useColumnSelection hook for D-18 toggle-deselect. 15 new specs (90 total).
+
 ## v7.1 — 2026-04-17
 Atomic matrix components (infra-redesign-v2 plan 02): DataCell (8 states), SortHeader (3 states), MeterRow (4 bands), HeaderBar (BUILD_DATE), TopNav + UnlockTab (locked-tab opacity), CategoryFilter, TypeFilter — all under app/components/matrix/ with colocated CSS modules + Vitest specs. CONTEXT.md D-15 corrected to PRODUCTS[].type.
 
