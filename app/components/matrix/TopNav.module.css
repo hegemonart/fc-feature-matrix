@@ -10,7 +10,7 @@
 .nav {
   display: flex;
   align-items: center;
-  background: #181818;
+  background: var(--bg-page);
   padding: 8px 20px;
   gap: 8px;
   flex-shrink: 0;
@@ -56,10 +56,13 @@
   display: flex;
   align-items: center;
   gap: 4px;
+  background: rgba(93, 93, 93, 0.15);
+  border-radius: 4px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  padding: 0 4px;
   min-width: 0;
 }
 
