@@ -3,11 +3,27 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
+stopped_at: Completed infra-redesign-v2-04-PLAN.md (Server/Client split + visual baseline). 6 commits, 90/90 tests, build clean, baseline locked at 1440x900. Ready for plan 05 phase gate.
+last_updated: "2026-04-17T05:06:16.981Z"
+last_activity: 2026-04-17 — infra-redesign-v2 plan 03 executed (8 commits, 90/90 tests green, ~6 min)
+progress:
+  total_phases: 6
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 80
+---
+
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: executing
 stopped_at: Completed infra-redesign-v2-03-PLAN.md (HoverTooltipCard + state hooks). 8 commits, 90/90 tests, build clean. Ready for plan 04 page.tsx refactor.
 last_updated: "2026-04-17T04:48:32.542Z"
 last_activity: 2026-04-17 — infra-redesign-v2 plan 02 executed (9 commits, 75/75 tests green, ~12 min)
 progress:
-  total_phases: 6
+  [████████░░] 80%
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -41,12 +57,12 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 
 ## Current Position
 
-Phase: infra-redesign-v2 (Wave 1 cross-cell interactivity landed)
-Plan: 3 of 5 complete in current phase
-Status: Plan 03 complete; ready for plan 04 (app/page.tsx refactor)
-Last activity: 2026-04-17 — infra-redesign-v2 plan 03 executed (8 commits, 90/90 tests green, ~6 min)
+Phase: infra-redesign-v2 (Wave 2 — homepage Server/Client split landed)
+Plan: 4 of 5 complete in current phase
+Status: Plan 04 complete; ready for plan 05 (system-wide extrapolation + phase gate)
+Last activity: 2026-04-17 — infra-redesign-v2 plan 04 executed (6 commits, 90/90 vitest, 1/1 playwright, build clean, ~12 min)
 
-Progress: [██████░░░░] 60% (3 of 5 plans in infra-redesign-v2)
+Progress: [████████░░] 80% (4 of 5 plans in infra-redesign-v2)
 
 ## Performance Metrics
 
@@ -67,6 +83,7 @@ Progress: [██████░░░░] 60% (3 of 5 plans in infra-redesign-v
 
 *Updated after each plan completion*
 | Phase infra-redesign-v2 P03 | 6min | 8 tasks | 10 files |
+| Phase infra-redesign-v2 P04 | 12min | 6 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -86,6 +103,9 @@ Recent decisions affecting current work:
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 03: <HoverTooltipCard> portaled to document.body, anchored from cell.getBoundingClientRect() (RESEARCH P8 — not cursor)
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 03: useHoverTooltip + useColumnSelection hooks isolate state from <DataCell>; tooltip 100ms close grace via setTimeout + cancel-on-reenter
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 03: scoring keyed by '${clubId}:${featureId}' Map for O(1) hover lookup; defensive null on missing data so portal never crashes
+- [Phase infra-redesign-v2]: Server Component shell + Client Island split — page.tsx pre-computes scores, MatrixIsland owns all state hooks verbatim from legacy app/page.tsx
+- [Phase infra-redesign-v2]: selectedProduct stays AUTHORITATIVE for column-tint (D-18) — useColumnSelection referenced for parity but isSelected delegates to selectedProduct (single source of truth)
+- [Phase infra-redesign-v2]: Visual baseline gate via Playwright: animations:disabled + waitForFunction(document.fonts.ready) + mask:[data-build-date] eliminates known false-positive sources (D-26)
 
 ### Pending Todos
 
@@ -97,6 +117,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-17T04:48:32.539Z
-Stopped at: Completed infra-redesign-v2-03-PLAN.md (HoverTooltipCard + state hooks). 8 commits, 90/90 tests, build clean. Ready for plan 04 page.tsx refactor.
+Last session: 2026-04-17T05:06:16.978Z
+Stopped at: Completed infra-redesign-v2-04-PLAN.md (Server/Client split + visual baseline). 6 commits, 90/90 tests, build clean, baseline locked at 1440x900. Ready for plan 05 phase gate.
 Resume file: None
