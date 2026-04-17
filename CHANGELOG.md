@@ -1,5 +1,8 @@
 # Changelog
 
+## v7.0 — 2026-04-17
+Visual redesign foundation (infra-redesign-v2 plan 01): neutral-dark + brand-orange design tokens replace cool-blue palette in app/globals.css. Inter Tight + Roboto Mono wired via next/font. BUILD_DATE env exposed for HeaderBar. Playwright visual-regression scaffold (.skip until plan 04). Font-readiness test harness.
+
 ## v6.0 — 2026-04-17
 Users migrated from data/users.json → Neon Postgres (Drizzle ORM). /admin panel: Users tab (CRUD, admin toggle, last-admin guardrail), Analytics tab, Requests tab (access-request triage). Analytics events migrated from Upstash Redis → Postgres with 90-day cron retention. Three auth security fixes: no default secret, token-age validation, anon POST blocked.
 

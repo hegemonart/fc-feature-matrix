@@ -48,6 +48,12 @@ analysis/
       recapture_deleted.py  Batch re-capture with cookie strategies
       recapture_round5.py   Full-page screenshot + PIL crop approach
 public/                     Static assets
+tests/
+  visual/                   Playwright visual-regression specs (D-26)
+  components/               Vitest component specs (populated in plans 02-03)
+  fonts.test.ts             Inter Tight + Roboto Mono readiness assertion
+  setup-fonts.ts            document.fonts.ready helper (jsdom-safe)
+playwright.config.ts        Playwright runner (testDir tests/visual)
 CHANGELOG.md                Version history
 ```
 
