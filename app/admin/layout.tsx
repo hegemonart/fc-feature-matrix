@@ -53,11 +53,16 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         .admin-main { flex: 1; padding: 32px 24px; max-width: 1200px; margin: 0 auto; width: 100%; box-sizing: border-box; }
         /* D-08 / D-22 — section headers in mono-caption */
         .admin-page-title { font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; font-size: 12px; line-height: 15px; letter-spacing: -0.5px; text-transform: uppercase; color: var(--text); margin: 0 0 24px; }
-        .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--bg-cell); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-        .admin-table th { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; background: var(--bg-cell); }
-        .admin-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: middle; }
+        .admin-table { width: 100%; border-collapse: collapse; font-size: 13px; background: var(--bg-cell); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; table-layout: auto; }
+        .admin-table th { text-align: left; padding: 14px 18px; border-bottom: 1px solid var(--border); color: var(--muted); font-weight: 500; font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; background: var(--bg-cell); white-space: nowrap; }
+        .admin-table td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: middle; }
         .admin-table tr:last-child td { border-bottom: none; }
         .admin-table tr:hover td { background: var(--bg-hover); }
+        /* Column-width hints: narrow columns shrink to content; dates stay on one line. */
+        .admin-table .admin-col-role { width: 1%; white-space: nowrap; }
+        .admin-table .admin-col-date { width: 1%; white-space: nowrap; font-size: 12px; color: var(--muted); }
+        /* Name column stays on one line too — short display names fit in ~140px. */
+        .admin-table .admin-col-name { white-space: nowrap; }
         .admin-badge { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 10px; }
         /* Admin role — cyan so it never collides with the orange premium pill. */
         .admin-badge-admin { background: rgba(6,182,212,0.14); color: #22d3ee; }

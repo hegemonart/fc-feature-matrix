@@ -234,11 +234,11 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
         <thead>
           <tr>
             <th>Email</th>
-            <th>Name</th>
-            <th>Role</th>
-            <th>Created</th>
-            <th>Last login</th>
-            <th>Actions</th>
+            <th className="admin-col-name">Name</th>
+            <th className="admin-col-role">Role</th>
+            <th className="admin-col-date">Created</th>
+            <th className="admin-col-date">Last login</th>
+            <th className="admin-actions-cell">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -255,12 +255,12 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
             return (
               <tr key={u.id}>
                 <td style={{ fontFamily: 'monospace', fontSize: 12 }}>{u.email}</td>
-                <td>{u.name ?? '—'}</td>
-                <td>
+                <td className="admin-col-name">{u.name ?? '—'}</td>
+                <td className="admin-col-role">
                   <span className={`admin-badge ${badgeClass}`}>{badgeLabel}</span>
                 </td>
-                <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(u.createdAt)}</td>
-                <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(u.lastLoginAt)}</td>
+                <td className="admin-col-date">{fmt(u.createdAt)}</td>
+                <td className="admin-col-date">{fmt(u.lastLoginAt)}</td>
                 <td className="admin-actions-cell">
                   <div className="admin-actions-row">
                     <select

@@ -135,10 +135,10 @@ export function RequestsActions({ initialRequests }: { initialRequests: RequestR
         <tr>
           <th>Email</th>
           <th>Source</th>
-          <th>Status</th>
-          <th>Requested</th>
-          <th>Resolved</th>
-          {showActions && <th>Actions</th>}
+          <th className="admin-col-role">Status</th>
+          <th className="admin-col-date">Requested</th>
+          <th className="admin-col-date">Resolved</th>
+          {showActions && <th className="admin-actions-cell">Actions</th>}
         </tr>
       </thead>
       <tbody>
@@ -149,9 +149,9 @@ export function RequestsActions({ initialRequests }: { initialRequests: RequestR
           <tr key={r.id}>
             <td style={{ fontFamily: 'monospace', fontSize: 12 }}>{r.email}</td>
             <td style={{ fontSize: 12, color: 'var(--muted)' }}>{r.source ?? '—'}</td>
-            <td><StatusBadge status={r.status} /></td>
-            <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(r.createdAt)}</td>
-            <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(r.resolvedAt)}</td>
+            <td className="admin-col-role"><StatusBadge status={r.status} /></td>
+            <td className="admin-col-date">{fmt(r.createdAt)}</td>
+            <td className="admin-col-date">{fmt(r.resolvedAt)}</td>
             {showActions && (
               <td>
                 <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
