@@ -71,3 +71,13 @@ Key rules:
 - Prefer full-page screenshot + PIL crop over Playwright clip
 - Liverpool: DO NOT TOUCH
 - See `crosscheck/CLAUDE.md` for full rules
+
+## Design system rules
+
+The visual layer was rebuilt in phase `infra-redesign-v2` (closes 2026-04-17). Future work must respect these invariants:
+
+- **Single orange CTA per surface.** Every page, panel, or modal must contain at most one element styled with `background: var(--accent)` (`#FF490C`). Secondary actions are text-only or white-outlined. This keeps the brand accent semantically meaningful — orange means "this is the primary action." Tested by `tests/components/Modal.test.tsx` for modals; enforced by code review for pages. (Rule alias for grep: `single orange CTA`.)
+- **Design tokens live in `app/globals.css :root`.** Use `var(--bg-page)`, `var(--bg-cell)`, `var(--bg-hover)`, `var(--border)`, `var(--text)`, `var(--muted)`, `var(--accent)`. Status semantics keep `var(--green)`, `var(--yellow)`, `var(--orange)`, `var(--red)` for score meters and deltas only — never for chrome or CTAs. Do not hand-code hex values for chrome.
+- **Type stack: Inter Tight (body) + Roboto Mono (mono-caption).** Loaded via `next/font` in `app/layout.tsx` and exposed as `--font-body` / `--font-mono`. Section headers, score deltas, and `.mono-caption` (10/13/-1px) use the mono variable. Never hard-code `font-family` to a literal stack — reference the CSS variable.
+- **Visual-regression baselines live in `tests/visual/`.** `homepage.spec.ts` and `club-page.spec.ts` enforce `maxDiffPixelRatio: 0.02` against committed PNGs. Update snapshots with `npx playwright test --update-snapshots` ONLY when the visual change is intentional, and call it out in the commit message.
+- **Score data is invariant under visual changes.** A redesign commit must NEVER touch `analysis/homepage/results/*.json`, `lib/scoring.ts`, or `analysis/homepage/features.ts`. The phase gate is `node analysis/homepage/crosscheck/recalculate-scores.js && git diff --quiet analysis/homepage/results/`. If that diff is non-empty after a visual-only change, revert.
