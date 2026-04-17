@@ -33,7 +33,8 @@
   --cat-amber:#f59e0b;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: var(--font-body), -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; letter-spacing: -0.32px; margin: 0; padding: 0; }
+.mono-caption { font-family: var(--font-mono), ui-monospace, SFMono-Regular, Menlo, monospace; font-weight: 500; font-size: 10px; line-height: 13px; letter-spacing: -1px; }
 
 /* Matrix page wrapper — locks viewport, enables flex column layout */
 .matrix-shell { overflow: hidden; height: 100vh; display: flex; flex-direction: column; }
