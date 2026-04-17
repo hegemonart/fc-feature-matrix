@@ -3,11 +3,27 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: executing
+stopped_at: Completed infra-redesign-v2-03-PLAN.md (HoverTooltipCard + state hooks). 8 commits, 90/90 tests, build clean. Ready for plan 04 page.tsx refactor.
+last_updated: "2026-04-17T04:48:32.542Z"
+last_activity: 2026-04-17 — infra-redesign-v2 plan 02 executed (9 commits, 75/75 tests green, ~12 min)
+progress:
+  total_phases: 6
+  completed_phases: 0
+  total_plans: 0
+  completed_plans: 0
+  percent: 60
+---
+
+---
+gsd_state_version: 1.0
+milestone: v1.0
+milestone_name: milestone
+status: executing
 stopped_at: "Completed infra-redesign-v2 plan 02 (Wave 1 atomic components). 7 components + types.ts shipped, 75/75 tests green, build clean."
 last_updated: "2026-04-17T04:34:32.000Z"
 last_activity: "2026-04-17 — infra-redesign-v2 plan 02 executed (9 tasks, 9 commits, 75/75 tests green, ~12 min)"
 progress:
-  total_phases: 6
+  [██████░░░░] 60%
   completed_phases: 0
   total_plans: 5
   completed_plans: 2
@@ -25,12 +41,12 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 
 ## Current Position
 
-Phase: infra-redesign-v2 (Wave 1 atomic components landed)
-Plan: 2 of 5 complete in current phase
-Status: Plan 02 complete; ready for plan 03 (HoverTooltipCard + column-selected state)
-Last activity: 2026-04-17 — infra-redesign-v2 plan 02 executed (9 commits, 75/75 tests green, ~12 min)
+Phase: infra-redesign-v2 (Wave 1 cross-cell interactivity landed)
+Plan: 3 of 5 complete in current phase
+Status: Plan 03 complete; ready for plan 04 (app/page.tsx refactor)
+Last activity: 2026-04-17 — infra-redesign-v2 plan 03 executed (8 commits, 90/90 tests green, ~6 min)
 
-Progress: [████░░░░░░] 40% (2 of 5 plans in infra-redesign-v2)
+Progress: [██████░░░░] 60% (3 of 5 plans in infra-redesign-v2)
 
 ## Performance Metrics
 
@@ -50,6 +66,7 @@ Progress: [████░░░░░░] 40% (2 of 5 plans in infra-redesign-v
 - Trend: ↓ accelerating (foundation paid off — components shipped fast)
 
 *Updated after each plan completion*
+| Phase infra-redesign-v2 P03 | 6min | 8 tasks | 10 files |
 
 ## Accumulated Context
 
@@ -66,6 +83,9 @@ Recent decisions affecting current work:
 - infra-redesign-v2 plan 02: Components are presentation-only — parents own state for test isolation
 - infra-redesign-v2 plan 02: Global RTL cleanup() via vitest setupFiles (DRY across plans 03+)
 - infra-redesign-v2 plan 02: CONTEXT.md D-15 corrected — type field lives on PRODUCTS, not on results JSON
+- [Phase infra-redesign-v2]: infra-redesign-v2 plan 03: <HoverTooltipCard> portaled to document.body, anchored from cell.getBoundingClientRect() (RESEARCH P8 — not cursor)
+- [Phase infra-redesign-v2]: infra-redesign-v2 plan 03: useHoverTooltip + useColumnSelection hooks isolate state from <DataCell>; tooltip 100ms close grace via setTimeout + cancel-on-reenter
+- [Phase infra-redesign-v2]: infra-redesign-v2 plan 03: scoring keyed by '${clubId}:${featureId}' Map for O(1) hover lookup; defensive null on missing data so portal never crashes
 
 ### Pending Todos
 
@@ -77,6 +97,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-17
-Stopped at: Completed infra-redesign-v2-02-PLAN.md (atomic matrix components). 9 commits, 75/75 tests, build clean.
-Resume file: .planning/phases/infra-redesign-v2/03-PLAN.md (HoverTooltipCard + column-selected state)
+Last session: 2026-04-17T04:48:32.539Z
+Stopped at: Completed infra-redesign-v2-03-PLAN.md (HoverTooltipCard + state hooks). 8 commits, 90/90 tests, build clean. Ready for plan 04 page.tsx refactor.
+Resume file: None
