@@ -1,0 +1,84 @@
+/* ================================================================
+   HeaderBar.module.css
+
+   humbleteam wordmark + dot · centered "FC Benchmark" + buildDate ·
+   right-aligned outlined GET IN TOUCH CTA (the only orange element
+   on the bar — single-orange-CTA-per-surface rule per D-25 will be
+   documented in plan 05). D-12.
+   ================================================================ */
+
+.bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+  background: var(--bg-page);
+  border-bottom: 1px solid var(--border);
+  padding: 14px 20px;
+  flex-shrink: 0;
+  height: 56px;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text);
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.3px;
+}
+
+.dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: inline-block;
+}
+
+.center {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.title {
+  font-weight: 600;
+  font-size: 13px;
+  letter-spacing: -0.3px;
+  color: var(--text);
+}
+
+.date {
+  /* mono-caption from globals.css applied via composition */
+  color: var(--muted);
+}
+
+.cta {
+  margin-left: auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 120ms ease-out, color 120ms ease-out;
+}
+
+.cta:hover {
+  background: var(--accent);
+  color: var(--bg-page);
+}
