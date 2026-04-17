@@ -3,6 +3,7 @@ import { getSessionFromCookie, getUserByEmail } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { events } from '@/lib/db/schema';
 import { desc, gte, sql } from 'drizzle-orm';
+import { env } from '@/lib/env';
 
 async function requireAdmin(req: NextRequest) {
   const session = getSessionFromCookie(req.headers.get('cookie'));
@@ -11,12 +12,78 @@ async function requireAdmin(req: NextRequest) {
   return user?.isAdmin ? user : null;
 }
 
+/** Deterministic mock stats payload for local preview when DATABASE_URL
+ *  isn't wired. Shape matches the production response. Dev-only. */
+function mockStatsPayload(days: number) {
+  const dailySeries = [];
+  // Seeded pseudo-random so reloads don't jitter the chart.
+  let seed = 42;
+  const rand = () => { seed = (seed * 9301 + 49297) % 233280; return seed / 233280; };
+  let totalVisitors = 0;
+  let totalPageViews = 0;
+  let totalEvents = 0;
+  for (let i = days - 1; i >= 0; i--) {
+    const d = new Date(Date.now() - i * 86400_000);
+    const date = d.toISOString().slice(0, 10);
+    const visitors = Math.floor(8 + rand() * 22);
+    const pageViews = Math.floor(visitors * (2 + rand() * 3));
+    const total = pageViews + Math.floor(rand() * 15);
+    totalVisitors += visitors;
+    totalPageViews += pageViews;
+    totalEvents += total;
+    dailySeries.push({
+      date,
+      label: d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short' }),
+      visitors,
+      pageViews,
+      total,
+    });
+  }
+  return {
+    days,
+    totalVisitors,
+    totalPageViews,
+    totalEvents,
+    dailySeries,
+    topEvents: [
+      { type: 'page_view',     count: totalPageViews, visitors: 47 },
+      { type: 'tab_click',     count: 312,            visitors: 41 },
+      { type: 'feature_click', count: 187,            visitors: 33 },
+      { type: 'login',         count: 96,             visitors: 58 },
+      { type: 'product_click', count: 74,             visitors: 22 },
+    ],
+    topUsers: [
+      { email: 'sergey@humbleteam.com',   count: 128 },
+      { email: 'alice@humbleteam.com',    count:  94 },
+      { email: 'marco@fcbarcelona.com',   count:  71 },
+      { email: 'kim@liverpoolfc.com',     count:  52 },
+      { email: 'research@humbleteam.com', count:  38 },
+      { email: 'jamie@bayern.com',        count:  24 },
+    ],
+    topFeatures: [
+      { name: 'Hero Carousel',              count: 68 },
+      { name: 'Next-Match Block',           count: 54 },
+      { name: 'Login / Account',            count: 47 },
+      { name: 'Homepage Video Block',       count: 41 },
+      { name: 'News Rich Structure',        count: 33 },
+      { name: 'Interactive Fan Voting',     count: 27 },
+      { name: 'Sponsor Lockup in Header',   count: 19 },
+    ],
+  };
+}
+
 export async function GET(req: NextRequest) {
   const admin = await requireAdmin(req);
   if (!admin) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
   const url = new URL(req.url);
   const days = Math.min(parseInt(url.searchParams.get('days') || '14', 10), 90);
+
+  // Dev-mode fallback — serve fixture data when no Neon is wired.
+  if (!env.DATABASE_URL) {
+    return NextResponse.json(mockStatsPayload(days));
+  }
+
   const since = new Date(Date.now() - days * 86400_000);
 
   // All events in window
