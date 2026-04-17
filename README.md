@@ -70,11 +70,16 @@ analysis/
 public/                     Static assets
 tests/
   visual/                   Playwright visual-regression specs (D-26)
-  components/               Vitest component specs (populated in plans 02-03)
+    homepage.spec.ts        Homepage matrix baseline (1440x900)
+    club-page.spec.ts       /club/real_madrid baseline (plan 05)
+    admin.spec.ts           Admin /analytics scaffold — skipped pending auth fixture
+    lighthouse/             Lighthouse a11y report (HTML + JSON + PNG, score 91, D-29)
+  components/               Vitest component specs incl. Modal.test.tsx (D-24)
   fonts.test.ts             Inter Tight + Roboto Mono readiness assertion
   setup-fonts.ts            document.fonts.ready helper (jsdom-safe)
 playwright.config.ts        Playwright runner (testDir tests/visual)
 CHANGELOG.md                Version history
+CLAUDE.md                   Agent instructions incl. "Design system rules" (single orange CTA, design tokens, type stack)
 ```
 
 ## Coverage

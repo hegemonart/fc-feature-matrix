@@ -1,5 +1,8 @@
 # Changelog
 
+## v9.0 — 2026-04-17
+System-wide visual rollout closes infra-redesign-v2: /club/[id] re-themed (D-22), admin layout + users + requests + Recharts dashboard re-colored (D-23), three modals audited for single-orange-CTA compliance with Modal.test.tsx (D-24), CLAUDE.md "Design system rules" added (D-25), club-page visual baseline + admin spec scaffold (D-26), Lighthouse a11y 91 (D-29).
+
 ## v8.0 — 2026-04-17
 Homepage refactor (infra-redesign-v2 plan 04): app/page.tsx split into Server Component shell + Client MatrixIsland wired to atomic components (DataCell / SortHeader / MeterRow / HeaderBar / TopNav / CategoryFilter / TypeFilter / HoverTooltipCard). Keyboard-focusable cells, portaled tooltip, column-tint. Visual baseline captured at 1440x900.
 
