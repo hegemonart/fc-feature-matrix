@@ -70,7 +70,7 @@ export function HoverTooltipCard({ data, features, clubs, scoring }: HoverToolti
       role="tooltip"
       data-testid="hover-tooltip-card"
       className={styles.card}
-      style={{ top, left }}
+      style={{ top, left, backdropFilter: 'blur(28px) saturate(200%) brightness(1.6)' }}
     >
       <div className={styles.clubName}>{club.name}</div>
       <div className={styles.description}>{feature.desc}</div>
@@ -87,7 +87,14 @@ export function HoverTooltipCard({ data, features, clubs, scoring }: HoverToolti
     </div>
   );
 
-  return createPortal(node, document.body);
+  // Portal into .matrix-shell so the tooltip shares the same compositing
+  // layer as the matrix content — required for backdrop-filter to blur through.
+  const portalTarget =
+    typeof document !== 'undefined'
+      ? (document.querySelector('.matrix-shell') ?? document.body)
+      : null;
+  if (!portalTarget) return null;
+  return createPortal(node, portalTarget);
 }
 
 export default HoverTooltipCard;
