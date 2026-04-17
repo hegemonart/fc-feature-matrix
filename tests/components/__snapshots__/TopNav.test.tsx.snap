@@ -1,0 +1,60 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<TopNav> click + snapshot > full snapshot with active + locked + unlock 1`] = `
+<nav
+  class="_nav_164de1"
+  role="tablist"
+>
+  <button
+    aria-selected="true"
+    class="_tab_164de1 _tabActive_164de1"
+    data-tab-active="true"
+    data-tab-id="matrix"
+    data-tab-locked="false"
+    role="tab"
+    type="button"
+  >
+    Matrix
+  </button>
+  <button
+    aria-selected="false"
+    class="_tab_164de1"
+    data-tab-active="false"
+    data-tab-id="analytics"
+    data-tab-locked="false"
+    role="tab"
+    type="button"
+  >
+    Analytics
+  </button>
+  <button
+    aria-selected="false"
+    class="_tab_164de1 _tabLocked_164de1"
+    data-tab-active="false"
+    data-tab-id="club_pages"
+    data-tab-locked="true"
+    role="tab"
+    type="button"
+  >
+    Club Pages
+  </button>
+  <button
+    aria-selected="false"
+    class="_tab_164de1 _tabLocked_164de1"
+    data-tab-active="false"
+    data-tab-id="mobile"
+    data-tab-locked="true"
+    role="tab"
+    type="button"
+  >
+    Mobile
+  </button>
+  <button
+    class="_unlockTab_164de1"
+    data-tab-variant="unlock"
+    type="button"
+  >
+    UNLOCK ALL
+  </button>
+</nav>
+`;
