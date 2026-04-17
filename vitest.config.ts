@@ -9,6 +9,6 @@ export default defineConfig({
   },
   test: {
     include: ['**/*.{test,spec}.{ts,tsx}'],
-    exclude: ['node_modules', '.next', 'concept', 'references'],
+    exclude: ['node_modules', '.next', 'concept', 'references', 'tests/visual/**'],
   },
 });

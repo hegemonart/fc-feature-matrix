@@ -19,3 +19,8 @@ out/
 tsconfig.tsbuildinfo
 references/
 /screenshots/
+# Playwright (D-26)
+/playwright-report/
+/test-results/
+/blob-report/
+/playwright/.cache/
