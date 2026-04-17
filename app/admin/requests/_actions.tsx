@@ -132,7 +132,7 @@ export function RequestsActions({ initialRequests }: { initialRequests: RequestR
   // Pending rows never have a resolvedAt, so their table skips that
   // column entirely. Resolved rows drop the Actions column instead.
   const RequestTable = ({ rows, showActions }: { rows: RequestRow[]; showActions: boolean }) => {
-    const colCount = 3 + (showActions ? 1 : 1); // email + source + status + (actions|resolved)
+    const colSpan = showActions ? 5 : 6; // Pending: 5 cols; Resolved: 5 cols + actions spacer
     return (
       <table className="admin-table" style={{ marginBottom: 32 }}>
         <thead>
@@ -140,22 +140,24 @@ export function RequestsActions({ initialRequests }: { initialRequests: RequestR
             <th>Email</th>
             <th>Source</th>
             <th className="admin-col-role">Status</th>
-            <th className="admin-col-date">Requested</th>
+            <th className={showActions ? 'admin-col-date-double' : 'admin-col-date'}>Requested</th>
             {!showActions && <th className="admin-col-date">Resolved</th>}
+            {!showActions && <th className="admin-actions-cell"></th>}
             {showActions && <th className="admin-actions-cell">Actions</th>}
           </tr>
         </thead>
         <tbody>
           {rows.length === 0 && (
-            <tr><td colSpan={colCount + 1} style={{ color: 'var(--muted)', padding: '16px 18px', fontSize: 13 }}>No requests.</td></tr>
+            <tr><td colSpan={colSpan} style={{ color: 'var(--muted)', padding: '16px 18px', fontSize: 13 }}>No requests.</td></tr>
           )}
           {rows.map((r) => (
             <tr key={r.id}>
               <td className="admin-col-email">{r.email}</td>
               <td className="admin-col-source">{r.source ?? '—'}</td>
               <td className="admin-col-role"><StatusBadge status={r.status} /></td>
-              <td className="admin-col-date">{fmt(r.createdAt)}</td>
+              <td className={showActions ? 'admin-col-date-double' : 'admin-col-date'}>{fmt(r.createdAt)}</td>
               {!showActions && <td className="admin-col-date">{fmt(r.resolvedAt)}</td>}
+              {!showActions && <td className="admin-actions-cell" />}
               {showActions && (
                 <td className="admin-actions-cell">
                   <div className="admin-actions-row">

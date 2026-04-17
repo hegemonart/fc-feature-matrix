@@ -48,11 +48,13 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         .admin-table td { padding: 14px 18px; border-bottom: 1px solid var(--border); vertical-align: middle; }
         .admin-table tr:last-child td { border-bottom: none; }
         .admin-table tr:hover td { background: var(--bg-hover); }
-        /* Column-width hints: narrow columns shrink to content; dates stay on one line. */
-        .admin-table .admin-col-role { width: 1%; white-space: nowrap; }
-        .admin-table .admin-col-date { width: 1%; white-space: nowrap; font-size: 12px; color: var(--muted); }
-        /* Name column stays on one line too — short display names fit in ~140px. */
-        .admin-table .admin-col-name { white-space: nowrap; }
+        /* Shared column-width grid — Users, Pending, and Resolved tables all use the same
+           percentages so columns visually align when the three tables are stacked. */
+        .admin-table .admin-col-role { width: 8%; white-space: nowrap; }
+        .admin-table .admin-col-date { width: 12%; white-space: nowrap; font-size: 12px; color: var(--muted); }
+        /* Pending "Requested" spans two date slots (Created + Last login in Users). */
+        .admin-table .admin-col-date-double { width: 24%; white-space: nowrap; font-size: 12px; color: var(--muted); }
+        .admin-table .admin-col-name { width: 18%; white-space: nowrap; }
         .admin-badge { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 10px; }
         /* Admin role — cyan so it never collides with the orange premium pill. */
         .admin-badge-admin { background: rgba(6,182,212,0.14); color: #22d3ee; }
@@ -63,14 +65,14 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         .admin-select { width: 110px; padding: 4px 8px; font-size: 12px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-cell); color: var(--text); cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='none' stroke='%23ababab' stroke-width='1.5' d='M3 5l3 3 3-3'/></svg>"); background-repeat: no-repeat; background-position: right 8px center; padding-right: 24px; }
         .admin-select:hover { border-color: var(--muted); }
         .admin-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-        /* Keep Actions column width constant regardless of row content,
-           AND collapse to content so slack goes to the Email/Source column instead. */
-        .admin-actions-cell { width: 1%; white-space: nowrap; }
+        /* Actions column: fixed 28% keeps all three tables on the same right-side grid.
+           Resolved table renders an empty <td> here as a visual spacer. */
+        .admin-actions-cell { width: 28%; white-space: nowrap; }
         .admin-actions-row { display: flex; gap: 6px; align-items: center; }
         .admin-actions-row .admin-btn { min-width: 72px; }
         /* Email cell — monospace, smaller, stable width rhythm across tables. */
-        .admin-col-email { font-family: var(--font-mono, ui-monospace, monospace); font-size: 12px; white-space: nowrap; }
-        .admin-col-source { font-size: 12px; color: var(--muted); }
+        .admin-col-email { width: 22%; font-family: var(--font-mono, ui-monospace, monospace); font-size: 12px; white-space: nowrap; }
+        .admin-col-source { width: 18%; font-size: 12px; color: var(--muted); }
         .admin-btn { padding: 4px 10px; font-size: 12px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text); transition: all 0.15s; }
         .admin-btn:hover { background: var(--bg-hover); color: var(--text); }
         .admin-btn-danger { border-color: rgba(239,68,68,0.4); color: var(--red); }
