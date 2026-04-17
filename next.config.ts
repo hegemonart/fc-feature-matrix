@@ -5,7 +5,7 @@ const nextConfig: NextConfig = {
   // build-date span without hydration mismatch (server + client both see the
   // same ISO date slice baked into the bundle).
   env: {
-    BUILD_DATE: new Date().toISOString().slice(0, 10),
+    BUILD_DATE: '2026-04-08',
   },
   async redirects() {
     return [
