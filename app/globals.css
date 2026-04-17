@@ -1,11 +1,21 @@
 :root {
-  --bg:       #0d0d14;
-  --bg2:      #13131e;
-  --bg3:      #1a1a28;
-  --border:   #252535;
-  --text:     #e8e8f0;
-  --muted:    #6b6b8a;
-  --accent:   #4f6ef7;
+  /* Neutral-dark + brand-orange palette (D-01, D-02, D-04 — infra-redesign-v2) */
+  --bg-page:     #0F0F0F;
+  --bg-cell:     #1A1A1A;
+  --bg-hover:    #383838;
+  --border:      #262626;
+  --accent:      #FF490C;
+  --column-tint: rgb(51, 24, 15);
+  --text:        #FFFFFF;
+  --muted:       #ABABAB;
+
+  /* Legacy aliases — keep existing class consumers working until plans 02–04 migrate them */
+  --bg:  var(--bg-page);
+  --bg1: var(--bg-cell);   /* required by .login-input + .analytics-filters select */
+  --bg2: var(--bg-cell);
+  --bg3: var(--bg-hover);
+
+  /* Status palette — unchanged (semantic, not part of redesign tokens) */
   --green:    #22c55e;
   --yellow:   #eab308;
   --orange:   #f97316;
@@ -14,8 +24,8 @@
   --yellow-bg:rgba(234,179,8,.12);
   --orange-bg:rgba(249,115,22,.12);
   --red-bg:   rgba(239,68,68,.12);
-  --check:    #4f6ef7;
-  --cross:    #252535;
+  --check:    var(--accent);
+  --cross:    var(--border);
   --cat-red:  #ef4444;
   --cat-blue: #3b82f6;
   --cat-purple:#8b5cf6;
@@ -290,7 +300,7 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .locked-overlay.visible { display: flex; }
 .locked-card { background: var(--bg2); border: 1px solid var(--border); border-radius: 12px; padding: 32px; max-width: 400px; width: 90%; text-align: center; box-shadow: 0 8px 32px rgba(0,0,0,.5); animation: modalIn .25s ease-out; }
 @keyframes modalIn { from { transform: scale(.94) translateY(8px); opacity: 0; } to { transform: none; opacity: 1; } }
-.locked-card .lock-big { margin: 0 auto 16px; width: 48px; height: 48px; border-radius: 50%; background: rgba(79,110,247,.12); display: flex; align-items: center; justify-content: center; }
+.locked-card .lock-big { margin: 0 auto 16px; width: 48px; height: 48px; border-radius: 50%; background: rgba(255,73,12,.12); display: flex; align-items: center; justify-content: center; }
 .locked-card .lock-big svg { width: 22px; height: 22px; color: var(--accent); }
 .locked-card h3 { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .locked-card p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 20px; }
