@@ -185,40 +185,31 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
   const [showAdd, setShowAdd] = useState(false);
   const [resetTarget, setResetTarget] = useState<UserRow | null>(null);
   const [deleteTarget, setDeleteTarget] = useState<UserRow | null>(null);
-  const [togglingId, setTogglingId] = useState<string | null>(null);
-  const [togglingPremiumId, setTogglingPremiumId] = useState<string | null>(null);
+  const [roleChangingId, setRoleChangingId] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleTogglePremium = useCallback(async (user: UserRow) => {
-    setTogglingPremiumId(user.id);
-    setErrors((prev) => ({ ...prev, [user.id]: '' }));
-    try {
-      const res = await fetch(`/api/admin/users/${user.id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isPremium: !user.isPremium }),
-      });
-      const data = await res.json();
-      if (!res.ok) {
-        setErrors((prev) => ({ ...prev, [user.id]: data.error || 'Failed' }));
-        return;
-      }
-      setUserList((prev) =>
-        prev.map((u) => (u.id === user.id ? { ...u, isPremium: !u.isPremium } : u))
-      );
-    } finally {
-      setTogglingPremiumId(null);
-    }
-  }, []);
+  // Three-way role model. Admin implies premium (admins are premium by
+  // default — that's the product rule). The UI exposes a single role
+  // dropdown; the PATCH body carries both flags derived from the choice.
+  type Role = 'user' | 'premium' | 'admin';
+  const roleOf = (u: UserRow): Role =>
+    u.isAdmin ? 'admin' : u.isPremium ? 'premium' : 'user';
+  const flagsFor = (role: Role): { isAdmin: boolean; isPremium: boolean } => {
+    if (role === 'admin') return { isAdmin: true, isPremium: true };
+    if (role === 'premium') return { isAdmin: false, isPremium: true };
+    return { isAdmin: false, isPremium: false };
+  };
 
-  const handleToggleAdmin = useCallback(async (user: UserRow) => {
-    setTogglingId(user.id);
+  const handleRoleChange = useCallback(async (user: UserRow, nextRole: Role) => {
+    if (roleOf(user) === nextRole) return;
+    const next = flagsFor(nextRole);
+    setRoleChangingId(user.id);
     setErrors((prev) => ({ ...prev, [user.id]: '' }));
     try {
       const res = await fetch(`/api/admin/users/${user.id}`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ isAdmin: !user.isAdmin }),
+        body: JSON.stringify(next),
       });
       const data = await res.json();
       if (!res.ok) {
@@ -226,10 +217,10 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
         return;
       }
       setUserList((prev) =>
-        prev.map((u) => (u.id === user.id ? { ...u, isAdmin: !u.isAdmin } : u))
+        prev.map((u) => (u.id === user.id ? { ...u, ...next } : u))
       );
     } finally {
-      setTogglingId(null);
+      setRoleChangingId(null);
     }
   }, []);
 
@@ -245,53 +236,52 @@ export function UsersActions({ initialUsers }: { initialUsers: UserRow[] }) {
             <th>Email</th>
             <th>Name</th>
             <th>Role</th>
-            <th>Premium</th>
             <th>Created</th>
             <th>Last login</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {userList.map((u) => (
-            <tr key={u.id}>
-              <td style={{ fontFamily: 'monospace', fontSize: 12 }}>{u.email}</td>
-              <td>{u.name ?? '—'}</td>
-              <td>
-                <span className={`admin-badge ${u.isAdmin ? 'admin-badge-admin' : 'admin-badge-user'}`}>
-                  {u.isAdmin ? 'admin' : 'user'}
-                </span>
-              </td>
-              <td>
-                <span className="admin-badge" style={{ background: u.isPremium ? 'rgba(255,73,12,0.12)' : 'var(--bg-hover)', color: u.isPremium ? 'var(--accent)' : 'var(--muted)' }}>
-                  {u.isPremium ? 'premium' : '—'}
-                </span>
-              </td>
-              <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(u.createdAt)}</td>
-              <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(u.lastLoginAt)}</td>
-              <td>
-                <div style={{ display: 'flex', gap: 6, alignItems: 'center' }}>
-                  <button
-                    className="admin-btn"
-                    disabled={togglingPremiumId === u.id}
-                    onClick={() => handleTogglePremium(u)}
-                    style={u.isPremium ? { borderColor: 'var(--accent)', color: 'var(--accent)' } : {}}
-                  >
-                    {u.isPremium ? 'Revoke premium' : 'Grant premium'}
-                  </button>
-                  <button
-                    className="admin-btn"
-                    disabled={togglingId === u.id}
-                    onClick={() => handleToggleAdmin(u)}
-                  >
-                    {u.isAdmin ? 'Demote' : 'Make admin'}
-                  </button>
-                  <button className="admin-btn" onClick={() => setResetTarget(u)}>Reset pw</button>
-                  <button className="admin-btn admin-btn-danger" onClick={() => setDeleteTarget(u)}>Delete</button>
-                  {errors[u.id] && <span className="admin-error">{errors[u.id]}</span>}
-                </div>
-              </td>
-            </tr>
-          ))}
+          {userList.map((u) => {
+            const role = roleOf(u);
+            const badgeClass =
+              role === 'admin' ? 'admin-badge-admin'
+              : role === 'premium' ? 'admin-badge-premium'
+              : 'admin-badge-user';
+            const badgeLabel =
+              role === 'admin' ? 'admin'
+              : role === 'premium' ? 'premium'
+              : 'user';
+            return (
+              <tr key={u.id}>
+                <td style={{ fontFamily: 'monospace', fontSize: 12 }}>{u.email}</td>
+                <td>{u.name ?? '—'}</td>
+                <td>
+                  <span className={`admin-badge ${badgeClass}`}>{badgeLabel}</span>
+                </td>
+                <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(u.createdAt)}</td>
+                <td style={{ fontSize: 12, color: 'var(--muted)' }}>{fmt(u.lastLoginAt)}</td>
+                <td className="admin-actions-cell">
+                  <div className="admin-actions-row">
+                    <select
+                      className="admin-select"
+                      aria-label={`Role for ${u.email}`}
+                      value={role}
+                      disabled={roleChangingId === u.id}
+                      onChange={(e) => handleRoleChange(u, e.target.value as Role)}
+                    >
+                      <option value="user">User</option>
+                      <option value="premium">Premium</option>
+                      <option value="admin">Admin</option>
+                    </select>
+                    <button className="admin-btn" onClick={() => setResetTarget(u)}>Reset pw</button>
+                    <button className="admin-btn admin-btn-danger" onClick={() => setDeleteTarget(u)}>Delete</button>
+                    {errors[u.id] && <span className="admin-error">{errors[u.id]}</span>}
+                  </div>
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
 

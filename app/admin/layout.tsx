@@ -59,8 +59,19 @@ export default async function AdminLayout({ children }: { children: React.ReactN
         .admin-table tr:last-child td { border-bottom: none; }
         .admin-table tr:hover td { background: var(--bg-hover); }
         .admin-badge { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 10px; }
-        .admin-badge-admin { background: rgba(255,73,12,0.12); color: var(--accent); }
+        /* Admin role — cyan so it never collides with the orange premium pill. */
+        .admin-badge-admin { background: rgba(6,182,212,0.14); color: #22d3ee; }
+        /* Premium role — the orange brand pill (admins inherit premium by default). */
+        .admin-badge-premium { background: rgba(255,73,12,0.12); color: var(--accent); }
         .admin-badge-user { background: var(--bg-hover); color: var(--muted); }
+        /* Fixed-width role dropdown so the Actions column doesn't jump between rows. */
+        .admin-select { width: 110px; padding: 4px 8px; font-size: 12px; border-radius: 4px; border: 1px solid var(--border); background: var(--bg-cell); color: var(--text); cursor: pointer; appearance: none; -webkit-appearance: none; background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'><path fill='none' stroke='%23ababab' stroke-width='1.5' d='M3 5l3 3 3-3'/></svg>"); background-repeat: no-repeat; background-position: right 8px center; padding-right: 24px; }
+        .admin-select:hover { border-color: var(--muted); }
+        .admin-select:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+        /* Keep Actions column width constant regardless of row content. */
+        .admin-actions-cell { white-space: nowrap; }
+        .admin-actions-row { display: flex; gap: 6px; align-items: center; }
+        .admin-actions-row .admin-btn { min-width: 72px; }
         .admin-btn { padding: 4px 10px; font-size: 12px; border-radius: 4px; cursor: pointer; border: 1px solid var(--border); background: transparent; color: var(--text); transition: all 0.15s; }
         .admin-btn:hover { background: var(--bg-hover); color: var(--text); }
         .admin-btn-danger { border-color: rgba(239,68,68,0.4); color: var(--red); }
