@@ -169,11 +169,26 @@ export default function AnalyticsPage() {
           <button
             onClick={fetchStats}
             disabled={loading}
+            aria-label="Refresh"
+            title="Refresh"
             style={{
               background: 'transparent', border: '1px solid var(--border)', color: 'var(--muted)',
-              borderRadius: 6, padding: '4px 12px', fontSize: 12, cursor: 'pointer', marginLeft: 4,
+              borderRadius: 6, padding: 0, cursor: 'pointer', marginLeft: 4,
+              width: 32, height: 28, display: 'inline-flex',
+              alignItems: 'center', justifyContent: 'center',
+              transition: 'color .15s, border-color .15s',
             }}
-          >{loading ? '…' : '↻'}</button>
+          >
+            {loading ? (
+              <span style={{ fontSize: 14, lineHeight: 1 }}>…</span>
+            ) : (
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <polyline points="23 4 23 10 17 10" />
+                <polyline points="1 20 1 14 7 14" />
+                <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15" />
+              </svg>
+            )}
+          </button>
         </div>
       </div>
 
