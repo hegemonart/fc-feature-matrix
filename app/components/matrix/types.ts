@@ -109,3 +109,59 @@ export interface TypeFilterProps {
   selected: Set<ProductType>;
   onChange: (next: Set<ProductType>) => void;
 }
+
+// ── HoverTooltipCard (plan 03 — D-16, D-21) ─────────────────────
+// The tooltip is portaled to document.body and positioned from the
+// hovered cell's getBoundingClientRect() (RESEARCH.md P8 — anchored
+// to cell, NOT cursor). Content is looked up in-memory from maps
+// passed as props; no server requests on hover (D-21).
+
+/**
+ * Subset of `analysis/types.ts` Feature needed to render a tooltip
+ * row. Pick is used so HoverTooltipProps stays decoupled from any
+ * future scoring / band / presence fields added to Feature.
+ */
+export interface FeatureMeta {
+  id: string;
+  name: string;
+  desc: string;
+  /** TierId from analysis/types.ts (A–F). Rendered as "TIER:" badge. */
+  tier: string;
+  weightYes: number;
+  weightNo: number;
+}
+
+/**
+ * Subset of `analysis/types.ts` Product needed to render the club
+ * name in the tooltip header.
+ */
+export interface ClubMeta {
+  id: string;
+  name: string;
+}
+
+/** Per-cell scoring breakdown (Yes +N / No −N). */
+export interface CellScoring {
+  yes: number;
+  no: number;
+}
+
+/**
+ * Tooltip state owned by `useHoverTooltip`. `anchorRect` is captured
+ * from `cell.getBoundingClientRect()` at the moment of mouseenter;
+ * the tooltip is positioned `top: rect.bottom + 8` / `left: rect.left`
+ * with viewport-clamp logic in <HoverTooltipCard>.
+ */
+export type TooltipData = {
+  featureId: string;
+  clubId: string;
+  anchorRect: DOMRect;
+} | null;
+
+export interface HoverTooltipProps {
+  data: TooltipData;
+  features: Map<string, FeatureMeta>;
+  clubs: Map<string, ClubMeta>;
+  /** Keyed by `${clubId}:${featureId}` for O(1) lookup. */
+  scoring: Map<string, CellScoring>;
+}
