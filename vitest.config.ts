@@ -10,5 +10,8 @@ export default defineConfig({
   test: {
     include: ['**/*.{test,spec}.{ts,tsx}'],
     exclude: ['node_modules', '.next', 'concept', 'references', 'tests/visual/**'],
+    // jsdom is needed for tests/components/* (React Testing Library renders DOM nodes).
+    // Other suites are environment-agnostic, so jsdom is a safe global default.
+    environment: 'jsdom',
   },
 });

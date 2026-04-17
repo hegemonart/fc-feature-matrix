@@ -1,0 +1,233 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`<DataCell> 8 visual states (D-10) > renders: selected   default intermediate 1`] = `
+<div
+  class="_cell_3497c0 _selected_3497c0"
+  data-club="real_madrid"
+  data-feature="hero_video"
+  data-intermediate="true"
+  data-selected="true"
+  data-state="default"
+  tabindex="0"
+>
+  <svg
+    aria-hidden="true"
+    class="_check_3497c0 _intermediate_3497c0"
+    fill="none"
+    focusable="false"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.5 7.5L5.5 10.5L11.5 4"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.6"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<DataCell> 8 visual states (D-10) > renders: selected   default no-intermediate 1`] = `
+<div
+  class="_cell_3497c0 _selected_3497c0"
+  data-club="real_madrid"
+  data-feature="hero_video"
+  data-intermediate="false"
+  data-selected="true"
+  data-state="default"
+  tabindex="0"
+>
+  <svg
+    aria-hidden="true"
+    class="_check_3497c0"
+    fill="none"
+    focusable="false"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.5 7.5L5.5 10.5L11.5 4"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.6"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<DataCell> 8 visual states (D-10) > renders: selected   hover  intermediate 1`] = `
+<div
+  class="_cell_3497c0 _selected_3497c0 _hover_3497c0"
+  data-club="real_madrid"
+  data-feature="hero_video"
+  data-intermediate="true"
+  data-selected="true"
+  data-state="hover"
+  tabindex="0"
+>
+  <svg
+    aria-hidden="true"
+    class="_check_3497c0 _intermediate_3497c0"
+    fill="none"
+    focusable="false"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.5 7.5L5.5 10.5L11.5 4"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.6"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<DataCell> 8 visual states (D-10) > renders: selected   hover  no-intermediate 1`] = `
+<div
+  class="_cell_3497c0 _selected_3497c0 _hover_3497c0"
+  data-club="real_madrid"
+  data-feature="hero_video"
+  data-intermediate="false"
+  data-selected="true"
+  data-state="hover"
+  tabindex="0"
+>
+  <svg
+    aria-hidden="true"
+    class="_check_3497c0"
+    fill="none"
+    focusable="false"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.5 7.5L5.5 10.5L11.5 4"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.6"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<DataCell> 8 visual states (D-10) > renders: unselected default intermediate 1`] = `
+<div
+  class="_cell_3497c0"
+  data-club="real_madrid"
+  data-feature="hero_video"
+  data-intermediate="true"
+  data-selected="false"
+  data-state="default"
+  tabindex="0"
+>
+  <svg
+    aria-hidden="true"
+    class="_check_3497c0 _intermediate_3497c0"
+    fill="none"
+    focusable="false"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.5 7.5L5.5 10.5L11.5 4"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.6"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<DataCell> 8 visual states (D-10) > renders: unselected default no-intermediate 1`] = `
+<div
+  class="_cell_3497c0"
+  data-club="real_madrid"
+  data-feature="hero_video"
+  data-intermediate="false"
+  data-selected="false"
+  data-state="default"
+  tabindex="0"
+>
+  <svg
+    aria-hidden="true"
+    class="_check_3497c0"
+    fill="none"
+    focusable="false"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.5 7.5L5.5 10.5L11.5 4"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.6"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<DataCell> 8 visual states (D-10) > renders: unselected hover  intermediate 1`] = `
+<div
+  class="_cell_3497c0 _hover_3497c0"
+  data-club="real_madrid"
+  data-feature="hero_video"
+  data-intermediate="true"
+  data-selected="false"
+  data-state="hover"
+  tabindex="0"
+>
+  <svg
+    aria-hidden="true"
+    class="_check_3497c0 _intermediate_3497c0"
+    fill="none"
+    focusable="false"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.5 7.5L5.5 10.5L11.5 4"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.6"
+    />
+  </svg>
+</div>
+`;
+
+exports[`<DataCell> 8 visual states (D-10) > renders: unselected hover  no-intermediate 1`] = `
+<div
+  class="_cell_3497c0 _hover_3497c0"
+  data-club="real_madrid"
+  data-feature="hero_video"
+  data-intermediate="false"
+  data-selected="false"
+  data-state="hover"
+  tabindex="0"
+>
+  <svg
+    aria-hidden="true"
+    class="_check_3497c0"
+    fill="none"
+    focusable="false"
+    viewBox="0 0 14 14"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M2.5 7.5L5.5 10.5L11.5 4"
+      stroke="currentColor"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="1.6"
+    />
+  </svg>
+</div>
+`;

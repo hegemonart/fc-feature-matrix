@@ -1,0 +1,66 @@
+/* ================================================================
+   DataCell.module.css
+
+   8 visual states (selected x intermediate x state) per Figma node
+   45:5509. Fixed metrics 40x38, 12px padding, 1px solid var(--border)
+   on left/right/top borders only (continuous bottom comes from row
+   stack). Letter-spacing -0.3px on body (per D-05).
+
+   Selected state composes the column-tint gradient overlay over
+   --bg-cell to match the Figma reference (D-03).
+   ================================================================ */
+
+.cell {
+  /* D-05 — fixed cell metrics */
+  width: 40px;
+  height: 38px;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-cell);
+  /* L/R/T borders only — bottom comes from neighbor row */
+  border-top: 1px solid var(--border);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  border-bottom: 0;
+  letter-spacing: -0.3px;
+  cursor: default;
+  /* No outline on focus — :focus-visible from globals.css adds the
+     accent ring. Mouse enter/focus is what fires hover state. */
+  transition: background-color 120ms ease-out;
+}
+
+.cell:focus {
+  outline: none;
+}
+
+/* ── State: hover (also applied while focused via React state) ── */
+.hover {
+  background: var(--bg-hover);
+}
+
+/* ── Selected (column-tint gradient overlay over --bg-cell) ── */
+.selected {
+  background-color: var(--bg-cell);
+  background-image: linear-gradient(var(--column-tint), var(--column-tint));
+}
+
+.selected.hover {
+  background-color: var(--bg-hover);
+  background-image: linear-gradient(var(--column-tint), var(--column-tint));
+}
+
+/* ── Check icon ── */
+.check {
+  width: 14px;
+  height: 14px;
+  color: var(--accent);
+  display: block;
+}
+
+/* Intermediate (partial-credit, always false in v1 — wired now for
+   forward compat per D-10). */
+.intermediate {
+  opacity: 0.4;
+}
