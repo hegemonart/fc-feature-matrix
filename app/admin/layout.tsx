@@ -1,7 +1,7 @@
 import { redirect } from 'next/navigation';
 import { cookies } from 'next/headers';
 import { getSessionFromCookie, getUserByEmail } from '@/lib/auth';
-import Link from 'next/link';
+import { AdminNav } from './_nav';
 
 export const metadata = { title: 'Admin — FC Benchmark' };
 
@@ -20,31 +20,20 @@ export default async function AdminLayout({ children }: { children: React.ReactN
 
   return (
     <div className="admin-shell">
-      <nav className="admin-nav">
-        <Link href="/" className="admin-nav-brand">
-          <span>FC Benchmark</span>
-        </Link>
-        <div className="admin-nav-links">
-          <Link href="/admin/users" className="admin-nav-link">Users</Link>
-          <Link href="/admin/analytics" className="admin-nav-link">Analytics</Link>
-          <Link href="/admin/requests" className="admin-nav-link">Requests</Link>
-        </div>
-        <div className="admin-nav-meta">
-          <span className="admin-nav-email">{user.email}</span>
-          <form action="/api/auth/logout" method="POST">
-            <button type="submit" className="admin-nav-signout">Sign out</button>
-          </form>
-        </div>
-      </nav>
+      <AdminNav email={user.email} />
       <main className="admin-main">{children}</main>
       <style>{`
         /* D-23 — admin chrome re-themed via design tokens (plan 05). */
         .admin-shell { display: flex; flex-direction: column; min-height: 100vh; font-family: var(--font-body, system-ui, sans-serif); background: var(--bg-page); color: var(--text); }
         .admin-nav { display: flex; align-items: center; gap: 16px; padding: 0 24px; height: 52px; background: var(--bg-cell); border-bottom: 1px solid var(--border); }
-        .admin-nav-brand { color: var(--text); text-decoration: none; font-weight: 600; font-size: 14px; margin-right: 8px; }
-        .admin-nav-links { display: flex; gap: 4px; flex: 1; }
-        .admin-nav-link { color: var(--muted); text-decoration: none; font-size: 13px; padding: 4px 10px; border-radius: 4px; transition: color 0.15s, background 0.15s; }
+        /* Back button — same visual family as the HeaderBar "Get in touch" CTA. */
+        .admin-back { display: inline-flex; align-items: center; gap: 6px; background: rgba(255,255,255,0.2); color: #fff; padding: 7px 14px; border-radius: 4px; text-decoration: none; font-family: var(--font-mono, 'Roboto Mono'), ui-monospace, monospace; font-weight: 500; font-size: 12px; line-height: 14px; letter-spacing: -0.24px; text-transform: uppercase; white-space: nowrap; transition: background 120ms ease-out; }
+        .admin-back:hover { background: rgba(255,255,255,0.28); }
+        .admin-back svg { flex-shrink: 0; }
+        .admin-nav-links { display: flex; gap: 4px; flex: 1; margin-left: 8px; }
+        .admin-nav-link { color: var(--muted); text-decoration: none; font-size: 13px; padding: 6px 12px; border-radius: 4px; transition: color 0.15s, background 0.15s; }
         .admin-nav-link:hover { color: var(--text); background: var(--bg-hover); }
+        .admin-nav-link.active { color: var(--text); background: var(--bg-hover); }
         .admin-nav-meta { display: flex; align-items: center; gap: 12px; margin-left: auto; }
         .admin-nav-email { font-size: 12px; color: var(--muted); }
         /* D-24 — Sign-out is a secondary action (white-outlined / muted), not orange. */

@@ -143,15 +143,6 @@ export default function AnalyticsPage() {
     <div style={{ maxWidth: 1100, margin: '0 auto', padding: '0 0 48px' }}>
       {/* Header */}
       <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 28, paddingTop: 8 }}>
-        <Link href="/admin" style={{
-          display: 'flex', alignItems: 'center', gap: 6, color: 'var(--muted)', textDecoration: 'none',
-          fontSize: 13, transition: 'color 0.15s',
-        }}>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" width={14} height={14}>
-            <path d="M19 12H5m7-7-7 7 7 7" />
-          </svg>
-          Admin
-        </Link>
         <h1 style={{ fontSize: 22, fontWeight: 700, margin: 0 }}>Analytics</h1>
         <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
           {([7, 14, 30] as const).map((d) => (
