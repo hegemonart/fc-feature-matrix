@@ -54,18 +54,12 @@
 .lockedRail {
   flex: 1;
   display: flex;
-  align-items: stretch;
-  justify-content: space-between;
-  background: rgba(93, 93, 93, 0.15);
-  border-radius: 4px;
-  /* overflow-x: auto lets narrow viewports scroll to the Unlock button
-     while wide viewports spread tabs with space-between. Hidden scrollbar
-     keeps the rail flush. overflow-y: hidden clips the rounded corners. */
+  align-items: center;
+  gap: 4px;
   overflow-x: auto;
   overflow-y: hidden;
   scrollbar-width: none;
   -ms-overflow-style: none;
-  padding-left: 16px;
   min-width: 0;
 }
 
@@ -120,7 +114,8 @@
   justify-content: center;
   background: var(--accent, #ff490c);
   border: 0;
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px;
+  margin-left: auto;
   color: #ffffff;
   padding: 10px 32px;
   font-family: var(--font-mono, 'Roboto Mono'), ui-monospace, monospace;
