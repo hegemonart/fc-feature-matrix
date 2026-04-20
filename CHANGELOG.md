@@ -15,6 +15,12 @@ Atomic matrix components (infra-redesign-v2 plan 02): DataCell (8 states), SortH
 ## v7.0 — 2026-04-17
 Visual redesign foundation (infra-redesign-v2 plan 01): neutral-dark + brand-orange design tokens replace cool-blue palette in app/globals.css. Inter Tight + Roboto Mono wired via next/font. BUILD_DATE env exposed for HeaderBar. Playwright visual-regression scaffold (.skip until plan 04). Font-readiness test harness.
 
+## v6.2 — 2026-04-17
+EDITS v2: 41 value corrections across 9 clubs (FC Barcelona, Eintracht, Juventus, Chelsea, Arsenal, MotoGP, Valencia CF, Liverpool, Real Madrid). 59 wrong screenshots removed. 63 features marked needs-live-check for recapture. Major rank shifts: Valencia CF 16→42, MotoGP 20→30, Eintracht 43→4.
+
+## v6.1 — 2026-04-17
+Valencia CF corrections: language_switcher→FALSE, results_block→FALSE, news_rich_structure→FALSE (score 28→16). Removed 4 wrong screenshots, captured 2 new next_match evidence screenshots via Playwright.
+
 ## v6.0 — 2026-04-17
 Users migrated from data/users.json → Neon Postgres (Drizzle ORM). /admin panel: Users tab (CRUD, admin toggle, last-admin guardrail), Analytics tab, Requests tab (access-request triage). Analytics events migrated from Upstash Redis → Postgres with 90-day cron retention. Three auth security fixes: no default secret, token-age validation, anon POST blocked.
 
