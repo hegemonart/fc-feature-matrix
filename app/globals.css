@@ -193,13 +193,16 @@ tbody tr:hover { background: transparent; }
 tbody tr.highlighted { background: rgba(79,110,247,.08); }
 td.feature-name { position: sticky; left: 0; background: var(--bg-cell); z-index: 5; min-width: 250px; max-width: 250px; width: 250px; padding: 0 12px; height: 32px; cursor: pointer; transition: background .12s; }
 tbody tr:hover td.feature-name, tbody tr.highlighted td.feature-name { background: var(--bg-hover); }
-.feature-inner { display: flex; align-items: center; gap: 7px; height: 100%; }
-.feature-band { width: 3px; height: 16px; border-radius: 2px; flex-shrink: 0; }
+tbody tr:hover .feature-band, tr.crosshair-row .feature-band { opacity: 1; }
+.feature-inner { display: flex; align-items: center; gap: 8px; height: 100%; }
+/* Band strip — absolutely pinned to left edge of td.feature-name, shown only on row hover */
+.feature-band { position: absolute; left: 0; top: 0; bottom: 0; width: 3px; opacity: 0; transition: opacity 120ms ease-out; border-radius: 0; }
 .feature-band.table_stakes { background: var(--green); }
 .feature-band.expected { background: var(--yellow); }
 .feature-band.competitive { background: var(--orange); }
 .feature-band.innovation { background: var(--red); }
-.feature-text { font-size: var(--font-body-xs-size); color: var(--text); flex: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.feature-text { font-size: var(--font-body-xs-size); color: var(--text); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.feature-meter { width: 80px; flex-shrink: 0; display: flex; }
 .feature-weight { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 16px; border-radius: 3px; font-size: 9px; font-weight: 700; flex-shrink: 0; letter-spacing: 0; }
 .feature-weight.w5 { background: rgba(239,68,68,.18); color: #f87171; }
 .feature-weight.w4 { background: rgba(251,146,60,.15); color: #fb923c; }
@@ -215,12 +218,32 @@ tr.category-sep-row td.cat-spacer { border-right: 1px solid var(--border); }
 
 /* ── CELLS ── */
 /* ── DATA CELL (Figma node 45:5509 — 40×38px, border L/R/T, dark bg) ── */
-td.cell { padding: 0; text-align: center; vertical-align: middle; width: 40px; min-width: 40px; max-width: 40px; height: 38px; background: var(--bg-page); border-left: 1px solid var(--border); border-right: 1px solid var(--border); border-top: 1px solid var(--border); transition: background 120ms ease-out; cursor: pointer; }
-td.cell:hover { background: var(--bg-hover) !important; }
+td.cell { padding: 0; text-align: center; vertical-align: middle; width: 40px; min-width: 40px; max-width: 40px; height: 38px; background: var(--bg-page); border-left: 1px solid var(--border); border-right: 1px solid var(--border); border-top: 1px solid var(--border); transition: background 120ms ease-out; cursor: pointer; position: relative; }
 td.cell.has-full { background: var(--bg-page); }
 td.cell.has-partial { background: var(--bg-page); }
 td.cell.highlighted { background: var(--bg-cell) !important; }
 td.cell.highlighted:hover { background: var(--bg-hover) !important; }
+
+/* ── Crosshair + checkers overlay (floats above DataCell div) ──── */
+td.cell::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: transparent;
+  z-index: 1;
+  transition: background 80ms ease-out;
+}
+/* Alternating checkers row tint */
+tr.row-odd  td.cell::after { background: rgba(255,255,255,0.02); }
+/* Crosshair row highlight */
+tr.crosshair-row td.cell::after { background: rgba(255,255,255,0.04); }
+/* Crosshair column highlight */
+td.cell.crosshair-col::after { background: rgba(255,255,255,0.04); }
+/* Intersection — brightest */
+tr.crosshair-row td.cell.crosshair-col::after { background: rgba(255,255,255,0.09); }
+/* Direct hover cell overrides everything */
+td.cell:hover::after { background: var(--bg-hover) !important; z-index: 2; }
 /* Checkmark: white on dark bg per Figma (not accent/orange) */
 .check { color: var(--text); font-size: var(--font-body-s-size); line-height: 1; }
 .partial-check { color: var(--text); font-size: var(--font-body-s-size); line-height: 1; opacity: .40; }
@@ -229,6 +252,11 @@ td.cell.highlighted:hover { background: var(--bg-hover) !important; }
 /* ── FREQUENCY COLUMN ── */
 td.freq-col { position: sticky; right: 0; background: var(--bg-cell); z-index: 5; min-width: 100px; max-width: 100px; width: 100px; padding: 0 10px; }
 tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(--bg-hover); }
+/* Placeholder right column in feature rows (adoption bar moved inline) */
+td.freq-col-empty { position: sticky; right: 0; background: var(--bg-cell); z-index: 5; min-width: 100px; max-width: 100px; width: 100px; padding: 0; }
+tbody tr:hover td.freq-col-empty, tr.crosshair-row td.freq-col-empty { background: var(--bg-hover); }
+/* Crosshair row highlight on sticky feature-name column */
+tr.crosshair-row td.feature-name { background: var(--bg-hover); }
 .freq-inner { display: flex; align-items: center; gap: 7px; height: 32px; }
 .freq-bar-wrap { flex: 1; height: 4px; background: var(--border); border-radius: 2px; overflow: hidden; }
 .freq-bar { height: 100%; border-radius: 2px; }

@@ -1,13 +1,18 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Analytics } from '@vercel/analytics/next';
-import { Inter_Tight, Roboto_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Roboto_Mono } from 'next/font/google';
 
-// D-07/D-08/D-09 — default body + mono type stack via next/font.
-// If Sergey opts into Suisse Int'l before merge, swap this block per
-// RESEARCH.md §"Alternate snippet" and drop the -0.32px letter-spacing.
-const interTight = Inter_Tight({
-  subsets: ['latin'],
+// Suisse Int'l — licensed font supplied by humbleteam (public/fonts/suisse/).
+// Replaces Inter Tight per Figma spec (body: SuisseIntl Regular 14px / -0.3px).
+const suisseIntl = localFont({
+  src: [
+    { path: '../public/fonts/suisse/SuisseIntl-Regular.otf',  weight: '400', style: 'normal' },
+    { path: '../public/fonts/suisse/SuisseIntl-Medium.otf',   weight: '500', style: 'normal' },
+    { path: '../public/fonts/suisse/SuisseIntl-SemiBold.otf', weight: '600', style: 'normal' },
+    { path: '../public/fonts/suisse/SuisseIntl-Bold.otf',     weight: '700', style: 'normal' },
+  ],
   display: 'swap',
   variable: '--font-body',
 });
@@ -26,7 +31,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${interTight.variable} ${robotoMono.variable}`}>
+    <html lang="en" className={`${suisseIntl.variable} ${robotoMono.variable}`}>
       <body>
         {children}
         <Analytics />

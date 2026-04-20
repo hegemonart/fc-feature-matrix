@@ -156,6 +156,9 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
 
   /* ── Tooltip + column selection (D-21 / D-18) ── */
   const { tooltipData, handleCellEnter, handleCellLeave } = useHoverTooltip();
+  /* ── Crosshair highlight state ── */
+  const [hoveredFid, setHoveredFid] = useState<string | null>(null);
+  const [hoveredPid, setHoveredPid] = useState<string | null>(null);
   // selectedProduct is the AUTHORITATIVE column-tint state per D-18 directive.
   // useColumnSelection is referenced for parity / future migration but reads
   // off selectedProduct; isSelected delegates to a comparison so the existing
@@ -404,10 +407,14 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
   /* ── Tooltip handlers — REWRITTEN per plan 04 spec ── */
   const handleCellMouseOver = useCallback((fid: string, pid: string, el: HTMLElement) => {
     handleCellEnter(fid, pid, el);
+    setHoveredFid(fid);
+    setHoveredPid(pid);
   }, [handleCellEnter]);
 
   const handleTableMouseLeave = useCallback(() => {
     handleCellLeave();
+    setHoveredFid(null);
+    setHoveredPid(null);
   }, [handleCellLeave]);
 
   /* ── Sort header click handlers (D-19 cycle) ── */
@@ -570,6 +577,8 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                     onCellMouseOver={authed ? handleCellMouseOver : () => {}}
                     onCellLeave={handleCellLeave}
                     previewMode={!authed}
+                    hoveredFid={hoveredFid}
+                    hoveredPid={hoveredPid}
                   />
                 )}
               </tbody>
@@ -784,6 +793,8 @@ function TableRows({
   onCellMouseOver,
   onCellLeave,
   previewMode,
+  hoveredFid,
+  hoveredPid,
 }: {
   feats: Feature[];
   prods: Product[];
@@ -794,6 +805,8 @@ function TableRows({
   onCellMouseOver: (fid: string, pid: string, el: HTMLElement) => void;
   onCellLeave: () => void;
   previewMode?: boolean;
+  hoveredFid?: string | null;
+  hoveredPid?: string | null;
 }) {
   const rows: React.ReactNode[] = [];
   let lastCat: string | null = null;
@@ -831,27 +844,32 @@ function TableRows({
     featureRowIndex++;
 
     const hl = selectedFeature === f.id ? ' highlighted' : '';
+    const rowCrossHair = hoveredFid === f.id ? ' crosshair-row' : '';
+    const checkerClass = featureRowIndex % 2 === 0 ? ' row-even' : ' row-odd';
     rows.push(
-      <tr className={hl} key={f.id} style={rowStyle}>
+      <tr className={`${hl}${rowCrossHair}${checkerClass}`} key={f.id} style={rowStyle}>
         <td className="feature-name" onClick={() => onFeatureClick(f.id)}>
+          <div className={`feature-band ${f.band}`} />
           <div className="feature-inner">
-            <div className={`feature-band ${f.band}`}></div>
             <span className="feature-text" title={f.name}>{f.name}</span>
+            <div className="feature-meter">
+              <MeterRow
+                band={bandToMeterBand(f.band)}
+                value={f.adoptionPct ?? 0}
+              />
+            </div>
           </div>
         </td>
         {prods.map(p => {
           const state = f.presence[p.id];
           const value = state === 'full';
           const selected = isColumnSelected(p.id);
+          const colCrossHair = hoveredPid === p.id ? ' crosshair-col' : '';
 
-          // Wrap <DataCell> in a <td> so the table layout still works; the
-          // <DataCell> div carries the focus/hover semantics. The legacy
-          // .cell class is kept on the <td> for spacing parity until plan 05
-          // does the full token swap.
           return (
             <td
               key={p.id}
-              className={`cell${value ? ' has-full' : ''}${selected ? ' highlighted' : ''}`}
+              className={`cell${value ? ' has-full' : ''}${selected ? ' highlighted' : ''}${colCrossHair}`}
               onClick={() => onFeatureClick(f.id)}
             >
               <DataCell
@@ -869,12 +887,7 @@ function TableRows({
             </td>
           );
         })}
-        <td className="freq-col">
-          <MeterRow
-            band={bandToMeterBand(f.band)}
-            value={f.adoptionPct ?? 0}
-          />
-        </td>
+        <td className="freq-col-empty" />
       </tr>
     );
   });

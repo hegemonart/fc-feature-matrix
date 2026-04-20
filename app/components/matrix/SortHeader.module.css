@@ -17,7 +17,6 @@
   margin: 0;
   cursor: pointer;
   color: var(--muted);
-  text-transform: uppercase;
   user-select: none;
   transition: color 120ms ease-out;
 }
@@ -33,7 +32,11 @@
 }
 
 .label {
-  /* .mono-caption helper from globals.css gets applied alongside */
+  font-family: var(--font-body-s-family);
+  font-size: var(--font-body-s-size);
+  font-weight: var(--font-body-s-weight);
+  line-height: var(--font-body-s-height);
+  letter-spacing: var(--font-body-s-spacing);
   white-space: nowrap;
 }
 

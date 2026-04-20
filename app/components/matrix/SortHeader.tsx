@@ -60,7 +60,7 @@ export function SortHeader({ label, state, onSort }: SortHeaderProps) {
       data-sort-state={state}
       aria-label={`Sort by ${label} (${state})`}
     >
-      <span className={`${styles.label} mono-caption`}>{label}</span>
+      <span className={styles.label}>{label}</span>
       <span className={styles.icons}>
         <ArrowUp active={upActive} />
         <ArrowDown active={downActive} />
