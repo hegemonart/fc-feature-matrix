@@ -32,11 +32,12 @@
 }
 
 .label {
-  font-family: var(--font-body-s-family);
-  font-size: var(--font-body-s-size);
-  font-weight: var(--font-body-s-weight);
-  line-height: var(--font-body-s-height);
-  letter-spacing: var(--font-body-s-spacing);
+  font-family: var(--font-caption-family);
+  font-size: var(--font-caption-size);
+  font-weight: var(--font-caption-weight);
+  line-height: var(--font-caption-height);
+  letter-spacing: var(--font-caption-spacing);
+  text-transform: uppercase;
   white-space: nowrap;
   color: var(--text);
 }
