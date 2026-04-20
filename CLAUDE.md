@@ -1,66 +1,101 @@
-# FC Benchmark — Agent Instructions
+# FC Benchmark — CLAUDE.md
 
-## Project overview
+## Self-Improvement Protocol
 
-UX benchmarking tool: 58 homepage features scored across 33 sports organizations. Next.js app with TypeScript data layer in `analysis/`.
+After every task, ask: _did I hit something not in this file?_
 
-## Key files
+- New trap or gotcha → add to Traps
+- Architectural decision made or re-litigated → add to Decisions
+- Pattern worth repeating → add inline where it fits
+
+Update in the same commit as the code. One line per entry, terse. No filler.
+
+---
+
+## Traps
+
+_Append gotchas as you discover them. Group by topic._
+
+**Screenshots**
+- 5 sites block headless Chromium (Arsenal, Bayern, Liverpool, NBA, West Ham) — use Chrome MCP for those
+- Always dismiss popups/cookies FIRST before capturing
+- Prefer full-page screenshot + PIL crop over Playwright clip — more reliable
+- Carousel must show navigation controls in screenshot
+- Video block must be large (>33% width) to count
+- News rich structure must show different layouts
+- Liverpool: DO NOT TOUCH
+
+**Commits**
+- Must update README.md if rankings, coverage, structure, feature count, or screenshot count changed
+- Must update CHANGELOG.md — minor (1.x) for fixes/single-club, major (x.0) for new clubs/rubric changes/batch ops
+- Must run `node analysis/homepage/crosscheck/recalculate-scores.js` if any JSON results changed
+- Must run `npx next build` before pushing
+- CHANGELOG entry: max 300 chars, format `## vX.Y — YYYY-MM-DD`
+
+**State bloat**
+- app/page.tsx had 130+ useState declarations — consolidated to 8 (Apr 2026). Watch for regression.
+
+---
+
+## Decisions
+
+_Append when you make or re-examine an architectural choice. Format: DATE · decision (why)._
+
+- 2026-04 · Playwright for screenshots, Chrome MCP only for blocked sites and visual verification (filesystem access)
+- 2026-04 · Full-page screenshot + PIL crop as primary capture method (most reliable across sites)
+- 2026-04 · Per-club cookie strategies in capture scripts (sites vary wildly in popup behavior)
+- 2026-04 · Inline sign-in form swap in unlock modal instead of separate modal (cleaner UX)
+- 2026-04 · 6-phase flow expansion roadmap: homepage → tickets → matchday → membership → content → commerce
+
+---
+
+## Project
+
+UX benchmarking tool that scores 58 homepage features across 33 sports organizations. Built for fan experience auditors comparing digital presence. Next.js app with a TypeScript data layer in `analysis/`, element-level screenshot evidence, and a cross-check verification system.
+
+Stack: Next.js 16, React 19, TypeScript, Playwright (Python), Vercel
+
+Structure:
+```
+analysis/           — data layer: features, rubric, results, crosscheck scripts + evidence
+  homepage/
+    HOME-PAGE.md    — feature rubric (source of truth)
+    features.ts     — feature definitions with tier weights
+    results/*.json  — per-club scored feature values
+    crosscheck/     — verification scripts, CLAUDE.md, img/ (536 screenshots)
+app/                — Next.js pages and API routes (/me, /logout, /crosscheck-image)
+lib/                — summary generator, shared utilities
+data/               — users.json (4 accounts)
+public/             — static assets
+concept/            — design explorations (excluded from tsconfig)
+references/         — reference materials (excluded from tsconfig)
+```
+
+---
+
+## Key Files
 
 - `analysis/homepage/HOME-PAGE.md` — Feature rubric (source of truth for scoring)
 - `analysis/homepage/features.ts` — Feature definitions with tier weights
 - `analysis/homepage/results/*.json` — Per-club feature values
-- `analysis/homepage/crosscheck/CLAUDE.md` — Cross-check agent instructions
-- `analysis/homepage/crosscheck/img/` — Element-level screenshot evidence
-- `CHANGELOG.md` — Version history with change descriptions
+- `analysis/homepage/crosscheck/CLAUDE.md` — Cross-check agent instructions (full capture rules)
+- `analysis/CLAUDE.md` — Analysis folder documentation
+- `CHANGELOG.md` — Version history
 - `README.md` — Project documentation
 
-## Commit and push rules
+---
 
-**Every commit and push MUST include these steps:**
+## Screenshot Evidence
 
-1. **Update README.md** — If the change affects any of these, update the corresponding README section:
-   - Rankings table (after score recalculations)
-   - Coverage numbers (after adding/removing clubs)
-   - Project structure (after adding new files/folders)
-   - Feature count (after rubric changes)
-   - Screenshot coverage numbers (after new captures)
+Naming: `{club_id}_{feature_key}.png` in `analysis/homepage/crosscheck/img/`
 
-2. **Update CHANGELOG.md** — Add a new entry at the top of the changelog:
-   - **Minor changes (1.x)**: Bug fixes, score corrections, individual club cross-checks, screenshot fixes, documentation updates, single-feature adjustments
-   - **Major changes (x.0)**: New clubs added, rubric changes (features added/removed/redefined), new tooling (capture scripts, cross-check procedures), batch cross-checks across multiple clubs, new page types added
-   - Each version entry: max 300 characters description
-   - Version numbering: increment minor (1.1 -> 1.2) for minor, increment major (1.x -> 2.0) for major
-   - Format:
-     ```
-     ## vX.Y — YYYY-MM-DD
-     Description (max 300 chars)
-     ```
-
-3. **Recalculate scores** if any JSON result files changed:
-   ```bash
-   node analysis/homepage/crosscheck/recalculate-scores.js
-   ```
-
-4. **Verify build** before pushing:
-   ```bash
-   npx next build
-   ```
-
-## Analysis workflow
-
-See `analysis/CLAUDE.md` for the full analysis folder documentation, and `analysis/homepage/crosscheck/CLAUDE.md` for cross-check procedures.
-
-## Screenshot evidence (crosscheck/img)
-
-Element-level screenshots for TRUE features. Naming: `{club_id}_{feature_key}.png`. Current coverage: 536 screenshots across all 33 clubs.
-
-**Always use Playwright** for screenshot captures. Playwright has direct filesystem access and can save element-level screenshots straight to `crosscheck/img/`. Use the Chrome MCP extension for live site verification and visual checks only — not for saving screenshots. 5 sites block headless Chromium (Arsenal, Bayern, Liverpool, NBA, West Ham) — use Chrome MCP for those.
+**Always use Playwright** for captures. Chrome MCP for live verification only.
 
 Capture scripts in `analysis/homepage/crosscheck/`:
 - `capture_elements.py` — Main capture script
 - `redo_bad_weak.py` — Re-capture failed/weak screenshots
 - `recapture_deleted.py` — Batch re-capture with per-club cookie strategies
-- `recapture_round5.py` — Full-page screenshot + PIL crop approach (most reliable)
+- `recapture_round5.py` — Full-page + PIL crop (most reliable)
 - `recalculate-scores.js` — Score recalculation after JSON changes
 
 Key rules:
