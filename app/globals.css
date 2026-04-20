@@ -598,7 +598,7 @@ thead { position: sticky; top: 0; z-index: 30; }
 
 /* ── PREVIEW MODE (not logged in) ── */
 .locked-preview { pointer-events: none; opacity: .5; user-select: none; }
-.table-wrapper { position: relative; flex: 1; display: flex; flex-direction: column; overflow: hidden; border-radius: 4px; }
+.table-wrapper { position: relative; flex: 1; display: flex; flex-direction: column; overflow: hidden; border-radius: 4px; clip-path: inset(0 round 4px); }
 .preview-blur-overlay { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 30; pointer-events: none; }
 .preview-cta { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; padding: 32px 44px; background: var(--bg-cell); border: 1px solid var(--border); border-radius: 16px; backdrop-filter: blur(16px); max-width: 420px; pointer-events: auto; box-shadow: 0 8px 40px rgba(0,0,0,.6); }
 .preview-cta svg { color: var(--muted); }
