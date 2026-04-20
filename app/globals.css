@@ -354,12 +354,10 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .score-value.positive { color: var(--green); }
 .score-value.negative { color: rgba(255,255,255,0.35); }
 
-/* ── SCORE ROW (thead — below logos) ── */
+/* ── SCORE ROW (thead — sticky fixed position) ── */
+.score-row-top { position: sticky; top: 56px; z-index: 10; }
 .score-row-top td { height: 24px; padding: 0 4px; background: var(--bg-cell); border-bottom: 2px solid var(--border); }
 
-/* ── SCORE ROW (tfoot — sticky bottom) ── */
-tfoot .score-row { position: sticky; bottom: 0; z-index: 5; }
-tfoot .score-row td { background: var(--bg-cell); border-top: 2px solid var(--border); padding: 8px 4px; }
 
 /* ── CELL TOOLTIP — REMOVED in plan infra-redesign-v2-04.
    Replaced by the portaled <HoverTooltipCard> from plan 03
