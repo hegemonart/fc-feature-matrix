@@ -1,5 +1,8 @@
 # Changelog
 
+## v9.1 — 2026-04-20
+Perf: crosshair highlight DOM-toggled via refs — no React re-render per cell hover; MatrixIsland TableRows memoized with stable callback props. Fix: active Homepage tab click no longer opens locked modal. Fix: Get-in-touch mailto now hi@humbleteam.com.
+
 ## v9.0 — 2026-04-17
 System-wide visual rollout closes infra-redesign-v2: /club/[id] re-themed (D-22), admin layout + users + requests + Recharts dashboard re-colored (D-23), three modals audited for single-orange-CTA compliance with Modal.test.tsx (D-24), CLAUDE.md "Design system rules" added (D-25), club-page visual baseline + admin spec scaffold (D-26), Lighthouse a11y 91 (D-29).
 
