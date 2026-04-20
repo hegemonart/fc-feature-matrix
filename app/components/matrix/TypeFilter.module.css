@@ -34,13 +34,17 @@
   -webkit-appearance: none;
   width: 14px;
   height: 14px;
-  border: 1.5px solid var(--muted);
+  border: 1.5px solid var(--border);
   border-radius: 3px;
   background: transparent;
   cursor: pointer;
   flex-shrink: 0;
   position: relative;
   transition: all 120ms ease-out;
+}
+
+.checkbox:hover {
+  border-color: var(--muted);
 }
 
 .checkbox:checked {
@@ -55,7 +59,7 @@
   left: 4px;
   width: 4px;
   height: 7px;
-  border: solid var(--bg-page);
+  border: solid #ffffff;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
 }

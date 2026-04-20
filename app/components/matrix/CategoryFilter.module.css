@@ -51,6 +51,7 @@
 
 .name {
   flex: 1;
+  font-family: var(--font-body, 'Inter Tight'), system-ui, sans-serif;
   font-size: 12px;
   letter-spacing: -0.3px;
   white-space: nowrap;
