@@ -263,6 +263,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
     features.forEach(f => {
       m.set(f.id, {
         id: f.id,
+        key: f.key,
         name: f.name,
         desc: f.desc,
         tier: f.tier,
