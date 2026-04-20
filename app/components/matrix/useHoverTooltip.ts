@@ -32,7 +32,7 @@ export const TOOLTIP_CLOSE_GRACE_MS = 100;
 
 export interface UseHoverTooltipReturn {
   tooltipData: TooltipData;
-  handleCellEnter: (featureId: string, clubId: string, el: HTMLElement) => void;
+  handleCellEnter: (featureId: string, clubId: string, el: HTMLElement, value?: boolean) => void;
   handleCellLeave: () => void;
   /** Synchronously clears state + cancels any pending close timer. */
   clearTooltip: () => void;
@@ -50,10 +50,10 @@ export function useHoverTooltip(): UseHoverTooltipReturn {
   }, []);
 
   const handleCellEnter = useCallback(
-    (featureId: string, clubId: string, el: HTMLElement) => {
+    (featureId: string, clubId: string, el: HTMLElement, value = false) => {
       cancelPendingClose();
       const anchorRect = el.getBoundingClientRect();
-      setTooltipData({ featureId, clubId, anchorRect });
+      setTooltipData({ featureId, clubId, anchorRect, value });
     },
     [cancelPendingClose]
   );

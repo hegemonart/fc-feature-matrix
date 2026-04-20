@@ -398,8 +398,8 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
   }, []);
 
   /* ── Tooltip handlers — REWRITTEN per plan 04 spec ── */
-  const handleCellMouseOver = useCallback((fid: string, pid: string, el: HTMLElement) => {
-    handleCellEnter(fid, pid, el);
+  const handleCellMouseOver = useCallback((fid: string, pid: string, el: HTMLElement, value = false) => {
+    handleCellEnter(fid, pid, el, value);
     setHoveredFid(fid);
     setHoveredPid(pid);
   }, [handleCellEnter]);
@@ -779,7 +779,7 @@ function TableRows({
   selectedFeature: string | null;
   isColumnSelected: (clubId: string) => boolean;
   onFeatureClick: (fid: string) => void;
-  onCellMouseOver: (fid: string, pid: string, el: HTMLElement) => void;
+  onCellMouseOver: (fid: string, pid: string, el: HTMLElement, value?: boolean) => void;
   onCellLeave: () => void;
   previewMode?: boolean;
   hoveredFid?: string | null;
@@ -855,9 +855,9 @@ function TableRows({
                 featureId={f.id}
                 clubId={p.id}
                 value={value}
-                onMouseEnter={(e) => onCellMouseOver(f.id, p.id, e.currentTarget)}
+                onMouseEnter={(e) => onCellMouseOver(f.id, p.id, e.currentTarget, value)}
                 onMouseLeave={onCellLeave}
-                onFocus={(e) => onCellMouseOver(f.id, p.id, e.currentTarget)}
+                onFocus={(e) => onCellMouseOver(f.id, p.id, e.currentTarget, value)}
                 onBlur={onCellLeave}
               />
             </td>

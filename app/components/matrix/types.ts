@@ -164,6 +164,8 @@ export type TooltipData = {
   featureId: string;
   clubId: string;
   anchorRect: DOMRect;
+  /** true when the club has this feature — used to show screenshot evidence */
+  value: boolean;
 } | null;
 
 export interface HoverTooltipProps {

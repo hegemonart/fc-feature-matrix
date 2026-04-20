@@ -12,16 +12,16 @@
 .row {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   width: 100%;
-  min-width: 80px;
 }
 
 .track {
   position: relative;
-  flex: 1;
+  flex: none;
+  width: 32px;
   height: 4px;
-  background: var(--bg-hover);
+  background: rgba(255,255,255,0.12);
   border-radius: 2px;
   overflow: hidden;
 }

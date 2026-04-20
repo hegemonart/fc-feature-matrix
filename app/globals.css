@@ -202,7 +202,7 @@ tbody tr:hover .feature-band, tr.crosshair-row .feature-band { opacity: 1; }
 .feature-band.competitive { background: var(--orange); }
 .feature-band.innovation { background: var(--red); }
 .feature-text { font-size: var(--font-body-xs-size); color: var(--text); flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.feature-meter { width: 80px; flex-shrink: 0; display: flex; }
+.feature-meter { width: 66px; flex-shrink: 0; display: flex; }
 .feature-weight { display: inline-flex; align-items: center; justify-content: center; width: 18px; height: 16px; border-radius: 3px; font-size: 9px; font-weight: 700; flex-shrink: 0; letter-spacing: 0; }
 .feature-weight.w5 { background: rgba(239,68,68,.18); color: #f87171; }
 .feature-weight.w4 { background: rgba(251,146,60,.15); color: #fb923c; }

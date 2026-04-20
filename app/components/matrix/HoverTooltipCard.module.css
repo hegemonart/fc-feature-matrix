@@ -75,3 +75,14 @@
 .scoreSep {
   color: var(--border);
 }
+
+.screenshot {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  max-height: 160px;
+  object-fit: cover;
+  object-position: top;
+}
