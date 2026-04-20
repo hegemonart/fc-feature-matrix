@@ -355,7 +355,7 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 .score-value.negative { color: rgba(255,255,255,0.35); }
 
 /* ── TABLE HEAD (entire header block stays fixed) ── */
-thead { position: sticky; top: 56px; z-index: 30; }
+thead { position: sticky; top: 0; z-index: 30; }
 
 /* ── SCORE ROW (within sticky thead) ── */
 .score-row-top td { height: 24px; padding: 0 4px; background: var(--bg-cell); border-bottom: 2px solid var(--border); }
