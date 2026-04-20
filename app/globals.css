@@ -235,15 +235,17 @@ td.cell::after {
   transition: background 80ms ease-out;
 }
 /* Alternating checkers row tint */
-tr.row-odd  td.cell::after { background: rgba(255,255,255,0.02); }
+tr.row-odd  td.cell::after { background: rgba(255,255,255,0.025); }
 /* Crosshair row highlight */
-tr.crosshair-row td.cell::after { background: rgba(255,255,255,0.04); }
+tr.crosshair-row td.cell::after { background: rgba(255,255,255,0.10); }
 /* Crosshair column highlight */
-td.cell.crosshair-col::after { background: rgba(255,255,255,0.04); }
+td.cell.crosshair-col::after { background: rgba(255,255,255,0.10); }
 /* Intersection — brightest */
-tr.crosshair-row td.cell.crosshair-col::after { background: rgba(255,255,255,0.09); }
-/* Direct hover cell overrides everything */
-td.cell:hover::after { background: var(--bg-hover) !important; z-index: 2; }
+tr.crosshair-row td.cell.crosshair-col::after { background: rgba(255,255,255,0.20); }
+/* Direct hover — semi-transparent so check icon stays visible */
+td.cell:hover::after { background: rgba(255,255,255,0.18) !important; z-index: 2; }
+/* Column header highlight when its column is hovered */
+thead th.crosshair-col { background: var(--bg-hover) !important; }
 /* Checkmark: white on dark bg per Figma (not accent/orange) */
 .check { color: var(--text); font-size: var(--font-body-s-size); line-height: 1; }
 .partial-check { color: var(--text); font-size: var(--font-body-s-size); line-height: 1; opacity: .40; }

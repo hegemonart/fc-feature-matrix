@@ -130,7 +130,6 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
   const [activeCat, setActiveCat] = useState<CategoryId | null>(null);
   const [selectedFeature, setSelectedFeature] = useState<string | null>(null);
   const [selectedProduct, setSelectedProduct] = useState<string | null>(null);
-  const [adoptionSort, setAdoptionSort] = useState<'asc' | 'desc' | null>(null);
   const [featureAlphaSort, setFeatureAlphaSort] = useState(false);
   const [scoreSort, setScoreSort] = useState<'asc' | 'desc' | null>('desc');
 
@@ -222,11 +221,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
 
   const sortedFeats = useMemo(() => {
     const feats = [...visibleFeats];
-    if (adoptionSort) {
-      feats.sort((a, b) => adoptionSort === 'asc'
-        ? (a.adoptionPct ?? 0) - (b.adoptionPct ?? 0)
-        : (b.adoptionPct ?? 0) - (a.adoptionPct ?? 0));
-    } else if (featureAlphaSort) {
+    if (featureAlphaSort) {
       feats.sort((a, b) => {
         const catA = CATEGORIES.find(c => c.id === a.cat)!.name;
         const catB = CATEGORIES.find(c => c.id === b.cat)!.name;
@@ -235,7 +230,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
       });
     }
     return feats;
-  }, [visibleFeats, adoptionSort, featureAlphaSort]);
+  }, [visibleFeats, featureAlphaSort]);
 
   /* ── Sidebar counts (always based on full dataset) ── */
   const catCounts = useMemo(() => {
@@ -296,7 +291,6 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
 
   /* ── Sort state mappings to <SortHeader> contract (D-19) ── */
   const featureSortState: SortState = featureAlphaSort ? 'asc' : 'idle';
-  const adoptionSortState: SortState = adoptionSort === 'asc' ? 'asc' : adoptionSort === 'desc' ? 'desc' : 'idle';
   const scoreSortState: SortState = scoreSort === 'asc' ? 'asc' : scoreSort === 'desc' ? 'desc' : 'idle';
 
   /* ── Auth: check session on mount (preserved verbatim) ── */
@@ -399,7 +393,6 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
     setActiveCat(null);
     setSelectedFeature(null);
     setSelectedProduct(null);
-    setAdoptionSort(null);
     setFeatureAlphaSort(false);
     setScoreSort(null);
   }, []);
@@ -420,16 +413,8 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
   /* ── Sort header click handlers (D-19 cycle) ── */
   const onFeatureSort = useCallback(() => {
     if (!authed) return;
-    setAdoptionSort(null);
     setScoreSort(null);
     setFeatureAlphaSort(prev => !prev);
-  }, [authed]);
-
-  const onAdoptionSort = useCallback(() => {
-    if (!authed) return;
-    setFeatureAlphaSort(false);
-    setScoreSort(null);
-    setAdoptionSort(prev => prev === 'asc' ? 'desc' : prev === 'desc' ? null : 'asc');
   }, [authed]);
 
   const onScoreSort = useCallback(() => {
@@ -517,7 +502,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                     />
                   </th>
                   {visibleProds.map(p => (
-                    <th key={p.id}>
+                    <th key={p.id} className={hoveredPid === p.id ? 'crosshair-col' : ''}>
                       <div
                         className={`col-header${selectedProduct === p.id ? ' highlighted' : ''}`}
                         onClick={() => { if (!authed) return; handleShowProductDetail(p.id); }}
@@ -530,13 +515,6 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                       </div>
                     </th>
                   ))}
-                  <th className="freq-col sortable">
-                    <SortHeader
-                      label="Adoption"
-                      state={adoptionSortState}
-                      onSort={onAdoptionSort}
-                    />
-                  </th>
                 </tr>
                 <tr className="score-row score-row-top">
                   <td className="feature-col score-label sortable">
@@ -556,7 +534,6 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                       </td>
                     );
                   })}
-                  <td className="freq-col"></td>
                 </tr>
               </thead>
               <tbody>
@@ -570,7 +547,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                   <TableRows
                     feats={sortedFeats}
                     prods={visibleProds}
-                    showCategorySeps={!adoptionSort}
+                    showCategorySeps={true}
                     selectedFeature={selectedFeature}
                     isColumnSelected={isColumnSelected}
                     onFeatureClick={authed ? handleShowFeatureDetail : () => {}}
@@ -829,7 +806,6 @@ function TableRows({
           {prods.map(p => (
             <td className="cat-spacer" key={p.id}></td>
           ))}
-          <td className="cat-spacer"></td>
         </tr>
       );
     }
@@ -887,7 +863,6 @@ function TableRows({
             </td>
           );
         })}
-        <td className="freq-col-empty" />
       </tr>
     );
   });
