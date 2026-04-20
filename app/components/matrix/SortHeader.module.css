@@ -38,6 +38,7 @@
   line-height: var(--font-body-s-height);
   letter-spacing: var(--font-body-s-spacing);
   white-space: nowrap;
+  color: var(--text);
 }
 
 .icons {
