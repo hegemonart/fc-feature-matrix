@@ -357,6 +357,7 @@ tbody tr:hover td.freq-col, tbody tr.highlighted td.freq-col { background: var(-
 /* ── SCORE ROW (thead — sticky fixed position) ── */
 .score-row-top { position: sticky; top: 56px; z-index: 10; }
 .score-row-top td { height: 24px; padding: 0 4px; background: var(--bg-cell); border-bottom: 2px solid var(--border); }
+.score-row-top .feature-col { position: sticky; left: 0; z-index: 25; }
 
 
 /* ── CELL TOOLTIP — REMOVED in plan infra-redesign-v2-04.
