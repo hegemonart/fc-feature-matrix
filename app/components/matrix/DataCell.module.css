@@ -51,11 +51,11 @@
   background-image: linear-gradient(var(--column-tint), var(--column-tint));
 }
 
-/* ── Check icon — white per Figma node 45:5509 ── */
+/* ── Check icon — #A3A3A3 per Figma node 45:5509 ── */
 .check {
   width: 14px;
   height: 14px;
-  color: var(--text);
+  color: #A3A3A3;
   display: block;
 }
 
