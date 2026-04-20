@@ -6,7 +6,7 @@
   --bg-hover:    #383838;
   --border:      #262626;
   --accent:      #FF490C;
-  --column-tint: rgb(51, 24, 15);
+  --column-tint: rgba(255,255,255,0.10);
   --text:        #FFFFFF;
   --text-secondary: #ABABAB;
   --muted:       #ABABAB;
@@ -180,7 +180,7 @@ thead th.sortable:hover { color: var(--accent); }
 thead th.freq-col { min-width: 100px; max-width: 100px; width: 100px; padding: 0 8px; font-size: var(--font-caption-size); color: var(--muted); font-weight: 600; position: sticky; right: 0; z-index: 15; background: var(--bg-cell); cursor: pointer; user-select: none; }
 .col-header { display: flex; flex-direction: column; align-items: center; padding: 6px 2px 8px; cursor: pointer; transition: background .12s; height: 130px; justify-content: flex-end; }
 .col-header:hover { background: var(--bg-hover); }
-.col-header.highlighted { background: rgba(79,110,247,.15); }
+.col-header.highlighted { background: var(--bg-hover); }
 .col-logo { width: 28px; height: 28px; border-radius: 50%; background: rgba(255,255,255,.08); display: flex; align-items: center; justify-content: center; overflow: hidden; flex-shrink: 0; margin-top: 6px; transition: transform .15s, box-shadow .15s; }
 .col-logo img { width: 20px; height: 20px; object-fit: contain; }
 .col-logo.dark-logo { background: rgba(255,255,255,.85); }
