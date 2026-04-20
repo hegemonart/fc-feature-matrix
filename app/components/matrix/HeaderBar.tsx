@@ -79,7 +79,7 @@ export function HeaderBar({
         <span className={styles.actions}>
           <a
             className={styles.cta}
-            href="mailto:hello@humbleteam.com"
+            href="mailto:hi@humbleteam.com"
             data-cta="get-in-touch"
           >
             Get in touch

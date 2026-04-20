@@ -40,7 +40,7 @@
      - the three locked-overlay modals (re-skinned in plan 05 only)
    ================================================================ */
 
-import { useState, useMemo, useCallback, useEffect } from 'react';
+import { useState, useMemo, useCallback, useEffect, useRef, memo } from 'react';
 import {
   CATEGORIES,
   BAND_META,
@@ -71,6 +71,13 @@ import type {
   MeterBand,
   SortState,
 } from './components/matrix/types';
+
+/* Module-level stable no-op callbacks so <TableRows> receives the same
+   reference across renders when the viewer is not authed — keeps
+   React.memo's shallow compare intact and avoids re-rendering 1500+
+   cells on unrelated parent state updates (tooltipData, modals). */
+const noop = () => {};
+const noopCell = (_fid: string, _pid: string, _el: HTMLElement, _value?: boolean) => {};
 
 /* ── Padlock SVG (reused in locked modal) ── */
 const PadlockIcon = () => (
@@ -155,9 +162,58 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
 
   /* ── Tooltip + column selection (D-21 / D-18) ── */
   const { tooltipData, handleCellEnter, handleCellLeave } = useHoverTooltip();
-  /* ── Crosshair highlight state ── */
-  const [hoveredFid, setHoveredFid] = useState<string | null>(null);
-  const [hoveredPid, setHoveredPid] = useState<string | null>(null);
+  /* ── Crosshair highlight: DOM-based, zero React re-renders per cell
+     transition. `hoveredRowElRef` / `hoveredColElsRef` remember the
+     currently-highlighted <tr> and column cell set so we can clear
+     .crosshair-row / .crosshair-col without a querySelectorAll scan
+     on every mousemove. `tableContainerRef` points at .table-container
+     and is scoped by setCrosshair so we don't leak selectors. */
+  const tableContainerRef = useRef<HTMLDivElement | null>(null);
+  const hoveredRowElRef = useRef<HTMLElement | null>(null);
+  const hoveredColElsRef = useRef<HTMLElement[]>([]);
+  const hoveredFidRef = useRef<string | null>(null);
+  const hoveredPidRef = useRef<string | null>(null);
+
+  const clearCrosshair = useCallback(() => {
+    if (hoveredRowElRef.current) {
+      hoveredRowElRef.current.classList.remove('crosshair-row');
+      hoveredRowElRef.current = null;
+    }
+    const prevCols = hoveredColElsRef.current;
+    for (let i = 0; i < prevCols.length; i++) {
+      prevCols[i].classList.remove('crosshair-col');
+    }
+    hoveredColElsRef.current = [];
+    hoveredFidRef.current = null;
+    hoveredPidRef.current = null;
+  }, []);
+
+  const setCrosshair = useCallback((fid: string, pid: string) => {
+    const container = tableContainerRef.current;
+    if (!container) return;
+    if (hoveredFidRef.current !== fid) {
+      if (hoveredRowElRef.current) hoveredRowElRef.current.classList.remove('crosshair-row');
+      const nextRow = container.querySelector<HTMLElement>(`tr[data-feature-row="${fid}"]`);
+      if (nextRow) nextRow.classList.add('crosshair-row');
+      hoveredRowElRef.current = nextRow;
+      hoveredFidRef.current = fid;
+    }
+    if (hoveredPidRef.current !== pid) {
+      const prevCols = hoveredColElsRef.current;
+      for (let i = 0; i < prevCols.length; i++) prevCols[i].classList.remove('crosshair-col');
+      // Narrow to cell/header elements only — skip the inner DataCell
+      // div's data-club (already covered by its parent <td>). Cuts the
+      // matched node set roughly in half on large matrices.
+      const nextCols = Array.from(
+        container.querySelectorAll<HTMLElement>(
+          `th[data-club="${pid}"], td[data-club="${pid}"]`
+        )
+      );
+      for (let i = 0; i < nextCols.length; i++) nextCols[i].classList.add('crosshair-col');
+      hoveredColElsRef.current = nextCols;
+      hoveredPidRef.current = pid;
+    }
+  }, []);
   // selectedProduct is the AUTHORITATIVE column-tint state per D-18 directive.
   // useColumnSelection is referenced for parity / future migration but reads
   // off selectedProduct; isSelected delegates to a comparison so the existing
@@ -348,9 +404,12 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
   }, []);
 
   const handleTabClick = useCallback((tabId: string) => {
+    // Homepage IS the current view — clicking the active tab is a no-op,
+    // never opens the locked/coming-soon modal.
+    if (tabId === 'home') return;
+
     // Map tab id back to display name for tracking + modal copy.
     const tabName =
-      tabId === 'home' ? 'Homepage' :
       tabId === 'unlock' ? 'Premium' :
       LOCKED_TABS.find(t => t.id === tabId)?.name ?? tabId;
 
@@ -398,18 +457,22 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
     setScoreSort(null);
   }, []);
 
-  /* ── Tooltip handlers — REWRITTEN per plan 04 spec ── */
+  /* ── Tooltip handlers — REWRITTEN per plan 04 spec.
+     Crosshair is DOM-driven (setCrosshair / clearCrosshair above): on
+     fast cursor movement React is never asked to re-render the 1500-
+     cell grid just to update row/col highlight. Tooltip state
+     (`tooltipData`) still changes per cell, but once TableRows is
+     memoized downstream, that re-render is contained to the portaled
+     card only. ── */
   const handleCellMouseOver = useCallback((fid: string, pid: string, el: HTMLElement, value = false) => {
     handleCellEnter(fid, pid, el, value);
-    setHoveredFid(fid);
-    setHoveredPid(pid);
-  }, [handleCellEnter]);
+    setCrosshair(fid, pid);
+  }, [handleCellEnter, setCrosshair]);
 
   const handleTableMouseLeave = useCallback(() => {
     handleCellLeave();
-    setHoveredFid(null);
-    setHoveredPid(null);
-  }, [handleCellLeave]);
+    clearCrosshair();
+  }, [handleCellLeave, clearCrosshair]);
 
   /* ── Sort header click handlers (D-19 cycle) ── */
   const onFeatureSort = useCallback(() => {
@@ -490,6 +553,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
         <div className={`table-wrapper${!authed ? ' preview-mode' : ''}`}>
           <div
             className="table-container"
+            ref={tableContainerRef}
             onMouseLeave={handleTableMouseLeave}
           >
             <table>
@@ -503,7 +567,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                     />
                   </th>
                   {visibleProds.map(p => (
-                    <th key={p.id} className={hoveredPid === p.id ? 'crosshair-col' : ''}>
+                    <th key={p.id} data-club={p.id}>
                       <div
                         className={`col-header${selectedProduct === p.id ? ' highlighted' : ''}`}
                         onClick={() => { if (!authed) return; handleShowProductDetail(p.id); }}
@@ -528,7 +592,11 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                   {visibleProds.map(p => {
                     const s = productScores[p.id];
                     return (
-                      <td key={p.id} className={`score-cell${selectedProduct === p.id ? ' highlighted' : ''}${hoveredPid === p.id ? ' crosshair-col' : ''}`}>
+                      <td
+                        key={p.id}
+                        data-club={p.id}
+                        className={`score-cell${selectedProduct === p.id ? ' highlighted' : ''}`}
+                      >
                         <span className={`score-value ${s >= 0 ? 'positive' : 'negative'}`}>
                           {s >= 0 ? '+' : ''}{s}
                         </span>
@@ -551,12 +619,10 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                     showCategorySeps={true}
                     selectedFeature={selectedFeature}
                     isColumnSelected={isColumnSelected}
-                    onFeatureClick={authed ? handleShowFeatureDetail : () => {}}
-                    onCellMouseOver={authed ? handleCellMouseOver : () => {}}
+                    onFeatureClick={authed ? handleShowFeatureDetail : noop}
+                    onCellMouseOver={authed ? handleCellMouseOver : noopCell}
                     onCellLeave={handleCellLeave}
                     previewMode={!authed}
-                    hoveredFid={hoveredFid}
-                    hoveredPid={hoveredPid}
                   />
                 )}
               </tbody>
@@ -761,7 +827,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
    column uses <MeterRow> from plan 02 (D-06).
    ================================================================ */
 
-function TableRows({
+const TableRows = memo(function TableRows({
   feats,
   prods,
   showCategorySeps,
@@ -771,8 +837,6 @@ function TableRows({
   onCellMouseOver,
   onCellLeave,
   previewMode,
-  hoveredFid,
-  hoveredPid,
 }: {
   feats: Feature[];
   prods: Product[];
@@ -783,8 +847,6 @@ function TableRows({
   onCellMouseOver: (fid: string, pid: string, el: HTMLElement, value?: boolean) => void;
   onCellLeave: () => void;
   previewMode?: boolean;
-  hoveredFid?: string | null;
-  hoveredPid?: string | null;
 }) {
   const rows: React.ReactNode[] = [];
   let lastCat: string | null = null;
@@ -805,7 +867,7 @@ function TableRows({
             </div>
           </td>
           {prods.map(p => (
-            <td className={`cat-spacer${hoveredPid === p.id ? ' crosshair-col' : ''}`} key={p.id}></td>
+            <td className="cat-spacer" data-club={p.id} key={p.id}></td>
           ))}
         </tr>
       );
@@ -821,10 +883,9 @@ function TableRows({
     featureRowIndex++;
 
     const hl = selectedFeature === f.id ? ' highlighted' : '';
-    const rowCrossHair = hoveredFid === f.id ? ' crosshair-row' : '';
     const checkerClass = featureRowIndex % 2 === 0 ? ' row-even' : ' row-odd';
     rows.push(
-      <tr className={`${hl}${rowCrossHair}${checkerClass}`} key={f.id} style={rowStyle}>
+      <tr className={`${hl}${checkerClass}`} data-feature-row={f.id} key={f.id} style={rowStyle}>
         <td className="feature-name" onClick={() => onFeatureClick(f.id)}>
           <div className={`feature-band ${f.band}`} />
           <div className="feature-inner">
@@ -841,12 +902,12 @@ function TableRows({
           const state = f.presence[p.id];
           const value = state === 'full';
           const selected = isColumnSelected(p.id);
-          const colCrossHair = hoveredPid === p.id ? ' crosshair-col' : '';
 
           return (
             <td
               key={p.id}
-              className={`cell${value ? ' has-full' : ''}${selected ? ' highlighted' : ''}${colCrossHair}`}
+              data-club={p.id}
+              className={`cell${value ? ' has-full' : ''}${selected ? ' highlighted' : ''}`}
               onClick={() => onFeatureClick(f.id)}
             >
               <DataCell
@@ -869,7 +930,7 @@ function TableRows({
   });
 
   return <>{rows}</>;
-}
+});
 
 /* ================================================================
    FEATURE DETAIL PANEL (preserved — token swap only in plan 05)
