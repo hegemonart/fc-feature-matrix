@@ -527,7 +527,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                   {visibleProds.map(p => {
                     const s = productScores[p.id];
                     return (
-                      <td key={p.id} className={`score-cell${selectedProduct === p.id ? ' highlighted' : ''}`}>
+                      <td key={p.id} className={`score-cell${selectedProduct === p.id ? ' highlighted' : ''}${hoveredPid === p.id ? ' crosshair-col' : ''}`}>
                         <span className={`score-value ${s >= 0 ? 'positive' : 'negative'}`}>
                           {s >= 0 ? '+' : ''}{s}
                         </span>
@@ -804,7 +804,7 @@ function TableRows({
             </div>
           </td>
           {prods.map(p => (
-            <td className="cat-spacer" key={p.id}></td>
+            <td className={`cat-spacer${hoveredPid === p.id ? ' crosshair-col' : ''}`} key={p.id}></td>
           ))}
         </tr>
       );

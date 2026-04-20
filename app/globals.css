@@ -246,6 +246,11 @@ tr.crosshair-row td.cell.crosshair-col::after { background: rgba(255,255,255,0.2
 td.cell:hover::after { background: rgba(255,255,255,0.18) !important; z-index: 2; }
 /* Column header highlight when its column is hovered */
 thead th.crosshair-col { background: var(--bg-hover) !important; }
+/* Category separator and score row also fill the column highlight */
+td.cat-spacer.crosshair-col { background: rgba(255,255,255,0.06) !important; }
+td.score-cell.crosshair-col { background: rgba(255,255,255,0.10) !important; }
+/* Checkers on the sticky feature-name column */
+tr.row-odd td.feature-name { background: color-mix(in srgb, var(--bg-cell) 97%, white); }
 /* Checkmark: white on dark bg per Figma (not accent/orange) */
 .check { color: var(--text); font-size: var(--font-body-s-size); line-height: 1; }
 .partial-check { color: var(--text); font-size: var(--font-body-s-size); line-height: 1; opacity: .40; }
