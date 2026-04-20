@@ -26,20 +26,20 @@
 }
 
 .clubName {
-  /* body-S per D-07: 14/1.4 -0.3px */
-  font-size: 14px;
-  line-height: 1.4;
-  letter-spacing: -0.3px;
+  /* Typography: Body S from Figma Design System */
+  font-size: var(--font-body-s-size);
+  line-height: var(--font-body-s-height);
+  letter-spacing: var(--font-body-s-spacing);
   font-weight: 600;
   color: var(--text);
   margin-bottom: 6px;
 }
 
 .description {
-  /* body-XS per D-07: 12/1.3 -0.3px */
-  font-size: 12px;
-  line-height: 1.3;
-  letter-spacing: -0.3px;
+  /* Typography: Body XS from Figma Design System */
+  font-size: var(--font-body-xs-size);
+  line-height: var(--font-body-xs-height);
+  letter-spacing: var(--font-body-xs-spacing);
   color: var(--muted);
   margin-bottom: 10px;
 }

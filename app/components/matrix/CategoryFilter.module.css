@@ -40,27 +40,26 @@
 }
 
 .collapsed {
-  color: var(--muted);
-}
-
-.collapsed .name {
-  text-decoration: line-through;
-  text-decoration-color: var(--muted);
-  text-decoration-thickness: 1px;
+  opacity: 0.38;
 }
 
 .name {
   flex: 1;
-  font-family: var(--font-body, 'Inter Tight'), system-ui, sans-serif;
-  font-size: 12px;
-  letter-spacing: -0.3px;
+  font-family: var(--font-body-s-family);
+  font-size: var(--font-body-s-size);
+  font-weight: var(--font-body-s-weight);
+  line-height: var(--font-body-s-height);
+  letter-spacing: var(--font-body-s-spacing);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .count {
-  /* mono-caption from globals.css applied via composition */
+  /* Typography token: Body XS override to 12px per Figma 43:109 */
   flex-shrink: 0;
+  font-size: var(--font-body-xs-size);
+  line-height: var(--font-caption-height);
+  letter-spacing: -0.12px;
   color: var(--muted);
 }
