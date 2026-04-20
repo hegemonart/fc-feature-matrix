@@ -27,6 +27,7 @@ const features = new Map<string, FeatureMeta>([
     'hero_video',
     {
       id: 'hero_video',
+      key: 'hero_video',
       name: 'Hero Video',
       desc: 'Auto-playing hero video block above the fold.',
       tier: 'B',
@@ -65,6 +66,7 @@ const presentData: TooltipData = {
   featureId: 'hero_video',
   clubId: 'real_madrid',
   anchorRect: makeRect(120, 200),
+  value: true,
 };
 
 describe('<HoverTooltipCard> portal + visibility (D-16)', () => {
@@ -110,6 +112,7 @@ describe('<HoverTooltipCard> position (RESEARCH P8 — anchored to cell)', () =>
       featureId: 'hero_video',
       clubId: 'real_madrid',
       anchorRect: makeRect(120, 900),
+      value: true,
     };
     render(
       <HoverTooltipCard data={farRight} features={features} clubs={clubs} scoring={scoring} />
@@ -137,6 +140,7 @@ describe('<HoverTooltipCard> content (D-16)', () => {
       featureId: 'nonexistent',
       clubId: 'real_madrid',
       anchorRect: makeRect(0, 0),
+      value: true,
     };
     render(
       <HoverTooltipCard data={missing} features={features} clubs={clubs} scoring={scoring} />

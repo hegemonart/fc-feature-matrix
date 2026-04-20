@@ -131,6 +131,8 @@ export interface TypeFilterProps {
  */
 export interface FeatureMeta {
   id: string;
+  /** Snake-case slug used in screenshot filenames: `${clubId}_${key}.png`. */
+  key: string;
   name: string;
   desc: string;
   /** TierId from analysis/types.ts (A–F). Rendered as "TIER:" badge. */

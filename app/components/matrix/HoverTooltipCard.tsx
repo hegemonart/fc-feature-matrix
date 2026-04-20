@@ -84,16 +84,20 @@ export function HoverTooltipCard({ data, features, clubs, scoring }: HoverToolti
           <span className={styles.scoreNo}>No −{Math.abs(score.no)}</span>
         </span>
       </div>
-      {data.value && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          className={styles.screenshot}
-          src={`/api/crosscheck-img?file=${clubId}_${featureId}.png`}
-          alt={`${club.name} — ${feature.name}`}
-          loading="eager"
-          onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
-        />
-      )}
+      {data.value && (() => {
+        const src = `/api/crosscheck-img?file=${clubId}_${feature.key}.png`;
+        return (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            key={src}
+            className={styles.screenshot}
+            src={src}
+            alt={`${club.name} — ${feature.name}`}
+            loading="eager"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }}
+          />
+        );
+      })()}
     </div>
   );
 
