@@ -174,7 +174,7 @@ table { border-collapse: collapse; }
 .preview-mode .table-container { overflow: hidden; }
 th, td { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
-thead th { background: var(--bg-cell); position: sticky; top: 0; z-index: 10; padding: 0; min-width: 38px; max-width: 38px; width: 38px; }
+thead th { background: var(--bg-cell); padding: 0; min-width: 38px; max-width: 38px; width: 38px; }
 thead th.feature-col { min-width: 250px; max-width: 250px; width: 250px; left: 0; z-index: 20; padding: 10px 12px; text-align: left; font-size: var(--font-caption-size); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); cursor: pointer; user-select: none; }
 thead th.sortable:hover { color: var(--accent); }
 thead th.freq-col { min-width: 100px; max-width: 100px; width: 100px; padding: 0 8px; font-size: var(--font-caption-size); color: var(--muted); font-weight: 600; position: sticky; right: 0; z-index: 15; background: var(--bg-cell); cursor: pointer; user-select: none; }
