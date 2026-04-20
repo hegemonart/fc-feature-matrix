@@ -573,28 +573,6 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                   />
                 )}
               </tbody>
-              <tfoot>
-                <tr className="score-row">
-                  <td className="feature-col score-label sortable">
-                    <SortHeader
-                      label="Total Score"
-                      state={scoreSortState}
-                      onSort={onScoreSort}
-                    />
-                  </td>
-                  {visibleProds.map(p => {
-                    const s = productScores[p.id];
-                    return (
-                      <td key={p.id} className={`score-cell${selectedProduct === p.id ? ' highlighted' : ''}`}>
-                        <span className={`score-value ${s >= 0 ? 'positive' : 'negative'}`}>
-                          {s >= 0 ? '+' : ''}{s}
-                        </span>
-                      </td>
-                    );
-                  })}
-                  <td className="freq-col"></td>
-                </tr>
-              </tfoot>
             </table>
           </div>
           {!authed && (
