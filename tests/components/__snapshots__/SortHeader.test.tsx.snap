@@ -8,7 +8,7 @@ exports[`<SortHeader> 3 states (D-11) > renders state="asc" snapshot 1`] = `
   type="button"
 >
   <span
-    class="_label_81cc7d mono-caption"
+    class="_label_81cc7d"
   >
     TOTAL
   </span>
@@ -53,7 +53,7 @@ exports[`<SortHeader> 3 states (D-11) > renders state="desc" snapshot 1`] = `
   type="button"
 >
   <span
-    class="_label_81cc7d mono-caption"
+    class="_label_81cc7d"
   >
     TOTAL
   </span>
@@ -98,7 +98,7 @@ exports[`<SortHeader> 3 states (D-11) > renders state="idle" snapshot 1`] = `
   type="button"
 >
   <span
-    class="_label_81cc7d mono-caption"
+    class="_label_81cc7d"
   >
     TOTAL
   </span>
