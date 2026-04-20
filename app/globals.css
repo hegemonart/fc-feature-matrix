@@ -238,8 +238,9 @@ td.cell::after {
 tr.row-odd  td.cell::after { background: rgba(255,255,255,0.025); }
 /* Crosshair row highlight */
 tr.crosshair-row td.cell::after { background: rgba(255,255,255,0.10); }
-/* Crosshair column highlight */
-td.cell.crosshair-col::after { background: rgba(255,255,255,0.10); }
+/* Crosshair column highlight — tr prefix raises specificity to (0,2,3)
+   so it beats tr.row-odd td.cell::after (0,2,3) by source-order */
+tr td.cell.crosshair-col::after { background: rgba(255,255,255,0.10); }
 /* Intersection — brightest */
 tr.crosshair-row td.cell.crosshair-col::after { background: rgba(255,255,255,0.20); }
 /* Direct hover — semi-transparent so check icon stays visible */
