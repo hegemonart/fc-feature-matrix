@@ -1,5 +1,8 @@
 # Changelog
 
+## v9.2 — 2026-04-21
+Fix: sticky total-score row no longer leaks tbody through during scroll/hover — opaque `var(--bg-hover)` replaces rgba/opacity on score-cell crosshair/highlighted + score-label hover. Fix: un-authed users get non-interactive matrix, hidden Unlock Everything button, and non-clickable locked tabs.
+
 ## v9.1 — 2026-04-20
 Perf: crosshair highlight DOM-toggled via refs — no React re-render per cell hover; MatrixIsland TableRows memoized with stable callback props. Fix: active Homepage tab click no longer opens locked modal. Fix: Get-in-touch mailto now hi@humbleteam.com.
 
