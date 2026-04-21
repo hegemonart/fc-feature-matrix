@@ -169,9 +169,11 @@ header { background: var(--bg-cell); border-bottom: 1px solid var(--border); pad
 /* ── TABLE ── */
 .table-container { flex: 1; overflow: auto; position: relative; }
 table { border-collapse: collapse; }
-.preview-mode table { border-collapse: separate; border-spacing: 0; }
+.preview-mode table { border-collapse: separate; border-spacing: 0; pointer-events: none; user-select: none; }
 .preview-mode tfoot { filter: blur(10px); pointer-events: none; user-select: none; }
 .preview-mode .table-container { overflow: hidden; }
+/* Un-authed: locked tabs in TopNav look non-interactive (no hover, no cursor). */
+.preview-shell nav button[data-tab-locked="true"] { cursor: default; pointer-events: none; }
 th, td { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); }
 
 thead th { background: var(--bg-cell); padding: 0; min-width: 40px; max-width: 40px; width: 40px; }
@@ -249,8 +251,8 @@ td.cell:hover::after { background: rgba(255,255,255,0.18) !important; z-index: 2
 thead th.crosshair-col { background: var(--bg-hover) !important; }
 /* Category separator and score row also fill the column highlight */
 td.cat-spacer.crosshair-col { background: rgba(255,255,255,0.06) !important; }
-td.score-cell.crosshair-col { background: rgba(255,255,255,0.10) !important; }
-td.score-cell.highlighted { background: rgba(255,255,255,0.10) !important; }
+td.score-cell.crosshair-col { background: var(--bg-hover) !important; }
+td.score-cell.highlighted { background: var(--bg-hover) !important; }
 /* Checkers on the sticky feature-name column */
 tr.row-odd td.feature-name { background: color-mix(in srgb, var(--bg-cell) 97%, white); }
 /* Checkmark: white on dark bg per Figma (not accent/orange) */
@@ -387,8 +389,8 @@ tr.crosshair-row td.feature-name { background: var(--bg-hover); }
 .coming-soon-icon svg { width: 100%; height: 100%; color: var(--accent); }
 
 /* ── SCORE ROW (shared) ── */
-.score-label { font-weight: 700; font-size: var(--font-ui-size); color: var(--text); cursor: pointer; padding-left: 12px !important; letter-spacing: .02em; transition: opacity .15s; }
-.score-label:hover { opacity: 0.8; }
+.score-label { font-weight: 700; font-size: var(--font-ui-size); color: var(--text); cursor: pointer; padding-left: 12px !important; letter-spacing: .02em; transition: background .15s; }
+.score-label:hover { background: var(--bg-hover) !important; }
 .score-cell { text-align: center; }
 .score-value { font-weight: 700; font-size: var(--font-body-xs-size); font-variant-numeric: tabular-nums; }
 .score-value.positive { color: var(--green); }

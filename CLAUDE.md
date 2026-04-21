@@ -35,6 +35,9 @@ _Append gotchas as you discover them. Group by topic._
 **State bloat**
 - app/page.tsx had 130+ useState declarations — consolidated to 8 (Apr 2026). Watch for regression.
 
+**Sticky layers**
+- Sticky thead cells (score-row) must have opaque backgrounds. Never use `opacity:` or `rgba(...,<1)` — tbody scrolls behind and bleeds through the sticky cell. Use `var(--bg-hover)` for crosshair-col / highlighted / hover states.
+
 ---
 
 ## Decisions

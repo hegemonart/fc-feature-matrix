@@ -407,6 +407,8 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
     // Homepage IS the current view — clicking the active tab is a no-op,
     // never opens the locked/coming-soon modal.
     if (tabId === 'home') return;
+    // Un-authed users: locked tabs are non-interactive; unlock tab is hidden.
+    if (!authed) return;
 
     // Map tab id back to display name for tracking + modal copy.
     const tabName =
@@ -417,10 +419,6 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
       trackEvent('tab_click', { tab: tabName, outcome: 'coming_soon' });
       setComingSoonFlowName(tabName);
       setComingSoonVisible(true);
-    } else if (authed) {
-      trackEvent('tab_click', { tab: tabName, outcome: 'locked' });
-      setLockedFlowName(tabName);
-      setLockedModalVisible(true);
     } else {
       trackEvent('tab_click', { tab: tabName, outcome: 'locked' });
       setLockedFlowName(tabName);
@@ -501,15 +499,15 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
       { id: 'home', label: 'Homepage' },
     ];
     LOCKED_TABS.forEach(t => tabs.push({ id: t.id, label: t.name }));
-    tabs.push({ id: 'unlock', label: 'Unlock everything' });
+    if (authed) tabs.push({ id: 'unlock', label: 'Unlock everything' });
     return tabs;
-  }, []);
+  }, [authed]);
 
   const lockedTabIds = useMemo(() => LOCKED_TABS.map(t => t.id), []);
 
   /* ── Render ── */
   return (
-    <div className="matrix-shell">
+    <div className={`matrix-shell${!authed ? ' preview-shell' : ''}`}>
       {/* ── HEADER (Admin + Sign out render inline via HeaderBar props) ── */}
       <HeaderBar
         buildDate={buildDate}
