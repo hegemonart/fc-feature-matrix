@@ -24,3 +24,10 @@ references/
 /test-results/
 /blob-report/
 /playwright/.cache/
+# Phase 1 scanner
+scanner/.venv/
+scanner/__pycache__/
+scanner/**/__pycache__/
+scanner/output/*
+!scanner/output/.gitkeep
+

@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+output/*.png
+output/*.jpg
+output/*.html
+output/*.json
+output/evidence/
+!output/.gitkeep
