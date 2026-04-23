@@ -61,8 +61,8 @@ function AddUserModal({ onClose, onAdded }: { onClose: () => void; onAdded: (u: 
             <input type="text" value={name} onChange={e => setName(e.target.value)} />
           </div>
           <div className="admin-form-row">
-            <label>Password (min 12 chars)</label>
-            <input type="password" value={password} onChange={e => setPassword(e.target.value)} minLength={12} required />
+            <label>Password (min 9 chars)</label>
+            <input type="password" value={password} onChange={e => setPassword(e.target.value)} minLength={9} required />
           </div>
           {error && <div className="admin-error">{error}</div>}
           <div className="admin-form-actions">
@@ -115,8 +115,8 @@ function ResetPasswordModal({ user, onClose }: { user: UserRow; onClose: () => v
           <form onSubmit={handleSubmit}>
             <p style={{ fontSize: 13, color: 'var(--muted)', margin: '0 0 12px' }}>{user.email}</p>
             <div className="admin-form-row">
-              <label>New password (min 12 chars)</label>
-              <input type="password" value={password} onChange={e => setPassword(e.target.value)} minLength={12} required autoFocus />
+              <label>New password (min 9 chars)</label>
+              <input type="password" value={password} onChange={e => setPassword(e.target.value)} minLength={9} required autoFocus />
             </div>
             {error && <div className="admin-error">{error}</div>}
             <div className="admin-form-actions">

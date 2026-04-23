@@ -14,7 +14,7 @@ async function requireAdmin(req: NextRequest) {
 }
 
 const bodySchema = z.discriminatedUnion('action', [
-  z.object({ action: z.literal('grant'), password: z.string().min(12) }),
+  z.object({ action: z.literal('grant'), password: z.string().min(9) }),
   z.object({ action: z.literal('dismiss') }),
 ]);
 

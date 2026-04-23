@@ -72,12 +72,12 @@ function GrantModal({ req, onClose, onGranted }: {
         </p>
         <form onSubmit={handleGrant}>
           <div className="admin-form-row">
-            <label>Password for new account (min 12 chars)</label>
+            <label>Password for new account (min 9 chars)</label>
             <input
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              minLength={12}
+              minLength={9}
               required
               autoFocus
             />

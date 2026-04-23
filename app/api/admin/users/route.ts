@@ -8,7 +8,7 @@ import { users } from '@/lib/db/schema';
 const createSchema = z.object({
   email: z.string().email(),
   name: z.string().optional(),
-  password: z.string().min(12, 'Password must be at least 12 characters'),
+  password: z.string().min(9, 'Password must be at least 9 characters'),
 });
 
 async function requireAdmin(req: NextRequest) {

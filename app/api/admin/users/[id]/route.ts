@@ -15,7 +15,7 @@ async function requireAdmin(req: NextRequest) {
 const patchSchema = z.object({
   isAdmin: z.boolean().optional(),
   isPremium: z.boolean().optional(),
-  newPassword: z.string().min(12).optional(),
+  newPassword: z.string().min(9).optional(),
 });
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
