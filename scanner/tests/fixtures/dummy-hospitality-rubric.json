@@ -1,0 +1,22 @@
+{
+  "area": "hospitality",
+  "dummy": true,
+  "notes": "Phase 1 dry-run rubric ONLY. Not for Phase 2. Delete after Phase 2 HOSP-02 ships real rubric.",
+  "features": [
+    {
+      "key": "hero_image",
+      "name": "Hero image / banner",
+      "yes_criterion": "Page shows a large above-the-fold hero image or video banner occupying at least 1/3 of the initial viewport, related to hospitality/VIP/matchday experiences."
+    },
+    {
+      "key": "primary_cta",
+      "name": "Primary CTA button",
+      "yes_criterion": "Page has at least one visually-primary call-to-action button (high-contrast, non-text-link style) leading to enquiry, booking, or package selection."
+    },
+    {
+      "key": "hospitality_tiers_list",
+      "name": "Hospitality tiers or packages list",
+      "yes_criterion": "Page displays two or more distinct hospitality packages, tiers, or seating-level options (e.g. 'Silver', 'Gold', 'Platinum' or named suites), with some structural distinction (cards, table, or grid)."
+    }
+  ]
+}
