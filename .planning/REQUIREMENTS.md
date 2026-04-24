@@ -16,9 +16,9 @@
 Infrastructure tier; no CHANGELOG v-number bump. Enables Phases 2+ to share capture/vision/scoring tooling.
 
 - [x] **FLOW-01**: `/scanner/` Python package at repo root with `capture/`, `flow/`, `vision/`, `report/`, `scoring/`, `config/`, `output/` modules; CLI `python -m scanner <subcommand> --area <area> --club <slug>`
-- [ ] **FLOW-02**: Area-parameterized — `/scanner/config/areas.json` drives all path resolution; no area-specific code inside scanner modules
-- [ ] **FLOW-03**: Capture module with Playwright persistent context, 1440×900 @ 2x DPR full-page PNG, per-club cookie strategies in `cookie_strategies.py`, post-capture banner vision verification, dummy-form-fill without submit, flow-map JSON schema supporting 5-15 click-through steps with `hide_selectors`
-- [ ] **FLOW-04**: Vision module with two-judge (Opus + Sonnet) checklist-first protocol emitting strict JSON `{feature_key: {present, step, evidence_bbox, confidence, notes}}`; disagreement flagging; PIL-slice module crops evidence from bbox
+- [x] **FLOW-02**: Area-parameterized — `/scanner/config/areas.json` drives all path resolution; no area-specific code inside scanner modules
+- [x] **FLOW-03**: Capture module with Playwright persistent context, 1440×900 @ 2x DPR full-page PNG, per-club cookie strategies in `cookie_strategies.py`, post-capture banner vision verification, dummy-form-fill without submit, flow-map JSON schema supporting 5-15 click-through steps with `hide_selectors`
+- [x] **FLOW-04**: Vision module with two-judge (Opus + Sonnet) checklist-first protocol emitting strict JSON `{feature_key: {present, step, evidence_bbox, confidence, notes}}`; disagreement flagging; PIL-slice module crops evidence from bbox
 - [ ] **FLOW-05**: Report module generates HTML contact sheet per area (grid per feature, N club thumbnails, red-border on absent); scoring module (`recalculate.js --area <area>`) reads area's `features.ts` and results JSONs; dry-run passes for Man City hospitality landing page with 3-feature dummy rubric
 - [ ] **FLOW-06**: `VisionClient` abstraction with dual backend — (a) Claude Agent SDK (subscription-backed, default) consuming user's Max 20x quota; (b) `anthropic` SDK (pay-per-token, fallback). Selected via `--api-mode subscription|api-key` CLI flag. Dry-run passes through subscription path. Both backends produce identical strict-JSON feature verdict output.
 

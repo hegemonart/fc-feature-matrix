@@ -42,7 +42,7 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
   9. Score-data invariant honored: Phase 1 must NOT modify `analysis/homepage/results/*.json`, `lib/scoring.ts`, `analysis/homepage/features.ts`, or create any new `analysis/{area}/` tree (those belong to Phase 2+). Verification gate: `git diff --quiet analysis/`
 **Plans**: 8 plans
   - [x] 01-01-PLAN.md - Foundation: package skeleton + dual-backend deps + test scaffold + dummy rubric fixture
-  - [ ] 01-02-PLAN.md - Pydantic schemas: FlowMap / FeatureResult / AreasConfig
+  - [x] 01-02-PLAN.md - Pydantic schemas: FlowMap / FeatureResult / AreasConfig
   - [ ] 01-03-PLAN.md - Capture module: Playwright wrapper, MANCITY_STRATEGY cookies, banner verify via Haiku
   - [ ] 01-04-PLAN.md - Vision module with DUAL BACKEND: VisionClient Protocol + SubscriptionVisionClient (claude-agent-sdk) + APIKeyVisionClient (anthropic SDK) + factory + two-judge + disagreement + slice
   - [ ] 01-05-PLAN.md - Report (Jinja2 contact sheet) + Scoring (Node recalculate.js port with --area)
