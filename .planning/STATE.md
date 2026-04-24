@@ -2,9 +2,9 @@
 gsd_state_version: 1.0
 milestone: v7.1
 milestone_name: milestone
-status: verifying
-stopped_at: "Plan 02-06 complete: 5 hospitality flow-maps + crawl log. Front-half halt — awaiting user registrations for back-half."
-last_updated: "2026-04-24T20:04:12.541Z"
+status: paused
+stopped_at: "Phase 2 front-half COMPLETE: 7/TBD plans (02-01..02-07); 5 hospitality flow-maps produced; candidate list frozen; rubric+features.ts+areas.json activated; back-half pending user registrations per 02-BACK-HALF-HANDOFF.md"
+last_updated: "2026-04-24T20:08:00Z"
 last_activity: 2026-04-24
 progress:
   total_phases: 9
@@ -25,11 +25,11 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 
 ## Current Position
 
-Phase: **Phase 1 — Flow Automation Layer** (in progress; scanner infra, 1 of 8 plans complete)
-Plan: 8 of 8 complete (01-01 Wave 0 Foundation — 4 tasks, 36 files, ~7 min); Next: 01-02 (Wave 1 Schema)
-Status: Phase complete — ready for verification
+Phase: **Phase 2 — Hospitality Pilot (front-half complete)** (7 of TBD plans; back-half pending user registrations)
+Plan: 7 of TBD (plans 02-01 through 02-07 complete); Next: back-half planning session after user dummy-account registrations (see `.planning/phases/02-hospitality-pilot/02-BACK-HALF-HANDOFF.md`)
+Status: Paused — Phase 2 front-half COMPLETE. Awaiting user registrations for back-half.
 Last activity: 2026-04-24
-Prior phase close: 2026-04-17 — infra-redesign-v2 plan 05 executed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min)
+Prior phase close: 2026-04-24 — Phase 1 Flow Automation Layer (8/8 plans, scanner infra shipped + dry-run validated through subscription backend). Earlier: 2026-04-17 — infra-redesign-v2 plan 05 (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min).
 
 Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Phase 1 not yet started; out-of-band infra complete)
 
@@ -70,6 +70,7 @@ Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Ph
 | Phase 02 P05 | 35m | 2 tasks | 5 files |
 | Phase 02 P03 | 756 | 3 tasks | 5 files |
 | Phase 02 P02-06 | 12min | 3 tasks | 7 files |
+| Phase 02 P02-07 | ~4min | 3 tasks | 2 files (front-half closure; docs-only) |
 
 ## Accumulated Context
 
@@ -125,6 +126,7 @@ Recent decisions affecting current work:
 - [Phase 02]: HOSPITALITY_LINK_PATTERN extended with enquiry/enquire/enquiries — UK clubs commonly label hospitality CTAs 'Enquire Now'
 - [Phase ?]: Plan 02-03 complete: 55-feature hospitality rubric + features.ts + areas.json pilot activation (D-02-03-02: status=pilot since schema rejects 'active')
 - [Phase 02]: Phase 2 front-half halt at 02-06: 5 hospitality flow-maps emitted. MCFC + RMA + PSG-billetterie blocked by Cloudflare or CAPTCHA; TOT + PSG-www + CHE-subdomain crawled cleanly. Rule 1 fix: bounded landing goto timeout.
+- [Phase 02]: Plan 02-07 closes front-half — summary + back-half handoff written. HOSP-01/02/03 remain Pending in REQUIREMENTS.md (partial progress tracked in STATE.md only). Back-half gated on user dummy-account registrations for 5 pilot clubs + Chrome MCP fallback for 3 bot-challenged sites.
 
 ### Pending Todos
 
@@ -132,12 +134,11 @@ None yet.
 
 ### Blockers/Concerns
 
-yet.
-
-- Plan 02-02: awaiting user approval 'approved — freeze candidates' in main conversation before plan 02-03 can derive HOSPITALITY-FLOW.md rubric + features.ts (D-05 hard gate)
+- **Phase 2 back-half blocked on user:** dummy-account registrations for 5 pilot clubs (MCFC/TOT/RMA/PSG/CHE). Details in `.planning/phases/02-hospitality-pilot/02-BACK-HALF-HANDOFF.md` §"User Action Required". Env-var convention: `{CLUB_UPPER}_HOSPITALITY_{USER|PASS}` in `.env.local`.
+- **Phase 2 back-half work items** (addressable by planner/executor): crawler v2 fixes (Cloudflare Turnstile detector, trusted-subdomain allowlist, dead_ends dedupe, domain-specific cookie priorities), Opus bbox empirical calibration, Chrome MCP fallback strategy for MCFC/RMA/PSG-billetterie. See 02-06-CRAWL-LOG.md §Known Crawler Issues.
 
 ## Session Continuity
 
-Last session: 2026-04-24T20:04:12.535Z
-Stopped at: Plan 02-06 complete: 5 hospitality flow-maps + crawl log. Front-half halt — awaiting user registrations for back-half.
-Resume file: .planning/phases/02-hospitality-pilot/02-07-PLAN.md
+Last session: 2026-04-24T20:08:00Z
+Stopped at: Phase 2 front-half COMPLETE (plans 02-01..02-07). 5 hospitality flow-maps + crawl log + FRONT-HALF-SUMMARY + BACK-HALF-HANDOFF. Paused — awaiting user registrations for back-half.
+Resume file: .planning/phases/02-hospitality-pilot/02-BACK-HALF-HANDOFF.md
