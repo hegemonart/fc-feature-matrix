@@ -1,64 +1,17 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
+milestone: v7.1
 milestone_name: milestone
-status: executing
-stopped_at: "Phase infra-redesign-v2 COMPLETE: plan 05 closed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, Lighthouse a11y 91, D-28 invariant clean). System-wide visual redesign rollout shipped."
-last_updated: "2026-04-17T05:30:22.102Z"
-last_activity: 2026-04-17 — infra-redesign-v2 plan 04 executed (6 commits, 90/90 vitest, 1/1 playwright, build clean, ~12 min)
+status: "Phase 1 in progress (1 of 8 plans). Plan 01-01 Wave 0 Foundation COMPLETE — scanner/ package scaffold, dual-backend vision deps, 19-file test scaffold, frozen dummy rubric. Next action: `/gsd:execute-phase 1` to pick up Plan 01-02."
+stopped_at: "Phase 01 Plan 01-01 COMPLETE: 4 atomic commits (87ae04e..30a82aa), ~7 min, 36 files, FLOW-01 marked complete. Two Rule-3 deviations (playwright pin, README.md) documented in SUMMARY."
+last_updated: "2026-04-24T03:16:29.937Z"
+last_activity: "2026-04-24 — ROADMAP.md + REQUIREMENTS.md restructured: Phase 1 scoped to scanner-only (FLOW-01..05 new); Phase 2 = Hospitality Pilot (HOSP-01..03); Phase 2.5 = Hospitality Full Rollout (HOSP-04 new); App Home/Merch+Subs/Tickets/Sponsorship/Past+Between/Matchday shifted to Phases 3-8. Phase 1 CONTEXT.md written (25 decisions, scanner-only); Phase 2 CONTEXT.md written (21 decisions, hospitality-specific)."
 progress:
-  total_phases: 6
+  total_phases: 9
   completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
----
-
----
-gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: phase-complete
-stopped_at: "Phase infra-redesign-v2 COMPLETE — plan 05 (system-wide rollout) closed. 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped (admin auth fixture deferred to v2.1), Lighthouse a11y 91/100, D-28 score-invariant clean, CHANGELOG v9.0, CLAUDE.md design-system rules documented."
-last_updated: "2026-04-17T08:30:00.000Z"
-last_activity: 2026-04-17 — infra-redesign-v2 plan 05 executed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright, Lighthouse 91, ~75 min)
-progress:
-  total_phases: 6
-  completed_phases: 0
-  total_plans: 5
-  completed_plans: 5
-  percent: 100
----
-
----
-gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: executing
-stopped_at: Completed infra-redesign-v2-03-PLAN.md (HoverTooltipCard + state hooks). 8 commits, 90/90 tests, build clean. Ready for plan 04 page.tsx refactor.
-last_updated: "2026-04-17T04:48:32.542Z"
-last_activity: 2026-04-17 — infra-redesign-v2 plan 02 executed (9 commits, 75/75 tests green, ~12 min)
-progress:
-  [████████░░] 80%
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 60
----
-
----
-gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: executing
-stopped_at: "Completed infra-redesign-v2 plan 02 (Wave 1 atomic components). 7 components + types.ts shipped, 75/75 tests green, build clean."
-last_updated: "2026-04-17T04:34:32.000Z"
-last_activity: "2026-04-17 — infra-redesign-v2 plan 02 executed (9 tasks, 9 commits, 75/75 tests green, ~12 min)"
-progress:
-  [██████░░░░] 60%
-  completed_phases: 0
-  total_plans: 5
-  completed_plans: 2
-  percent: 40
+  total_plans: 8
+  completed_plans: 1
+  percent: 13
 ---
 
 # Project State
@@ -72,16 +25,18 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 
 ## Current Position
 
-Phase: infra-redesign-v2 (Wave 3 — system-wide rollout) — **COMPLETE**
-Plan: 5 of 5 complete in current phase
-Status: Phase infra-redesign-v2 COMPLETE. /club + /admin re-themed, three modals audited (Modal.test.tsx D-24), CLAUDE.md design-system rules added (D-25), Lighthouse a11y 91/100 (D-29), D-28 score-invariant clean. CHANGELOG v9.0 closes the phase.
-Last activity: 2026-04-17 — infra-redesign-v2 plan 05 executed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min including resume from prior agent)
+Phase: **Phase 1 — Flow Automation Layer** (in progress; scanner infra, 1 of 8 plans complete)
+Plan: 1 of 8 complete (01-01 Wave 0 Foundation — 4 tasks, 36 files, ~7 min); Next: 01-02 (Wave 1 Schema)
+Status: Phase 1 executing. Plan 01-01 shipped: scanner/ package scaffold at repo root with 7 submodules, dual-backend vision deps (claude-agent-sdk 0.1.65 + anthropic 0.97.0), 19-file test scaffold, frozen 3-feature dummy-hospitality-rubric.json. pytest collection clean, both SDKs importable, Playwright chromium installed, D-24 analysis/ invariant holds. Next action: `/gsd:execute-phase 1` to pick up Plan 01-02.
+Last activity: 2026-04-24 — Plan 01-01 (Wave 0 Foundation) COMPLETE: scanner/ package scaffolded, 4 atomic commits (87ae04e, a4a0e0c, e096525, 30a82aa). Two Rule-3 deviations (playwright pin relaxed to >=1.49; scanner/README.md added for hatchling). FLOW-01 requirement marked complete.
+Prior phase close: 2026-04-17 — infra-redesign-v2 plan 05 executed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min)
 
-Progress: [██████████] 100% (5 of 5 plans in infra-redesign-v2)
+Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Phase 1 not yet started; out-of-band infra complete)
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 2
 - Average duration: ~18.5 min
 - Total execution time: ~37 min
@@ -93,6 +48,7 @@ Progress: [██████████] 100% (5 of 5 plans in infra-redesign-
 | infra-redesign-v2 | 2 | 5 | ~18.5 min |
 
 **Recent Trend:**
+
 - Last 5 plans: 01 (~25min) · 02 (~12min)
 - Trend: ↓ accelerating (foundation paid off — components shipped fast)
 
@@ -100,6 +56,7 @@ Progress: [██████████] 100% (5 of 5 plans in infra-redesign-
 | Phase infra-redesign-v2 P03 | 6min | 8 tasks | 10 files |
 | Phase infra-redesign-v2 P04 | 12min | 6 tasks | 7 files |
 | Phase infra-redesign-v2 P05 | ~75min | 8 tasks | 17 files |
+| Phase 01 P01-01 | 7min | 4 tasks | 36 files |
 
 ## Accumulated Context
 
@@ -127,6 +84,7 @@ Recent decisions affecting current work:
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 05: Recharts <linearGradient><stop> hard-codes #FF490C (RESEARCH P2) — var() inside SVG attribute is unreliable across browsers
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 05: Admin visual baseline deferred to v2.1 — DATABASE_URL not configured in worktree, test.skip() with TODO is acceptable per plan
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 05: D-28 score-invariant gate accepts revert of generated_at-only timestamp drift — content equality is the intent, strict CLI equality the proof
+- [Phase ?]: Phase 01 Plan 01: dual-backend vision SDKs (claude-agent-sdk 0.1.65 + anthropic 0.97.0) both installed at scaffold time (D-26) — Plan 04 can build VisionClient Protocol without dep-churn
 
 ### Pending Todos
 
@@ -138,6 +96,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-17T05:30:22.095Z
+Last session: 2026-04-24T03:16:29.932Z
 Stopped at: Phase infra-redesign-v2 COMPLETE: plan 05 closed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, Lighthouse a11y 91, D-28 invariant clean). System-wide visual redesign rollout shipped.
 Resume file: None
