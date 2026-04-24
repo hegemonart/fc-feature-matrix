@@ -1,0 +1,13 @@
+{
+  "name": "fc-benchmark-scanner-scoring",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Area-parameterized scoring for FC Benchmark scanner. Port of analysis/homepage/crosscheck/recalculate-scores.js with --area flag that reads scanner/config/areas.json.",
+  "main": "recalculate.js",
+  "scripts": {
+    "test": "node --test recalculate.test.js"
+  },
+  "dependencies": {
+    "commander": "^12.1.0"
+  }
+}
