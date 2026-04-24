@@ -1,0 +1,127 @@
+{
+  "area": "hospitality",
+  "club": "psg",
+  "entry_url": "https://www.psg.fr/en/hospitality",
+  "steps": [
+    {
+      "step_name": "landing",
+      "url": "https://www.psg.fr/en/hospitality",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "landing-wait",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle"
+    },
+    {
+      "step_name": "landing-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "click-depth-1",
+      "url": null,
+      "action": "click",
+      "selector": "a[href=\"/en/content/leverkusen-a-with-psg-official-supporters-club-norway-bayer-04-leverkusen-v-paris-saint-germain-uefa-champions-league-2025-2026\"]",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "wait-depth-1",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle"
+    },
+    {
+      "step_name": "shot-depth-1",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "click-depth-2",
+      "url": null,
+      "action": "click",
+      "selector": "a[href=\"/en/the-club/around-the-club/careers\"]",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "wait-depth-2",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle"
+    },
+    {
+      "step_name": "shot-depth-2",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "click-depth-3",
+      "url": null,
+      "action": "click",
+      "selector": "a[href=\"/en/the-club/around-the-club\"]",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "wait-depth-3",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle"
+    },
+    {
+      "step_name": "shot-depth-3",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    }
+  ],
+  "metadata": {
+    "broker_vendor": null,
+    "login_gated_steps": [],
+    "external_redirects": [],
+    "dead_ends": [
+      "https://www.psg.fr/en/the-club",
+      "https://www.psg.fr/en/the-club"
+    ],
+    "cookie_dismiss_failed": true,
+    "fixture_id": null,
+    "captcha_encountered": false
+  }
+}
