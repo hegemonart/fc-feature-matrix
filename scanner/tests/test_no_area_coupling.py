@@ -66,22 +66,41 @@ def test_no_area_coupling_in_scanner_package() -> None:
         pytest.fail("\n".join(msg_lines))
 
 
-def test_phase1_areas_json_seed_matches_user_decision_1() -> None:
-    """areas.json hospitality entry uses scanner/output/evidence/ (D-25 + user decision 1)."""
+def test_areas_json_hospitality_entry_matches_user_decision_1() -> None:
+    """areas.json hospitality entry uses scanner/output/evidence/ (D-25 + user decision 1).
+
+    Phase 1 seeded this entry with null rubric_path/features_ts and
+    status='pending' (D-25). Phase 2 plan 02-03 (HOSP-02) unlocks it:
+    rubric_path → analysis/hospitality/HOSPITALITY-FLOW.md,
+    features_ts → analysis/hospitality/features.ts,
+    status → 'pilot' (5-club pilot per 02-CONTEXT).
+
+    The evidence_dir / results_dir routing is the stable invariant —
+    those paths never change between Phase 1 seed and Phase 2
+    activation (user decision 1).
+    """
     areas_json = SCANNER_DIR / "config" / "areas.json"
     data = json.loads(areas_json.read_text(encoding="utf-8"))
-    assert "hospitality" in data, "Phase 1 seed must declare the hospitality area."
+    assert "hospitality" in data, "areas.json must declare the hospitality area."
     entry = data["hospitality"]
+
+    # Stable invariants: I/O routing under scanner/output/ (user decision 1).
     assert entry["evidence_dir"] == "scanner/output/evidence/hospitality/", (
         f"evidence_dir must route to scanner/output/ (user decision 1), got {entry['evidence_dir']!r}"
     )
-    # D-25: Phase 1 does not create analysis/hospitality/ — the rubric
-    # and features.ts paths stay null until Phase 2's HOSP-02 plan.
-    assert entry["rubric_path"] is None, (
-        f"rubric_path must be null in Phase 1 seed (D-25), got {entry['rubric_path']!r}"
+    assert entry["results_dir"] == "scanner/output/results/hospitality/", (
+        f"results_dir must route to scanner/output/, got {entry['results_dir']!r}"
     )
-    assert entry["features_ts"] is None, (
-        f"features_ts must be null in Phase 1 seed (D-25), got {entry['features_ts']!r}"
+
+    # Phase 2 plan 02-03: hospitality entry is populated, not a null seed.
+    assert entry["rubric_path"] == "analysis/hospitality/HOSPITALITY-FLOW.md", (
+        f"rubric_path must point at Phase 2 rubric, got {entry['rubric_path']!r}"
     )
-    # status=pending lets loader warn-not-fail on missing paths (research §6.4).
-    assert entry["status"] == "pending"
+    assert entry["features_ts"] == "analysis/hospitality/features.ts", (
+        f"features_ts must point at Phase 2 features module, got {entry['features_ts']!r}"
+    )
+    # status advances pending → pilot for the 5-club front-half.
+    # Valid literals per scanner/config/schema.py: pending | pilot | full | deprecated.
+    assert entry["status"] == "pilot", (
+        f"status must be 'pilot' for Phase 2 front-half, got {entry['status']!r}"
+    )

@@ -2,9 +2,9 @@
   "hospitality": {
     "evidence_dir": "scanner/output/evidence/hospitality/",
     "results_dir": "scanner/output/results/hospitality/",
-    "rubric_path": null,
-    "features_ts": null,
+    "rubric_path": "analysis/hospitality/HOSPITALITY-FLOW.md",
+    "features_ts": "analysis/hospitality/features.ts",
     "flow_maps_dir": "scanner/flow-maps/hospitality/",
-    "status": "pending"
+    "status": "pilot"
   }
 }
