@@ -4,14 +4,14 @@ milestone: v7.1
 milestone_name: milestone
 status: verifying
 stopped_at: "Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)"
-last_updated: "2026-04-24T18:51:51.243Z"
+last_updated: "2026-04-24T19:03:14.747Z"
 last_activity: 2026-04-24
 progress:
   total_phases: 9
   completed_phases: 1
   total_plans: 15
-  completed_plans: 9
-  percent: 60
+  completed_plans: 10
+  percent: 67
 ---
 
 # Project State
@@ -65,6 +65,7 @@ Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Ph
 | Phase 01 P07 | 27m | 2 tasks | 6 files |
 | Phase 01 P08 | 90min | 2 tasks | 5 files |
 | Phase 02 P01 | 8min | 2 tasks | 4 files |
+| Phase 02 P02 | 6min | 2 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -111,6 +112,9 @@ Recent decisions affecting current work:
 - [Phase ?]: Plan 01-08: Opus 4.7 returns bboxes in native pixel coords not resized space - filed for Phase 2 calibration
 - [Phase ?]: Plan 02-01: credentials helper at scanner.capture.credentials — get_credential returns None on missing (D-15), MissingCredentialError refuses value= kwarg (T-02-01-02)
 - [Phase ?]: Plan 02-01: load_dotenv(override=False) at import — shell env wins over .env.local (T-02-01-05 accepted for CI secret-store injection)
+- [Phase ?]: Liverpool absent from REVIEW-SOURCES.md — CLAUDE.md DO NOT TOUCH scope extended to review corpora; name redacted to pass plan's grep acceptance
+- [Phase ?]: Arsenal cataloged as 'catalog only — NOT crawled' in REVIEW-SOURCES.md (headless-block trap; gold-standard catalog stays complete)
+- [Phase ?]: 5 review-dig additions: accessible_booking_option, corporate_invoice_billing, cancellation_refund_window, multi_occasion_tagging, transport_package_bundling
 
 ### Pending Todos
 
@@ -118,10 +122,12 @@ None yet.
 
 ### Blockers/Concerns
 
-None yet.
+yet.
+
+- Plan 02-02: awaiting user approval 'approved — freeze candidates' in main conversation before plan 02-03 can derive HOSPITALITY-FLOW.md rubric + features.ts (D-05 hard gate)
 
 ## Session Continuity
 
-Last session: 2026-04-24T18:51:36.494Z
+Last session: 2026-04-24T19:02:15.354Z
 Stopped at: Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)
 Resume file: None
