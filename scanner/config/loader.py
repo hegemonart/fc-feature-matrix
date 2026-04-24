@@ -2,10 +2,10 @@
 
 Per D-04 / FLOW-02 the scanner is area-agnostic: every subcommand reads
 ``scanner/config/areas.json`` for its I/O paths instead of hard-coding
-``analysis/hospitality/`` anywhere in the package. The loader resolves
-relative paths against ``SCANNER_REPO_ROOT`` (env override — used by
-the test suite to point at a synthetic tmp-path repo) or against the
-package's walkup default.
+per-area analysis subdirectories anywhere in the package. The loader
+resolves relative paths against ``SCANNER_REPO_ROOT`` (env override —
+used by the test suite to point at a synthetic tmp-path repo) or
+against the package's walkup default.
 
 See:
 
