@@ -316,7 +316,15 @@ def discover_flow(
         page = context.new_page()
 
         # --- Landing ---
-        response = page.goto(entry_url, wait_until="networkidle")
+        # Bounded-timeout landing: `networkidle` on its own never completes on
+        # club sites running long-poll analytics (observed on MCFC 2026-04-24).
+        # Mirror the _descend pattern: wait for DOM first, then best-effort
+        # networkidle with the same 10 s cap used in _descend.
+        response = page.goto(entry_url, wait_until="domcontentloaded", timeout=30000)
+        try:
+            page.wait_for_load_state("networkidle", timeout=10000)
+        except Exception:
+            pass
         status = response.status if response is not None else None
         steps.append(FlowStep(
             step_name="landing",
