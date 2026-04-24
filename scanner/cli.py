@@ -302,11 +302,51 @@ def flow_validate_cmd(path: Path) -> None:
     required=True,
     help="Destination path for the generated flow-map JSON.",
 )
-def flow_discover_cmd(entry_url: str, out_path: Path) -> None:
-    """Discover click-paths from an entry URL (Phase 2 stub — raises NotImplementedError)."""
+@click.option(
+    "--area",
+    default="hospitality",
+    show_default=True,
+    help="Area slug recorded in the emitted FlowMap.",
+)
+@click.option(
+    "--club",
+    default=None,
+    help="Club slug for cookie-strategy dispatch. Inferred from entry_url if omitted.",
+)
+@click.option(
+    "--headless/--headed",
+    default=True,
+    show_default=True,
+    help="Run Chromium headless (default) or with a visible window.",
+)
+def flow_discover_cmd(
+    entry_url: str,
+    out_path: Path,
+    area: str,
+    club: str | None,
+    headless: bool,
+) -> None:
+    """Discover click-paths from an entry URL.
+
+    Launches a sync-Playwright Chromium session, dismisses cookie banners,
+    and performs a keyword-ranked depth-limited crawl (max 3 deep, 15 steps).
+    Emits a schema-valid FlowMap JSON at --out. Records login-gated,
+    CAPTCHA-gated, broker-redirected, externally-redirected, and dead-end
+    branches in FlowMap.metadata (see scanner.flow.schema.FlowMapMetadata).
+
+    Never submits forms (D-16); never bypasses login or CAPTCHA (D-15).
+    """
     from scanner.flow.discover import discover_flow
 
-    discover_flow(entry_url, out_path)
+    fm = discover_flow(entry_url, out_path, area=area, club=club, headless=headless)
+    click.echo(
+        f"Wrote {out_path} — {fm.area}/{fm.club} {len(fm.steps)} step(s); "
+        f"broker={fm.metadata.broker_vendor or '-'}, "
+        f"login_gates={len(fm.metadata.login_gated_steps)}, "
+        f"external={len(fm.metadata.external_redirects)}, "
+        f"dead_ends={len(fm.metadata.dead_ends)}, "
+        f"captcha={fm.metadata.captcha_encountered}"
+    )
 
 
 __all__ = ["cli"]
