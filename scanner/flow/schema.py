@@ -27,6 +27,40 @@ class FormField(BaseModel):
     value: str  # e.g. "Test Test", "test@example.com"
 
 
+class FlowMapMetadata(BaseModel):
+    """Crawler-produced metadata about flow-discovery outcomes (Plan 02-05).
+
+    Default-factory initialized on FlowMap so pre-existing Phase-1 flow-map
+    JSONs (with no `metadata` key) continue to validate unchanged.
+
+    Fields describe branches the crawler hit but could not fully traverse:
+
+    - `broker_vendor` — allowlisted third-party ticketing/hospitality vendor
+      encountered mid-crawl (e.g. seat_unique, keith_prowse). None when the
+      flow stays same-origin.
+    - `login_gated_steps` — step names/labels where a login wall was
+      detected (URL matched login pattern or page had input[type=password]).
+      The crawler halts that branch per D-15; credentials are back-half.
+    - `external_redirects` — URLs that redirected cross-origin to a
+      non-broker destination; the crawler halts that branch.
+    - `dead_ends` — URLs that returned HTTP >= 400 or displayed a 404 page.
+    - `cookie_dismiss_failed` — True when dismiss_cookies() returned False
+      on the landing page (crawl still proceeds but the signal is recorded).
+    - `fixture_id` — optional D-09 record tying the crawl to a specific
+      match fixture (may be None in front-half).
+    - `captcha_encountered` — True when a reCAPTCHA/hCaptcha widget was
+      detected; the crawler halts that branch (user decision 7 extends D-15).
+    """
+
+    broker_vendor: str | None = None
+    login_gated_steps: list[str] = Field(default_factory=list)
+    external_redirects: list[str] = Field(default_factory=list)
+    dead_ends: list[str] = Field(default_factory=list)
+    cookie_dismiss_failed: bool = False
+    fixture_id: str | None = None
+    captcha_encountered: bool = False
+
+
 class FlowStep(BaseModel):
     """A single step in a flow-map.
 
@@ -51,12 +85,17 @@ class FlowMap(BaseModel):
 
     `steps` is bounded by the D-15 invariant (1-15 steps) so malformed
     flow-maps fail at load-time rather than part-way through a Playwright run.
+
+    `metadata` (Plan 02-05) carries crawler-produced outcomes from flow
+    discovery. Default-factory initialized so pre-existing Phase-1 flow-map
+    fixtures without a `metadata` key continue to validate unchanged.
     """
 
     area: str
     club: str
     entry_url: str
     steps: list[FlowStep] = Field(min_length=1, max_length=15)  # D-15
+    metadata: FlowMapMetadata = Field(default_factory=FlowMapMetadata)
 
 
-__all__ = ["FlowMap", "FlowStep", "FormField"]
+__all__ = ["FlowMap", "FlowStep", "FormField", "FlowMapMetadata"]
