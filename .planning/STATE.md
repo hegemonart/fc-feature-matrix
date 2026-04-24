@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v7.1
 milestone_name: milestone
-status: executing
+status: verifying
 stopped_at: "Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)"
-last_updated: "2026-04-24T05:11:52.986Z"
+last_updated: "2026-04-24T18:51:51.243Z"
 last_activity: 2026-04-24
 progress:
   total_phases: 9
   completed_phases: 1
-  total_plans: 8
-  completed_plans: 8
-  percent: 100
+  total_plans: 15
+  completed_plans: 9
+  percent: 60
 ---
 
 # Project State
@@ -27,7 +27,7 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 
 Phase: **Phase 1 — Flow Automation Layer** (in progress; scanner infra, 1 of 8 plans complete)
 Plan: 8 of 8 complete (01-01 Wave 0 Foundation — 4 tasks, 36 files, ~7 min); Next: 01-02 (Wave 1 Schema)
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-04-24
 Prior phase close: 2026-04-17 — infra-redesign-v2 plan 05 executed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min)
 
@@ -64,6 +64,7 @@ Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Ph
 | Phase 01 P06 | 12m | 1 tasks | 4 files |
 | Phase 01 P07 | 27m | 2 tasks | 6 files |
 | Phase 01 P08 | 90min | 2 tasks | 5 files |
+| Phase 02 P01 | 8min | 2 tasks | 4 files |
 
 ## Accumulated Context
 
@@ -108,6 +109,8 @@ Recent decisions affecting current work:
 - [Phase ?]: Plan 01-08: Live dry-run validated subscription backend (D-28) end-to-end against mancity.com/hospitality
 - [Phase ?]: Plan 01-08: Subscription client extracts JSON from markdown fences + retries once on parse fail (T-08-02)
 - [Phase ?]: Plan 01-08: Opus 4.7 returns bboxes in native pixel coords not resized space - filed for Phase 2 calibration
+- [Phase ?]: Plan 02-01: credentials helper at scanner.capture.credentials — get_credential returns None on missing (D-15), MissingCredentialError refuses value= kwarg (T-02-01-02)
+- [Phase ?]: Plan 02-01: load_dotenv(override=False) at import — shell env wins over .env.local (T-02-01-05 accepted for CI secret-store injection)
 
 ### Pending Todos
 
@@ -119,6 +122,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-24T05:11:52.981Z
+Last session: 2026-04-24T18:51:36.494Z
 Stopped at: Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)
 Resume file: None
