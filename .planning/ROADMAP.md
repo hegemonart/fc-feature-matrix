@@ -44,7 +44,7 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
   - [x] 01-01-PLAN.md - Foundation: package skeleton + dual-backend deps + test scaffold + dummy rubric fixture
   - [x] 01-02-PLAN.md - Pydantic schemas: FlowMap / FeatureResult / AreasConfig
   - [x] 01-03-PLAN.md - Capture module: Playwright wrapper, MANCITY_STRATEGY cookies, banner verify via Haiku
-  - [ ] 01-04-PLAN.md - Vision module with DUAL BACKEND: VisionClient Protocol + SubscriptionVisionClient (claude-agent-sdk) + APIKeyVisionClient (anthropic SDK) + factory + two-judge + disagreement + slice
+  - [x] 01-04-PLAN.md - Vision module with DUAL BACKEND: VisionClient Protocol + SubscriptionVisionClient (claude-agent-sdk) + APIKeyVisionClient (anthropic SDK) + factory + two-judge + disagreement + slice
   - [ ] 01-05-PLAN.md - Report (Jinja2 contact sheet) + Scoring (Node recalculate.js port with --area)
   - [ ] 01-06-PLAN.md - Flow subpackage: validate.py (load + humanize errors) + discover.py stub
   - [ ] 01-07-PLAN.md - CLI (Click group with --api-mode default subscription) + areas.json empty-hospitality seed + README
