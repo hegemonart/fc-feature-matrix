@@ -46,7 +46,7 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
   - [x] 01-03-PLAN.md - Capture module: Playwright wrapper, MANCITY_STRATEGY cookies, banner verify via Haiku
   - [x] 01-04-PLAN.md - Vision module with DUAL BACKEND: VisionClient Protocol + SubscriptionVisionClient (claude-agent-sdk) + APIKeyVisionClient (anthropic SDK) + factory + two-judge + disagreement + slice
   - [x] 01-05-PLAN.md - Report (Jinja2 contact sheet) + Scoring (Node recalculate.js port with --area)
-  - [ ] 01-06-PLAN.md - Flow subpackage: validate.py (load + humanize errors) + discover.py stub
+  - [x] 01-06-PLAN.md - Flow subpackage: validate.py (load + humanize errors) + discover.py stub
   - [ ] 01-07-PLAN.md - CLI (Click group with --api-mode default subscription) + areas.json empty-hospitality seed + README
   - [ ] 01-08-PLAN.md - Dry-run acceptance gate: mocked integration test + LIVE checkpoint through subscription backend against Man City hospitality
 
