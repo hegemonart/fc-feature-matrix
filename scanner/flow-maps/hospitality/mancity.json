@@ -1,0 +1,45 @@
+{
+  "area": "hospitality",
+  "club": "mancity",
+  "entry_url": "https://www.mancity.com/hospitality",
+  "steps": [
+    {
+      "step_name": "landing",
+      "url": "https://www.mancity.com/hospitality",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "landing-wait",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle"
+    },
+    {
+      "step_name": "landing-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    }
+  ],
+  "metadata": {
+    "broker_vendor": null,
+    "login_gated_steps": [],
+    "external_redirects": [],
+    "dead_ends": [
+      "https://www.mancity.com/hospitality"
+    ],
+    "cookie_dismiss_failed": true,
+    "fixture_id": null,
+    "captcha_encountered": false
+  }
+}
