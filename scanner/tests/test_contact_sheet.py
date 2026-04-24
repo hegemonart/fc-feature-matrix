@@ -190,6 +190,19 @@ def test_present_verdict_renders_img_tag_and_confidence(rendered: tuple[Path, st
     assert "0.92" in html
 
 
+def test_thumb_src_matches_slice_output_layout(rendered: tuple[Path, str]) -> None:
+    """The ``<img src>`` href must match what ``slice`` actually writes.
+
+    ``slice`` writes to ``<evidence_dir>/features/<club>_<feat>.png`` and the
+    contact sheet lives at ``scanner/output/contact-report-<area>.html``, so
+    the relative href from the HTML is
+    ``evidence/<area>/features/<club>_<feat>.png``. Regression test for the
+    Plan 01-08 fix that swapped the old ``evidence/<feat>/`` layout.
+    """
+    _, html = rendered
+    assert "evidence/hospitality/features/mancity_hero_image.png" in html
+
+
 # ---------------------------------------------------------------------------
 # Behaviour 5 — grid styling sanity.
 # ---------------------------------------------------------------------------

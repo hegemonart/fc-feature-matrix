@@ -17,6 +17,7 @@ import asyncio
 import base64
 import json
 import logging
+import re
 from pathlib import Path
 from typing import Any
 
@@ -26,6 +27,33 @@ from scanner.vision.prompts import build_checklist_prompt
 from scanner.vision.schema import FeatureDef, FeatureVerdict
 
 logger = logging.getLogger(__name__)
+
+
+_FENCE_RE = re.compile(r"```(?:json)?\s*(.*?)\s*```", re.DOTALL)
+
+
+def _extract_json_object(text: str) -> str:
+    """Best-effort extraction of a JSON object from a model reply.
+
+    Order of operations:
+        1. Strip a leading/trailing markdown fence (``` or ```json) — the
+           subscription backend occasionally wraps its output despite the
+           prompt's "no markdown fences" instruction (T-08-02).
+        2. Otherwise, slice from the first ``{`` to the matching last
+           ``}`` so a terse preamble ("Here is the JSON:") does not break
+           ``json.loads``.
+        3. Otherwise, return the original text unchanged — ``json.loads``
+           will raise and the caller retries once.
+    """
+    stripped = text.strip()
+    m = _FENCE_RE.search(stripped)
+    if m:
+        return m.group(1).strip()
+    first = stripped.find("{")
+    last = stripped.rfind("}")
+    if first != -1 and last != -1 and last > first:
+        return stripped[first : last + 1]
+    return stripped
 
 
 class SubscriptionVisionClient:
@@ -69,10 +97,43 @@ class SubscriptionVisionClient:
                 ),
             },
         ]
-        text = asyncio.run(self._collect_text(content=content))
-        raw = json.loads(text)
         # Reuse the api-key client's clamp helper — identical coercion.
         from scanner.vision.client_apikey import _clamp_confidence
+
+        text = asyncio.run(self._collect_text(content=content))
+        try:
+            raw = json.loads(_extract_json_object(text))
+        except json.JSONDecodeError as first_err:
+            # T-08-02 mitigation: retry once with an even stricter instruction.
+            logger.warning(
+                "Subscription backend returned non-JSON (model=%s, len=%d). "
+                "Retrying with stricter prompt.",
+                self.model,
+                len(text),
+            )
+            stricter = list(content)
+            stricter[-1] = {
+                "type": "text",
+                "text": (
+                    prompt_text
+                    + "\n\nCRITICAL: your previous response was not valid JSON. "
+                    "Reply with ONLY the raw JSON object — no prose, no explanation, "
+                    "no markdown fences, no leading or trailing whitespace."
+                ),
+            }
+            text2 = asyncio.run(self._collect_text(content=stricter))
+            try:
+                raw = json.loads(_extract_json_object(text2))
+            except json.JSONDecodeError:
+                # Surface both the first and retry responses so the operator
+                # can see what the model actually produced.
+                preview = (text[:500] + " ...") if len(text) > 500 else text
+                preview2 = (text2[:500] + " ...") if len(text2) > 500 else text2
+                raise RuntimeError(
+                    f"SubscriptionVisionClient({self.model}) returned non-JSON "
+                    f"twice. First response:\n{preview!r}\n"
+                    f"Retry response:\n{preview2!r}"
+                ) from first_err
 
         return {
             k: FeatureVerdict(**_clamp_confidence(v)) for k, v in raw.items()

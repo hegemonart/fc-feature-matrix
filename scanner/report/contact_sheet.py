@@ -25,6 +25,7 @@ TEMPLATE_NAME = "contact_sheet.html.j2"
 
 
 def _build_feature_rows(
+    area: str,
     rubric: list[FeatureDef],
     judge_responses: dict[str, dict[str, JudgeResponse]],
 ) -> list[dict]:
@@ -34,6 +35,12 @@ def _build_feature_rows(
     1:1 bbox coords — research §3.6). Disagreements between Opus and Sonnet
     are surfaced separately in disagreements-{area}.json and are not the
     concern of this renderer.
+
+    Image path layout matches what the ``slice`` subcommand writes:
+    ``<evidence_dir>/features/<club>_<feature_key>.png`` where ``evidence_dir``
+    is ``scanner/output/evidence/<area>/`` and the HTML lives at
+    ``scanner/output/contact-report-<area>.html`` — so the relative href from
+    the HTML is ``evidence/<area>/features/<club>_<feature_key>.png``.
     """
     rows: list[dict] = []
     for feat in rubric:
@@ -53,7 +60,7 @@ def _build_feature_rows(
                     }
                 )
                 continue
-            crop_rel = f"evidence/{feat.key}/{club_slug}_{feat.key}.png"
+            crop_rel = f"evidence/{area}/features/{club_slug}_{feat.key}.png"
             thumb_src = f"./{crop_rel}" if verdict.present else ""
             clubs_entries.append(
                 {
@@ -108,7 +115,7 @@ def render_contact_sheet(
     )
     template = env.get_template(TEMPLATE_NAME)
 
-    rows = _build_feature_rows(rubric, judge_responses)
+    rows = _build_feature_rows(area, rubric, judge_responses)
     html = template.render(
         area=area,
         features=rows,

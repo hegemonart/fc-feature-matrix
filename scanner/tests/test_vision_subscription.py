@@ -20,7 +20,10 @@ from unittest.mock import patch
 import pytest
 from PIL import Image
 
-from scanner.vision.client_subscription import SubscriptionVisionClient
+from scanner.vision.client_subscription import (
+    SubscriptionVisionClient,
+    _extract_json_object,
+)
 from scanner.vision.schema import FeatureDef, FeatureVerdict
 
 
@@ -151,3 +154,107 @@ def test_subscription_module_does_not_import_anthropic() -> None:
             assert node.module is None or "anthropic" not in node.module, (
                 f"client_subscription.py imports from {node.module} (forbidden)"
             )
+
+
+# ---------------------------------------------------------------------------
+# JSON-extraction robustness (T-08-02 mitigation — Plan 08)
+# ---------------------------------------------------------------------------
+
+
+def test_extract_json_object_strips_markdown_fence() -> None:
+    """Model occasionally wraps output in ```json fences despite the prompt."""
+    reply = '```json\n{"hero_image": {"present": true}}\n```'
+    assert (
+        _extract_json_object(reply)
+        == '{"hero_image": {"present": true}}'
+    )
+
+
+def test_extract_json_object_strips_bare_fence() -> None:
+    """```...``` without the json tag should also be handled."""
+    reply = '```\n{"x": 1}\n```'
+    assert _extract_json_object(reply) == '{"x": 1}'
+
+
+def test_extract_json_object_slices_preamble() -> None:
+    """Model prefaces the JSON with prose; slice from first { to last }."""
+    reply = 'Here is the analysis:\n{"a": 1, "b": {"c": 2}}\nLet me know.'
+    assert _extract_json_object(reply) == '{"a": 1, "b": {"c": 2}}'
+
+
+def test_extract_json_object_passthrough_plain() -> None:
+    """Already-clean JSON is returned unchanged (modulo leading/trailing ws)."""
+    reply = '{"ok": true}'
+    assert _extract_json_object(reply) == '{"ok": true}'
+
+
+def test_analyze_screenshot_strips_markdown_fence(
+    image_path: Path, rubric: list[FeatureDef]
+) -> None:
+    """End-to-end: fenced response parses successfully with no retry."""
+    payload = {
+        "has_nav": {
+            "present": True,
+            "step": "landing",
+            "evidence_bbox": None,
+            "confidence": 0.5,
+            "notes": "ok",
+        }
+    }
+    wrapped = f"```json\n{json.dumps(payload)}\n```"
+
+    def fake_query(*, prompt, options=None, transport=None):
+        return _async_iter([_fake_assistant_message(wrapped)])
+
+    with patch("scanner.vision.client_subscription.query", fake_query):
+        client = SubscriptionVisionClient(model="claude-opus-4-7")
+        result = client.analyze_screenshot(image_path, rubric)
+
+    assert result["has_nav"].present is True
+
+
+def test_analyze_screenshot_retries_on_first_bad_json(
+    image_path: Path, rubric: list[FeatureDef]
+) -> None:
+    """First call returns garbage; retry returns valid JSON — must not raise."""
+    good_payload = json.dumps(
+        {
+            "has_nav": {
+                "present": False,
+                "step": "landing",
+                "evidence_bbox": None,
+                "confidence": 0.3,
+                "notes": "not visible",
+            }
+        }
+    )
+    call_state = {"n": 0}
+
+    def fake_query(*, prompt, options=None, transport=None):
+        idx = call_state["n"]
+        call_state["n"] += 1
+        if idx == 0:
+            # First response: prose with no { } at all.
+            return _async_iter([_fake_assistant_message("I cannot comply.")])
+        return _async_iter([_fake_assistant_message(good_payload)])
+
+    with patch("scanner.vision.client_subscription.query", fake_query):
+        client = SubscriptionVisionClient(model="claude-sonnet-4-6")
+        result = client.analyze_screenshot(image_path, rubric)
+
+    assert call_state["n"] == 2, "retry path must be exercised"
+    assert result["has_nav"].present is False
+
+
+def test_analyze_screenshot_raises_after_double_failure(
+    image_path: Path, rubric: list[FeatureDef]
+) -> None:
+    """Both attempts return non-JSON — raise RuntimeError with previews."""
+
+    def fake_query(*, prompt, options=None, transport=None):
+        return _async_iter([_fake_assistant_message("sorry, cannot help")])
+
+    with patch("scanner.vision.client_subscription.query", fake_query):
+        client = SubscriptionVisionClient(model="claude-sonnet-4-6")
+        with pytest.raises(RuntimeError, match="returned non-JSON twice"):
+            client.analyze_screenshot(image_path, rubric)
