@@ -1,0 +1,53 @@
+{# scanner/report/templates/contact_sheet.html.j2 — D-21 contact sheet.
+   Self-contained HTML; minimal inline CSS; CSS-only `:target` lightbox. #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>{{ area|capitalize }} — Contact Sheet</title>
+<style>
+  body { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; background: #0b0b0b; color: #eee; margin: 0; padding: 20px; }
+  header { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px; border-bottom: 1px solid #333; padding-bottom: 10px; }
+  header h1 { margin: 0; font-size: 22px; }
+  header .meta { font-size: 12px; color: #888; }
+  .feature { margin-bottom: 40px; }
+  .feature h2 { font-size: 18px; border-bottom: 1px solid #333; padding-bottom: 6px; }
+  .feature h2 small { color: #666; font-weight: normal; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+  .thumb { background: #1a1a1a; border: 2px solid #333; border-radius: 4px; overflow: hidden; position: relative; }
+  .thumb.absent { border-color: #a22; opacity: 0.4; }
+  .thumb img { width: 100%; height: 120px; object-fit: cover; display: block; cursor: pointer; }
+  .thumb .label { font-size: 11px; padding: 4px 6px; color: #aaa; }
+  .thumb .absent-placeholder { height: 120px; display: flex; align-items: center; justify-content: center; color: #666; font-size: 12px; }
+  .lightbox { display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.9); z-index: 10; align-items: center; justify-content: center; cursor: pointer; }
+  .lightbox img { max-width: 95vw; max-height: 95vh; object-fit: contain; }
+  .lightbox:target { display: flex; }
+</style>
+</head>
+<body>
+<header>
+  <h1>{{ area|capitalize }} Contact Sheet</h1>
+  <div class="meta">Generated {{ generated_at }}</div>
+</header>
+{% for feature in features %}
+<div class="feature">
+  <h2>{{ feature.name }} <small>({{ feature.key }})</small></h2>
+  <div class="grid">
+    {% for club in feature.clubs %}
+    {% if club.present %}<div class="thumb">{% else %}<div class="thumb absent">{% endif %}
+      {% if club.present %}
+        <a href="#lb-{{ feature.key }}-{{ club.id }}"><img src="{{ club.thumb_src }}" alt="{{ club.id }}"></a>
+        <div id="lb-{{ feature.key }}-{{ club.id }}" class="lightbox">
+          <a href="#"><img src="{{ club.full_src }}" alt="{{ club.id }}"></a>
+        </div>
+      {% else %}
+        <div class="absent-placeholder">Absent</div>
+      {% endif %}
+      <div class="label">{{ club.id }}{% if club.present %} — {{ '%.2f'|format(club.confidence) }}{% endif %}</div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+{% endfor %}
+</body>
+</html>
