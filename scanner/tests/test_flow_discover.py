@@ -243,14 +243,21 @@ def test_discover_detects_broker_redirect(tmp_path: Path, patched_playwright):
 
 
 def test_discover_detects_external_unknown_redirect(tmp_path: Path, patched_playwright):
-    """Non-broker cross-origin redirect halts the branch."""
+    """Non-broker cross-origin redirect halts the branch.
+
+    Scenario: a same-origin hospitality link that (when clicked) lands on a
+    non-broker third-party domain — the way a real club's `/hospitality/partner`
+    link often server-redirects into a tracking domain.
+    """
     from scanner.flow.discover import discover_flow
 
     patched_playwright.page = _make_page([
         _FakeResponse(
             "https://mancity.com/hospitality",
-            links=[("Tracker", "https://randomtracker.example/")],
+            links=[("VIP Hospitality Partner", "/hospitality/partner")],
         ),
+        # Same-origin href but post-click .url reflects a cross-origin
+        # (non-broker) redirect.
         _FakeResponse(
             "https://randomtracker.example/",
             links=[("Deeper", "/deeper")],
