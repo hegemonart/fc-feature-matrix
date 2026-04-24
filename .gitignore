@@ -30,4 +30,6 @@ scanner/__pycache__/
 scanner/**/__pycache__/
 scanner/output/*
 !scanner/output/.gitkeep
+# Phase credential notes — never committed (D-13)
+.planning/phases/*/credentials.local.md
 
