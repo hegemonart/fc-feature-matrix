@@ -49,8 +49,46 @@ MANCITY_STRATEGY: CookieStrategy = {
 }
 
 
+# Phase 2 Plan 02-04 — per-club strategies for the remaining 4 pilot clubs.
+# Priorities are verbatim from 02-RESEARCH.md §6. Drift is the acceptance criterion.
+
+# TOT — likely OneTrust (EPL convention). Verify on first crawl.
+TOT_STRATEGY: CookieStrategy = {
+    "priority": ["accept all cookies", "accept all", "allow all"],
+    "post_click_selectors": [],
+}
+
+# RMA — custom ES banner likely; ES-specific phrases first, EN fallback.
+RMA_STRATEGY: CookieStrategy = {
+    "priority": [
+        "aceptar todo", "aceptar todas", "acepto todo",
+        "accept all", "aceptar",
+    ],
+    "post_click_selectors": [],
+}
+
+# PSG — French CMP (likely Didomi or Axeptio); FR-first, EN fallback for /en/ path.
+PSG_STRATEGY: CookieStrategy = {
+    "priority": [
+        "tout accepter", "accepter tous", "accepter tout", "j'accepte",
+        "accept all",
+    ],
+    "post_click_selectors": [],
+}
+
+# CHE — hospitality.chelseafc.com subdomain; likely OneTrust.
+CHE_STRATEGY: CookieStrategy = {
+    "priority": ["accept all cookies", "accept all", "allow all cookies"],
+    "post_click_selectors": [],
+}
+
+
 STRATEGIES: dict[str, CookieStrategy] = {
     "mancity": MANCITY_STRATEGY,
+    "tottenham": TOT_STRATEGY,
+    "realmadrid": RMA_STRATEGY,
+    "psg": PSG_STRATEGY,
+    "chelsea": CHE_STRATEGY,
 }
 
 
@@ -116,5 +154,9 @@ __all__ = [
     "GLOBAL_COOKIE_PRIORITIES",
     "STRATEGIES",
     "MANCITY_STRATEGY",
+    "TOT_STRATEGY",
+    "RMA_STRATEGY",
+    "PSG_STRATEGY",
+    "CHE_STRATEGY",
     "CookieStrategy",
 ]
