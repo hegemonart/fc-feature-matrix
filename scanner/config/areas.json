@@ -1,0 +1,10 @@
+{
+  "hospitality": {
+    "evidence_dir": "scanner/output/evidence/hospitality/",
+    "results_dir": "scanner/output/results/hospitality/",
+    "rubric_path": null,
+    "features_ts": null,
+    "flow_maps_dir": null,
+    "status": "pending"
+  }
+}
