@@ -5,6 +5,7 @@
 export type PresenceStatus = 'full' | 'absent';
 
 export type CategoryId =
+  // ── Homepage categories (analysis/homepage/) ──
   | 'header_nav'
   | 'hero'
   | 'match_fixtures'
@@ -16,7 +17,16 @@ export type CategoryId =
   | 'players_teams'
   | 'partners_sponsors'
   | 'personalization'
-  | 'footer_nav';
+  | 'footer_nav'
+  // ── Hospitality categories (analysis/hospitality/) — Phase 2 ──
+  | 'package_discovery'
+  | 'pricing_transparency'
+  | 'food_beverage'
+  | 'match_selector_ux'
+  | 'enquiry_friction'
+  | 'premium_amenities'
+  | 'post_booking_comms'
+  | 'booking_confirmation';
 
 export type BandId = 'table_stakes' | 'expected' | 'competitive' | 'innovation';
 
