@@ -77,10 +77,14 @@ def test_verify_banner_gone_passes_haiku_model_to_factory(
 ):
     """The Haiku pin is load-bearing — banner check must never escalate to Opus/Sonnet."""
     from scanner.capture.banner_verify import verify_banner_gone
-    # Access the (fake) factory module through sys.modules so we can inspect
-    # the get_client kwargs.
+
+    # Stub the factory in sys.modules (handles both the "Plan 04 shipped" and
+    # "isolated plan-03 run" cases). Look the stub back up via sys.modules
+    # rather than `import scanner.vision.factory as ...` because Python's
+    # import machinery caches submodule attributes on the already-loaded
+    # parent package and would return the REAL module.
     client = _stub_vision_factory(monkeypatch, response="no")
-    import scanner.vision.factory as fake_factory  # noqa: F401 (module is the mock)
+    fake_factory = sys.modules["scanner.vision.factory"]
 
     screenshot = tmp_path / "mancity_landing.png"
     screenshot.write_bytes(b"\x89PNG")
