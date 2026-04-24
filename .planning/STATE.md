@@ -4,14 +4,14 @@ milestone: v7.1
 milestone_name: milestone
 status: verifying
 stopped_at: "Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)"
-last_updated: "2026-04-24T19:41:01.649Z"
+last_updated: "2026-04-24T19:46:39.001Z"
 last_activity: 2026-04-24
 progress:
   total_phases: 9
   completed_phases: 1
   total_plans: 15
-  completed_plans: 11
-  percent: 73
+  completed_plans: 13
+  percent: 87
 ---
 
 # Project State
@@ -67,6 +67,8 @@ Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Ph
 | Phase 02 P01 | 8min | 2 tasks | 4 files |
 | Phase 02 P02 | 6min | 2 tasks | 2 files |
 | Phase 02 P04 | 10 min | 2 tasks | 2 files |
+| Phase 02 P05 | 35m | 2 tasks | 5 files |
+| Phase 02 P03 | 756 | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -117,6 +119,9 @@ Recent decisions affecting current work:
 - [Phase ?]: Arsenal cataloged as 'catalog only — NOT crawled' in REVIEW-SOURCES.md (headless-block trap; gold-standard catalog stays complete)
 - [Phase ?]: 5 review-dig additions: accessible_booking_option, corporate_invoice_billing, cancellation_refund_window, multi_occasion_tagging, transport_package_bundling
 - [Phase ?]: Per-club cookie strategies TOT/RMA/PSG/CHE shipped verbatim from 02-RESEARCH.md (additive)
+- [Phase 02]: FlowMapMetadata additive default-factory field preserves Phase-1 backward compat — New crawler metadata shouldn't break existing flow-map JSON
+- [Phase 02]: Broker allowlist scoped to 5 vendors (seat_unique/keith_prowse/eventmasters/p1_travel/pitch_international) — Non-broker cross-origin halts branch; narrows attack surface for tracker domains
+- [Phase 02]: HOSPITALITY_LINK_PATTERN extended with enquiry/enquire/enquiries — UK clubs commonly label hospitality CTAs 'Enquire Now'
 
 ### Pending Todos
 
@@ -130,6 +135,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-04-24T19:40:41.332Z
+Last session: 2026-04-24T19:45:31.122Z
 Stopped at: Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)
 Resume file: None
