@@ -48,7 +48,7 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
   - [x] 01-05-PLAN.md - Report (Jinja2 contact sheet) + Scoring (Node recalculate.js port with --area)
   - [x] 01-06-PLAN.md - Flow subpackage: validate.py (load + humanize errors) + discover.py stub
   - [x] 01-07-PLAN.md - CLI (Click group with --api-mode default subscription) + areas.json empty-hospitality seed + README
-  - [ ] 01-08-PLAN.md - Dry-run acceptance gate: mocked integration test + LIVE checkpoint through subscription backend against Man City hospitality
+  - [x] 01-08-PLAN.md - Dry-run acceptance gate: mocked integration test + LIVE checkpoint through subscription backend against Man City hospitality
 
 ### Phase 2: Hospitality Pilot (5 clubs)
 **Goal**: First real benchmark area using the Phase 1 scanner. 5-club hospitality pilot (Manchester City, Tottenham, Real Madrid, PSG, Chelsea) with full click-through capture, two-judge feature mapping, and user-approved coverage before Phase 2.5 rollout begins.

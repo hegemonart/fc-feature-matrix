@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v7.1
 milestone_name: milestone
 status: executing
-stopped_at: "Plan 01-05 complete: Jinja2 contact sheet + area-parameterized scoring port (2 tasks, 4 commits, 8 pytest + 6 node:test pass)"
-last_updated: "2026-04-24T04:42:57.177Z"
+stopped_at: "Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)"
+last_updated: "2026-04-24T05:11:52.986Z"
 last_activity: 2026-04-24
 progress:
   total_phases: 9
-  completed_phases: 0
+  completed_phases: 1
   total_plans: 8
-  completed_plans: 7
-  percent: 88
+  completed_plans: 8
+  percent: 100
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 ## Current Position
 
 Phase: **Phase 1 — Flow Automation Layer** (in progress; scanner infra, 1 of 8 plans complete)
-Plan: 7 of 8 complete (01-01 Wave 0 Foundation — 4 tasks, 36 files, ~7 min); Next: 01-02 (Wave 1 Schema)
+Plan: 8 of 8 complete (01-01 Wave 0 Foundation — 4 tasks, 36 files, ~7 min); Next: 01-02 (Wave 1 Schema)
 Status: Ready to execute
 Last activity: 2026-04-24
 Prior phase close: 2026-04-17 — infra-redesign-v2 plan 05 executed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min)
@@ -63,6 +63,7 @@ Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Ph
 | Phase 01 P05 | 40min | 2 tasks | 7 files |
 | Phase 01 P06 | 12m | 1 tasks | 4 files |
 | Phase 01 P07 | 27m | 2 tasks | 6 files |
+| Phase 01 P08 | 90min | 2 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -104,6 +105,9 @@ Recent decisions affecting current work:
 - [Phase ?]: Phase-2 discover stub raises NotImplementedError with Phase-1 alternative pointer (scanner flow validate).
 - [Phase ?]: Deferred imports inside Click subcommands keep --help instant and decouple optional backends from each other
 - [Phase ?]: SCANNER_REPO_ROOT env override is the contract for test-time repo isolation; read on every loader call so monkeypatch works
+- [Phase ?]: Plan 01-08: Live dry-run validated subscription backend (D-28) end-to-end against mancity.com/hospitality
+- [Phase ?]: Plan 01-08: Subscription client extracts JSON from markdown fences + retries once on parse fail (T-08-02)
+- [Phase ?]: Plan 01-08: Opus 4.7 returns bboxes in native pixel coords not resized space - filed for Phase 2 calibration
 
 ### Pending Todos
 
@@ -115,6 +119,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-24T04:42:50.359Z
-Stopped at: Plan 01-05 complete: Jinja2 contact sheet + area-parameterized scoring port (2 tasks, 4 commits, 8 pytest + 6 node:test pass)
+Last session: 2026-04-24T05:11:52.981Z
+Stopped at: Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)
 Resume file: None
