@@ -4,7 +4,7 @@
     "results_dir": "scanner/output/results/hospitality/",
     "rubric_path": null,
     "features_ts": null,
-    "flow_maps_dir": null,
+    "flow_maps_dir": "scanner/flow-maps/hospitality/",
     "status": "pending"
   }
 }

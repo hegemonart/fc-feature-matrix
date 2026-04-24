@@ -1,7 +1,16 @@
-"""Entry point: `python -m scanner <subcommand>`."""
-# CLI wiring deferred to Plan 07 (scanner/cli.py).
-def _main() -> None:  # pragma: no cover - placeholder
-    raise SystemExit("scanner CLI not yet wired — see Plan 07")
+"""Entry point: ``python -m scanner <subcommand>``.
+
+Delegates to the Click group in :mod:`scanner.cli`. The wrapper
+``_main()`` is referenced by ``pyproject.toml``'s ``[project.scripts]``
+so ``scanner`` becomes a console script after ``pip install -e .`` /
+``uv sync``.
+"""
+from scanner.cli import cli
+
+
+def _main() -> None:
+    cli()
+
 
 if __name__ == "__main__":
     _main()
