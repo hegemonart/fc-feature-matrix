@@ -158,3 +158,105 @@ def test_dismiss_cookies_runs_post_click_selectors_after_success(
     clicked = [c.args[0] for c in mock_playwright_page.click.call_args_list]
     assert "[aria-label='Close']" in clicked
     assert ".promo-x" in clicked
+
+
+# -----------------------------------------------------------------------------
+# Phase 2 Plan 02-04 — per-club cookie strategies for TOT/RMA/PSG/CHE
+# -----------------------------------------------------------------------------
+
+
+def test_tot_strategy_priority_starts_with_accept_all_cookies():
+    """TOT_STRATEGY leads with 'accept all cookies' and has 3 lowercase entries."""
+    from scanner.capture.cookies import TOT_STRATEGY
+
+    priority = TOT_STRATEGY["priority"]
+    assert priority[0].lower() == "accept all cookies"
+    assert len(priority) == 3
+    assert all(p == p.lower() for p in priority)
+
+
+def test_rma_strategy_priority_starts_with_spanish():
+    """RMA_STRATEGY leads with Spanish phrase, English fallback present."""
+    from scanner.capture.cookies import RMA_STRATEGY
+
+    priority = RMA_STRATEGY["priority"]
+    assert priority[0].lower() == "aceptar todo"
+    assert "accept all" in [p.lower() for p in priority]
+
+
+def test_psg_strategy_priority_starts_with_french():
+    """PSG_STRATEGY leads with French phrase, English fallback present."""
+    from scanner.capture.cookies import PSG_STRATEGY
+
+    priority = PSG_STRATEGY["priority"]
+    assert priority[0].lower() == "tout accepter"
+    assert "accept all" in [p.lower() for p in priority]
+
+
+def test_che_strategy_priority_starts_with_accept_all_cookies():
+    """CHE_STRATEGY leads with 'accept all cookies' (OneTrust convention)."""
+    from scanner.capture.cookies import CHE_STRATEGY
+
+    priority = CHE_STRATEGY["priority"]
+    assert priority[0].lower() == "accept all cookies"
+
+
+def test_strategies_dispatch_includes_all_5_pilot_clubs():
+    """STRATEGIES dispatch must include every pilot-wave club slug."""
+    from scanner.capture.cookies import STRATEGIES
+
+    pilot = {"mancity", "tottenham", "realmadrid", "psg", "chelsea"}
+    assert pilot.issubset(set(STRATEGIES.keys()))
+
+
+def test_strategies_does_not_include_liverpool():
+    """CLAUDE.md trap: Liverpool DO NOT TOUCH — no strategy in the dispatch dict."""
+    from scanner.capture.cookies import STRATEGIES
+
+    assert "liverpool" not in STRATEGIES
+
+
+def test_dismiss_cookies_uses_psg_priority_for_psg_club(
+    monkeypatch: pytest.MonkeyPatch, mock_playwright_page
+):
+    """dismiss_cookies(page, club='psg') must pass PSG_STRATEGY['priority'], not global."""
+    from scanner.capture import cookies as cookies_mod
+    from scanner.capture.cookies import PSG_STRATEGY
+
+    mock_playwright_page.evaluate = MagicMock(return_value=True)
+    monkeypatch.setattr(cookies_mod.time, "sleep", MagicMock())
+
+    cookies_mod.dismiss_cookies(mock_playwright_page, club="psg")
+
+    passed_priorities = mock_playwright_page.evaluate.call_args.args[1]
+    assert passed_priorities == PSG_STRATEGY["priority"]
+
+
+def test_dismiss_cookies_uses_rma_priority_for_realmadrid_club(
+    monkeypatch: pytest.MonkeyPatch, mock_playwright_page
+):
+    """dismiss_cookies(page, club='realmadrid') must pass RMA_STRATEGY['priority']."""
+    from scanner.capture import cookies as cookies_mod
+    from scanner.capture.cookies import RMA_STRATEGY
+
+    mock_playwright_page.evaluate = MagicMock(return_value=True)
+    monkeypatch.setattr(cookies_mod.time, "sleep", MagicMock())
+
+    cookies_mod.dismiss_cookies(mock_playwright_page, club="realmadrid")
+
+    passed_priorities = mock_playwright_page.evaluate.call_args.args[1]
+    assert passed_priorities == RMA_STRATEGY["priority"]
+
+
+def test_global_cookie_priorities_unchanged():
+    """User decision 2: GLOBAL_COOKIE_PRIORITIES stays at 20 entries (French stays per-club)."""
+    from scanner.capture.cookies import GLOBAL_COOKIE_PRIORITIES
+
+    assert len(GLOBAL_COOKIE_PRIORITIES) == 20
+
+
+def test_mancity_strategy_unchanged():
+    """Regression guard: Phase-1 MANCITY_STRATEGY priority list is not modified."""
+    from scanner.capture.cookies import MANCITY_STRATEGY
+
+    assert MANCITY_STRATEGY["priority"] == ["accept all cookies", "accept all"]
