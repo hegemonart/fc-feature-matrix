@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v7.1
 milestone_name: milestone
 status: verifying
-stopped_at: "Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)"
-last_updated: "2026-04-24T19:46:50.258Z"
+stopped_at: "Plan 02-06 complete: 5 hospitality flow-maps + crawl log. Front-half halt — awaiting user registrations for back-half."
+last_updated: "2026-04-24T20:04:12.541Z"
 last_activity: 2026-04-24
 progress:
   total_phases: 9
   completed_phases: 1
   total_plans: 15
-  completed_plans: 13
-  percent: 87
+  completed_plans: 14
+  percent: 93
 ---
 
 # Project State
@@ -69,6 +69,7 @@ Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Ph
 | Phase 02 P04 | 10 min | 2 tasks | 2 files |
 | Phase 02 P05 | 35m | 2 tasks | 5 files |
 | Phase 02 P03 | 756 | 3 tasks | 5 files |
+| Phase 02 P02-06 | 12min | 3 tasks | 7 files |
 
 ## Accumulated Context
 
@@ -123,6 +124,7 @@ Recent decisions affecting current work:
 - [Phase 02]: Broker allowlist scoped to 5 vendors (seat_unique/keith_prowse/eventmasters/p1_travel/pitch_international) — Non-broker cross-origin halts branch; narrows attack surface for tracker domains
 - [Phase 02]: HOSPITALITY_LINK_PATTERN extended with enquiry/enquire/enquiries — UK clubs commonly label hospitality CTAs 'Enquire Now'
 - [Phase ?]: Plan 02-03 complete: 55-feature hospitality rubric + features.ts + areas.json pilot activation (D-02-03-02: status=pilot since schema rejects 'active')
+- [Phase 02]: Phase 2 front-half halt at 02-06: 5 hospitality flow-maps emitted. MCFC + RMA + PSG-billetterie blocked by Cloudflare or CAPTCHA; TOT + PSG-www + CHE-subdomain crawled cleanly. Rule 1 fix: bounded landing goto timeout.
 
 ### Pending Todos
 
@@ -136,6 +138,6 @@ yet.
 
 ## Session Continuity
 
-Last session: 2026-04-24T19:45:31.122Z
-Stopped at: Plan 01-08 complete: Phase 1 acceptance gate PASSED via live dry-run (subscription backend, 2 bugfixes, 138/138 pytest, D-24 holds)
-Resume file: None
+Last session: 2026-04-24T20:04:12.535Z
+Stopped at: Plan 02-06 complete: 5 hospitality flow-maps + crawl log. Front-half halt — awaiting user registrations for back-half.
+Resume file: .planning/phases/02-hospitality-pilot/02-07-PLAN.md
