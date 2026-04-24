@@ -136,3 +136,78 @@ def test_round_trip_model_dump():
     dumped = fm.model_dump(exclude_defaults=False)
     fm2 = FlowMap.model_validate(dumped)
     assert fm2.model_dump() == fm.model_dump()
+
+
+# --- FlowMapMetadata (Plan 02-05, additive) -----------------------------
+# Crawler-produced metadata about flow-discovery outcomes. The field is
+# default-factory initialized so pre-existing Phase-1 flow-map JSON shapes
+# (no `metadata` key) continue to validate unchanged.
+
+
+def test_flow_map_defaults_metadata_to_empty():
+    """Backward-compat: a FlowMap built without any `metadata` key should
+    receive a default-factory initialized FlowMapMetadata with empty values."""
+    data = _valid_map()
+    fm = FlowMap.model_validate(data)
+    # Attribute exists and is the dedicated model (not dict, not None).
+    assert fm.metadata is not None
+    assert fm.metadata.broker_vendor is None
+    assert fm.metadata.login_gated_steps == []
+    assert fm.metadata.external_redirects == []
+    assert fm.metadata.dead_ends == []
+    assert fm.metadata.cookie_dismiss_failed is False
+    assert fm.metadata.fixture_id is None
+    assert fm.metadata.captcha_encountered is False
+
+
+def test_flow_map_metadata_roundtrips():
+    """A fully populated FlowMapMetadata must survive JSON roundtrip."""
+    from scanner.flow.schema import FlowMapMetadata
+
+    data = _valid_map()
+    data["metadata"] = {
+        "broker_vendor": "seat_unique",
+        "login_gated_steps": ["depth-2"],
+        "external_redirects": ["https://tracker.example/"],
+        "dead_ends": ["https://club.test/missing"],
+        "cookie_dismiss_failed": True,
+        "fixture_id": "mancity-vs-arsenal-2026-05-01",
+        "captcha_encountered": True,
+    }
+    fm = FlowMap.model_validate(data)
+    assert isinstance(fm.metadata, FlowMapMetadata)
+    # Roundtrip via JSON, not just dict — forces field-name stability.
+    fm2 = FlowMap.model_validate_json(fm.model_dump_json())
+    assert fm2.metadata.broker_vendor == "seat_unique"
+    assert fm2.metadata.login_gated_steps == ["depth-2"]
+    assert fm2.metadata.external_redirects == ["https://tracker.example/"]
+    assert fm2.metadata.dead_ends == ["https://club.test/missing"]
+    assert fm2.metadata.cookie_dismiss_failed is True
+    assert fm2.metadata.fixture_id == "mancity-vs-arsenal-2026-05-01"
+    assert fm2.metadata.captcha_encountered is True
+
+
+def test_flow_map_metadata_login_gated_steps_is_list_of_str():
+    """Non-string items in login_gated_steps must raise ValidationError."""
+    data = _valid_map()
+    data["metadata"] = {"login_gated_steps": [{"not": "a string"}]}
+    with pytest.raises(ValidationError):
+        FlowMap.model_validate(data)
+
+
+def test_flow_map_metadata_rejects_obviously_wrong_types():
+    """Scalar fields of wrong type (captcha_encountered as int string) raise."""
+    data = _valid_map()
+    # Passing a list where bool expected — Pydantic won't coerce this.
+    data["metadata"] = {"captcha_encountered": ["yes"]}
+    with pytest.raises(ValidationError):
+        FlowMap.model_validate(data)
+
+
+def test_flow_map_metadata_mutable_defaults_are_isolated():
+    """Default-factory initialization: mutating one instance's list must
+    not leak into a sibling instance's defaults (mutable-default trap)."""
+    fm1 = FlowMap.model_validate(_valid_map())
+    fm1.metadata.login_gated_steps.append("depth-1")
+    fm2 = FlowMap.model_validate(_valid_map())
+    assert fm2.metadata.login_gated_steps == []
