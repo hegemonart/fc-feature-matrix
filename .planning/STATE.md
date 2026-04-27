@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v7.1
 milestone_name: milestone
-status: paused
-stopped_at: "Phase 2 front-half COMPLETE: 7/TBD plans (02-01..02-07); 5 hospitality flow-maps produced; candidate list frozen; rubric+features.ts+areas.json activated; back-half pending user registrations per 02-BACK-HALF-HANDOFF.md"
-last_updated: "2026-04-24T20:08:00Z"
-last_activity: 2026-04-24
+status: in_progress
+stopped_at: Phase 2 Plan 02-08 COMPLETE (Wave 5 — Crawler v2 + Opus bbox calibration + credentials.py CWD fix). 199/199 tests green; bbox_mode='css' empirically confirmed. Plan 02-09 next.
+last_updated: "2026-04-27T12:05:00.000Z"
+last_activity: 2026-04-27
 progress:
   total_phases: 9
   completed_phases: 1
-  total_plans: 15
-  completed_plans: 14
-  percent: 93
+  total_plans: 22
+  completed_plans: 18
+  percent: 82
 ---
 
 # Project State
@@ -25,9 +25,9 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 
 ## Current Position
 
-Phase: **Phase 2 — Hospitality Pilot (front-half complete)** (7 of TBD plans; back-half pending user registrations)
-Plan: 7 of TBD (plans 02-01 through 02-07 complete); Next: back-half planning session after user dummy-account registrations (see `.planning/phases/02-hospitality-pilot/02-BACK-HALF-HANDOFF.md`)
-Status: Paused — Phase 2 front-half COMPLETE. Awaiting user registrations for back-half.
+Phase: **Phase 2 — Hospitality Pilot (back-half resumed at Plan 02-08)** (8 of TBD plans complete)
+Plan: 8 of TBD (plans 02-01 through 02-08 complete); Next: Plan 02-09 (per BACK-HALF-HANDOFF roadmap sketch). Plan 02-08 (Wave 5) shipped: Crawler v2 (Cloudflare Turnstile detector, trusted_subdomains allowlist, dead_ends dedupe, per-domain cookie dispatch) + Opus bbox calibration (decided_mode='css', $0.05 subscription) + credentials.py CWD fix (find_dotenv tree-walk).
+Status: In progress — back-half resumed; capture/credentials still gated on user dummy-account registrations per 02-BACK-HALF-HANDOFF.md.
 Last activity: 2026-04-24
 Prior phase close: 2026-04-24 — Phase 1 Flow Automation Layer (8/8 plans, scanner infra shipped + dry-run validated through subscription backend). Earlier: 2026-04-17 — infra-redesign-v2 plan 05 (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min).
 
@@ -139,6 +139,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-24T20:08:00Z
-Stopped at: Phase 2 front-half COMPLETE (plans 02-01..02-07). 5 hospitality flow-maps + crawl log + FRONT-HALF-SUMMARY + BACK-HALF-HANDOFF. Paused — awaiting user registrations for back-half.
-Resume file: .planning/phases/02-hospitality-pilot/02-BACK-HALF-HANDOFF.md
+Last session: 2026-04-27T12:05:00Z
+Stopped at: Phase 2 Plan 02-08 COMPLETE (Wave 5 — Crawler v2 + Opus bbox calibration + credentials.py CWD fix). 199/199 tests green; bbox_mode='css' empirically confirmed. Plan 02-09 next per BACK-HALF-HANDOFF.
+Resume file: .planning/phases/02-hospitality-pilot/02-08-SUMMARY.md
