@@ -77,7 +77,7 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
   - [x] 02-10-PLAN.md — Multi-step capture orchestrator (capture_flow + login_to_club) + 5-club live capture wave
   - [x] 02-11-PLAN.md — Two-judge vision wave × 5 clubs (rubric extractor + per-club result JSONs + aggregated disagreements)
   - [x] 02-12-PLAN.md — Slice + contact sheet + derive results JSONs + recompute scores
-  - [ ] 02-13-PLAN.md — Hospitality Packages UI tab unlock (/hospitality route, Pilot: 5 clubs label, visual + a11y baseline)
+  - [x] 02-13-PLAN.md — Hospitality Packages UI tab unlock (/hospitality route, Pilot: 5 clubs label, visual + a11y baseline)
   - [ ] 02-14-PLAN.md — Coverage report user review → pilot-gate confirmation (D-17, autonomous: false)
 
 ### Phase 2.5: Hospitality Full Rollout (remaining 28 clubs)

@@ -4,14 +4,14 @@ milestone: v7.1
 milestone_name: milestone
 status: executing
 stopped_at: Completed 02-12-PLAN.md
-last_updated: "2026-04-27T21:36:18.819Z"
+last_updated: "2026-04-27T21:52:04.427Z"
 last_activity: 2026-04-27
 progress:
   total_phases: 9
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 22
-  completed_plans: 21
-  percent: 95
+  completed_plans: 22
+  percent: 100
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 ## Current Position
 
 Phase: **Phase 2 — Hospitality Pilot (back-half resumed at Plan 02-09)** (9 of 14 plans complete)
-Plan: 12 of 14 (plans 02-01 through 02-09 complete); Next: Plan 02-10 (capture orchestrator for hospitality area, consumes the 5 extended flow-maps). Plan 02-09 (Wave 6) shipped: 5 hospitality flow-maps extended to full D-08 purchase-path drafts; FlowStep schema +3 additive override fields (requires_credentials, manual_chrome_mcp, skipped); 36/36 schema-override tests + 235/235 scanner tests green; Chelsea Option B partial confirmed (2 steps marked skipped='requires-paid-account'); $0 subscription cost.
+Plan: 13 of 14 (plans 02-01 through 02-09 complete); Next: Plan 02-10 (capture orchestrator for hospitality area, consumes the 5 extended flow-maps). Plan 02-09 (Wave 6) shipped: 5 hospitality flow-maps extended to full D-08 purchase-path drafts; FlowStep schema +3 additive override fields (requires_credentials, manual_chrome_mcp, skipped); 36/36 schema-override tests + 235/235 scanner tests green; Chelsea Option B partial confirmed (2 steps marked skipped='requires-paid-account'); $0 subscription cost.
 Status: Ready to execute
 Last activity: 2026-04-27
 Prior phase close: 2026-04-24 — Phase 1 Flow Automation Layer (8/8 plans, scanner infra shipped + dry-run validated through subscription backend). Earlier: 2026-04-17 — infra-redesign-v2 plan 05 (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min).
@@ -74,6 +74,7 @@ Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Ph
 | Phase 02 P10 | 35 | 2 tasks | 20 files |
 | Phase 02 P11 | 25 | 2 tasks | 5 files |
 | Phase 02 P12 | 50 | 2 tasks | 16 files |
+| Phase 02 P13 | 30 min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -135,6 +136,7 @@ Recent decisions affecting current work:
 - [Phase ?]: Plan 02-12: D-21 additive call-site config wiring formalized; vision/ + capture/ math layers untouched
 - [Phase ?]: Plan 02-12: Disagreement resolution policy = per-step Opus-when-agree, False+disputed-when-disagree; OR-flatten across steps with sticky disputed flag
 - [Phase ?]: Plan 02-12: scoring_results_dir field separates flat-results (analysis/<area>/results/) from vision intermediate JSONs (scanner/output/results/<area>/)
+- [Phase ?]: Plan 02-13: /hospitality unlocked for authed tiers; pilot 5-club view with 'Pilot: 5 clubs' label; D-20 + single-orange-CTA invariants intact; visual baseline committed
 
 ### Pending Todos
 
@@ -147,6 +149,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-27T21:36:18.814Z
+Last session: 2026-04-27T21:51:10.867Z
 Stopped at: Completed 02-12-PLAN.md
 Resume file: None
