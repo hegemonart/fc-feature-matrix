@@ -184,11 +184,23 @@ def slice_cmd(area: str, club: str, step: str) -> None:
     img = Image.open(BytesIO(png_bytes))
     fw, fh = img.size
 
+    # Plan 02-08: per-area bbox_mode config gate. When 'native' AND the model
+    # is Opus, SKIP denormalise_bbox (Opus already returned device-pixel
+    # coords). Sonnet / Haiku are unaffected because the long-edge limit
+    # (1568) consistently means denormalise scales them up. The denormalise
+    # math itself is left untouched (D-21 deviation: call-site config gate
+    # only).
+    bbox_mode = getattr(entry, "bbox_mode", "css")
+
     count = 0
     for fkey, verdict in results["opus"].items():
         if not verdict.get("present") or not verdict.get("evidence_bbox"):
             continue
-        bbox = denormalise_bbox(tuple(verdict["evidence_bbox"]), OPUS_MODEL, fw, fh)
+        raw_bbox = tuple(verdict["evidence_bbox"])
+        if bbox_mode == "native" and OPUS_MODEL.startswith("claude-opus"):
+            bbox = raw_bbox
+        else:
+            bbox = denormalise_bbox(raw_bbox, OPUS_MODEL, fw, fh)
         out = evidence_dir / "features" / f"{club}_{fkey}.png"
         res = slice_feature(png_bytes, bbox, out)
         if res.ok:
