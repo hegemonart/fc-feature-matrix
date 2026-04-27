@@ -228,17 +228,50 @@ def test_scroll_lazy_is_bounded(mock_playwright_page):
 # ---------------------------------------------------------------------------
 
 
+def _make_dom_intel_page(
+    *,
+    screenshot_bytes: bytes = b"\x89PNG\r\n\x1a\nFAKEPNG",
+    page_height: int = 1200,
+    html_content: str = "<html><body>ok</body></html>",
+    intel_payload: dict | None = None,
+) -> MagicMock:
+    """Build a Page mock that returns DOM intel from page.evaluate.
+
+    The mock disambiguates page.evaluate calls: the bounded scroll_lazy
+    helper passes integer-arg expressions ("document.body.scrollHeight"
+    or "window.scrollTo(0, NNN)"), the DOM intel call passes the
+    EXTRACT_DOM_INTEL_JS string. We dispatch via the first arg.
+    """
+    intel_payload = intel_payload if intel_payload is not None else {
+        "title": "T", "url": "u", "headings": [], "buttons": [],
+        "forms": [], "images": [], "schema_jsonld": [], "meta": {},
+        "counts": {"forms": 0, "inputs": 0, "buttons": 0, "tables": 0, "images": 0},
+    }
+    page = MagicMock(name="Page")
+    page.screenshot = MagicMock(return_value=screenshot_bytes)
+    page.goto = MagicMock()
+    page.wait_for_load_state = MagicMock()
+    page.add_style_tag = MagicMock()
+    page.content = MagicMock(return_value=html_content)
+
+    def _evaluate(expr, *a, **kw):
+        if isinstance(expr, str) and "EXTRACT" in expr.replace(" ", "").upper():
+            return intel_payload
+        # The dom_intel JS starts with `() =>` — detect that too.
+        if isinstance(expr, str) and "document.title" in expr and "headings" in expr:
+            return intel_payload
+        return page_height
+
+    page.evaluate = MagicMock(side_effect=_evaluate)
+    return page
+
+
 def test_capture_page_writes_fullpage_png_to_expected_path(
     monkeypatch: pytest.MonkeyPatch, tmp_output_dir: pathlib.Path
 ):
     from scanner.capture import capture as capture_mod
 
-    fake_page = MagicMock(name="Page")
-    fake_page.screenshot = MagicMock(return_value=b"\x89PNG\r\n\x1a\nFAKEPNG")
-    fake_page.goto = MagicMock()
-    fake_page.wait_for_load_state = MagicMock()
-    fake_page.evaluate = MagicMock(return_value=1200)
-    fake_page.add_style_tag = MagicMock()
+    fake_page = _make_dom_intel_page()
 
     fake_ctx = MagicMock(name="BrowserContext")
     fake_ctx.new_page = MagicMock(return_value=fake_page)
@@ -309,9 +342,7 @@ def test_capture_page_applies_hide_selectors_as_css(
 ):
     from scanner.capture import capture as capture_mod
 
-    fake_page = MagicMock(name="Page")
-    fake_page.screenshot = MagicMock(return_value=b"\x89PNG\r\n\x1a\n")
-    fake_page.evaluate = MagicMock(return_value=1000)
+    fake_page = _make_dom_intel_page(page_height=1000)
 
     fake_ctx = MagicMock()
     fake_ctx.new_page = MagicMock(return_value=fake_page)
@@ -369,3 +400,124 @@ def test_no_submit_clicks_in_capture_module():
         if pat.search(py.read_text(encoding="utf-8")):
             offenders.append(str(py))
     assert not offenders, f"D-16 violation — submit clicks found in: {offenders}"
+
+
+# ---------------------------------------------------------------------------
+# Plan 02-15 Wave B — DOM capture in capture_page
+# ---------------------------------------------------------------------------
+
+
+def test_dom_intel_captured_after_screenshot(
+    monkeypatch: pytest.MonkeyPatch, tmp_output_dir: pathlib.Path
+):
+    """capture_page writes both html/ and dom/ artifacts alongside the PNG."""
+    import json as _json
+    from scanner.capture import capture as capture_mod
+
+    intel_payload = {
+        "title": "Hospitality | Mancity",
+        "url": "https://www.mancity.com/hospitality",
+        "headings": [{"tag": "H1", "text": "Hospitality", "bbox": None}],
+        "buttons": [{"text": "Book Now", "tag": "A", "href": "/book", "bbox": None}],
+        "forms": [],
+        "images": [],
+        "schema_jsonld": [],
+        "meta": {},
+        "counts": {"forms": 0, "inputs": 0, "buttons": 1, "tables": 0, "images": 0},
+    }
+    fake_page = _make_dom_intel_page(intel_payload=intel_payload, html_content="<html>ok</html>")
+
+    fake_ctx = MagicMock(name="BrowserContext")
+    fake_ctx.new_page = MagicMock(return_value=fake_page)
+    fake_pw = MagicMock(name="Playwright")
+    monkeypatch.setattr(
+        capture_mod, "create_browser", MagicMock(return_value=(fake_pw, fake_ctx))
+    )
+    monkeypatch.setattr(capture_mod, "dismiss_cookies", MagicMock())
+    monkeypatch.setattr(capture_mod, "scroll_lazy", MagicMock())
+    monkeypatch.setattr(capture_mod.time, "sleep", MagicMock())
+
+    capture_mod.capture_page(
+        url="https://www.mancity.com/hospitality",
+        club="mancity",
+        area="hospitality",
+        step_name="landing",
+        output_dir=tmp_output_dir,
+    )
+
+    html_file = tmp_output_dir / "html" / "mancity_landing.html"
+    dom_file = tmp_output_dir / "dom" / "mancity_landing_intel.json"
+    assert html_file.is_file(), "expected raw HTML alongside PNG"
+    assert dom_file.is_file(), "expected DOM intel JSON alongside PNG"
+    intel = _json.loads(dom_file.read_text(encoding="utf-8"))
+    assert intel["title"] == "Hospitality | Mancity"
+    assert intel["counts"]["buttons"] == 1
+
+
+def test_dom_intel_schema_round_trip(tmp_path: pathlib.Path):
+    """The intel JS payload validates against DomIntel pydantic schema."""
+    from scanner.capture.dom_intel import DomIntel
+
+    payload = {
+        "title": "T",
+        "url": "https://example.test/",
+        "headings": [{"tag": "H1", "text": "Hi", "bbox": {"x": 0, "y": 0, "w": 10, "h": 10}}],
+        "buttons": [{"text": "Click", "tag": "BUTTON", "href": None, "bbox": None}],
+        "forms": [
+            {
+                "action": "/submit",
+                "method": "post",
+                "inputs": [
+                    {"type": "email", "name": "email", "placeholder": "you@x", "required": True}
+                ],
+            }
+        ],
+        "images": [{"src": "a.png", "alt": "alt", "bbox": None}],
+        "schema_jsonld": [{"@type": "Product"}],
+        "meta": {"og:title": "x"},
+        "counts": {"forms": 1, "inputs": 1, "buttons": 1, "tables": 0, "images": 1},
+    }
+    intel = DomIntel.model_validate(payload)
+    assert intel.title == "T"
+    assert intel.forms[0].inputs[0].type == "email"
+    assert intel.forms[0].inputs[0].required is True
+    assert intel.counts.images == 1
+
+
+def test_dom_capture_failure_does_not_break_screenshot(
+    monkeypatch: pytest.MonkeyPatch, tmp_output_dir: pathlib.Path
+):
+    """If page.evaluate raises during DOM intel, the PNG still lands cleanly."""
+    from scanner.capture import capture as capture_mod
+
+    fake_page = _make_dom_intel_page()
+
+    def _broken_evaluate(expr, *a, **kw):
+        if isinstance(expr, str) and "document.title" in expr:
+            raise RuntimeError("page closed")
+        return 1000
+
+    fake_page.evaluate = MagicMock(side_effect=_broken_evaluate)
+    # Make page.content also fail to test both legs.
+    fake_page.content = MagicMock(side_effect=RuntimeError("content failed"))
+
+    fake_ctx = MagicMock(name="BrowserContext")
+    fake_ctx.new_page = MagicMock(return_value=fake_page)
+    fake_pw = MagicMock()
+    monkeypatch.setattr(
+        capture_mod, "create_browser", MagicMock(return_value=(fake_pw, fake_ctx))
+    )
+    monkeypatch.setattr(capture_mod, "dismiss_cookies", MagicMock())
+    monkeypatch.setattr(capture_mod, "scroll_lazy", MagicMock())
+    monkeypatch.setattr(capture_mod.time, "sleep", MagicMock())
+
+    out = capture_mod.capture_page(
+        url="https://example.test/",
+        club="mancity",
+        area="hospitality",
+        step_name="landing",
+        output_dir=tmp_output_dir,
+    )
+    assert out.is_file()
+    # html/ and dom/ may not exist OR be empty — but PNG must.
+    assert out.read_bytes().startswith(b"\x89PNG")

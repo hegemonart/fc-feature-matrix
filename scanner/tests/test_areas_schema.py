@@ -93,6 +93,33 @@ def test_missing_results_dir_raises():
         )
 
 
+# --- Plan 02-15 Wave B — DOM artifact dirs --------------------------------
+
+
+def test_html_dir_and_dom_intel_dir_default_to_none():
+    entry = AreaEntry.model_validate(
+        {
+            "evidence_dir": "scanner/output/evidence/hospitality/",
+            "results_dir": "scanner/output/results/hospitality/",
+        }
+    )
+    assert entry.html_dir is None
+    assert entry.dom_intel_dir is None
+
+
+def test_html_dir_and_dom_intel_dir_accept_strings():
+    entry = AreaEntry.model_validate(
+        {
+            "evidence_dir": "scanner/output/evidence/hospitality/",
+            "results_dir": "scanner/output/results/hospitality/",
+            "html_dir": "scanner/output/html/hospitality/",
+            "dom_intel_dir": "scanner/output/dom/hospitality/",
+        }
+    )
+    assert entry.html_dir == "scanner/output/html/hospitality/"
+    assert entry.dom_intel_dir == "scanner/output/dom/hospitality/"
+
+
 def test_bogus_status_raises():
     with pytest.raises(ValidationError):
         AreaEntry.model_validate(

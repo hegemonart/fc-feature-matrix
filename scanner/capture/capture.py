@@ -38,11 +38,59 @@ from typing import Any
 
 from scanner.capture.browser import create_browser, scroll_lazy
 from scanner.capture.cookies import dismiss_cookies
+from scanner.capture.dom_intel import EXTRACT_DOM_INTEL_JS
 from scanner.capture.login import login_to_club
 from scanner.flow.schema import FlowMap, FlowStep
 from scanner.flow.validate import validate_flow_map
 
 logger = logging.getLogger(__name__)
+
+
+def _capture_dom_artifacts(
+    page: Any,
+    output_dir: Path,
+    club: str,
+    step_name: str,
+) -> tuple[Path | None, Path | None]:
+    """Capture HTML + DOM intel after the screenshot lands (Plan 02-15 Wave B).
+
+    Writes two artifacts alongside the PNG:
+
+    - ``{output_dir}/html/{club}_{step_name}.html`` — raw page HTML.
+    - ``{output_dir}/dom/{club}_{step_name}_intel.json`` — DOM intel JSON.
+
+    Both writes are best-effort: a failure on either side is logged at
+    WARNING and the function returns ``None`` for that artifact path. The
+    screenshot is always taken first so a flaky DOM read can never break
+    the visual capture path.
+    """
+    html_path: Path | None = None
+    intel_path: Path | None = None
+    try:
+        html_dir = output_dir / "html"
+        html_dir.mkdir(parents=True, exist_ok=True)
+        html_path = html_dir / f"{club}_{step_name}.html"
+        html_path.write_text(page.content(), encoding="utf-8")
+    except Exception as exc:
+        logger.warning("DOM html capture failed for %s/%s: %s", club, step_name, exc)
+        html_path = None
+
+    try:
+        intel_dir = output_dir / "dom"
+        intel_dir.mkdir(parents=True, exist_ok=True)
+        intel_path = intel_dir / f"{club}_{step_name}_intel.json"
+        intel = page.evaluate(EXTRACT_DOM_INTEL_JS)
+        intel_path.write_text(
+            json.dumps(intel, indent=2, ensure_ascii=False, default=str),
+            encoding="utf-8",
+        )
+    except Exception as exc:
+        logger.warning(
+            "DOM intel capture failed for %s/%s: %s", club, step_name, exc
+        )
+        intel_path = None
+
+    return html_path, intel_path
 
 
 def capture_page(
@@ -107,6 +155,9 @@ def capture_page(
         logger.info(
             f"Captured {club} {step_name} -> {out_file} ({len(png_bytes)} bytes)"
         )
+        # Plan 02-15 Wave B — capture DOM artifacts alongside the PNG.
+        # Best-effort: failures are logged but never break the screenshot path.
+        _capture_dom_artifacts(page, output_dir, club, step_name)
         return out_file
     finally:
         ctx.close()
@@ -238,6 +289,8 @@ def _execute_action(
             out_file.parent.mkdir(parents=True, exist_ok=True)
             png_bytes = page.screenshot(full_page=True)
             out_file.write_bytes(png_bytes)
+            # Plan 02-15 Wave B — DOM artifacts alongside each flow screenshot.
+            _capture_dom_artifacts(page, output_dir, club, step.step_name)
             return ("captured", out_file, None)
 
         else:  # pragma: no cover — schema Literal blocks anything else.

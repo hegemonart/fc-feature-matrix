@@ -53,6 +53,13 @@ class AreaEntry(BaseModel):
     # tree (flat-presence-map shape) when set; falls back to results_dir per
     # recalculate.js's safe-default branch.
     scoring_results_dir: str | None = None
+    # Plan 02-15 Wave B additive — DOM artifact output trees.
+    # ``html_dir`` holds raw page HTML per (club, step); ``dom_intel_dir``
+    # holds the structured DOM intel JSON used by the dom_detect engine.
+    # Defaults of None preserve pre-15 behavior — capture writes alongside
+    # the PNG under ``evidence_dir/html`` and ``evidence_dir/dom`` when unset.
+    html_dir: str | None = None
+    dom_intel_dir: str | None = None
 
 
 class AreasConfig(RootModel[dict[str, AreaEntry]]):
