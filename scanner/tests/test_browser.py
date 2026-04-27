@@ -132,6 +132,67 @@ def test_create_browser_sets_chromium_user_agent_and_no_sandbox(
     assert "--no-sandbox" in kwargs["args"]
 
 
+# ---------------------------------------------------------------------------
+# Plan 02-15 Wave A — playwright-stealth integration
+# ---------------------------------------------------------------------------
+
+
+def test_stealth_enabled_by_default(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: pathlib.Path
+):
+    """Stealth fingerprint masks must be applied to the context by default."""
+    from scanner.capture import browser as browser_mod
+
+    monkeypatch.setattr(browser_mod, "USER_DATA_ROOT", tmp_path / ".scanner" / "user-data")
+    _, _, _, fake_ctx = _patch_sync_playwright(monkeypatch)
+
+    fake_apply = MagicMock(name="_apply_stealth_sync")
+    monkeypatch.setattr(browser_mod, "_apply_stealth_sync", fake_apply)
+
+    browser_mod.create_browser(club="mancity", area="hospitality")
+
+    fake_apply.assert_called_once_with(fake_ctx)
+
+
+def test_stealth_can_be_disabled(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: pathlib.Path
+):
+    """``stealth=False`` skips fingerprint mask application (debug/escape hatch)."""
+    from scanner.capture import browser as browser_mod
+
+    monkeypatch.setattr(browser_mod, "USER_DATA_ROOT", tmp_path / ".scanner" / "user-data")
+    _patch_sync_playwright(monkeypatch)
+
+    fake_apply = MagicMock(name="_apply_stealth_sync")
+    monkeypatch.setattr(browser_mod, "_apply_stealth_sync", fake_apply)
+
+    browser_mod.create_browser(club="mancity", area="hospitality", stealth=False)
+
+    fake_apply.assert_not_called()
+
+
+def test_stealth_helper_swallows_import_failure(
+    monkeypatch: pytest.MonkeyPatch,
+):
+    """If playwright_stealth import fails, _apply_stealth_sync is non-fatal."""
+    from scanner.capture import browser as browser_mod
+
+    # Force ImportError by making the dynamic import inside the helper fail.
+    import builtins
+    real_import = builtins.__import__
+
+    def fake_import(name, *a, **kw):
+        if name == "playwright_stealth":
+            raise ImportError("simulated missing dep")
+        return real_import(name, *a, **kw)
+
+    monkeypatch.setattr(builtins, "__import__", fake_import)
+
+    fake_ctx = MagicMock(name="BrowserContext")
+    # Must not raise — helper must catch and continue.
+    browser_mod._apply_stealth_sync(fake_ctx)
+
+
 def test_scroll_lazy_evaluates_window_scrollto(mock_playwright_page):
     """scroll_lazy ports recapture_round5.py::scroll_lazy — bounded scroll via page.evaluate."""
     from scanner.capture.browser import scroll_lazy

@@ -25,6 +25,27 @@ if TYPE_CHECKING:  # pragma: no cover
 
 USER_DATA_ROOT: Path = Path.home() / ".scanner" / "user-data"
 
+# Plan 02-15 Wave A — anti-bot fingerprint masks. Imported lazily inside
+# create_browser() so test_browser tests that monkeypatch sync_playwright
+# don't require the real package at import time, and so import failures
+# fall back to a no-op stealth path (D-21 backward compat).
+def _apply_stealth_sync(context) -> None:
+    """Apply playwright-stealth fingerprint masks to a BrowserContext.
+
+    No-op on import / apply failure (logged at WARNING). Stealth is a
+    cosmetic enhancement — the existing capture pipeline must keep working
+    even if playwright-stealth is uninstalled or its API changes.
+    """
+    try:
+        from playwright_stealth import Stealth  # type: ignore[import-not-found]
+        Stealth().apply_stealth_sync(context)
+    except Exception:  # pragma: no cover — defensive only
+        import logging
+        logging.getLogger(__name__).warning(
+            "playwright-stealth not applied (install missing or API drift); "
+            "continuing without fingerprint masks",
+        )
+
 # Chrome UA matching research §2.1 — stable across Mac / Linux / Windows headless.
 _USER_AGENT: str = (
     "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
@@ -37,6 +58,7 @@ def create_browser(
     area: str,
     *,
     headless: bool = False,
+    stealth: bool = True,
 ) -> tuple["Playwright", "BrowserContext"]:
     """Launch a persistent Chromium context for the given (area, club) pair.
 
@@ -54,6 +76,13 @@ def create_browser(
     headless :
         Defaults to `False` per user decision 2. Pilot dry-runs should be
         headed so a human can visually inspect popups; batch runs pass `True`.
+    stealth :
+        Plan 02-15 Wave A. Defaults to ``True`` — applies playwright-stealth
+        fingerprint masks (navigator.webdriver, chrome.runtime, plugins,
+        WebGL vendor, etc.) so headless Chromium passes the cheap bot checks
+        that triggered Cloudflare Turnstile interstitials in Plan 02-11.
+        Set ``stealth=False`` to reproduce pre-v2 behavior or to debug
+        whether stealth is masking a real selector miss.
     """
     user_data_dir = USER_DATA_ROOT / area / club
     user_data_dir.mkdir(parents=True, exist_ok=True)
@@ -67,6 +96,8 @@ def create_browser(
         user_agent=_USER_AGENT,
         args=["--no-sandbox"],
     )
+    if stealth:
+        _apply_stealth_sync(ctx)
     return pw, ctx
 
 
@@ -106,4 +137,4 @@ def scroll_lazy(page, step_px: int = 600, settle_ms: int = 400) -> None:
         pass
 
 
-__all__ = ["create_browser", "scroll_lazy", "USER_DATA_ROOT"]
+__all__ = ["create_browser", "scroll_lazy", "USER_DATA_ROOT", "_apply_stealth_sync"]
