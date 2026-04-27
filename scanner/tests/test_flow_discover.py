@@ -558,9 +558,17 @@ def test_dedupe_meta_collapses_repeat_dead_ends_preserving_order():
 
 
 def test_existing_flow_maps_still_validate_after_schema_extension():
-    """Plan 02-08 regression: the 5 front-half flow-map JSONs continue to
+    """Plan 02-08 regression: the 5 hospitality flow-map JSONs continue to
     parse cleanly under the extended FlowMapMetadata schema (additive
-    default-factory contract)."""
+    default-factory contract).
+
+    Plan 02-09 update: the back-half author pass deliberately sets some of
+    the new metadata fields on individual flow-maps (e.g.
+    ``bot_challenge_encountered=true`` for MCFC + PSG, ``trusted_subdomains_used``
+    for Chelsea + PSG). The contract under test is therefore *typing* not
+    *value*: the new fields must remain the right type and the maps must
+    continue to validate, regardless of whether Plan 02-09 chose to set them.
+    """
     from scanner.flow.validate import validate_flow_map
 
     flow_maps_dir = Path(__file__).resolve().parents[1] / "flow-maps" / "hospitality"
@@ -571,7 +579,12 @@ def test_existing_flow_maps_still_validate_after_schema_extension():
     )
     for fm_path in flow_maps_dir.glob("*.json"):
         fm = validate_flow_map(fm_path)
-        # New additive fields are present with their defaults.
-        assert fm.metadata.bot_challenge_encountered is False
-        assert fm.metadata.bot_challenge_reason is None
-        assert fm.metadata.trusted_subdomains_used == []
+        # New additive fields are present with the right *type*. Plan 02-09
+        # may or may not populate them on a given map — both are valid.
+        assert isinstance(fm.metadata.bot_challenge_encountered, bool)
+        assert fm.metadata.bot_challenge_reason is None or isinstance(
+            fm.metadata.bot_challenge_reason, str
+        )
+        assert isinstance(fm.metadata.trusted_subdomains_used, list)
+        for sub in fm.metadata.trusted_subdomains_used:
+            assert isinstance(sub, str)
