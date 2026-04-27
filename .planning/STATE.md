@@ -3,15 +3,15 @@ gsd_state_version: 1.0
 milestone: v7.1
 milestone_name: milestone
 status: executing
-stopped_at: Phase 2 Plan 02-08 COMPLETE (Wave 5 — Crawler v2 + Opus bbox calibration + credentials.py CWD fix). 199/199 tests green; bbox_mode='css' empirically confirmed. Plan 02-09 next per BACK-HALF-HANDOFF.
-last_updated: "2026-04-27T21:00:31.561Z"
+stopped_at: Completed 02-12-PLAN.md
+last_updated: "2026-04-27T21:36:18.819Z"
 last_activity: 2026-04-27
 progress:
   total_phases: 9
   completed_phases: 1
   total_plans: 22
-  completed_plans: 20
-  percent: 91
+  completed_plans: 21
+  percent: 95
 ---
 
 # Project State
@@ -26,7 +26,7 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 ## Current Position
 
 Phase: **Phase 2 — Hospitality Pilot (back-half resumed at Plan 02-09)** (9 of 14 plans complete)
-Plan: 11 of 14 (plans 02-01 through 02-09 complete); Next: Plan 02-10 (capture orchestrator for hospitality area, consumes the 5 extended flow-maps). Plan 02-09 (Wave 6) shipped: 5 hospitality flow-maps extended to full D-08 purchase-path drafts; FlowStep schema +3 additive override fields (requires_credentials, manual_chrome_mcp, skipped); 36/36 schema-override tests + 235/235 scanner tests green; Chelsea Option B partial confirmed (2 steps marked skipped='requires-paid-account'); $0 subscription cost.
+Plan: 12 of 14 (plans 02-01 through 02-09 complete); Next: Plan 02-10 (capture orchestrator for hospitality area, consumes the 5 extended flow-maps). Plan 02-09 (Wave 6) shipped: 5 hospitality flow-maps extended to full D-08 purchase-path drafts; FlowStep schema +3 additive override fields (requires_credentials, manual_chrome_mcp, skipped); 36/36 schema-override tests + 235/235 scanner tests green; Chelsea Option B partial confirmed (2 steps marked skipped='requires-paid-account'); $0 subscription cost.
 Status: Ready to execute
 Last activity: 2026-04-27
 Prior phase close: 2026-04-24 — Phase 1 Flow Automation Layer (8/8 plans, scanner infra shipped + dry-run validated through subscription backend). Earlier: 2026-04-17 — infra-redesign-v2 plan 05 (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min).
@@ -73,6 +73,7 @@ Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Ph
 | Phase 02 P02-07 | ~4min | 3 tasks | 2 files (front-half closure; docs-only) |
 | Phase 02 P10 | 35 | 2 tasks | 20 files |
 | Phase 02 P11 | 25 | 2 tasks | 5 files |
+| Phase 02 P12 | 50 | 2 tasks | 16 files |
 
 ## Accumulated Context
 
@@ -131,6 +132,9 @@ Recent decisions affecting current work:
 - [Phase 02]: Plan 02-07 closes front-half — summary + back-half handoff written. HOSP-01/02/03 remain Pending in REQUIREMENTS.md (partial progress tracked in STATE.md only). Back-half gated on user dummy-account registrations for 5 pilot clubs + Chrome MCP fallback for 3 bot-challenged sites.
 - [Phase ?]: Plan 02-11: Per-club result JSON shape includes steps + deferred + missing-PNG manifest for downstream derivation
 - [Phase ?]: Plan 02-11: Disagreement records club+step tagged at write time; PSG zero-disagreement is legitimate (Opus+Sonnet full agreement)
+- [Phase ?]: Plan 02-12: D-21 additive call-site config wiring formalized; vision/ + capture/ math layers untouched
+- [Phase ?]: Plan 02-12: Disagreement resolution policy = per-step Opus-when-agree, False+disputed-when-disagree; OR-flatten across steps with sticky disputed flag
+- [Phase ?]: Plan 02-12: scoring_results_dir field separates flat-results (analysis/<area>/results/) from vision intermediate JSONs (scanner/output/results/<area>/)
 
 ### Pending Todos
 
@@ -143,6 +147,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-04-27T21:00:31.556Z
-Stopped at: Phase 2 Plan 02-08 COMPLETE (Wave 5 — Crawler v2 + Opus bbox calibration + credentials.py CWD fix). 199/199 tests green; bbox_mode='css' empirically confirmed. Plan 02-09 next per BACK-HALF-HANDOFF.
+Last session: 2026-04-27T21:36:18.814Z
+Stopped at: Completed 02-12-PLAN.md
 Resume file: None
