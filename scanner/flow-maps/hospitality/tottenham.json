@@ -9,7 +9,13 @@
       "action": "navigate",
       "selector": null,
       "form_fields": null,
-      "hide_selectors": [],
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]",
+        "[class*=\"chat-widget\"]",
+        "[class*=\"okx\"]",
+        "[id*=\"okx\"]"
+      ],
       "wait_for": null
     },
     {
@@ -31,16 +37,20 @@
       "wait_for": null
     },
     {
-      "step_name": "click-depth-1",
-      "url": null,
-      "action": "click",
-      "selector": "a[href=\"/tickets/premium-hospitality/#form\"]",
+      "step_name": "matchday-options",
+      "url": "https://www.tottenhamhotspur.com/tickets/premium-experiences/matchday-options/",
+      "action": "navigate",
+      "selector": null,
       "form_fields": null,
-      "hide_selectors": [],
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]",
+        "[class*=\"okx\"]"
+      ],
       "wait_for": null
     },
     {
-      "step_name": "wait-depth-1",
+      "step_name": "matchday-options-wait",
       "url": null,
       "action": "wait",
       "selector": null,
@@ -49,7 +59,7 @@
       "wait_for": "networkidle"
     },
     {
-      "step_name": "shot-depth-1",
+      "step_name": "matchday-options-shot",
       "url": null,
       "action": "screenshot",
       "selector": null,
@@ -58,25 +68,20 @@
       "wait_for": null
     },
     {
-      "step_name": "click-depth-2",
-      "url": null,
-      "action": "click",
-      "selector": "a[href=\"/tickets/premium-hospitality/seasonal-options/premium-seats/\"]",
+      "step_name": "premium-seats-detail",
+      "url": "https://www.tottenhamhotspur.com/tickets/premium-experiences/seasonal-options/premium-seats/",
+      "action": "navigate",
+      "selector": null,
       "form_fields": null,
-      "hide_selectors": [],
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]",
+        "[class*=\"okx\"]"
+      ],
       "wait_for": null
     },
     {
-      "step_name": "wait-depth-2",
-      "url": null,
-      "action": "wait",
-      "selector": null,
-      "form_fields": null,
-      "hide_selectors": [],
-      "wait_for": "networkidle"
-    },
-    {
-      "step_name": "shot-depth-2",
+      "step_name": "premium-seats-detail-shot",
       "url": null,
       "action": "screenshot",
       "selector": null,
@@ -85,25 +90,38 @@
       "wait_for": null
     },
     {
-      "step_name": "click-depth-3",
+      "step_name": "match-selector",
       "url": null,
       "action": "click",
-      "selector": "a[href=\"/tickets/premium-hospitality/seasonal-options/premium-seats/#form\"]",
+      "selector": "a[href*='enquir'], a[href*='#form'], button.select-match, a.fixture-card",
       "form_fields": null,
       "hide_selectors": [],
       "wait_for": null
     },
     {
-      "step_name": "wait-depth-3",
+      "step_name": "match-selector-shot",
       "url": null,
-      "action": "wait",
+      "action": "screenshot",
       "selector": null,
       "form_fields": null,
       "hide_selectors": [],
-      "wait_for": "networkidle"
+      "wait_for": null
     },
     {
-      "step_name": "shot-depth-3",
+      "step_name": "enquiry-form-prefill",
+      "url": null,
+      "action": "fill",
+      "selector": null,
+      "form_fields": [
+        {"selector": "input[name='firstName'], input[name='first_name'], input[name='name'], input#name, input[name*='Name']", "value": "Test Test"},
+        {"selector": "input[name='email'], input[type='email']", "value": "test@example.com"},
+        {"selector": "input[name='phone'], input[name='telephone'], input[type='tel']", "value": "+44 0000 000000"}
+      ],
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
       "url": null,
       "action": "screenshot",
       "selector": null,
@@ -118,7 +136,10 @@
     "external_redirects": [],
     "dead_ends": [],
     "cookie_dismiss_failed": false,
-    "fixture_id": null,
-    "captcha_encountered": false
+    "fixture_id": "FIRST_AVAILABLE",
+    "captcha_encountered": false,
+    "bot_challenge_encountered": false,
+    "bot_challenge_reason": null,
+    "trusted_subdomains_used": []
   }
 }
