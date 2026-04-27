@@ -111,6 +111,8 @@ def dismiss_cookies(
     page: Page,
     club: str | None = None,
     max_attempts: int = 3,
+    *,
+    domain: str | None = None,
 ) -> bool:
     """Dismiss the cookie/consent banner on `page`.
 
@@ -121,12 +123,41 @@ def dismiss_cookies(
     appears only after the consent banner is dismissed) are clicked once, in
     order, after the first successful JS evaluation.
 
+    Plan 02-08 — `domain` override: when set AND ``STRATEGIES[domain]`` exists
+    (a future-extensible domain-keyed entry, e.g. ``STRATEGIES["seatunique.com"]``
+    populated when concrete broker pages are confirmed), its priority list
+    is concatenated FIRST, then the club's, then the global default. This
+    enables third-party broker pages to have their own cookie strategy
+    without polluting the per-club entries. ``domain`` is forward-compatible:
+    when no domain-keyed strategy exists, behavior collapses to the
+    pre-08 club-only path.
+
     Returns True when a click (or `__cmp` fallback) succeeded, False otherwise.
     Never raises — navigation races are swallowed per research §2.2.
     """
-    strategy: CookieStrategy = STRATEGIES.get(club, {}) if club else {}
-    priorities = strategy.get("priority", GLOBAL_COOKIE_PRIORITIES)
-    post_click = strategy.get("post_click_selectors", [])
+    club_strategy: CookieStrategy = STRATEGIES.get(club, {}) if club else {}
+    domain_strategy: CookieStrategy = STRATEGIES.get(domain, {}) if domain else {}
+
+    # Build the priority list: domain-keyed first (Plan 02-08), then club-keyed,
+    # then global default. dict.fromkeys preserves insertion order while
+    # collapsing duplicates so a phrase common to two strategies is only
+    # evaluated once per attempt. When the domain dict has no entry the
+    # behavior collapses to the pre-08 club-only contract — tests assert
+    # exact equality of the priority list passed to evaluate(JS, priorities).
+    domain_priority = list(domain_strategy.get("priority", []))
+    club_priority = list(club_strategy.get("priority", []))
+    if domain_priority:
+        priorities = list(dict.fromkeys([*domain_priority, *club_priority]))
+    elif club_priority:
+        priorities = club_priority
+    else:
+        priorities = GLOBAL_COOKIE_PRIORITIES
+
+    # post_click selectors: domain-keyed override wins; else fall back to club.
+    post_click = list(
+        domain_strategy.get("post_click_selectors")
+        or club_strategy.get("post_click_selectors", [])
+    )
 
     for _attempt in range(max_attempts):
         try:
