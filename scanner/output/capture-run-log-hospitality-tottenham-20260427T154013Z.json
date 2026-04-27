@@ -1,0 +1,99 @@
+{
+  "club": "tottenham",
+  "area": "hospitality",
+  "flow_map": "scanner\\flow-maps\\hospitality\\tottenham.json",
+  "started_at": "2026-04-27T15:40:13Z",
+  "steps": [
+    {
+      "step_name": "landing",
+      "status": "captured",
+      "duration_ms": 7655,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "landing-wait",
+      "status": "captured",
+      "duration_ms": 3,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "landing-shot",
+      "status": "captured",
+      "duration_ms": 7492,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\tottenham_landing-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "matchday-options",
+      "status": "captured",
+      "duration_ms": 5192,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "matchday-options-wait",
+      "status": "captured",
+      "duration_ms": 5,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "matchday-options-shot",
+      "status": "captured",
+      "duration_ms": 7580,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\tottenham_matchday-options-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "premium-seats-detail",
+      "status": "captured",
+      "duration_ms": 5608,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "premium-seats-detail-shot",
+      "status": "captured",
+      "duration_ms": 17451,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\tottenham_premium-seats-detail-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "match-selector",
+      "status": "captured",
+      "duration_ms": 107,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "match-selector-shot",
+      "status": "captured",
+      "duration_ms": 17457,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\tottenham_match-selector-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "status": "error",
+      "duration_ms": 30015,
+      "output_path": null,
+      "reason": "Page.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='firstName'], input[name='first_name'], input[name='name'], input#name, input[name*='Name']\")\n"
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "status": "captured",
+      "duration_ms": 16449,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\tottenham_enquiry-form-prefill-shot.png",
+      "reason": null
+    }
+  ],
+  "totals": {
+    "captured": 11,
+    "skipped": 0,
+    "chrome_mcp": 0,
+    "missing": 0,
+    "error": 1
+  }
+}
