@@ -207,4 +207,66 @@ def run_wave_for_club(
     }
 
 
+def _cli() -> None:
+    """Click CLI entry-point — invoke the wave for one club's run-log.
+
+    Usage::
+
+        python -m scanner.scripts.run_vision_wave \\
+          --run-log <path/to/capture-run-log-{area}-{club}-...json> \\
+          --evidence-dir <scanner/output/evidence/{area}> \\
+          --results-dir <scanner/output/results/{area}> \\
+          --disagreements <scanner/output/disagreements-{area}.json> \\
+          --rubric <path/to/features.json> \\
+          --api-mode subscription
+
+    All paths are arguments — the orchestrator is area-agnostic (FLOW-02).
+    """
+    import sys
+    import time
+
+    import click
+
+    @click.command()
+    @click.option("--run-log", type=click.Path(exists=True, path_type=Path), required=True)
+    @click.option("--evidence-dir", type=click.Path(path_type=Path), required=True)
+    @click.option("--results-dir", type=click.Path(path_type=Path), required=True)
+    @click.option("--disagreements", type=click.Path(path_type=Path), required=True)
+    @click.option("--rubric", type=click.Path(exists=True, path_type=Path), required=True)
+    @click.option("--api-mode", type=click.Choice(["subscription", "api-key"]), default="subscription")
+    def _run(
+        run_log: Path,
+        evidence_dir: Path,
+        results_dir: Path,
+        disagreements: Path,
+        rubric: Path,
+        api_mode: str,
+    ) -> None:
+        rubric_data = json.loads(Path(rubric).read_text(encoding="utf-8"))
+        rubric_list = [FeatureDef(**f) for f in rubric_data["features"]]
+
+        t0 = time.time()
+        click.echo(f"Wave start: run-log={run_log.name} api-mode={api_mode} rubric={len(rubric_list)} features")
+        summary = run_wave_for_club(
+            run_log_path=run_log,
+            evidence_dir=evidence_dir,
+            results_dir=results_dir,
+            disagreements_path=disagreements,
+            rubric=rubric_list,
+            api_mode=api_mode,
+        )
+        elapsed = time.time() - t0
+        click.echo(
+            f"Wave done: {summary['club']} captured_steps={summary['captured_steps']} "
+            f"vision_calls={summary['vision_calls']} new_disagreements={summary['new_disagreements']} "
+            f"missing_png={len(summary['missing_png_steps'])} elapsed={elapsed:.1f}s"
+        )
+
+    _run()
+
+
+if __name__ == "__main__":
+    _cli()
+
+
 __all__ = ["run_wave_for_club"]
