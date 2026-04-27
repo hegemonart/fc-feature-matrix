@@ -12,3 +12,6 @@ output/evidence/
 # Plan 02-08: calibration artifact committed for reproducibility (per the
 # Plan 02-08 must_haves spec). One-line override of the *.json glob.
 !output/opus-bbox-calibration.json
+# Plan 02-12: contact-sheet HTMLs committed as audit-trail evidence
+# (area-agnostic glob — Plan 02-14 reviewer gate replay).
+!output/contact-report-*.html
