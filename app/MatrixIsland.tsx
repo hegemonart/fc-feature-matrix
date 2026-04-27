@@ -41,6 +41,7 @@
    ================================================================ */
 
 import { useState, useMemo, useCallback, useEffect, useRef, memo } from 'react';
+import { useRouter } from 'next/navigation';
 import {
   CATEGORIES,
   BAND_META,
@@ -159,6 +160,9 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
   const [comingSoonFlowName, setComingSoonFlowName] = useState('');
   const [requestSending, setRequestSending] = useState(false);
   const [, setRequestSent] = useState<string | null>(null);
+
+  /* ── Router (Plan 02-13: hospitality tab unlock for authed users) ── */
+  const router = useRouter();
 
   /* ── Tooltip + column selection (D-21 / D-18) ── */
   const { tooltipData, handleCellEnter, handleCellLeave } = useHoverTooltip();
@@ -408,6 +412,16 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
     // never opens the locked/coming-soon modal.
     if (tabId === 'home') return;
 
+    // Plan 02-13 — hospitality is unlocked for any authed tier
+    // (signed-in / premium / admin). Unauthed users fall through to
+    // the existing locked-modal branch (preserves preview-mode UX).
+    // The tab stays in LOCKED_TABS so the unauthed flow is unchanged.
+    if (tabId === 'hospitality' && (authed || isPremium || isAdmin)) {
+      trackEvent('tab_click', { tab: 'Hospitality Packages', outcome: 'navigate' });
+      router.push('/hospitality');
+      return;
+    }
+
     // Map tab id back to display name for tracking + modal copy.
     const tabName =
       tabId === 'unlock' ? 'Premium' :
@@ -426,7 +440,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
       setLockedFlowName(tabName);
       setLockedModalVisible(true);
     }
-  }, [authed, isAdmin, isPremium]);
+  }, [authed, isAdmin, isPremium, router]);
 
   /* ── Detail panel handlers (preserved) ── */
   const handleShowFeatureDetail = useCallback((fid: string) => {
