@@ -1,4 +1,5 @@
 {
+  "product_id": "psg",
   "club_id": "psg",
   "club_name": "Paris Saint-Germain",
   "area": "hospitality",
@@ -66,6 +67,7 @@
     "first-tier-shot",
     "landing-shot"
   ],
-  "judge_agreement_rate": 1.0,
-  "generated_at": "2026-04-27T21:18:28+00:00"
+  "judge_agreement_rate": 1,
+  "generated_at": "2026-04-27T21:30:47+00:00",
+  "total_score": -125
 }

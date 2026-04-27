@@ -1,4 +1,5 @@
 {
+  "product_id": "realmadrid",
   "club_id": "realmadrid",
   "club_name": "Real Madrid",
   "area": "hospitality",
@@ -69,5 +70,6 @@
     "landing-shot"
   ],
   "judge_agreement_rate": 0.9455,
-  "generated_at": "2026-04-27T21:18:28+00:00"
+  "generated_at": "2026-04-27T21:30:47+00:00",
+  "total_score": -92
 }

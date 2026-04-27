@@ -1,4 +1,5 @@
 {
+  "product_id": "chelsea",
   "club_id": "chelsea",
   "club_name": "Chelsea",
   "area": "hospitality",
@@ -80,5 +81,6 @@
     "package-tambling-suite-shot"
   ],
   "judge_agreement_rate": 0.9212,
-  "generated_at": "2026-04-27T21:18:28+00:00"
+  "generated_at": "2026-04-27T21:30:47+00:00",
+  "total_score": -79
 }

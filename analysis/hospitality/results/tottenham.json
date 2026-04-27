@@ -1,4 +1,5 @@
 {
+  "product_id": "tottenham",
   "club_id": "tottenham",
   "club_name": "Tottenham Hotspur",
   "area": "hospitality",
@@ -77,5 +78,6 @@
     "premium-seats-detail-shot"
   ],
   "judge_agreement_rate": 0.9673,
-  "generated_at": "2026-04-27T21:18:28+00:00"
+  "generated_at": "2026-04-27T21:30:47+00:00",
+  "total_score": -57
 }

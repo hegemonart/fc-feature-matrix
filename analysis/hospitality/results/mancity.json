@@ -1,4 +1,5 @@
 {
+  "product_id": "mancity",
   "club_id": "mancity",
   "club_name": "Manchester City",
   "area": "hospitality",
@@ -64,6 +65,7 @@
   "captured_steps": [
     "landing"
   ],
-  "judge_agreement_rate": 1.0,
-  "generated_at": "2026-04-27T21:18:28+00:00"
+  "judge_agreement_rate": 1,
+  "generated_at": "2026-04-27T21:30:47+00:00",
+  "total_score": -99
 }
