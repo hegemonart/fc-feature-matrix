@@ -260,3 +260,70 @@ def test_mancity_strategy_unchanged():
     from scanner.capture.cookies import MANCITY_STRATEGY
 
     assert MANCITY_STRATEGY["priority"] == ["accept all cookies", "accept all"]
+
+
+# -----------------------------------------------------------------------------
+# Plan 02-08 — domain= kwarg dispatch (per-domain cookie priority overrides)
+# -----------------------------------------------------------------------------
+
+
+def test_dismiss_cookies_accepts_domain_kwarg_without_breaking(
+    monkeypatch: pytest.MonkeyPatch, mock_playwright_page
+):
+    """Plan 02-08 Test 7: dismiss_cookies(page, club='psg', domain='www.psg.fr')
+    accepts the kwarg cleanly. With no domain-keyed STRATEGIES entry the
+    behavior collapses to the pre-08 club-only path — assert the priority
+    list passed to evaluate is exactly PSG_STRATEGY['priority']."""
+    from scanner.capture import cookies as cookies_mod
+    from scanner.capture.cookies import PSG_STRATEGY
+
+    mock_playwright_page.evaluate = MagicMock(return_value=True)
+    monkeypatch.setattr(cookies_mod.time, "sleep", MagicMock())
+
+    cookies_mod.dismiss_cookies(
+        mock_playwright_page,
+        club="psg",
+        domain="www.psg.fr",
+    )
+
+    passed_priorities = mock_playwright_page.evaluate.call_args.args[1]
+    # No STRATEGIES['www.psg.fr'] yet → collapse to PSG_STRATEGY['priority'].
+    assert passed_priorities == PSG_STRATEGY["priority"]
+
+
+def test_dismiss_cookies_domain_strategy_takes_precedence(
+    monkeypatch: pytest.MonkeyPatch, mock_playwright_page
+):
+    """Plan 02-08: when STRATEGIES contains a domain-keyed entry, its priority
+    list is concatenated FIRST (then the club's, deduped). This proves the
+    forward-compat hook works without needing to ship live broker entries."""
+    from scanner.capture import cookies as cookies_mod
+    from scanner.capture.cookies import PSG_STRATEGY
+
+    fake_domain_strategy = {
+        "priority": ["only on broker", "tout accepter"],  # second is shared with PSG
+        "post_click_selectors": [],
+    }
+    monkeypatch.setitem(
+        cookies_mod.STRATEGIES, "billetterie.example.com", fake_domain_strategy
+    )
+
+    mock_playwright_page.evaluate = MagicMock(return_value=True)
+    monkeypatch.setattr(cookies_mod.time, "sleep", MagicMock())
+
+    cookies_mod.dismiss_cookies(
+        mock_playwright_page,
+        club="psg",
+        domain="billetterie.example.com",
+    )
+
+    passed = mock_playwright_page.evaluate.call_args.args[1]
+    # Domain entries first, then PSG_STRATEGY entries appended (dedupe via
+    # dict.fromkeys collapses the shared "tout accepter" to a single entry).
+    assert passed[0] == "only on broker"
+    assert "tout accepter" in passed
+    # No duplicate tout accepter:
+    assert passed.count("tout accepter") == 1
+    # PSG-only entries follow:
+    for psg_entry in PSG_STRATEGY["priority"]:
+        assert psg_entry in passed

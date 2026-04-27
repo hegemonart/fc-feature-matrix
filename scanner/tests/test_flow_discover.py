@@ -392,3 +392,186 @@ def test_discover_detects_form_and_fills_with_dummy_data(tmp_path: Path, patched
     assert "Test Test" in values
     assert "test@example.com" in values
     assert "+44 0000 000000" in values
+
+
+# ---------------------------------------------------------------------------
+# Plan 02-08 — Cloudflare Turnstile detector + trusted_subdomains + dedupe
+# ---------------------------------------------------------------------------
+
+
+class _CFFakePage:
+    """Minimal page mock for the standalone _detect_bot_challenge unit tests.
+
+    Keeps the surface tiny: ``content()`` returns the body text and
+    ``query_selector(sel)`` resolves Cloudflare selectors.
+    """
+
+    def __init__(
+        self,
+        body: str = "",
+        cf_selectors: tuple[str, ...] = (),
+        raise_content: bool = False,
+    ):
+        self._body = body
+        self._cf_selectors = cf_selectors
+        self._raise_content = raise_content
+
+    def content(self):  # noqa: D401 — Playwright API parity
+        if self._raise_content:
+            raise RuntimeError("nav-race during content()")
+        return self._body
+
+    def query_selector(self, selector: str):
+        if selector in self._cf_selectors:
+            return MagicMock(name=f"cf-match-{selector}")
+        return None
+
+
+def test_detect_bot_challenge_403_with_just_a_moment_text_returns_turnstile():
+    """Plan 02-08 Test 1: HTTP 403 + 'Just a moment' body text → 'turnstile'."""
+    from scanner.flow.discover import _detect_bot_challenge
+
+    page = _CFFakePage(body="<html><head></head><body>Just a moment...</body></html>")
+    assert _detect_bot_challenge(page, status=403) == "turnstile"
+
+
+def test_detect_bot_challenge_403_with_cf_selector_returns_turnstile():
+    """Plan 02-08 Test 2: HTTP 403 + Cloudflare selector → 'turnstile'.
+
+    Tests the selector-only signal path: body has neither marker but
+    the DOM contains ``#cf-challenge-running``.
+    """
+    from scanner.flow.discover import _detect_bot_challenge
+
+    page = _CFFakePage(
+        body="<html><body>nothing recognizable here</body></html>",
+        cf_selectors=("#cf-challenge-running",),
+    )
+    assert _detect_bot_challenge(page, status=403) == "turnstile"
+
+
+def test_detect_bot_challenge_403_with_no_cf_signal_returns_none():
+    """Plan 02-08 Test 3: HTTP 403 with neither text nor selector signal → None.
+
+    Regression: a generic 403 (e.g. an auth-protected admin page) must
+    NOT classify as a bot challenge.
+    """
+    from scanner.flow.discover import _detect_bot_challenge
+
+    page = _CFFakePage(body="<html><body>Forbidden</body></html>")
+    assert _detect_bot_challenge(page, status=403) is None
+
+
+def test_detect_bot_challenge_non_403_returns_none():
+    """Status != 403 short-circuits regardless of body content."""
+    from scanner.flow.discover import _detect_bot_challenge
+
+    page = _CFFakePage(body="<html><body>Just a moment...</body></html>")
+    # 200 — no Cloudflare interstitial would ever come back with this status.
+    assert _detect_bot_challenge(page, status=200) is None
+    # None status (e.g. response was null) — also no detection.
+    assert _detect_bot_challenge(page, status=None) is None
+
+
+def test_detect_bot_challenge_swallows_content_exceptions():
+    """Defensive: page.content() raising must NOT raise out of detector."""
+    from scanner.flow.discover import _detect_bot_challenge
+
+    page = _CFFakePage(
+        body="",
+        raise_content=True,
+        cf_selectors=("#cf-challenge-running",),
+    )
+    # Content threw; selector still positive → still classifies.
+    assert _detect_bot_challenge(page, status=403) == "turnstile"
+
+
+def test_inspect_origin_trusted_subdomain_records_and_returns_trusted():
+    """Plan 02-08 Test 4: a trusted subdomain returns 'trusted', appends to
+    meta.trusted_subdomains_used, and does NOT touch external_redirects."""
+    from scanner.flow.discover import _inspect_origin
+    from scanner.flow.schema import FlowMapMetadata
+
+    meta = FlowMapMetadata()
+    kind = _inspect_origin(
+        current_url="https://hospitality.chelseafc.com/packages",
+        entry_origin="chelseafc.com",
+        meta=meta,
+        trusted_subdomains=["hospitality.chelseafc.com"],
+    )
+    assert kind == "trusted"
+    assert "hospitality.chelseafc.com" in meta.trusted_subdomains_used
+    assert meta.external_redirects == []
+
+
+def test_inspect_origin_untrusted_subdomain_falls_through_to_external():
+    """Plan 02-08 Test 5: a non-allowlisted cross-origin still falls into
+    external_redirects (regression — no allowlist bypass)."""
+    from scanner.flow.discover import _inspect_origin
+    from scanner.flow.schema import FlowMapMetadata
+
+    meta = FlowMapMetadata()
+    kind = _inspect_origin(
+        current_url="https://random-tracker.example/",
+        entry_origin="chelseafc.com",
+        meta=meta,
+        trusted_subdomains=["hospitality.chelseafc.com"],
+    )
+    assert kind == "external"
+    assert "https://random-tracker.example/" in meta.external_redirects
+    assert meta.trusted_subdomains_used == []
+
+
+def test_inspect_origin_no_trusted_list_preserves_pre08_behavior():
+    """Backward-compat: no trusted_subdomains kwarg → identical to pre-08."""
+    from scanner.flow.discover import _inspect_origin
+    from scanner.flow.schema import FlowMapMetadata
+
+    meta = FlowMapMetadata()
+    kind = _inspect_origin(
+        current_url="https://hospitality.chelseafc.com/",
+        entry_origin="chelseafc.com",
+        meta=meta,
+    )
+    assert kind == "external"
+    assert "https://hospitality.chelseafc.com/" in meta.external_redirects
+
+
+def test_dedupe_meta_collapses_repeat_dead_ends_preserving_order():
+    """Plan 02-08 Test 6: revisiting the same URL multiple times yields one
+    entry; insertion order is preserved via dict.fromkeys."""
+    from scanner.flow.discover import _dedupe_meta
+    from scanner.flow.schema import FlowMapMetadata
+
+    meta = FlowMapMetadata()
+    meta.dead_ends = ["a", "b", "a", "c", "b", "a"]
+    meta.external_redirects = ["x", "x", "y"]
+    meta.login_gated_steps = ["depth-0", "depth-0"]
+    meta.trusted_subdomains_used = ["s.example", "s.example"]
+
+    _dedupe_meta(meta)
+
+    assert meta.dead_ends == ["a", "b", "c"]
+    assert meta.external_redirects == ["x", "y"]
+    assert meta.login_gated_steps == ["depth-0"]
+    assert meta.trusted_subdomains_used == ["s.example"]
+
+
+def test_existing_flow_maps_still_validate_after_schema_extension():
+    """Plan 02-08 regression: the 5 front-half flow-map JSONs continue to
+    parse cleanly under the extended FlowMapMetadata schema (additive
+    default-factory contract)."""
+    from scanner.flow.validate import validate_flow_map
+
+    flow_maps_dir = Path(__file__).resolve().parents[1] / "flow-maps" / "hospitality"
+    expected = {"chelsea", "mancity", "psg", "realmadrid", "tottenham"}
+    found = {p.stem for p in flow_maps_dir.glob("*.json")}
+    assert expected.issubset(found), (
+        f"Missing front-half flow-maps: expected {expected}, found {found}"
+    )
+    for fm_path in flow_maps_dir.glob("*.json"):
+        fm = validate_flow_map(fm_path)
+        # New additive fields are present with their defaults.
+        assert fm.metadata.bot_challenge_encountered is False
+        assert fm.metadata.bot_challenge_reason is None
+        assert fm.metadata.trusted_subdomains_used == []

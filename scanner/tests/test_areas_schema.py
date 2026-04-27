@@ -137,3 +137,70 @@ def test_all_status_literals_accepted():
             {"evidence_dir": "e/", "results_dir": "r/", "status": status}
         )
         assert entry.status == status
+
+
+# -----------------------------------------------------------------------------
+# Plan 02-08 — additive bbox_mode, trusted_subdomains, features_evidence_dir
+# -----------------------------------------------------------------------------
+
+
+def test_bbox_mode_defaults_to_css():
+    """Missing bbox_mode field defaults to 'css' (pre-08 behavior preserved)."""
+    entry = AreaEntry.model_validate({"evidence_dir": "e/", "results_dir": "r/"})
+    assert entry.bbox_mode == "css"
+
+
+def test_bbox_mode_native_round_trips():
+    """Plan 02-08: 'native' is an accepted bbox_mode value."""
+    entry = AreaEntry.model_validate(
+        {"evidence_dir": "e/", "results_dir": "r/", "bbox_mode": "native"}
+    )
+    assert entry.bbox_mode == "native"
+
+
+def test_bbox_mode_invalid_raises():
+    """A bbox_mode outside ('css', 'native') is rejected at load."""
+    with pytest.raises(ValidationError):
+        AreaEntry.model_validate(
+            {"evidence_dir": "e/", "results_dir": "r/", "bbox_mode": "device"}
+        )
+
+
+def test_trusted_subdomains_default_empty_dict_and_round_trip():
+    """trusted_subdomains defaults to {}; populated value round-trips."""
+    entry_default = AreaEntry.model_validate(
+        {"evidence_dir": "e/", "results_dir": "r/"}
+    )
+    assert entry_default.trusted_subdomains == {}
+
+    entry = AreaEntry.model_validate(
+        {
+            "evidence_dir": "e/",
+            "results_dir": "r/",
+            "trusted_subdomains": {
+                "chelsea": ["hospitality.chelseafc.com"],
+                "psg": ["billetterie.psg.fr", "www.psg.fr"],
+            },
+        }
+    )
+    assert entry.trusted_subdomains["chelsea"] == ["hospitality.chelseafc.com"]
+    assert entry.trusted_subdomains["psg"] == ["billetterie.psg.fr", "www.psg.fr"]
+
+
+def test_features_evidence_dir_defaults_to_none():
+    """features_evidence_dir is optional; None means 'evidence_dir/features/'."""
+    entry = AreaEntry.model_validate({"evidence_dir": "e/", "results_dir": "r/"})
+    assert entry.features_evidence_dir is None
+
+
+def test_phase2_areas_json_with_plan_02_08_extensions_validates():
+    """The actual scanner/config/areas.json (post-Plan-02-08) loads cleanly."""
+    from scanner.config.loader import load_areas
+
+    cfg = load_areas()
+    hosp = cfg.get("hospitality")
+    # Plan 02-08 fields populated:
+    assert hosp.bbox_mode in ("css", "native")
+    assert isinstance(hosp.trusted_subdomains, dict)
+    assert "chelsea" in hosp.trusted_subdomains
+    assert "hospitality.chelseafc.com" in hosp.trusted_subdomains["chelsea"]
