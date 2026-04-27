@@ -50,6 +50,16 @@ class FlowMapMetadata(BaseModel):
       match fixture (may be None in front-half).
     - `captcha_encountered` — True when a reCAPTCHA/hCaptcha widget was
       detected; the crawler halts that branch (user decision 7 extends D-15).
+    - `bot_challenge_encountered` — True when a Cloudflare-style bot
+      challenge ("Just a moment..." interstitial) was detected (Plan 02-08).
+      Sibling to captcha_encountered: same halt-and-record contract.
+    - `bot_challenge_reason` — Free-form classifier label, e.g. "turnstile"
+      for Cloudflare; future-extensible to "arkose", "datadome", etc.
+    - `trusted_subdomains_used` — Subdomains that were treated as
+      same-origin by the trusted-subdomain allowlist (e.g.
+      hospitality.chelseafc.com when crawling chelseafc.com). Distinguished
+      from broker_vendor (cross-origin third-party) and external_redirects
+      (untrusted cross-origin). Plan 02-08.
     """
 
     broker_vendor: str | None = None
@@ -59,6 +69,11 @@ class FlowMapMetadata(BaseModel):
     cookie_dismiss_failed: bool = False
     fixture_id: str | None = None
     captcha_encountered: bool = False
+    # Plan 02-08 additive fields — default-factory so pre-existing flow-map
+    # JSONs (front-half v1) continue to validate unchanged.
+    bot_challenge_encountered: bool = False
+    bot_challenge_reason: str | None = None
+    trusted_subdomains_used: list[str] = Field(default_factory=list)
 
 
 class FlowStep(BaseModel):

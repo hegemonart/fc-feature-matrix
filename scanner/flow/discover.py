@@ -65,6 +65,29 @@ CAPTCHA_SELECTORS: tuple[str, ...] = (
     "[data-sitekey]",
 )
 
+# Plan 02-08: Cloudflare bot-challenge selectors. Distinct from CAPTCHA_SELECTORS
+# because the failure mode is different: a Cloudflare interstitial returns HTTP
+# 403 (or a 5xx-coded JS challenge page) and contains a "Just a moment..." title
+# rather than a sitekey iframe. The crawler halts the branch with a separate
+# reason ("turnstile") so per-club overrides can be authored cleanly later.
+CF_CHALLENGE_SELECTORS: tuple[str, ...] = (
+    "#cf-challenge-running",
+    ".cf-error-overview",
+    "[data-cf-challenge]",
+    'iframe[src*="cloudflare.com/cdn-cgi/challenge"]',
+    'iframe[src*="turnstile"]',
+    "div.cf-turnstile",
+)
+
+# Plan 02-08: case-sensitive markers in the page body / title that distinguish
+# a Cloudflare interstitial from a generic 403. Cloudflare uses Title Case
+# ("Just a moment...") consistently — the literal substring is a reliable
+# signal in combination with HTTP status 403.
+CF_CHALLENGE_TEXT_MARKERS: tuple[str, ...] = (
+    "Just a moment",
+    "<title>Just a moment</title>",
+)
+
 MAX_DEPTH = 3
 MAX_STEPS = 15  # schema cap (D-15)
 
@@ -155,6 +178,55 @@ def _detect_captcha(page: "Page") -> bool:
         except Exception:
             continue
     return False
+
+
+def _detect_bot_challenge(
+    page: "Page",
+    status: int | None,
+) -> str | None:
+    """Plan 02-08: detect a Cloudflare-style bot challenge interstitial.
+
+    Returns a reason string ("turnstile") when (Signal 1 AND (Signal 2 OR Signal 3)):
+
+    - Signal 1: HTTP status == 403 (Cloudflare interstitial response code).
+    - Signal 2 (text):  page body contains "Just a moment" or the title
+      element matches "<title>Just a moment</title>" (case-sensitive — the
+      Cloudflare default uses Title Case).
+    - Signal 3 (selector): any of CF_CHALLENGE_SELECTORS resolves on the
+      DOM (e.g. ``#cf-challenge-running``, ``.cf-error-overview``,
+      ``[data-cf-challenge]``, ``iframe[src*="cloudflare.com/cdn-cgi/challenge"]``).
+
+    Returns None when the combined signal is below threshold. Never raises —
+    each Playwright call is wrapped (mirrors :func:`_detect_captcha`).
+    """
+    if status != 403:
+        return None
+
+    # Signal 2: page text / title.
+    text_signal = False
+    try:
+        body_text = page.content()
+    except Exception:
+        body_text = ""
+    if body_text:
+        for marker in CF_CHALLENGE_TEXT_MARKERS:
+            if marker in body_text:
+                text_signal = True
+                break
+
+    # Signal 3: selectors.
+    selector_signal = False
+    for sel in CF_CHALLENGE_SELECTORS:
+        try:
+            if page.query_selector(sel) is not None:
+                selector_signal = True
+                break
+        except Exception:
+            continue
+
+    if text_signal or selector_signal:
+        return "turnstile"
+    return None
 
 
 def _detect_dead_end(page: "Page", status: int | None) -> bool:
@@ -251,16 +323,36 @@ def _inspect_origin(
     current_url: str,
     entry_origin: str,
     meta: FlowMapMetadata,
+    *,
+    trusted_subdomains: list[str] | None = None,
 ) -> str:
-    """Return 'same', 'broker', or 'external'; mutate meta for broker/external.
+    """Return 'same', 'broker', 'trusted', or 'external'; mutate meta accordingly.
 
     - 'same'     — netloc matches entry_origin (or is empty).
+    - 'trusted'  — netloc is in the per-club trusted_subdomains allowlist
+                   (Plan 02-08); meta.trusted_subdomains_used appended.
+                   Treated equivalently to 'same' for descent purposes.
     - 'broker'   — netloc matches an allowlisted broker domain; meta.broker_vendor set.
-    - 'external' — cross-origin, non-broker; meta.external_redirects appended.
+    - 'external' — cross-origin, untrusted, non-broker; meta.external_redirects appended.
     """
     netloc = _netloc(current_url)
     if not netloc or netloc == entry_origin:
         return "same"
+
+    # Plan 02-08: trusted-subdomain allowlist supersedes external_redirects.
+    # Compare against both the raw current netloc AND the urlparse netloc
+    # (which keeps the leading 'www.' that _netloc strips). Trusted entries
+    # in areas.json may be in either form (e.g. "billetterie.psg.fr" without
+    # www, "www.psg.fr" with). The raw netloc preserves the user's intent.
+    raw_netloc = urlparse(current_url).netloc.lower()
+    if trusted_subdomains:
+        for trusted in trusted_subdomains:
+            t = trusted.lower()
+            if t == netloc or t == raw_netloc:
+                if t not in meta.trusted_subdomains_used:
+                    meta.trusted_subdomains_used.append(t)
+                return "trusted"
+
     broker = _broker_for(netloc)
     if broker is not None:
         # First broker encountered wins; subsequent hops do not overwrite.
@@ -271,9 +363,46 @@ def _inspect_origin(
     return "external"
 
 
+def _dedupe_meta(meta: FlowMapMetadata) -> None:
+    """Plan 02-08: collapse duplicates in the four list fields, preserving order.
+
+    Uses ``list(dict.fromkeys(...))`` so insertion order is preserved (Python
+    3.7+ dict guarantee). In-place mutation: callers pass the same instance
+    that will be serialized.
+
+    Why: the crawler can revisit the same dead-end URL via different paths
+    (e.g. Chelsea self-referencing anchor). Deduping at emit-time keeps the
+    flow-map JSON readable without changing per-call append semantics.
+    """
+    meta.dead_ends = list(dict.fromkeys(meta.dead_ends))
+    meta.external_redirects = list(dict.fromkeys(meta.external_redirects))
+    meta.login_gated_steps = list(dict.fromkeys(meta.login_gated_steps))
+    meta.trusted_subdomains_used = list(dict.fromkeys(meta.trusted_subdomains_used))
+
+
 # ---------------------------------------------------------------------------
 # Public entry point
 # ---------------------------------------------------------------------------
+
+
+def _load_trusted_subdomains(area: str, club: str) -> list[str]:
+    """Plan 02-08: read per-club trusted_subdomains from areas.json.
+
+    Returns ``[]`` if the area entry, the optional ``trusted_subdomains``
+    map, or the per-club key is absent. Never raises (a misconfigured
+    areas.json shouldn't block a crawl — it just falls back to the
+    pre-08 external_redirects behavior).
+    """
+    try:
+        from scanner.config.loader import load_area
+        entry = load_area(area)
+        mapping = getattr(entry, "trusted_subdomains", None) or {}
+        # mapping is dict[str, list[str]] keyed by club slug.
+        if not isinstance(mapping, dict):
+            return []
+        return list(mapping.get(club, []) or [])
+    except Exception:
+        return []
 
 
 def discover_flow(
@@ -306,6 +435,9 @@ def discover_flow(
     steps: list[FlowStep] = []
     meta = FlowMapMetadata()
     visited: set[str] = {entry_url}
+    # Plan 02-08: per-club trusted_subdomains (additive — empty list when
+    # areas.json has no override for this club).
+    trusted_subs = _load_trusted_subdomains(area, club_slug)
 
     with sync_playwright() as p:
         browser = p.chromium.launch(headless=headless)
@@ -342,8 +474,26 @@ def discover_flow(
         ))
 
         # Cookie dismissal BEFORE any link enumeration (D-15 carryover).
-        if not dismiss_cookies(page, club=club_slug):
+        # Plan 02-08: pass current netloc so per-domain priority overrides
+        # can apply when the landing URL's host is itself a subdomain
+        # variant (e.g. www.psg.fr vs billetterie.psg.fr).
+        try:
+            landing_domain = urlparse(page.url).netloc.lower() or None
+        except Exception:
+            landing_domain = None
+        if not dismiss_cookies(page, club=club_slug, domain=landing_domain):
             meta.cookie_dismiss_failed = True
+
+        # Plan 02-08: Cloudflare bot-challenge detection on landing.
+        # Sibling to _detect_captcha — same halt-and-record contract.
+        bot_reason = _detect_bot_challenge(page, status)
+        if bot_reason is not None:
+            meta.bot_challenge_encountered = True
+            meta.bot_challenge_reason = bot_reason
+            browser.close()
+            return _write_and_validate(
+                out_path, area, club_slug, entry_url, steps, meta,
+            )
 
         # Landing-level dead-end shortcut.
         if _detect_dead_end(page, status):
@@ -361,6 +511,8 @@ def discover_flow(
             visited=visited,
             steps=steps,
             meta=meta,
+            club=club_slug,
+            trusted_subdomains=trusted_subs,
         )
 
         browser.close()
@@ -381,10 +533,22 @@ def _descend(
     visited: set[str],
     steps: list[FlowStep],
     meta: FlowMapMetadata,
+    club: str | None = None,
+    trusted_subdomains: list[str] | None = None,
 ) -> None:
     """Depth-limited greedy descent: rank links on the current page, click the
     highest-scoring unvisited one, emit FlowSteps, check detection hooks on
     the new page, and recurse. Stops the branch on any halt condition.
+
+    Plan 02-08 additions:
+
+    - ``club`` enables per-domain cookie-strategy dispatch when descending
+      onto a sub/cross-origin host.
+    - ``trusted_subdomains`` is forwarded to :func:`_inspect_origin` so a
+      cross-origin redirect into an allowlisted subdomain continues
+      descent instead of falling into ``external_redirects``.
+    - Cloudflare bot-challenge detection: a 'turnstile' interstitial halts
+      the branch and records ``meta.bot_challenge_encountered``.
     """
     if depth > MAX_DEPTH:
         return
@@ -399,8 +563,13 @@ def _descend(
         meta.captcha_encountered = True
         return
 
-    # 2. Origin inspection (broker/external).
-    origin_kind = _inspect_origin(current_url, entry_origin, meta)
+    # 2. Origin inspection (broker/trusted-subdomain/external).
+    origin_kind = _inspect_origin(
+        current_url,
+        entry_origin,
+        meta,
+        trusted_subdomains=trusted_subdomains,
+    )
     if origin_kind == "external":
         return
 
@@ -474,6 +643,8 @@ def _descend(
             visited=visited,
             steps=steps,
             meta=meta,
+            club=club,
+            trusted_subdomains=trusted_subdomains,
         )
         return
 
@@ -500,6 +671,10 @@ def _write_and_validate(
         keep = [steps[0]] + steps[1 : MAX_STEPS - 1] + [steps[-1]]
         steps = keep[:MAX_STEPS]
 
+    # Plan 02-08: collapse duplicate URLs across the four list fields before
+    # serialization. Order-preserving via dict.fromkeys.
+    _dedupe_meta(meta)
+
     fm = FlowMap(
         area=area,
         club=club,
@@ -520,6 +695,12 @@ __all__ = [
     "HOSPITALITY_LINK_PATTERN",
     "LOGIN_URL_PATTERN",
     "CAPTCHA_SELECTORS",
+    "CF_CHALLENGE_SELECTORS",
+    "CF_CHALLENGE_TEXT_MARKERS",
     "MAX_DEPTH",
     "MAX_STEPS",
+    "_detect_bot_challenge",
+    "_dedupe_meta",
+    "_inspect_origin",
+    "_load_trusted_subdomains",
 ]

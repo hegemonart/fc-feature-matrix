@@ -5,6 +5,12 @@
     "rubric_path": "analysis/hospitality/HOSPITALITY-FLOW.md",
     "features_ts": "analysis/hospitality/features.ts",
     "flow_maps_dir": "scanner/flow-maps/hospitality/",
-    "status": "pilot"
+    "status": "pilot",
+    "bbox_mode": "css",
+    "trusted_subdomains": {
+      "chelsea": ["hospitality.chelseafc.com"],
+      "psg": ["billetterie.psg.fr", "www.psg.fr"],
+      "tottenham": ["tottenhamhotspurstadium.com"]
+    }
   }
 }

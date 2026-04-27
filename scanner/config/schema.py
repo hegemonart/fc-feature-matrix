@@ -18,8 +18,26 @@ from pydantic import BaseModel, RootModel
 Status = Literal["pending", "pilot", "full", "deprecated"]
 
 
+BboxMode = Literal["css", "native"]
+
+
 class AreaEntry(BaseModel):
-    """A single area's I/O paths, rubric, and lifecycle status."""
+    """A single area's I/O paths, rubric, and lifecycle status.
+
+    Plan 02-08 added three optional fields:
+
+    - ``bbox_mode`` — coordinate space the Opus vision pipeline returns
+      bboxes in. ``"css"`` (default) means the existing `denormalise_bbox`
+      scaling applies; ``"native"`` means Opus already returns device-pixel
+      coordinates and the slice CLI must skip scaling. Decided empirically
+      via :mod:`scanner.scripts.calibrate_opus_bbox`.
+    - ``trusted_subdomains`` — per-club allowlist of subdomains treated as
+      same-origin during flow discovery (e.g. ``hospitality.chelseafc.com``
+      when crawling chelseafc.com). Distinct from the broker allowlist.
+    - ``features_evidence_dir`` — optional override for per-feature crop
+      output directory; defaults to ``evidence_dir/features/`` per the
+      pre-08 convention.
+    """
 
     evidence_dir: str
     results_dir: str
@@ -27,6 +45,10 @@ class AreaEntry(BaseModel):
     features_ts: str | None = None
     flow_maps_dir: str | None = None
     status: Status = "pending"
+    # Plan 02-08 additive — defaults preserve pre-08 behavior.
+    bbox_mode: BboxMode = "css"
+    trusted_subdomains: dict[str, list[str]] = {}
+    features_evidence_dir: str | None = None
 
 
 class AreasConfig(RootModel[dict[str, AreaEntry]]):
@@ -44,4 +66,4 @@ class AreasConfig(RootModel[dict[str, AreaEntry]]):
             raise KeyError(f"Unknown area: {area}. Known: {known}") from e
 
 
-__all__ = ["AreaEntry", "AreasConfig", "Status"]
+__all__ = ["AreaEntry", "AreasConfig", "Status", "BboxMode"]
