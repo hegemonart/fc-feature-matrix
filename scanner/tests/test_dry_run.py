@@ -362,7 +362,17 @@ def test_dry_run_subscription_backend(
     )
     assert res_slice.exit_code == 0, res_slice.output
 
+    # Plan 02-12: areas.json now sets features_evidence_dir to the canonical
+    # analysis/ tree (D-01). The dry-run loader copies the real areas.json so
+    # this test follows the same routing.
     features_dir = (
+        repo
+        / "analysis"
+        / "hospitality"
+        / "evidence"
+        / "features"
+    )
+    legacy_features_dir = (
         repo
         / "scanner"
         / "output"
@@ -373,6 +383,12 @@ def test_dry_run_subscription_backend(
     crops = sorted(features_dir.glob("mancity_*.png"))
     assert 1 <= len(crops) <= 3, (
         f"expected 1-3 crops in {features_dir}, got {len(crops)}: {crops}"
+    )
+    assert not legacy_features_dir.exists() or not list(
+        legacy_features_dir.glob("mancity_*.png")
+    ), (
+        "Crops must NOT be written to the legacy evidence_dir/features/ when "
+        "features_evidence_dir override is configured."
     )
     # The two present features (hero_image, primary_cta) should both have crops.
     crop_keys = {p.stem.split("_", 1)[1] for p in crops}

@@ -220,9 +220,29 @@ def vision(area: str, club: str, rubric: Path, api_mode: str, step: str) -> None
 @cli.command(name="slice")
 @click.option("--area", required=True)
 @click.option("--club", required=True)
-@click.option("--step", default="landing", show_default=True)
+@click.option(
+    "--step",
+    default="landing",
+    show_default=True,
+    help=(
+        "Flow-step name. Special value '*' iterates every captured step in the "
+        "per-club result JSON (Plan 02-11 multi-step shape)."
+    ),
+)
 def slice_cmd(area: str, club: str, step: str) -> None:
-    """PIL-crop each present feature from the Opus judgement into evidence/features/."""
+    """PIL-crop each present feature from the Opus judgement into the features dir.
+
+    Plan 02-12 changes (D-21 call-site only):
+
+    - Reads optional ``features_evidence_dir`` from the area config; falls back
+      to ``evidence_dir/features/`` when unset (Phase 1 contract preserved).
+    - Accepts ``--step '*'`` to iterate every step recorded under the
+      Plan-02-11 ``{steps: {step: {opus, sonnet}}}`` shape.
+    - Backwards-compatible with the Phase-1 single-step ``{opus: {...}}`` shape.
+
+    The denormalise_bbox + slice_feature math in ``scanner.vision.slice`` is
+    NOT modified — this is config-passing only.
+    """
     from io import BytesIO
 
     from PIL import Image
@@ -233,46 +253,87 @@ def slice_cmd(area: str, club: str, step: str) -> None:
 
     entry = load_area(area)
     evidence_dir = REPO_ROOT / entry.evidence_dir
-    fullpage = evidence_dir / "fullpage" / f"{club}_{step}.png"
+
+    # Plan 02-12: optional canonical-path override. Defaults to the Phase-1
+    # `<evidence_dir>/features/` location so single-page Phase-1 callers are
+    # untouched.
+    features_evidence_dir = (
+        REPO_ROOT / entry.features_evidence_dir
+        if getattr(entry, "features_evidence_dir", None)
+        else evidence_dir / "features"
+    )
+
     results_path = REPO_ROOT / entry.results_dir / f"{club}_features.json"
-    if not fullpage.exists():
-        raise click.ClickException(
-            f"Screenshot not found: {fullpage}. Run `scanner capture` first."
-        )
     if not results_path.exists():
         raise click.ClickException(
             f"Results not found: {results_path}. Run `scanner vision` first."
         )
-
     results = json.loads(results_path.read_text(encoding="utf-8"))
-    png_bytes = fullpage.read_bytes()
-    img = Image.open(BytesIO(png_bytes))
-    fw, fh = img.size
 
     # Plan 02-08: per-area bbox_mode config gate. When 'native' AND the model
-    # is Opus, SKIP denormalise_bbox (Opus already returned device-pixel
-    # coords). Sonnet / Haiku are unaffected because the long-edge limit
-    # (1568) consistently means denormalise scales them up. The denormalise
-    # math itself is left untouched (D-21 deviation: call-site config gate
-    # only).
+    # is Opus, SKIP denormalise_bbox. The denormalise math itself is left
+    # untouched (D-21 deviation: call-site config gate only).
     bbox_mode = getattr(entry, "bbox_mode", "css")
 
+    # Resolve the (step_name, opus_verdicts) pairs to slice. Two shapes:
+    #   - Plan-02-11 multi-step:  results["steps"][step]["opus"]
+    #   - Phase-1 single-step:    results["opus"]
+    steps_map = results.get("steps")
+    if steps_map is not None:
+        if step == "*":
+            step_pairs = [(s, steps_map[s].get("opus", {})) for s in steps_map]
+        else:
+            if step not in steps_map:
+                raise click.ClickException(
+                    f"Step {step!r} not in result JSON. Captured steps: "
+                    f"{sorted(steps_map.keys())}. Use --step '*' to iterate all."
+                )
+            step_pairs = [(step, steps_map[step].get("opus", {}))]
+    else:
+        # Phase-1 shape — single implicit step.
+        step_pairs = [(step, results.get("opus", {}))]
+
+    # Multi-step deduplication: when a feature is present in multiple steps,
+    # slice from the FIRST step where its bbox is non-null. Track keys we've
+    # already emitted to avoid clobbering.
+    sliced_keys: set[str] = set()
     count = 0
-    for fkey, verdict in results["opus"].items():
-        if not verdict.get("present") or not verdict.get("evidence_bbox"):
+    skipped: list[str] = []
+
+    for step_name, opus_verdicts in step_pairs:
+        fullpage = evidence_dir / "fullpage" / f"{club}_{step_name}.png"
+        if not fullpage.exists():
+            click.echo(
+                f"  no fullpage PNG for step={step_name}: {fullpage} (skipping)",
+                err=True,
+            )
             continue
-        raw_bbox = tuple(verdict["evidence_bbox"])
-        if bbox_mode == "native" and OPUS_MODEL.startswith("claude-opus"):
-            bbox = raw_bbox
-        else:
-            bbox = denormalise_bbox(raw_bbox, OPUS_MODEL, fw, fh)
-        out = evidence_dir / "features" / f"{club}_{fkey}.png"
-        res = slice_feature(png_bytes, bbox, out)
-        if res.ok:
-            count += 1
-            click.echo(f"  sliced: {out}")
-        else:
-            click.echo(f"  skipped {fkey}: {res.reason}", err=True)
+        png_bytes = fullpage.read_bytes()
+        img = Image.open(BytesIO(png_bytes))
+        fw, fh = img.size
+
+        for fkey, verdict in opus_verdicts.items():
+            if fkey in sliced_keys:
+                continue
+            if not verdict.get("present") or not verdict.get("evidence_bbox"):
+                continue
+            raw_bbox = tuple(verdict["evidence_bbox"])
+            if bbox_mode == "native" and OPUS_MODEL.startswith("claude-opus"):
+                bbox = raw_bbox
+            else:
+                bbox = denormalise_bbox(raw_bbox, OPUS_MODEL, fw, fh)
+            out = features_evidence_dir / f"{club}_{fkey}.png"
+            res = slice_feature(png_bytes, bbox, out)
+            if res.ok:
+                count += 1
+                sliced_keys.add(fkey)
+                click.echo(f"  sliced: {out}")
+            else:
+                skipped.append(f"{step_name}/{fkey}: {res.reason}")
+                click.echo(
+                    f"  skipped {step_name}/{fkey}: {res.reason}", err=True
+                )
+
     click.echo(f"Sliced {count} features.")
 
 
