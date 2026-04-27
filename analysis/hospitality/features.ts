@@ -20,15 +20,37 @@
 import type { Feature, CategoryId, TierId, PresenceStatus } from '../types';
 import { ALL_IDS } from '../products';
 
+// ── Phase 2 back-half: pilot results JSON imports (Plan 02-12 outputs) ──
+// JSON `product_id` slugs (mancity, realmadrid) differ from products.ts
+// canonical IDs (man_city, real_madrid). The PILOT_RESULTS map below is
+// keyed by the products.ts canonical ID so buildPresence can look up
+// against ALL_IDS directly.
+import mancity from './results/mancity.json';
+import tottenham from './results/tottenham.json';
+import realmadrid from './results/realmadrid.json';
+import psg from './results/psg.json';
+import chelsea from './results/chelsea.json';
+
+const PILOT_RESULTS: Record<string, Record<string, boolean>> = {
+  man_city: mancity.features,
+  tottenham: tottenham.features,
+  real_madrid: realmadrid.features,
+  psg: psg.features,
+  chelsea: chelsea.features,
+};
+
 /** Build a presence map for a given feature key.
  *
- * Phase 2 front-half: no results JSON exists yet. All presence values
- * are 'absent' for every product. Back-half will swap this with a
- * results-JSON-backed implementation mirroring analysis/homepage/features.ts.
+ * Phase 2 back-half (Plan 02-13): reads from analysis/hospitality/results/*.json
+ * for the 5 pilot clubs (Man City, Tottenham, Real Madrid, PSG, Chelsea).
+ * Non-pilot product IDs stay 'absent' until Phase 2.5 expands coverage.
+ * Mirrors the analysis/homepage/features.ts buildPresence pattern.
  */
-function buildPresence(_featureKey: string): Record<string, PresenceStatus> {
+function buildPresence(featureKey: string): Record<string, PresenceStatus> {
   const m: Record<string, PresenceStatus> = {};
-  ALL_IDS.forEach(id => { m[id] = 'absent'; });
+  ALL_IDS.forEach(id => {
+    m[id] = PILOT_RESULTS[id]?.[featureKey] === true ? 'full' : 'absent';
+  });
   return m;
 }
 
