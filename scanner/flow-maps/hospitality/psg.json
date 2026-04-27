@@ -9,7 +9,14 @@
       "action": "navigate",
       "selector": null,
       "form_fields": null,
-      "hide_selectors": [],
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[id*=\"didomi\"]",
+        "[class*=\"didomi\"]",
+        "[class*=\"axeptio\"]",
+        "[class*=\"livechat\"]",
+        "[class*=\"chat-widget\"]"
+      ],
       "wait_for": null
     },
     {
@@ -31,25 +38,16 @@
       "wait_for": null
     },
     {
-      "step_name": "click-depth-1",
+      "step_name": "first-tier-click",
       "url": null,
       "action": "click",
-      "selector": "a[href=\"/en/content/leverkusen-a-with-psg-official-supporters-club-norway-bayer-04-leverkusen-v-paris-saint-germain-uefa-champions-league-2025-2026\"]",
+      "selector": "a[href*='hospitality'] .card, a.tier-card, a[href*='executive']",
       "form_fields": null,
       "hide_selectors": [],
       "wait_for": null
     },
     {
-      "step_name": "wait-depth-1",
-      "url": null,
-      "action": "wait",
-      "selector": null,
-      "form_fields": null,
-      "hide_selectors": [],
-      "wait_for": "networkidle"
-    },
-    {
-      "step_name": "shot-depth-1",
+      "step_name": "first-tier-shot",
       "url": null,
       "action": "screenshot",
       "selector": null,
@@ -58,25 +56,21 @@
       "wait_for": null
     },
     {
-      "step_name": "click-depth-2",
-      "url": null,
-      "action": "click",
-      "selector": "a[href=\"/en/the-club/around-the-club/careers\"]",
+      "step_name": "all-executive-club",
+      "url": "https://www.psg.fr/en/hospitality/all-executive-club",
+      "action": "navigate",
+      "selector": null,
       "form_fields": null,
-      "hide_selectors": [],
+      "hide_selectors": [
+        "[id*=\"didomi\"]",
+        "[class*=\"didomi\"]",
+        "[class*=\"axeptio\"]",
+        "[class*=\"livechat\"]"
+      ],
       "wait_for": null
     },
     {
-      "step_name": "wait-depth-2",
-      "url": null,
-      "action": "wait",
-      "selector": null,
-      "form_fields": null,
-      "hide_selectors": [],
-      "wait_for": "networkidle"
-    },
-    {
-      "step_name": "shot-depth-2",
+      "step_name": "all-executive-club-shot",
       "url": null,
       "action": "screenshot",
       "selector": null,
@@ -85,43 +79,101 @@
       "wait_for": null
     },
     {
-      "step_name": "click-depth-3",
-      "url": null,
-      "action": "click",
-      "selector": "a[href=\"/en/the-club/around-the-club\"]",
-      "form_fields": null,
-      "hide_selectors": [],
-      "wait_for": null
-    },
-    {
-      "step_name": "wait-depth-3",
-      "url": null,
-      "action": "wait",
+      "step_name": "billetterie-home-vip",
+      "url": "https://billetterie.psg.fr/en/home-vip",
+      "action": "navigate",
       "selector": null,
       "form_fields": null,
-      "hide_selectors": [],
-      "wait_for": "networkidle"
+      "hide_selectors": [
+        "[id*=\"didomi\"]",
+        "[class*=\"didomi\"]",
+        "[class*=\"axeptio\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
     },
     {
-      "step_name": "shot-depth-3",
+      "step_name": "billetterie-home-vip-shot",
       "url": null,
       "action": "screenshot",
       "selector": null,
       "form_fields": null,
       "hide_selectors": [],
-      "wait_for": null
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "billetterie-login",
+      "url": "https://billetterie.psg.fr/en/account/login",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "requires_credentials": true,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "billetterie-match-selector",
+      "url": null,
+      "action": "click",
+      "selector": "a.fixture-card, button.select-match, a[href*='match']",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "billetterie-match-selector-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "url": null,
+      "action": "fill",
+      "selector": null,
+      "form_fields": [
+        {"selector": "input[name='firstName'], input[name='prenom'], input#firstName", "value": "Test Test"},
+        {"selector": "input[name='email'], input[type='email']", "value": "test@example.com"},
+        {"selector": "input[name='phone'], input[name='telephone'], input[type='tel']", "value": "+44 0000 000000"}
+      ],
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
     }
   ],
   "metadata": {
     "broker_vendor": null,
-    "login_gated_steps": [],
+    "login_gated_steps": [
+      "billetterie-login"
+    ],
     "external_redirects": [],
     "dead_ends": [
-      "https://www.psg.fr/en/the-club",
       "https://www.psg.fr/en/the-club"
     ],
     "cookie_dismiss_failed": true,
-    "fixture_id": null,
-    "captcha_encountered": false
+    "fixture_id": "FIRST_AVAILABLE",
+    "captcha_encountered": false,
+    "bot_challenge_encountered": true,
+    "bot_challenge_reason": "turnstile",
+    "trusted_subdomains_used": [
+      "billetterie.psg.fr"
+    ]
   }
 }
