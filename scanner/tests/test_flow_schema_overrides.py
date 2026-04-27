@@ -214,3 +214,160 @@ def test_no_submit_action_in_committed_flow_maps(club: str):
     assert "submit" not in actions, (
         f"{club}: committed flow-map must NOT contain action=submit (D-16)"
     )
+
+
+# --- Plan 02-09 Task 2: Real Madrid + PSG extended flow-maps ---
+
+
+def test_realmadrid_extended_flow_has_at_least_8_steps():
+    fm = _load_map("realmadrid")
+    assert len(fm.steps) >= 8, (
+        f"realmadrid must have >= 8 steps after Plan 02-09 extension; "
+        f"got {len(fm.steps)}"
+    )
+
+
+def test_realmadrid_includes_both_vip_branches():
+    """RMA flow-map must cover BOTH /vip-area/matchday-hospitality AND
+    /vip-area/seasonal-vip/palcos-vip — the two distinct purchase branches
+    surfaced in research §5."""
+    fm = _load_map("realmadrid")
+    urls = " ".join(s.url or "" for s in fm.steps).lower()
+    assert "matchday-hospitality" in urls, (
+        "realmadrid: must include matchday-hospitality branch"
+    )
+    assert "palcos-vip" in urls, (
+        "realmadrid: must include seasonal-vip/palcos-vip branch"
+    )
+
+
+def test_realmadrid_post_captcha_steps_marked_chrome_mcp():
+    """The CAPTCHA halts Playwright after the landing per 02-06-CRAWL-LOG.md.
+    Every step that descends past it must be marked manual_chrome_mcp=true."""
+    fm = _load_map("realmadrid")
+    chrome_mcp_steps = [s for s in fm.steps if s.manual_chrome_mcp]
+    assert len(chrome_mcp_steps) >= 4, (
+        f"realmadrid: at least 4 steps must be manual_chrome_mcp=True "
+        f"(post-CAPTCHA descent); got {len(chrome_mcp_steps)}"
+    )
+
+
+def test_realmadrid_fixture_id_placeholder_set():
+    fm = _load_map("realmadrid")
+    assert fm.metadata.fixture_id == "FIRST_AVAILABLE"
+
+
+def test_psg_extended_flow_has_at_least_10_steps():
+    fm = _load_map("psg")
+    assert len(fm.steps) >= 10, (
+        f"psg must have >= 10 steps after Plan 02-09 extension; "
+        f"got {len(fm.steps)}"
+    )
+
+
+def test_psg_dual_domain_coverage():
+    """PSG flow-map must include BOTH www.psg.fr (Playwright-reachable) AND
+    billetterie.psg.fr (Cloudflare-gated, manual_chrome_mcp). The dual-domain
+    coverage is the whole point of the back-half extension."""
+    fm = _load_map("psg")
+    urls = " ".join(s.url or "" for s in fm.steps)
+    assert "www.psg.fr" in urls, "psg: must include www.psg.fr step"
+    assert "billetterie.psg.fr" in urls, (
+        "psg: must include billetterie.psg.fr step"
+    )
+
+    # Every billetterie step must be manual_chrome_mcp=true
+    billetterie_steps = [
+        s for s in fm.steps if s.url and "billetterie.psg.fr" in s.url
+    ]
+    for s in billetterie_steps:
+        assert s.manual_chrome_mcp is True, (
+            f"psg: billetterie step {s.step_name!r} must be "
+            f"manual_chrome_mcp=true (Cloudflare gate)"
+        )
+
+
+def test_psg_login_step_requires_credentials():
+    """PSG hospitality enquiry on billetterie typically requires login per
+    research §5 — at least one step must carry requires_credentials=true so
+    the capture orchestrator authenticates BEFORE the step."""
+    fm = _load_map("psg")
+    cred_steps = [s for s in fm.steps if s.requires_credentials]
+    assert len(cred_steps) >= 1, (
+        "psg: at least one step must be requires_credentials=true "
+        "(billetterie login wall per research §5)"
+    )
+
+
+def test_psg_fixture_id_placeholder_set():
+    fm = _load_map("psg")
+    assert fm.metadata.fixture_id == "FIRST_AVAILABLE"
+
+
+# --- Plan 02-09 Task 3: Chelsea Option B partial flow-map ---
+
+
+def test_chelsea_extended_flow_has_at_least_8_steps():
+    fm = _load_map("chelsea")
+    assert len(fm.steps) >= 8, (
+        f"chelsea must have >= 8 steps after Plan 02-09 extension; "
+        f"got {len(fm.steps)}"
+    )
+
+
+def test_chelsea_has_at_least_one_skipped_paid_account_step():
+    """Per Option B partial decision (2026-04-27, 02-BACK-HALF-HANDOFF.md):
+    hospitality.chelseafc.com requires an existing paid-customer status to
+    access the booking flow. At least one step must carry
+    skipped='requires-paid-account' so the capture orchestrator records the
+    skip in coverage output."""
+    fm = _load_map("chelsea")
+    skipped_steps = [s for s in fm.steps if s.skipped == "requires-paid-account"]
+    assert len(skipped_steps) >= 1, (
+        "chelsea: at least one step must be marked "
+        "skipped='requires-paid-account' (Option B partial)"
+    )
+
+
+def test_chelsea_dead_ends_deduplicated():
+    """Plan 02-08 dedupe fix: meta.dead_ends must NOT contain duplicate URLs
+    after the Plan 02-09 author pass touches the metadata."""
+    fm = _load_map("chelsea")
+    assert len(set(fm.metadata.dead_ends)) == len(fm.metadata.dead_ends), (
+        f"chelsea: dead_ends must be deduplicated; "
+        f"got {fm.metadata.dead_ends}"
+    )
+
+
+def test_chelsea_broker_vendor_set_to_keith_prowse():
+    """Per 02-RESEARCH.md §5: hospitality.chelseafc.com is suspected
+    Keith Prowse whitelabel. Plan 02-09 records the inference in the
+    flow-map metadata so Plan 02-12 can confirm or correct."""
+    fm = _load_map("chelsea")
+    assert fm.metadata.broker_vendor == "keith_prowse", (
+        f"chelsea: broker_vendor must be 'keith_prowse' (suspected per "
+        f"research §5); got {fm.metadata.broker_vendor!r}"
+    )
+
+
+def test_chelsea_fixture_id_placeholder_set():
+    fm = _load_map("chelsea")
+    assert fm.metadata.fixture_id == "FIRST_AVAILABLE"
+
+
+# --- End-of-plan smoke test: all 5 maps validate ---
+
+
+def test_all_five_hospitality_flow_maps_validate_via_validator():
+    """Regression: loop over all hospitality flow-maps and run the public
+    validate_flow_map() entrypoint. Guards against any future change that
+    might break one map while leaving the others intact."""
+    for club in HOSPITALITY_CLUBS:
+        fm = validate_flow_map(HOSPITALITY_DIR / f"{club}.json")
+        assert fm.area == "hospitality"
+        assert fm.club == club
+        # Every map must have the D-09 fixture_id placeholder set after
+        # Plan 02-09 (capture orchestrator records actual ID at run time).
+        assert fm.metadata.fixture_id == "FIRST_AVAILABLE", (
+            f"{club}: fixture_id must be 'FIRST_AVAILABLE' after Plan 02-09"
+        )
