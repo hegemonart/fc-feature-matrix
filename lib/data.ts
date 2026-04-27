@@ -28,3 +28,8 @@ export {
   // Helpers
   computeBands,
 } from '@/analysis';
+
+// ── Hospitality back-half (Plan 02-13) ──
+// Re-export the 55 hospitality features for the /hospitality route.
+// Homepage `FEATURES` export above stays untouched (D-20 score-data invariant).
+export { FEATURES as HOSPITALITY_FEATURES } from '@/analysis/hospitality/features';
