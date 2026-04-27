@@ -49,6 +49,10 @@ class AreaEntry(BaseModel):
     bbox_mode: BboxMode = "css"
     trusted_subdomains: dict[str, list[str]] = {}
     features_evidence_dir: str | None = None
+    # Plan 02-12 additive — scoring reads from the canonical analysis/<area>/results/
+    # tree (flat-presence-map shape) when set; falls back to results_dir per
+    # recalculate.js's safe-default branch.
+    scoring_results_dir: str | None = None
 
 
 class AreasConfig(RootModel[dict[str, AreaEntry]]):

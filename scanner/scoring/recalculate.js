@@ -60,12 +60,21 @@ function parseArea(argv) {
 function parseWeights(featuresTsPath) {
   const src = fs.readFileSync(featuresTsPath, 'utf8').replace(/\n\s*/g, ' ');
   const weights = {};
-  // feat calls span 2 lines in the source; strip newlines then match key +
-  // last two numbers (yes_weight, no_weight).
-  const re = /feat\(\s*'[^']+'\s*,\s*'([^']+)'\s*,\s*[^)]*,\s*'[A-F]'\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*\)/g;
+  // feat calls span multiple lines in the source; strip newlines then match
+  // 6 quoted args (id, key, name, desc, category, tier) followed by
+  // yes_weight + no_weight numbers. Plan 02-12 Rule-1 fix: each quoted
+  // arg uses a backslash-aware string-body pattern so descriptions
+  // containing parentheses (e.g. "(smart, smart-casual, formal)") are
+  // not truncated by the prior `[^)]*` middle group. The original regex
+  // dropped 21 of 55 hospitality features whose descriptions contained
+  // parens.
+  const QUO = String.raw`'(?:[^'\\]|\\.)*'`;
+  const reSrc = String.raw`feat\(\s*${QUO}\s*,\s*'([^']+)'\s*,\s*${QUO}\s*,\s*${QUO}\s*,\s*${QUO}\s*,\s*'([A-F])'\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*\)`;
+  const re = new RegExp(reSrc, 'g');
   let m;
   while ((m = re.exec(src)) !== null) {
-    weights[m[1]] = { yes: parseInt(m[2], 10), no: parseInt(m[3], 10) };
+    // m[1] = key, m[2] = tier, m[3] = yes weight, m[4] = no weight
+    weights[m[1]] = { yes: parseInt(m[3], 10), no: parseInt(m[4], 10) };
   }
   return weights;
 }
@@ -181,8 +190,15 @@ function main() {
 
   // Resolve configured paths; if either is missing on disk bail with an
   // explicit error so operators see exactly what to fix.
+  //
+  // Plan 02-12 additive: scoring_results_dir overrides results_dir when set.
+  // The results_dir field stays as the home for vision intermediate JSONs
+  // ({steps: {step: {opus, sonnet}}}); scoring_results_dir points at the
+  // canonical flat-presence-map results ({features: {key: bool}}) consumed
+  // by this scorer. Default-fallback preserves Phase-1 behavior.
   const featuresTsPath = path.join(repoRoot, cfg.features_ts);
-  const resultsDir = path.join(repoRoot, cfg.results_dir);
+  const scoringDirRel = cfg.scoring_results_dir || cfg.results_dir;
+  const resultsDir = path.join(repoRoot, scoringDirRel);
   if (!fs.existsSync(featuresTsPath)) {
     console.error(`features.ts not found: ${featuresTsPath}`);
     process.exit(4);

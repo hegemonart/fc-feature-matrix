@@ -12,6 +12,7 @@
       "psg": ["billetterie.psg.fr", "www.psg.fr"],
       "tottenham": ["tottenhamhotspurstadium.com"]
     },
-    "features_evidence_dir": "analysis/hospitality/evidence/features/"
+    "features_evidence_dir": "analysis/hospitality/evidence/features/",
+    "scoring_results_dir": "analysis/hospitality/results/"
   }
 }

@@ -119,6 +119,11 @@ def derive_results_json(
     agreement_rate = (pair_agreed / pair_count) if pair_count > 0 else 1.0
 
     out_doc: dict[str, Any] = {
+        # `product_id` is the canonical homepage-results-JSON identifier consumed
+        # by scanner/scoring/recalculate.js (rank/aggregate output keys).
+        # Carry `club_id` as the primary semantic name + `product_id` as the
+        # alias so both scorer and Plan-02-13 UI consumers find what they need.
+        "product_id": club_id,
         "club_id": club_id,
         "club_name": club_name,
         "area": area,
