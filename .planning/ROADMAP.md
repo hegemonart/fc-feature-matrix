@@ -73,7 +73,7 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
   - [x] 02-06-PLAN.md — Live crawl × 5 pilot clubs + crawl log
   - [x] 02-07-PLAN.md — Front-half closure + back-half handoff
   - [x] 02-08-PLAN.md — Crawler v2 (turnstile + trusted_subdomains + dedupe + per-domain cookies) + Opus bbox calibration + credentials.py CWD fix
-  - [ ] 02-09-PLAN.md — Per-club flow-map override drafts (extend to full purchase path; mark Chrome MCP / requires_credentials / skipped)
+  - [x] 02-09-PLAN.md — Per-club flow-map override drafts (extend to full purchase path; mark Chrome MCP / requires_credentials / skipped)
   - [ ] 02-10-PLAN.md — Multi-step capture orchestrator (capture_flow + login_to_club) + 5-club live capture wave
   - [ ] 02-11-PLAN.md — Two-judge vision wave × 5 clubs (rubric extractor + per-club result JSONs + aggregated disagreements)
   - [ ] 02-12-PLAN.md — Slice + contact sheet + derive results JSONs + recompute scores

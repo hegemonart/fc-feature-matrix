@@ -2,16 +2,16 @@
 gsd_state_version: 1.0
 milestone: v7.1
 milestone_name: milestone
-status: in_progress
-stopped_at: Phase 2 Plan 02-08 COMPLETE (Wave 5 — Crawler v2 + Opus bbox calibration + credentials.py CWD fix). 199/199 tests green; bbox_mode='css' empirically confirmed. Plan 02-09 next.
-last_updated: "2026-04-27T12:05:00.000Z"
+status: executing
+stopped_at: Phase 2 Plan 02-09 COMPLETE (Wave 6 — Per-club flow-map override drafts). 5 hospitality flow-maps extended to full D-08 purchase-path drafts (12-15 steps each); FlowStep schema +3 additive override fields; 36/36 schema-override tests + 235/235 scanner tests green. Plan 02-10 next (capture orchestrator).
+last_updated: "2026-04-27T15:18:34.087Z"
 last_activity: 2026-04-27
 progress:
   total_phases: 9
   completed_phases: 1
   total_plans: 22
-  completed_plans: 18
-  percent: 82
+  completed_plans: 19
+  percent: 86
 ---
 
 # Project State
@@ -25,10 +25,10 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 
 ## Current Position
 
-Phase: **Phase 2 — Hospitality Pilot (back-half resumed at Plan 02-08)** (8 of TBD plans complete)
-Plan: 8 of TBD (plans 02-01 through 02-08 complete); Next: Plan 02-09 (per BACK-HALF-HANDOFF roadmap sketch). Plan 02-08 (Wave 5) shipped: Crawler v2 (Cloudflare Turnstile detector, trusted_subdomains allowlist, dead_ends dedupe, per-domain cookie dispatch) + Opus bbox calibration (decided_mode='css', $0.05 subscription) + credentials.py CWD fix (find_dotenv tree-walk).
+Phase: **Phase 2 — Hospitality Pilot (back-half resumed at Plan 02-09)** (9 of 14 plans complete)
+Plan: 9 of 14 (plans 02-01 through 02-09 complete); Next: Plan 02-10 (capture orchestrator for hospitality area, consumes the 5 extended flow-maps). Plan 02-09 (Wave 6) shipped: 5 hospitality flow-maps extended to full D-08 purchase-path drafts; FlowStep schema +3 additive override fields (requires_credentials, manual_chrome_mcp, skipped); 36/36 schema-override tests + 235/235 scanner tests green; Chelsea Option B partial confirmed (2 steps marked skipped='requires-paid-account'); $0 subscription cost.
 Status: In progress — back-half resumed; capture/credentials still gated on user dummy-account registrations per 02-BACK-HALF-HANDOFF.md.
-Last activity: 2026-04-24
+Last activity: 2026-04-27
 Prior phase close: 2026-04-24 — Phase 1 Flow Automation Layer (8/8 plans, scanner infra shipped + dry-run validated through subscription backend). Earlier: 2026-04-17 — infra-redesign-v2 plan 05 (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min).
 
 Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Phase 1 not yet started; out-of-band infra complete)
