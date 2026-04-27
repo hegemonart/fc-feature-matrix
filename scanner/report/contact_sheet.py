@@ -28,6 +28,8 @@ def _build_feature_rows(
     area: str,
     rubric: list[FeatureDef],
     judge_responses: dict[str, dict[str, JudgeResponse]],
+    *,
+    crop_rel_template: str | None = None,
 ) -> list[dict]:
     """One row per feature with per-club cell data for the template.
 
@@ -36,11 +38,17 @@ def _build_feature_rows(
     are surfaced separately in disagreements-{area}.json and are not the
     concern of this renderer.
 
-    Image path layout matches what the ``slice`` subcommand writes:
-    ``<evidence_dir>/features/<club>_<feature_key>.png`` where ``evidence_dir``
-    is ``scanner/output/evidence/<area>/`` and the HTML lives at
-    ``scanner/output/contact-report-<area>.html`` — so the relative href from
-    the HTML is ``evidence/<area>/features/<club>_<feature_key>.png``.
+    Image path layout:
+
+    - **Phase-1 default** (``crop_rel_template`` is None):
+      ``evidence/<area>/features/<club>_<key>.png`` — relative to the HTML
+      living at ``scanner/output/contact-report-<area>.html``.
+    - **Plan-02-12 canonical override**: caller supplies a Python format
+      string template (typically a path computed from the area's
+      ``features_evidence_dir`` config field) via ``crop_rel_template``;
+      see ``render_contact_sheet`` for the path resolution.
+
+    The format string MUST contain ``{club}`` and ``{key}`` placeholders.
     """
     rows: list[dict] = []
     for feat in rubric:
@@ -60,7 +68,10 @@ def _build_feature_rows(
                     }
                 )
                 continue
-            crop_rel = f"evidence/{area}/features/{club_slug}_{feat.key}.png"
+            if crop_rel_template is not None:
+                crop_rel = crop_rel_template.format(club=club_slug, key=feat.key)
+            else:
+                crop_rel = f"evidence/{area}/features/{club_slug}_{feat.key}.png"
             thumb_src = f"./{crop_rel}" if verdict.present else ""
             clubs_entries.append(
                 {
@@ -83,6 +94,7 @@ def render_contact_sheet(
     judge_responses: dict[str, dict[str, JudgeResponse]],
     evidence_dir: Path,
     output_path: Path,
+    features_evidence_dir: Path | None = None,
 ) -> Path:
     """Render the HTML contact sheet.
 
@@ -91,12 +103,16 @@ def render_contact_sheet(
         rubric: Ordered feature list — one grid section is produced per entry.
         judge_responses: ``{club_slug: {"opus": JudgeResponse, "sonnet": JudgeResponse}}``.
             Only ``opus`` is consumed for rendering in Phase 1.
-        evidence_dir: The directory containing evidence crops. Currently passed
-            for future use (Phase 2 will resolve full-res paths from here); the
-            renderer writes relative paths rooted at ``output_path.parent``.
+        evidence_dir: The directory containing evidence crops. Used by the
+            Phase-1 default path layout when ``features_evidence_dir`` is None.
         output_path: Target HTML path, e.g.
             ``scanner/output/contact-report-hospitality.html``. Parent is created
             if it does not yet exist.
+        features_evidence_dir: Plan 02-12 canonical override for per-feature crops
+            (e.g. an area-specific analysis evidence path supplied by the caller).
+            When set, the renderer computes the relative path from
+            ``output_path.parent`` to ``features_evidence_dir`` and uses it as
+            the thumbnail href root.
 
     Returns:
         ``output_path`` (unchanged) — the path that was written.
@@ -105,9 +121,21 @@ def render_contact_sheet(
         Jinja2 autoescape is enabled for ``.html`` templates (T-05-01). Any
         rubric or judge-response text is escaped before reaching the HTML.
     """
-    # evidence_dir is reserved for Phase 2 — referenced here so that static
-    # analyzers do not flag it as unused.
+    # evidence_dir is reserved for the Phase-1 default path layout.
     _ = evidence_dir
+
+    crop_rel_template: str | None = None
+    if features_evidence_dir is not None:
+        # Compute a relative path from the HTML's parent directory to the
+        # canonical features dir. os.path.relpath handles cross-tree
+        # navigation across the repo (e.g. parent-traversal into a sibling
+        # analysis tree).
+        import os
+
+        rel = os.path.relpath(
+            features_evidence_dir, start=output_path.parent
+        ).replace("\\", "/")
+        crop_rel_template = f"{rel}/{{club}}_{{key}}.png"
 
     env = Environment(
         loader=FileSystemLoader(str(TEMPLATE_DIR)),
@@ -115,7 +143,9 @@ def render_contact_sheet(
     )
     template = env.get_template(TEMPLATE_NAME)
 
-    rows = _build_feature_rows(area, rubric, judge_responses)
+    rows = _build_feature_rows(
+        area, rubric, judge_responses, crop_rel_template=crop_rel_template
+    )
     html = template.render(
         area=area,
         features=rows,

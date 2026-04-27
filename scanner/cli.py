@@ -345,7 +345,16 @@ def slice_cmd(area: str, club: str, step: str) -> None:
 @cli.command()
 @click.option("--area", required=True)
 def report(area: str) -> None:
-    """Render the HTML contact sheet for an area."""
+    """Render the HTML contact sheet for an area.
+
+    Plan 02-12 Rule-1 fix: tolerates both per-club JSON shapes:
+
+    - Phase-1 single-step:  ``{opus: {...}, sonnet: {...}}``
+    - Plan-02-11 multi-step: ``{steps: {step: {opus, sonnet}}}``
+
+    For the multi-step shape, the per-feature verdict is OR-merged across
+    captured steps (a feature is "present" if any step's Opus says present).
+    """
     from scanner.config.loader import load_area, REPO_ROOT
     from scanner.report.contact_sheet import render_contact_sheet
     from scanner.vision.schema import FeatureDef, FeatureVerdict, JudgeResponse
@@ -355,23 +364,57 @@ def report(area: str) -> None:
     results_dir = REPO_ROOT / entry.results_dir
     output_path = REPO_ROOT / "scanner" / "output" / f"contact-report-{area}.html"
 
+    # Plan 02-12: prefer canonical features_evidence_dir when set.
+    features_evidence_dir = (
+        REPO_ROOT / entry.features_evidence_dir
+        if getattr(entry, "features_evidence_dir", None)
+        else evidence_dir / "features"
+    )
+
+    def _merge_multistep_verdicts(
+        steps_map: dict[str, dict[str, dict]], judge: str
+    ) -> dict[str, dict]:
+        """OR-merge per-step verdicts for one judge across captured steps.
+
+        First step wins for the verdict shape; later steps only flip
+        ``present`` to True when a present-true reading appears (matches the
+        slice CLI's first-bbox-wins semantic).
+        """
+        merged: dict[str, dict] = {}
+        for step_name, judges in steps_map.items():
+            j = (judges.get(judge) or {})
+            for fkey, verdict in j.items():
+                if fkey not in merged:
+                    merged[fkey] = dict(verdict)
+                elif verdict.get("present") and not merged[fkey].get("present"):
+                    # Promote to present using this step's bbox/notes.
+                    merged[fkey] = dict(verdict)
+        return merged
+
     judge_responses: dict[str, dict[str, JudgeResponse]] = {}
     rubric: list[FeatureDef] = []
     seen_keys: set[str] = set()
     for f in sorted(results_dir.glob("*_features.json")):
         data = json.loads(f.read_text(encoding="utf-8"))
         club = data["club"]
+        # Plan 02-12: tolerate both shapes.
+        if "steps" in data:
+            opus_verdicts = _merge_multistep_verdicts(data["steps"], "opus")
+            sonnet_verdicts = _merge_multistep_verdicts(data["steps"], "sonnet")
+        else:
+            opus_verdicts = data.get("opus", {})
+            sonnet_verdicts = data.get("sonnet", {})
         judge_responses[club] = {
             "opus": JudgeResponse(
                 model="claude-opus-4-7",
-                results={k: FeatureVerdict(**v) for k, v in data["opus"].items()},
+                results={k: FeatureVerdict(**v) for k, v in opus_verdicts.items()},
             ),
             "sonnet": JudgeResponse(
                 model="claude-sonnet-4-6",
-                results={k: FeatureVerdict(**v) for k, v in data["sonnet"].items()},
+                results={k: FeatureVerdict(**v) for k, v in sonnet_verdicts.items()},
             ),
         }
-        for k in data["opus"]:
+        for k in opus_verdicts:
             if k not in seen_keys:
                 seen_keys.add(k)
                 rubric.append(
@@ -388,6 +431,7 @@ def report(area: str) -> None:
         judge_responses=judge_responses,
         evidence_dir=evidence_dir,
         output_path=output_path,
+        features_evidence_dir=features_evidence_dir,
     )
     click.echo(f"Report: {out}")
 
