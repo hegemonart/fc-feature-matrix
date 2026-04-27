@@ -610,3 +610,25 @@ thead { position: sticky; top: 0; z-index: 30; }
 .preview-cta-request:hover { border-color: var(--muted); opacity: 1; }
 .preview-cta .locked-dismiss { margin-top: 8px; padding: 9px 32px; font-size: 13px; font-weight: 500; color: var(--muted); background: none; border: none; cursor: pointer; width: 100%; transition: color .15s; }
 .preview-cta .locked-dismiss:hover { color: var(--text); }
+
+/* ══════════════════════════════════════════════════════════════════
+   HOSPITALITY PILOT (Plan 02-13) — D-19, HOSP-03
+
+   Pilot label is a mono-caption chip directly above the matrix.
+   "Back to home" affordance is text-only / white-outlined — NEVER
+   styled with var(--accent) (single-orange-CTA invariant).
+   All colors via design tokens (no hex literals in chrome).
+   ══════════════════════════════════════════════════════════════════ */
+.hospitality-subnav { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 10px 24px; border-bottom: 1px solid var(--border); background: var(--bg-page); }
+.hospitality-back-link { color: var(--muted); text-decoration: none; font-size: var(--font-body-xs-size); font-weight: 600; padding: 6px 12px; border: 1px solid var(--border); border-radius: 6px; transition: color .15s, border-color .15s; }
+.hospitality-back-link:hover { color: var(--text); border-color: var(--text); }
+.pilot-label { color: var(--muted); padding: 4px 10px; border: 1px solid var(--border); border-radius: 4px; text-transform: uppercase; letter-spacing: .08em; }
+.hospitality-main { display: flex; flex: 1; overflow: hidden; }
+.hospitality-table-wrapper { position: relative; flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+.hospitality-matrix { width: 100%; border-collapse: collapse; }
+.hospitality-matrix .feature-col { position: sticky; left: 0; min-width: 280px; max-width: 320px; padding: 10px 12px; background: var(--bg-page); border-right: 1px solid var(--border); }
+.hospitality-matrix .feature-name { display: block; font-size: var(--font-body-s-size); color: var(--text); font-weight: 500; }
+.hospitality-matrix .feature-tier { display: block; margin-top: 2px; color: var(--muted); }
+.hospitality-cell { width: 56px; height: 38px; text-align: center; border: 1px solid var(--border); background: var(--bg-cell); }
+.hospitality-cell.present { color: var(--text); }
+.hospitality-cell.absent { color: var(--muted); opacity: .4; }
