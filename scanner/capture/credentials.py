@@ -25,15 +25,27 @@ import os
 from pathlib import Path
 from typing import Literal
 
-from dotenv import load_dotenv
+from dotenv import find_dotenv, load_dotenv
 
 # Repo root: scanner/capture/credentials.py → parents[2] is the repo root.
 _REPO_ROOT = Path(__file__).resolve().parents[2]
 
+# Plan 02-08 fix: previously this loaded `_REPO_ROOT / ".env.local"`, which
+# silently misses when the helper is invoked from a CWD outside the package
+# tree (orchestrator scripts, ad-hoc REPLs, CI runners that chdir). The
+# tree-walk via find_dotenv(usecwd=True) ascends from the current working
+# directory until it locates a `.env.local`. Falls back to the historical
+# repo-root path so module import does not start raising in environments
+# that never had find_dotenv-discoverable credentials (e.g. site-packages).
+#
 # Idempotent: load_dotenv silently no-ops when the file is absent, and
 # repeated calls do not re-parse unless the file changes. override=False
-# keeps shell env authoritative over file contents.
-load_dotenv(_REPO_ROOT / ".env.local", override=False)
+# keeps shell env authoritative over file contents (T-02-01-05).
+_DOTENV_LOCAL = find_dotenv(".env.local", usecwd=True)
+if _DOTENV_LOCAL:
+    load_dotenv(_DOTENV_LOCAL, override=False)
+else:
+    load_dotenv(_REPO_ROOT / ".env.local", override=False)
 
 _ALLOWED_FIELDS: tuple[str, ...] = ("user", "pass")
 
