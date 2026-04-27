@@ -82,6 +82,21 @@ class FlowStep(BaseModel):
     `action` is a strict closed Literal union. Per D-16, any action that would
     dispatch a real form request is intentionally absent from the union so
     ValidationError fires at load-time.
+
+    Plan 02-09 additive fields (default-Falsy so front-half flow-map JSONs
+    continue to validate unchanged):
+
+    - ``requires_credentials`` — capture orchestrator (Plan 02-10) calls
+      ``credentials.get_credential()`` and authenticates BEFORE running this
+      step. Used for login-gated package detail pages (e.g. PSG billetterie).
+    - ``manual_chrome_mcp`` — capture orchestrator pauses Playwright and
+      prompts the user to drive the step via Chrome MCP. Used for steps
+      blocked by Cloudflare Turnstile (MCFC, PSG-billetterie) or CAPTCHA
+      (Real Madrid VIP-area).
+    - ``skipped`` — free-form reason the step is intentionally skipped (e.g.
+      ``"requires-paid-account"`` for Chelsea Option B partial decision,
+      2026-04-27). The orchestrator records the skip in coverage output and
+      does NOT attempt to execute the step.
     """
 
     step_name: str
@@ -93,6 +108,10 @@ class FlowStep(BaseModel):
     form_fields: list[FormField] | None = None
     hide_selectors: list[str] = Field(default_factory=list)
     wait_for: str | None = None  # CSS selector or 'networkidle'
+    # Plan 02-09 additive override fields — see class docstring above.
+    requires_credentials: bool = False
+    manual_chrome_mcp: bool = False
+    skipped: str | None = None
 
 
 class FlowMap(BaseModel):
