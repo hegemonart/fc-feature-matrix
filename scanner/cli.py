@@ -69,6 +69,12 @@ def cli() -> None:
     show_default=True,
     help="Headed by default (developer) — pass --headless for CI.",
 )
+@click.option(
+    "--auto-skip-manual/--no-auto-skip-manual",
+    default=False,
+    show_default=True,
+    help="Flow-map mode only: auto-record manual_chrome_mcp steps without prompting (unattended runs).",
+)
 def capture(
     area: str,
     club: str,
@@ -76,6 +82,7 @@ def capture(
     flow_map: Path | None,
     step: str,
     headless: bool,
+    auto_skip_manual: bool,
 ) -> None:
     """Capture a full-page screenshot with Playwright.
 
@@ -113,6 +120,7 @@ def capture(
             output_dir=output_dir,
             log_path=log_path,
             headless=headless,
+            auto_skip_manual=auto_skip_manual,
         )
         t = result["totals"]
         click.echo(

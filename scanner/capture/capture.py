@@ -260,6 +260,7 @@ def capture_flow(
     log_path: Path,
     *,
     headless: bool = False,
+    auto_skip_manual: bool = False,
 ) -> dict[str, Any]:
     """Multi-step capture orchestrated by a FlowMap (Plan 02-10).
 
@@ -331,7 +332,22 @@ def capture_flow(
                 continue
 
             # 2) Chrome MCP handoff — prompt the user, wait for ENTER.
+            #    In auto_skip_manual mode (unattended capture wave) we record
+            #    the step as chrome-mcp WITHOUT prompting; downstream
+            #    deferred-manual-handoff doc captures the URL + action so
+            #    the user can drive Chrome MCP later. This unblocks
+            #    headless batch runs over Cloudflare-blocked clubs (Plan 02-10
+            #    execution_protocol strategy).
             if step.manual_chrome_mcp:
+                if auto_skip_manual:
+                    _record(
+                        log_steps,
+                        step_name=step.step_name,
+                        status="chrome-mcp",
+                        duration_ms=int((time.perf_counter() - t0) * 1000),
+                        reason="auto-skipped (unattended run); deferred to manual Chrome MCP handoff",
+                    )
+                    continue
                 print(f"\n=== CHROME MCP STEP: {step.step_name} ===")
                 if step.url:
                     print(f"URL: {step.url}")

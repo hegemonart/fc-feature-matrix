@@ -571,6 +571,54 @@ def test_cli_capture_neither_url_nor_flow_map_errors(
 
 
 # ---------------------------------------------------------------------------
+# Test 9b — auto_skip_manual records chrome-mcp WITHOUT prompting input()
+# ---------------------------------------------------------------------------
+
+
+def test_capture_flow_auto_skip_manual_does_not_prompt_input(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Unattended-run flag: ``auto_skip_manual=True`` records manual_chrome_mcp
+    steps as ``chrome-mcp`` WITHOUT calling ``input()`` — so headless batch
+    runs over Cloudflare-blocked clubs (MCFC, RMA-VIP, PSG-billetterie) do
+    not hang waiting on a human.
+    """
+    from scanner.capture.capture import capture_flow
+
+    fm = _override_flow_map()
+    fm_path = _write_flow_map(tmp_path, fm)
+    output_dir = tmp_path / "output"
+    log_path = tmp_path / "run-log.json"
+    _patch_browser(monkeypatch)
+
+    # If input() gets called we want to fail loudly (the whole point of
+    # auto_skip_manual is to suppress it).
+    def boom(prompt: str = "") -> str:
+        raise AssertionError(
+            f"auto_skip_manual=True must not call input(); got prompt={prompt!r}"
+        )
+    monkeypatch.setattr("builtins.input", boom)
+    import scanner.capture.capture as capture_mod
+    monkeypatch.setattr(capture_mod, "login_to_club", MagicMock(return_value=True))
+
+    result = capture_flow(
+        flow_map_path=fm_path,
+        club="tottenham",
+        area="hospitality",
+        output_dir=output_dir,
+        log_path=log_path,
+        headless=True,
+        auto_skip_manual=True,
+    )
+
+    cm_step = [s for s in result["steps"] if s["step_name"] == "cloudflare-blocked"]
+    assert len(cm_step) == 1
+    assert cm_step[0]["status"] == "chrome-mcp"
+    assert "auto-skipped" in (cm_step[0]["reason"] or "")
+
+
+# ---------------------------------------------------------------------------
 # Test 10 — single-page CLI mode (Phase 1) preserved
 # ---------------------------------------------------------------------------
 
