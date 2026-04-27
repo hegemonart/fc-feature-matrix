@@ -64,7 +64,7 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
   7. Full capture → vision mapping → slicing → coverage report completes for all 5 pilot clubs; user reviews contact sheet and approves coverage
   8. `analysis/hospitality/results/{club}.json` exists for all 5 pilot clubs
   9. Hospitality Packages tab unlocked in app with pilot-subset data, visibly marked "Pilot: 5 clubs" until Phase 2.5 completes
-**Plans**: 7 complete (front-half) / TBD total (back-half pending user registrations)
+**Plans**: 14 plans (front-half 7 shipped, back-half 7 planned 2026-04-27)
   - [x] 02-01-PLAN.md — Credentials helper (Phase 1 gap fill)
   - [x] 02-02-PLAN.md — Review sources + feature-candidates (user-approval gate)
   - [x] 02-03-PLAN.md — Rubric + features.ts + areas.json populate
@@ -72,7 +72,13 @@ These phases are **parallel to and independent of** the numbered flow-expansion 
   - [x] 02-05-PLAN.md — Flow-discovery crawler implementation + schema metadata
   - [x] 02-06-PLAN.md — Live crawl × 5 pilot clubs + crawl log
   - [x] 02-07-PLAN.md — Front-half closure + back-half handoff
-  - [ ] Back-half plans — TBD next session (capture × 5, vision × 5, slice/report/score, UI tab unlock)
+  - [ ] 02-08-PLAN.md — Crawler v2 (turnstile + trusted_subdomains + dedupe + per-domain cookies) + Opus bbox calibration + credentials.py CWD fix
+  - [ ] 02-09-PLAN.md — Per-club flow-map override drafts (extend to full purchase path; mark Chrome MCP / requires_credentials / skipped)
+  - [ ] 02-10-PLAN.md — Multi-step capture orchestrator (capture_flow + login_to_club) + 5-club live capture wave
+  - [ ] 02-11-PLAN.md — Two-judge vision wave × 5 clubs (rubric extractor + per-club result JSONs + aggregated disagreements)
+  - [ ] 02-12-PLAN.md — Slice + contact sheet + derive results JSONs + recompute scores
+  - [ ] 02-13-PLAN.md — Hospitality Packages UI tab unlock (/hospitality route, Pilot: 5 clubs label, visual + a11y baseline)
+  - [ ] 02-14-PLAN.md — Coverage report user review → pilot-gate confirmation (D-17, autonomous: false)
 
 ### Phase 2.5: Hospitality Full Rollout (remaining 28 clubs)
 **Goal**: Complete hospitality coverage — remaining 28 clubs captured + scored using the already-validated Phase 2 tooling. Hospitality Packages tab loses "Pilot" tag.
@@ -170,7 +176,7 @@ Numbered phases execute in order: 1 → 2 → 2.5 → 3 → 4 → 5 → 6 → 7 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Flow Automation Layer | 0/8 | Planned | - |
-| 2. Hospitality Pilot (5 clubs) | 7/TBD | Front-half complete (pilot registrations pending) | - |
+| 2. Hospitality Pilot (5 clubs) | 7/14 | Back-half planned 2026-04-27; ready to execute | - |
 | 2.5. Hospitality Full Rollout (28 clubs) | 0/TBD | Not started | - |
 | 3. App Home | 0/TBD | Not started | - |
 | 4. Merch + Subscriptions | 0/TBD | Not started | - |
