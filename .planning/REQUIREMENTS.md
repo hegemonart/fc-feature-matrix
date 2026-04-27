@@ -85,7 +85,7 @@ Infrastructure tier; no CHANGELOG v-number bump. Enables Phases 2+ to share capt
 
 - [x] **HOSP-01**: Flow capture for VIP/premium hospitality purchase flows (5 pilot clubs: MCFC, TOT, RMA, PSG, CHE) via Phase 1 scanner with `--area hospitality`
 - [x] **HOSP-02**: Feature rubric (HOSPITALITY-FLOW.md) — package tiers, amenities, booking UX — derived from user-approved FEATURES-CANDIDATES.md (observed-on-site + user-review research) *(partial: Plan 02-02 produced candidate list; rubric itself closes with Plan 02-03 post-user-approval)*
-- [ ] **HOSP-03**: Results JSON per pilot club + Hospitality Packages tab unlocked with 5-club pilot data (visibly labeled "Pilot")
+- [x] **HOSP-03**: Results JSON per pilot club + Hospitality Packages tab unlocked with 5-club pilot data (visibly labeled "Pilot")
 
 ### Phase 2.5 — full rollout
 
