@@ -285,11 +285,26 @@ def test_capture_page_applies_hide_selectors_as_css(
 
 
 def test_no_submit_clicks_in_capture_module():
-    """D-16 runtime invariant: scanner/capture/ must NEVER call page.click on a submit selector."""
+    """D-16 runtime invariant: scanner/capture/ must NEVER call page.click on a
+    submit selector — EXCEPT in ``login.py`` where the click submits the user's
+    own login form, gated by an explicit ``FlowStep.requires_credentials: true``
+    opt-in (Plan 02-10).
+
+    The intent of D-16 is to prevent the orchestrator from dispatching forms
+    on club hospitality pages (enquiry forms, ticketing carts, etc.) without
+    user authorization. The login form is the user-authorized exception:
+    ``capture_flow`` only invokes ``login_to_club`` when a step is marked
+    ``requires_credentials: true`` in a committed, schema-validated FlowMap.
+    """
     capture_dir = pathlib.Path(__file__).resolve().parents[1] / "capture"
+    # login.py is the explicit, user-opt-in authentication path — see Plan
+    # 02-10 D-21 deviation note in scanner/capture/capture.py.
+    ALLOWLIST = {"login.py"}
     offenders = []
     pat = re.compile(r"\.click\([^)]*submit", re.IGNORECASE)
     for py in capture_dir.glob("*.py"):
+        if py.name in ALLOWLIST:
+            continue
         if pat.search(py.read_text(encoding="utf-8")):
             offenders.append(str(py))
     assert not offenders, f"D-16 violation — submit clicks found in: {offenders}"

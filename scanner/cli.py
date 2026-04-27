@@ -53,30 +53,87 @@ def cli() -> None:
 @cli.command()
 @click.option("--area", required=True, help="Area slug (e.g. hospitality).")
 @click.option("--club", required=True, help="Club slug (e.g. mancity).")
-@click.option("--url", required=True, help="Target page URL.")
-@click.option("--step", default="landing", show_default=True, help="Flow-step name for the output filename.")
+@click.option("--url", required=False, default=None, help="Target page URL (single-page mode, Phase 1).")
+@click.option(
+    "--flow-map",
+    "flow_map",
+    type=click.Path(exists=True, path_type=Path),
+    required=False,
+    default=None,
+    help="Path to a FlowMap JSON for multi-step orchestrator mode (Plan 02-10). Mutually exclusive with --url.",
+)
+@click.option("--step", default="landing", show_default=True, help="Flow-step name for the output filename (single-page mode only).")
 @click.option(
     "--headless/--no-headless",
     default=False,
     show_default=True,
     help="Headed by default (developer) — pass --headless for CI.",
 )
-def capture(area: str, club: str, url: str, step: str, headless: bool) -> None:
-    """Capture a full-page screenshot with Playwright."""
-    from scanner.capture.capture import capture_page
+def capture(
+    area: str,
+    club: str,
+    url: str | None,
+    flow_map: Path | None,
+    step: str,
+    headless: bool,
+) -> None:
+    """Capture a full-page screenshot with Playwright.
+
+    Two modes (mutually exclusive):
+    - ``--url URL``        single-page (Phase 1 behavior).
+    - ``--flow-map PATH``  multi-step orchestrator (Plan 02-10).
+    """
+    # Mutual exclusion gate — exactly one of --url / --flow-map.
+    if url and flow_map:
+        raise click.UsageError("--url and --flow-map are mutually exclusive.")
+    if not url and not flow_map:
+        raise click.UsageError("Specify exactly one of --url or --flow-map.")
+
     from scanner.config.loader import load_area, REPO_ROOT
 
     entry = load_area(area)
     output_dir = REPO_ROOT / entry.evidence_dir
-    out = capture_page(
-        url=url,
-        club=club,
-        area=area,
-        step_name=step,
-        output_dir=output_dir,
-        headless=headless,
-    )
-    click.echo(f"Captured: {out}")
+
+    if flow_map is not None:
+        # Multi-step orchestrator mode.
+        from datetime import datetime, timezone
+        from scanner.capture.capture import capture_flow
+
+        ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%SZ")
+        log_path = (
+            REPO_ROOT
+            / "scanner"
+            / "output"
+            / f"capture-run-log-{area}-{club}-{ts}.json"
+        )
+        result = capture_flow(
+            flow_map_path=flow_map,
+            club=club,
+            area=area,
+            output_dir=output_dir,
+            log_path=log_path,
+            headless=headless,
+        )
+        t = result["totals"]
+        click.echo(
+            f"Captured {t['captured']} | skipped {t['skipped']} | "
+            f"chrome-mcp {t['chrome_mcp']} | missing-creds {t['missing']} | "
+            f"errors {t['error']}"
+        )
+        click.echo(f"Run-log: {log_path}")
+    else:
+        # Single-page mode (Phase 1 — preserved unchanged).
+        from scanner.capture.capture import capture_page
+
+        out = capture_page(
+            url=url,  # type: ignore[arg-type]
+            club=club,
+            area=area,
+            step_name=step,
+            output_dir=output_dir,
+            headless=headless,
+        )
+        click.echo(f"Captured: {out}")
 
 
 # ---------------------------------------------------------------------------
