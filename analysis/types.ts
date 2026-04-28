@@ -32,6 +32,18 @@ export type BandId = 'table_stakes' | 'expected' | 'competitive' | 'innovation';
 
 export type TierId = 'A' | 'B' | 'C' | 'D' | 'E' | 'F';
 
+/**
+ * Plan 02-15 Wave D — detection-mode tag for hybrid DOM+vision routing.
+ *
+ * - `dom`    Programmatic DOM detection only (e.g. count form inputs).
+ * - `visual` Vision-judge only (e.g. hero-image impactfulness).
+ * - `hybrid` DOM rule first; vision fallback if DOM is inconclusive.
+ *
+ * Defaults to `'visual'` on Feature objects so the homepage rubric
+ * (which never declared this) keeps validating unchanged.
+ */
+export type DetectionMode = 'dom' | 'visual' | 'hybrid';
+
 export type ProductType = 'club' | 'league' | 'governing';
 
 export type SportType = 'football' | 'motorsport' | 'basketball' | 'baseball' | 'tennis';
@@ -68,6 +80,12 @@ export interface Feature {
   adoptionPct?: number;
   /** Computed by computeBands() */
   band?: BandId;
+  /**
+   * Plan 02-15 Wave D — scanner detection-mode hint.
+   * Optional and defaults to `'visual'` for back-compat with homepage features
+   * (which never declared this). Hospitality features set this explicitly.
+   */
+  detection?: DetectionMode;
 }
 
 export interface BandMeta {

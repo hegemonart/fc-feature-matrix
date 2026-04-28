@@ -141,3 +141,30 @@ def test_judge_response_round_trip():
     dumped = resp.model_dump()
     resp2 = JudgeResponse.model_validate(dumped)
     assert resp2.model_dump() == resp.model_dump()
+
+
+# --- Plan 02-15 Wave D — detection mode tag --------------------------
+
+
+def test_feature_def_detection_defaults_to_visual():
+    """Pre-15 rubric JSONs without ``detection`` keep working as visual-only."""
+    from scanner.vision.schema import FeatureDef
+    fd = FeatureDef(key="x", name="X", yes_criterion="x")
+    assert fd.detection == "visual"
+
+
+def test_feature_def_detection_accepts_dom_and_hybrid():
+    from scanner.vision.schema import FeatureDef
+    fd_dom = FeatureDef(key="x", name="X", yes_criterion="x", detection="dom")
+    fd_hyb = FeatureDef(key="y", name="Y", yes_criterion="y", detection="hybrid")
+    assert fd_dom.detection == "dom"
+    assert fd_hyb.detection == "hybrid"
+
+
+def test_feature_def_detection_rejects_unknown_mode():
+    """Literal union must reject anything outside {dom, visual, hybrid}."""
+    from pydantic import ValidationError
+    from scanner.vision.schema import FeatureDef
+    import pytest as _pytest
+    with _pytest.raises(ValidationError):
+        FeatureDef(key="x", name="X", yes_criterion="x", detection="ml")

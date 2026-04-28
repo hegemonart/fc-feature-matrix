@@ -21,7 +21,17 @@ Key design notes:
 """
 from __future__ import annotations
 
+from typing import Literal
+
 from pydantic import BaseModel, Field
+
+
+# Plan 02-15 Wave D — detection mode tag.
+# - "dom":    Programmatic DOM detection only (e.g. count form inputs).
+# - "visual": Vision-judge only (e.g. hero-image impactfulness).
+# - "hybrid": Try DOM first; fall back to vision when DOM is inconclusive.
+# Defaults to "visual" for backward compatibility with pre-15 rubric files.
+DetectionMode = Literal["dom", "visual", "hybrid"]
 
 
 class FeatureDef(BaseModel):
@@ -30,6 +40,10 @@ class FeatureDef(BaseModel):
     key: str  # snake_case by convention; not enforced at schema level (D-18).
     name: str
     yes_criterion: str
+    # Plan 02-15 Wave D additive — defaults to "visual" so pre-15 rubric
+    # JSONs (front-half) continue to validate unchanged. judge.py routes by
+    # this field after Wave E.
+    detection: DetectionMode = "visual"
 
 
 class FeatureVerdict(BaseModel):
@@ -71,6 +85,7 @@ class JudgeResponse(BaseModel):
 
 
 __all__ = [
+    "DetectionMode",
     "FeatureDef",
     "FeatureResult",
     "FeatureVerdict",
