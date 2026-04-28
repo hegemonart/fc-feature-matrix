@@ -130,6 +130,8 @@ def capture_page(
     out_file = output_dir / "fullpage" / f"{club}_{step_name}.png"
     out_file.parent.mkdir(parents=True, exist_ok=True)
 
+    # Plan 02-19 — engine kwarg defaults to "playwright"; capture_page is the
+    # single-page entry point and is preserved unchanged for Phase 1 callers.
     pw, ctx = create_browser(club=club, area=area, headless=headless)
     try:
         page = ctx.new_page()
@@ -315,6 +317,7 @@ def capture_flow(
     headless: bool = False,
     auto_skip_manual: bool = False,
     stealth_override_manual: bool = False,
+    engine: str = "playwright",
 ) -> dict[str, Any]:
     """Multi-step capture orchestrated by a FlowMap (Plan 02-10).
 
@@ -380,7 +383,13 @@ def capture_flow(
     log_steps: list[dict[str, Any]] = []
     started_at = _utc_now_iso()
 
-    pw, ctx = create_browser(club=club, area=area, headless=headless)
+    # Plan 02-19 — engine selects the underlying Playwright driver.
+    # "playwright" (default) preserves Plan 02-15 Wave A behavior;
+    # "patchright" swaps in the stealth-patched Playwright fork that
+    # bypasses Cloudflare Turnstile pages where regular stealth still trips.
+    pw, ctx = create_browser(
+        club=club, area=area, headless=headless, engine=engine  # type: ignore[arg-type]
+    )
     try:
         page = ctx.new_page()
         for step in flow_map.steps:

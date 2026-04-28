@@ -87,6 +87,21 @@ def cli() -> None:
         "reason 'stealth-override-failed: ...'."
     ),
 )
+@click.option(
+    "--engine",
+    type=click.Choice(["playwright", "patchright"]),
+    default="playwright",
+    show_default=True,
+    help=(
+        "Plan 02-19 — flow-map mode only: select the underlying browser "
+        "driver. 'playwright' (default) uses regular Playwright + "
+        "playwright-stealth fingerprint masks (Plan 02-15 Wave A). "
+        "'patchright' uses the stealth-patched Playwright fork that "
+        "bypasses Cloudflare Turnstile pages where the regular driver "
+        "still trips. Use 'patchright' only after a stealth probe verified "
+        "the club is unblocked."
+    ),
+)
 def capture(
     area: str,
     club: str,
@@ -96,6 +111,7 @@ def capture(
     headless: bool,
     auto_skip_manual: bool,
     stealth_override_manual: bool,
+    engine: str,
 ) -> None:
     """Capture a full-page screenshot with Playwright.
 
@@ -135,6 +151,7 @@ def capture(
             headless=headless,
             auto_skip_manual=auto_skip_manual,
             stealth_override_manual=stealth_override_manual,
+            engine=engine,
         )
         t = result["totals"]
         click.echo(
