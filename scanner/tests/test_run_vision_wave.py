@@ -408,7 +408,7 @@ def test_rubric_passed_verbatim_to_two_judge(tmp_path: Path) -> None:
 
     captured_rubric: list = []
 
-    def _spy_two_judge(image_path, the_rubric, *, api_mode):  # noqa: D401
+    def _spy_two_judge(image_path, the_rubric, *, api_mode, dom_intel_path=None):  # noqa: D401
         captured_rubric.append(the_rubric)
         return _judge_pair([f.key for f in the_rubric])
 

@@ -67,6 +67,14 @@ FEAT_RE = re.compile(
     re.MULTILINE | re.DOTALL,
 )
 
+# Plan 02-17: capture optional `detection` arg (9th positional in feat()).
+# Matches `, '<mode>')` after the trailing weights — anchors to the closing
+# paren so we only catch the literal detection arg, not weights or other
+# string-typed positional args.
+DETECTION_RE = re.compile(
+    r"'(?P<detection>dom|visual|hybrid)'\s*\)",
+)
+
 
 def _unescape(s: str) -> str:
     """Unescape backslash-escaped single quotes from TypeScript source."""
@@ -94,14 +102,22 @@ def extract_rubric_to_json(features_ts_path: Path, out_json_path: Path) -> int:
     matches = list(FEAT_RE.finditer(text))
 
     features: list[dict] = []
-    for m in matches:
-        features.append(
-            {
-                "key": _unescape(m.group("key")),
-                "name": _unescape(m.group("name")),
-                "yes_criterion": _unescape(m.group("desc")),
-            }
-        )
+    for i, m in enumerate(matches):
+        # Slice from end of this feat()'s captured prefix to the start of
+        # the next match (or end of file) to scan that block for the
+        # optional `, 'detection')` trailing arg. Restricting the search
+        # to this slice prevents bleed-over from the next feat() call.
+        block_end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+        block_slice = text[m.end():block_end]
+        det_match = DETECTION_RE.search(block_slice)
+        feature_dict = {
+            "key": _unescape(m.group("key")),
+            "name": _unescape(m.group("name")),
+            "yes_criterion": _unescape(m.group("desc")),
+        }
+        if det_match:
+            feature_dict["detection"] = det_match.group("detection")
+        features.append(feature_dict)
 
     # T-11-05 mitigation: validate every extracted record against the
     # canonical FeatureDef shape before writing. If anything is malformed

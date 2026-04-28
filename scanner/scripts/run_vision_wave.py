@@ -76,6 +76,7 @@ def run_wave_for_club(
     disagreements_path: Path,
     rubric: list[FeatureDef],
     api_mode: str = "subscription",
+    dom_intel_dir: Path | None = None,
 ) -> dict[str, Any]:
     """Run the two-judge vision wave for one club.
 
@@ -143,8 +144,24 @@ def run_wave_for_club(
             missing_png.append(step_name)
             continue
 
+        # Plan 02-17: hybrid routing — auto-discover DOM intel JSON next to
+        # the PNG so two_judge can short-circuit dom-tagged features without
+        # vision calls. Convention: {dom_intel_dir}/{club}_{step}_intel.json.
+        dom_intel_path: Path | None = None
+        if dom_intel_dir is not None:
+            candidate = dom_intel_dir / f"{club}_{step_name}_intel.json"
+            if candidate.exists():
+                dom_intel_path = candidate
+            else:
+                logger.info(
+                    "no dom intel for %s/%s at %s; vision-only routing",
+                    club, step_name, candidate,
+                )
+
         logger.info("vision: %s/%s (%s)", club, step_name, png_path.name)
-        judges = two_judge(png_path, rubric, api_mode=api_mode)
+        judges = two_judge(
+            png_path, rubric, api_mode=api_mode, dom_intel_path=dom_intel_path,
+        )
         vision_calls += 2  # opus + sonnet
 
         merged_steps[step_name] = {
@@ -234,6 +251,12 @@ def _cli() -> None:
     @click.option("--disagreements", type=click.Path(path_type=Path), required=True)
     @click.option("--rubric", type=click.Path(exists=True, path_type=Path), required=True)
     @click.option("--api-mode", type=click.Choice(["subscription", "api-key"]), default="subscription")
+    @click.option(
+        "--dom-intel-dir",
+        type=click.Path(path_type=Path),
+        default=None,
+        help="Directory containing per-step DOM intel JSONs (Plan 02-17 hybrid routing).",
+    )
     def _run(
         run_log: Path,
         evidence_dir: Path,
@@ -241,12 +264,17 @@ def _cli() -> None:
         disagreements: Path,
         rubric: Path,
         api_mode: str,
+        dom_intel_dir: Path | None,
     ) -> None:
         rubric_data = json.loads(Path(rubric).read_text(encoding="utf-8"))
         rubric_list = [FeatureDef(**f) for f in rubric_data["features"]]
 
         t0 = time.time()
-        click.echo(f"Wave start: run-log={run_log.name} api-mode={api_mode} rubric={len(rubric_list)} features")
+        click.echo(
+            f"Wave start: run-log={run_log.name} api-mode={api_mode} "
+            f"rubric={len(rubric_list)} features "
+            f"dom-intel={'yes' if dom_intel_dir else 'no'}"
+        )
         summary = run_wave_for_club(
             run_log_path=run_log,
             evidence_dir=evidence_dir,
@@ -254,6 +282,7 @@ def _cli() -> None:
             disagreements_path=disagreements,
             rubric=rubric_list,
             api_mode=api_mode,
+            dom_intel_dir=dom_intel_dir,
         )
         elapsed = time.time() - t0
         click.echo(

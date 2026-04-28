@@ -69,7 +69,10 @@ function parseWeights(featuresTsPath) {
   // dropped 21 of 55 hospitality features whose descriptions contained
   // parens.
   const QUO = String.raw`'(?:[^'\\]|\\.)*'`;
-  const reSrc = String.raw`feat\(\s*${QUO}\s*,\s*'([^']+)'\s*,\s*${QUO}\s*,\s*${QUO}\s*,\s*${QUO}\s*,\s*'([A-F])'\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*\)`;
+  // Plan 02-17: features.ts may have an optional 9th `detection` string arg
+  // after the two integer weights. Match `, '<mode>'` non-greedily before the
+  // closing paren so legacy 8-arg calls AND new 9-arg calls both parse.
+  const reSrc = String.raw`feat\(\s*${QUO}\s*,\s*'([^']+)'\s*,\s*${QUO}\s*,\s*${QUO}\s*,\s*${QUO}\s*,\s*'([A-F])'\s*,\s*(-?\d+)\s*,\s*(-?\d+)\s*(?:,\s*${QUO}\s*)?\)`;
   const re = new RegExp(reSrc, 'g');
   let m;
   while ((m = re.exec(src)) !== null) {
