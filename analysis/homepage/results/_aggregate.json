@@ -1,13 +1,15 @@
 {
-  "generated_at": "2026-04-20",
-  "total_clubs": 33,
+  "generated_at": "2026-04-27",
+  "total_clubs": 37,
   "total_features": 66,
   "features": {
     "academy_youth_block": {
-      "adoption_count": 8,
-      "adoption_pct": 24,
+      "adoption_count": 10,
+      "adoption_pct": 27,
       "clubs_yes": [
+        "nottm_forest",
         "valencia_cf",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
@@ -19,6 +21,8 @@
       "clubs_no": [
         "fc_barcelona",
         "motogp",
+        "fulham",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -52,11 +56,15 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -93,11 +101,15 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -127,11 +139,13 @@
       ]
     },
     "app_store_badges": {
-      "adoption_count": 13,
-      "adoption_pct": 39,
+      "adoption_count": 15,
+      "adoption_pct": 41,
       "clubs_yes": [
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "leeds",
         "juventus",
         "chelsea",
         "real_madrid",
@@ -146,7 +160,9 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "fulham",
         "arsenal",
+        "sunderland",
         "eintracht",
         "psg",
         "bvb_dortmund",
@@ -173,11 +189,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -213,11 +233,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -248,14 +272,16 @@
       ]
     },
     "brand_sponsor_highlighted_in_hero": {
-      "adoption_count": 13,
-      "adoption_pct": 39,
+      "adoption_count": 15,
+      "adoption_pct": 41,
       "clubs_yes": [
         "fc_barcelona",
         "valencia_cf",
         "motogp",
+        "fulham",
         "juventus",
         "arsenal",
+        "sunderland",
         "f1",
         "man_city",
         "ac_milan",
@@ -266,6 +292,8 @@
         "man_united"
       ],
       "clubs_no": [
+        "nottm_forest",
+        "leeds",
         "chelsea",
         "eintracht",
         "real_madrid",
@@ -289,9 +317,10 @@
       ]
     },
     "charity_csr_block": {
-      "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_count": 5,
+      "adoption_pct": 14,
       "clubs_yes": [
+        "leeds",
         "liverpool",
         "psg",
         "west_ham",
@@ -299,11 +328,14 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "f1",
@@ -330,9 +362,11 @@
       ]
     },
     "club_tv_app_promo": {
-      "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_count": 6,
+      "adoption_pct": 16,
       "clubs_yes": [
+        "nottm_forest",
+        "fulham",
         "eintracht",
         "bvb_dortmund",
         "club_brugge",
@@ -342,9 +376,11 @@
         "fc_barcelona",
         "valencia_cf",
         "motogp",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "real_madrid",
         "liverpool",
         "psg",
@@ -371,15 +407,19 @@
       ]
     },
     "dedicated_news_section": {
-      "adoption_count": 28,
-      "adoption_pct": 85,
+      "adoption_count": 32,
+      "adoption_pct": 86,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -417,11 +457,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -458,11 +502,15 @@
         "fc_barcelona"
       ],
       "clubs_no": [
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -493,16 +541,21 @@
       ]
     },
     "episodic_docu_series": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
+      "adoption_count": 1,
+      "adoption_pct": 3,
+      "clubs_yes": [
+        "nottm_forest"
+      ],
       "clubs_no": [
         "fc_barcelona",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -540,10 +593,14 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -574,9 +631,10 @@
       ]
     },
     "fan_club_signup": {
-      "adoption_count": 3,
-      "adoption_pct": 9,
+      "adoption_count": 4,
+      "adoption_pct": 11,
       "clubs_yes": [
+        "nottm_forest",
         "real_madrid",
         "club_brugge",
         "rb_leipzig"
@@ -585,9 +643,12 @@
         "fc_barcelona",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "liverpool",
         "psg",
@@ -620,11 +681,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -655,13 +720,17 @@
       ]
     },
     "footer_sponsor_wall": {
-      "adoption_count": 14,
-      "adoption_pct": 42,
+      "adoption_count": 18,
+      "adoption_pct": 49,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "bvb_dortmund",
@@ -696,19 +765,23 @@
       ]
     },
     "heritage_past_content": {
-      "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_count": 5,
+      "adoption_pct": 14,
       "clubs_yes": [
         "fc_barcelona",
         "motogp",
+        "leeds",
         "liverpool",
         "psg"
       ],
       "clubs_no": [
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "f1",
@@ -737,11 +810,13 @@
       ]
     },
     "hero_carousel": {
-      "adoption_count": 13,
-      "adoption_pct": 39,
+      "adoption_count": 15,
+      "adoption_pct": 41,
       "clubs_yes": [
+        "nottm_forest",
         "valencia_cf",
         "juventus",
+        "sunderland",
         "psg",
         "bvb_dortmund",
         "ac_milan",
@@ -757,6 +832,8 @@
       "clubs_no": [
         "fc_barcelona",
         "motogp",
+        "fulham",
+        "leeds",
         "arsenal",
         "chelsea",
         "eintracht",
@@ -778,14 +855,18 @@
       ]
     },
     "homepage_video_block": {
-      "adoption_count": 12,
-      "adoption_pct": 36,
+      "adoption_count": 16,
+      "adoption_pct": 43,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "psg",
         "f1",
         "bvb_dortmund",
@@ -819,16 +900,21 @@
       ]
     },
     "hospitality_block": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
+      "adoption_count": 2,
+      "adoption_pct": 5,
+      "clubs_yes": [
+        "nottm_forest",
+        "fulham"
+      ],
       "clubs_no": [
         "fc_barcelona",
         "valencia_cf",
         "motogp",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -859,21 +945,25 @@
       ]
     },
     "in_content_sponsor": {
-      "adoption_count": 6,
-      "adoption_pct": 18,
+      "adoption_count": 7,
+      "adoption_pct": 19,
       "clubs_yes": [
         "fc_barcelona",
         "valencia_cf",
+        "fulham",
         "uefa",
         "mls",
         "itf_tennis",
         "nba"
       ],
       "clubs_no": [
+        "nottm_forest",
         "motogp",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -900,19 +990,23 @@
       ]
     },
     "individual_player_cards": {
-      "adoption_count": 3,
-      "adoption_pct": 9,
+      "adoption_count": 4,
+      "adoption_pct": 11,
       "clubs_yes": [
         "fc_barcelona",
+        "fulham",
         "eintracht",
         "bvb_dortmund"
       ],
       "clubs_no": [
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "real_madrid",
         "liverpool",
         "psg",
@@ -946,11 +1040,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -982,7 +1080,7 @@
     },
     "language_switcher_in_header": {
       "adoption_count": 18,
-      "adoption_pct": 55,
+      "adoption_pct": 49,
       "clubs_yes": [
         "fc_barcelona",
         "motogp",
@@ -1004,10 +1102,14 @@
         "vfb_stuttgart"
       ],
       "clubs_no": [
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "real_madrid",
         "f1",
         "west_ham",
@@ -1022,15 +1124,19 @@
       ]
     },
     "login_account": {
-      "adoption_count": 32,
+      "adoption_count": 36,
       "adoption_pct": 97,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1070,11 +1176,15 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1109,11 +1219,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1150,11 +1264,15 @@
         "fc_barcelona"
       ],
       "clubs_no": [
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1192,11 +1310,15 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1232,11 +1354,15 @@
         "fc_barcelona"
       ],
       "clubs_no": [
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1267,13 +1393,17 @@
       ]
     },
     "news_rich_structure": {
-      "adoption_count": 23,
-      "adoption_pct": 70,
+      "adoption_count": 27,
+      "adoption_pct": 73,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "motogp",
+        "fulham",
+        "leeds",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1308,17 +1438,21 @@
       ]
     },
     "newsletter_signup": {
-      "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_count": 6,
+      "adoption_pct": 16,
       "clubs_yes": [
         "motogp",
+        "leeds",
+        "sunderland",
         "bayern_munich",
         "rb_leipzig",
         "atp_tour"
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
         "juventus",
         "arsenal",
         "chelsea",
@@ -1349,15 +1483,18 @@
       ]
     },
     "next_match_block": {
-      "adoption_count": 22,
-      "adoption_pct": 67,
+      "adoption_count": 25,
+      "adoption_pct": 68,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1376,6 +1513,7 @@
         "brentford"
       ],
       "clubs_no": [
+        "fulham",
         "uefa",
         "club_brugge",
         "rb_leipzig",
@@ -1390,15 +1528,18 @@
       ]
     },
     "next_match_feature_rich": {
-      "adoption_count": 19,
-      "adoption_pct": 58,
+      "adoption_count": 22,
+      "adoption_pct": 59,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "real_madrid",
         "liverpool",
         "psg",
@@ -1414,6 +1555,7 @@
         "brentford"
       ],
       "clubs_no": [
+        "fulham",
         "eintracht",
         "uefa",
         "club_brugge",
@@ -1431,18 +1573,22 @@
       ]
     },
     "paid_membership": {
-      "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_count": 5,
+      "adoption_pct": 14,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "juventus",
         "real_madrid"
       ],
       "clubs_no": [
         "motogp",
+        "fulham",
+        "leeds",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "liverpool",
         "psg",
@@ -1472,13 +1618,17 @@
       ]
     },
     "persistent_bar_above_header": {
-      "adoption_count": 20,
-      "adoption_pct": 61,
+      "adoption_count": 24,
+      "adoption_pct": 65,
       "clubs_yes": [
+        "nottm_forest",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "liverpool",
         "f1",
         "west_ham",
@@ -1518,11 +1668,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1553,19 +1707,23 @@
       ]
     },
     "player_roster_preview": {
-      "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_count": 6,
+      "adoption_pct": 16,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "motogp",
+        "fulham",
         "eintracht",
         "bvb_dortmund"
       ],
       "clubs_no": [
         "valencia_cf",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "real_madrid",
         "liverpool",
         "psg",
@@ -1599,11 +1757,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1641,11 +1803,15 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1676,7 +1842,7 @@
     },
     "predictor_fantasy": {
       "adoption_count": 3,
-      "adoption_pct": 9,
+      "adoption_pct": 8,
       "clubs_yes": [
         "motogp",
         "f1",
@@ -1684,10 +1850,14 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1716,18 +1886,22 @@
       ]
     },
     "press_conference_block": {
-      "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_count": 5,
+      "adoption_pct": 14,
       "clubs_yes": [
         "arsenal",
+        "sunderland",
         "psg",
         "bayern_munich",
         "newcastle"
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "chelsea",
         "eintracht",
@@ -1762,11 +1936,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1798,17 +1976,21 @@
     },
     "quiz_trivia": {
       "adoption_count": 2,
-      "adoption_pct": 6,
+      "adoption_pct": 5,
       "clubs_yes": [
         "arsenal",
         "bayern_munich"
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1838,9 +2020,10 @@
       ]
     },
     "results_block": {
-      "adoption_count": 20,
-      "adoption_pct": 61,
+      "adoption_count": 21,
+      "adoption_pct": 57,
       "clubs_yes": [
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
@@ -1864,8 +2047,11 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "sunderland",
         "real_madrid",
         "liverpool",
         "west_ham",
@@ -1879,14 +2065,18 @@
       ]
     },
     "search_input_in_header": {
-      "adoption_count": 20,
-      "adoption_pct": 61,
+      "adoption_count": 24,
+      "adoption_pct": 65,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "bvb_dortmund",
         "man_city",
@@ -1920,15 +2110,19 @@
       ]
     },
     "secondary_editorial_strip_below_hero": {
-      "adoption_count": 22,
-      "adoption_pct": 67,
+      "adoption_count": 26,
+      "adoption_pct": 70,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -1961,15 +2155,19 @@
       ]
     },
     "shop_shortcut_in_header": {
-      "adoption_count": 31,
-      "adoption_pct": 94,
+      "adoption_count": 35,
+      "adoption_pct": 95,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2002,15 +2200,19 @@
       ]
     },
     "social_links_in_footer": {
-      "adoption_count": 23,
-      "adoption_pct": 70,
+      "adoption_count": 27,
+      "adoption_pct": 73,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2044,7 +2246,7 @@
     },
     "social_native_content": {
       "adoption_count": 4,
-      "adoption_pct": 12,
+      "adoption_pct": 11,
       "clubs_yes": [
         "fc_barcelona",
         "uefa",
@@ -2052,11 +2254,15 @@
         "nba"
       ],
       "clubs_no": [
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2084,14 +2290,16 @@
       ]
     },
     "sponsor_lockup_in_header": {
-      "adoption_count": 15,
-      "adoption_pct": 45,
+      "adoption_count": 17,
+      "adoption_pct": 46,
       "clubs_yes": [
         "valencia_cf",
         "motogp",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2105,6 +2313,8 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
+        "fulham",
         "psg",
         "bvb_dortmund",
         "west_ham",
@@ -2125,18 +2335,22 @@
       ]
     },
     "stadium_content_block": {
-      "adoption_count": 2,
-      "adoption_pct": 6,
+      "adoption_count": 3,
+      "adoption_pct": 8,
       "clubs_yes": [
         "valencia_cf",
+        "leeds",
         "real_madrid"
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "motogp",
+        "fulham",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "liverpool",
         "psg",
@@ -2167,17 +2381,21 @@
     },
     "stadium_tours_block": {
       "adoption_count": 2,
-      "adoption_pct": 6,
+      "adoption_pct": 5,
       "clubs_yes": [
         "valencia_cf",
         "psg"
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2207,11 +2425,14 @@
       ]
     },
     "standings_block": {
-      "adoption_count": 7,
-      "adoption_pct": 21,
+      "adoption_count": 10,
+      "adoption_pct": 27,
       "clubs_yes": [
+        "nottm_forest",
         "motogp",
+        "leeds",
         "chelsea",
+        "sunderland",
         "eintracht",
         "f1",
         "ac_milan",
@@ -2221,6 +2442,7 @@
       "clubs_no": [
         "fc_barcelona",
         "valencia_cf",
+        "fulham",
         "juventus",
         "arsenal",
         "real_madrid",
@@ -2248,14 +2470,17 @@
       ]
     },
     "store_block": {
-      "adoption_count": 13,
-      "adoption_pct": 39,
+      "adoption_count": 16,
+      "adoption_pct": 43,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2267,6 +2492,7 @@
       ],
       "clubs_no": [
         "motogp",
+        "leeds",
         "psg",
         "f1",
         "bvb_dortmund",
@@ -2289,13 +2515,16 @@
       ]
     },
     "store_individual_products": {
-      "adoption_count": 11,
-      "adoption_pct": 33,
+      "adoption_count": 14,
+      "adoption_pct": 38,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
+        "fulham",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2307,6 +2536,7 @@
       "clubs_no": [
         "valencia_cf",
         "motogp",
+        "leeds",
         "psg",
         "f1",
         "bvb_dortmund",
@@ -2330,12 +2560,14 @@
       ]
     },
     "tickets_block": {
-      "adoption_count": 9,
-      "adoption_pct": 27,
+      "adoption_count": 11,
+      "adoption_pct": 30,
       "clubs_yes": [
         "fc_barcelona",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "chelsea",
         "west_ham",
@@ -2344,7 +2576,9 @@
         "sl_benfica"
       ],
       "clubs_no": [
+        "nottm_forest",
         "arsenal",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2371,15 +2605,19 @@
       ]
     },
     "tickets_shortcut_in_header": {
-      "adoption_count": 27,
-      "adoption_pct": 82,
+      "adoption_count": 31,
+      "adoption_pct": 84,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "real_madrid",
         "liverpool",
         "psg",
@@ -2419,10 +2657,14 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2458,11 +2700,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2494,18 +2740,22 @@
     },
     "trophies_honours": {
       "adoption_count": 3,
-      "adoption_pct": 9,
+      "adoption_pct": 8,
       "clubs_yes": [
         "fc_barcelona",
         "real_madrid",
         "liverpool"
       ],
       "clubs_no": [
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "psg",
         "f1",
@@ -2534,11 +2784,12 @@
       ]
     },
     "video_thumbnails_inline": {
-      "adoption_count": 9,
+      "adoption_count": 10,
       "adoption_pct": 27,
       "clubs_yes": [
         "valencia_cf",
         "motogp",
+        "fulham",
         "real_madrid",
         "psg",
         "f1",
@@ -2549,9 +2800,12 @@
       ],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "liverpool",
         "bvb_dortmund",
@@ -2580,11 +2834,15 @@
       "clubs_yes": [],
       "clubs_no": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
         "chelsea",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",
@@ -2615,13 +2873,17 @@
       ]
     },
     "womens_team_featured": {
-      "adoption_count": 14,
-      "adoption_pct": 42,
+      "adoption_count": 18,
+      "adoption_pct": 49,
       "clubs_yes": [
         "fc_barcelona",
+        "nottm_forest",
         "valencia_cf",
+        "fulham",
+        "leeds",
         "arsenal",
         "chelsea",
+        "sunderland",
         "liverpool",
         "psg",
         "bvb_dortmund",
@@ -2656,9 +2918,10 @@
       ]
     },
     "womens_team_tickets": {
-      "adoption_count": 2,
-      "adoption_pct": 6,
+      "adoption_count": 3,
+      "adoption_pct": 8,
       "clubs_yes": [
+        "nottm_forest",
         "chelsea",
         "atletico_madrid"
       ],
@@ -2666,8 +2929,11 @@
         "fc_barcelona",
         "valencia_cf",
         "motogp",
+        "fulham",
+        "leeds",
         "juventus",
         "arsenal",
+        "sunderland",
         "eintracht",
         "real_madrid",
         "liverpool",

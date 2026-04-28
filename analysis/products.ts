@@ -41,6 +41,10 @@ export const PRODUCTS: Product[] = [
   { id: 'itf_tennis',      name: 'ITF Tennis',      type: 'governing', sport: 'tennis',      logo: `${L}/itf_tennis.svg` },
   { id: 'rb_leipzig',      name: 'RB Leipzig',      type: 'club',      sport: 'football',    logo: `${L}/rb_leipzig.svg` },
   { id: 'valencia_cf',     name: 'Valencia CF',     type: 'club',      sport: 'football',    logo: `${L}/valencia_cf.svg` },
+  { id: 'fulham',          name: 'Fulham',          type: 'club',      sport: 'football',    logo: `${L}/fulham.svg` },
+  { id: 'leeds',           name: 'Leeds United',    type: 'club',      sport: 'football',    logo: `${L}/leeds.svg` },
+  { id: 'nottm_forest',    name: 'Nottm Forest',    type: 'club',      sport: 'football',    logo: `${L}/nottm_forest.svg` },
+  { id: 'sunderland',      name: 'Sunderland',      type: 'club',      sport: 'football',    logo: `${L}/sunderland.svg` },
 ];
 
 export const ALL_IDS: string[] = PRODUCTS.map(p => p.id);
