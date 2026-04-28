@@ -11,7 +11,7 @@
     "tier_capacity_indicator": false,
     "upcoming_matches_pre_tier": true,
     "multi_occasion_tagging": false,
-    "price_per_person_visible": true,
+    "price_per_person_visible": false,
     "fixture_category_tiers": false,
     "min_booking_unit": false,
     "price_range_by_match": false,
@@ -23,10 +23,10 @@
     "allergen_info": false,
     "vegetarian_options": false,
     "bar_type_indicator": true,
-    "chef_attribution": false,
+    "chef_attribution": true,
     "kids_menu": false,
     "meal_timing_visible": false,
-    "post_match_service": false,
+    "post_match_service": true,
     "fixture_list_visible": true,
     "competition_filter": false,
     "sold_out_indicator": false,
@@ -37,14 +37,14 @@
     "immediate_confirmation_email": false,
     "accessible_booking_option": false,
     "buy_now_without_enquiry": true,
-    "phone_booking_option": true,
+    "phone_booking_option": false,
     "live_chat_availability": true,
     "response_time_promise": false,
     "parking_included_indicator": false,
     "match_program_included": false,
     "private_entrance_indicator": false,
-    "stadium_tour_inclusion": false,
-    "concierge_service": true,
+    "stadium_tour_inclusion": true,
+    "concierge_service": false,
     "car_pickup_or_transfer": false,
     "pitchside_or_tunnel_access": true,
     "player_meet_and_greet": false,
@@ -62,12 +62,11 @@
   },
   "disputed_features": [
     "bar_type_indicator",
-    "booking_change_policy_visible",
-    "chef_attribution",
+    "confirmation_page_clarity",
+    "group_host_contact",
     "live_chat_availability",
-    "meal_timing_visible",
-    "post_match_service",
-    "price_per_person_visible"
+    "per_tier_landing_page",
+    "post_match_service"
   ],
   "skipped_features": [],
   "captured_steps": [
@@ -77,7 +76,7 @@
     "matchday-options-shot",
     "premium-seats-detail-shot"
   ],
-  "judge_agreement_rate": 0.9673,
-  "generated_at": "2026-04-27T21:30:47+00:00",
-  "total_score": -57
+  "judge_agreement_rate": 0.9745,
+  "generated_at": "2026-04-28T14:01:12+00:00",
+  "total_score": -54
 }

@@ -4,16 +4,16 @@
   "club_name": "Real Madrid",
   "area": "hospitality",
   "features": {
-    "package_tier_list": false,
+    "package_tier_list": true,
     "per_tier_landing_page": true,
     "dress_code_info": false,
     "tier_comparison_table": false,
-    "tier_capacity_indicator": false,
+    "tier_capacity_indicator": true,
     "upcoming_matches_pre_tier": true,
     "multi_occasion_tagging": false,
-    "price_per_person_visible": true,
+    "price_per_person_visible": false,
     "fixture_category_tiers": false,
-    "min_booking_unit": false,
+    "min_booking_unit": true,
     "price_range_by_match": false,
     "total_cost_preview_pre_submit": false,
     "deposit_vs_full_payment": false,
@@ -25,8 +25,8 @@
     "bar_type_indicator": false,
     "chef_attribution": false,
     "kids_menu": false,
-    "meal_timing_visible": false,
-    "post_match_service": false,
+    "meal_timing_visible": true,
+    "post_match_service": true,
     "fixture_list_visible": true,
     "competition_filter": false,
     "sold_out_indicator": false,
@@ -36,8 +36,8 @@
     "enquiry_form_field_count_le_7": false,
     "immediate_confirmation_email": false,
     "accessible_booking_option": false,
-    "buy_now_without_enquiry": true,
-    "phone_booking_option": true,
+    "buy_now_without_enquiry": false,
+    "phone_booking_option": false,
     "live_chat_availability": false,
     "response_time_promise": false,
     "parking_included_indicator": false,
@@ -55,21 +55,23 @@
     "fixture_change_notification": false,
     "dietary_preferences_capture": false,
     "cancellation_refund_window": false,
-    "group_host_contact": false,
+    "group_host_contact": true,
     "confirmation_page_clarity": false,
     "saved_booking_in_account": false,
     "receipt_download": false
   },
   "disputed_features": [
-    "concierge_service",
-    "fixture_change_notification",
-    "price_range_by_match"
+    "per_tier_landing_page"
   ],
   "skipped_features": [],
   "captured_steps": [
-    "landing-shot"
+    "enquiry-form-prefill-shot",
+    "landing-shot",
+    "matchday-hospitality-shot",
+    "matchday-tier-card-shot",
+    "palcos-vip-shot"
   ],
-  "judge_agreement_rate": 0.9455,
-  "generated_at": "2026-04-27T21:30:47+00:00",
-  "total_score": -92
+  "judge_agreement_rate": 0.9964,
+  "generated_at": "2026-04-28T14:01:12+00:00",
+  "total_score": -74
 }

@@ -4,7 +4,7 @@
   "club_name": "Paris Saint-Germain",
   "area": "hospitality",
   "features": {
-    "package_tier_list": false,
+    "package_tier_list": true,
     "per_tier_landing_page": false,
     "dress_code_info": false,
     "tier_comparison_table": false,
@@ -19,7 +19,7 @@
     "deposit_vs_full_payment": false,
     "corporate_invoice_billing": false,
     "vat_inclusive_toggle": false,
-    "menu_preview": false,
+    "menu_preview": true,
     "allergen_info": false,
     "vegetarian_options": false,
     "bar_type_indicator": false,
@@ -28,7 +28,7 @@
     "meal_timing_visible": false,
     "post_match_service": false,
     "fixture_list_visible": false,
-    "competition_filter": false,
+    "competition_filter": true,
     "sold_out_indicator": false,
     "multi_match_bundle_selector": false,
     "opponent_filter": false,
@@ -43,7 +43,7 @@
     "parking_included_indicator": false,
     "match_program_included": false,
     "private_entrance_indicator": false,
-    "stadium_tour_inclusion": false,
+    "stadium_tour_inclusion": true,
     "concierge_service": false,
     "car_pickup_or_transfer": false,
     "pitchside_or_tunnel_access": false,
@@ -64,10 +64,13 @@
   "skipped_features": [],
   "captured_steps": [
     "all-executive-club-shot",
+    "billetterie-home-vip-shot",
+    "billetterie-match-selector-shot",
+    "enquiry-form-prefill-shot",
     "first-tier-shot",
     "landing-shot"
   ],
   "judge_agreement_rate": 1,
-  "generated_at": "2026-04-27T21:30:47+00:00",
-  "total_score": -125
+  "generated_at": "2026-04-28T14:01:13+00:00",
+  "total_score": -106
 }

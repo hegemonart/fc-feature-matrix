@@ -63,9 +63,14 @@
   "disputed_features": [],
   "skipped_features": [],
   "captured_steps": [
-    "landing"
+    "enquiry-form-prefill-shot",
+    "landing",
+    "landing-shot",
+    "tier-backstage-shot",
+    "tier-tunnel-club-premier-shot",
+    "tier-tunnel-club-shot"
   ],
   "judge_agreement_rate": 1,
-  "generated_at": "2026-04-27T21:30:47+00:00",
+  "generated_at": "2026-04-28T14:01:13+00:00",
   "total_score": -99
 }

@@ -1,29 +1,29 @@
 {
-  "generated_at": "2026-04-27",
+  "generated_at": "2026-04-28",
   "total_clubs": 5,
   "rankings": [
     {
       "rank": 1,
       "product_id": "tottenham",
-      "total_score": -57,
+      "total_score": -54,
       "yes_count": 12,
       "no_count": 43,
       "feature_count": 55
     },
     {
       "rank": 2,
-      "product_id": "chelsea",
-      "total_score": -79,
-      "yes_count": 8,
-      "no_count": 47,
+      "product_id": "realmadrid",
+      "total_score": -74,
+      "yes_count": 9,
+      "no_count": 46,
       "feature_count": 55
     },
     {
       "rank": 3,
-      "product_id": "realmadrid",
-      "total_score": -92,
-      "yes_count": 6,
-      "no_count": 49,
+      "product_id": "chelsea",
+      "total_score": -86,
+      "yes_count": 7,
+      "no_count": 48,
       "feature_count": 55
     },
     {
@@ -37,9 +37,9 @@
     {
       "rank": 5,
       "product_id": "psg",
-      "total_score": -125,
-      "yes_count": 0,
-      "no_count": 55,
+      "total_score": -106,
+      "yes_count": 4,
+      "no_count": 51,
       "feature_count": 55
     }
   ]
