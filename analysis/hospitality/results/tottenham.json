@@ -11,7 +11,7 @@
     "tier_capacity_indicator": false,
     "upcoming_matches_pre_tier": true,
     "multi_occasion_tagging": false,
-    "price_per_person_visible": false,
+    "price_per_person_visible": true,
     "fixture_category_tiers": false,
     "min_booking_unit": false,
     "price_range_by_match": false,
@@ -22,7 +22,7 @@
     "menu_preview": true,
     "allergen_info": false,
     "vegetarian_options": false,
-    "bar_type_indicator": true,
+    "bar_type_indicator": false,
     "chef_attribution": true,
     "kids_menu": false,
     "meal_timing_visible": false,
@@ -37,14 +37,14 @@
     "immediate_confirmation_email": false,
     "accessible_booking_option": false,
     "buy_now_without_enquiry": true,
-    "phone_booking_option": false,
+    "phone_booking_option": true,
     "live_chat_availability": true,
     "response_time_promise": false,
     "parking_included_indicator": false,
     "match_program_included": false,
     "private_entrance_indicator": false,
     "stadium_tour_inclusion": true,
-    "concierge_service": false,
+    "concierge_service": true,
     "car_pickup_or_transfer": false,
     "pitchside_or_tunnel_access": true,
     "player_meet_and_greet": false,
@@ -61,12 +61,7 @@
     "receipt_download": false
   },
   "disputed_features": [
-    "bar_type_indicator",
-    "confirmation_page_clarity",
-    "group_host_contact",
-    "live_chat_availability",
-    "per_tier_landing_page",
-    "post_match_service"
+    "price_per_person_visible"
   ],
   "skipped_features": [],
   "captured_steps": [
@@ -76,7 +71,7 @@
     "matchday-options-shot",
     "premium-seats-detail-shot"
   ],
-  "judge_agreement_rate": 0.9745,
-  "generated_at": "2026-04-28T14:01:12+00:00",
-  "total_score": -54
+  "judge_agreement_rate": 0.9964,
+  "generated_at": "2026-04-28T15:24:51+00:00",
+  "total_score": -40
 }

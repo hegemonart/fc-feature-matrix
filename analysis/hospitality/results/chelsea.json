@@ -11,7 +11,7 @@
     "tier_capacity_indicator": false,
     "upcoming_matches_pre_tier": false,
     "multi_occasion_tagging": false,
-    "price_per_person_visible": false,
+    "price_per_person_visible": true,
     "fixture_category_tiers": false,
     "min_booking_unit": true,
     "price_range_by_match": false,
@@ -43,7 +43,7 @@
     "parking_included_indicator": false,
     "match_program_included": false,
     "private_entrance_indicator": false,
-    "stadium_tour_inclusion": false,
+    "stadium_tour_inclusion": true,
     "concierge_service": false,
     "car_pickup_or_transfer": false,
     "pitchside_or_tunnel_access": true,
@@ -61,11 +61,10 @@
     "receipt_download": false
   },
   "disputed_features": [
-    "bar_type_indicator",
     "meal_timing_visible",
-    "min_booking_unit",
+    "opponent_filter",
     "post_match_service",
-    "saved_booking_in_account",
+    "stadium_tour_inclusion",
     "tier_capacity_indicator"
   ],
   "skipped_features": [],
@@ -77,7 +76,7 @@
     "package-platinum-shot",
     "package-tambling-suite-shot"
   ],
-  "judge_agreement_rate": 0.9606,
-  "generated_at": "2026-04-28T14:01:12+00:00",
-  "total_score": -86
+  "judge_agreement_rate": 0.9788,
+  "generated_at": "2026-04-28T15:24:51+00:00",
+  "total_score": -75
 }

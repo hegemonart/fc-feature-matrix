@@ -40,13 +40,13 @@
       ]
     },
     "bar_type_indicator": {
-      "adoption_count": 2,
-      "adoption_pct": 40,
+      "adoption_count": 1,
+      "adoption_pct": 20,
       "clubs_yes": [
-        "tottenham",
         "chelsea"
       ],
       "clubs_no": [
+        "tottenham",
         "realmadrid",
         "mancity",
         "psg"
@@ -65,14 +65,14 @@
       ]
     },
     "buy_now_without_enquiry": {
-      "adoption_count": 2,
-      "adoption_pct": 40,
+      "adoption_count": 3,
+      "adoption_pct": 60,
       "clubs_yes": [
         "tottenham",
+        "realmadrid",
         "mancity"
       ],
       "clubs_no": [
-        "realmadrid",
         "chelsea",
         "psg"
       ]
@@ -128,12 +128,13 @@
       ]
     },
     "concierge_service": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
+      "adoption_count": 2,
+      "adoption_pct": 40,
+      "clubs_yes": [
         "tottenham",
-        "realmadrid",
+        "realmadrid"
+      ],
+      "clubs_no": [
         "chelsea",
         "mancity",
         "psg"
@@ -362,12 +363,13 @@
       ]
     },
     "multi_match_bundle_selector": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
+      "adoption_count": 1,
+      "adoption_pct": 20,
+      "clubs_yes": [
+        "realmadrid"
+      ],
       "clubs_no": [
         "tottenham",
-        "realmadrid",
         "chelsea",
         "mancity",
         "psg"
@@ -435,12 +437,13 @@
       ]
     },
     "phone_booking_option": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
+      "adoption_count": 2,
+      "adoption_pct": 40,
+      "clubs_yes": [
         "tottenham",
-        "realmadrid",
+        "realmadrid"
+      ],
+      "clubs_no": [
         "chelsea",
         "mancity",
         "psg"
@@ -485,13 +488,14 @@
       ]
     },
     "price_per_person_visible": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
+      "adoption_count": 3,
+      "adoption_pct": 60,
+      "clubs_yes": [
         "tottenham",
         "realmadrid",
-        "chelsea",
+        "chelsea"
+      ],
+      "clubs_no": [
         "mancity",
         "psg"
       ]
@@ -581,15 +585,15 @@
       ]
     },
     "stadium_tour_inclusion": {
-      "adoption_count": 2,
-      "adoption_pct": 40,
+      "adoption_count": 3,
+      "adoption_pct": 60,
       "clubs_yes": [
         "tottenham",
+        "chelsea",
         "psg"
       ],
       "clubs_no": [
         "realmadrid",
-        "chelsea",
         "mancity"
       ]
     },
