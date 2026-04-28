@@ -1,5 +1,8 @@
 # Changelog
 
+## v10.0 — 2026-04-28
+Add 4 new clubs: Fulham, Leeds United, Nottm Forest, Sunderland (37 total). Wikipedia SVG crests, scored from full-page screenshots (Forest 53, Fulham 25, Leeds 24, Sunderland 11). 71 element cutouts captured via new `capture_new_clubs.py` Playwright script. Forest debuts as #2 ranked club below FC Barcelona.
+
 ## v9.2 — 2026-04-21
 Fix: sticky total-score row no longer leaks tbody through during scroll/hover — opaque `var(--bg-hover)` replaces rgba/opacity on score-cell crosshair/highlighted + score-label hover. Fix: un-authed users get non-interactive matrix, hidden Unlock Everything button, and non-clickable locked tabs.
 

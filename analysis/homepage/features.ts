@@ -43,6 +43,10 @@ import eintracht from './results/eintracht.json';
 import itf_tennis from './results/itf_tennis.json';
 import rb_leipzig from './results/rb_leipzig.json';
 import valencia_cf from './results/valencia_cf.json';
+import fulham from './results/fulham.json';
+import leeds from './results/leeds.json';
+import nottm_forest from './results/nottm_forest.json';
+import sunderland from './results/sunderland.json';
 
 // ── All results indexed by product_id ──
 const RESULTS: Record<string, Record<string, boolean>> = {
@@ -79,6 +83,10 @@ const RESULTS: Record<string, Record<string, boolean>> = {
   itf_tennis: itf_tennis.features,
   rb_leipzig: rb_leipzig.features,
   valencia_cf: valencia_cf.features,
+  fulham: fulham.features,
+  leeds: leeds.features,
+  nottm_forest: nottm_forest.features,
+  sunderland: sunderland.features,
 };
 
 /** Build a presence map for a given feature key from JSON results */
