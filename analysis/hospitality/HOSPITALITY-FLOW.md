@@ -76,7 +76,7 @@ inside each tier, stable in the input order from `FEATURES-CANDIDATES.md`.
 
 | Feature Key | Name | Description | Tier | Detection | Origin | Evidence/Notes |
 |-------------|------|-------------|------|-----------|--------|----------------|
-| `price_per_person_visible` | Price Per Person Visible | Inc-VAT headline price on tier landing (not behind enquiry). | 1 | dom | O, W | TOT £299/£449 visible; MCFC hides (Tier-A #5, r/coys). |
+| `price_per_person_visible` | Price Per Person Visible | Inc-VAT headline price on tier landing (not behind enquiry). | 1 | hybrid | O, W | TOT £299/£449 visible; MCFC hides (Tier-A #5, r/coys). |
 | `fixture_category_tiers` | Fixture Category Tiers | Match category pricing labels (Cat A/B/C) visible on selector. | 1 | dom | O | EPL convention (MCFC, TOT, CHE). |
 | `min_booking_unit` | Min Booking Unit | "Per seat" vs "per table of 10" vs "per box" plainly stated. | 1 | hybrid | O, C | Seat Unique complaint pattern (Tier-A #1). |
 | `price_range_by_match` | Price Range By Match | Low-high axis per tier (e.g. £269–£699 by opponent demand). | 2 | dom | O | MCFC Tunnel Club listings. |
@@ -117,7 +117,7 @@ inside each tier, stable in the input order from `FEATURES-CANDIDATES.md`.
 | `immediate_confirmation_email` | Immediate Confirmation Email | Confirmation email on submit (not "we'll be in touch"). | 1 | dom | C | Eventmasters Trustpilot (Tier-A #3). |
 | `accessible_booking_option` | Accessible Booking Option | Wheelchair / accessible-seating hospitality booking path explicitly offered (not "contact us"). | 1 | dom | C, W | TripAdvisor Tottenham & Bernabéu (Tier-A #5, #6); Reddit (Tier-B #12–18). |
 | `buy_now_without_enquiry` | Buy Now Without Enquiry | Purchase without enquiry-first (self-serve checkout). | 2 | dom | O, W | MCFC direct-buy on Tunnel Club; most clubs force enquiry. |
-| `phone_booking_option` | Phone Booking Option | Phone alternative offered explicitly. | 2 | dom | W | Age-skewed buyer preference, surfaces in Reddit threads. |
+| `phone_booking_option` | Phone Booking Option | Phone alternative offered explicitly. | 2 | hybrid | W | Age-skewed buyer preference, surfaces in Reddit threads. |
 | `live_chat_availability` | Live Chat Availability | Live-chat widget present on hospitality page (hidden for capture per D-11). | 2 | hybrid | O | Widgets present on MCFC, CHE, TOT. |
 | `response_time_promise` | Response Time Promise | SLA visible ("within 1 hour", "same day"). | 2 | dom | C, W | Industry: 5-min vs 1-hour → ~10× conversion; most clubs silent. |
 
@@ -128,8 +128,8 @@ inside each tier, stable in the input order from `FEATURES-CANDIDATES.md`.
 | `parking_included_indicator` | Parking Included Indicator | Parking inclusion / exclusion visible. | 1 | dom | C, W | Reddit threads (Tier-B #12–18) routinely ask about parking. |
 | `match_program_included` | Match Program Included | Printed match program included. | 1 | dom | O | Cheap inclusion, frequently missed. |
 | `private_entrance_indicator` | Private Entrance Indicator | Dedicated entrance noted (queue-free ingress). | 2 | hybrid | O | MCFC Tunnel Club; CHE Platinum. |
-| `stadium_tour_inclusion` | Stadium Tour Inclusion | Tour bundled into hospitality package. | 2 | dom | O | Some clubs bundle (TOT Stadium Tour add-on). |
-| `concierge_service` | Concierge Service | Dedicated concierge / hostess on-package. | 2 | dom | O | F1 "dedicated concierge"; MCFC + CHE hostess mentions. |
+| `stadium_tour_inclusion` | Stadium Tour Inclusion | Tour bundled into hospitality package. | 2 | hybrid | O | Some clubs bundle (TOT Stadium Tour add-on). |
+| `concierge_service` | Concierge Service | Dedicated concierge / hostess on-package. | 2 | hybrid | O | F1 "dedicated concierge"; MCFC + CHE hostess mentions. |
 | `car_pickup_or_transfer` | Car Pickup Or Transfer | Car pickup / chauffeur / transfer included. | 3 | dom | O | Real Madrid Emirates Skywards VIP package (Tier-A #6). |
 | `pitchside_or_tunnel_access` | Pitchside Or Tunnel Access | Tunnel-walk or pitchside viewing element. | 3 | hybrid | O | MCFC Tunnel Club; CHE Home Dugout Club. |
 | `player_meet_and_greet` | Player Meet And Greet | Player interaction guaranteed or scheduled. | 3 | hybrid | O | Tunnel Club legends; F1 House 44 (Hamilton). |
