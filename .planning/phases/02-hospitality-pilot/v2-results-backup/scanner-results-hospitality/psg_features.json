@@ -1,0 +1,4691 @@
+{
+  "club": "psg",
+  "area": "hospitality",
+  "api_mode": "subscription",
+  "steps": {
+    "landing-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Screenshot is blank/white — no content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot."
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        }
+      }
+    },
+    "first-tier-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        }
+      }
+    },
+    "all-executive-club-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Blank screenshot — no page content visible."
+        }
+      }
+    },
+    "billetterie-home-vip-shot": {
+      "opus": {
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "package_tier_list": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "menu_preview": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page; no hospitality content visible."
+        }
+      },
+      "sonnet": {
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "package_tier_list": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "menu_preview": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security challenge page shown; no hospitality content visible."
+        }
+      }
+    },
+    "billetterie-match-selector-shot": {
+      "opus": {
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "package_tier_list": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "menu_preview": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        }
+      },
+      "sonnet": {
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "package_tier_list": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "menu_preview": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page shown — no hospitality content visible."
+        }
+      }
+    },
+    "enquiry-form-prefill-shot": {
+      "opus": {
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "package_tier_list": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "menu_preview": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "Cloudflare verification page; no content"
+        }
+      },
+      "sonnet": {
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "package_tier_list": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "menu_preview": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "fixture_list_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "Cloudflare security verification page only; no hospitality content visible."
+        }
+      }
+    }
+  },
+  "deferred_steps": [
+    {
+      "step_name": "first-tier-click",
+      "status": "error",
+      "reason": "Page.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator(\"a[href*='hospitality'] .card, a.tier-card, a[href*='executive']\")\n"
+    },
+    {
+      "step_name": "billetterie-login",
+      "status": "missing-credentials",
+      "reason": "login_to_club returned False (selector miss or marker timeout)"
+    },
+    {
+      "step_name": "billetterie-match-selector",
+      "status": "error",
+      "reason": "stealth-override-failed: Page.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator(\"a.fixture-card, button.select-match, a[href*='match']\")\n"
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "status": "error",
+      "reason": "stealth-override-failed: Page.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='firstName'], input[name='prenom'], input#firstName\")\n"
+    }
+  ],
+  "missing_png_steps": [
+    "landing",
+    "landing-wait",
+    "all-executive-club",
+    "billetterie-home-vip"
+  ]
+}
