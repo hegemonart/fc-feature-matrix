@@ -103,6 +103,36 @@ def test_price_per_person_alt_phrasing_pp():
     assert RULES["price_per_person_visible"](intel) is True
 
 
+# Plan 02-18 regression tests — v1→v2 absences fixed by widening the rule.
+
+def test_price_per_person_visible_tickets_from_phrasing():
+    """TOT matchday-options page shows 'TICKETS FROM £249' / 'Tickets from £25'.
+
+    Hospitality tier prices are de-facto per-person (you book a single seat at
+    a tier). v1 vision read these as present; v2's narrower DOM rule missed
+    them. Plan 02-18 reinstates the tier-from pattern.
+    """
+    intel = _intel(buttons=[_button(text="TICKETS FROM £249")])
+    assert RULES["price_per_person_visible"](intel) is True
+
+
+def test_price_per_person_visible_prices_from_phrasing():
+    intel = _intel(headings=[_heading(text="Prices from £450")])
+    assert RULES["price_per_person_visible"](intel) is True
+
+
+def test_price_per_person_visible_bare_from_phrasing():
+    """Real-world TOT button: 'Tickets from £25' (mixed case)."""
+    intel = _intel(buttons=[_button(text="Tickets from £25")])
+    assert RULES["price_per_person_visible"](intel) is True
+
+
+def test_price_per_person_visible_negative_no_currency_post_widen():
+    """Widening must not match plain 'from £' without digits or other 'from' copy."""
+    intel = _intel(headings=[_heading(text="Watch the latest videos from Spurs.")])
+    assert RULES["price_per_person_visible"](intel) is False
+
+
 def test_fixture_category_tiers_positive_letter():
     intel = _intel(headings=[_heading(text="Cat A pricing applies")])
     assert RULES["fixture_category_tiers"](intel) is True
@@ -242,6 +272,29 @@ def test_buy_now_without_enquiry_positive():
 def test_buy_now_without_enquiry_negative_only_enquiry():
     intel = _intel(buttons=[_button(text="Make an enquiry")])
     assert RULES["buy_now_without_enquiry"](intel) is False
+
+
+# Plan 02-18 regression tests for buy_now_without_enquiry.
+
+def test_buy_now_without_enquiry_buy_hospitality_phrasing():
+    """RMA's 'Buy Hospitality tickets' button — v1 saw this as present; v2's
+    'buy now / buy ticket / book now / purchase' keyword list missed it
+    because RMA writes 'Buy Hospitality' (no 'now' / no 'ticket' singular).
+    """
+    intel = _intel(buttons=[_button(text="Buy Hospitality tickets")])
+    assert RULES["buy_now_without_enquiry"](intel) is True
+
+
+def test_buy_now_without_enquiry_spanish_comprar():
+    """Atletico Madrid / RMA Spanish equivalent."""
+    intel = _intel(buttons=[_button(text="Comprar entrada VIP")])
+    assert RULES["buy_now_without_enquiry"](intel) is True
+
+
+def test_buy_now_without_enquiry_french_acheter():
+    """PSG French equivalent."""
+    intel = _intel(buttons=[_button(text="Acheter maintenant")])
+    assert RULES["buy_now_without_enquiry"](intel) is True
 
 
 def test_phone_booking_option_via_tel_link():

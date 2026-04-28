@@ -93,6 +93,15 @@ _PRICE_PER_PERSON_RE = re.compile(
     r"(?:£|€|\$)\s*\d+(?:[.,]\d+)?\s*(?:per\s+|/\s*)?(?:person|guest|head|pp\b)",
     re.IGNORECASE,
 )
+# Plan 02-18 widening: hospitality tier-landing pages routinely use
+# "from £NNN" / "tickets from £NNN" / "prices from £NNN" copy where the
+# per-person semantics is implicit (a tier price is by definition per-seat).
+# v1 vision interpreted these as price_per_person_visible:true; we restore
+# that interpretation in DOM detection here.
+_PRICE_TIER_RE = re.compile(
+    r"(?:tickets?|prices?|packages?)?\s*from\s+(?:£|€|\$)\s*\d+",
+    re.IGNORECASE,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -106,7 +115,11 @@ _PRICE_PER_PERSON_RE = re.compile(
 RULES: dict[str, Callable[[DomIntel], bool]] = {
     # -- Pricing Transparency ----------------------------------------------
     "price_per_person_visible": lambda intel: bool(
+        # Plan 02-18: accept both explicit per-person phrasing AND
+        # tier-landing "from £NNN" copy. Hospitality tier prices are
+        # de-facto per-person (you book a single seat at a tier).
         _PRICE_PER_PERSON_RE.search(_all_text_blobs(intel))
+        or _PRICE_TIER_RE.search(_all_text_blobs(intel))
     ),
     "fixture_category_tiers": lambda intel: any(
         re.search(r"\bcat(egory)?\s*[abc1-3]\b", t.lower())
@@ -177,9 +190,18 @@ RULES: dict[str, Callable[[DomIntel], bool]] = {
         intel.counts.forms >= 1 and 1 <= _input_count(intel) <= 7
     ),
     "buy_now_without_enquiry": lambda intel: any(
+        # Plan 02-18: broadened to include hospitality-specific buy
+        # phrasing. v1 saw RMA's "Buy Hospitality tickets" button as
+        # present; v2's narrower keyword list missed it.
+        # Spanish/French equivalents added for international clubs.
         kw in (b.text or "").lower()
         for b in intel.buttons
-        for kw in ["book now", "buy now", "buy ticket", "purchase"]
+        for kw in [
+            "book now", "buy now", "buy ticket", "purchase",
+            "buy hospitality", "buy seat", "checkout",
+            "comprar", "reservar",  # ES (RMA, ATM)
+            "réserver", "acheter",  # FR (PSG)
+        ]
     ),
     "phone_booking_option": lambda intel: (
         # tel: link or phone-number-shaped string near "call"
