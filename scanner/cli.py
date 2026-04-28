@@ -75,6 +75,18 @@ def cli() -> None:
     show_default=True,
     help="Flow-map mode only: auto-record manual_chrome_mcp steps without prompting (unattended runs).",
 )
+@click.option(
+    "--allow-stealth-override-manual/--no-allow-stealth-override-manual",
+    "stealth_override_manual",
+    default=False,
+    show_default=True,
+    help=(
+        "Plan 02-16 — flow-map mode only: execute manual_chrome_mcp steps via "
+        "Playwright instead of deferring. Use only after a stealth probe "
+        "verified the club is unblocked; failures register as 'error' with "
+        "reason 'stealth-override-failed: ...'."
+    ),
+)
 def capture(
     area: str,
     club: str,
@@ -83,6 +95,7 @@ def capture(
     step: str,
     headless: bool,
     auto_skip_manual: bool,
+    stealth_override_manual: bool,
 ) -> None:
     """Capture a full-page screenshot with Playwright.
 
@@ -121,6 +134,7 @@ def capture(
             log_path=log_path,
             headless=headless,
             auto_skip_manual=auto_skip_manual,
+            stealth_override_manual=stealth_override_manual,
         )
         t = result["totals"]
         click.echo(

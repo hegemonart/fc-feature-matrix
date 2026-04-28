@@ -314,6 +314,7 @@ def capture_flow(
     *,
     headless: bool = False,
     auto_skip_manual: bool = False,
+    stealth_override_manual: bool = False,
 ) -> dict[str, Any]:
     """Multi-step capture orchestrated by a FlowMap (Plan 02-10).
 
@@ -348,6 +349,18 @@ def capture_flow(
         Where the run-log JSON is written.
     headless :
         Forwarded to ``create_browser``. Default False (headed).
+    auto_skip_manual :
+        When True, ``manual_chrome_mcp`` steps are recorded with
+        ``status="chrome-mcp"`` without prompting. Used for unattended
+        batch runs where the user drives Chrome MCP later.
+    stealth_override_manual :
+        Plan 02-16 — when True, ``manual_chrome_mcp`` steps execute via
+        Playwright instead of being deferred. The caller is responsible
+        for verifying the club is actually unblocked under stealth (e.g.
+        via ``scanner.scripts.recapture.stealth_probe``); a step that
+        still hits Cloudflare under stealth will record ``status="error"``
+        with the underlying timeout/exception. Wins over
+        ``auto_skip_manual`` when both are set.
 
     Returns
     -------
@@ -391,7 +404,14 @@ def capture_flow(
             #    the user can drive Chrome MCP later. This unblocks
             #    headless batch runs over Cloudflare-blocked clubs (Plan 02-10
             #    execution_protocol strategy).
-            if step.manual_chrome_mcp:
+            #
+            #    Plan 02-16 — stealth_override_manual short-circuits the
+            #    chrome-mcp branch when the club has been verified unblocked
+            #    via the stealth probe. Falls through to the normal action
+            #    dispatch (case 4). On failure, the step records as "error"
+            #    rather than "chrome-mcp" so the run-log honestly reports the
+            #    stealth attempt outcome.
+            if step.manual_chrome_mcp and not stealth_override_manual:
                 if auto_skip_manual:
                     _record(
                         log_steps,
@@ -441,6 +461,17 @@ def capture_flow(
                     dismiss_cookies(page, club=club)
                 except Exception:
                     pass
+            # Plan 02-16 — annotate the run-log when a step that was
+            # originally manual_chrome_mcp succeeded via stealth override.
+            # The status stays "captured" / "error"; the reason carries the
+            # provenance so the summary can compute the unblocked count.
+            if step.manual_chrome_mcp and stealth_override_manual:
+                if status == "captured":
+                    reason = "stealth-override-unblocked"
+                elif status == "error":
+                    # Prepend marker but keep the underlying error message
+                    # for diagnosis.
+                    reason = f"stealth-override-failed: {reason or 'unknown'}"
             _record(
                 log_steps,
                 step_name=step.step_name,

@@ -619,6 +619,61 @@ def test_capture_flow_auto_skip_manual_does_not_prompt_input(
 
 
 # ---------------------------------------------------------------------------
+# Test 9c — Plan 02-16: stealth_override_manual executes manual_chrome_mcp
+#            steps via Playwright instead of deferring
+# ---------------------------------------------------------------------------
+
+
+def test_capture_flow_stealth_override_manual_executes_step(
+    tmp_path: Path,
+    monkeypatch: pytest.MonkeyPatch,
+) -> None:
+    """Plan 02-16 — when ``stealth_override_manual=True``, a step with
+    ``manual_chrome_mcp: true`` runs through the normal action dispatch.
+    The run-log records ``status="captured"`` (not ``"chrome-mcp"``) and
+    ``reason="stealth-override-unblocked"`` so the recapture summary can
+    count stealth-unblocked steps.
+    """
+    from scanner.capture.capture import capture_flow
+
+    fm = _override_flow_map()
+    fm_path = _write_flow_map(tmp_path, fm)
+    output_dir = tmp_path / "output"
+    log_path = tmp_path / "run-log.json"
+    _patch_browser(monkeypatch)
+
+    # input() must NEVER be called when stealth_override_manual=True.
+    def boom(prompt: str = "") -> str:
+        raise AssertionError(
+            f"stealth_override_manual=True must not call input(); got {prompt!r}"
+        )
+    monkeypatch.setattr("builtins.input", boom)
+    import scanner.capture.capture as capture_mod
+    monkeypatch.setattr(capture_mod, "login_to_club", MagicMock(return_value=True))
+
+    result = capture_flow(
+        flow_map_path=fm_path,
+        club="tottenham",
+        area="hospitality",
+        output_dir=output_dir,
+        log_path=log_path,
+        headless=True,
+        stealth_override_manual=True,
+    )
+
+    cm_step = [s for s in result["steps"] if s["step_name"] == "cloudflare-blocked"]
+    assert len(cm_step) == 1
+    assert cm_step[0]["status"] == "captured", (
+        f"stealth-override should run the step via Playwright, got status="
+        f"{cm_step[0]['status']!r}"
+    )
+    assert cm_step[0]["reason"] == "stealth-override-unblocked"
+    # auto_skip_manual must not interfere — totals.captured includes the
+    # override step but totals.chrome_mcp must be 0.
+    assert result["totals"]["chrome_mcp"] == 0
+
+
+# ---------------------------------------------------------------------------
 # Test 10 — single-page CLI mode (Phase 1) preserved
 # ---------------------------------------------------------------------------
 
