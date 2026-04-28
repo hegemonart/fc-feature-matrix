@@ -19,6 +19,7 @@ dependencies = [
   # Reduces Cloudflare Turnstile / "headless detected" false positives that
   # forced 30 deferred Chrome MCP steps in Plan 02-11.
   "playwright-stealth>=1.1",
+  "patchright>=1.49",
 ]
 
 [project.optional-dependencies]

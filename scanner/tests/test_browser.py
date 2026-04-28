@@ -193,6 +193,109 @@ def test_stealth_helper_swallows_import_failure(
     browser_mod._apply_stealth_sync(fake_ctx)
 
 
+# ---------------------------------------------------------------------------
+# Plan 02-19 — Patchright engine dispatch
+# ---------------------------------------------------------------------------
+
+
+def _patch_patchright_sync(monkeypatch: pytest.MonkeyPatch):
+    """Replace patchright.sync_api.sync_playwright import with a mock chain.
+
+    Patchright is imported lazily INSIDE create_browser when engine="patchright"
+    so we patch via sys.modules to intercept the import.
+    """
+    import sys
+    import types
+
+    fake_context = MagicMock(name="PatchrightBrowserContext")
+    fake_chromium = MagicMock(name="patchright_chromium")
+    fake_chromium.launch_persistent_context = MagicMock(return_value=fake_context)
+    fake_pw = MagicMock(name="PatchrightPlaywright")
+    fake_pw.chromium = fake_chromium
+
+    fake_factory = MagicMock(name="patchright_sync_playwright_factory")
+    fake_factory.start = MagicMock(return_value=fake_pw)
+
+    fake_sync_playwright = MagicMock(return_value=fake_factory)
+
+    fake_module = types.ModuleType("patchright.sync_api")
+    fake_module.sync_playwright = fake_sync_playwright  # type: ignore[attr-defined]
+
+    fake_pkg = types.ModuleType("patchright")
+    fake_pkg.sync_api = fake_module  # type: ignore[attr-defined]
+
+    monkeypatch.setitem(sys.modules, "patchright", fake_pkg)
+    monkeypatch.setitem(sys.modules, "patchright.sync_api", fake_module)
+
+    return fake_sync_playwright, fake_pw, fake_chromium, fake_context
+
+
+def test_engine_defaults_to_playwright(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: pathlib.Path
+):
+    """Default engine is 'playwright' — preserves Plan 02-15 Wave A behavior."""
+    from scanner.capture import browser as browser_mod
+
+    monkeypatch.setattr(browser_mod, "USER_DATA_ROOT", tmp_path / ".scanner" / "user-data")
+    fake_sync_pw, _, _, _ = _patch_sync_playwright(monkeypatch)
+
+    browser_mod.create_browser(club="mancity", area="hospitality")
+
+    fake_sync_pw.assert_called_once()
+
+
+def test_engine_patchright_uses_patchright_sync(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: pathlib.Path
+):
+    """engine='patchright' must call patchright.sync_api.sync_playwright, NOT playwright's."""
+    from scanner.capture import browser as browser_mod
+
+    monkeypatch.setattr(browser_mod, "USER_DATA_ROOT", tmp_path / ".scanner" / "user-data")
+    fake_pw_sync, _, _, _ = _patch_sync_playwright(monkeypatch)
+    fake_patch_sync, _, _, fake_ctx = _patch_patchright_sync(monkeypatch)
+
+    pw, ctx = browser_mod.create_browser(
+        club="mancity", area="hospitality", engine="patchright"
+    )
+
+    fake_patch_sync.assert_called_once()
+    fake_pw_sync.assert_not_called()
+    assert ctx is fake_ctx
+
+
+def test_engine_patchright_skips_playwright_stealth(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: pathlib.Path
+):
+    """Patchright ships its own stealth — don't double-apply playwright-stealth."""
+    from scanner.capture import browser as browser_mod
+
+    monkeypatch.setattr(browser_mod, "USER_DATA_ROOT", tmp_path / ".scanner" / "user-data")
+    _patch_patchright_sync(monkeypatch)
+
+    fake_apply = MagicMock(name="_apply_stealth_sync")
+    monkeypatch.setattr(browser_mod, "_apply_stealth_sync", fake_apply)
+
+    browser_mod.create_browser(
+        club="mancity", area="hospitality", engine="patchright"
+    )
+
+    fake_apply.assert_not_called()
+
+
+def test_engine_invalid_value_raises(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: pathlib.Path
+):
+    """Unknown engine value fails fast with ValueError."""
+    from scanner.capture import browser as browser_mod
+
+    monkeypatch.setattr(browser_mod, "USER_DATA_ROOT", tmp_path / ".scanner" / "user-data")
+
+    with pytest.raises(ValueError, match="Unknown browser engine"):
+        browser_mod.create_browser(
+            club="mancity", area="hospitality", engine="not-a-real-engine"  # type: ignore[arg-type]
+        )
+
+
 def test_scroll_lazy_evaluates_window_scrollto(mock_playwright_page):
     """scroll_lazy ports recapture_round5.py::scroll_lazy — bounded scroll via page.evaluate."""
     from scanner.capture.browser import scroll_lazy

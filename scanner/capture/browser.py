@@ -15,7 +15,7 @@ Invariants (D-12, D-13, user decision 2):
 from __future__ import annotations
 
 from pathlib import Path
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Literal
 
 from playwright.sync_api import sync_playwright
 
@@ -24,6 +24,14 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 USER_DATA_ROOT: Path = Path.home() / ".scanner" / "user-data"
+
+# Plan 02-19 — Patchright engine literal. Patchright is a stealth-patched
+# fork of Playwright that ships with aggressive Chromium-level patches
+# (TLS fingerprinting, JS challenge evasion, CDP leak prevention) targeting
+# Cloudflare Turnstile pages where playwright-stealth still trips. We keep
+# both code paths because Patchright is additive — defaults preserve Plan
+# 02-15 Wave A behavior (Playwright + playwright-stealth).
+BrowserEngine = Literal["playwright", "patchright"]
 
 # Plan 02-15 Wave A — anti-bot fingerprint masks. Imported lazily inside
 # create_browser() so test_browser tests that monkeypatch sync_playwright
@@ -59,6 +67,7 @@ def create_browser(
     *,
     headless: bool = False,
     stealth: bool = True,
+    engine: BrowserEngine = "playwright",
 ) -> tuple["Playwright", "BrowserContext"]:
     """Launch a persistent Chromium context for the given (area, club) pair.
 
@@ -83,11 +92,36 @@ def create_browser(
         that triggered Cloudflare Turnstile interstitials in Plan 02-11.
         Set ``stealth=False`` to reproduce pre-v2 behavior or to debug
         whether stealth is masking a real selector miss.
+
+        With ``engine="patchright"`` we deliberately skip applying
+        playwright-stealth even when ``stealth=True`` — Patchright already
+        ships its own stealth patches and double-applying causes API drift
+        warnings.
+    engine :
+        Plan 02-19. ``"playwright"`` (default) preserves the Plan 02-15
+        Wave A behavior (regular Playwright + playwright-stealth fingerprint
+        masks). ``"patchright"`` swaps the underlying driver for the
+        stealth-patched Patchright fork — same Playwright API, but with
+        Chromium-level patches that bypass Cloudflare Turnstile pages where
+        playwright-stealth's runtime-level masks still leak. Use this engine
+        only when stealth on the regular driver has been verified to fail
+        (see ``scanner.scripts.recapture.stealth_probe``).
     """
     user_data_dir = USER_DATA_ROOT / area / club
     user_data_dir.mkdir(parents=True, exist_ok=True)
 
-    pw = sync_playwright().start()
+    if engine == "patchright":
+        # Lazy import — keeps test_browser tests that monkeypatch
+        # ``sync_playwright`` at the module top from needing patchright at
+        # import time, and lets imports fail loudly only when the engine is
+        # actually requested (D-21 backward compat).
+        from patchright.sync_api import sync_playwright as patchright_sync
+        pw = patchright_sync().start()
+    elif engine == "playwright":
+        pw = sync_playwright().start()
+    else:  # pragma: no cover — defensive only
+        raise ValueError(f"Unknown browser engine: {engine!r}")
+
     ctx = pw.chromium.launch_persistent_context(
         str(user_data_dir),
         headless=headless,
@@ -96,7 +130,11 @@ def create_browser(
         user_agent=_USER_AGENT,
         args=["--no-sandbox"],
     )
-    if stealth:
+    # Patchright already provides stealth patches at the Chromium level —
+    # double-applying playwright-stealth on top is redundant and emits a
+    # stealth-already-applied UserWarning. Keep the regular Playwright path
+    # using playwright-stealth as before.
+    if stealth and engine == "playwright":
         _apply_stealth_sync(ctx)
     return pw, ctx
 
