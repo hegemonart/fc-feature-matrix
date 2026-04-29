@@ -55,16 +55,26 @@ def _all_text_blobs(intel: DomIntel) -> str:
 
     Used by keyword-presence rules. Covers the tier-1 evidence surfaces
     without dragging the entire DOM into the regex.
+
+    Plan 02-20: also folds in ``intel.text_extracts`` so synthetic-source
+    intel (text-fetched reseller content) is keyword-searchable. Live
+    captures leave ``text_extracts`` empty so this is a no-op for them.
     """
     parts = [intel.title]
     parts.extend(h.text for h in intel.headings)
     parts.extend(b.text for b in intel.buttons)
     parts.extend(b.alt for b in intel.images)
+    parts.extend(intel.text_extracts)
     return "\n".join(parts).lower()
 
 
 def _meta_blob(intel: DomIntel) -> str:
-    """Lower-cased meta tag values + jsonld text — coarser keyword surface."""
+    """Lower-cased meta tag values + jsonld text — coarser keyword surface.
+
+    Plan 02-20: text_extracts already contributes to ``_all_text_blobs``;
+    every rule that combines ``_all_text_blobs(intel) + _meta_blob(intel)``
+    therefore searches the synthetic text content automatically.
+    """
     parts = list(intel.meta.values())
     for entry in intel.schema_jsonld:
         try:
@@ -123,7 +133,10 @@ RULES: dict[str, Callable[[DomIntel], bool]] = {
     ),
     "fixture_category_tiers": lambda intel: any(
         re.search(r"\bcat(egory)?\s*[abc1-3]\b", t.lower())
-        for t in [intel.title] + [h.text for h in intel.headings] + [b.text for b in intel.buttons]
+        for t in [intel.title]
+        + [h.text for h in intel.headings]
+        + [b.text for b in intel.buttons]
+        + intel.text_extracts
     ),
     "price_range_by_match": lambda intel: (
         # Look for a price range pattern: £X – £Y or £X to £Y
@@ -131,11 +144,44 @@ RULES: dict[str, Callable[[DomIntel], bool]] = {
                        _all_text_blobs(intel)))
     ),
     # -- Package Discovery -------------------------------------------------
-    "tier_comparison_table": lambda intel: intel.counts.tables >= 1,
+    "tier_comparison_table": lambda intel: (
+        intel.counts.tables >= 1
+        # Plan 02-20: synthetic intel rarely carries a real <table>; resellers
+        # describe tier matrices in prose. Accept any aggregated-text mention
+        # of "comparison" near "tier"/"package", or a markdown-table marker.
+        or bool(
+            re.search(
+                r"(?:comparison|compare|side[- ]by[- ]side).{0,80}(?:tier|package|hospitality)",
+                "\n".join(intel.text_extracts).lower(),
+            )
+        )
+        or "|---" in "\n".join(intel.text_extracts)
+    ),
     "package_tier_list": lambda intel: (
         # 2+ tier-name buttons OR 2+ price patterns OR 2+ table rows
-        len(re.findall(r"(?:£|€)\s*\d+", " ".join(b.text for b in intel.buttons))) >= 2
+        len(
+            re.findall(
+                r"(?:£|€)\s*\d+",
+                " ".join(b.text for b in intel.buttons)
+                + " "
+                + " ".join(intel.text_extracts),
+            )
+        )
+        >= 2
         or len([h for h in intel.headings if h.tag in ("H2", "H3")]) >= 3
+        # Plan 02-20: text-extract surface — count tier-name keyword hits
+        # across the aggregated reseller body. 2+ named tiers signals a
+        # tier list as effectively as 2+ price tags would.
+        or sum(
+            1
+            for kw in [
+                "tunnel club", "backstage", "platinum", "diamond", "gold",
+                "centenary", "dugout club", "museum suite", "tambling",
+                "executive club", "premium seat", "presidential", "vip seat",
+                "corporate box", "private box", "skybox", "loge",
+            ]
+            if kw in "\n".join(intel.text_extracts).lower()
+        ) >= 2
     ),
     # -- Food & Beverage ---------------------------------------------------
     "menu_preview": lambda intel: any(
@@ -177,9 +223,17 @@ RULES: dict[str, Callable[[DomIntel], bool]] = {
     # -- Match Selector UX -------------------------------------------------
     "fixture_list_visible": lambda intel: (
         # 2+ headings/buttons that look like fixture rows (date + opponent or vs)
-        sum(1 for t in [h.text for h in intel.headings] + [b.text for b in intel.buttons]
-            if re.search(r"\bvs\.?\s+\w+|\b\d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)",
-                         t.lower())) >= 2
+        sum(
+            1
+            for t in [h.text for h in intel.headings]
+            + [b.text for b in intel.buttons]
+            + intel.text_extracts
+            if re.search(
+                r"\bvs\.?\s+\w+|\b\d{1,2}\s+(?:jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)",
+                t.lower(),
+            )
+        )
+        >= 2
     ),
     "competition_filter": lambda intel: any(
         kw in _all_text_blobs(intel)
@@ -187,26 +241,63 @@ RULES: dict[str, Callable[[DomIntel], bool]] = {
     ),
     # -- Enquiry Friction --------------------------------------------------
     "enquiry_form_field_count_le_7": lambda intel: (
-        intel.counts.forms >= 1 and 1 <= _input_count(intel) <= 7
+        # Live capture: count <input> tags directly.
+        (intel.counts.forms >= 1 and 1 <= _input_count(intel) <= 7)
+        # Plan 02-20: synthetic intel rarely captures live form structure;
+        # accept reseller mention of an enquiry form (we cannot count
+        # fields from prose, so this is a presence-only fallback). When
+        # source='synthetic' and the text describes an enquiry form, we
+        # treat it as present at the keyword level.
+        or (
+            intel.source == "synthetic"
+            and any(
+                kw in "\n".join(intel.text_extracts).lower()
+                for kw in [
+                    "enquiry form", "enquire now", "request a quote",
+                    "fill out the form", "submit an enquiry", "contact form",
+                ]
+            )
+        )
     ),
-    "buy_now_without_enquiry": lambda intel: any(
+    "buy_now_without_enquiry": lambda intel: (
         # Plan 02-18: broadened to include hospitality-specific buy
         # phrasing. v1 saw RMA's "Buy Hospitality tickets" button as
         # present; v2's narrower keyword list missed it.
         # Spanish/French equivalents added for international clubs.
-        kw in (b.text or "").lower()
-        for b in intel.buttons
-        for kw in [
-            "book now", "buy now", "buy ticket", "purchase",
-            "buy hospitality", "buy seat", "checkout",
-            "comprar", "reservar",  # ES (RMA, ATM)
-            "réserver", "acheter",  # FR (PSG)
-        ]
+        any(
+            kw in (b.text or "").lower()
+            for b in intel.buttons
+            for kw in [
+                "book now", "buy now", "buy ticket", "purchase",
+                "buy hospitality", "buy seat", "checkout",
+                "comprar", "reservar",  # ES (RMA, ATM)
+                "réserver", "acheter",  # FR (PSG)
+            ]
+        )
+        # Plan 02-20: same keyword surface against text_extracts.
+        or any(
+            kw in "\n".join(intel.text_extracts).lower()
+            for kw in [
+                "book now", "buy now", "buy ticket", "purchase",
+                "buy hospitality", "buy seat", "checkout",
+                "buy online", "online booking",
+                "comprar", "reservar",
+                "réserver", "acheter",
+            ]
+        )
     ),
     "phone_booking_option": lambda intel: (
         # tel: link or phone-number-shaped string near "call"
         any((b.href or "").startswith("tel:") for b in intel.buttons)
         or bool(re.search(r"(?:call|phone|tel)[:\s]+\+?\d", _all_text_blobs(intel)))
+        # Plan 02-20: reseller pages routinely list a booking phone number.
+        or bool(
+            re.search(
+                r"(?:call us|call our|to book|to enquire|booking line|hospitality team)"
+                r".{0,60}\+?\d[\d\s\-()]{6,}",
+                "\n".join(intel.text_extracts).lower(),
+            )
+        )
     ),
     # -- Post-Booking Comms (text-keyword heuristics) ----------------------
     "booking_change_policy_visible": lambda intel: any(
