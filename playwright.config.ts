@@ -10,7 +10,10 @@ export default defineConfig({
   retries: process.env.CI ? 2 : 0,
   reporter: 'list',
   use: {
-    baseURL: 'http://localhost:3000',
+    // Plan 02-21: respect PLAYWRIGHT_BASE_URL when set so contributors
+    // running multiple Next workspaces on different ports can still
+    // run the visual suite without port collisions. Defaults to :3000.
+    baseURL: process.env.PLAYWRIGHT_BASE_URL ?? 'http://localhost:3000',
     colorScheme: 'dark',
     trace: 'retain-on-failure',
   },
