@@ -19,7 +19,7 @@ Design notes
 """
 from __future__ import annotations
 
-from typing import Any
+from typing import Any, Literal
 
 from pydantic import BaseModel, Field
 
@@ -152,6 +152,19 @@ class DomIntel(BaseModel):
     Mirrors the shape returned by :data:`EXTRACT_DOM_INTEL_JS`. Pydantic
     coerces the JS object → these models at validation time; downstream
     detection rules consume the typed surface.
+
+    Plan 02-20 additive fields:
+      - ``text_extracts`` — raw text content blocks aggregated from third-
+        party reseller pages or search snippets when the official site is
+        Cloudflare-blocked. Live captures leave this empty; synthetic
+        captures populate it. ``dom_detect`` rules consult this as a
+        fallback text surface so the rule set is text-source-agnostic.
+      - ``source`` — provenance marker. ``"live"`` (default) is a real
+        Playwright + DOM-evaluate capture; ``"synthetic"`` is built from
+        text-fetched reseller content via ``scanner.capture.text_fetch``.
+        Downstream consumers (analysis, contact sheet, coverage report)
+        use this to distinguish reseller-described content from live
+        page state.
     """
 
     title: str = ""
@@ -163,6 +176,8 @@ class DomIntel(BaseModel):
     schema_jsonld: list[Any] = Field(default_factory=list)
     meta: dict[str, str] = Field(default_factory=dict)
     counts: DomCounts = Field(default_factory=DomCounts)
+    text_extracts: list[str] = Field(default_factory=list)
+    source: Literal["live", "synthetic"] = "live"
 
 
 __all__ = [
