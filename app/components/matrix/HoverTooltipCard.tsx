@@ -104,7 +104,7 @@ export function HoverTooltipCard({ data, features, clubs, scoring, area = 'homep
           <span className={styles.scoreNo}>No −{Math.abs(score.no)}</span>
         </span>
       </div>
-      {data.value && (() => {
+      {data.value && area === 'homepage' && (() => {
         const src = `/api/crosscheck-img?area=${area}&file=${clubId}_${feature.key}.png`;
         return (
           // eslint-disable-next-line @next/next/no-img-element
