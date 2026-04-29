@@ -1,27 +1,22 @@
 import { test, expect } from '@playwright/test';
 
-// Plan 02-13 — visual-regression baseline + accessibility posture
-// for the /hospitality route (D-19, HOSP-03).
+// Plan 02-13 → Plan 02-21 — visual-regression baseline + accessibility
+// posture for the /hospitality route.
 //
-// Mirrors tests/visual/homepage.spec.ts:
-//   - viewport 1440×900
-//   - animations: 'disabled' to avoid mid-frame screenshots
-//   - waitForFunction(() => document.fonts.ready) so Suisse Intl + Roboto
-//     Mono web-fonts swap in before capture
-//   - maxDiffPixelRatio: 0.02 (set in playwright.config.ts)
-//   - mask `[data-build-date]` (changes per commit)
-//
-// The baseline PNG lives at:
+// Plan 02-21 unified the hospitality view with the homepage matrix
+// shell: same HeaderBar, TopNav, sidebar (CategoryFilter + TypeFilter),
+// matrix grid, detail panel, hover tooltips. The earlier minimal
+// <HospitalityIsland> standalone view was removed. The visual baseline
+// PNG was regenerated alongside the refactor and is committed at
 //   tests/visual/hospitality-tab.spec.ts-snapshots/hospitality-1440x900-{platform}.png
-// and is committed alongside this spec. Subsequent runs enforce the
-// pixel diff threshold; intentional design changes need
-// `npx playwright test tests/visual/hospitality-tab.spec.ts --update-snapshots`
-// after manual review (per CLAUDE.md design-system rule).
+// Subsequent runs enforce maxDiffPixelRatio: 0.02 (playwright.config.ts).
 //
-// The a11y posture check is intentionally framework-free (no axe-core
-// dep) — it asserts the same baseline qualities the homepage spec
-// implies: semantic HTML (table, nav, banner), alt text on logos,
-// aria labels on the back-link.
+// Pitfalls handled (mirrors tests/visual/homepage.spec.ts):
+//   - viewport 1440×900
+//   - animations: 'disabled'
+//   - waitForFunction(() => document.fonts.ready) so Inter Tight + Roboto
+//     Mono web-fonts swap in before capture
+//   - mask `[data-build-date]` (changes per commit)
 
 test('hospitality page matches visual baseline @smoke', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
@@ -41,36 +36,44 @@ test('hospitality page passes a11y posture baseline @smoke', async ({ page }) =>
   await page.goto('/hospitality');
   await page.waitForLoadState('networkidle');
 
-  // Pilot label is visible above the matrix.
-  await expect(page.locator('[data-pilot-label="true"]')).toHaveText('Pilot: 5 clubs');
+  // Plan 02-21 — the unified matrix shell renders the SAME HeaderBar
+  // + TopNav + sidebar + table chrome as the homepage.
 
-  // Back-to-home link is present, has the correct href, and is NOT
-  // styled as an orange CTA (no .locked-btn class — the project-wide
-  // marker for var(--accent) backgrounds).
-  const back = page.locator('[data-cta="back-to-home"]');
-  await expect(back).toHaveAttribute('href', '/');
-  const backClasses = await back.getAttribute('class');
-  expect(backClasses ?? '').not.toContain('locked-btn');
+  // 1. HeaderBar with build date is present.
+  const buildDate = page.locator('[data-build-date]');
+  await expect(buildDate).toBeVisible();
 
-  // Single-orange-CTA invariant: ≤ 1 element with .locked-btn class
-  // anywhere on the page.
-  const orangeCount = await page.locator('.locked-btn').count();
-  expect(orangeCount).toBeLessThanOrEqual(1);
+  // 2. TopNav: the "hospitality" tab is the active pill (Plan 02-21).
+  const activeTab = page.locator('[data-tab-active="true"]');
+  await expect(activeTab).toHaveCount(1);
+  await expect(activeTab).toHaveAttribute('data-tab-id', 'hospitality');
 
-  // Matrix table is rendered with semantic <table> + 5 product columns
-  // + 55 feature rows (HP01..HP55).
-  await expect(page.locator('table[data-matrix="hospitality"]')).toBeVisible();
-  const headerCols = await page.locator('thead tr').first().locator('th').count();
-  expect(headerCols).toBe(6); // 1 sticky feature col + 5 product cols
-  const featureRows = await page.locator('tbody tr[data-feature]').count();
-  expect(featureRows).toBe(55);
+  // 3. Sidebar shows the 8 hospitality categories (CategoryFilter).
+  const catRows = page.locator('.sidebar [data-category-id]');
+  await expect(catRows).toHaveCount(8);
 
-  // Logos have alt text (a11y baseline).
+  // 4. Matrix table renders with 1 sticky feature col + 5 product cols
+  //    + 55 feature rows (HP01..HP55).
+  const headerCols = page.locator('thead tr').first().locator('th');
+  await expect(headerCols).toHaveCount(6);
+  const featureRows = page.locator('tbody tr[data-feature-row]');
+  await expect(featureRows).toHaveCount(55);
+
+  // 5. Logos have alt text (a11y baseline).
   const logoImgs = page.locator('thead .col-logo img');
+  await expect(logoImgs).toHaveCount(5);
   const logoCount = await logoImgs.count();
-  expect(logoCount).toBe(5);
   for (let i = 0; i < logoCount; i++) {
     const alt = await logoImgs.nth(i).getAttribute('alt');
     expect(alt && alt.length > 0).toBeTruthy();
   }
+
+  // 6. Single-orange-CTA invariant: ≤ 1 visible .locked-btn (modals
+  //    are hidden until triggered, so visible count is 0 in default
+  //    state — strictly preserved by the unified shell).
+  const visibleOranges = page.locator(
+    '.locked-overlay.visible .locked-btn, .preview-blur-overlay .locked-btn',
+  );
+  const orangeCount = await visibleOranges.count();
+  expect(orangeCount).toBeLessThanOrEqual(1);
 });
