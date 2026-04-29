@@ -280,7 +280,7 @@ RULES: dict[str, Callable[[DomIntel], bool]] = {
             for kw in [
                 "book now", "buy now", "buy ticket", "purchase",
                 "buy hospitality", "buy seat", "checkout",
-                "buy online", "online booking",
+                "buy online", "online booking", "book online",
                 "comprar", "reservar",
                 "réserver", "acheter",
             ]
