@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-28",
+  "generated_at": "2026-04-29",
   "total_clubs": 5,
   "rankings": [
     {
@@ -20,6 +20,14 @@
     },
     {
       "rank": 3,
+      "product_id": "mancity",
+      "total_score": -49,
+      "yes_count": 14,
+      "no_count": 41,
+      "feature_count": 55
+    },
+    {
+      "rank": 4,
       "product_id": "chelsea",
       "total_score": -75,
       "yes_count": 9,
@@ -27,19 +35,11 @@
       "feature_count": 55
     },
     {
-      "rank": 4,
-      "product_id": "mancity",
-      "total_score": -99,
-      "yes_count": 5,
-      "no_count": 50,
-      "feature_count": 55
-    },
-    {
       "rank": 5,
       "product_id": "psg",
-      "total_score": -106,
-      "yes_count": 4,
-      "no_count": 51,
+      "total_score": -84,
+      "yes_count": 8,
+      "no_count": 47,
       "feature_count": 55
     }
   ]

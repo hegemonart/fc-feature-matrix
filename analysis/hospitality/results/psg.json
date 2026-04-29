@@ -11,7 +11,7 @@
     "tier_capacity_indicator": false,
     "upcoming_matches_pre_tier": false,
     "multi_occasion_tagging": false,
-    "price_per_person_visible": false,
+    "price_per_person_visible": true,
     "fixture_category_tiers": false,
     "min_booking_unit": false,
     "price_range_by_match": false,
@@ -27,7 +27,7 @@
     "kids_menu": false,
     "meal_timing_visible": false,
     "post_match_service": false,
-    "fixture_list_visible": false,
+    "fixture_list_visible": true,
     "competition_filter": true,
     "sold_out_indicator": false,
     "multi_match_bundle_selector": false,
@@ -36,8 +36,8 @@
     "enquiry_form_field_count_le_7": false,
     "immediate_confirmation_email": false,
     "accessible_booking_option": false,
-    "buy_now_without_enquiry": false,
-    "phone_booking_option": false,
+    "buy_now_without_enquiry": true,
+    "phone_booking_option": true,
     "live_chat_availability": false,
     "response_time_promise": false,
     "parking_included_indicator": false,
@@ -63,14 +63,11 @@
   "disputed_features": [],
   "skipped_features": [],
   "captured_steps": [
-    "all-executive-club-shot",
     "billetterie-home-vip-shot",
     "billetterie-match-selector-shot",
-    "enquiry-form-prefill-shot",
-    "first-tier-shot",
-    "landing-shot"
+    "enquiry-form-prefill-shot"
   ],
   "judge_agreement_rate": 1,
-  "generated_at": "2026-04-28T15:24:52+00:00",
-  "total_score": -106
+  "generated_at": "2026-04-29T02:43:26+00:00",
+  "total_score": -84
 }

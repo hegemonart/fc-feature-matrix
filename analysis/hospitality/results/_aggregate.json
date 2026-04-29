@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-28",
+  "generated_at": "2026-04-29",
   "total_clubs": 5,
   "total_features": 55,
   "features": {
@@ -10,8 +10,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -22,8 +22,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -34,8 +34,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -59,22 +59,22 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
     "buy_now_without_enquiry": {
-      "adoption_count": 3,
-      "adoption_pct": 60,
+      "adoption_count": 4,
+      "adoption_pct": 80,
       "clubs_yes": [
         "tottenham",
         "realmadrid",
-        "mancity"
+        "mancity",
+        "psg"
       ],
       "clubs_no": [
-        "chelsea",
-        "psg"
+        "chelsea"
       ]
     },
     "cancellation_refund_window": {
@@ -84,8 +84,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -96,147 +96,38 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
     "chef_attribution": {
-      "adoption_count": 1,
-      "adoption_pct": 20,
-      "clubs_yes": [
-        "tottenham"
-      ],
-      "clubs_no": [
-        "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
-      ]
-    },
-    "competition_filter": {
-      "adoption_count": 1,
-      "adoption_pct": 20,
-      "clubs_yes": [
-        "psg"
-      ],
-      "clubs_no": [
-        "tottenham",
-        "realmadrid",
-        "chelsea",
-        "mancity"
-      ]
-    },
-    "concierge_service": {
       "adoption_count": 2,
       "adoption_pct": 40,
       "clubs_yes": [
         "tottenham",
-        "realmadrid"
+        "mancity"
       ],
       "clubs_no": [
+        "realmadrid",
         "chelsea",
-        "mancity",
         "psg"
       ]
     },
-    "confirmation_page_clarity": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
+    "competition_filter": {
+      "adoption_count": 2,
+      "adoption_pct": 40,
+      "clubs_yes": [
+        "mancity",
+        "psg"
+      ],
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
+        "chelsea"
       ]
     },
-    "corporate_invoice_billing": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
-        "tottenham",
-        "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
-      ]
-    },
-    "deposit_vs_full_payment": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
-        "tottenham",
-        "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
-      ]
-    },
-    "dietary_preferences_capture": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
-        "tottenham",
-        "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
-      ]
-    },
-    "dress_code_info": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
-        "tottenham",
-        "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
-      ]
-    },
-    "enquiry_form_field_count_le_7": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
-        "tottenham",
-        "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
-      ]
-    },
-    "fixture_category_tiers": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
-        "tottenham",
-        "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
-      ]
-    },
-    "fixture_change_notification": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
-      "clubs_no": [
-        "tottenham",
-        "realmadrid",
-        "chelsea",
-        "mancity",
-        "psg"
-      ]
-    },
-    "fixture_list_visible": {
+    "concierge_service": {
       "adoption_count": 3,
       "adoption_pct": 60,
       "clubs_yes": [
@@ -249,6 +140,117 @@
         "psg"
       ]
     },
+    "confirmation_page_clarity": {
+      "adoption_count": 0,
+      "adoption_pct": 0,
+      "clubs_yes": [],
+      "clubs_no": [
+        "tottenham",
+        "realmadrid",
+        "mancity",
+        "chelsea",
+        "psg"
+      ]
+    },
+    "corporate_invoice_billing": {
+      "adoption_count": 0,
+      "adoption_pct": 0,
+      "clubs_yes": [],
+      "clubs_no": [
+        "tottenham",
+        "realmadrid",
+        "mancity",
+        "chelsea",
+        "psg"
+      ]
+    },
+    "deposit_vs_full_payment": {
+      "adoption_count": 0,
+      "adoption_pct": 0,
+      "clubs_yes": [],
+      "clubs_no": [
+        "tottenham",
+        "realmadrid",
+        "mancity",
+        "chelsea",
+        "psg"
+      ]
+    },
+    "dietary_preferences_capture": {
+      "adoption_count": 0,
+      "adoption_pct": 0,
+      "clubs_yes": [],
+      "clubs_no": [
+        "tottenham",
+        "realmadrid",
+        "mancity",
+        "chelsea",
+        "psg"
+      ]
+    },
+    "dress_code_info": {
+      "adoption_count": 0,
+      "adoption_pct": 0,
+      "clubs_yes": [],
+      "clubs_no": [
+        "tottenham",
+        "realmadrid",
+        "mancity",
+        "chelsea",
+        "psg"
+      ]
+    },
+    "enquiry_form_field_count_le_7": {
+      "adoption_count": 1,
+      "adoption_pct": 20,
+      "clubs_yes": [
+        "mancity"
+      ],
+      "clubs_no": [
+        "tottenham",
+        "realmadrid",
+        "chelsea",
+        "psg"
+      ]
+    },
+    "fixture_category_tiers": {
+      "adoption_count": 0,
+      "adoption_pct": 0,
+      "clubs_yes": [],
+      "clubs_no": [
+        "tottenham",
+        "realmadrid",
+        "mancity",
+        "chelsea",
+        "psg"
+      ]
+    },
+    "fixture_change_notification": {
+      "adoption_count": 1,
+      "adoption_pct": 20,
+      "clubs_yes": [
+        "mancity"
+      ],
+      "clubs_no": [
+        "tottenham",
+        "realmadrid",
+        "chelsea",
+        "psg"
+      ]
+    },
+    "fixture_list_visible": {
+      "adoption_count": 4,
+      "adoption_pct": 80,
+      "clubs_yes": [
+        "tottenham",
+        "realmadrid",
+        "mancity",
+        "psg"
+      ],
+      "clubs_no": [
+        "chelsea"
+      ]
+    },
     "group_host_contact": {
       "adoption_count": 1,
       "adoption_pct": 20,
@@ -257,8 +259,8 @@
       ],
       "clubs_no": [
         "tottenham",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -269,8 +271,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -281,8 +283,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -294,8 +296,8 @@
       ],
       "clubs_no": [
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -306,8 +308,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -325,16 +327,16 @@
       ]
     },
     "menu_preview": {
-      "adoption_count": 2,
-      "adoption_pct": 40,
+      "adoption_count": 3,
+      "adoption_pct": 60,
       "clubs_yes": [
         "tottenham",
+        "mancity",
         "psg"
       ],
       "clubs_no": [
         "realmadrid",
-        "chelsea",
-        "mancity"
+        "chelsea"
       ]
     },
     "merchandise_voucher": {
@@ -344,8 +346,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -370,8 +372,8 @@
       ],
       "clubs_no": [
         "tottenham",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -382,8 +384,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -394,8 +396,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -405,60 +407,61 @@
       "clubs_yes": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ],
       "clubs_no": []
     },
     "parking_included_indicator": {
-      "adoption_count": 0,
-      "adoption_pct": 0,
-      "clubs_yes": [],
+      "adoption_count": 1,
+      "adoption_pct": 20,
+      "clubs_yes": [
+        "mancity"
+      ],
       "clubs_no": [
         "tottenham",
         "realmadrid",
         "chelsea",
-        "mancity",
         "psg"
       ]
     },
     "per_tier_landing_page": {
+      "adoption_count": 3,
+      "adoption_pct": 60,
+      "clubs_yes": [
+        "tottenham",
+        "realmadrid",
+        "chelsea"
+      ],
+      "clubs_no": [
+        "mancity",
+        "psg"
+      ]
+    },
+    "phone_booking_option": {
       "adoption_count": 4,
       "adoption_pct": 80,
       "clubs_yes": [
         "tottenham",
         "realmadrid",
-        "chelsea",
-        "mancity"
-      ],
-      "clubs_no": [
-        "psg"
-      ]
-    },
-    "phone_booking_option": {
-      "adoption_count": 2,
-      "adoption_pct": 40,
-      "clubs_yes": [
-        "tottenham",
-        "realmadrid"
-      ],
-      "clubs_no": [
-        "chelsea",
         "mancity",
         "psg"
+      ],
+      "clubs_no": [
+        "chelsea"
       ]
     },
     "pitchside_or_tunnel_access": {
-      "adoption_count": 2,
-      "adoption_pct": 40,
+      "adoption_count": 3,
+      "adoption_pct": 60,
       "clubs_yes": [
         "tottenham",
+        "mancity",
         "chelsea"
       ],
       "clubs_no": [
         "realmadrid",
-        "mancity",
         "psg"
       ]
     },
@@ -469,8 +472,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -488,17 +491,16 @@
       ]
     },
     "price_per_person_visible": {
-      "adoption_count": 3,
-      "adoption_pct": 60,
+      "adoption_count": 5,
+      "adoption_pct": 100,
       "clubs_yes": [
         "tottenham",
         "realmadrid",
-        "chelsea"
-      ],
-      "clubs_no": [
         "mancity",
+        "chelsea",
         "psg"
-      ]
+      ],
+      "clubs_no": []
     },
     "price_range_by_match": {
       "adoption_count": 0,
@@ -507,8 +509,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -519,8 +521,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -531,8 +533,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -543,8 +545,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -555,8 +557,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -567,8 +569,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -579,22 +581,22 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
     "stadium_tour_inclusion": {
-      "adoption_count": 3,
-      "adoption_pct": 60,
+      "adoption_count": 4,
+      "adoption_pct": 80,
       "clubs_yes": [
         "tottenham",
+        "mancity",
         "chelsea",
         "psg"
       ],
       "clubs_no": [
-        "realmadrid",
-        "mancity"
+        "realmadrid"
       ]
     },
     "tier_capacity_indicator": {
@@ -605,8 +607,8 @@
       ],
       "clubs_no": [
         "tottenham",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -617,8 +619,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -629,8 +631,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -641,20 +643,20 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
     "upcoming_matches_pre_tier": {
-      "adoption_count": 3,
-      "adoption_pct": 60,
+      "adoption_count": 2,
+      "adoption_pct": 40,
       "clubs_yes": [
         "tottenham",
-        "realmadrid",
-        "mancity"
+        "realmadrid"
       ],
       "clubs_no": [
+        "mancity",
         "chelsea",
         "psg"
       ]
@@ -666,8 +668,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     },
@@ -678,8 +680,8 @@
       "clubs_no": [
         "tottenham",
         "realmadrid",
-        "chelsea",
         "mancity",
+        "chelsea",
         "psg"
       ]
     }

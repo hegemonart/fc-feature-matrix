@@ -1,0 +1,3896 @@
+{
+  "club": "mancity",
+  "area": "hospitality",
+  "api_mode": "synthetic-text-fetch",
+  "steps": {
+    "landing-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      }
+    },
+    "tier-tunnel-club-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      }
+    },
+    "tier-tunnel-club-premier-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      }
+    },
+    "tier-backstage-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      }
+    },
+    "enquiry-form-prefill-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "price_per_person_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "parking_included_indicator": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "fixture_change_notification": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=dom"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: no DOM rule registered for detection=hybrid"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "synthetic-source",
+          "evidence_bbox": null,
+          "confidence": 0.0,
+          "notes": "synthetic-source: visual-only feature; no PNG available"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        }
+      }
+    }
+  },
+  "deferred_steps": [],
+  "missing_png_steps": [
+    "landing-shot",
+    "tier-tunnel-club-shot",
+    "tier-tunnel-club-premier-shot",
+    "tier-backstage-shot",
+    "enquiry-form-prefill-shot"
+  ],
+  "source": "synthetic"
+}
