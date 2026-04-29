@@ -1,24 +1,39 @@
 /* ================================================================
-   app/hospitality/page.tsx — Plan 02-13 (D-19, HOSP-03)
+   app/hospitality/page.tsx — Plan 02-13 → unified by Plan 02-21
 
    Server Component shell for the Hospitality Packages back-half pilot.
    Mirrors app/page.tsx (homepage RSC pattern):
-     1. Loads HOSPITALITY_FEATURES + filters PRODUCTS down to the 5
-        pilot clubs (Man City, Tottenham, Real Madrid, PSG, Chelsea).
+     1. Loads HOSPITALITY_FEATURES + HOSPITALITY_CATEGORIES, filters
+        PRODUCTS down to the 5 pilot clubs (Man City, Tottenham, Real
+        Madrid, PSG, Chelsea).
      2. Pre-computes per-pilot-product weighted scores INLINE — does
         NOT call lib/scoring.getProductScores (that's hardcoded to
         homepage FEATURES; D-20 score-data invariant forbids touching it).
      3. Resolves BUILD_DATE from process.env (set in next.config.ts).
-     4. Hands serializable props to <HospitalityIsland> (Client island).
+     4. Hands serializable props to <MatrixIsland area="hospitality">
+        — the SAME client island that powers /, just configured for
+        hospitality data + active "Hospitality Packages" tab pill.
 
-   The "Pilot: 5 clubs" label lives inside <HospitalityIsland> to keep
-   it co-located with the matrix it describes.
+   Plan 02-21 unified the hospitality view with the homepage matrix
+   shell: same HeaderBar, TopNav, sidebar (CategoryFilter+TypeFilter),
+   matrix grid, detail panel, hover tooltips. The earlier minimal
+   <HospitalityIsland> standalone view is removed.
    ================================================================ */
 
-import { PRODUCTS, HOSPITALITY_FEATURES } from '@/lib/data';
-import HospitalityIsland from './HospitalityIsland';
+import {
+  PRODUCTS,
+  HOSPITALITY_FEATURES,
+  HOSPITALITY_CATEGORIES,
+} from '@/lib/data';
+import MatrixIsland from '../MatrixIsland';
 
 const PILOT_IDS = ['man_city', 'tottenham', 'real_madrid', 'psg', 'chelsea'];
+
+export const metadata = {
+  title: 'FC Benchmark — Hospitality Packages (Pilot: 5 clubs)',
+  description:
+    '55-feature hospitality matrix across 5 pilot clubs (Man City, Tottenham, Real Madrid, PSG, Chelsea).',
+};
 
 export default function HospitalityPage() {
   const pilotProducts = PRODUCTS.filter(p => PILOT_IDS.includes(p.id));
@@ -39,9 +54,11 @@ export default function HospitalityPage() {
   const buildDate = process.env.BUILD_DATE ?? '';
 
   return (
-    <HospitalityIsland
-      pilotProducts={pilotProducts}
-      hospitalityFeatures={HOSPITALITY_FEATURES}
+    <MatrixIsland
+      area="hospitality"
+      products={pilotProducts}
+      features={HOSPITALITY_FEATURES}
+      categories={HOSPITALITY_CATEGORIES}
       scores={scores}
       buildDate={buildDate}
     />
