@@ -44,8 +44,10 @@ import { useState, useMemo, useCallback, useEffect, useRef, memo } from 'react';
 import { useRouter } from 'next/navigation';
 import {
   CATEGORIES,
+  HOSPITALITY_CATEGORIES,
   BAND_META,
   ALL_IDS,
+  type Category,
   type CategoryId,
   type BandId,
   type Feature,
@@ -53,6 +55,13 @@ import {
   type ProductType,
 } from '@/lib/data';
 import { trackEvent } from '@/lib/track';
+
+/* ── Area types (Plan 02-21) ──
+   Plan 02-21 makes MatrixIsland area-aware: the same shell renders
+   either the homepage matrix or the hospitality matrix based on the
+   `area` prop. Default is 'homepage' for backward-compat with the
+   existing app/page.tsx call site (zero-prop). */
+export type MatrixArea = 'homepage' | 'hospitality';
 
 import { useHoverTooltip } from './components/matrix/useHoverTooltip';
 import { useColumnSelection } from './components/matrix/useColumnSelection';
@@ -130,9 +139,36 @@ export interface MatrixIslandProps {
   scores: Record<string, number>;
   /** Build date from process.env.BUILD_DATE (Server-resolved string). */
   buildDate: string;
+  /**
+   * Plan 02-21 — which area's matrix this island renders.
+   *   'homepage'    → 12 homepage categories, active tab "home"
+   *   'hospitality' → 8 hospitality categories, active tab "hospitality"
+   * Defaults to 'homepage' so existing call sites stay compatible.
+   */
+  area?: MatrixArea;
+  /**
+   * Plan 02-21 — optional category list (id/name/color) for the
+   * sidebar <CategoryFilter>. When omitted, defaults are picked
+   * from `area`: homepage→CATEGORIES, hospitality→HOSPITALITY_CATEGORIES.
+   */
+  categories?: Category[];
 }
 
-export default function MatrixIsland({ products, features, buildDate }: MatrixIslandProps) {
+export default function MatrixIsland({
+  products,
+  features,
+  buildDate,
+  area = 'homepage',
+  categories,
+}: MatrixIslandProps) {
+  /* ── Area-derived chrome (Plan 02-21) ── */
+  const activeArea: MatrixArea = area;
+  const areaCategories: Category[] = categories
+    ?? (activeArea === 'hospitality' ? HOSPITALITY_CATEGORIES : CATEGORIES);
+  /** Which TopNav tab id should be highlighted as active. */
+  const activeTabId = activeArea === 'hospitality' ? 'hospitality' : 'home';
+  /** Path string used in tracking events + login CTA copy. */
+  const areaPath = activeArea === 'hospitality' ? '/hospitality' : '/';
   /* ── State (preserved verbatim from app/page.tsx) ── */
   const [filterTypes, setFilterTypes] = useState<Set<string>>(new Set(['club', 'governing', 'league']));
   const [activeCat, setActiveCat] = useState<CategoryId | null>(null);
@@ -246,7 +282,12 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
 
   /* ── Derived data ── */
 
-  /** Total score per product, filtered by active category */
+  /** Total score per product, filtered by active category.
+   *  Plan 02-21: this inline computation works for BOTH areas because
+   *  it derives from `features.weightYes/weightNo` + `presence` —
+   *  hospitality features have the same shape (D-20 invariant is
+   *  about not modifying `lib/scoring.ts` and homepage results, not
+   *  about avoiding pure derived UI math). */
   const productScores = useMemo(() => {
     const feats = activeCat ? features.filter(f => f.cat === activeCat) : features;
     const out: Record<string, number> = {};
@@ -283,26 +324,30 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
     const feats = [...visibleFeats];
     if (featureAlphaSort) {
       feats.sort((a, b) => {
-        const catA = CATEGORIES.find(c => c.id === a.cat)!.name;
-        const catB = CATEGORIES.find(c => c.id === b.cat)!.name;
+        // Plan 02-21: lookup against the active area's categories so
+        // hospitality CategoryIds resolve correctly.
+        const catA = areaCategories.find(c => c.id === a.cat)?.name ?? a.cat;
+        const catB = areaCategories.find(c => c.id === b.cat)?.name ?? b.cat;
         if (catA !== catB) return catA.localeCompare(catB);
         return a.name.localeCompare(b.name);
       });
     }
     return feats;
-  }, [visibleFeats, featureAlphaSort]);
+  }, [visibleFeats, featureAlphaSort, areaCategories]);
 
-  /* ── Sidebar counts (always based on full dataset) ── */
+  /* ── Sidebar counts (always based on full dataset).
+       Plan 02-21: iterate `areaCategories` so the sidebar list reflects
+       the active area (homepage→12 cats, hospitality→8 cats). ── */
   const catCounts = useMemo(() => {
     const counts: Record<string, number> = {};
-    CATEGORIES.forEach(c => (counts[c.id] = features.filter(f => f.cat === c.id).length));
+    areaCategories.forEach(c => (counts[c.id] = features.filter(f => f.cat === c.id).length));
     return counts;
-  }, [features]);
+  }, [features, areaCategories]);
 
-  /* ── CategoryFilter source: derived from CATEGORIES + counts ── */
+  /* ── CategoryFilter source: derived from areaCategories + counts ── */
   const categoryItems: CategoryItem[] = useMemo(() => {
-    return CATEGORIES.map(c => ({ id: c.id, name: c.name, count: catCounts[c.id] ?? 0 }));
-  }, [catCounts]);
+    return areaCategories.map(c => ({ id: c.id, name: c.name, count: catCounts[c.id] ?? 0 }));
+  }, [catCounts, areaCategories]);
 
   /** Set<CategoryId> of collapsed categories. activeCat is "show only this
    *  category" (preserved single-select semantics). For CategoryFilter's
@@ -310,8 +355,8 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
    *  is set, else collapse none. */
   const collapsedCats: Set<CategoryId> = useMemo(() => {
     if (!activeCat) return new Set<CategoryId>();
-    return new Set<CategoryId>(CATEGORIES.filter(c => c.id !== activeCat).map(c => c.id));
-  }, [activeCat]);
+    return new Set<CategoryId>(areaCategories.filter(c => c.id !== activeCat).map(c => c.id));
+  }, [activeCat, areaCategories]);
 
   const handleCategoryToggle = useCallback((id: CategoryId) => {
     setActiveCat(prev => (prev === id ? null : id));
@@ -354,7 +399,8 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
   const featureSortState: SortState = featureAlphaSort ? 'asc' : 'idle';
   const scoreSortState: SortState = scoreSort === 'asc' ? 'asc' : scoreSort === 'desc' ? 'desc' : 'idle';
 
-  /* ── Auth: check session on mount (preserved verbatim) ── */
+  /* ── Auth: check session on mount (preserved verbatim).
+     Plan 02-21: page_view path tracks the active area (/, /hospitality, …). ── */
   useEffect(() => {
     fetch('/api/auth/me').then(r => r.json()).then(d => {
       if (d.authenticated) {
@@ -364,8 +410,8 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
         setIsPremium(d.isPremium ?? false);
       }
     }).catch(() => {});
-    trackEvent('page_view', { path: '/' });
-  }, []);
+    trackEvent('page_view', { path: areaPath });
+  }, [areaPath]);
 
   const handleLogin = useCallback(async (e: React.FormEvent) => {
     e.preventDefault();
@@ -408,9 +454,19 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
   }, []);
 
   const handleTabClick = useCallback((tabId: string) => {
-    // Homepage IS the current view — clicking the active tab is a no-op,
-    // never opens the locked/coming-soon modal.
-    if (tabId === 'home') return;
+    // Plan 02-21: Clicking the active-area tab is a no-op (never opens
+    // a modal). For homepage that's `tabId === 'home'`; for hospitality
+    // that's `tabId === 'hospitality'`. The activeTabId derived above
+    // captures both cases.
+    if (tabId === activeTabId) return;
+
+    // Plan 02-21 — cross-area navigation:
+    //   Click "Homepage" tab from /hospitality → router.push('/')
+    if (tabId === 'home') {
+      trackEvent('tab_click', { tab: 'Homepage', outcome: 'navigate' });
+      router.push('/');
+      return;
+    }
 
     // Plan 02-13 — hospitality is unlocked for any authed tier
     // (signed-in / premium / admin). Unauthed users fall through to
@@ -440,7 +496,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
       setLockedFlowName(tabName);
       setLockedModalVisible(true);
     }
-  }, [authed, isAdmin, isPremium, router]);
+  }, [activeTabId, authed, isAdmin, isPremium, router]);
 
   /* ── Detail panel handlers (preserved) ── */
   const handleShowFeatureDetail = useCallback((fid: string) => {
@@ -532,10 +588,12 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
         onSignOut={handleLogout}
       />
 
-      {/* ── TOP NAV (replaces <nav.flow-nav> + .locked-zone) ── */}
+      {/* ── TOP NAV (replaces <nav.flow-nav> + .locked-zone).
+           Plan 02-21: activeTab is now derived from the `area` prop
+           so the white pill highlights the current page's tab. ── */}
       <TopNav
         tabs={navTabs}
-        activeTab="home"
+        activeTab={activeTabId}
         unlockTab="unlock"
         lockedTabs={lockedTabIds}
         onTabClick={handleTabClick}
@@ -630,6 +688,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                   <TableRows
                     feats={sortedFeats}
                     prods={visibleProds}
+                    categories={areaCategories}
                     showCategorySeps={true}
                     selectedFeature={selectedFeature}
                     isColumnSelected={isColumnSelected}
@@ -714,6 +773,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                 fid={selectedFeature}
                 features={features}
                 products={products}
+                categories={areaCategories}
                 onClose={handleCloseDetail}
                 onProductClick={handleShowProductDetail}
               />
@@ -723,6 +783,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
                 pid={selectedProduct}
                 features={features}
                 products={products}
+                categories={areaCategories}
                 onClose={handleCloseDetail}
                 onFeatureClick={handleShowFeatureDetail}
               />
@@ -844,6 +905,7 @@ export default function MatrixIsland({ products, features, buildDate }: MatrixIs
 const TableRows = memo(function TableRows({
   feats,
   prods,
+  categories,
   showCategorySeps,
   selectedFeature,
   isColumnSelected,
@@ -854,6 +916,7 @@ const TableRows = memo(function TableRows({
 }: {
   feats: Feature[];
   prods: Product[];
+  categories: Category[];
   showCategorySeps: boolean;
   selectedFeature: string | null;
   isColumnSelected: (clubId: string) => boolean;
@@ -869,7 +932,11 @@ const TableRows = memo(function TableRows({
   feats.forEach((f, idx) => {
     if (showCategorySeps && f.cat !== lastCat) {
       lastCat = f.cat;
-      const cat = CATEGORIES.find(c => c.id === f.cat)!;
+      // Plan 02-21: resolve cat against the active area's categories.
+      // Fallback object keeps a row rendering even if a feature uses
+      // an out-of-area CategoryId (defensive — should never happen).
+      const cat = categories.find(c => c.id === f.cat)
+        ?? { id: f.cat, name: f.cat, color: 'var(--muted)' };
       const sepBlur = previewMode && featureRowIndex >= 2
         ? { filter: `blur(${Math.min((featureRowIndex - 2) * 1.5, 10)}px)` }
         : undefined;
@@ -954,18 +1021,22 @@ function FeatureDetail({
   fid,
   features,
   products,
+  categories,
   onClose,
   onProductClick,
 }: {
   fid: string;
   features: Feature[];
   products: Product[];
+  categories: Category[];
   onClose: () => void;
   onProductClick: (pid: string) => void;
 }) {
   const f = features.find(x => x.id === fid);
   if (!f) return null;
-  const cat = CATEGORIES.find(c => c.id === f.cat)!;
+  // Plan 02-21: lookup against the active area's categories.
+  const cat = categories.find(c => c.id === f.cat)
+    ?? { id: f.cat, name: f.cat, color: 'var(--muted)' };
   const bandLabel = BAND_META.find(b => b.id === f.band)!.name;
   const fullList = ALL_IDS.filter(id => f.presence[id] === 'full');
   const absentList = ALL_IDS.filter(id => f.presence[id] === 'absent');
@@ -1037,12 +1108,14 @@ function ProductDetail({
   pid,
   features,
   products,
+  categories,
   onClose,
   onFeatureClick,
 }: {
   pid: string;
   features: Feature[];
   products: Product[];
+  categories: Category[];
   onClose: () => void;
   onFeatureClick: (fid: string) => void;
 }) {
@@ -1125,7 +1198,7 @@ function ProductDetail({
           </div>
           <div className="product-feature-list">
             {missingHighImpact.map(f => {
-              const cat = CATEGORIES.find(c => c.id === f.cat)!;
+              const cat = categories.find(c => c.id === f.cat) ?? { id: f.cat, name: f.cat, color: 'var(--muted)' };
               return (
                 <div key={f.id} className="product-feature-item" onClick={() => onFeatureClick(f.id)}>
                   <span className="product-feature-check absent">{'\u00B7'}</span>
@@ -1145,7 +1218,7 @@ function ProductDetail({
           </div>
           <div className="product-feature-list">
             {missingLowImpact.map(f => {
-              const cat = CATEGORIES.find(c => c.id === f.cat)!;
+              const cat = categories.find(c => c.id === f.cat) ?? { id: f.cat, name: f.cat, color: 'var(--muted)' };
               return (
                 <div key={f.id} className="product-feature-item" onClick={() => onFeatureClick(f.id)}>
                   <span className="product-feature-check absent">{'\u00B7'}</span>
@@ -1165,7 +1238,7 @@ function ProductDetail({
           </div>
           <div className="product-feature-list">
             {featuresPresent.map(f => {
-              const cat = CATEGORIES.find(c => c.id === f.cat)!;
+              const cat = categories.find(c => c.id === f.cat) ?? { id: f.cat, name: f.cat, color: 'var(--muted)' };
               const state = f.presence[pid];
               return (
                 <div key={f.id} className="product-feature-item" onClick={() => onFeatureClick(f.id)}>
