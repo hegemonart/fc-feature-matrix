@@ -33,3 +33,11 @@ export {
 // Re-export the 55 hospitality features for the /hospitality route.
 // Homepage `FEATURES` export above stays untouched (D-20 score-data invariant).
 export { FEATURES as HOSPITALITY_FEATURES } from '@/analysis/hospitality/features';
+
+// ── Hospitality categories (Plan 02-21) ──
+// 8 hospitality category sections (Package Discovery, Pricing Transparency,
+// Food & Beverage, Match Selector UX, Enquiry Friction, Premium Amenities,
+// Post-Booking Comms, Booking Confirmation). Powers the sidebar
+// <CategoryFilter> on /hospitality when MatrixIsland is rendered with
+// area="hospitality".
+export { HOSPITALITY_CATEGORIES } from '@/analysis/hospitality/categories';
