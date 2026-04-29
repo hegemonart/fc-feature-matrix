@@ -1,0 +1,44 @@
+{
+  "club": "mancity",
+  "area": "hospitality",
+  "flow_map": "scanner/capture/text_fetch.py (synthetic source)",
+  "started_at": "synthetic-text-fetch",
+  "steps": [
+    {
+      "step_name": "landing-shot",
+      "status": "synthetic",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "synthetic-text-fetch"
+    },
+    {
+      "step_name": "tier-tunnel-club-shot",
+      "status": "synthetic",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "synthetic-text-fetch"
+    },
+    {
+      "step_name": "tier-tunnel-club-premier-shot",
+      "status": "synthetic",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "synthetic-text-fetch"
+    },
+    {
+      "step_name": "tier-backstage-shot",
+      "status": "synthetic",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "synthetic-text-fetch"
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "status": "synthetic",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "synthetic-text-fetch"
+    }
+  ],
+  "source": "synthetic"
+}

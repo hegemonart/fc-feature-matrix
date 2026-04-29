@@ -1,0 +1,39 @@
+{
+  "_comment": "Plan 02-20 — third-party hospitality reseller URLs by area+club. These pages describe the official packages because the resellers sell them; their HTTP fetches are not Cloudflare-Turnstile-protected. text_fetch.py aggregates content into synthetic DomIntel for clubs whose official sites are blocked.",
+  "hospitality": {
+    "mancity": {
+      "official_url": "https://www.mancity.com/hospitality",
+      "official_domain": "mancity.com",
+      "club_name": "Manchester City",
+      "reseller_urls": [
+        "https://www.eventmasters.co.uk/football-hospitality/manchester-city-hospitality.html",
+        "https://www.rockethospitality.com/football-hospitality/premier-league-football-hospitality/manchester-city-hospitality/",
+        "https://vipfootballhospitality.com/product-category/football/manchester-city/",
+        "https://www.sportlux.co.uk/teams/manchester-city-hospitality/"
+      ],
+      "covers_steps": [
+        "landing-shot",
+        "tier-tunnel-club-shot",
+        "tier-tunnel-club-premier-shot",
+        "tier-backstage-shot",
+        "enquiry-form-prefill-shot"
+      ]
+    },
+    "psg": {
+      "official_url": "https://billetterie.psg.fr/en/home-vip",
+      "official_domain": "billetterie.psg.fr",
+      "club_name": "Paris Saint-Germain",
+      "reseller_urls": [
+        "https://www.rockethospitality.com/football-hospitality/overseas-football-hospitality/psg-hospitality-ticket-packages/",
+        "https://www.seesports.co.uk/psg.html",
+        "https://mitickets.com/teams/paris-saint-germain/",
+        "https://vipmatchdays.com/product/vip-espace-europe-psg-v-paris-fc/"
+      ],
+      "covers_steps": [
+        "billetterie-home-vip-shot",
+        "billetterie-match-selector-shot",
+        "enquiry-form-prefill-shot"
+      ]
+    }
+  }
+}

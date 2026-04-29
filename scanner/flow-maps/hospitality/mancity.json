@@ -1,0 +1,171 @@
+{
+  "area": "hospitality",
+  "club": "mancity",
+  "entry_url": "https://www.mancity.com/hospitality",
+  "steps": [
+    {
+      "step_name": "landing",
+      "url": "https://www.mancity.com/hospitality",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]",
+        "[class*=\"chat-widget\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "landing-wait",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle",
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "landing-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "tier-tunnel-club-premier",
+      "url": "https://www.mancity.com/hospitality/the-tunnel-club-premier",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "tier-tunnel-club-premier-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "tier-tunnel-club",
+      "url": "https://www.mancity.com/hospitality/the-tunnel-club",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "tier-tunnel-club-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "tier-backstage",
+      "url": "https://www.mancity.com/hospitality/backstage",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "tier-backstage-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "tier-your-matchday-experience",
+      "url": "https://www.mancity.com/hospitality/your-matchday-experience",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "match-selector",
+      "url": null,
+      "action": "click",
+      "selector": "a[href*='enquire'], a.fixture-card, button.select-match",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "url": null,
+      "action": "fill",
+      "selector": null,
+      "form_fields": [
+        {"selector": "input[name='name'], input#name, input[name*='Name']", "value": "Test Test"},
+        {"selector": "input[name='email'], input[type='email']", "value": "test@example.com"},
+        {"selector": "input[name='phone'], input[type='tel']", "value": "+44 0000 000000"}
+      ],
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    }
+  ],
+  "metadata": {
+    "broker_vendor": null,
+    "login_gated_steps": [],
+    "external_redirects": [],
+    "dead_ends": [
+      "https://www.mancity.com/hospitality"
+    ],
+    "cookie_dismiss_failed": true,
+    "fixture_id": "FIRST_AVAILABLE",
+    "captcha_encountered": false,
+    "bot_challenge_encountered": true,
+    "bot_challenge_reason": "turnstile",
+    "trusted_subdomains_used": []
+  }
+}

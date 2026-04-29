@@ -1,0 +1,106 @@
+{
+  "club": "mancity",
+  "area": "hospitality",
+  "flow_map": "scanner\\flow-maps\\hospitality\\mancity.json",
+  "started_at": "2026-04-27T15:42:33Z",
+  "steps": [
+    {
+      "step_name": "landing",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "landing-wait",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "landing-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "tier-tunnel-club-premier",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "tier-tunnel-club-premier-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "tier-tunnel-club",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "tier-tunnel-club-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "tier-backstage",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "tier-backstage-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "tier-your-matchday-experience",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "match-selector",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    }
+  ],
+  "totals": {
+    "captured": 0,
+    "skipped": 0,
+    "chrome_mcp": 13,
+    "missing": 0,
+    "error": 0
+  }
+}

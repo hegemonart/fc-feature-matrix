@@ -1,0 +1,30 @@
+{
+  "club": "psg",
+  "area": "hospitality",
+  "flow_map": "scanner/capture/text_fetch.py (synthetic source)",
+  "started_at": "synthetic-text-fetch",
+  "steps": [
+    {
+      "step_name": "billetterie-home-vip-shot",
+      "status": "synthetic",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "synthetic-text-fetch"
+    },
+    {
+      "step_name": "billetterie-match-selector-shot",
+      "status": "synthetic",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "synthetic-text-fetch"
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "status": "synthetic",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "synthetic-text-fetch"
+    }
+  ],
+  "source": "synthetic"
+}

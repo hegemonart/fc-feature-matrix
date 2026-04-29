@@ -1,0 +1,120 @@
+{
+  "club": "chelsea",
+  "area": "hospitality",
+  "flow_map": "scanner\\flow-maps\\hospitality\\chelsea.json",
+  "started_at": "2026-04-27T15:43:48Z",
+  "steps": [
+    {
+      "step_name": "landing",
+      "status": "captured",
+      "duration_ms": 18963,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "landing-wait",
+      "status": "error",
+      "duration_ms": 5003,
+      "output_path": null,
+      "reason": "Timeout 5000ms exceeded."
+    },
+    {
+      "step_name": "landing-shot",
+      "status": "captured",
+      "duration_ms": 10681,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\chelsea_landing-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "package-centenary-club",
+      "status": "captured",
+      "duration_ms": 18365,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "package-centenary-club-shot",
+      "status": "captured",
+      "duration_ms": 12153,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\chelsea_package-centenary-club-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "package-platinum",
+      "status": "captured",
+      "duration_ms": 9326,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "package-platinum-shot",
+      "status": "captured",
+      "duration_ms": 10087,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\chelsea_package-platinum-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "package-home-dugout-club",
+      "status": "captured",
+      "duration_ms": 5864,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "package-home-dugout-club-shot",
+      "status": "captured",
+      "duration_ms": 10350,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\chelsea_package-home-dugout-club-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "package-museum-suite",
+      "status": "captured",
+      "duration_ms": 11809,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "package-museum-suite-shot",
+      "status": "captured",
+      "duration_ms": 10128,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\chelsea_package-museum-suite-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "package-tambling-suite",
+      "status": "captured",
+      "duration_ms": 16454,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "package-tambling-suite-shot",
+      "status": "captured",
+      "duration_ms": 10061,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\chelsea_package-tambling-suite-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "match-selector",
+      "status": "skipped",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "requires-paid-account"
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "status": "skipped",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "requires-paid-account"
+    }
+  ],
+  "totals": {
+    "captured": 12,
+    "skipped": 2,
+    "chrome_mcp": 0,
+    "missing": 0,
+    "error": 1
+  }
+}

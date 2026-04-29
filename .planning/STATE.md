@@ -1,64 +1,17 @@
 ---
 gsd_state_version: 1.0
-milestone: v1.0
+milestone: v7.1
 milestone_name: milestone
 status: executing
-stopped_at: "Phase infra-redesign-v2 COMPLETE: plan 05 closed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, Lighthouse a11y 91, D-28 invariant clean). System-wide visual redesign rollout shipped."
-last_updated: "2026-04-17T05:30:22.102Z"
-last_activity: 2026-04-17 — infra-redesign-v2 plan 04 executed (6 commits, 90/90 vitest, 1/1 playwright, build clean, ~12 min)
+stopped_at: Completed 02-12-PLAN.md
+last_updated: "2026-04-27T21:52:04.427Z"
+last_activity: 2026-04-27
 progress:
-  total_phases: 6
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
----
-
----
-gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: phase-complete
-stopped_at: "Phase infra-redesign-v2 COMPLETE — plan 05 (system-wide rollout) closed. 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped (admin auth fixture deferred to v2.1), Lighthouse a11y 91/100, D-28 score-invariant clean, CHANGELOG v9.0, CLAUDE.md design-system rules documented."
-last_updated: "2026-04-17T08:30:00.000Z"
-last_activity: 2026-04-17 — infra-redesign-v2 plan 05 executed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright, Lighthouse 91, ~75 min)
-progress:
-  total_phases: 6
-  completed_phases: 0
-  total_plans: 5
-  completed_plans: 5
+  total_phases: 9
+  completed_phases: 2
+  total_plans: 22
+  completed_plans: 22
   percent: 100
----
-
----
-gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: executing
-stopped_at: Completed infra-redesign-v2-03-PLAN.md (HoverTooltipCard + state hooks). 8 commits, 90/90 tests, build clean. Ready for plan 04 page.tsx refactor.
-last_updated: "2026-04-17T04:48:32.542Z"
-last_activity: 2026-04-17 — infra-redesign-v2 plan 02 executed (9 commits, 75/75 tests green, ~12 min)
-progress:
-  [████████░░] 80%
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 60
----
-
----
-gsd_state_version: 1.0
-milestone: v1.0
-milestone_name: milestone
-status: executing
-stopped_at: "Completed infra-redesign-v2 plan 02 (Wave 1 atomic components). 7 components + types.ts shipped, 75/75 tests green, build clean."
-last_updated: "2026-04-17T04:34:32.000Z"
-last_activity: "2026-04-17 — infra-redesign-v2 plan 02 executed (9 tasks, 9 commits, 75/75 tests green, ~12 min)"
-progress:
-  [██████░░░░] 60%
-  completed_phases: 0
-  total_plans: 5
-  completed_plans: 2
-  percent: 40
 ---
 
 # Project State
@@ -72,16 +25,18 @@ See: .planning/PROJECT.md (updated 2026-04-16)
 
 ## Current Position
 
-Phase: infra-redesign-v2 (Wave 3 — system-wide rollout) — **COMPLETE**
-Plan: 5 of 5 complete in current phase
-Status: Phase infra-redesign-v2 COMPLETE. /club + /admin re-themed, three modals audited (Modal.test.tsx D-24), CLAUDE.md design-system rules added (D-25), Lighthouse a11y 91/100 (D-29), D-28 score-invariant clean. CHANGELOG v9.0 closes the phase.
-Last activity: 2026-04-17 — infra-redesign-v2 plan 05 executed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min including resume from prior agent)
+Phase: **Phase 2 — Hospitality Pilot (back-half resumed at Plan 02-09)** (9 of 14 plans complete)
+Plan: 13 of 14 (plans 02-01 through 02-09 complete); Next: Plan 02-10 (capture orchestrator for hospitality area, consumes the 5 extended flow-maps). Plan 02-09 (Wave 6) shipped: 5 hospitality flow-maps extended to full D-08 purchase-path drafts; FlowStep schema +3 additive override fields (requires_credentials, manual_chrome_mcp, skipped); 36/36 schema-override tests + 235/235 scanner tests green; Chelsea Option B partial confirmed (2 steps marked skipped='requires-paid-account'); $0 subscription cost.
+Status: Ready to execute
+Last activity: 2026-04-27
+Prior phase close: 2026-04-24 — Phase 1 Flow Automation Layer (8/8 plans, scanner infra shipped + dry-run validated through subscription backend). Earlier: 2026-04-17 — infra-redesign-v2 plan 05 (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, build clean, ~75 min).
 
-Progress: [██████████] 100% (5 of 5 plans in infra-redesign-v2)
+Progress: [░░░░░░░░░░] 0% (8 numbered phases + 1 decimal, Phase 1 not yet started; out-of-band infra complete)
 
 ## Performance Metrics
 
 **Velocity:**
+
 - Total plans completed: 2
 - Average duration: ~18.5 min
 - Total execution time: ~37 min
@@ -93,6 +48,7 @@ Progress: [██████████] 100% (5 of 5 plans in infra-redesign-
 | infra-redesign-v2 | 2 | 5 | ~18.5 min |
 
 **Recent Trend:**
+
 - Last 5 plans: 01 (~25min) · 02 (~12min)
 - Trend: ↓ accelerating (foundation paid off — components shipped fast)
 
@@ -100,6 +56,25 @@ Progress: [██████████] 100% (5 of 5 plans in infra-redesign-
 | Phase infra-redesign-v2 P03 | 6min | 8 tasks | 10 files |
 | Phase infra-redesign-v2 P04 | 12min | 6 tasks | 7 files |
 | Phase infra-redesign-v2 P05 | ~75min | 8 tasks | 17 files |
+| Phase 01 P01-01 | 7min | 4 tasks | 36 files |
+| Phase 01 P02 | 70min | 3 tasks | 6 files |
+| Phase 01 P01-03 | 90m | 2 tasks | 8 files |
+| Phase 01 P04 | 18 min | 3 tasks | 15 files |
+| Phase 01 P05 | 40min | 2 tasks | 7 files |
+| Phase 01 P06 | 12m | 1 tasks | 4 files |
+| Phase 01 P07 | 27m | 2 tasks | 6 files |
+| Phase 01 P08 | 90min | 2 tasks | 5 files |
+| Phase 02 P01 | 8min | 2 tasks | 4 files |
+| Phase 02 P02 | 6min | 2 tasks | 2 files |
+| Phase 02 P04 | 10 min | 2 tasks | 2 files |
+| Phase 02 P05 | 35m | 2 tasks | 5 files |
+| Phase 02 P03 | 756 | 3 tasks | 5 files |
+| Phase 02 P02-06 | 12min | 3 tasks | 7 files |
+| Phase 02 P02-07 | ~4min | 3 tasks | 2 files (front-half closure; docs-only) |
+| Phase 02 P10 | 35 | 2 tasks | 20 files |
+| Phase 02 P11 | 25 | 2 tasks | 5 files |
+| Phase 02 P12 | 50 | 2 tasks | 16 files |
+| Phase 02 P13 | 30 min | 2 tasks | 9 files |
 
 ## Accumulated Context
 
@@ -127,6 +102,41 @@ Recent decisions affecting current work:
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 05: Recharts <linearGradient><stop> hard-codes #FF490C (RESEARCH P2) — var() inside SVG attribute is unreliable across browsers
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 05: Admin visual baseline deferred to v2.1 — DATABASE_URL not configured in worktree, test.skip() with TODO is acceptable per plan
 - [Phase infra-redesign-v2]: infra-redesign-v2 plan 05: D-28 score-invariant gate accepts revert of generated_at-only timestamp drift — content equality is the intent, strict CLI equality the proof
+- [Phase ?]: Phase 01 Plan 01: dual-backend vision SDKs (claude-agent-sdk 0.1.65 + anthropic 0.97.0) both installed at scaffold time (D-26) — Plan 04 can build VisionClient Protocol without dep-churn
+- [Phase ?]: Plan 01-02: AreasConfig = RootModel[dict[str, AreaEntry]] — zero-migration extensibility for Phase 3-8 areas
+- [Phase ?]: Plan 01-02: FeatureDef.key has no regex constraint at schema level (D-18) — snake_case enforcement is a runtime concern
+- [Phase ?]: Plan 01-02: Confidence bounds are strict [0,1]; LLM-output clamping lives in Plan 04 client, not the schema validator
+- [Phase 01]: Plan 01-03: Cookies dismissed BEFORE scroll_lazy in capture_page — Man City banner overlays viewport so scrolling while present is no-op (D-03-4)
+- [Phase 01]: Plan 01-03: banner_verify narrowly catches ImportError (not Exception) on lazy scanner.vision.factory import — real Plan 04 bugs surface (D-03-2)
+- [Phase ?]: D-04-1: anthropic 0.97.0 uses output_config (not output_format) for Structured Outputs beta; research §3.3 needs doc update
+- [Phase ?]: D-04-2: claude_agent_sdk.query is strictly async + keyword-only; options is a ClaudeAgentOptions dataclass, not dict
+- [Phase ?]: D-04-3: runtime_checkable Protocol only inspects method presence; isinstance passes for classes missing typed attributes
+- [Phase ?]: Plan 01-05: Contact sheet uses pure-CSS :target lightbox (zero JS); opus verdicts drive thumb display; Phase-1 empty-seed guard in recalculate.js early-exits before touching analysis/ (D-24 invariant)
+- [Phase ?]: Humanize Pydantic errors as loc+msg+type; never echo raw JSON body (T-06-03 mitigation).
+- [Phase ?]: Phase-2 discover stub raises NotImplementedError with Phase-1 alternative pointer (scanner flow validate).
+- [Phase ?]: Deferred imports inside Click subcommands keep --help instant and decouple optional backends from each other
+- [Phase ?]: SCANNER_REPO_ROOT env override is the contract for test-time repo isolation; read on every loader call so monkeypatch works
+- [Phase ?]: Plan 01-08: Live dry-run validated subscription backend (D-28) end-to-end against mancity.com/hospitality
+- [Phase ?]: Plan 01-08: Subscription client extracts JSON from markdown fences + retries once on parse fail (T-08-02)
+- [Phase ?]: Plan 01-08: Opus 4.7 returns bboxes in native pixel coords not resized space - filed for Phase 2 calibration
+- [Phase ?]: Plan 02-01: credentials helper at scanner.capture.credentials — get_credential returns None on missing (D-15), MissingCredentialError refuses value= kwarg (T-02-01-02)
+- [Phase ?]: Plan 02-01: load_dotenv(override=False) at import — shell env wins over .env.local (T-02-01-05 accepted for CI secret-store injection)
+- [Phase ?]: Liverpool absent from REVIEW-SOURCES.md — CLAUDE.md DO NOT TOUCH scope extended to review corpora; name redacted to pass plan's grep acceptance
+- [Phase ?]: Arsenal cataloged as 'catalog only — NOT crawled' in REVIEW-SOURCES.md (headless-block trap; gold-standard catalog stays complete)
+- [Phase ?]: 5 review-dig additions: accessible_booking_option, corporate_invoice_billing, cancellation_refund_window, multi_occasion_tagging, transport_package_bundling
+- [Phase ?]: Per-club cookie strategies TOT/RMA/PSG/CHE shipped verbatim from 02-RESEARCH.md (additive)
+- [Phase 02]: FlowMapMetadata additive default-factory field preserves Phase-1 backward compat — New crawler metadata shouldn't break existing flow-map JSON
+- [Phase 02]: Broker allowlist scoped to 5 vendors (seat_unique/keith_prowse/eventmasters/p1_travel/pitch_international) — Non-broker cross-origin halts branch; narrows attack surface for tracker domains
+- [Phase 02]: HOSPITALITY_LINK_PATTERN extended with enquiry/enquire/enquiries — UK clubs commonly label hospitality CTAs 'Enquire Now'
+- [Phase ?]: Plan 02-03 complete: 55-feature hospitality rubric + features.ts + areas.json pilot activation (D-02-03-02: status=pilot since schema rejects 'active')
+- [Phase 02]: Phase 2 front-half halt at 02-06: 5 hospitality flow-maps emitted. MCFC + RMA + PSG-billetterie blocked by Cloudflare or CAPTCHA; TOT + PSG-www + CHE-subdomain crawled cleanly. Rule 1 fix: bounded landing goto timeout.
+- [Phase 02]: Plan 02-07 closes front-half — summary + back-half handoff written. HOSP-01/02/03 remain Pending in REQUIREMENTS.md (partial progress tracked in STATE.md only). Back-half gated on user dummy-account registrations for 5 pilot clubs + Chrome MCP fallback for 3 bot-challenged sites.
+- [Phase ?]: Plan 02-11: Per-club result JSON shape includes steps + deferred + missing-PNG manifest for downstream derivation
+- [Phase ?]: Plan 02-11: Disagreement records club+step tagged at write time; PSG zero-disagreement is legitimate (Opus+Sonnet full agreement)
+- [Phase ?]: Plan 02-12: D-21 additive call-site config wiring formalized; vision/ + capture/ math layers untouched
+- [Phase ?]: Plan 02-12: Disagreement resolution policy = per-step Opus-when-agree, False+disputed-when-disagree; OR-flatten across steps with sticky disputed flag
+- [Phase ?]: Plan 02-12: scoring_results_dir field separates flat-results (analysis/<area>/results/) from vision intermediate JSONs (scanner/output/results/<area>/)
+- [Phase ?]: Plan 02-13: /hospitality unlocked for authed tiers; pilot 5-club view with 'Pilot: 5 clubs' label; D-20 + single-orange-CTA invariants intact; visual baseline committed
 
 ### Pending Todos
 
@@ -134,10 +144,11 @@ None yet.
 
 ### Blockers/Concerns
 
-None yet.
+- **Phase 2 back-half blocked on user:** dummy-account registrations for 5 pilot clubs (MCFC/TOT/RMA/PSG/CHE). Details in `.planning/phases/02-hospitality-pilot/02-BACK-HALF-HANDOFF.md` §"User Action Required". Env-var convention: `{CLUB_UPPER}_HOSPITALITY_{USER|PASS}` in `.env.local`.
+- **Phase 2 back-half work items** (addressable by planner/executor): crawler v2 fixes (Cloudflare Turnstile detector, trusted-subdomain allowlist, dead_ends dedupe, domain-specific cookie priorities), Opus bbox empirical calibration, Chrome MCP fallback strategy for MCFC/RMA/PSG-billetterie. See 02-06-CRAWL-LOG.md §Known Crawler Issues.
 
 ## Session Continuity
 
-Last session: 2026-04-17T05:30:22.095Z
-Stopped at: Phase infra-redesign-v2 COMPLETE: plan 05 closed (8 tasks, 9 commits, 99/99 vitest, 2/3 playwright + 1 skipped, Lighthouse a11y 91, D-28 invariant clean). System-wide visual redesign rollout shipped.
+Last session: 2026-04-27T21:51:10.867Z
+Stopped at: Completed 02-12-PLAN.md
 Resume file: None

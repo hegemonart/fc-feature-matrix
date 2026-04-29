@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "timestamp": "2026-04-27T11:53:30.384957+00:00",
+  "image_path": "../scanner/output/evidence/hospitality/fullpage/mancity_landing.png",
+  "original_w": 2880,
+  "original_h": 6778,
+  "model": "claude-opus-4-7",
+  "api_mode": "subscription",
+  "prompt_feature": "the page header logo or wordmark",
+  "ground_truth_bbox_x1y1x2y2": [
+    0.0,
+    0.0,
+    2880.0,
+    800.0
+  ],
+  "iou_margin_for_native": 0.2,
+  "decision_notes": "D-21 deviation note: bbox_mode is read at the slice CLI call-site, not by modifying denormalise_bbox internals. Approved per Plan 02-08 deviation entry; denormalise_bbox math is untouched.",
+  "raw_reply_preview": "{\"bbox\": [115, 17, 168, 65]}",
+  "observed_bbox_x1y1x2y2": [
+    115.0,
+    17.0,
+    168.0,
+    65.0
+  ],
+  "css_iou": 0.0076,
+  "native_iou": 0.0011,
+  "decided_mode": "css"
+}

@@ -1,0 +1,193 @@
+"""Cookie-banner dismissal dispatcher (Plan 03, Task 1).
+
+Per-club strategies override the global priority list; unknown clubs fall back to
+`GLOBAL_COOKIE_PRIORITIES`. The strategy dict is open for Phase-2+ additions
+(one entry per club that needs a hand-tuned priority). Man City is the only
+populated entry in Phase 1 — it is the dry-run target and has the verified
+"Accept All Cookies" wording that the generic list also matches.
+
+IMPORTANT (CLAUDE.md Trap): the one-word club from Merseyside is intentionally
+absent from this module. The project rule "DO NOT TOUCH" for that club applies
+to the capture path as well as existing screenshots — do not add a strategy.
+"""
+from __future__ import annotations
+
+import time
+from typing import TypedDict
+
+from playwright.sync_api import Page
+
+
+class CookieStrategy(TypedDict, total=False):
+    """Per-club override.
+
+    Both fields are optional; unspecified fields fall back to the global default
+    (empty `post_click_selectors`, `GLOBAL_COOKIE_PRIORITIES`).
+    """
+
+    priority: list[str]
+    post_click_selectors: list[str]
+
+
+# Verbatim port of research §2.2 / capture_elements.py line ~820.
+# Order matters: earlier entries take precedence when a page has multiple
+# matching buttons. "accept all" dominates over "accept" for a reason —
+# we want the full-consent path (fewer cookie prompts later) when it's offered.
+GLOBAL_COOKIE_PRIORITIES: list[str] = [
+    "accept all", "accept", "agree", "consent", "got it", "ok",
+    "reject all", "decline", "necessary only", "refuse", "deny all",
+    "acepto", "acceptar", "aceptar", "akzeptieren", "aceitar",
+    "allow all", "accetto", "i agree", "confirm",
+]
+
+
+# The one populated strategy in Phase 1 — dry-run target per D-22.
+# "accept all cookies" is Man City's exact wording as of 2026-04-24.
+MANCITY_STRATEGY: CookieStrategy = {
+    "priority": ["accept all cookies", "accept all"],
+    "post_click_selectors": [],
+}
+
+
+# Phase 2 Plan 02-04 — per-club strategies for the remaining 4 pilot clubs.
+# Priorities are verbatim from 02-RESEARCH.md §6. Drift is the acceptance criterion.
+
+# TOT — likely OneTrust (EPL convention). Verify on first crawl.
+TOT_STRATEGY: CookieStrategy = {
+    "priority": ["accept all cookies", "accept all", "allow all"],
+    "post_click_selectors": [],
+}
+
+# RMA — custom ES banner likely; ES-specific phrases first, EN fallback.
+RMA_STRATEGY: CookieStrategy = {
+    "priority": [
+        "aceptar todo", "aceptar todas", "acepto todo",
+        "accept all", "aceptar",
+    ],
+    "post_click_selectors": [],
+}
+
+# PSG — French CMP (likely Didomi or Axeptio); FR-first, EN fallback for /en/ path.
+PSG_STRATEGY: CookieStrategy = {
+    "priority": [
+        "tout accepter", "accepter tous", "accepter tout", "j'accepte",
+        "accept all",
+    ],
+    "post_click_selectors": [],
+}
+
+# CHE — hospitality.chelseafc.com subdomain; likely OneTrust.
+CHE_STRATEGY: CookieStrategy = {
+    "priority": ["accept all cookies", "accept all", "allow all cookies"],
+    "post_click_selectors": [],
+}
+
+
+STRATEGIES: dict[str, CookieStrategy] = {
+    "mancity": MANCITY_STRATEGY,
+    "tottenham": TOT_STRATEGY,
+    "realmadrid": RMA_STRATEGY,
+    "psg": PSG_STRATEGY,
+    "chelsea": CHE_STRATEGY,
+}
+
+
+_DISMISS_JS = """(priorities) => {
+    const btns = document.querySelectorAll(
+        'button, a, [role="button"], span[role="button"]'
+    );
+    for (const p of priorities) {
+        for (const b of btns) {
+            const t = (b.textContent || '').toLowerCase().trim();
+            if (t.includes(p)) { b.click(); return true; }
+        }
+    }
+    if (window.__cmp) { window.__cmp('setConsent', 0); return true; }
+    return false;
+}"""
+
+
+def dismiss_cookies(
+    page: Page,
+    club: str | None = None,
+    max_attempts: int = 3,
+    *,
+    domain: str | None = None,
+) -> bool:
+    """Dismiss the cookie/consent banner on `page`.
+
+    Dispatches to `STRATEGIES[club]` when known, falling back to a generic
+    `GLOBAL_COOKIE_PRIORITIES` sweep. Retries up to `max_attempts` times with
+    a 1-second pause between attempts (banners sometimes render after initial
+    `networkidle`). Post-click selectors (e.g. "Close" on a promo popup that
+    appears only after the consent banner is dismissed) are clicked once, in
+    order, after the first successful JS evaluation.
+
+    Plan 02-08 — `domain` override: when set AND ``STRATEGIES[domain]`` exists
+    (a future-extensible domain-keyed entry, e.g. ``STRATEGIES["seatunique.com"]``
+    populated when concrete broker pages are confirmed), its priority list
+    is concatenated FIRST, then the club's, then the global default. This
+    enables third-party broker pages to have their own cookie strategy
+    without polluting the per-club entries. ``domain`` is forward-compatible:
+    when no domain-keyed strategy exists, behavior collapses to the
+    pre-08 club-only path.
+
+    Returns True when a click (or `__cmp` fallback) succeeded, False otherwise.
+    Never raises — navigation races are swallowed per research §2.2.
+    """
+    club_strategy: CookieStrategy = STRATEGIES.get(club, {}) if club else {}
+    domain_strategy: CookieStrategy = STRATEGIES.get(domain, {}) if domain else {}
+
+    # Build the priority list: domain-keyed first (Plan 02-08), then club-keyed,
+    # then global default. dict.fromkeys preserves insertion order while
+    # collapsing duplicates so a phrase common to two strategies is only
+    # evaluated once per attempt. When the domain dict has no entry the
+    # behavior collapses to the pre-08 club-only contract — tests assert
+    # exact equality of the priority list passed to evaluate(JS, priorities).
+    domain_priority = list(domain_strategy.get("priority", []))
+    club_priority = list(club_strategy.get("priority", []))
+    if domain_priority:
+        priorities = list(dict.fromkeys([*domain_priority, *club_priority]))
+    elif club_priority:
+        priorities = club_priority
+    else:
+        priorities = GLOBAL_COOKIE_PRIORITIES
+
+    # post_click selectors: domain-keyed override wins; else fall back to club.
+    post_click = list(
+        domain_strategy.get("post_click_selectors")
+        or club_strategy.get("post_click_selectors", [])
+    )
+
+    for _attempt in range(max_attempts):
+        try:
+            dismissed = page.evaluate(_DISMISS_JS, priorities)
+            if dismissed:
+                time.sleep(1)
+                for sel in post_click:
+                    try:
+                        page.click(sel)
+                    except Exception:
+                        # Post-click targets are best-effort — a missing promo-X
+                        # button is normal.
+                        pass
+                return True
+        except Exception:
+            # Most common cause: navigation mid-evaluate. Retry.
+            pass
+        time.sleep(1)
+
+    return False
+
+
+__all__ = [
+    "dismiss_cookies",
+    "GLOBAL_COOKIE_PRIORITIES",
+    "STRATEGIES",
+    "MANCITY_STRATEGY",
+    "TOT_STRATEGY",
+    "RMA_STRATEGY",
+    "PSG_STRATEGY",
+    "CHE_STRATEGY",
+    "CookieStrategy",
+]

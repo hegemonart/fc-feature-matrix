@@ -1,0 +1,161 @@
+{
+  "area": "hospitality",
+  "club": "realmadrid",
+  "entry_url": "https://www.realmadrid.com/en-US/vip-area/home",
+  "steps": [
+    {
+      "step_name": "landing",
+      "url": "https://www.realmadrid.com/en-US/vip-area/home",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]",
+        "[class*=\"chat-widget\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "landing-wait",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle"
+    },
+    {
+      "step_name": "landing-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "matchday-hospitality",
+      "url": "https://www.realmadrid.com/en-US/vip-area/matchday-hospitality",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "matchday-hospitality-wait",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle",
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "matchday-hospitality-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "matchday-tier-card-click",
+      "url": null,
+      "action": "click",
+      "selector": "a[href*='matchday-hospitality'] .card, a.tier-card, a[href*='enquir']",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "matchday-tier-card-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "palcos-vip",
+      "url": "https://www.realmadrid.com/en-US/vip-area/seasonal-vip/palcos-vip",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "palcos-vip-wait",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle",
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "palcos-vip-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "url": null,
+      "action": "fill",
+      "selector": null,
+      "form_fields": [
+        {"selector": "input[name='name'], input[name='nombre'], input#name", "value": "Test Test"},
+        {"selector": "input[name='email'], input[type='email']", "value": "test@example.com"},
+        {"selector": "input[name='phone'], input[name='telefono'], input[type='tel']", "value": "+44 0000 000000"}
+      ],
+      "hide_selectors": [],
+      "wait_for": null,
+      "requires_credentials": true,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    }
+  ],
+  "metadata": {
+    "broker_vendor": null,
+    "login_gated_steps": [],
+    "external_redirects": [],
+    "dead_ends": [],
+    "cookie_dismiss_failed": false,
+    "fixture_id": "FIRST_AVAILABLE",
+    "captcha_encountered": true,
+    "bot_challenge_encountered": false,
+    "bot_challenge_reason": null,
+    "trusted_subdomains_used": []
+  }
+}

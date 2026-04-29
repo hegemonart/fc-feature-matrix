@@ -1,0 +1,18 @@
+{
+  "hospitality": {
+    "evidence_dir": "scanner/output/evidence/hospitality/",
+    "results_dir": "scanner/output/results/hospitality/",
+    "rubric_path": "analysis/hospitality/HOSPITALITY-FLOW.md",
+    "features_ts": "analysis/hospitality/features.ts",
+    "flow_maps_dir": "scanner/flow-maps/hospitality/",
+    "status": "pilot",
+    "bbox_mode": "css",
+    "trusted_subdomains": {
+      "chelsea": ["hospitality.chelseafc.com"],
+      "psg": ["billetterie.psg.fr", "www.psg.fr"],
+      "tottenham": ["tottenhamhotspurstadium.com"]
+    },
+    "features_evidence_dir": "analysis/hospitality/evidence/features/",
+    "scoring_results_dir": "analysis/hospitality/results/"
+  }
+}

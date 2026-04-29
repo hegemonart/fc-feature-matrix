@@ -1,0 +1,106 @@
+{
+  "club": "realmadrid",
+  "area": "hospitality",
+  "flow_map": "scanner\\flow-maps\\hospitality\\realmadrid.json",
+  "started_at": "2026-04-27T15:42:44Z",
+  "steps": [
+    {
+      "step_name": "landing",
+      "status": "captured",
+      "duration_ms": 5417,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "landing-wait",
+      "status": "captured",
+      "duration_ms": 4,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "landing-shot",
+      "status": "captured",
+      "duration_ms": 6892,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\realmadrid_landing-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "matchday-hospitality",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "matchday-hospitality-wait",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "matchday-hospitality-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "matchday-tier-card-click",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "matchday-tier-card-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "palcos-vip",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "palcos-vip-wait",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "palcos-vip-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    }
+  ],
+  "totals": {
+    "captured": 3,
+    "skipped": 0,
+    "chrome_mcp": 10,
+    "missing": 0,
+    "error": 0
+  }
+}

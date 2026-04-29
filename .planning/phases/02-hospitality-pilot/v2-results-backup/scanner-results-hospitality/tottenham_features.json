@@ -1,0 +1,4027 @@
+{
+  "club": "tottenham",
+  "area": "hospitality",
+  "api_mode": "subscription",
+  "steps": {
+    "landing-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            565.0,
+            4900.0,
+            2155.0,
+            1190.0
+          ],
+          "confidence": 0.85,
+          "notes": "Premium Seasonal Options row shows clickable tier cards (Premium Seats, Stratus, Loges, Sideline Suites, On Four, Tunnel Club)"
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No dress code mentioned on landing"
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No capacity/headcount visible"
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "Manchester United Women match card is sidebar nav, not hospitality package fixture list"
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No occasion tagging visible"
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No per-seat/table/box statement"
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No pricing/total shown"
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No payment terms shown"
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No invoice/PO option"
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No VAT toggle"
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "No bar type stated; images show bars but no comp/cash label"
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No meal timing"
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No post-match info"
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No fixture rows"
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No bundle selector"
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No filter UI"
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No calendar"
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Not addressed"
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No accessible booking path"
+        },
+        "live_chat_availability": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            810.0,
+            2890.0,
+            1850.0,
+            470.0
+          ],
+          "confidence": 0.7,
+          "notes": "Contact Us banner mentions 'open the chat box'; Ask Spurs chatbot CTA also present"
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No SLA"
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Not mentioned"
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Not mentioned"
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Not mentioned"
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Not mentioned"
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Not mentioned"
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Not mentioned"
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Not mentioned"
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No form on landing"
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Generic Premium Sales phone, not group-host protocol"
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No post-submit promise copy"
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Account icon present but no saved bookings UI"
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            105.0,
+            630.0,
+            590.0,
+            110.0
+          ],
+          "confidence": 0.72,
+          "notes": "Premium Seasonal Options section shows six named tier thumbnails (Premium Seats, Stratus, Logos, Sideline Suites, On Four, Tunnel Club) which appear to be clickable tier-level links. Upper cards (Seasonal Options, Matchday Options, Concerts & Events) also have forward-arrow navigation indicators."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dress code or smart/formal attire guidance visible anywhere on this page."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No headcount, min/max guests, or per-box capacity figures visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No fixture listings or match-applicability shown on any package card."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No occasion selector (birthday, corporate, anniversary, stag) visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No per-seat / per-table / per-box minimum booking unit stated."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No pricing or running-total figure shown anywhere on this page."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No payment terms, deposit structure, or instalment info visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No VAT invoice, PO number, or 30-day-term corporate billing option visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No inc/ex-VAT toggle or mention of VAT at all."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No complimentary / cash / premium bar designation visible."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No arrival time, pre-match meal, or post-match dining timing stated."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No post-final-whistle service details mentioned."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No sold-out states or availability indicators on any tier or fixture row."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No multi-fixture bundle flow visible; only seasonal membership CTA present."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No search or filter by opponent present."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No calendar or heatmap view of availability visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No confirmation-email promise; enquiry CTA leads to 'we'll be in touch' style flow implied by phone/chat contact."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No wheelchair or accessible-seating hospitality booking path explicitly offered."
+        },
+        "live_chat_availability": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            382.0,
+            1918.0,
+            110.0,
+            30.0
+          ],
+          "confidence": 0.55,
+          "notes": "Footer shows 'Got a question? Speak to our chatbot to find the answers to your questions' with an 'ASK SPURS' button. This is a chatbot widget rather than confirmed human live-chat; partial credit. CONTACT US banner also references 'open the chat box'."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No SLA or turnaround commitment (e.g. 'within 1 hour') stated."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No mention of printed match programme inclusion."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dedicated or queue-free entrance noted."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No chauffeur, car pickup, or transfer service mentioned."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No player interaction, meet-and-greet, or legend appearances mentioned."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No merchandise voucher or shop credit mentioned."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No flights, hotels, or transport bundling offered."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No mention of when seat numbers are communicated."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dietary preference capture at booking visible."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.82,
+          "notes": "CONTACT US banner provides Premium Sales phone (0208 365 5150) and chat, but this is a general enquiry route, not a specific group-host allocation protocol for group bookings."
+        },
+        "confirmation_page_clarity": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            105.0,
+            500.0,
+            590.0,
+            80.0
+          ],
+          "confidence": 0.52,
+          "notes": "CONTACT US banner copy states 'Simply call the Premium Sales team on 0208 365 5150 or open the chat box' — this communicates the post-enquiry next step, but it is pre-form guidance rather than a true confirmation-page promise. Marginal pass."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No account area or saved-bookings section visible; only a generic user icon in the top nav."
+        }
+      }
+    },
+    "matchday-options-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            547.0,
+            4292.0,
+            2228.0,
+            219.0
+          ],
+          "confidence": 0.9,
+          "notes": "Six named tier thumbnails (Premium Seats, Stratus, Loges, Sideline Suites, On Four, Tunnel Club) under 'Looking for Seasonal Hospitality?' suggesting per-tier landing pages."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dress code mentioned at landing level."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No min/max guest counts shown."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            547.0,
+            1640.0,
+            2228.0,
+            400.0
+          ],
+          "confidence": 0.7,
+          "notes": "Two fixture rows (Leeds, Everton) with 'Tickets from £249/£299' shown above tier selection grid."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No occasion tagging visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Tickets from price shown but no per-seat/table/box unit specified."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No cost calculator at landing."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No payment terms shown."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No VAT/PO/invoice options visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No VAT toggle."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No bar type info."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No meal timing info."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No post-match service description."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Both visible fixtures show price; no sold-out state."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No multi-match bundle UI."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Men/Women toggle present but no opponent filter."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "List view of fixtures, no calendar/heatmap."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Contact-us banner suggests enquiry flow, not instant confirmation."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No accessible booking path stated."
+        },
+        "live_chat_availability": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            2680.0,
+            1670.0,
+            140.0,
+            140.0
+          ],
+          "confidence": 0.6,
+          "notes": "'ASK SPURS' chatbot widget visible top-right of fixture area; likely chatbot, not human live chat."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No SLA shown."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No mention of match program."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No private entrance info."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No transfer/chauffeur info."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No player interaction promised."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No merchandise voucher."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No transport bundling."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No seat-number lead-time info."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dietary capture form on landing."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Premium Sales phone number shown but no dedicated group host/allocation protocol."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "CONTACT US banner says 'call Premium Sales team or open the chat box' — directs to enquiry channels but no post-submit promise copy."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Account icon visible top-right but no past-booking surface on landing."
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "pitchside_or_tunnel_access": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=pitchside_or_tunnel_access"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            0.0,
+            5135.0,
+            2880.0,
+            646.0
+          ],
+          "confidence": 0.82,
+          "notes": "Six named tier thumbnail tiles visible under 'Looking for Seasonal Hospitality?' — Premium Seats, Stratus, Loges, Sideline Suites, On Four, Tunnel Club. Each tile is a clickable card implying its own landing page."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dress-code language anywhere on the landing page."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No headcount, box size, or min/max guest figures shown."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            381.0,
+            1124.0,
+            2494.0,
+            700.0
+          ],
+          "confidence": 0.88,
+          "notes": "Two fixture rows (Leeds United from £249, Everton from £299) are displayed with dates and 'TICKETS FROM £X' CTAs before the seasonal tier grid, satisfying the criterion."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No occasion-type selector or tagging (birthday, corporate, etc.) present."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "Per-seat vs per-box vs per-table unit not stated."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No running total or cost calculator visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No payment terms stated."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No VAT invoice, PO, or 30-day term option mentioned."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No inc/ex-VAT toggle present."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No bar type (complimentary, cash, premium) indicated."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No arrival, pre-match, or post-match dining times shown."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No post-match hospitality continuation details visible."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "Both visible fixture rows show available 'TICKETS FROM £X' CTAs with no sold-out state shown."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No multi-fixture bundling UI present."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No search or filter by opponent available."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "Fixtures shown in a simple list; no calendar or heatmap view."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "ENQUIRE CTA leads to a contact/enquiry flow — no promise of immediate email confirmation stated on this page."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No accessible or wheelchair hospitality booking path explicitly offered."
+        },
+        "live_chat_availability": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            2324.0,
+            6706.0,
+            533.0,
+            342.0
+          ],
+          "confidence": 0.6,
+          "notes": "'ASK SPURS' widget is visible in the bottom-right corner of the footer area. Contact Us banner also references 'open the chat box'. Likely an AI chatbot rather than live human chat, hence lower confidence."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No SLA or response-time commitment visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No mention of a match-day program being included."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dedicated or queue-free entrance noted."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No chauffeur or transfer service mentioned."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No player interaction offer visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No merchandise voucher mentioned."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No flights, hotels, or train bundle offered."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No communication about when seat numbers are provided."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dietary preferences field or mention on landing page."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "Premium Sales phone number (0208 365 5150) is shown in Contact Us banner but this is general sales; no named group host or allocation protocol for group bookings is described."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "ENQUIRE CTA present but no copy on this page promises what happens post-submit (no 'we'll call you within X', no next-step description)."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Account icon visible in top-right nav but no indication that past hospitality bookings are surfaced in account area."
+        }
+      }
+    },
+    "premium-seats-detail-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            613.0,
+            1487.0,
+            1654.0,
+            1659.0
+          ],
+          "confidence": 0.9,
+          "notes": "Premium Hospitality at Spurs section shows tier tiles (Seasonal Options, Matchday Options, Concerts & Events) with arrows linking to per-tier landing pages."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No dress code information visible on landing page."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No min/max guests or per-box headcount stated."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "No upcoming match fixtures shown on this landing page before tier selection."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No occasion tagging on landing page (no booking form visible)."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No per-seat/table/box unit stated."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No booking form / running total on landing page. Only 'PRICE FROM £3,825 (INC VAT) PER PERSON' shown."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No deposit/full payment terms shown."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No VAT-invoice/PO/30-day-term option visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Price stated as 'INC VAT' but no toggle between inc/ex VAT."
+        },
+        "bar_type_indicator": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            613.0,
+            326.0,
+            827.0,
+            166.0
+          ],
+          "confidence": 0.6,
+          "notes": "'Complimentary light bites, a half-time drink, and upgraded dining options' under FOOD & DRINK suggests complimentary bar element, though bar type not explicitly broken out."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.7,
+          "notes": "Dining options described but no arrival/pre-match/post-match meal timing stated."
+        },
+        "post_match_service": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            613.0,
+            243.0,
+            827.0,
+            82.0
+          ],
+          "confidence": 0.6,
+          "notes": "'Access to all home matches... linger after full-time' implies post-match access; no explicit service breakdown."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No fixture rows shown on landing page."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No multi-match bundle selector. Premium Seat is season-based but not a fixture bundler."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No opponent search/filter on landing page."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No calendar/heatmap view."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Contact instructs to call sales team or open chat — implies enquiry flow, no immediate confirmation."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No accessible/wheelchair hospitality booking path shown."
+        },
+        "live_chat_availability": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            1290.0,
+            2069.0,
+            331.0,
+            53.0
+          ],
+          "confidence": 0.85,
+          "notes": "'open the chat box' referenced in CONTACT US copy; chat widget likely present (hidden for capture per D-11)."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No SLA / response time stated."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No printed match program mentioned."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No dedicated/private entrance noted."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No car pickup / chauffeur / transfer mentioned."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "'Stadium access from three hours pre- to two hours post-match' but no tunnel/pitchside element stated."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No player meet-and-greet mentioned."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No merchandise voucher mentioned."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No flights/hotels/train bundling shown."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No seat-number communication lead time stated."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No dietary capture form on landing page."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No host contact / group allocation protocol shown."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "No form on landing page; CONTACT US block says 'Simply call... or open the chat box' — no post-submit promise copy."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No account / past-booking area visible on landing page."
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            18.0,
+            1728.0,
+            300.0,
+            140.0
+          ],
+          "confidence": 0.88,
+          "notes": "Bottom section shows three distinct tier tiles: 'SEASONAL OPTIONS', 'MATCHDAY OPTIONS', 'CONCERTS & EVENTS', each with a description blurb and implied link — consistent with per-tier landing page navigation."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No explicit dress code (smart / smart-casual / formal) visible anywhere on this page."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No headcount, min/max guests, or per-box capacity figures shown."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No fixture list or match cards shown before tier selection."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No occasion-tagging UI (birthday / corporate / etc.) present."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No per-seat vs per-table vs per-box unit stated on this page."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No running total or cost preview shown."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No payment terms (deposit / full) stated."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No VAT invoice / PO / 30-day-term option visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No inc/ex-VAT toggle present."
+        },
+        "bar_type_indicator": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            126.0,
+            190.0,
+            96.0,
+            68.0
+          ],
+          "confidence": 0.82,
+          "notes": "FOOD & DRINK benefits tile with sub-copy referencing 'Complimentary' catering strongly implies a complimentary bar arrangement, satisfying the 'complimentary bar clearly indicated' qualifier."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "Restaurant section (Chef's Table Feast, Stadium Social, The Residency, Residency Grill) describes dining options but does not state arrival / pre-match / post-match timing windows."
+        },
+        "post_match_service": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            18.0,
+            80.0,
+            200.0,
+            55.0
+          ],
+          "confidence": 0.78,
+          "notes": "Introductory copy area references lingering / staying after the final whistle ('linger after full-time' type language visible in the hero description), indicating post-match service provision."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No sold-out or limited-availability state shown."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No multi-fixture bundle selector present."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No opponent search or filter UI."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No calendar or availability heatmap shown."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No promise of an immediate confirmation email on this page."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No wheelchair or accessible-seating hospitality booking path explicitly offered."
+        },
+        "live_chat_availability": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            215.0,
+            1900.0,
+            120.0,
+            65.0
+          ],
+          "confidence": 0.75,
+          "notes": "'Got a question?' panel in bottom-right footer area appears to contain a live-chat widget entry point. Contact banner also references a chat box alongside phone number, consistent with D-11 (hidden for capture)."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No SLA or response-time commitment stated."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No mention of a printed match programme as an inclusion."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No dedicated / queue-free entrance noted."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No chauffeur, car pickup, or transfer service mentioned."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No tunnel walk or pitchside viewing element described."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No scheduled or guaranteed player interaction shown."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No merchandise voucher inclusion mentioned."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No flights / hotels / train bundling offered."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No communication of when seat numbers are provided."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No dietary preference capture on this page."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "CONTACT US banner provides a phone number but no specific group-host allocation protocol or named host contact is described."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "Landing page only; no post-submit confirmation copy present at this step."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No account area or past-bookings panel visible."
+        }
+      }
+    },
+    "match-selector-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            80.0,
+            2150.0,
+            2720.0,
+            500.0
+          ],
+          "confidence": 0.9,
+          "notes": "Three tier tiles at bottom: Seasonal, Matchday, Concerts & Events — each appears to link to its own landing experience."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "No explicit dress code mentioned anywhere on the page."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No min/max guest counts or box headcount shown."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No fixture list visible before tier selection."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "No occasion tagging (birthday/anniversary/corporate) on landing."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.88,
+          "notes": "No per-seat/per-table/per-box unit stated."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Only a 'from £825 inc VAT per person' price; no running total."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No deposit/payment terms shown."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No VAT-invoice/PO/30-day terms language."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Price shown 'inc VAT' but no toggle to switch."
+        },
+        "bar_type_indicator": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            700.0,
+            250.0,
+            1400.0,
+            200.0
+          ],
+          "confidence": 0.78,
+          "notes": "'Complimentary light bites, a half-time drink, and upgraded dining options' implies complimentary bar/refreshments under Food & Drink benefit."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.7,
+          "notes": "Restaurants listed but specific arrival/pre-match/post-match meal timing not stated on landing."
+        },
+        "post_match_service": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            80.0,
+            180.0,
+            2720.0,
+            80.0
+          ],
+          "confidence": 0.75,
+          "notes": "Header strip mentions stadium access 'from three hours pre- to two hours post-match' indicating post-match service window."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No fixture rows on landing."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No multi-match bundle UI."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No opponent filter on landing."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No availability calendar visible."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Only ENQUIRE CTAs; no confirmation email promise visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No accessible/wheelchair hospitality booking path shown."
+        },
+        "live_chat_availability": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            80.0,
+            1820.0,
+            200.0,
+            150.0
+          ],
+          "confidence": 0.7,
+          "notes": "Bottom CONTACT US section mentions 'or open the chat box' — implies live chat widget exists (hidden for capture)."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "No SLA visible."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "No printed match program mentioned in benefits."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No dedicated entrance language."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No transfer/chauffeur mention."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No tunnel/pitchside element."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No player interaction shown."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No merchandise voucher mentioned."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No flights/hotels/train bundling."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "No lead-time messaging on seat numbers."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No dietary capture on landing page."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.88,
+          "notes": "Account Management tile mentions dedicated account manager but not specifically a group host contact protocol."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "Landing page only — no form post-submit copy visible."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.88,
+          "notes": "Account Management tile references Ticket Exchange/transferability but no saved-bookings dashboard shown."
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.72,
+          "notes": "Page shows overview cards (Seasonal Options, Matchday, Concerts & Events) at bottom but no evidence that clicking them opens a dedicated per-tier description landing page from this static screenshot."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No dress code or smart/smart-casual/formal guidance visible anywhere on the page."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No headcount, min/max guests, or per-box capacity figures visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No fixture list or match-date cards shown; page is purely a product/dining overview."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No occasion capture (birthday/corporate/stag) visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "Per-seat vs per-table vs per-box booking unit not stated."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No pricing or running total visible."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No payment terms visible."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No VAT invoice, PO, or 30-day-term option visible."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "No VAT toggle present."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Food & Drink card is shown as a benefit category but no complimentary/cash/premium bar distinction is stated."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.88,
+          "notes": "Multiple dining venues (Chef's Table Feast, Stadium Social, The Residency, Residency Grill) are displayed but no arrival/pre-match/post-match timing is stated."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "No mention of what services remain open after the final whistle."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No fixture rows present to carry a sold-out state."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No bundle-fixtures flow visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No search or filter by opponent present."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No calendar or heatmap view present."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No booking flow or confirmation copy visible; enquiry is directed to phone call."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No wheelchair/accessible-seating booking path explicitly offered."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.88,
+          "notes": "No live-chat widget visible in the screenshot. Contact Us section directs to a phone number only."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "Contact Us section shows a phone number but no response-time SLA (e.g. 'within 1 hour') is stated."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No mention of a printed match programme as an inclusion."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No dedicated or queue-free entrance mentioned."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No chauffeur, car pickup, or transfer offering visible."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No tunnel walk or pitchside access element visible."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No player interaction or meet-and-greet element visible."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No merchandise voucher inclusion mentioned."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No flights/hotels/train bundling visible."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No information on when seat numbers are communicated."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Dining is prominently featured but no dietary-preference capture at booking stage mentioned."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.82,
+          "notes": "Contact Us section gives a phone number but does not specify a dedicated group host or allocation protocol for group bookings."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "This is a marketing landing page; no post-submit confirmation copy or promise visible. CTA is a phone call, not a form."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.92,
+          "notes": "No account/login area or past-bookings section visible on this page."
+        }
+      }
+    },
+    "enquiry-form-prefill-shot": {
+      "opus": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.7,
+          "notes": "Page shows dining venue cards (Chef's Table Feast, Stadium Social, Residency, Residency Grill) with 'View Sample Menu' links, not per-tier landing pages."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No dress code mentioned anywhere on the page."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No min/max guest counts or box headcount visible."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No fixture list or upcoming matches shown on landing page."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No occasion capture (birthday/corporate/etc.) visible."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No per-seat/per-table/per-box minimum stated."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "Only 'Price from £3,825 (inc VAT) per person' shown — no running total."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No payment terms shown."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No VAT-invoice/PO/30-day terms mentioned."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "VAT noted as included in price ('inc VAT') but no toggle."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "'Complimentary light bites, half-time drink' mentioned in Food & Drink benefit, but bar type not specified."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "Half-time drink mentioned but no full arrival/pre/post-match timing schedule."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No mention of post-match service availability."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No fixture rows on this landing page."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No bundle selector present."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No opponent filter visible."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No calendar/heatmap view."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Page directs to enquiry/phone — no submit-and-confirm flow visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No accessible booking path stated."
+        },
+        "live_chat_availability": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            630.0,
+            9700.0,
+            180.0,
+            140.0
+          ],
+          "confidence": 0.6,
+          "notes": "Contact section says 'open the chat box' implying chat widget is available."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No SLA stated."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No match program mention."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No private entrance noted."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No transport service mentioned."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No tunnel/pitchside access mentioned."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No player interaction mentioned."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No merchandise voucher."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No flight/hotel/train bundling."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No seat-number communication timing."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No dietary capture form on landing page."
+        },
+        "group_host_contact": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No group host/allocation protocol mentioned."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "Landing page; no enquiry submission copy with promised post-submit actions."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No account/saved booking visible on this page."
+        }
+      },
+      "sonnet": {
+        "package_tier_list": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=package_tier_list"
+        },
+        "tier_comparison_table": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=tier_comparison_table"
+        },
+        "price_per_person_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_per_person_visible"
+        },
+        "fixture_category_tiers": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_category_tiers"
+        },
+        "price_range_by_match": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=price_range_by_match"
+        },
+        "menu_preview": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=menu_preview"
+        },
+        "allergen_info": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=allergen_info"
+        },
+        "vegetarian_options": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=vegetarian_options"
+        },
+        "chef_attribution": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=chef_attribution"
+        },
+        "kids_menu": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=kids_menu"
+        },
+        "fixture_list_visible": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_list_visible"
+        },
+        "competition_filter": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=competition_filter"
+        },
+        "enquiry_form_field_count_le_7": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=enquiry_form_field_count_le_7"
+        },
+        "buy_now_without_enquiry": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=buy_now_without_enquiry"
+        },
+        "phone_booking_option": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=phone_booking_option"
+        },
+        "parking_included_indicator": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=parking_included_indicator"
+        },
+        "stadium_tour_inclusion": {
+          "present": true,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=stadium_tour_inclusion"
+        },
+        "concierge_service": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=concierge_service"
+        },
+        "booking_change_policy_visible": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=booking_change_policy_visible"
+        },
+        "fixture_change_notification": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=fixture_change_notification"
+        },
+        "cancellation_refund_window": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=cancellation_refund_window"
+        },
+        "receipt_download": {
+          "present": false,
+          "step": "dom-detect",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "dom-detect: rule=receipt_download"
+        },
+        "per_tier_landing_page": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.72,
+          "notes": "Page shows benefit grid and dining venue sections but no clickable tier cards that navigate to dedicated per-tier landing pages. Bottom 'Seasonal Options / Matchday Options / Concerts & Events' tiles are present but appear as section anchors, not tier-specific landing pages."
+        },
+        "dress_code_info": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No dress code guidance (smart, smart-casual, formal) found anywhere on the visible page."
+        },
+        "tier_capacity_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No headcount, per-box capacity or min/max guest numbers stated anywhere on the page."
+        },
+        "upcoming_matches_pre_tier": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No fixture list, match calendar, or match-specific package cards present at the landing level."
+        },
+        "multi_occasion_tagging": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No occasion-tagging UI (birthday, corporate, anniversary, stag) found on the page."
+        },
+        "min_booking_unit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "Per-seat vs per-table vs per-box unit not stated on this landing page."
+        },
+        "total_cost_preview_pre_submit": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No pricing or running total shown; page is entirely feature/benefit oriented with a phone-based contact CTA."
+        },
+        "deposit_vs_full_payment": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No payment terms visible anywhere on the page."
+        },
+        "corporate_invoice_billing": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No VAT-invoice, PO, or 30-day-term option mentioned."
+        },
+        "vat_inclusive_toggle": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.99,
+          "notes": "No pricing at all on page; VAT toggle not applicable."
+        },
+        "bar_type_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.88,
+          "notes": "'Food & Drink' benefit tile visible (~[95,148,75,50] display coords) but only says 'complimentary' food and drink in general; does not specify bar type (complimentary vs cash vs premium-only)."
+        },
+        "meal_timing_visible": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "Dining venues (Chef's Table Feast, Stadium Social, The Residency, Residency Grill) described in detail but no pre-match/arrival/post-match timing stated."
+        },
+        "post_match_service": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.88,
+          "notes": "No mention of what services remain available after the final whistle."
+        },
+        "sold_out_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.97,
+          "notes": "No fixture availability states shown; no sold-out badges or indicators present."
+        },
+        "multi_match_bundle_selector": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No multi-match or season-bundle selector visible."
+        },
+        "opponent_filter": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No fixture filtering by opponent available on this page."
+        },
+        "availability_heatmap": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.98,
+          "notes": "No calendar or heatmap view present."
+        },
+        "immediate_confirmation_email": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "CTA is phone-based ('call the Premium Sales team'); no online booking form and therefore no confirmation email promise visible."
+        },
+        "accessible_booking_option": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No accessible or wheelchair-seating hospitality booking path explicitly mentioned."
+        },
+        "live_chat_availability": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.85,
+          "notes": "No live-chat widget visible in the screenshot; contact method is phone only."
+        },
+        "response_time_promise": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No SLA or response-time promise stated on the Contact Us section or elsewhere."
+        },
+        "match_program_included": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No mention of a printed match programme as an included benefit."
+        },
+        "private_entrance_indicator": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No dedicated entrance or queue-free ingress information visible."
+        },
+        "car_pickup_or_transfer": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No chauffeur, car pickup, or transfer service mentioned."
+        },
+        "pitchside_or_tunnel_access": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No tunnel walk or pitchside viewing element advertised on this page."
+        },
+        "player_meet_and_greet": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No player meet-and-greet or scheduled player interaction mentioned."
+        },
+        "merchandise_voucher": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.93,
+          "notes": "No merchandise voucher listed as an included benefit."
+        },
+        "transport_package_bundling": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No flights, hotels, or train bundling mentioned."
+        },
+        "seat_number_lead_time": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.95,
+          "notes": "No information about when seat numbers are communicated."
+        },
+        "dietary_preferences_capture": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "Dining options described in detail but no dietary preference capture at booking stage mentioned."
+        },
+        "group_host_contact": {
+          "present": true,
+          "step": "landing",
+          "evidence_bbox": [
+            28.0,
+            1228.0,
+            280.0,
+            60.0
+          ],
+          "confidence": 0.62,
+          "notes": "Contact Us section provides a direct phone number for the Premium Sales team ('Simply call the Premium Sales team on 0208 365 5000'). This partially satisfies a host/contact allocation for group bookings, though it is generic rather than a dedicated group-hosting protocol."
+        },
+        "confirmation_page_clarity": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.8,
+          "notes": "Contact method is telephone only; no online enquiry form is shown, so there is no post-submit copy to evaluate. The CTA says 'call us' not 'submit and we will do X'."
+        },
+        "saved_booking_in_account": {
+          "present": false,
+          "step": "landing",
+          "evidence_bbox": null,
+          "confidence": 0.9,
+          "notes": "No account area or booking history UI visible on this page."
+        }
+      }
+    }
+  },
+  "deferred_steps": [
+    {
+      "step_name": "enquiry-form-prefill",
+      "status": "error",
+      "reason": "Page.fill: Timeout 30000ms exceeded.\nCall log:\n  - waiting for locator(\"input[name='firstName'], input[name='first_name'], input[name='name'], input#name, input[name*='Name']\")\n"
+    }
+  ],
+  "missing_png_steps": [
+    "landing",
+    "landing-wait",
+    "matchday-options",
+    "matchday-options-wait",
+    "premium-seats-detail",
+    "match-selector"
+  ]
+}

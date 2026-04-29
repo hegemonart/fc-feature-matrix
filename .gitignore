@@ -24,3 +24,18 @@ references/
 /test-results/
 /blob-report/
 /playwright/.cache/
+# Phase 1 scanner
+scanner/.venv/
+scanner/__pycache__/
+scanner/**/__pycache__/
+scanner/output/*
+!scanner/output/.gitkeep
+# Plan 02-12: contact-sheet HTMLs committed as audit-trail evidence
+# (area-agnostic glob — covers hospitality, future areas) so Plan 02-14
+# reviewers can replay the gate and downstream consumers can diff.
+!scanner/output/contact-report-*.html
+# Phase credential notes — never committed (D-13)
+.planning/phases/*/credentials.local.md
+# Phase 2 hospitality vision rubric — transient artifact (Plan 02-11)
+analysis/hospitality/features.json
+

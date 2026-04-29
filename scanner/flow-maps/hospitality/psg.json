@@ -1,0 +1,179 @@
+{
+  "area": "hospitality",
+  "club": "psg",
+  "entry_url": "https://www.psg.fr/en/hospitality",
+  "steps": [
+    {
+      "step_name": "landing",
+      "url": "https://www.psg.fr/en/hospitality",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[id*=\"didomi\"]",
+        "[class*=\"didomi\"]",
+        "[class*=\"axeptio\"]",
+        "[class*=\"livechat\"]",
+        "[class*=\"chat-widget\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "landing-wait",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle"
+    },
+    {
+      "step_name": "landing-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "first-tier-click",
+      "url": null,
+      "action": "click",
+      "selector": "a[href*='hospitality'] .card, a.tier-card, a[href*='executive']",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "first-tier-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "all-executive-club",
+      "url": "https://www.psg.fr/en/hospitality/all-executive-club",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"didomi\"]",
+        "[class*=\"didomi\"]",
+        "[class*=\"axeptio\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "all-executive-club-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "billetterie-home-vip",
+      "url": "https://billetterie.psg.fr/en/home-vip",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"didomi\"]",
+        "[class*=\"didomi\"]",
+        "[class*=\"axeptio\"]"
+      ],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "billetterie-home-vip-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "billetterie-login",
+      "url": "https://billetterie.psg.fr/en/account/login",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "requires_credentials": true,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "billetterie-match-selector",
+      "url": null,
+      "action": "click",
+      "selector": "a.fixture-card, button.select-match, a[href*='match']",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "billetterie-match-selector-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "url": null,
+      "action": "fill",
+      "selector": null,
+      "form_fields": [
+        {"selector": "input[name='firstName'], input[name='prenom'], input#firstName", "value": "Test Test"},
+        {"selector": "input[name='email'], input[type='email']", "value": "test@example.com"},
+        {"selector": "input[name='phone'], input[name='telephone'], input[type='tel']", "value": "+44 0000 000000"}
+      ],
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "manual_chrome_mcp": true
+    }
+  ],
+  "metadata": {
+    "broker_vendor": null,
+    "login_gated_steps": [
+      "billetterie-login"
+    ],
+    "external_redirects": [],
+    "dead_ends": [
+      "https://www.psg.fr/en/the-club"
+    ],
+    "cookie_dismiss_failed": true,
+    "fixture_id": "FIRST_AVAILABLE",
+    "captcha_encountered": false,
+    "bot_challenge_encountered": true,
+    "bot_challenge_reason": "turnstile",
+    "trusted_subdomains_used": [
+      "billetterie.psg.fr"
+    ]
+  }
+}

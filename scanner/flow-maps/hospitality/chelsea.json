@@ -1,0 +1,183 @@
+{
+  "area": "hospitality",
+  "club": "chelsea",
+  "entry_url": "https://hospitality.chelseafc.com/match-by-match-hospitality-packages",
+  "steps": [
+    {
+      "step_name": "landing",
+      "url": "https://hospitality.chelseafc.com/match-by-match-hospitality-packages",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]",
+        "[class*=\"chat-widget\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "landing-wait",
+      "url": null,
+      "action": "wait",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": "networkidle"
+    },
+    {
+      "step_name": "landing-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-centenary-club",
+      "url": "https://hospitality.chelseafc.com/match-by-match-hospitality-packages/centenary-club",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-centenary-club-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-platinum",
+      "url": "https://hospitality.chelseafc.com/match-by-match-hospitality-packages/platinum",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-platinum-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-home-dugout-club",
+      "url": "https://hospitality.chelseafc.com/match-by-match-hospitality-packages/home-dugout-club",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-home-dugout-club-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-museum-suite",
+      "url": "https://hospitality.chelseafc.com/match-by-match-hospitality-packages/museum-suite",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-museum-suite-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-tambling-suite",
+      "url": "https://hospitality.chelseafc.com/match-by-match-hospitality-packages/tambling-suite",
+      "action": "navigate",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [
+        "[id*=\"onetrust\"]",
+        "[class*=\"livechat\"]"
+      ],
+      "wait_for": null
+    },
+    {
+      "step_name": "package-tambling-suite-shot",
+      "url": null,
+      "action": "screenshot",
+      "selector": null,
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null
+    },
+    {
+      "step_name": "match-selector",
+      "url": null,
+      "action": "click",
+      "selector": "a.fixture-card, button.select-match, a[href*='match']",
+      "form_fields": null,
+      "hide_selectors": [],
+      "wait_for": null,
+      "skipped": "requires-paid-account"
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "url": null,
+      "action": "fill",
+      "selector": null,
+      "form_fields": [
+        {"selector": "input[name='name'], input#name", "value": "Test Test"},
+        {"selector": "input[name='email'], input[type='email']", "value": "test@example.com"},
+        {"selector": "input[name='phone'], input[type='tel']", "value": "+44 0000 000000"}
+      ],
+      "hide_selectors": [],
+      "wait_for": null,
+      "skipped": "requires-paid-account"
+    }
+  ],
+  "metadata": {
+    "broker_vendor": "keith_prowse",
+    "login_gated_steps": [],
+    "external_redirects": [],
+    "dead_ends": [
+      "https://hospitality.chelseafc.com/match-by-match-hospitality-packages/match-by-match-hospitality-packages"
+    ],
+    "cookie_dismiss_failed": true,
+    "fixture_id": "FIRST_AVAILABLE",
+    "captcha_encountered": false,
+    "bot_challenge_encountered": false,
+    "bot_challenge_reason": null,
+    "trusted_subdomains_used": [
+      "hospitality.chelseafc.com"
+    ]
+  }
+}

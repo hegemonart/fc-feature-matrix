@@ -11,6 +11,19 @@
 
 ---
 
+## Phase 1 Requirements — Flow Automation Layer (Scanner Infrastructure)
+
+Infrastructure tier; no CHANGELOG v-number bump. Enables Phases 2+ to share capture/vision/scoring tooling.
+
+- [x] **FLOW-01**: `/scanner/` Python package at repo root with `capture/`, `flow/`, `vision/`, `report/`, `scoring/`, `config/`, `output/` modules; CLI `python -m scanner <subcommand> --area <area> --club <slug>`
+- [x] **FLOW-02**: Area-parameterized — `/scanner/config/areas.json` drives all path resolution; no area-specific code inside scanner modules
+- [x] **FLOW-03**: Capture module with Playwright persistent context, 1440×900 @ 2x DPR full-page PNG, per-club cookie strategies in `cookie_strategies.py`, post-capture banner vision verification, dummy-form-fill without submit, flow-map JSON schema supporting 5-15 click-through steps with `hide_selectors`
+- [x] **FLOW-04**: Vision module with two-judge (Opus + Sonnet) checklist-first protocol emitting strict JSON `{feature_key: {present, step, evidence_bbox, confidence, notes}}`; disagreement flagging; PIL-slice module crops evidence from bbox
+- [x] **FLOW-05**: Report module generates HTML contact sheet per area (grid per feature, N club thumbnails, red-border on absent); scoring module (`recalculate.js --area <area>`) reads area's `features.ts` and results JSONs; dry-run passes for Man City hospitality landing page with 3-feature dummy rubric
+- [x] **FLOW-06**: `VisionClient` abstraction with dual backend — (a) Claude Agent SDK (subscription-backed, default) consuming user's Max 20x quota; (b) `anthropic` SDK (pay-per-token, fallback). Selected via `--api-mode subscription|api-key` CLI flag. Dry-run passes through subscription path. Both backends produce identical strict-JSON feature verdict output.
+
+---
+
 ## v2 Requirements — Ticket Purchase Flow
 
 ### Automation
@@ -68,9 +81,15 @@
 
 ## v7 Requirements — Hospitality Packages
 
-- [ ] **HOSP-01**: Flow capture for VIP/premium hospitality purchase flows
-- [ ] **HOSP-02**: Feature rubric (HOSPITALITY-FLOW.md) — package tiers, amenities, booking UX
-- [ ] **HOSP-03**: Results JSON per club + Hospitality Packages tab unlocked
+### Phase 2 — 5-club pilot
+
+- [x] **HOSP-01**: Flow capture for VIP/premium hospitality purchase flows (5 pilot clubs: MCFC, TOT, RMA, PSG, CHE) via Phase 1 scanner with `--area hospitality`
+- [x] **HOSP-02**: Feature rubric (HOSPITALITY-FLOW.md) — package tiers, amenities, booking UX — derived from user-approved FEATURES-CANDIDATES.md (observed-on-site + user-review research) *(partial: Plan 02-02 produced candidate list; rubric itself closes with Plan 02-03 post-user-approval)*
+- [x] **HOSP-03**: Results JSON per pilot club + Hospitality Packages tab unlocked with 5-club pilot data (visibly labeled "Pilot")
+
+### Phase 2.5 — full rollout
+
+- [ ] **HOSP-04**: Remaining 28 clubs captured + scored (headless-blocked 5 via Chrome MCP, Barcelona via Socios-aware override, mid-tier stress-test decision resolved); Hospitality Packages tab loses "Pilot" label
 
 ---
 
@@ -134,59 +153,69 @@
 
 | Requirement | Phase | Milestone | Status |
 |-------------|-------|-----------|--------|
-| TKT-01 | Phase 1 | v2 | Pending |
-| TKT-02 | Phase 1 | v2 | Pending |
-| TKT-03 | Phase 1 | v2 | Pending |
-| TKT-04 | Phase 1 | v2 | Pending |
-| TKT-05 | Phase 1 | v2 | Pending |
-| TKT-06 | Phase 1 | v2 | Pending |
-| TKT-07 | Phase 1 | v2 | Pending |
-| TKT-08 | Phase 1 | v2 | Pending |
-| APP-01 | Phase 2 | v3 | Pending |
-| APP-02 | Phase 2 | v3 | Pending |
-| APP-03 | Phase 2 | v3 | Pending |
-| APP-04 | Phase 2 | v3 | Pending |
-| APP-05 | Phase 2 | v3 | Pending |
-| APP-06 | Phase 2 | v3 | Pending |
-| MERCH-01 | Phase 3 | v5 | Pending |
-| MERCH-02 | Phase 3 | v5 | Pending |
-| MERCH-03 | Phase 3 | v5 | Pending |
-| MERCH-04 | Phase 3 | v5 | Pending |
-| SUBS-01 | Phase 3 | v6 | Pending |
-| SUBS-02 | Phase 3 | v6 | Pending |
-| SUBS-03 | Phase 3 | v6 | Pending |
-| SUBS-04 | Phase 3 | v6 | Pending |
-| HOSP-01 | Phase 4 | v7 | Pending |
-| HOSP-02 | Phase 4 | v7 | Pending |
-| HOSP-03 | Phase 4 | v7 | Pending |
-| SPON-01 | Phase 4 | v8 | Pending |
-| SPON-02 | Phase 4 | v8 | Pending |
-| SPON-03 | Phase 4 | v8 | Pending |
-| PAST-01 | Phase 5 | v9 | Pending |
-| PAST-02 | Phase 5 | v9 | Pending |
-| PAST-03 | Phase 5 | v9 | Pending |
-| BTWN-01 | Phase 5 | v11 | Pending |
-| BTWN-02 | Phase 5 | v11 | Pending |
-| BTWN-03 | Phase 5 | v11 | Pending |
-| MDAY-01 | Phase 6 | v10 | Pending |
-| MDAY-02 | Phase 6 | v10 | Pending |
-| MDAY-03 | Phase 6 | v10 | Pending |
-| MDAY-04 | Phase 6 | v10 | Pending |
-| MDAY-05 | Phase 6 | v10 | Pending |
-| MDAY-06 | Phase 6 | v10 | Pending |
-| MDAY-07 | Phase 6 | v10 | Pending |
+| FLOW-01 | Phase 1 | infra | Pending |
+| FLOW-02 | Phase 1 | infra | Pending |
+| FLOW-03 | Phase 1 | infra | Pending |
+| FLOW-04 | Phase 1 | infra | Pending |
+| FLOW-05 | Phase 1 | infra | Pending |
+| FLOW-06 | Phase 1 | infra | Pending |
+| HOSP-01 | Phase 2 | v7 | Pending |
+| HOSP-02 | Phase 2 | v7 | Pending |
+| HOSP-03 | Phase 2 | v7 | Pending |
+| HOSP-04 | Phase 2.5 | v7.1 | Pending |
+| APP-01 | Phase 3 | v3 | Pending |
+| APP-02 | Phase 3 | v3 | Pending |
+| APP-03 | Phase 3 | v3 | Pending |
+| APP-04 | Phase 3 | v3 | Pending |
+| APP-05 | Phase 3 | v3 | Pending |
+| APP-06 | Phase 3 | v3 | Pending |
+| MERCH-01 | Phase 4 | v5 | Pending |
+| MERCH-02 | Phase 4 | v5 | Pending |
+| MERCH-03 | Phase 4 | v5 | Pending |
+| MERCH-04 | Phase 4 | v5 | Pending |
+| SUBS-01 | Phase 4 | v6 | Pending |
+| SUBS-02 | Phase 4 | v6 | Pending |
+| SUBS-03 | Phase 4 | v6 | Pending |
+| SUBS-04 | Phase 4 | v6 | Pending |
+| TKT-01 | Phase 5 | v2 | Pending |
+| TKT-02 | Phase 5 | v2 | Pending |
+| TKT-03 | Phase 5 | v2 | Pending |
+| TKT-04 | Phase 5 | v2 | Pending |
+| TKT-05 | Phase 5 | v2 | Pending |
+| TKT-06 | Phase 5 | v2 | Pending |
+| TKT-07 | Phase 5 | v2 | Pending |
+| TKT-08 | Phase 5 | v2 | Pending |
+| SPON-01 | Phase 6 | v8 | Pending |
+| SPON-02 | Phase 6 | v8 | Pending |
+| SPON-03 | Phase 6 | v8 | Pending |
+| PAST-01 | Phase 7 | v9 | Pending |
+| PAST-02 | Phase 7 | v9 | Pending |
+| PAST-03 | Phase 7 | v9 | Pending |
+| BTWN-01 | Phase 7 | v11 | Pending |
+| BTWN-02 | Phase 7 | v11 | Pending |
+| BTWN-03 | Phase 7 | v11 | Pending |
+| MDAY-01 | Phase 8 | v10 | Pending |
+| MDAY-02 | Phase 8 | v10 | Pending |
+| MDAY-03 | Phase 8 | v10 | Pending |
+| MDAY-04 | Phase 8 | v10 | Pending |
+| MDAY-05 | Phase 8 | v10 | Pending |
+| MDAY-06 | Phase 8 | v10 | Pending |
+| MDAY-07 | Phase 8 | v10 | Pending |
 
-**Coverage: 38/38 requirements mapped across 6 phases**
+**Coverage: 48/48 requirements mapped across 8 phases + Phase 2.5 decimal**
 
 | Phase | Requirements | Count |
 |-------|--------------|-------|
-| Phase 1 - Flow Automation + Ticket Purchase | TKT-01 to TKT-08 | 8 |
-| Phase 2 - App Home | APP-01 to APP-06 | 6 |
-| Phase 3 - Merch + Subscriptions | MERCH-01 to MERCH-04, SUBS-01 to SUBS-04 | 8 |
-| Phase 4 - Hospitality + Sponsorship | HOSP-01 to HOSP-03, SPON-01 to SPON-03 | 6 |
-| Phase 5 - Past Seasons + Between Season | PAST-01 to PAST-03, BTWN-01 to BTWN-03 | 6 |
-| Phase 6 - Matchday | MDAY-01 to MDAY-07 | 7 |
-| **Total** | | **41** |
+| Phase 1 - Flow Automation Layer (scanner infra) | FLOW-01 to FLOW-06 | 6 |
+| Phase 2 - Hospitality Pilot (5 clubs) | HOSP-01 to HOSP-03 | 3 |
+| Phase 2.5 - Hospitality Full Rollout (28 clubs) | HOSP-04 | 1 |
+| Phase 3 - App Home | APP-01 to APP-06 | 6 |
+| Phase 4 - Merch + Subscriptions | MERCH-01 to MERCH-04, SUBS-01 to SUBS-04 | 8 |
+| Phase 5 - Ticket Purchase | TKT-01 to TKT-08 | 8 |
+| Phase 6 - Sponsorship | SPON-01 to SPON-03 | 3 |
+| Phase 7 - Past Seasons + Between Season | PAST-01 to PAST-03, BTWN-01 to BTWN-03 | 6 |
+| Phase 8 - Matchday | MDAY-01 to MDAY-07 | 7 |
+| **Total** | | **48** |
 
 Unmapped: 0
 

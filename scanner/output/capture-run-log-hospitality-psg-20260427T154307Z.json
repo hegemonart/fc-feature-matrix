@@ -1,0 +1,113 @@
+{
+  "club": "psg",
+  "area": "hospitality",
+  "flow_map": "scanner\\flow-maps\\hospitality\\psg.json",
+  "started_at": "2026-04-27T15:43:07Z",
+  "steps": [
+    {
+      "step_name": "landing",
+      "status": "captured",
+      "duration_ms": 9601,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "landing-wait",
+      "status": "captured",
+      "duration_ms": 3,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "landing-shot",
+      "status": "captured",
+      "duration_ms": 3215,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\psg_landing-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "first-tier-click",
+      "status": "error",
+      "duration_ms": 5009,
+      "output_path": null,
+      "reason": "Page.click: Timeout 5000ms exceeded.\nCall log:\n  - waiting for locator(\"a[href*='hospitality'] .card, a.tier-card, a[href*='executive']\")\n"
+    },
+    {
+      "step_name": "first-tier-shot",
+      "status": "captured",
+      "duration_ms": 3179,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\psg_first-tier-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "all-executive-club",
+      "status": "captured",
+      "duration_ms": 6475,
+      "output_path": null,
+      "reason": null
+    },
+    {
+      "step_name": "all-executive-club-shot",
+      "status": "captured",
+      "duration_ms": 3183,
+      "output_path": "D:\\AI\\fc feature matrix\\.claude\\worktrees\\charming-bhaskara-a8317c\\scanner\\output\\evidence\\hospitality\\fullpage\\psg_all-executive-club-shot.png",
+      "reason": null
+    },
+    {
+      "step_name": "billetterie-home-vip",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "billetterie-home-vip-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "billetterie-login",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "billetterie-match-selector",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "billetterie-match-selector-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "enquiry-form-prefill",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    },
+    {
+      "step_name": "enquiry-form-prefill-shot",
+      "status": "chrome-mcp",
+      "duration_ms": 0,
+      "output_path": null,
+      "reason": "auto-skipped (unattended run); deferred to manual Chrome MCP handoff"
+    }
+  ],
+  "totals": {
+    "captured": 6,
+    "skipped": 0,
+    "chrome_mcp": 7,
+    "missing": 0,
+    "error": 1
+  }
+}
