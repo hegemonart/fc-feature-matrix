@@ -84,14 +84,23 @@ class _TextExtractor(HTMLParser):
       - ``headings`` — (tag, text) tuples for h1..h4.
       - ``links`` — (text, href) tuples for <a> elements (use to seed the
         ``buttons`` field on the synthetic DomIntel).
+
+    Implementation note: we track a per-skip-tag depth counter rather than
+    a tag stack because real-world HTML often has unbalanced or void tags
+    that make stack-pop logic unreliable (e.g. an unclosed ``<head>`` would
+    leave the entire body marked as skipped).
     """
 
-    SKIP_TAGS = {"script", "style", "noscript", "svg", "head", "iframe"}
+    SKIP_TAGS = {"script", "style", "noscript", "svg", "iframe"}
     HEADING_TAGS = {"h1", "h2", "h3", "h4"}
+    BLOCK_TAGS = {
+        "p", "br", "div", "li", "tr", "section", "article",
+        "h1", "h2", "h3", "h4", "h5", "h6",
+    }
 
     def __init__(self) -> None:
         super().__init__(convert_charrefs=True)
-        self._stack: list[str] = []
+        self._skip_depth: dict[str, int] = {t: 0 for t in self.SKIP_TAGS}
         self._heading_buf: list[str] = []
         self._heading_tag: str | None = None
         self._anchor_buf: list[str] = []
@@ -101,40 +110,39 @@ class _TextExtractor(HTMLParser):
         self.links: list[tuple[str, str | None]] = []
 
     def _skipping(self) -> bool:
-        return any(t in self.SKIP_TAGS for t in self._stack)
+        return any(d > 0 for d in self._skip_depth.values())
 
     def handle_starttag(self, tag: str, attrs: list[tuple[str, str | None]]) -> None:
-        self._stack.append(tag)
-        if tag in self.HEADING_TAGS and not self._heading_tag:
+        if tag in self.SKIP_TAGS:
+            self._skip_depth[tag] += 1
+        if tag in self.HEADING_TAGS and not self._heading_tag and not self._skipping():
             self._heading_tag = tag
             self._heading_buf = []
-        if tag == "a":
+        if tag == "a" and not self._skipping():
             self._anchor_buf = []
             href = next((v for (k, v) in attrs if k == "href"), None)
             self._anchor_href = href
         # Insert breaks at block-level boundaries so flowed text doesn't
         # smash words across element edges.
-        if tag in {"p", "br", "div", "li", "tr", "section", "article",
-                   "h1", "h2", "h3", "h4", "h5", "h6"}:
+        if tag in self.BLOCK_TAGS and not self._skipping():
             self.buf.append("\n")
 
     def handle_endtag(self, tag: str) -> None:
-        if self._stack and self._stack[-1] == tag:
-            self._stack.pop()
+        if tag in self.SKIP_TAGS and self._skip_depth.get(tag, 0) > 0:
+            self._skip_depth[tag] -= 1
         if tag == self._heading_tag:
             text = " ".join(self._heading_buf).strip()
             if text:
                 self.headings.append((tag.upper(), text))
             self._heading_tag = None
             self._heading_buf = []
-        if tag == "a":
+        if tag == "a" and self._anchor_href is not None:
             text = " ".join(self._anchor_buf).strip()
             if text:
                 self.links.append((text, self._anchor_href))
             self._anchor_buf = []
             self._anchor_href = None
-        if tag in {"p", "br", "div", "li", "tr", "section", "article",
-                   "h1", "h2", "h3", "h4", "h5", "h6"}:
+        if tag in self.BLOCK_TAGS and not self._skipping():
             self.buf.append("\n")
 
     def handle_data(self, data: str) -> None:
