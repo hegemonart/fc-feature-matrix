@@ -5,18 +5,17 @@ import { existsSync } from 'fs';
 
 export async function GET(req: NextRequest) {
   const file = req.nextUrl.searchParams.get('file');
+  const area = req.nextUrl.searchParams.get('area') ?? 'homepage';
   if (!file || !/^[a-z0-9_]+\.png$/.test(file)) {
     return new NextResponse('Bad request', { status: 400 });
   }
+  if (!/^[a-z]+$/.test(area)) {
+    return new NextResponse('Bad request', { status: 400 });
+  }
 
-  const imgPath = join(
-    process.cwd(),
-    'analysis',
-    'homepage',
-    'crosscheck',
-    'img',
-    file,
-  );
+  const imgPath = area === 'hospitality'
+    ? join(process.cwd(), 'analysis', 'hospitality', 'evidence', 'features', file)
+    : join(process.cwd(), 'analysis', 'homepage', 'crosscheck', 'img', file);
 
   if (!existsSync(imgPath)) {
     return new NextResponse(null, { status: 404 });

@@ -152,6 +152,12 @@ export interface MatrixIslandProps {
    * from `area`: homepage→CATEGORIES, hospitality→HOSPITALITY_CATEGORIES.
    */
   categories?: Category[];
+  /**
+   * Server-resolved auth snapshot. When provided the island skips the
+   * /api/auth/me round-trip on first render and starts with authReady=true,
+   * eliminating the "unlock" flash on navigation.
+   */
+  initialAuth?: { authed: boolean; isAdmin: boolean; isPremium: boolean };
 }
 
 export default function MatrixIsland({
@@ -160,6 +166,7 @@ export default function MatrixIsland({
   buildDate,
   area = 'homepage',
   categories,
+  initialAuth,
 }: MatrixIslandProps) {
   /* ── Area-derived chrome (Plan 02-21) ── */
   const activeArea: MatrixArea = area;
@@ -178,10 +185,11 @@ export default function MatrixIsland({
   const [scoreSort, setScoreSort] = useState<'asc' | 'desc' | null>('desc');
 
   /* ── Auth (preserved verbatim) ── */
-  const [authed, setAuthed] = useState(false);
+  const [authed, setAuthed] = useState(initialAuth?.authed ?? false);
+  const [authReady, setAuthReady] = useState(initialAuth != null); // true when server pre-filled OR after /me fetch settles
   const [authEmail, setAuthEmail] = useState('');
-  const [isAdmin, setIsAdmin] = useState(false);
-  const [isPremium, setIsPremium] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(initialAuth?.isAdmin ?? false);
+  const [isPremium, setIsPremium] = useState(initialAuth?.isPremium ?? false);
   const [loginModalVisible, setLoginModalVisible] = useState(false);
   const [ctaView, setCtaView] = useState<'cta' | 'login'>('cta');
   const [loginEmail, setLoginEmail] = useState('');
@@ -409,7 +417,8 @@ export default function MatrixIsland({
         setIsAdmin(d.isAdmin ?? false);
         setIsPremium(d.isPremium ?? false);
       }
-    }).catch(() => {});
+      setAuthReady(true);
+    }).catch(() => { setAuthReady(true); });
     trackEvent('page_view', { path: areaPath });
   }, [areaPath]);
 
@@ -567,15 +576,30 @@ export default function MatrixIsland({
 
   /* ── TopNav tabs ── */
   const navTabs = useMemo(() => {
+    const privileged = authReady && (isAdmin || isPremium);
     const tabs: { id: string; label: string }[] = [
       { id: 'home', label: 'Homepage' },
     ];
-    LOCKED_TABS.forEach(t => tabs.push({ id: t.id, label: t.name }));
-    tabs.push({ id: 'unlock', label: 'Unlock everything' });
+    if (privileged) {
+      // Hospitality second (unlocked), then remaining locked tabs
+      tabs.push({ id: 'hospitality', label: 'Hospitality Packages' });
+      LOCKED_TABS.filter(t => t.id !== 'hospitality').forEach(t =>
+        tabs.push({ id: t.id, label: t.name })
+      );
+    } else {
+      // Unlock sits right after Homepage, then the locked tabs follow
+      tabs.push({ id: 'unlock', label: 'Unlock everything' });
+      LOCKED_TABS.forEach(t => tabs.push({ id: t.id, label: t.name }));
+    }
     return tabs;
-  }, []);
+  }, [isAdmin, isPremium]);
 
-  const lockedTabIds = useMemo(() => LOCKED_TABS.map(t => t.id), []);
+  const lockedTabIds = useMemo(
+    () => (authReady && (isAdmin || isPremium))
+      ? LOCKED_TABS.filter(t => t.id !== 'hospitality').map(t => t.id)
+      : LOCKED_TABS.map(t => t.id),
+    [authReady, isAdmin, isPremium]
+  );
 
   /* ── Render ── */
   return (
@@ -594,7 +618,7 @@ export default function MatrixIsland({
       <TopNav
         tabs={navTabs}
         activeTab={activeTabId}
-        unlockTab="unlock"
+        unlockTab={authReady && (isAdmin || isPremium) ? undefined : 'unlock'}
         lockedTabs={lockedTabIds}
         onTabClick={handleTabClick}
       />
@@ -889,6 +913,7 @@ export default function MatrixIsland({
         features={featureMap}
         clubs={clubMap}
         scoring={scoringMap}
+        area={activeArea}
       />
     </div>
   );
@@ -1038,9 +1063,10 @@ function FeatureDetail({
   const cat = categories.find(c => c.id === f.cat)
     ?? { id: f.cat, name: f.cat, color: 'var(--muted)' };
   const bandLabel = BAND_META.find(b => b.id === f.band)!.name;
-  const fullList = ALL_IDS.filter(id => f.presence[id] === 'full');
-  const absentList = ALL_IDS.filter(id => f.presence[id] === 'absent');
-  const pName = (id: string) => products.find(p => p.id === id)!.name;
+  const productIdSet = new Set(products.map(p => p.id));
+  const fullList = ALL_IDS.filter(id => productIdSet.has(id) && f.presence[id] === 'full');
+  const absentList = ALL_IDS.filter(id => productIdSet.has(id) && f.presence[id] === 'absent');
+  const pName = (id: string) => products.find(p => p.id === id)?.name ?? id;
   const totalProductsLocal = products.length;
 
   return (

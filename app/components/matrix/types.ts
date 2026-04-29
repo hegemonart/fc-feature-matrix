@@ -176,4 +176,6 @@ export interface HoverTooltipProps {
   clubs: Map<string, ClubMeta>;
   /** Keyed by `${clubId}:${featureId}` for O(1) lookup. */
   scoring: Map<string, CellScoring>;
+  /** Which area's evidence images to serve ('homepage' | 'hospitality'). */
+  area?: string;
 }

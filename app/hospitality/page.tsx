@@ -25,6 +25,8 @@ import {
   HOSPITALITY_FEATURES,
   HOSPITALITY_CATEGORIES,
 } from '@/lib/data';
+import { getSessionFromCookie, getUserByEmail } from '@/lib/auth';
+import { cookies } from 'next/headers';
 import MatrixIsland from '../MatrixIsland';
 
 const PILOT_IDS = ['man_city', 'tottenham', 'real_madrid', 'psg', 'chelsea'];
@@ -35,7 +37,17 @@ export const metadata = {
     '55-feature hospitality matrix across 5 pilot clubs (Man City, Tottenham, Real Madrid, PSG, Chelsea).',
 };
 
-export default function HospitalityPage() {
+export default async function HospitalityPage() {
+  // Resolve auth server-side — same pattern as app/page.tsx.
+  const cookieStore = await cookies();
+  const cookieHeader = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join('; ');
+  const session = getSessionFromCookie(cookieHeader);
+  const user = session ? await getUserByEmail(session.email) : null;
+  const initialAuth = {
+    authed: !!user,
+    isAdmin: user?.isAdmin ?? false,
+    isPremium: user?.isPremium ?? false,
+  };
   const pilotProducts = PRODUCTS.filter(p => PILOT_IDS.includes(p.id));
 
   // Pre-compute weighted scores inline (D-20: do not modify lib/scoring.ts).
@@ -51,14 +63,32 @@ export default function HospitalityPage() {
     scores[p.id] = total;
   });
 
+  // Compute adoptionPct + band for pilot clubs only (denominator = 5, not all 33).
+  // HOSPITALITY_FEATURES are exported without computeBands(), so both fields
+  // are undefined until we set them here server-side. Mirrors computeBands()
+  // logic from analysis/index.ts but uses pilot product count as denominator.
+  const RANK_BAND = ['innovation', 'competitive', 'expected', 'table_stakes'] as const;
+  const TIER_FLOOR: Record<string, number> = { A: 2, B: 1, C: 0, D: 0, E: 0, F: 0 };
+  const n = pilotProducts.length;
+
+  const featuresWithAdoption = HOSPITALITY_FEATURES.map(f => {
+    const presentCount = pilotProducts.filter(p => f.presence[p.id] === 'full').length;
+    const adoption = presentCount / n;
+    const adoptionPct = Math.round(adoption * 100);
+    const adoptionRank = adoption >= 0.9 ? 3 : adoption >= 0.7 ? 2 : adoption >= 0.4 ? 1 : 0;
+    const band = RANK_BAND[Math.max(adoptionRank, TIER_FLOOR[f.tier] ?? 0)];
+    return { ...f, adoption, adoptionPct, band };
+  });
+
   const buildDate = process.env.BUILD_DATE ?? '';
 
   return (
     <MatrixIsland
       area="hospitality"
       products={pilotProducts}
-      features={HOSPITALITY_FEATURES}
+      features={featuresWithAdoption}
       categories={HOSPITALITY_CATEGORIES}
+      initialAuth={initialAuth}
       scores={scores}
       buildDate={buildDate}
     />

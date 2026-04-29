@@ -15,9 +15,22 @@
 
 import { PRODUCTS, FEATURES } from '@/lib/data';
 import { getProductScores } from '@/lib/scoring';
+import { getSessionFromCookie, getUserByEmail } from '@/lib/auth';
+import { cookies } from 'next/headers';
 import MatrixIsland from './MatrixIsland';
 
-export default function FeatureMatrixPage() {
+export default async function FeatureMatrixPage() {
+  // Resolve auth server-side so MatrixIsland starts with correct role —
+  // eliminates the "unlock" flash caused by the client-side /me fetch race.
+  const cookieStore = await cookies();
+  const cookieHeader = cookieStore.getAll().map(c => `${c.name}=${c.value}`).join('; ');
+  const session = getSessionFromCookie(cookieHeader);
+  const user = session ? await getUserByEmail(session.email) : null;
+  const initialAuth = {
+    authed: !!user,
+    isAdmin: user?.isAdmin ?? false,
+    isPremium: user?.isPremium ?? false,
+  };
   // Pre-compute per-product totals on the server so the Client island
   // doesn't need to re-derive them from PRODUCTS x FEATURES on first
   // paint. Object is fully serializable for the RSC → Client boundary.
@@ -37,6 +50,7 @@ export default function FeatureMatrixPage() {
       features={FEATURES}
       scores={scores}
       buildDate={buildDate}
+      initialAuth={initialAuth}
     />
   );
 }
