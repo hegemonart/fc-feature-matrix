@@ -14,7 +14,7 @@
     "price_per_person_visible": true,
     "fixture_category_tiers": false,
     "min_booking_unit": true,
-    "price_range_by_match": false,
+    "price_range_by_match": true,
     "total_cost_preview_pre_submit": false,
     "deposit_vs_full_payment": false,
     "corporate_invoice_billing": false,
@@ -33,7 +33,7 @@
     "multi_match_bundle_selector": true,
     "opponent_filter": false,
     "availability_heatmap": false,
-    "enquiry_form_field_count_le_7": false,
+    "enquiry_form_field_count_le_7": true,
     "immediate_confirmation_email": false,
     "accessible_booking_option": false,
     "buy_now_without_enquiry": true,
@@ -52,26 +52,27 @@
     "transport_package_bundling": false,
     "booking_change_policy_visible": false,
     "seat_number_lead_time": false,
-    "fixture_change_notification": false,
+    "fixture_change_notification": true,
     "dietary_preferences_capture": false,
     "cancellation_refund_window": false,
     "group_host_contact": true,
-    "confirmation_page_clarity": false,
+    "confirmation_page_clarity": true,
     "saved_booking_in_account": false,
     "receipt_download": false
   },
   "disputed_features": [
-    "concierge_service"
+    "confirmation_page_clarity",
+    "enquiry_form_field_count_le_7",
+    "fixture_change_notification",
+    "group_host_contact",
+    "multi_match_bundle_selector",
+    "package_tier_list",
+    "price_range_by_match"
   ],
   "skipped_features": [],
-  "captured_steps": [
-    "enquiry-form-prefill-shot",
-    "landing-shot",
-    "matchday-hospitality-shot",
-    "matchday-tier-card-shot",
-    "palcos-vip-shot"
-  ],
-  "judge_agreement_rate": 0.9964,
-  "generated_at": "2026-04-28T15:24:52+00:00",
-  "total_score": -42
+  "judge_agreement_rate": 0.9667,
+  "screenshots_analyzed": 6,
+  "crops_saved": 17,
+  "source": "manual_screenshots_wave",
+  "generated_at": "2026-04-29T15:48:27+00:00"
 }
