@@ -1,9 +1,9 @@
 /* ================================================================
    HeaderBar.test.tsx
 
-   D-12 — buildDate prop is rendered verbatim. Component does NOT
-   call new Date(); this test guarantees the date is whatever the
-   build pipeline supplied (i.e. process.env.BUILD_DATE).
+   D-12 — humbleteam wordmark + centered title + right-aligned CTAs.
+   The build date used to render here but was removed 2026-05-04;
+   buildDate is preserved on HeaderBarProps as a no-op for compat.
    ================================================================ */
 
 import { describe, it, expect } from 'vitest';
@@ -11,17 +11,10 @@ import { render } from '@testing-library/react';
 import { HeaderBar } from '../../app/components/matrix/HeaderBar';
 
 describe('<HeaderBar> (D-12)', () => {
-  it('renders the buildDate prop formatted as "Nth Month, YYYY"', () => {
-    const { getByText } = render(<HeaderBar buildDate="2026-04-17" />);
-    // Figma node 43:37 shows "8th April, 2026" — our component formats
-    // the ISO buildDate the same way.
-    expect(getByText('17th April, 2026')).toBeTruthy();
-  });
-
-  it('exposes data-build-date attribute matching the raw ISO prop', () => {
-    const { container } = render(<HeaderBar buildDate="2025-12-31" />);
-    const dateEl = container.querySelector('[data-build-date]') as HTMLElement;
-    expect(dateEl.getAttribute('data-build-date')).toBe('2025-12-31');
+  it('does not render any build-date text or attribute', () => {
+    const { container, queryByText } = render(<HeaderBar buildDate="2026-04-17" />);
+    expect(queryByText(/April, 2026/)).toBeNull();
+    expect(container.querySelector('[data-build-date]')).toBeNull();
   });
 
   it('renders the FC Benchmark title', () => {
