@@ -62,7 +62,7 @@ analysis/
     crosscheck/
       CLAUDE.md             Cross-check agent instructions
       recalculate-scores.js Score recalculation script
-      img/                  519 element-level screenshot evidence files
+      img/                  527 element-level screenshot evidence files
       capture_elements.py   Main Playwright capture script
       redo_bad_weak.py      Re-capture failed screenshots
       recapture_deleted.py  Batch re-capture with cookie strategies
@@ -130,7 +130,7 @@ All 37 organizations have been browser cross-checked (the 4 newest from full-pag
 
 For proof-of-concept validation, element-level screenshots are captured for each TRUE feature on a club's homepage. Each screenshot crops the specific page region showing the feature, saved as `{club_id}_{feature_key}.png` in `analysis/homepage/crosscheck/img/`.
 
-**Current coverage**: 519 element screenshots across all 37 clubs. Some TRUE features have `needs-live-check` confidence pending recapture.
+**Current coverage**: 527 element screenshots across all 37 clubs. Some TRUE features have `needs-live-check` confidence pending recapture.
 
 **Capture tooling**: Playwright Python sync API, 1400x900 viewport. 5 sites block headless Chromium (Arsenal, Bayern, Liverpool, NBA, West Ham) — use Chrome MCP for live verification. Scripts:
 

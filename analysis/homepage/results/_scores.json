@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-02",
+  "generated_at": "2026-05-04",
   "total_clubs": 37,
   "rankings": [
     {
@@ -15,7 +15,7 @@
       "rank": 2,
       "product_id": "nottm_forest",
       "screenshot": "35-nottm-forest.png",
-      "total_score": 53,
+      "total_score": 52,
       "yes_count": 27,
       "no_count": 39,
       "feature_count": 66

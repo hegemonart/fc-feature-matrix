@@ -1,5 +1,8 @@
 # Changelog
 
+## v10.2 — 2026-05-04
+Nottm Forest cross-check (rank 2): 53 → 52, 8 feature flips from user evidence. 12 crops captured (9 new + 3 recaptures); press-conference via splide-list transform-shift technique. 1 orphan pruned. 527 PNGs total.
+
 ## v10.1 — 2026-05-04
 Cross-check rescores: PSG -1→-2 (rank 16), F1 -3→+10 (rank 11), BVB -5→-1 (rank 14). 10 feature flips across 3 clubs from user evidence. 7 new crops (PSG badges via unstick + viewport-clip — footer is `position: sticky`); 3 orphans pruned. 519 PNGs total.
 
