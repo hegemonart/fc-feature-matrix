@@ -1,5 +1,11 @@
 # Changelog
 
+## v10.2 — 2026-05-04
+Nottm Forest cross-check (rank 2): 53 → 52, 8 feature flips from user evidence. 12 crops captured (9 new + 3 recaptures); press-conference via splide-list transform-shift technique. 1 orphan pruned. 527 PNGs total.
+
+## v10.1 — 2026-05-04
+Cross-check rescores: PSG -1→-2 (rank 16), F1 -3→+10 (rank 11), BVB -5→-1 (rank 14). 10 feature flips across 3 clubs from user evidence. 7 new crops (PSG badges via unstick + viewport-clip — footer is `position: sticky`); 3 orphans pruned. 519 PNGs total.
+
 ## v10.0 — 2026-04-28
 Add 4 new clubs: Fulham, Leeds United, Nottm Forest, Sunderland (37 total). Wikipedia SVG crests, scored from full-page screenshots (Forest 53, Fulham 25, Leeds 24, Sunderland 11). 71 element cutouts captured via new `capture_new_clubs.py` Playwright script. Forest debuts as #2 ranked club below FC Barcelona.
 

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-27",
+  "generated_at": "2026-05-04",
   "total_clubs": 37,
   "rankings": [
     {
@@ -15,7 +15,7 @@
       "rank": 2,
       "product_id": "nottm_forest",
       "screenshot": "35-nottm-forest.png",
-      "total_score": 53,
+      "total_score": 52,
       "yes_count": 27,
       "no_count": 39,
       "feature_count": 66
@@ -94,6 +94,15 @@
     },
     {
       "rank": 11,
+      "product_id": "f1",
+      "screenshot": "22-f1.png",
+      "total_score": 10,
+      "yes_count": 20,
+      "no_count": 46,
+      "feature_count": 66
+    },
+    {
+      "rank": 12,
       "product_id": "eintracht",
       "screenshot": "30-eintracht.png",
       "total_score": 4,
@@ -102,7 +111,7 @@
       "feature_count": 66
     },
     {
-      "rank": 12,
+      "rank": 13,
       "product_id": "real_madrid",
       "screenshot": "01-real-madrid.png",
       "total_score": 4,
@@ -111,7 +120,16 @@
       "feature_count": 66
     },
     {
-      "rank": 13,
+      "rank": 14,
+      "product_id": "bvb_dortmund",
+      "screenshot": "12-bvb-dortmund.png",
+      "total_score": -1,
+      "yes_count": 18,
+      "no_count": 48,
+      "feature_count": 66
+    },
+    {
+      "rank": 15,
       "product_id": "liverpool",
       "screenshot": "05-liverpool.png",
       "total_score": -1,
@@ -120,30 +138,12 @@
       "feature_count": 66
     },
     {
-      "rank": 14,
+      "rank": 16,
       "product_id": "psg",
       "screenshot": "04-psg.png",
-      "total_score": -1,
-      "yes_count": 19,
-      "no_count": 47,
-      "feature_count": 66
-    },
-    {
-      "rank": 15,
-      "product_id": "f1",
-      "screenshot": "22-f1.png",
-      "total_score": -3,
-      "yes_count": 18,
-      "no_count": 48,
-      "feature_count": 66
-    },
-    {
-      "rank": 16,
-      "product_id": "bvb_dortmund",
-      "screenshot": "12-bvb-dortmund.png",
-      "total_score": -5,
-      "yes_count": 17,
-      "no_count": 49,
+      "total_score": -2,
+      "yes_count": 20,
+      "no_count": 46,
       "feature_count": 66
     },
     {

@@ -2,7 +2,7 @@
   "product_id": "psg",
   "screenshot": "04-psg.png",
   "analyzed_at": "2026-04-13",
-  "total_score": -1,
+  "total_score": -2,
   "features": {
     "language_switcher_in_header": true,
     "login_account": true,
@@ -54,14 +54,14 @@
     "player_roster_preview": false,
     "individual_player_cards": false,
     "player_social_links": false,
-    "womens_team_featured": true,
+    "womens_team_featured": false,
     "womens_team_tickets": false,
     "academy_youth_block": false,
     "esports_gaming_block": false,
-    "charity_csr_block": true,
-    "footer_sponsor_wall": false,
+    "charity_csr_block": false,
+    "footer_sponsor_wall": true,
     "in_content_sponsor": false,
-    "app_store_badges": false,
+    "app_store_badges": true,
     "club_tv_app_promo": false,
     "b2b_partnerships": false,
     "ai_chat_assistant": false,
@@ -69,7 +69,7 @@
     "predictor_fantasy": false,
     "quiz_trivia": false,
     "wallpapers_downloads": false,
-    "social_links_in_footer": false
+    "social_links_in_footer": true
   },
   "confidence": {
     "language_switcher_in_header": "browser-verified",

@@ -5,27 +5,20 @@ exports[`<TopNav> click + snapshot > full snapshot with active + locked + unlock
   class="_nav_164de1"
   role="tablist"
 >
-  <button
-    aria-selected="true"
-    class="_activeTab_164de1"
-    data-tab-active="true"
-    data-tab-id="matrix"
-    data-tab-locked="false"
-    role="tab"
-    type="button"
-  >
-    Matrix
-  </button>
-  <button
-    class="_unlockTab_164de1"
-    data-tab-variant="unlock"
-    type="button"
-  >
-    UNLOCK ALL
-  </button>
   <div
     class="_lockedRail_164de1"
   >
+    <button
+      aria-selected="true"
+      class="_activeTab_164de1"
+      data-tab-active="true"
+      data-tab-id="matrix"
+      data-tab-locked="false"
+      role="tab"
+      type="button"
+    >
+      Matrix
+    </button>
     <button
       aria-selected="false"
       class="_tab_164de1 _tabUnlocked_164de1"
@@ -58,6 +51,13 @@ exports[`<TopNav> click + snapshot > full snapshot with active + locked + unlock
       type="button"
     >
       Mobile
+    </button>
+    <button
+      class="_unlockTab_164de1"
+      data-tab-variant="unlock"
+      type="button"
+    >
+      UNLOCK ALL
     </button>
   </div>
 </nav>
