@@ -1,51 +1,26 @@
 /* ================================================================
    <HeaderBar>
 
-   D-12 — humbleteam wordmark + dot, centered "FC Benchmark" + the
-   build date, right-aligned GET IN TOUCH CTA. Matches Figma node
-   43:37 1:1 (translucent rounded bar, Suisse Intl Medium 22px
-   title, #6b6b6b date, Roboto Mono uppercase white-translucent CTA).
+   D-12 — humbleteam wordmark + dot, centered "FC Benchmark" title,
+   right-aligned GET IN TOUCH CTA. Translucent rounded bar, Suisse
+   Intl Medium 22px title, Roboto Mono uppercase white-translucent
+   CTA.
 
-   buildDate prop is consumed from process.env.BUILD_DATE (defined
-   in plan 01-03 next.config.ts env block). The component does NOT
-   call new Date() — that would trigger a hydration mismatch
-   (RESEARCH.md P4).
+   buildDate prop is preserved on the props contract for callers
+   (process.env.BUILD_DATE → MatrixIsland → HeaderBar) but is no
+   longer rendered. Date display removed 2026-05-04.
    ================================================================ */
 
 import * as React from 'react';
 import styles from './HeaderBar.module.css';
 import type { HeaderBarProps } from './types';
 
-const MONTHS = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December',
-];
-
-function ordinal(n: number): string {
-  const s = ['th', 'st', 'nd', 'rd'];
-  const v = n % 100;
-  return n + (s[(v - 20) % 10] ?? s[v] ?? s[0]);
-}
-
-/** Format an ISO `YYYY-MM-DD` string to "8th April, 2026". Returns the
- *  input unchanged if it doesn't match the ISO shape. */
-function formatBuildDate(iso: string): string {
-  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso);
-  if (!m) return iso;
-  const year = m[1];
-  const month = MONTHS[parseInt(m[2], 10) - 1];
-  const day = parseInt(m[3], 10);
-  return `${ordinal(day)} ${month}, ${year}`;
-}
-
 export function HeaderBar({
-  buildDate,
   authed = false,
   isAdmin = false,
   onSignOut,
   adminHref = '/admin',
 }: HeaderBarProps) {
-  const formatted = formatBuildDate(buildDate);
   return (
     <div className={styles.wrap}>
       <header className={styles.bar} role="banner">
@@ -71,9 +46,6 @@ export function HeaderBar({
 
         <span className={styles.center}>
           <span className={styles.title}>FC Benchmark</span>
-          <span className={styles.date} data-build-date={buildDate}>
-            {formatted}
-          </span>
         </span>
 
         <span className={styles.actions}>

@@ -36,12 +36,6 @@ exports[`<HeaderBar> (D-12) > snapshot 1`] = `
       >
         FC Benchmark
       </span>
-      <span
-        class="_date_232b7f"
-        data-build-date="2026-04-17"
-      >
-        17th April, 2026
-      </span>
     </span>
     <span
       class="_actions_232b7f"

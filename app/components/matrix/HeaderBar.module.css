@@ -88,15 +88,6 @@
   color: #ffffff;
 }
 
-.date {
-  font-family: var(--font-body, 'Inter Tight'), 'Suisse Intl', system-ui, sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: -0.3px;
-  color: #6b6b6b;
-}
-
 /* ── RIGHT: actions group (Get in touch + Admin + Sign out) ──── */
 
 /* All three CTAs share the same .cta styling so they read as siblings
@@ -142,7 +133,7 @@
 
 /* ── Responsive breakpoints ──────────────────────────────────── */
 
-/* Tablet — 900px and below: shrink title + date, allow center to flex */
+/* Tablet — 900px and below: shrink title, allow center to flex */
 @media (max-width: 900px) {
   .center {
     flex-shrink: 1;
@@ -152,9 +143,6 @@
   .title {
     font-size: 18px;
     letter-spacing: -0.3px;
-  }
-  .date {
-    font-size: 14px;
   }
   .brand {
     width: auto;
@@ -203,9 +191,6 @@
   .title {
     font-size: 15px;
     letter-spacing: -0.2px;
-  }
-  .date {
-    display: none;
   }
   .cta {
     padding: 6px 10px;
