@@ -36,6 +36,9 @@
 .caption {
   flex-shrink: 0;
   color: var(--muted);
-  min-width: 28px;
-  text-align: right;
+  /* Pack flush-left against the track + 6px gap. Without this the
+     percentage text would sit at the right edge of its container
+     (the previous `min-width: 28px; text-align: right;`) and read
+     like a wide unintentional gap between the meter and the number. */
+  text-align: left;
 }
