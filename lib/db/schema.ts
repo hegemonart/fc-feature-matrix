@@ -75,6 +75,16 @@ export const accessRequests = pgTable(
   ]
 );
 
+// Single-row-per-key store for site-wide configurable values that admins
+// can change at runtime (e.g. the build-date label rendered in HeaderBar).
+// Falls back to env defaults when a key is absent — see lib/settings.ts.
+export const siteSettings = pgTable('site_settings', {
+  key: varchar('key', { length: 64 }).primaryKey(),
+  value: text('value').notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedBy: uuid('updated_by').references(() => users.id, { onDelete: 'set null' }),
+});
+
 // ---------- Types ----------
 
 export type User = typeof users.$inferSelect;
@@ -83,3 +93,5 @@ export type Event = typeof events.$inferSelect;
 export type NewEvent = typeof events.$inferInsert;
 export type AccessRequest = typeof accessRequests.$inferSelect;
 export type NewAccessRequest = typeof accessRequests.$inferInsert;
+export type SiteSetting = typeof siteSettings.$inferSelect;
+export type NewSiteSetting = typeof siteSettings.$inferInsert;

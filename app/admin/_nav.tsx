@@ -16,6 +16,7 @@ import { usePathname } from 'next/navigation';
 const LINKS = [
   { href: '/admin/users',    label: 'Users' },
   { href: '/admin/analytics', label: 'Analytics' },
+  { href: '/admin/settings', label: 'Settings' },
 ];
 
 export function AdminNav({ email }: { email: string }) {
