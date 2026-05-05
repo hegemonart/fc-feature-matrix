@@ -1,7 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { z } from 'zod';
 import { getSessionFromCookie, getUserByEmail } from '@/lib/auth';
-import { getDisplayDate, setSetting, SETTING_KEYS } from '@/lib/settings';
+import {
+  getDisplayDate,
+  setSetting,
+  SETTING_KEYS,
+  extractDbError,
+} from '@/lib/settings';
 
 async function requireAdmin(req: NextRequest) {
   const session = getSessionFromCookie(req.headers.get('cookie'));
@@ -51,7 +56,38 @@ export async function PATCH(req: NextRequest) {
       updatedBy: row.updatedBy,
     });
   } catch (err: unknown) {
-    const msg = err instanceof Error ? err.message : String(err);
-    return NextResponse.json({ error: `Failed to save: ${msg}` }, { status: 500 });
+    const dbErr = extractDbError(err);
+    // Translate the most common postgres error codes into actionable
+    // messages so admins can self-diagnose. See:
+    // https://www.postgresql.org/docs/current/errcodes-appendix.html
+    let userMessage: string;
+    let status = 500;
+    switch (dbErr.code) {
+      case '42P01':
+        userMessage =
+          'site_settings table does not exist. The 0002 migration has not been applied — run `npm run db:migrate` against this database.';
+        status = 503;
+        break;
+      case '23503':
+        userMessage = `Foreign-key violation: ${dbErr.detail ?? 'updated_by user not found'}`;
+        status = 409;
+        break;
+      case '23505':
+        userMessage = `Unique constraint violation: ${dbErr.detail ?? dbErr.message}`;
+        status = 409;
+        break;
+      case '42703':
+        userMessage = `Schema mismatch (column missing): ${dbErr.message}. The deployed code is ahead of the DB — run \`npm run db:migrate\`.`;
+        status = 503;
+        break;
+      default:
+        userMessage = dbErr.message || 'Unknown database error';
+    }
+    // Server-side log keeps the full Drizzle wrapper + cause for debugging.
+    console.error('[settings] setSetting failed', { code: dbErr.code, detail: dbErr.detail, message: dbErr.message });
+    return NextResponse.json(
+      { error: userMessage, code: dbErr.code ?? null },
+      { status },
+    );
   }
 }
