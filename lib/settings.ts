@@ -41,9 +41,36 @@ export async function getDisplayDate(): Promise<string> {
   return (await getSetting(SETTING_KEYS.DISPLAY_DATE)) ?? process.env.BUILD_DATE ?? '';
 }
 
+/** Postgres error info extracted from a Drizzle wrapper error. The
+ *  underlying pg error lives at `err.cause` (PostgresError shape). */
+export interface SettingsDbError {
+  code?: string;
+  detail?: string;
+  message: string;
+  hint?: string;
+}
+
+/** Pull a structured error out of a thrown Drizzle error. Drizzle wraps
+ *  the failed query in `err.message` and stashes the original
+ *  PostgresError on `err.cause`. We surface the code+detail so callers
+ *  can render an actionable message (e.g. "run db:migrate" on 42P01). */
+export function extractDbError(err: unknown): SettingsDbError {
+  const cause = (err as { cause?: unknown })?.cause as
+    | { code?: string; detail?: string; message?: string; hint?: string }
+    | undefined;
+  const top = err instanceof Error ? err.message : String(err);
+  return {
+    code: cause?.code,
+    detail: cause?.detail,
+    hint: cause?.hint,
+    message: cause?.message ?? top,
+  };
+}
+
 /**
  * Upsert a setting. `updatedBy` is the admin user's UUID for audit.
- * Throws if the DB write fails — callers should surface to the UI.
+ * Throws if the DB write fails — callers should surface to the UI
+ * (and may inspect the thrown error via `extractDbError`).
  */
 export async function setSetting(
   key: SettingKey,
