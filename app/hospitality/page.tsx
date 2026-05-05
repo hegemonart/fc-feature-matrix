@@ -26,6 +26,7 @@ import {
   HOSPITALITY_CATEGORIES,
 } from '@/lib/data';
 import { getSessionFromCookie, getUserByEmail } from '@/lib/auth';
+import { getDisplayDate } from '@/lib/settings';
 import { cookies } from 'next/headers';
 import MatrixIsland from '../MatrixIsland';
 
@@ -80,7 +81,8 @@ export default async function HospitalityPage() {
     return { ...f, adoption, adoptionPct, band };
   });
 
-  const buildDate = process.env.BUILD_DATE ?? '';
+  // site_settings → BUILD_DATE env fallback. See lib/settings.ts.
+  const buildDate = await getDisplayDate();
 
   return (
     <MatrixIsland

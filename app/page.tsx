@@ -16,6 +16,7 @@
 import { PRODUCTS, FEATURES } from '@/lib/data';
 import { getProductScores } from '@/lib/scoring';
 import { getSessionFromCookie, getUserByEmail } from '@/lib/auth';
+import { getDisplayDate } from '@/lib/settings';
 import { cookies } from 'next/headers';
 import MatrixIsland from './MatrixIsland';
 
@@ -39,10 +40,11 @@ export default async function FeatureMatrixPage() {
     scores[p.id] = getProductScores(p.id).weightedScore;
   });
 
-  // BUILD_DATE is set in next.config.ts at build time (D-12). Resolve it
-  // to a string here so the Client component never reaches into
-  // process.env (avoids a client-side env access + hydration mismatch).
-  const buildDate = process.env.BUILD_DATE ?? '';
+  // Display date is read from site_settings (admin-editable in /admin/settings)
+  // and falls back to process.env.BUILD_DATE (set in next.config.ts) when the
+  // override row is absent. Resolved server-side so the Client island never
+  // reaches into process.env (avoids hydration mismatch).
+  const buildDate = await getDisplayDate();
 
   return (
     <MatrixIsland
