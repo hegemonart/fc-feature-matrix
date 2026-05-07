@@ -39,3 +39,7 @@ scanner/output/*
 # Phase 2 hospitality vision rubric — transient artifact (Plan 02-11)
 analysis/hospitality/features.json
 
+# Capture pipeline artifacts (debug-only)
+sample_strips/
+analysis/homepage/crosscheck/__pycache__/
+analysis/homepage/crosscheck/*.log

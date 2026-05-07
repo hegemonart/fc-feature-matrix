@@ -1,6 +1,6 @@
 # FC Benchmark
 
-UX benchmarking tool for top sports club and league websites. Analyzes 58 homepage features across 37 organizations, scores them with asymmetric tier-based weighting, and presents an interactive comparison matrix.
+UX benchmarking tool for top sports club and league websites. Analyzes 58 homepage features across 40 organizations, scores them with asymmetric tier-based weighting, and presents an interactive comparison matrix.
 
 ## Stack
 
@@ -44,7 +44,7 @@ app/
 lib/data.ts                 Re-exports analysis data to the app
 analysis/
   CLAUDE.md                 Root analysis instructions
-  products.ts               37 products (clubs, leagues, governing bodies)
+  products.ts               40 products (clubs, leagues, governing bodies)
   types.ts                  Shared TypeScript types
   index.ts                  Barrel export + band computation
   homepage/
@@ -55,7 +55,7 @@ analysis/
       chelsea.json          Per-club feature values + confidence
       fc_barcelona.json
       arsenal.json
-      ... (37 club files)
+      ... (40 club files)
       _scores.json          Ranked scores
       _aggregate.json       Full feature x club matrix
     screenshots/            Full-page homepage PNGs for original analysis
@@ -84,11 +84,11 @@ CLAUDE.md                   Agent instructions incl. "Design system rules" (sing
 
 ## Coverage
 
-37 organizations across sports:
+40 organizations across sports:
 
 - **20 football clubs**: Real Madrid, FC Barcelona, Bayern Munich, PSG, Liverpool, Man City, Arsenal, Man United, Tottenham, Chelsea, Inter Milan, BVB Dortmund, Atletico Madrid, Aston Villa, AC Milan, Juventus, Newcastle, VfB Stuttgart, SL Benfica, West Ham
-- **9 other clubs**: Brentford, Club Brugge, Eintracht Frankfurt, RB Leipzig, Valencia CF, Fulham, Leeds United, Nottm Forest, Sunderland
-- **5 leagues/tours**: UEFA, F1, MotoGP, MLS, MLB, NBA, ATP Tour
+- **11 other clubs**: Brentford, Club Brugge, Eintracht Frankfurt, RB Leipzig, Valencia CF, Fulham, Leeds United, Nottm Forest, Sunderland, Wrexham AFC, Barnsley FC
+- **6 leagues/tours**: UEFA, F1, MotoGP, MLS, MLB, NBA, ATP Tour, NFL
 - **1 federation**: ITF Tennis
 
 ## Scoring system
@@ -124,13 +124,13 @@ Every JSON result is independently verified by visiting the live website in Chro
 6. Flip any incorrect TRUE/FALSE values with evidence
 7. Update confidence fields to `"browser-verified"`
 
-All 37 organizations have been browser cross-checked (the 4 newest from full-page screenshots — pending live re-verification). Discrepancies are logged in commit messages (e.g. `cross-check: Arsenal — 9 fixes, score 49 -> 46`).
+All 40 organizations have been browser cross-checked (the 7 newest from full-page screenshots — pending live re-verification). Discrepancies are logged in commit messages (e.g. `cross-check: Arsenal — 9 fixes, score 49 -> 46`).
 
 ### 3. Element-level screenshot evidence (crosscheck/img)
 
 For proof-of-concept validation, element-level screenshots are captured for each TRUE feature on a club's homepage. Each screenshot crops the specific page region showing the feature, saved as `{club_id}_{feature_key}.png` in `analysis/homepage/crosscheck/img/`.
 
-**Current coverage**: 527 element screenshots across all 37 clubs. Some TRUE features have `needs-live-check` confidence pending recapture.
+**Current coverage**: 558 element screenshots across all 40 clubs. Some TRUE features have `needs-live-check` confidence pending recapture.
 
 **Capture tooling**: Playwright Python sync API, 1400x900 viewport. 5 sites block headless Chromium (Arsenal, Bayern, Liverpool, NBA, West Ham) — use Chrome MCP for live verification. Scripts:
 
