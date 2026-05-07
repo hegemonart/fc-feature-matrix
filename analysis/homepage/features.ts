@@ -47,6 +47,9 @@ import fulham from './results/fulham.json';
 import leeds from './results/leeds.json';
 import nottm_forest from './results/nottm_forest.json';
 import sunderland from './results/sunderland.json';
+import wrexham from './results/wrexham.json';
+import nfl from './results/nfl.json';
+import barnsley from './results/barnsley.json';
 
 // ── All results indexed by product_id ──
 const RESULTS: Record<string, Record<string, boolean>> = {
@@ -87,6 +90,9 @@ const RESULTS: Record<string, Record<string, boolean>> = {
   leeds: leeds.features,
   nottm_forest: nottm_forest.features,
   sunderland: sunderland.features,
+  wrexham: wrexham.features,
+  nfl: nfl.features,
+  barnsley: barnsley.features,
 };
 
 /** Build a presence map for a given feature key from JSON results */

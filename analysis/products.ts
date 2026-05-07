@@ -1,5 +1,5 @@
 /* ================================================================
-   analysis/products.ts  --  25 clubs, leagues & governing bodies
+   analysis/products.ts  --  40 clubs, leagues & governing bodies
    (Only products with homepage analysis results)
    ================================================================ */
 
@@ -45,6 +45,9 @@ export const PRODUCTS: Product[] = [
   { id: 'leeds',           name: 'Leeds United',    type: 'club',      sport: 'football',    logo: `${L}/leeds.svg` },
   { id: 'nottm_forest',    name: 'Nottm Forest',    type: 'club',      sport: 'football',    logo: `${L}/nottm_forest.svg` },
   { id: 'sunderland',      name: 'Sunderland',      type: 'club',      sport: 'football',    logo: `${L}/sunderland.svg` },
+  { id: 'wrexham',         name: 'Wrexham AFC',     type: 'club',      sport: 'football',    logo: `${L}/wrexham.svg` },
+  { id: 'nfl',             name: 'NFL',             type: 'league',    sport: 'american_football', logo: `${L}/nfl.svg` },
+  { id: 'barnsley',        name: 'Barnsley FC',     type: 'club',      sport: 'football',    logo: `${L}/barnsley.svg` },
 ];
 
 export const ALL_IDS: string[] = PRODUCTS.map(p => p.id);

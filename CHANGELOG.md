@@ -1,5 +1,8 @@
 # Changelog
 
+## v11.0 — 2026-05-07
+Add 3 new entries: Wrexham AFC, NFL, Barnsley FC (40 total). Wikimedia SVG logos. Scored from full-page screenshots via Playwright capture pipeline (NFL +18 rank 10, Barnsley −15 rank 22, Wrexham −27 rank 30). New `american_football` SportType. 39 element cropouts via `capture_may7.py` + `recapture_*_clean.py` scripts using OneTrust API (`#onetrust-accept-btn-handler` + dark-filter removal). Custom recipes for Wrexham LATEST PRODUCTS / BE A MEMBER / Principal+Global+Local Partners trio; Barnsley UNITING YOUR BUSINESS card; cluster-filter on social_links to drop the EFL Together x.com/search badge. Parallel Sonnet+Opus audit reconciled to 1 flip: Barnsley `in_content_sponsor` FALSE→TRUE (Sky Bet CPR awareness cards in body = visible sponsor placement). `secondary_editorial_strip_below_hero` stays FALSE (those cards are sponsor ads, not editorial). 559 PNGs total.
+
 ## v10.2 — 2026-05-04
 Nottm Forest cross-check (rank 2): 53 → 52, 8 feature flips from user evidence. 12 crops captured (9 new + 3 recaptures); press-conference via splide-list transform-shift technique. 1 orphan pruned. 527 PNGs total.
 

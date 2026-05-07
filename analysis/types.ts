@@ -46,7 +46,7 @@ export type DetectionMode = 'dom' | 'visual' | 'hybrid';
 
 export type ProductType = 'club' | 'league' | 'governing';
 
-export type SportType = 'football' | 'motorsport' | 'basketball' | 'baseball' | 'tennis';
+export type SportType = 'football' | 'motorsport' | 'basketball' | 'baseball' | 'tennis' | 'american_football';
 
 export interface Category {
   id: CategoryId;
