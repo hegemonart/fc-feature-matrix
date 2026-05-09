@@ -193,7 +193,7 @@ thead th.freq-col { min-width: 100px; max-width: 100px; width: 100px; padding: 0
 tbody tr { transition: background .1s; }
 tbody tr:hover { background: transparent; }
 tbody tr.highlighted { background: rgba(255,255,255,0.04); }
-td.feature-name { position: sticky; left: 0; background: var(--bg-cell); z-index: 5; min-width: 250px; max-width: 250px; width: 250px; padding: 0 12px; height: 32px; cursor: pointer; transition: background .12s; }
+td.feature-name { position: sticky; left: 0; background: var(--bg-cell); z-index: 5; min-width: 250px; max-width: 250px; width: 250px; padding: 0 0 0 12px; height: 32px; cursor: pointer; transition: background .12s; }
 tbody tr:hover td.feature-name, tbody tr.highlighted td.feature-name { background: var(--bg-hover); }
 tbody tr:hover .feature-band, tr.crosshair-row .feature-band { opacity: 1; }
 .feature-inner { display: flex; align-items: center; gap: 8px; height: 100%; }
