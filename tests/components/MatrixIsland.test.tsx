@@ -59,7 +59,18 @@ beforeEach(() => {
 
 import MatrixIsland from '@/app/MatrixIsland';
 
-const PILOT_IDS = ['man_city', 'tottenham', 'real_madrid', 'psg', 'chelsea'];
+const PILOT_IDS = [
+  'man_city',
+  'tottenham',
+  'real_madrid',
+  'psg',
+  'chelsea',
+  'inter_milan',
+  'juventus',
+  'ac_milan',
+  'atletico_madrid',
+  'man_united',
+];
 const pilotProducts = PRODUCTS.filter(p => PILOT_IDS.includes(p.id));
 const stubScores: Record<string, number> = Object.fromEntries(
   PILOT_IDS.map(id => [id, 12]),
@@ -129,7 +140,7 @@ describe('Plan 02-21 — hospitality data wiring', () => {
   });
 
   it('non-pilot products stay absent across all hospitality features', () => {
-    const nonPilotIds = ['arsenal', 'liverpool', 'fc_barcelona', 'bayern_munich', 'man_united'];
+    const nonPilotIds = ['arsenal', 'liverpool', 'fc_barcelona', 'bayern_munich', 'aston_villa'];
     HOSPITALITY_FEATURES.forEach(f => {
       nonPilotIds.forEach(id => {
         expect(f.presence[id]).toBe('absent');
@@ -156,7 +167,7 @@ describe('Plan 02-21 — <MatrixIsland area="hospitality"> rendering', () => {
     expect(featureRows.length).toBe(55);
   });
 
-  it('renders 5 product columns in the matrix header', () => {
+  it('renders 10 product columns in the matrix header', () => {
     const { container } = render(
       <MatrixIsland
         area="hospitality"
@@ -168,7 +179,7 @@ describe('Plan 02-21 — <MatrixIsland area="hospitality"> rendering', () => {
       />,
     );
     const headerCols = container.querySelectorAll('thead tr:first-child th');
-    expect(headerCols.length).toBe(6); // 1 feature col + 5 product cols
+    expect(headerCols.length).toBe(11); // 1 feature col + 10 product cols
   });
 
   it('renders 8 hospitality categories in the sidebar CategoryFilter', () => {

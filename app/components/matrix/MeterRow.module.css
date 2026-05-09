@@ -36,6 +36,7 @@
 .caption {
   flex-shrink: 0;
   color: var(--muted);
-  min-width: 28px;
+  /* Reserve 4ch (matches "100%") so meter rows column-align across rows. */
+  min-width: 4ch;
   text-align: right;
 }
