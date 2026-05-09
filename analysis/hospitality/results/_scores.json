@@ -1,45 +1,85 @@
 {
-  "generated_at": "2026-04-29",
-  "total_clubs": 5,
+  "generated_at": "2026-05-07",
+  "total_clubs": 10,
   "rankings": [
     {
       "rank": 1,
-      "product_id": "tottenham",
-      "total_score": -40,
-      "yes_count": 14,
-      "no_count": 41,
+      "product_id": "psg",
+      "total_score": 54,
+      "yes_count": 29,
+      "no_count": 26,
       "feature_count": 55
     },
     {
       "rank": 2,
-      "product_id": "realmadrid",
-      "total_score": -42,
-      "yes_count": 14,
-      "no_count": 41,
+      "product_id": "mancity",
+      "total_score": 50,
+      "yes_count": 31,
+      "no_count": 24,
       "feature_count": 55
     },
     {
       "rank": 3,
-      "product_id": "mancity",
-      "total_score": -49,
+      "product_id": "chelsea",
+      "total_score": 43,
+      "yes_count": 30,
+      "no_count": 25,
+      "feature_count": 55
+    },
+    {
+      "rank": 4,
+      "product_id": "atletico",
+      "total_score": 23,
+      "yes_count": 26,
+      "no_count": 29,
+      "feature_count": 55
+    },
+    {
+      "rank": 5,
+      "product_id": "manunited",
+      "total_score": 22,
+      "yes_count": 28,
+      "no_count": 27,
+      "feature_count": 55
+    },
+    {
+      "rank": 6,
+      "product_id": "acmilan",
+      "total_score": 8,
+      "yes_count": 24,
+      "no_count": 31,
+      "feature_count": 55
+    },
+    {
+      "rank": 7,
+      "product_id": "tottenham",
+      "total_score": 1,
+      "yes_count": 22,
+      "no_count": 33,
+      "feature_count": 55
+    },
+    {
+      "rank": 8,
+      "product_id": "realmadrid",
+      "total_score": -23,
+      "yes_count": 18,
+      "no_count": 37,
+      "feature_count": 55
+    },
+    {
+      "rank": 9,
+      "product_id": "juventus",
+      "total_score": -37,
       "yes_count": 14,
       "no_count": 41,
       "feature_count": 55
     },
     {
-      "rank": 4,
-      "product_id": "chelsea",
-      "total_score": -75,
-      "yes_count": 9,
-      "no_count": 46,
-      "feature_count": 55
-    },
-    {
-      "rank": 5,
-      "product_id": "psg",
-      "total_score": -84,
-      "yes_count": 8,
-      "no_count": 47,
+      "rank": 10,
+      "product_id": "inter",
+      "total_score": -47,
+      "yes_count": 13,
+      "no_count": 42,
       "feature_count": 55
     }
   ]

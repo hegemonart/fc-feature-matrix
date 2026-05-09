@@ -52,16 +52,16 @@ test('hospitality page passes a11y posture baseline @smoke', async ({ page }) =>
   const catRows = page.locator('.sidebar [data-category-id]');
   await expect(catRows).toHaveCount(8);
 
-  // 4. Matrix table renders with 1 sticky feature col + 5 product cols
+  // 4. Matrix table renders with 1 sticky feature col + 10 product cols
   //    + 55 feature rows (HP01..HP55).
   const headerCols = page.locator('thead tr').first().locator('th');
-  await expect(headerCols).toHaveCount(6);
+  await expect(headerCols).toHaveCount(11);
   const featureRows = page.locator('tbody tr[data-feature-row]');
   await expect(featureRows).toHaveCount(55);
 
   // 5. Logos have alt text (a11y baseline).
   const logoImgs = page.locator('thead .col-logo img');
-  await expect(logoImgs).toHaveCount(5);
+  await expect(logoImgs).toHaveCount(10);
   const logoCount = await logoImgs.count();
   for (let i = 0; i < logoCount; i++) {
     const alt = await logoImgs.nth(i).getAttribute('alt');

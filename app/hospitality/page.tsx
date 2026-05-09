@@ -30,12 +30,23 @@ import { getDisplayDate } from '@/lib/settings';
 import { cookies } from 'next/headers';
 import MatrixIsland from '../MatrixIsland';
 
-const PILOT_IDS = ['man_city', 'tottenham', 'real_madrid', 'psg', 'chelsea'];
+const PILOT_IDS = [
+  'man_city',
+  'tottenham',
+  'real_madrid',
+  'psg',
+  'chelsea',
+  'inter_milan',
+  'juventus',
+  'ac_milan',
+  'atletico_madrid',
+  'man_united',
+];
 
 export const metadata = {
-  title: 'FC Benchmark — Hospitality Packages (Pilot: 5 clubs)',
+  title: 'FC Benchmark — Hospitality Packages (10 clubs)',
   description:
-    '55-feature hospitality matrix across 5 pilot clubs (Man City, Tottenham, Real Madrid, PSG, Chelsea).',
+    '55-feature hospitality matrix across 10 European clubs (Man City, Tottenham, Real Madrid, PSG, Chelsea, Inter Milan, Juventus, AC Milan, Atlético Madrid, Man United).',
 };
 
 export default async function HospitalityPage() {

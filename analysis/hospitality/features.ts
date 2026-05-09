@@ -30,6 +30,11 @@ import tottenham from './results/tottenham.json';
 import realmadrid from './results/realmadrid.json';
 import psg from './results/psg.json';
 import chelsea from './results/chelsea.json';
+import inter from './results/inter.json';
+import juventus from './results/juventus.json';
+import acmilan from './results/acmilan.json';
+import atletico from './results/atletico.json';
+import manunited from './results/manunited.json';
 
 const PILOT_RESULTS: Record<string, Record<string, boolean>> = {
   man_city: mancity.features,
@@ -37,6 +42,11 @@ const PILOT_RESULTS: Record<string, Record<string, boolean>> = {
   real_madrid: realmadrid.features,
   psg: psg.features,
   chelsea: chelsea.features,
+  inter_milan: inter.features,
+  juventus: juventus.features,
+  ac_milan: acmilan.features,
+  atletico_madrid: atletico.features,
+  man_united: manunited.features,
 };
 
 /** Build a presence map for a given feature key.
