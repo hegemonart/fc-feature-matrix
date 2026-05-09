@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-05-07",
+  "generated_at": "2026-05-09",
   "total_clubs": 40,
   "rankings": [
     {
@@ -33,40 +33,13 @@
       "rank": 4,
       "product_id": "motogp",
       "screenshot": "23-motogp.png",
-      "total_score": 30,
-      "yes_count": 23,
-      "no_count": 43,
+      "total_score": 26,
+      "yes_count": 22,
+      "no_count": 44,
       "feature_count": 66
     },
     {
       "rank": 5,
-      "product_id": "fulham",
-      "screenshot": "37-fulham.png",
-      "total_score": 25,
-      "yes_count": 22,
-      "no_count": 44,
-      "feature_count": 66
-    },
-    {
-      "rank": 6,
-      "product_id": "leeds",
-      "screenshot": "36-leeds.png",
-      "total_score": 24,
-      "yes_count": 24,
-      "no_count": 42,
-      "feature_count": 66
-    },
-    {
-      "rank": 7,
-      "product_id": "juventus",
-      "screenshot": "16-juventus.png",
-      "total_score": 22,
-      "yes_count": 22,
-      "no_count": 44,
-      "feature_count": 66
-    },
-    {
-      "rank": 8,
       "product_id": "arsenal",
       "screenshot": "07-arsenal.png",
       "total_score": 21,
@@ -75,7 +48,25 @@
       "feature_count": 66
     },
     {
-      "rank": 9,
+      "rank": 6,
+      "product_id": "fulham",
+      "screenshot": "37-fulham.png",
+      "total_score": 21,
+      "yes_count": 21,
+      "no_count": 45,
+      "feature_count": 66
+    },
+    {
+      "rank": 7,
+      "product_id": "leeds",
+      "screenshot": "36-leeds.png",
+      "total_score": 20,
+      "yes_count": 23,
+      "no_count": 43,
+      "feature_count": 66
+    },
+    {
+      "rank": 8,
       "product_id": "chelsea",
       "screenshot": "10-chelsea.png",
       "total_score": 19,
@@ -84,12 +75,21 @@
       "feature_count": 66
     },
     {
-      "rank": 10,
+      "rank": 9,
       "product_id": "nfl",
       "screenshot": "39-nfl.png",
       "total_score": 18,
       "yes_count": 18,
       "no_count": 48,
+      "feature_count": 66
+    },
+    {
+      "rank": 10,
+      "product_id": "juventus",
+      "screenshot": "16-juventus.png",
+      "total_score": 14,
+      "yes_count": 20,
+      "no_count": 46,
       "feature_count": 66
     },
     {
