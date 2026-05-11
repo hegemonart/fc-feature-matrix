@@ -26,7 +26,7 @@ const robotoMono = Roboto_Mono({
 
 export const metadata: Metadata = {
   title: 'FC Benchmark — Feature Matrix',
-  description: 'UX benchmark of 26 sports website homepages',
+  description: 'UX benchmark of 40+ sports websites across every fan-facing experience',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
